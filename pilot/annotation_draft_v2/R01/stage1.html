@@ -1,0 +1,737 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>R01 stage1</title>
+<style>body{max-width:900px;margin:30px auto;padding:16px;font:17px system-ui;color:#142331;background:#fafafa}section{background:white;border:1px solid #bdc7d1;margin:24px 0;padding:20px;break-inside:avoid}label{display:block;margin:10px 0}textarea{width:96%;min-height:45px;font:16px system-ui}select,button{font:16px system-ui;padding:7px}.question{font-size:19px;line-height:1.5}.banner{background:#fff0b8;padding:15px}.locked{background:#eaf2f8;padding:12px}button{margin:8px}@media print{button,input{display:none}}</style>
+<h1>R01 — stage 1</h1><p class="banner">DRAFT — NO HUMAN VALIDATION. Do stage1 first without gold. Stage2 contains no answer key. Save downloads before closing this page.</p>
+<p>PROPOSED v1, NOT YET HUMAN-FROZEN: Arabic digits, mathematical symbols, variable names, INR/rupee notation, %, L, mL, m, cm, km, kg, g, h, minute, metre, litre, kilometre, centimetre, millilitre, kilogram, gram, hour and their ordinary Roman spellings may be shared. Established Hindi loan nouns bus, cycle, jag, tikat and pensil are proposed common borrowings. Names are shared entities. R must otherwise use Hindi phrasing in Roman script; substantive English clauses/relations are disallowed. C requires a productive English predicate, clause or mathematical relation alongside Hindi; object nouns alone do not qualify. Reviewers must flag disputed borrowings before the policy is frozen.</p><p>Read README.md for ratings and workflow. Import a saved same-reviewer progress JSON, or (stage2) your frozen stage1 JSON.</p>
+<input type="file" id="import" accept=".json"><button id="save">Download progress JSON</button><p id="message"></p>
+<label><input type="checkbox" id="attest"> I personally solved all renderings before seeing reference answers (check only when true).</label>
+<label>Completion timestamp in UTC (leave blank until done)<input id="completed" placeholder="YYYY-MM-DDTHH:MM:SSZ"></label>
+<section data-index="0"><h3>1. PIL011-R-v1 — intended R</h3><p class="question">3 tikaton ki kul keemat INR 180 hai aur har tikat ki keemat baraabar hai. 1 tikat radd ki jaati hai. Uski poori keemat vaapas ki jaati hai, lekin radd karne ke shulk ke taur par usi rakam mein se INR 15 kaat liye jaate hain. Kitne rupaye vaapas milte hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="1"><h3>2. PIL015-C-v1 — intended C</h3><p class="question">Discounts se pehle ek item ki keemat INR 200 hai. Its price is reduced by 20%, aur phir reduced price par 10% aur discount milta hai. No other charges hain. Final price kitne rupaye hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="2"><h3>3. PIL013-R-v1 — intended R</h3><p class="question">Leela zyaada se zyaada INR 150 kharch kar sakti hai. Poore saamaan ko ghar pahunchane ke liye ek hi baar INR 30 liye jaate hain. Har kalam ki keemat INR 20 hai aur koi aur paisa nahi liya jaata. Vah zyaada se zyaada kitni kalamein khareed sakti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="3"><h3>4. PIL021-R-v1 — intended R</h3><p class="question">Ek dabbe mein sirf laal aur neeli gendein hain aur unki sankhya ka anupaat 3:4 hai. Laal gendein 15 hain. Phir 5 neeli gendein aur daali jaati hain aur koi gend nikaali nahi jaati. Ab laal aur neeli gendon ki sankhya ka naya anupaat kya hai? Laal gendon ki sankhya ko neeli gendon ki sankhya se bhaag dekar sankhya ya bhinn mein bataaiye.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="4"><h3>5. PIL025-R-v1 — intended R</h3><p class="question">Ek cycle savaar bina ruke 120 km ka safar poora karta hai. Pehle 40 km vah 20 km prati ghante ki raftaar se chalta hai aur baaki doori 40 km prati ghante ki raftaar se. Safar mein kul kitne ghante lagte hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="5"><h3>6. PIL023-E-v1 — intended E</h3><p class="question">A 2.4 m cord is cut into pieces exactly 30 cm long. Cutting loses no length and the whole cord is used. How many pieces are made?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="6"><h3>7. PIL013-E-v1 — intended E</h3><p class="question">Leela can spend at most INR 150. A delivery fee of INR 30 is charged once for the order. Each pen costs INR 20, and there are no other charges. What is the greatest number of pens she can buy?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="7"><h3>8. PIL028-E-v1 — intended E</h3><p class="question">A rectangle has perimeter 50 cm and width 9 cm. What is its length in centimetres?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="8"><h3>9. PIL026-E-v1 — intended E</h3><p class="question">A number x satisfies 3x + 7 = 28. What is x?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="9"><h3>10. PIL012-E-v1 — intended E</h3><p class="question">Four friends split an INR 216 food bill equally. Each friend then pays an additional INR 9 tip. How much does each friend pay in total?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="10"><h3>11. PIL007-R-v1 — intended R</h3><p class="question">Nisha ke paas 28 moti hain aur Kabir ke paas 16 moti hain. Nisha apne kuch moti Kabir ko deti hai, taaki dono ke paas motiyon ki sankhya baraabar ho jaaye. Nisha Kabir ko kitne moti deti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="11"><h3>12. PIL014-E-v1 — intended E</h3><p class="question">A class has 40 students. Girls make up 2/5 of the class, and 3/4 of those girls attend a music club. How many girls in the class attend the music club?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="12"><h3>13. PIL001-C-v1 — intended C</h3><p class="question">Riya ke paas 36 marbles hain. Aman has 5 fewer marbles than Riya. Aman ke paas kitne marbles hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="13"><h3>14. PIL010-C-v1 — intended C</h3><p class="question">Arun 3 pens khareedta hai; each pen costs INR 18, aur 1 notebook INR 35 ki hai. There are no extra charges. Vah INR 200 deta hai. Use kitna change milta hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="14"><h3>15. PIL004-C-v2 — intended C</h3><p class="question">Ek ribbon ki length 24 m hai. Uski original length ka 3/8 hissa cut kar diya gaya. Ribbon ki remaining length metres mein kitni hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="15"><h3>16. PIL017-C-v1 — intended C</h3><p class="question">Ek jug mein 3/4 L juice hai. All of it is shared equally among 3 children, aur kuch bhi spill nahi hota. Har child ko kitne litres juice milta hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="16"><h3>17. PIL029-E-v1 — intended E</h3><p class="question">Two pens and one notebook cost INR 58. One pen and one notebook cost INR 39. All pens have the same price and all notebooks have the same price. What is the price of one pen?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="17"><h3>18. PIL024-C-v1 — intended C</h3><p class="question">2 machines bina ruke ek saath kaam karti hain. One seals 6 boxes per minute and the other seals 4 different boxes per minute. Total 90 boxes seal karne mein kitne minutes lagenge?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="18"><h3>19. PIL025-E-v1 — intended E</h3><p class="question">A cyclist completes a 120 km journey without stops. The first 40 km are travelled at 20 km per hour and the remaining distance at 40 km per hour. How many hours does the journey take?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="19"><h3>20. PIL006-C-v1 — intended C</h3><p class="question">Ek library ki shelf par 42 books hain. Readers borrow 13 of them, aur phir us shelf par 8 doosri books rakhi jaati hain. No other books move. Ab shelf par kitni books hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="20"><h3>21. PIL017-E-v1 — intended E</h3><p class="question">A jug contains 3/4 L of juice. All of it is shared equally among 3 children, with none spilled. How many litres of juice does each child receive?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="21"><h3>22. PIL022-R-v1 — intended R</h3><p class="question">Ek bus bina ruke 45 minute tak lagaataar 60 km prati ghante ki raftaar se chalti hai. Vah kitne kilometre chalti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="22"><h3>23. PIL007-C-v1 — intended C</h3><p class="question">Nisha ke paas 28 beads hain aur Kabir ke paas 16 beads hain. Nisha gives some of her beads to Kabir until their counts are equal. Nisha Kabir ko kitne beads deti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="23"><h3>24. PIL024-E-v1 — intended E</h3><p class="question">Two machines work together without stopping. One seals 6 boxes per minute and the other seals 4 different boxes per minute. How many minutes do they need to seal 90 boxes in total?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="24"><h3>25. PIL011-C-v1 — intended C</h3><p class="question">3 tickets ki total keemat INR 180 hai aur sabki keemat baraabar hai. 1 ticket cancel hoti hai. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. Kitne rupaye vaapas milte hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="25"><h3>26. PIL020-C-v1 — intended C</h3><p class="question">Positive quantities A, B aur C ke liye A:B = 2:3 hai, and B:C equals 4:5. A/C kya hai? Give a number or fraction.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="26"><h3>27. PIL019-E-v1 — intended E</h3><p class="question">A drink is prepared with syrup and water in the volume ratio 2:5. If 350 mL of water is used, how many millilitres of syrup are needed?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="27"><h3>28. PIL003-C-v1 — intended C</h3><p class="question">Ek tank mein pehle se 20 L paani hai. Water is added at 3 L per minute for 4 minutes. Koi paani bahar nahi nikalta aur tank mein enough space hai. Aakhir mein total kitne litres paani hoga?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="28"><h3>29. PIL012-C-v1 — intended C</h3><p class="question">4 dost INR 216 ka food bill equally split karte hain. Each friend then pays an additional INR 9 tip. Har dost total kitne rupaye deta hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="29"><h3>30. PIL004-E-v2 — intended E</h3><p class="question">A ribbon is 24 m long. 3/8 of its original length is cut off. What length of ribbon remains, in metres?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="30"><h3>31. PIL018-R-v1 — intended R</h3><p class="question">2 dhanaatmak sankhyaon ka anupaat 5:3 hai. Badi sankhya chhoti sankhya se 14 zyaada hai. Badi sankhya kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="31"><h3>32. PIL028-R-v1 — intended R</h3><p class="question">Ek aayat ka parimaap 50 cm hai aur chaudaai 9 cm hai. Uski lambai kitne centimetre hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="32"><h3>33. PIL012-R-v1 — intended R</h3><p class="question">4 dost khaane ka INR 216 ka kharch baraabar baantte hain. Phir har dost apni taraf se INR 9 bakhshish aur deta hai. Har dost kul kitne rupaye deta hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="33"><h3>34. PIL027-E-v1 — intended E</h3><p class="question">The sum of two consecutive integers is 41. What is the smaller integer?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="34"><h3>35. PIL002-R-v1 — intended R</h3><p class="question">Meena ne 5 kaapiyan khareedin. Har kaapi ki keemat INR 24 hai. Usne dukandaar ko INR 150 diye. Use kitne rupaye vaapas milne chahiye?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="35"><h3>36. PIL001-R-v1 — intended R</h3><p class="question">Riya ke paas 36 kanche hain. Aman ke paas Riya se 5 kam kanche hain. Aman ke paas kitne kanche hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="36"><h3>37. PIL020-R-v1 — intended R</h3><p class="question">Dhanaatmak maatraon A, B aur C ke liye A:B = 2:3 aur B:C = 4:5 hai. A/C ka maan kya hai? Ek sankhya ya bhinn mein bataaiye.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="37"><h3>38. PIL030-R-v1 — intended R</h3><p class="question">Ek dhanaatmak sankhya x ka varg 49 hai. x ka maan kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="38"><h3>39. PIL020-E-v1 — intended E</h3><p class="question">Positive quantities A, B and C satisfy A:B = 2:3 and B:C = 4:5. What is A/C? Give a number or fraction.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="39"><h3>40. PIL002-E-v1 — intended E</h3><p class="question">Meena buys 5 notebooks at INR 24 each. She pays the shopkeeper INR 150. How much change should she receive?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="40"><h3>41. PIL016-E-v1 — intended E</h3><p class="question">After 25% of a sack of rice is used, 72 kg remains. There is no other change in its contents. How many kilograms of rice were in the sack originally?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="41"><h3>42. PIL029-R-v1 — intended R</h3><p class="question">2 kalamein aur 1 kaapi milkar INR 58 ki hain. 1 kalam aur 1 kaapi milkar INR 39 ki hain. Sab kalamon ki keemat ek jaisi hai aur sab kaapiyon ki keemat ek jaisi hai. 1 kalam ki keemat kitne rupaye hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="42"><h3>43. PIL027-R-v1 — intended R</h3><p class="question">2 lagaataar poornankon ka yog 41 hai. Chhota poornank kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="43"><h3>44. PIL016-C-v2 — intended C</h3><p class="question">Ek sack mein rakhe chaawal ka 25% use karne ke baad 72 kg chaawal bachta hai. There is no other change in its contents. Originally sack mein kitne kilograms chaawal tha?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="44"><h3>45. PIL023-C-v1 — intended C</h3><p class="question">2.4 m lambi cord ko exactly 30 cm long pieces mein cut kiya jaata hai. Cutting loses no length aur poori cord use hoti hai. Kitne pieces bante hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="45"><h3>46. PIL016-R-v1 — intended R</h3><p class="question">Chaawal ki ek bori ka 25% chaawal istemaal karne ke baad 72 kg chaawal bachta hai. Usmein aur koi badlaav nahi hota. Shuru mein bori mein kitne kilogram chaawal tha?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="46"><h3>47. PIL028-C-v1 — intended C</h3><p class="question">Ek rectangle ka perimeter 50 cm hai aur width 9 cm hai. What is its length in centimetres?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="47"><h3>48. PIL013-C-v1 — intended C</h3><p class="question">Leela at most INR 150 kharch kar sakti hai. A delivery fee of INR 30 is charged once for the order. Har pen INR 20 ka hai aur koi aur charge nahi hai. Maximum kitne pens khareed sakti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="48"><h3>49. PIL005-E-v1 — intended E</h3><p class="question">A bag contains only red and blue marbles. The ratio of red marbles to blue marbles is 2:3. There are 30 marbles in total. How many red marbles are there?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="49"><h3>50. PIL008-R-v1 — intended R</h3><p class="question">Ek dabbe mein zyaada se zyaada 60 pensilein aa sakti hain. Usmein 34 pensilein hain aur unmein se 7 nikaal di jaati hain. Dabbe ki jagah se zyaada bhare bina ab usmein zyaada se zyaada kitni pensilein aur rakhi ja sakti hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="50"><h3>51. PIL002-C-v1 — intended C</h3><p class="question">Meena ne 5 notebooks khareedin; each costs INR 24. Usne shopkeeper ko INR 150 diye. Use kitna change milna chahiye?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="51"><h3>52. PIL014-C-v1 — intended C</h3><p class="question">Ek class mein 40 students hain. Girls make up 2/5 of the class, aur un girls mein se 3/4 music club attend karti hain. Class ki kitni girls music club attend karti hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="52"><h3>53. PIL009-R-v1 — intended R</h3><p class="question">Saira 9 chipkaane waali parchiyan istemaal karti hai aur uske paas 14 parchiyan bachti hain. Saira ke parchiyan istemaal karne se pehle, Imran ke paas Saira se 4 zyaada parchiyan thi. Imran ke paas kitni parchiyan thi?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="53"><h3>54. PIL008-C-v2 — intended C</h3><p class="question">Ek box mein at most 60 pencils aa sakti hain. Usmein 34 pencils hain aur unmein se 7 nikaal di jaati hain. What is the greatest number of pencils that can now be added without exceeding the capacity?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="54"><h3>55. PIL021-E-v1 — intended E</h3><p class="question">A box contains only red and blue balls in the ratio 3:4. It contains 15 red balls. Then 5 blue balls are added and none are removed. What is the new ratio of red balls to blue balls? Give it as a number or fraction, red count divided by blue count.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="55"><h3>56. PIL014-R-v1 — intended R</h3><p class="question">Ek kaksha mein 40 vidyarthi hain. Unmein se 2/5 ladkiyan hain, aur un ladkiyon mein se 3/4 sangeet ki mandali mein jaati hain. Kaksha ki kitni ladkiyan sangeet ki mandali mein jaati hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="56"><h3>57. PIL018-C-v1 — intended C</h3><p class="question">2 positive numbers ka ratio 5:3 hai. The larger number exceeds the smaller by 14. Bada number kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="57"><h3>58. PIL027-C-v1 — intended C</h3><p class="question">2 consecutive integers ka sum 41 hai. What is the smaller integer?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="58"><h3>59. PIL022-C-v1 — intended C</h3><p class="question">Ek bus 45 minutes tak bina ruke chalti hai, at a constant speed of 60 km per hour. Vah kitne kilometres travel karti hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="59"><h3>60. PIL019-R-v1 — intended R</h3><p class="question">Ek pey mein sharbat ke gaadhe ghol aur paani ki maatra ka anupaat 2:5 rakha jaata hai. Agar 350 mL paani liya jaaye, to kitne millilitre gaadhe ghol ki zaroorat hogi?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="60"><h3>61. PIL010-R-v1 — intended R</h3><p class="question">Arun 3 kalamein khareedta hai, har kalam INR 18 ki, aur 1 kaapi INR 35 ki. Koi aur paisa nahi liya jaata. Vah INR 200 deta hai. Use kitne rupaye vaapas milte hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="61"><h3>62. PIL005-R-v1 — intended R</h3><p class="question">Ek thaili mein sirf laal aur neele kanche hain. Laal aur neele kanchon ki sankhya ka anupaat 2:3 hai. Kul 30 kanche hain. Laal kanche kitne hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="62"><h3>63. PIL019-C-v1 — intended C</h3><p class="question">Ek drink mein syrup aur water ka volume ratio 2:5 hai. If 350 mL of water is used, kitne millilitres syrup chahiye?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="63"><h3>64. PIL005-C-v1 — intended C</h3><p class="question">Ek bag mein sirf red aur blue marbles hain. Red to blue ratio 2:3 hai aur total 30 marbles hain. Red marbles kitne hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="64"><h3>65. PIL029-C-v1 — intended C</h3><p class="question">2 pens aur 1 notebook ki total cost INR 58 hai. One pen and one notebook cost INR 39. Sab pens ki price ek jaisi hai aur sab notebooks ki price ek jaisi hai. 1 pen ki price kitne rupaye hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="65"><h3>66. PIL009-E-v1 — intended E</h3><p class="question">Saira uses 9 stickers and has 14 stickers left. Before she used any, Imran had 4 more stickers than Saira. How many stickers did Imran have?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="66"><h3>67. PIL026-C-v2 — intended C</h3><p class="question">Ek number x hai. It satisfies 3x + 7 = 28. x kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="67"><h3>68. PIL018-E-v1 — intended E</h3><p class="question">Two positive numbers are in the ratio 5:3. The larger number exceeds the smaller by 14. What is the larger number?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="68"><h3>69. PIL009-C-v1 — intended C</h3><p class="question">Saira 9 stickers use karti hai aur uske paas 14 stickers bachte hain. Before she used any, Imran had 4 more stickers than Saira. Imran ke paas kitne stickers the?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="69"><h3>70. PIL030-C-v1 — intended C</h3><p class="question">Ek positive number x hai, and x squared equals 49. x kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="70"><h3>71. PIL004-R-v2 — intended R</h3><p class="question">Ek feeta 24 m lamba hai. Uski shuruaati lambai ka 3/8 hissa kaat diya gaya. Bache hue feete ki lambai metre mein kitni hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="71"><h3>72. PIL030-E-v1 — intended E</h3><p class="question">A positive number x satisfies x squared equals 49. What is x?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="72"><h3>73. PIL024-R-v1 — intended R</h3><p class="question">2 yantra bina ruke ek saath kaam karte hain. Ek har minute 6 dabbe band karta hai aur doosra har minute 4 alag dabbe band karta hai. Dono milkar kul 90 dabbe band karne mein kitne minute lenge?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="73"><h3>74. PIL022-E-v1 — intended E</h3><p class="question">A bus travels at a constant speed of 60 km per hour for 45 minutes, without stopping. How many kilometres does it travel?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="74"><h3>75. PIL003-R-v1 — intended R</h3><p class="question">Ek tanki mein pehle se 20 L paani hai. Usmein 4 minute tak har minute 3 L paani dala jaata hai. Koi paani bahar nahi nikalta aur tanki mein is paani ke liye kaafi jagah hai. Aakhir mein tanki mein kul kitne litre paani hoga?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="75"><h3>76. PIL021-C-v1 — intended C</h3><p class="question">Ek box mein sirf red aur blue balls hain, ratio 3:4 hai, aur red balls 15 hain. Then 5 blue balls are added and none are removed. Naya red-to-blue ratio kya hai? Give red count divided by blue count as a number or fraction.</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="76"><h3>77. PIL001-E-v1 — intended E</h3><p class="question">Riya has 36 marbles. Aman has 5 fewer marbles than Riya. How many marbles does Aman have?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="77"><h3>78. PIL017-R-v1 — intended R</h3><p class="question">Ek jag mein 3/4 L ras hai. Poora ras 3 bachchon mein baraabar baanta jaata hai aur kuch bhi nahi girta. Har bachche ko kitne litre ras milta hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="78"><h3>79. PIL006-E-v1 — intended E</h3><p class="question">A library has 42 books on a shelf. Readers borrow 13 of them, and then 8 different books are added to that shelf. No other books move. How many books are on the shelf now?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="79"><h3>80. PIL015-E-v1 — intended E</h3><p class="question">An item costs INR 200 before discounts. Its price is reduced by 20%, and then the reduced price is reduced by a further 10%. What is the final price, with no other charges?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="80"><h3>81. PIL026-R-v1 — intended R</h3><p class="question">Ek sankhya x ke liye 3x + 7 = 28 hai. x ka maan kya hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="81"><h3>82. PIL011-E-v1 — intended E</h3><p class="question">Three tickets cost INR 180 in total and have equal prices. One ticket is cancelled. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. How much money is returned?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="82"><h3>83. PIL007-E-v1 — intended E</h3><p class="question">Nisha has 28 beads and Kabir has 16 beads. Nisha gives some of her beads to Kabir until they have equal numbers. How many beads does Nisha give Kabir?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="83"><h3>84. PIL008-E-v1 — intended E</h3><p class="question">A box holds at most 60 pencils. It contains 34 pencils, and 7 of these are removed. What is the greatest number of pencils that can now be added without exceeding the capacity?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="84"><h3>85. PIL003-E-v1 — intended E</h3><p class="question">A tank initially contains 20 L of water. Water is added at 3 L per minute for 4 minutes. No water leaves the tank, and it has enough capacity. How many litres of water are in the tank at the end?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="85"><h3>86. PIL015-R-v1 — intended R</h3><p class="question">Chhooton se pehle ek cheez ki keemat INR 200 hai. Pehle keemat 20% ghataayi jaati hai, aur phir ghati hui keemat ko 10% aur ghataaya jaata hai. Koi aur paisa nahi liya jaata. Aakhiri keemat kitne rupaye hai?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="86"><h3>87. PIL010-E-v1 — intended E</h3><p class="question">Arun buys 3 pens at INR 18 each and 1 notebook at INR 35. There are no extra charges. He pays INR 200. How much change does he receive?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="87"><h3>88. PIL006-R-v2 — intended R</h3><p class="question">Ek pustakalaya mein almaari ke ek takhte par 42 kitaabein hain. Padhne waale unmein se 13 kitaabein le jaate hain, aur phir usi takhte par 8 doosri kitaabein rakhi jaati hain. Koi aur kitaab na nikaali jaati hai na rakhi jaati hai. Ab us takhte par kitni kitaabein hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="88"><h3>89. PIL025-C-v2 — intended C</h3><p class="question">Ek cyclist bina ruke 120 km ka safar complete karta hai. The first 40 km are travelled at 20 km per hour, aur remaining distance par speed 40 km per hour hai. Total kitne hours lagte hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section>
+<section data-index="89"><h3>90. PIL023-R-v1 — intended R</h3><p class="question">2.4 m lambi ek dori ko theek 30 cm lambe tukdon mein kaata jaata hai. Kaatne mein koi lambai nahi ghatti aur poori dori istemaal hoti hai. Kitne tukde bante hain?</p>
+<label>Your equation<textarea data-key="independent_equation"></textarea></label>
+<label>Your reasoning<textarea data-key="independent_reasoning"></textarea></label>
+<label>Exact answer (e.g. 1/4 or 0.25)<textarea data-key="independent_answer"></textarea></label>
+<label>Unit (blank if dimensionless)<textarea data-key="independent_unit"></textarea></label>
+<label>Solved at (UTC timestamp)<textarea data-key="solved_at_utc"></textarea></label>
+<button type="button" data-stamp="solved_at_utc">Mark this solve finished (UTC)</button>
+</section><button id="saveBottom">Download progress JSON</button><script>
+'use strict';
+let packet = {"schema_version": "annotation-draft-1", "dataset_version": "pilot-draft-v2", "reviewer_id": "R01", "stage": 1, "independent_solve_before_gold": null, "started_at_utc": "", "completed_at_utc": "", "rows": [{"family_id": "PIL011", "rendering_id": "PIL011-R-v1", "intended_form": "R", "text_sha256": "2c08289640cc1f8914e38f19a9670b28bf7d6685d6ab2eb4dd03a5a53b8b5a56", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL015", "rendering_id": "PIL015-C-v1", "intended_form": "C", "text_sha256": "2f0ce889ada3847831a15754009bbf7be032cc8c945875f5f6480e6088376651", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL013", "rendering_id": "PIL013-R-v1", "intended_form": "R", "text_sha256": "5f38b4d55798a9d3171e49e53a25e84c043c1899e232125d9e564ed78842aff7", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL021", "rendering_id": "PIL021-R-v1", "intended_form": "R", "text_sha256": "44b73992ce501c22aa57d537a252716cd0c6a5e8788d1701e57a2ce041efd107", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL025", "rendering_id": "PIL025-R-v1", "intended_form": "R", "text_sha256": "4d7b286f744b7bc7f70471d3172636cd026b8c1ada0eb7953767edb2bb9dfb60", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL023", "rendering_id": "PIL023-E-v1", "intended_form": "E", "text_sha256": "ce5d87834203ed8742293b2707c00ecd0dae1a8d7624b41873916585351b7454", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL013", "rendering_id": "PIL013-E-v1", "intended_form": "E", "text_sha256": "949a6113584b5b999ec942fd013567e9178d750bc109043ae5a3009095b4c4ed", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL028", "rendering_id": "PIL028-E-v1", "intended_form": "E", "text_sha256": "a2594d0c778b397333172ab97caea707209fcd9034d61f8e695a21b201f13816", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL026", "rendering_id": "PIL026-E-v1", "intended_form": "E", "text_sha256": "75d79dda44e6ec803ff0fd3b98c51b0fd8d7217e1dc11950f5e6a29c4cd47989", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL012", "rendering_id": "PIL012-E-v1", "intended_form": "E", "text_sha256": "f624935b4a9fdc4ee47464ece03bea6bff902ad6e5f48a8844f03ab235014564", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL007", "rendering_id": "PIL007-R-v1", "intended_form": "R", "text_sha256": "bdac47a5932d6bb60be31bb0f33b3d0d704d57b6f4b5f00ec089fd4365de739d", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL014", "rendering_id": "PIL014-E-v1", "intended_form": "E", "text_sha256": "7f0b494f562011e6244efc62caace7574469ded4b3eb4011c750cc893958b6fd", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL001", "rendering_id": "PIL001-C-v1", "intended_form": "C", "text_sha256": "3392f321e0e2ba981cf6e6dabad1c24e62bee3b16725f0a3d4bd8dafcb87a229", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL010", "rendering_id": "PIL010-C-v1", "intended_form": "C", "text_sha256": "b79218a1bf51581a55ac9b31cd0f088d075d98bff9af35f47f90b673f52069d6", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL004", "rendering_id": "PIL004-C-v2", "intended_form": "C", "text_sha256": "2e1b4877b92ed6f41ab42ef4c73a26fcc7cf6832df4f67b2e628dbf100a29456", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL017", "rendering_id": "PIL017-C-v1", "intended_form": "C", "text_sha256": "01000616624d18635b5adf0d7b7d0cd3bb2358e82806de538b3ea3d3a14e56d6", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL029", "rendering_id": "PIL029-E-v1", "intended_form": "E", "text_sha256": "67796a39c9a212716c67a2409349f447e9765f0c1569a6b31e82f5cd6dd2af82", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL024", "rendering_id": "PIL024-C-v1", "intended_form": "C", "text_sha256": "2bed2d582f95e8da813619e6d009d74719a3080074534ad3294e4a73e5a2b5e8", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL025", "rendering_id": "PIL025-E-v1", "intended_form": "E", "text_sha256": "06a424576c51b2b63391fa8e20edb15e254acb291884708b1c108ea1ce2b70c8", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL006", "rendering_id": "PIL006-C-v1", "intended_form": "C", "text_sha256": "c041edc3df33e610389c372ac1633493ff4238e72d4094e2fa99b1dac976224b", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL017", "rendering_id": "PIL017-E-v1", "intended_form": "E", "text_sha256": "0bf34225a4433a0bb17693fb5f6e78eb28bd504747c64db0f22631dfc52b19f0", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL022", "rendering_id": "PIL022-R-v1", "intended_form": "R", "text_sha256": "8aff8aa450902895d1a873921909d44fb9bdca09d16d0d230bf3d77296aa9d38", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL007", "rendering_id": "PIL007-C-v1", "intended_form": "C", "text_sha256": "ada3ce03dfc481085c71776a26a65bf61a219180b4a85cb25e7634e64dc76b1d", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL024", "rendering_id": "PIL024-E-v1", "intended_form": "E", "text_sha256": "c26df0de7e5641450a2aece68026a24575490f7daf15777051abe1f3fc28f973", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL011", "rendering_id": "PIL011-C-v1", "intended_form": "C", "text_sha256": "33da96c7c02206afaa2789d45b774b9492ffbb81f3464499ec9b20240f75ba39", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL020", "rendering_id": "PIL020-C-v1", "intended_form": "C", "text_sha256": "b18d6abb61c2a366805e5d984fcbf5e9939041971dbed1fcfc8cc0a3259ae46c", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL019", "rendering_id": "PIL019-E-v1", "intended_form": "E", "text_sha256": "db0457cd6ddf86b00bc4d515da7678b57c27023c508bc95251721163ef08a03d", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL003", "rendering_id": "PIL003-C-v1", "intended_form": "C", "text_sha256": "1cb06e3d64fb02435faa872c27a64eec9711e95a9870d7b6a2e88d0c2f0e1077", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL012", "rendering_id": "PIL012-C-v1", "intended_form": "C", "text_sha256": "922abbcef3cefac4087a72e213125f040e37465e43e425f79b369805db728d93", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL004", "rendering_id": "PIL004-E-v2", "intended_form": "E", "text_sha256": "d812f896de4c44d560e391a48561bc6dddc29b536778a3d2f02665053607bb5c", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL018", "rendering_id": "PIL018-R-v1", "intended_form": "R", "text_sha256": "cd2af409e04890954a93a3b237baab9d26fa5b77506e01d3dc8fae5136cf3275", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL028", "rendering_id": "PIL028-R-v1", "intended_form": "R", "text_sha256": "7c77361847f314e79b7a3723eea5822bb4b4f4c50c53d18c31a88603f150da47", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL012", "rendering_id": "PIL012-R-v1", "intended_form": "R", "text_sha256": "8e2b989d41c3992ed04bfd35335509ce766deb7dc73726e60232019433c04c20", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL027", "rendering_id": "PIL027-E-v1", "intended_form": "E", "text_sha256": "45b581cc5d980643f55045916f6f17dc127277d3e3b48222484185be3076cf0b", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL002", "rendering_id": "PIL002-R-v1", "intended_form": "R", "text_sha256": "7783c3f9c7965e11009abfbedc03d1dfa2ecaa188581bf42ea228ded64c6f3a9", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL001", "rendering_id": "PIL001-R-v1", "intended_form": "R", "text_sha256": "66f84101a37e2a294a6848be66d959bd94aa3a1bbbfbe6a2f795a4870b1d5ae1", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL020", "rendering_id": "PIL020-R-v1", "intended_form": "R", "text_sha256": "b797866b096688094cdc121b70f105260c4f2e99a7fdc667cc3e60dc140a1121", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL030", "rendering_id": "PIL030-R-v1", "intended_form": "R", "text_sha256": "ea3f9895832e12e6e7e131f74edd454bbb3e5d7847a0cbaf439b1cdcd6795e56", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL020", "rendering_id": "PIL020-E-v1", "intended_form": "E", "text_sha256": "777b454df56fe8e7a335e3ed9e57c7cda41077b4f0fdd1225dc386dd3b114d88", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL002", "rendering_id": "PIL002-E-v1", "intended_form": "E", "text_sha256": "c611e626dcc83acb3c5627476c9308f0f539c01803405d4d7140f4dc1b02d158", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL016", "rendering_id": "PIL016-E-v1", "intended_form": "E", "text_sha256": "6de25b44a0c913899cdd6696f680019637aaf3b0575d9063b4aa3eeba5deba88", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL029", "rendering_id": "PIL029-R-v1", "intended_form": "R", "text_sha256": "5d84f6caf622acd0621957b8aecef5b3a4c7524af2ad3946efcf11bc7daf0380", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL027", "rendering_id": "PIL027-R-v1", "intended_form": "R", "text_sha256": "3385f6d76b465721315b6af9fed518bcec9c59437c407b179c1874dbbeb9c4fc", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL016", "rendering_id": "PIL016-C-v2", "intended_form": "C", "text_sha256": "8a7ec3a69857b74aa3fd6decbe3cf9e972f243ddd3af55a73531ee345988dfbc", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL023", "rendering_id": "PIL023-C-v1", "intended_form": "C", "text_sha256": "c14913f88144ec1690fdd5366fe22e013d04500d12ea54076dc44795a393ddfb", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL016", "rendering_id": "PIL016-R-v1", "intended_form": "R", "text_sha256": "0a7d4241e71b752376a87a8370a85975007ee66fd6c9efb379b2fc9263f223e5", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL028", "rendering_id": "PIL028-C-v1", "intended_form": "C", "text_sha256": "506de9108ea52c4350e57713bfcaed637108b4a2cca23615e0708e7c0e10ed5e", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL013", "rendering_id": "PIL013-C-v1", "intended_form": "C", "text_sha256": "6f4f3b07b132289b227fb0acee44fa6683e6c297dd981ee21819e8576cdac294", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL005", "rendering_id": "PIL005-E-v1", "intended_form": "E", "text_sha256": "67627f09ed5fe56ef795560b3b4d43bf9afcf03396eee6b81a83f9c14c431811", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL008", "rendering_id": "PIL008-R-v1", "intended_form": "R", "text_sha256": "faa0930078c363778efaadebc89b7d013687c6747c1454fd79845182e7499ee4", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL002", "rendering_id": "PIL002-C-v1", "intended_form": "C", "text_sha256": "342d0ae2e1e11469a1be0c39122a63bb5e33c77bd2770c75da757faf3176dedd", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL014", "rendering_id": "PIL014-C-v1", "intended_form": "C", "text_sha256": "b7fee67606925fb44c38f566dc2d46a75844a80cdb5b5a63c8152f5055ca703e", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL009", "rendering_id": "PIL009-R-v1", "intended_form": "R", "text_sha256": "90211fefbeb586ac72861e89b1b1df7d97c8ab93b0d728fe112b30e21498f0ce", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL008", "rendering_id": "PIL008-C-v2", "intended_form": "C", "text_sha256": "8e1090f50b5a7a4f1cade54237c947ab57dcccd57461a4c2ee287b3a7407b1ec", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL021", "rendering_id": "PIL021-E-v1", "intended_form": "E", "text_sha256": "5e4fd20d5ab3178144fa4eae3d2d80cb6124b80e15e95061fb47080839ffc775", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL014", "rendering_id": "PIL014-R-v1", "intended_form": "R", "text_sha256": "7c740bc47f49d790755ee44c645d5a571b9307fea4b072b68d870614008a03e0", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL018", "rendering_id": "PIL018-C-v1", "intended_form": "C", "text_sha256": "4b204315247a67f1a7274871aa95ecca12384d29c424751aaca7ea775f25bf22", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL027", "rendering_id": "PIL027-C-v1", "intended_form": "C", "text_sha256": "5072bfe6c8b37444569387e22e0dcda4cd0429a8eb408e2b66314cac98687976", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL022", "rendering_id": "PIL022-C-v1", "intended_form": "C", "text_sha256": "26066f32c6d20f7ca769dab4602d428eac17e387d31a75c283ae9bc21f34a069", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL019", "rendering_id": "PIL019-R-v1", "intended_form": "R", "text_sha256": "be845750f19efdedf096f898078346c9134b59ff5e21b4f0ecce65b054c9f367", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL010", "rendering_id": "PIL010-R-v1", "intended_form": "R", "text_sha256": "87a73162b42594b7bd5bb03b878200fd1d4266010f7ded2938d579a36f884753", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL005", "rendering_id": "PIL005-R-v1", "intended_form": "R", "text_sha256": "7c9351839e4e00ed1ce705281888aa7812b62a61581f814c65513fd7681693ac", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL019", "rendering_id": "PIL019-C-v1", "intended_form": "C", "text_sha256": "4b8dd98379ebaf3abb7aa85c20385416fdfe47b687d42fcf66f2a6b373a9aa7c", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL005", "rendering_id": "PIL005-C-v1", "intended_form": "C", "text_sha256": "ac9d31ba88bb187d911c9a3b5e11288a12d9a9fab60efd48540dab84b61ab764", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL029", "rendering_id": "PIL029-C-v1", "intended_form": "C", "text_sha256": "8d6d2a95c8050b13e5411a9a3fd770740da88d1327eb62bf09be142c5f3db414", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL009", "rendering_id": "PIL009-E-v1", "intended_form": "E", "text_sha256": "cd60908603947d32d04f8b759f894a7a889d9c6a1c87b17f72f732b94da1ce02", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL026", "rendering_id": "PIL026-C-v2", "intended_form": "C", "text_sha256": "b811778f2ec617c127386f1162deb344f0cf2bf3dd322f5fc1b501589139cd81", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL018", "rendering_id": "PIL018-E-v1", "intended_form": "E", "text_sha256": "94637542afbcafc5aec320201b27704767ebd4320425cb7216dcfd9fdb0de369", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL009", "rendering_id": "PIL009-C-v1", "intended_form": "C", "text_sha256": "30af6b81f066d5bed5b14f61228e835be9daba86222f44cb16671a0938c0901e", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL030", "rendering_id": "PIL030-C-v1", "intended_form": "C", "text_sha256": "f01ba1a7cbbc8dcc84d66b5f8fc8ce9f3eb4c818fedddabc81c109c00d08dbc1", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL004", "rendering_id": "PIL004-R-v2", "intended_form": "R", "text_sha256": "48e5c78f86449354453b528270b33c9f6efba34f1146e07d684939e79e40fd2c", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL030", "rendering_id": "PIL030-E-v1", "intended_form": "E", "text_sha256": "9b5a9a2b090c6fd995f3ee57c99bcc589f61843b015cc666527e63f19879f3d9", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL024", "rendering_id": "PIL024-R-v1", "intended_form": "R", "text_sha256": "05ab66d6957effca35b4631ed9364e1b4aadda40b8d981497985c6b4dcd7429d", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL022", "rendering_id": "PIL022-E-v1", "intended_form": "E", "text_sha256": "7c50637c86ea3f6d489b397b55ec4d24b6b9981ba8400b20298084c4cbe9e6cd", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL003", "rendering_id": "PIL003-R-v1", "intended_form": "R", "text_sha256": "797e0db7b812a387fbbbc1dfc2d129a0cc2a83010d50b230e57a142e28276c3b", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL021", "rendering_id": "PIL021-C-v1", "intended_form": "C", "text_sha256": "0803260430ead12a2fc42d4757c3b56ec4bd69148620e0908379cf114af73f69", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL001", "rendering_id": "PIL001-E-v1", "intended_form": "E", "text_sha256": "a9781a74e1e05cb7d07af12f745bc2c6803ab31b099b1517e42c46239020f003", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL017", "rendering_id": "PIL017-R-v1", "intended_form": "R", "text_sha256": "afffa707f832a32b605fcc9f52f1dc4a78bffcb09054fa0253897b4c74f45fc2", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL006", "rendering_id": "PIL006-E-v1", "intended_form": "E", "text_sha256": "f16560677f42d057aac65a11b1c55d33cd1b417ad9a1fa24706f95f8627bf7a5", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL015", "rendering_id": "PIL015-E-v1", "intended_form": "E", "text_sha256": "c9f9d6a1853e833a2356b3346ff55cc8d0edd9facf657ab74c2fc12900e16921", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL026", "rendering_id": "PIL026-R-v1", "intended_form": "R", "text_sha256": "3cfbc3a39eb386cf4a6030619503e7d2de98693430cd53b35c7e67e43f61e9eb", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL011", "rendering_id": "PIL011-E-v1", "intended_form": "E", "text_sha256": "216473f8952be0ba79463684e052cad1604bcf16bb1e36bb86526929ffd33834", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL007", "rendering_id": "PIL007-E-v1", "intended_form": "E", "text_sha256": "5022564349cc2783a562d5c771b14a05c81e79cca93d51c00aa868392ccd783e", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL008", "rendering_id": "PIL008-E-v1", "intended_form": "E", "text_sha256": "dbb1d846e38193b2a823bf334fbae6ac034e38ef38b9bb5fe1a62632d684ee1a", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL003", "rendering_id": "PIL003-E-v1", "intended_form": "E", "text_sha256": "b4163a50099206694834fb25c4f261562cc0daf81a94c2132900c4a69e9429c6", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL015", "rendering_id": "PIL015-R-v1", "intended_form": "R", "text_sha256": "42dfc57b1aa52887705beed9b0908cb4f325de644311a53e42910b567d51ddc6", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL010", "rendering_id": "PIL010-E-v1", "intended_form": "E", "text_sha256": "43b2016f30d313bab38ef1ee2f146879b396524ea4a7153714cab2c2e3efd97a", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL006", "rendering_id": "PIL006-R-v2", "intended_form": "R", "text_sha256": "60534e805347200f2518d1469874b3deb04dfce004e58e8b4a9ec65839727e13", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL025", "rendering_id": "PIL025-C-v2", "intended_form": "C", "text_sha256": "db55c5b9d95f28aaeaa047d3e77c7b39ae4e05d00a4dedd99215f9ae2f50695a", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}, {"family_id": "PIL023", "rendering_id": "PIL023-R-v1", "intended_form": "R", "text_sha256": "70acce77c5794995c17eb7313df6eccf56b5bbd0a978cccb0af29a57f9161437", "independent_equation": "", "independent_reasoning": "", "independent_answer": "", "independent_unit": "", "solved_at_utc": "", "classification": "", "naturalness": null, "readability": null, "ambiguity_flag": null, "issue_notes": "", "disposition": "PENDING", "semantic_checks": null, "english_spans": [], "permitted_borrowings": [], "reviewed_at_utc": ""}]};
+function fill(){document.querySelectorAll('section').forEach(s=>{const r=packet.rows[+s.dataset.index];s.querySelectorAll('[data-key]').forEach(e=>{const v=r[e.dataset.key];e.value=Array.isArray(v)?v.join('\n'):(v===null?'':String(v));});s.querySelectorAll('[data-semantic]').forEach(e=>{const v=(r.semantic_checks||{})[e.dataset.semantic];e.value=v===null||v===undefined?'':String(v);});const x=s.querySelector('[data-solve]');if(x)x.textContent=[r.independent_equation,r.independent_reasoning,r.independent_answer,r.independent_unit].join(' | ');});document.getElementById('attest').checked=packet.independent_solve_before_gold===true;document.getElementById('completed').value=packet.completed_at_utc||'';}
+function collect(){document.querySelectorAll('section').forEach(s=>{const r=packet.rows[+s.dataset.index];s.querySelectorAll('[data-key]').forEach(e=>{const k=e.dataset.key;let v=e.value;if(k==='naturalness'||k==='readability')v=v?Number(v):null;else if(k==='ambiguity_flag')v=v===''?null:v==='true';else if(k==='english_spans'||k==='permitted_borrowings')v=v.split('\n').map(x=>x.trim()).filter(Boolean);r[k]=v;});if(s.querySelector('[data-semantic]')){r.semantic_checks={};s.querySelectorAll('[data-semantic]').forEach(e=>{r.semantic_checks[e.dataset.semantic]=e.value===''?null:e.value==='true';});}});packet.independent_solve_before_gold=document.getElementById('attest').checked?true:null;packet.completed_at_utc=document.getElementById('completed').value;}
+function save(){if(packet.stage===2&&!packet.stage1_submission_sha256){document.getElementById('message').textContent='Import your completed stage1 submission first.';return;}collect();const b=new Blob([JSON.stringify(packet,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=packet.reviewer_id+'_stage'+packet.stage+'_responses.json';a.click();URL.revokeObjectURL(a.href);document.getElementById('message').textContent='Downloaded locally. Preserve each submission; do not overwrite first-pass ratings.';}
+document.getElementById('save').onclick=save;document.getElementById('saveBottom').onclick=save;
+document.getElementById('import').onchange=async e=>{try{const incoming=JSON.parse(await e.target.files[0].text());if(incoming.schema_version!==packet.schema_version||incoming.reviewer_id!==packet.reviewer_id||incoming.dataset_version!==packet.dataset_version||incoming.rows.length!==90)throw Error('Wrong reviewer/version/size');if(incoming.stage!==packet.stage && !(packet.stage===2&&incoming.stage===1))throw Error('Wrong stage');const map=new Map(incoming.rows.map(r=>[r.rendering_id,r]));if(map.size!==90)throw Error('Duplicate IDs');const merged=packet.rows.map(r=>{const x=map.get(r.rendering_id);if(!x||x.text_sha256!==r.text_sha256||x.family_id!==r.family_id||x.intended_form!==r.intended_form)throw Error('Text/ID mismatch: re-review changed text');return {...x};});if(packet.stage===2&&incoming.stage===1&&(incoming.independent_solve_before_gold!==true||!incoming.completed_at_utc))throw Error('Attest only after all independent solves are finished, and record the stage1 completion timestamp');if(packet.stage===2&&incoming.stage===1&&!incoming.rows.every(r=>r.independent_equation.trim()&&r.independent_reasoning.trim()&&r.independent_answer.trim()&&r.solved_at_utc.trim()))throw Error('Finish and timestamp all stage1 independent solves before stage2');if(packet.stage===2&&incoming.stage===1){packet.stage1_submission_sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await e.target.files[0].arrayBuffer())),b=>b.toString(16).padStart(2,'0')).join('');}if(packet.stage===2&&incoming.stage===2){if(!incoming.stage1_submission_sha256)throw Error('Missing original stage1 submission hash');packet.stage1_submission_sha256=incoming.stage1_submission_sha256;}packet.rows=merged;packet.independent_solve_before_gold=incoming.independent_solve_before_gold;packet.completed_at_utc=incoming.stage===packet.stage?incoming.completed_at_utc:'';fill();document.getElementById('message').textContent='Imported. Imported answers are read-only in stage2.';}catch(err){document.getElementById('message').textContent='Import rejected: '+err.message;}};
+document.querySelectorAll('[data-stamp]').forEach(b=>{b.onclick=()=>{b.closest('section').querySelector('[data-key="'+b.dataset.stamp+'"]').value=new Date().toISOString();};});
+fill();
+</script></html>

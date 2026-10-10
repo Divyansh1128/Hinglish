@@ -1,0 +1,285 @@
+{
+  "schema_version": "test1-1",
+  "version": "pilot-draft-v2-splits",
+  "kind": "reviewed",
+  "audit": {
+    "approved": false,
+    "reviewer_id": "",
+    "unresolved_matches": null,
+    "audited_at": ""
+  },
+  "PILOT_EVAL": [
+    {
+      "family_id": "PIL001",
+      "source_family_id": "PIL001-authored-source",
+      "template_group_id": "PIL001-proposed-family"
+    },
+    {
+      "family_id": "PIL002",
+      "source_family_id": "PIL002-authored-source",
+      "template_group_id": "PIL002-proposed-family"
+    },
+    {
+      "family_id": "PIL003",
+      "source_family_id": "PIL003-authored-source",
+      "template_group_id": "PIL003-proposed-family"
+    },
+    {
+      "family_id": "PIL004",
+      "source_family_id": "PIL004-authored-source",
+      "template_group_id": "PIL004-proposed-family"
+    },
+    {
+      "family_id": "PIL005",
+      "source_family_id": "PIL005-authored-source",
+      "template_group_id": "PIL005-proposed-family"
+    },
+    {
+      "family_id": "PIL006",
+      "source_family_id": "PIL006-authored-source",
+      "template_group_id": "PIL006-proposed-family"
+    },
+    {
+      "family_id": "PIL007",
+      "source_family_id": "PIL007-authored-source",
+      "template_group_id": "PIL007-proposed-family"
+    },
+    {
+      "family_id": "PIL008",
+      "source_family_id": "PIL008-authored-source",
+      "template_group_id": "PIL008-proposed-family"
+    },
+    {
+      "family_id": "PIL009",
+      "source_family_id": "PIL009-authored-source",
+      "template_group_id": "PIL009-proposed-family"
+    },
+    {
+      "family_id": "PIL010",
+      "source_family_id": "PIL010-authored-source",
+      "template_group_id": "PIL010-proposed-family"
+    },
+    {
+      "family_id": "PIL011",
+      "source_family_id": "PIL011-authored-source",
+      "template_group_id": "PIL011-proposed-family"
+    },
+    {
+      "family_id": "PIL012",
+      "source_family_id": "PIL012-authored-source",
+      "template_group_id": "PIL012-proposed-family"
+    },
+    {
+      "family_id": "PIL013",
+      "source_family_id": "PIL013-authored-source",
+      "template_group_id": "PIL013-proposed-family"
+    },
+    {
+      "family_id": "PIL014",
+      "source_family_id": "PIL014-authored-source",
+      "template_group_id": "PIL014-proposed-family"
+    },
+    {
+      "family_id": "PIL015",
+      "source_family_id": "PIL015-authored-source",
+      "template_group_id": "PIL015-proposed-family"
+    },
+    {
+      "family_id": "PIL016",
+      "source_family_id": "PIL016-authored-source",
+      "template_group_id": "PIL016-proposed-family"
+    },
+    {
+      "family_id": "PIL017",
+      "source_family_id": "PIL017-authored-source",
+      "template_group_id": "PIL017-proposed-family"
+    },
+    {
+      "family_id": "PIL018",
+      "source_family_id": "PIL018-authored-source",
+      "template_group_id": "PIL018-proposed-family"
+    },
+    {
+      "family_id": "PIL019",
+      "source_family_id": "PIL019-authored-source",
+      "template_group_id": "PIL019-proposed-family"
+    },
+    {
+      "family_id": "PIL020",
+      "source_family_id": "PIL020-authored-source",
+      "template_group_id": "PIL020-proposed-family"
+    },
+    {
+      "family_id": "PIL021",
+      "source_family_id": "PIL021-authored-source",
+      "template_group_id": "PIL021-proposed-family"
+    },
+    {
+      "family_id": "PIL022",
+      "source_family_id": "PIL022-authored-source",
+      "template_group_id": "PIL022-proposed-family"
+    },
+    {
+      "family_id": "PIL023",
+      "source_family_id": "PIL023-authored-source",
+      "template_group_id": "PIL023-proposed-family"
+    },
+    {
+      "family_id": "PIL024",
+      "source_family_id": "PIL024-authored-source",
+      "template_group_id": "PIL024-proposed-family"
+    },
+    {
+      "family_id": "PIL025",
+      "source_family_id": "PIL025-authored-source",
+      "template_group_id": "PIL025-proposed-family"
+    },
+    {
+      "family_id": "PIL026",
+      "source_family_id": "PIL026-authored-source",
+      "template_group_id": "PIL026-proposed-family"
+    },
+    {
+      "family_id": "PIL027",
+      "source_family_id": "PIL027-authored-source",
+      "template_group_id": "PIL027-proposed-family"
+    },
+    {
+      "family_id": "PIL028",
+      "source_family_id": "PIL028-authored-source",
+      "template_group_id": "PIL028-proposed-family"
+    },
+    {
+      "family_id": "PIL029",
+      "source_family_id": "PIL029-authored-source",
+      "template_group_id": "PIL029-proposed-family"
+    },
+    {
+      "family_id": "PIL030",
+      "source_family_id": "PIL030-authored-source",
+      "template_group_id": "PIL030-proposed-family"
+    }
+  ],
+  "SMOKE_TRAIN": [
+    {
+      "family_id": "test1-format-smoke-v1",
+      "source_family_id": "test1-format-smoke-source-v1",
+      "template_group_id": "test1-format-smoke-template-v1"
+    }
+  ],
+  "RETIRED_DRAFT": [
+    {
+      "family_id": "demo-1",
+      "source_family_id": "demo-1-source",
+      "template_group_id": "demo-1-template"
+    },
+    {
+      "family_id": "demo-2",
+      "source_family_id": "demo-2-source",
+      "template_group_id": "demo-2-template"
+    }
+  ],
+  "CONFIRM_TRAIN": [],
+  "FINAL_TEST": [],
+  "development_exclusion_ids": [
+    "PIL001",
+    "PIL001-authored-source",
+    "PIL001-proposed-family",
+    "PIL002",
+    "PIL002-authored-source",
+    "PIL002-proposed-family",
+    "PIL003",
+    "PIL003-authored-source",
+    "PIL003-proposed-family",
+    "PIL004",
+    "PIL004-authored-source",
+    "PIL004-proposed-family",
+    "PIL005",
+    "PIL005-authored-source",
+    "PIL005-proposed-family",
+    "PIL006",
+    "PIL006-authored-source",
+    "PIL006-proposed-family",
+    "PIL007",
+    "PIL007-authored-source",
+    "PIL007-proposed-family",
+    "PIL008",
+    "PIL008-authored-source",
+    "PIL008-proposed-family",
+    "PIL009",
+    "PIL009-authored-source",
+    "PIL009-proposed-family",
+    "PIL010",
+    "PIL010-authored-source",
+    "PIL010-proposed-family",
+    "PIL011",
+    "PIL011-authored-source",
+    "PIL011-proposed-family",
+    "PIL012",
+    "PIL012-authored-source",
+    "PIL012-proposed-family",
+    "PIL013",
+    "PIL013-authored-source",
+    "PIL013-proposed-family",
+    "PIL014",
+    "PIL014-authored-source",
+    "PIL014-proposed-family",
+    "PIL015",
+    "PIL015-authored-source",
+    "PIL015-proposed-family",
+    "PIL016",
+    "PIL016-authored-source",
+    "PIL016-proposed-family",
+    "PIL017",
+    "PIL017-authored-source",
+    "PIL017-proposed-family",
+    "PIL018",
+    "PIL018-authored-source",
+    "PIL018-proposed-family",
+    "PIL019",
+    "PIL019-authored-source",
+    "PIL019-proposed-family",
+    "PIL020",
+    "PIL020-authored-source",
+    "PIL020-proposed-family",
+    "PIL021",
+    "PIL021-authored-source",
+    "PIL021-proposed-family",
+    "PIL022",
+    "PIL022-authored-source",
+    "PIL022-proposed-family",
+    "PIL023",
+    "PIL023-authored-source",
+    "PIL023-proposed-family",
+    "PIL024",
+    "PIL024-authored-source",
+    "PIL024-proposed-family",
+    "PIL025",
+    "PIL025-authored-source",
+    "PIL025-proposed-family",
+    "PIL026",
+    "PIL026-authored-source",
+    "PIL026-proposed-family",
+    "PIL027",
+    "PIL027-authored-source",
+    "PIL027-proposed-family",
+    "PIL028",
+    "PIL028-authored-source",
+    "PIL028-proposed-family",
+    "PIL029",
+    "PIL029-authored-source",
+    "PIL029-proposed-family",
+    "PIL030",
+    "PIL030-authored-source",
+    "PIL030-proposed-family",
+    "demo-1",
+    "demo-1-source",
+    "demo-1-template",
+    "demo-2",
+    "demo-2-source",
+    "demo-2-template",
+    "test1-format-smoke-source-v1",
+    "test1-format-smoke-template-v1",
+    "test1-format-smoke-v1"
+  ]
+}

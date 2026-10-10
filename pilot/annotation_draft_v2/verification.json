@@ -1,0 +1,29 @@
+{
+  "status": "PASS \u2014 SOFTWARE CHECKS ONLY; NO HUMAN VALIDATION",
+  "families": 30,
+  "renderings": 90,
+  "topics": {
+    "comparison_remaining": 5,
+    "two_step_money": 5,
+    "rates_units": 5,
+    "fractions_percentages": 5,
+    "ratios": 5,
+    "elementary_algebra": 5
+  },
+  "all_reference_finals_score_correct": true,
+  "exact_unit_conversion_checks": 27,
+  "reviewer_javascript_syntax_checks": 4,
+  "archived_v1_first_five_texts_preserved": true,
+  "versioned_rendering_repairs": 8,
+  "changed_families": 6,
+  "v1_files_unchanged": true,
+  "reviewer_archives_have_no_gold_fields": true,
+  "draft_research_execution_rejection": "Human acceptance missing or demo status invalid",
+  "verified_checksums": 22,
+  "form_import_export_logic_checks": "PASS: stage2 gates, reviewer/version/hash/duplicate rejection, original-file hash, immutable answer export and resume; stub DOM only.",
+  "limitations": [
+    "No human reviews, equivalence or independence certification.",
+    "JavaScript syntax checks do not establish browser workflow behavior.",
+    "No research model evaluation was performed on these drafts."
+  ]
+}

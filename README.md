@@ -31,11 +31,11 @@ Primary inference condition: Qwen/Qwen3-4B, NF4 with double quantization, FP16 c
 
 ## Human review comes next
 
-The [annotation package](pilot/annotation_draft_v1/README.md) has five draft families in each of six topics. All texts remain AI_DRAFT and all acceptance decisions are pending.
+The [annotation package](pilot/annotation_draft_v2/README.md) has five draft families in each of six topics. All texts remain AI_DRAFT and all acceptance decisions are pending.
 
 1. Assign two independent Hindi-English bilingual reviewers to R01 and R02, and a separate adjudicator to A01. These labels are pseudonyms, not completed reviews.
-2. Give each reviewer only their own [R01 ZIP](pilot/annotation_draft_v1/R01_review_packet.zip) or [R02 ZIP](pilot/annotation_draft_v1/R02_review_packet.zip). They solve randomized stage1 questions before consulting reference answers, save the JSON, and import it into stage2 to compare the triplets and rate language quality.
-3. The coordinator collects both independent submissions before revealing the [A01 key and decision packet](pilot/annotation_draft_v1/A01_adjudication_packet.zip). Record repairs, disagreements, exact gold/unit decisions, family relationships and split exclusions; repaired texts require new versions and independent re-review.
+2. Give each reviewer only their own [R01 ZIP](pilot/annotation_draft_v2/R01_review_packet.zip) or [R02 ZIP](pilot/annotation_draft_v2/R02_review_packet.zip). They solve randomized stage1 questions before consulting reference answers, save the JSON, and import it into stage2 to compare the triplets and rate language quality.
+3. The coordinator collects both independent submissions before revealing the [A01 key and decision packet](pilot/annotation_draft_v2/A01_adjudication_packet.zip). Record repairs, disagreements, exact gold/unit decisions, family relationships and split exclusions; repaired texts require new versions and independent re-review.
 4. Freeze accepted data, review hashes, borrowing policy and splits; then run the unchanged-model pilot and inspect all raw outputs.
 
 **Reviewers:** the coordinator folder, A01 key and historical illustrative problems contain proposed answers. Avoid reading those before your independent solves. If you have already seen a proposed answer, report that exposure to the coordinator; do not attest otherwise. GitHub access is not a blind-review firewall. Automated checks cannot certify mathematical equivalence, naturalness or family independence.
@@ -74,3 +74,5 @@ The annotation verifier also uses Node.js for JavaScript syntax and simulated im
 The [consolidated experiment specification](research/astra_experiment_spec_v1.md) preserves the three-arm comparison and separates requirements from unapproved recommendations. Read the [statistical planning analysis](research/astra_validity_and_power_v1.md) and [review-readiness audit](research/astra_review_readiness_v1.md) before preparing accepted inputs. Planning calculations are synthetic assumptions, not model results. Reviewer exposure remains unconfirmed; PIL026-C wording and candidate family relationships require human resolution. The next gate remains human acceptance followed by the unchanged-model pilot.
 
 A [three-agent AI pre-review](research/ai_prereview_v1/README.md) covers all 30 candidates with mathematics, language and family-structure findings. It is coordinator material containing proposed answers, not human validation or a completed review submission. Original draft inputs remain unchanged.
+
+Current review distribution: [draft v2](pilot/annotation_draft_v2/README.md), with eight AI wording repairs across six families. v1 remains archived unchanged. [Today’s progress and next steps](docs/PROGRESS_2026-10-10.md) distinguishes delivered software/AI review from pending human acceptance and experiments.

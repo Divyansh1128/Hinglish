@@ -1,0 +1,34 @@
+{
+  "PIL004-E": {
+    "text": "A ribbon is 24 m long. 3/8 of its original length is cut off. What length of ribbon remains, in metres?",
+    "reason": "Match fraction representation and improve grammar."
+  },
+  "PIL004-R": {
+    "text": "Ek feeta 24 m lamba hai. Uski shuruaati lambai ka 3/8 hissa kaat diya gaya. Bache hue feete ki lambai metre mein kitni hai?",
+    "reason": "Match fraction representation and improve grammar."
+  },
+  "PIL004-C": {
+    "text": "Ek ribbon ki length 24 m hai. Uski original length ka 3/8 hissa cut kar diya gaya. Ribbon ki remaining length metres mein kitni hai?",
+    "reason": "Match fraction representation and improve grammar."
+  },
+  "PIL006-R": {
+    "text": "Ek pustakalaya mein almaari ke ek takhte par 42 kitaabein hain. Padhne waale unmein se 13 kitaabein le jaate hain, aur phir usi takhte par 8 doosri kitaabein rakhi jaati hain. Koi aur kitaab na nikaali jaati hai na rakhi jaati hai. Ab us takhte par kitni kitaabein hain?",
+    "reason": "Match shelf-level counted location."
+  },
+  "PIL008-C": {
+    "text": "Ek box mein at most 60 pencils aa sakti hain. Usmein 34 pencils hain aur unmein se 7 nikaal di jaati hain. What is the greatest number of pencils that can now be added without exceeding the capacity?",
+    "reason": "Make maximum request explicit."
+  },
+  "PIL016-C": {
+    "text": "Ek sack mein rakhe chaawal ka 25% use karne ke baad 72 kg chaawal bachta hai. There is no other change in its contents. Originally sack mein kitne kilograms chaawal tha?",
+    "reason": "Specify rice as percentage base."
+  },
+  "PIL025-C": {
+    "text": "Ek cyclist bina ruke 120 km ka safar complete karta hai. The first 40 km are travelled at 20 km per hour, aur remaining distance par speed 40 km per hour hai. Total kitne hours lagte hain?",
+    "reason": "Improve code-mixed phrase fluency without changing the journey."
+  },
+  "PIL026-C": {
+    "text": "Ek number x hai. It satisfies 3x + 7 = 28. x kya hai?",
+    "reason": "Remove unequal verbal equation repetition while retaining productive English predicate."
+  }
+}
