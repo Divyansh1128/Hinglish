@@ -1,0 +1,57 @@
+{
+  "status": "MODEL_FREE_PLANNING_ONLY",
+  "created_utc": "2026-10-10T15:00:22.298081+00:00",
+  "python": "3.14.5",
+  "code_SHA256": "d53ef4eed6a647037d5d2e3cc4cddf3a339f4a4c32844894224fc017ebc1b823",
+  "seed_for_Monte_Carlo_validation_only": 20261010,
+  "exact_power_random_seed": null,
+  "assumptions": {
+    "baseline": 0.55,
+    "discordance": [
+      0.1,
+      0.2,
+      0.4
+    ],
+    "gains": [
+      0.03,
+      0.05,
+      0.1
+    ],
+    "alpha": 0.05,
+    "independent_identically_distributed_families_single_checkpoint_pair": true
+  },
+  "checks": {
+    "status": "PASS",
+    "checks": [
+      "PMF normalization, mean, p=0/1, n=0 and n=1000",
+      "Exact binomial boundary: five all-direction discordances cannot reject; six can",
+      "Zero discordance; deterministic alternative; exact null size <=.05",
+      "Independent brute multinomial sum equals conditional-binomial sum for n=0..8",
+      "Impossible paired tables rejected",
+      "Crossed variance identity and family-only/seed-only limits",
+      "Seeded 20,000-replicate multinomial sanity checks agree within five MC standard errors"
+    ],
+    "simulation_checks": [
+      {
+        "n": 30,
+        "repetitions": 20000,
+        "simulation_seed": 20261010,
+        "simulated_rejection_rate": 0.02785,
+        "exact_expected_power": 0.030135370451063383,
+        "Monte_Carlo_standard_error": 0.0012088678566915525
+      },
+      {
+        "n": 300,
+        "repetitions": 20000,
+        "simulation_seed": 20261010,
+        "simulated_rejection_rate": 0.44785,
+        "exact_expected_power": 0.4459639249786646,
+        "Monte_Carlo_standard_error": 0.0035148264722194224
+      }
+    ]
+  },
+  "outputs": {
+    "paired_power_scenarios.csv": "3f4b71e41c7768ea80edeba9b1cc18a34c28b48bb017cdb9ae276329cc30b5fa",
+    "crossed_variance_scenarios.csv": "40d4b67eac4a5932da270cdb9818cf2a3d2814624b7a0e5df98e21acc596457f"
+  }
+}

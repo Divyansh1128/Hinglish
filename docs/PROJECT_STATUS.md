@@ -4,7 +4,7 @@ Updated: 10 October 2026. This file separates completed work from proposals.
 
 | Workstream | Current evidence | Next step |
 | --- | --- | --- |
-| Literature and novelty | Closest-work comparison written; no exact matched E+C versus E+R English-supervision control located in the examined work | Resolve remaining artifact/control questions; do not claim exhaustive novelty clearance |
+| Literature and novelty | Expanded 14-work audit complete; exact matched E+C versus E+R control not located in inspected material | Proceed provisionally to human review; retain unresolved Indi-RomCoM artifact question and bounded novelty claim |
 | Research design | E/R/C definitions, family-level analysis, exposure controls, draft review/scoring/split policies documented | Human-freeze borrowing policy and accepted data; refine later confirmatory sample/resource design |
 | Pilot implementation | Self-contained Colab notebook, strict input validation, incremental inference/resume, common scorer, reports/audit/export and software tests implemented | Execute only after accepted inputs and freeze |
 | Fake demo | Six synthetic outputs completed; exported checksums and original scores verified | Retain as software evidence only |
@@ -27,3 +27,11 @@ The coordinator distributes the separated review packets, preserves submissions 
 After review, return four stage1/stage2 reviewer JSONs and the adjudication JSON with any repair/re-review records. No local DRAFT input should be relabeled ACCEPT just to pass validation. Pilot families, rejected drafts, format fixtures and all descendants stay excluded from future confirmatory training and final test. Later training/final-test families and the 16 planned training-smoke families have not been fabricated.
 
 The next research deliverable is a human-reviewed, versioned and frozen pilot dataset and split manifest. After that, run the main notebook's reviewed mode, return its results ZIP and executed notebook, and inspect failure modes, paired outcomes, uncertainty, tokens and memory. A descriptive gap from 30 families cannot demonstrate an E+C training benefit.
+
+## Research audit update
+
+The [updated literature matrix](../research/astra_closest_work_update_2026-10-10.md) recovered Anand’s official technical appendix and confirmed its Romanized-Hindi exclusion. XCOT already retains English responses for translated queries; Sarvam-M supplies a Romanized mathematical training precedent. These narrow the claim to the controlled comparison and useful independent-style transfer.
+
+The [authoritative design proposal](../research/astra_experiment_spec_v1.md) keeps E+E/E+R/E+C essential and corrects the illustrative three-arm, three-seed, 256-update budget to 2304 updates. The schedule, final sample size and practical effect/retention margins remain unapproved. [Model-free power calculations](../research/astra_validity_and_power_v1.md) show why 30 families are a diagnostic pilot rather than a justified confirmatory sample; all seven planning-code validation categories passed. These calculations are not training results.
+
+The [static review audit](../research/astra_review_readiness_v1.md) found no completed human acceptance. PIL026-C adds explanatory wording requiring review; candidate lineage, naturalness and reviewer gold exposure remain human decisions. The audit JSON contains proposed gold and should not be distributed as blind stage1 material. Software, original generations/scores and draft questions were not changed by this research phase.

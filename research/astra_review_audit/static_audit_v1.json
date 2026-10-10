@@ -1,0 +1,280 @@
+{
+  "label": "STATIC AI AUDIT — NOT HUMAN VALIDATION OR RESEARCH EXECUTION",
+  "audited_at_utc": "2026-10-10T08:24:05.661598+00:00",
+  "file_sha256": {
+    "pilot/annotation_draft_v1/coordinator/pilot_dataset.DRAFT.json": "ab37f175df6dc5b7d02ee7ed8a4fc5cacf090e419a8e4272950b9fd269aee92e",
+    "pilot/annotation_draft_v1/coordinator/split_manifest.DRAFT.json": "25f63f4c5ef8783936741136a0217cacd54c794268f1ccb56263dcbe3b00c0e0",
+    "pilot/annotation_draft_v1/coordinator/draft_register.json": "bd51d39034618f284f09d2ea020e9d63f4b2bb20a90b8771cd78adb85a8e02f0",
+    "pilot/annotation_draft_v1/A01/adjudication.PENDING.json": "878edb800bcd6a0478a860130e1fea085768c6ea078b868f19b7f11459ec88b2"
+  },
+  "family_count": 30,
+  "rendering_count": 90,
+  "topics": {
+    "comparison_remaining": 5,
+    "two_step_money": 5,
+    "rates_units": 5,
+    "fractions_percentages": 5,
+    "ratios": 5,
+    "elementary_algebra": 5
+  },
+  "statuses": {
+    "DRAFT": 30
+  },
+  "human_reviews_present": 0,
+  "accepted_adjudications": 0,
+  "draft_validator_rejection": "Human acceptance missing or demo status invalid",
+  "reviewer_distribution_state": {
+    "R01": {
+      "stage1": {
+        "row_count": 90,
+        "attestation": null,
+        "completion_timestamp": "",
+        "answered_rows": 0,
+        "nonpending_dispositions": 0
+      },
+      "stage2": {
+        "row_count": 90,
+        "attestation": null,
+        "completion_timestamp": "",
+        "answered_rows": 0,
+        "nonpending_dispositions": 0
+      }
+    },
+    "R02": {
+      "stage1": {
+        "row_count": 90,
+        "attestation": null,
+        "completion_timestamp": "",
+        "answered_rows": 0,
+        "nonpending_dispositions": 0
+      },
+      "stage2": {
+        "row_count": 90,
+        "attestation": null,
+        "completion_timestamp": "",
+        "answered_rows": 0,
+        "nonpending_dispositions": 0
+      }
+    }
+  },
+  "exact_math_checks": [
+    {
+      "family_id": "PIL001",
+      "exact_gold": "31",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL002",
+      "exact_gold": "30",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL003",
+      "exact_gold": "32",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL004",
+      "exact_gold": "15",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL005",
+      "exact_gold": "12",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL006",
+      "exact_gold": "37",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL007",
+      "exact_gold": "6",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL008",
+      "exact_gold": "33",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL009",
+      "exact_gold": "27",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL010",
+      "exact_gold": "111",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL011",
+      "exact_gold": "45",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL012",
+      "exact_gold": "63",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL013",
+      "exact_gold": "6",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL014",
+      "exact_gold": "12",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL015",
+      "exact_gold": "144",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL016",
+      "exact_gold": "96",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL017",
+      "exact_gold": "1/4",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL018",
+      "exact_gold": "35",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL019",
+      "exact_gold": "140",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL020",
+      "exact_gold": "8/15",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL021",
+      "exact_gold": "3/5",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL022",
+      "exact_gold": "45",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL023",
+      "exact_gold": "8",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL024",
+      "exact_gold": "9",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL025",
+      "exact_gold": "4",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL026",
+      "exact_gold": "7",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL027",
+      "exact_gold": "20",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL028",
+      "exact_gold": "16",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL029",
+      "exact_gold": "19",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    },
+    {
+      "family_id": "PIL030",
+      "exact_gold": "7",
+      "reference_arithmetic_pass": true,
+      "reference_final_scoring_pass": true
+    }
+  ],
+  "scalar_answer_profile": {
+    "positive_values": 30,
+    "integer_values": 27,
+    "fractional_values": 3,
+    "dimensionless_gold": 6
+  },
+  "rendering_character_counts_descriptive_not_tokens": {
+    "E": {
+      "median": 142.5,
+      "range": [
+        44,
+        248
+      ]
+    },
+    "R": {
+      "median": 164.0,
+      "range": [
+        56,
+        338
+      ]
+    },
+    "C": {
+      "median": 150.5,
+      "range": [
+        61,
+        223
+      ]
+    }
+  },
+  "exclusion_id_count": 99,
+  "future_confirm_train_count": 0,
+  "future_final_test_count": 0,
+  "reviewer_prior_gold_exposure": "UNKNOWN — repository accessibility alone is not proof of exposure",
+  "limits": [
+    "AI static audit cannot certify semantic equivalence, naturalness or family independence.",
+    "No current input or human response was modified.",
+    "No inference, training or paid API was used."
+  ]
+}

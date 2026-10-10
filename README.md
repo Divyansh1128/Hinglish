@@ -18,7 +18,7 @@ For continuing research in a new assistant session, use the [Astra research mast
 
 Test 1 evaluates mathematically equivalent E/R/C questions using one unchanged checkpoint, one fixed English instruction and one scorer. A fresh context is used for every question. The intended reviewed pilot has 30 independent mathematical families, each with three renderings: **90 prompts represent 30 families, not 90 independent problems.**
 
-The later training comparison is **E+E versus E+R versus E+C**, matching mathematical content, English solution supervision and example exposure. It remains a proposed experiment. Matching exposure and updates does not necessarily match input tokens or runtime; those must be measured. Existing bilingual/code-mixed mathematics studies mean publication novelty cannot be assumed; see the [closest-work matrix](research/closest_work_comparison_2026-10-10.md).
+The later training comparison is **E+E versus E+R versus E+C**, matching mathematical content, English solution supervision and example exposure. It remains a proposed experiment. Matching exposure and updates does not necessarily match input tokens or runtime; those must be measured. Existing bilingual/code-mixed mathematics studies mean publication novelty cannot be assumed; see the [updated closest-work matrix](research/astra_closest_work_update_2026-10-10.md).
 
 ## Run the notebooks
 
@@ -68,3 +68,7 @@ python3 -B pilot/annotation_draft_v1/verify_packet.py
 ```
 
 The annotation verifier also uses Node.js for JavaScript syntax and simulated import/export checks. See each package README for builders and dependencies. These are software checks; they do not establish human approval or full GPU feasibility. Do not rebuild draft distributions over returned human edits. For actual research runs, return one results ZIP plus the executed notebook, preserving all original automatic scores and any separately versioned manual audit overlays.
+
+## Current research decisions
+
+The [consolidated experiment specification](research/astra_experiment_spec_v1.md) preserves the three-arm comparison and separates requirements from unapproved recommendations. Read the [statistical planning analysis](research/astra_validity_and_power_v1.md) and [review-readiness audit](research/astra_review_readiness_v1.md) before preparing accepted inputs. Planning calculations are synthetic assumptions, not model results. Reviewer exposure remains unconfirmed; PIL026-C wording and candidate family relationships require human resolution. The next gate remains human acceptance followed by the unchanged-model pilot.
