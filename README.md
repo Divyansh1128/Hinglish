@@ -6,6 +6,8 @@ A Delhi Technological University BTech research project investigating how langua
 
 Start with the [teammate guide PDF](output/pdf/Hinglish_Math_Teammate_Guide.pdf), then [current progress and next steps](docs/PROJECT_STATUS.md). Older planning documents are retained as dated proposals; their pending/completed statements must be read with this current status.
 
+For continuing research in a new assistant session, use the [Astra research master prompt](docs/ASTRA_RESEARCH_MASTER_PROMPT.md), which includes verified achievements, open questions and bounded subagent tasks.
+
 ## What E, R and C mean
 
 | Form | Input language |
