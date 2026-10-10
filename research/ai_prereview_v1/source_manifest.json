@@ -1,0 +1,14 @@
+{
+  "status": "AI_PREREVIEW_NOT_HUMAN_VALIDATION",
+  "created_utc": "2026-10-10T15:30:33.328968+00:00",
+  "source_files": {
+    "pilot/annotation_draft_v1/coordinator/pilot_dataset.DRAFT.json": "ab37f175df6dc5b7d02ee7ed8a4fc5cacf090e419a8e4272950b9fd269aee92e",
+    "pilot/annotation_draft_v1/coordinator/split_manifest.DRAFT.json": "25f63f4c5ef8783936741136a0217cacd54c794268f1ccb56263dcbe3b00c0e0",
+    "pilot/annotation_draft_v1/R01_review_packet.zip": "984b7aef95a008528149d87e436bcb29e9e63f5bad6469de6a4cea3a8501b971",
+    "pilot/annotation_draft_v1/R02_review_packet.zip": "889f7cb68079eb089a26801b1f99049b2491ced2ac895691e2ade2291a123764",
+    "pilot/annotation_draft_v1/A01_adjudication_packet.zip": "f50fc23280a558be7034aa579ad9547d50892fa99ea0a89829b11b8a75d4fd0c"
+  },
+  "human_acceptance_changed": false,
+  "blind_review_claimed": false,
+  "notes": "AI reviewers can access proposed gold. Agents share a model/context and are not independent human raters. No human agreement statistic or acceptance is supplied."
+}
