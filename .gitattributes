@@ -1,0 +1,8 @@
+# Preserve published binary artifacts byte for byte.
+*.pdf binary
+*.docx binary
+*.zip binary
+*.png binary
+
+# CSV's conventional CRLF is normalized to LF in the repository.
+*.csv text eol=lf

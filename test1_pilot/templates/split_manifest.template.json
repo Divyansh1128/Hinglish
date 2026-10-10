@@ -1,0 +1,27 @@
+{
+  "schema_version": "test1-1",
+  "version": "draft-v1",
+  "kind": "reviewed",
+  "audit": {
+    "approved": false,
+    "reviewer_id": "",
+    "unresolved_matches": null,
+    "audited_at": ""
+  },
+  "PILOT_EVAL": [],
+  "SMOKE_TRAIN": [
+    {
+      "family_id": "test1-format-smoke-v1",
+      "source_family_id": "test1-format-smoke-source-v1",
+      "template_group_id": "test1-format-smoke-template-v1"
+    }
+  ],
+  "RETIRED_DRAFT": [],
+  "CONFIRM_TRAIN": [],
+  "FINAL_TEST": [],
+  "development_exclusion_ids": [
+    "test1-format-smoke-v1",
+    "test1-format-smoke-source-v1",
+    "test1-format-smoke-template-v1"
+  ]
+}

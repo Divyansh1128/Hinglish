@@ -1,0 +1,29 @@
+{
+  "label": "REAL-MODEL SOFTWARE SMOKE — NOT RESEARCH EVIDENCE",
+  "archive_sha256": "fa2e7a6ce1a3e525b74f6a6ff1dec8ad2fe923702448c0e305237dfd2d7983d0",
+  "integrity": "PASS",
+  "status": "COMPLETE",
+  "GPU": "Tesla T4",
+  "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "completed": 6,
+  "unresolved": 0,
+  "truncated": 0,
+  "original_scored_correct": 0,
+  "technical_numeric_check_correct": 6,
+  "loading_seconds_including_possible_weight_download": 224.75430262900005,
+  "generation_seconds": {
+    "min": 5.01660859399999,
+    "median": 5.361209551999991,
+    "max": 6.719977515000096,
+    "total": 33.790155432999995
+  },
+  "max_generation_peak_reserved_GiB": 4.193359375,
+  "min_endpoint_free_GiB": 10.21466064453125,
+  "scoring_issue": "Count fixture incorrectly had blank canonical unit; fraction suffixes violate the strict dimensionless final policy.",
+  "output_language_issue": "The R count response includes Hindi explanation despite the English explanation instruction.",
+  "limits": [
+    "Two toy families only; no Hinglish robustness or training conclusion.",
+    "Endpoint free memory is not minimum memory throughout.",
+    "No human annotation validation or full 90-item pilot completed."
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "test1-1",
+  "version": "demo-v2",
+  "kind": "demo",
+  "borrowing_policy": "DEMO ONLY; language judgments unvalidated",
+  "families": [
+    {
+      "family_id": "demo-1",
+      "source_family_id": "demo-1-source",
+      "template_group_id": "demo-1-template",
+      "topic": "comparison_remaining",
+      "split_role": "DEMO",
+      "version": "demo-v2",
+      "authoring_origin": "AI_SOFTWARE_FIXTURE",
+      "provenance": "Synthetic software fixture; no human validation",
+      "source_license": "CC0 synthetic fixture",
+      "reference_equation": "2+3=5",
+      "reference_solution_en": "Software fixture only.",
+      "status": "DEMO",
+      "gold": {
+        "value": "5",
+        "unit": "counters",
+        "aliases": [
+          "counter",
+          "tukde",
+          "tukda"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "demo-1-E",
+          "text": "DEMO-ADD: There are 2 red and 3 blue counters. How many counters?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "demo-1-R",
+          "text": "DEMO-ADD: 2 laal aur 3 neele ginte ke tukde hain. Kul kitne tukde hain?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "demo-1-C",
+          "text": "DEMO-ADD: 2 red aur 3 blue counters hain. How many counters in total?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "demo-2",
+      "source_family_id": "demo-2-source",
+      "template_group_id": "demo-2-template",
+      "topic": "fractions_percentages",
+      "split_role": "DEMO",
+      "version": "demo-v2",
+      "authoring_origin": "AI_SOFTWARE_FIXTURE",
+      "provenance": "Synthetic software fixture; no human validation",
+      "source_license": "CC0 synthetic fixture",
+      "reference_equation": "1/2",
+      "reference_solution_en": "Software fixture only.",
+      "status": "DEMO",
+      "gold": {
+        "value": "1/2",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "demo-2-E",
+          "text": "DEMO-HALF: What fraction is 1 out of 2 equal parts?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "demo-2-R",
+          "text": "DEMO-HALF: 2 baraabar hisson mein se 1 hissa kul ka kitna bhaag hai?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "demo-2-C",
+          "text": "DEMO-HALF: 2 equal parts mein se 1 part total ka kitna fraction hai?",
+          "creator_type": "AI_SOFTWARE_FIXTURE",
+          "generation_or_edit_history": "Generated for software checks, not research.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    }
+  ]
+}

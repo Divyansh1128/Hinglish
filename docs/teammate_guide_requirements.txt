@@ -1,0 +1,4 @@
+# PDF builder only; unrelated to the inference/Colab dependency stack.
+reportlab==5.0.1
+# Optional QA renderer/text checker; used in the delivered verification.
+PyMuPDF==1.26.3

@@ -1,0 +1,1719 @@
+{
+  "schema_version": "test1-1",
+  "version": "pilot-draft-v1",
+  "kind": "reviewed",
+  "borrowing_policy": "PROPOSED v1, NOT YET HUMAN-FROZEN: Arabic digits, mathematical symbols, variable names, INR/rupee notation, %, L, mL, m, cm, km, kg, g, h, minute, metre, litre, kilometre, centimetre, millilitre, kilogram, gram, hour and their ordinary Roman spellings may be shared. Established Hindi loan nouns bus, cycle, jag, tikat and pensil are proposed common borrowings. Names are shared entities. R must otherwise use Hindi phrasing in Roman script; substantive English clauses/relations are disallowed. C requires a productive English predicate, clause or mathematical relation alongside Hindi; object nouns alone do not qualify. Reviewers must flag disputed borrowings before the policy is frozen.",
+  "families": [
+    {
+      "family_id": "PIL001",
+      "source_family_id": "PIL001-authored-source",
+      "template_group_id": "PIL001-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "36 - 5",
+      "reference_solution_en": "Aman has 5 fewer marbles than Riya, so 36 - 5 = 31.\nFINAL: 31 marbles",
+      "status": "DRAFT",
+      "gold": {
+        "value": "31",
+        "unit": "marbles",
+        "aliases": [
+          "marble",
+          "kanche",
+          "kancha"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL001-E-v1",
+          "text": "Riya has 36 marbles. Aman has 5 fewer marbles than Riya. How many marbles does Aman have?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL001-R-v1",
+          "text": "Riya ke paas 36 kanche hain. Aman ke paas Riya se 5 kam kanche hain. Aman ke paas kitne kanche hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL001-C-v1",
+          "text": "Riya ke paas 36 marbles hain. Aman has 5 fewer marbles than Riya. Aman ke paas kitne marbles hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "comparison"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL002",
+      "source_family_id": "PIL002-authored-source",
+      "template_group_id": "PIL002-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "150 - 5 * 24",
+      "reference_solution_en": "The notebooks cost 5 x 24 = INR 120. The change is 150 - 120 = INR 30.\nFINAL: INR 30",
+      "status": "DRAFT",
+      "gold": {
+        "value": "30",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL002-E-v1",
+          "text": "Meena buys 5 notebooks at INR 24 each. She pays the shopkeeper INR 150. How much change should she receive?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL002-R-v1",
+          "text": "Meena ne 5 kaapiyan khareedin. Har kaapi ki keemat INR 24 hai. Usne dukandaar ko INR 150 diye. Use kitne rupaye vaapas milne chahiye?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL002-C-v1",
+          "text": "Meena ne 5 notebooks khareedin; each costs INR 24. Usne shopkeeper ko INR 150 diye. Use kitna change milna chahiye?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "unit_price"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL003",
+      "source_family_id": "PIL003-authored-source",
+      "template_group_id": "PIL003-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "20 + 3 * 4",
+      "reference_solution_en": "Adding water for 4 minutes adds 3 x 4 = 12 L. The total is 20 + 12 = 32 L.\nFINAL: 32 L",
+      "status": "DRAFT",
+      "gold": {
+        "value": "32",
+        "unit": "L",
+        "aliases": [
+          "l",
+          "litre",
+          "litres",
+          "liter",
+          "liters"
+        ],
+        "conversions": {
+          "mL": "1/1000",
+          "millilitre": "1/1000",
+          "millilitres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL003-E-v1",
+          "text": "A tank initially contains 20 L of water. Water is added at 3 L per minute for 4 minutes. No water leaves the tank, and it has enough capacity. How many litres of water are in the tank at the end?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL003-R-v1",
+          "text": "Ek tanki mein pehle se 20 L paani hai. Usmein 4 minute tak har minute 3 L paani dala jaata hai. Koi paani bahar nahi nikalta aur tanki mein is paani ke liye kaafi jagah hai. Aakhir mein tanki mein kul kitne litre paani hoga?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL003-C-v1",
+          "text": "Ek tank mein pehle se 20 L paani hai. Water is added at 3 L per minute for 4 minutes. Koi paani bahar nahi nikalta aur tank mein enough space hai. Aakhir mein total kitne litres paani hoga?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "rate"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL004",
+      "source_family_id": "PIL004-authored-source",
+      "template_group_id": "PIL004-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "24 * (1 - 3/8)",
+      "reference_solution_en": "The removed length is 24 x 3/8 = 9 m. The remaining length is 24 - 9 = 15 m.\nFINAL: 15 m",
+      "status": "DRAFT",
+      "gold": {
+        "value": "15",
+        "unit": "m",
+        "aliases": [
+          "metre",
+          "metres",
+          "meter",
+          "meters"
+        ],
+        "conversions": {
+          "cm": "1/100",
+          "centimetre": "1/100",
+          "centimetres": "1/100"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL004-E-v1",
+          "text": "A ribbon is 24 m long. Three-eighths (3/8) of its original length is cut off. What length of ribbon remains, in metres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL004-R-v1",
+          "text": "Ek feete ki lambai 24 m hai. Uski shuruaati lambai ka 3/8 hissa kaat diya gaya. Bache hue feete ki lambai kitne metre hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL004-C-v1",
+          "text": "Ek ribbon ki length 24 m hai. Uski original length ka 3/8 hissa cut kar diya gaya. Ribbon ki remaining length kitne metres hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "fraction_base",
+            "operation",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL005",
+      "source_family_id": "PIL005-authored-source",
+      "template_group_id": "PIL005-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "30 * 2 / (2 + 3)",
+      "reference_solution_en": "There are 2 + 3 = 5 ratio parts. Each part is 30/5 = 6 marbles, so there are 2 x 6 = 12 red marbles.\nFINAL: 12 marbles",
+      "status": "DRAFT",
+      "gold": {
+        "value": "12",
+        "unit": "marbles",
+        "aliases": [
+          "marble",
+          "kanche",
+          "kancha"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL005-E-v1",
+          "text": "A bag contains only red and blue marbles. The ratio of red marbles to blue marbles is 2:3. There are 30 marbles in total. How many red marbles are there?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL005-R-v1",
+          "text": "Ek thaili mein sirf laal aur neele kanche hain. Laal aur neele kanchon ki sankhya ka anupaat 2:3 hai. Kul 30 kanche hain. Laal kanche kitne hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL005-C-v1",
+          "text": "Ek bag mein sirf red aur blue marbles hain. Red to blue ratio 2:3 hai aur total 30 marbles hain. Red marbles kitne hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "ratio_order",
+            "total"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL006",
+      "source_family_id": "PIL006-authored-source",
+      "template_group_id": "PIL006-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "42 - 13 + 8",
+      "reference_solution_en": "After borrowing, 42 - 13 = 29 books remain. Adding 8 gives 37.\nFINAL: 37 books",
+      "status": "DRAFT",
+      "gold": {
+        "value": "37",
+        "unit": "books",
+        "aliases": [
+          "book",
+          "kitaabein",
+          "kitaab"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL006-E-v1",
+          "text": "A library has 42 books on a shelf. Readers borrow 13 of them, and then 8 different books are added to that shelf. No other books move. How many books are on the shelf now?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL006-R-v1",
+          "text": "Ek pustakalaya ki ek almaari mein 42 kitaabein hain. Padhne waale unmein se 13 kitaabein le jaate hain, aur phir us almaari mein 8 doosri kitaabein rakhi jaati hain. Koi aur kitaab na nikaali jaati hai na rakhi jaati hai. Ab us almaari mein kitni kitaabein hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL006-C-v1",
+          "text": "Ek library ki shelf par 42 books hain. Readers borrow 13 of them, aur phir us shelf par 8 doosri books rakhi jaati hain. No other books move. Ab shelf par kitni books hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "subtraction",
+            "negation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL007",
+      "source_family_id": "PIL007-authored-source",
+      "template_group_id": "PIL007-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(28 - 16) / 2",
+      "reference_solution_en": "Each transferred bead reduces the difference by 2. The difference is 12, so 6 beads are transferred.\nFINAL: 6 beads",
+      "status": "DRAFT",
+      "gold": {
+        "value": "6",
+        "unit": "beads",
+        "aliases": [
+          "bead",
+          "moti"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL007-E-v1",
+          "text": "Nisha has 28 beads and Kabir has 16 beads. Nisha gives some of her beads to Kabir until they have equal numbers. How many beads does Nisha give Kabir?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL007-R-v1",
+          "text": "Nisha ke paas 28 moti hain aur Kabir ke paas 16 moti hain. Nisha apne kuch moti Kabir ko deti hai, taaki dono ke paas motiyon ki sankhya baraabar ho jaaye. Nisha Kabir ko kitne moti deti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL007-C-v1",
+          "text": "Nisha ke paas 28 beads hain aur Kabir ke paas 16 beads hain. Nisha gives some of her beads to Kabir until their counts are equal. Nisha Kabir ko kitne beads deti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "transfer",
+            "equality"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL008",
+      "source_family_id": "PIL008-authored-source",
+      "template_group_id": "PIL008-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "60 - (34 - 7)",
+      "reference_solution_en": "There are 34 - 7 = 27 pencils left. The free capacity is 60 - 27 = 33.\nFINAL: 33 pencils",
+      "status": "DRAFT",
+      "gold": {
+        "value": "33",
+        "unit": "pencils",
+        "aliases": [
+          "pencil",
+          "pensilein",
+          "pensil"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL008-E-v1",
+          "text": "A box holds at most 60 pencils. It contains 34 pencils, and 7 of these are removed. What is the greatest number of pencils that can now be added without exceeding the capacity?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL008-R-v1",
+          "text": "Ek dabbe mein zyaada se zyaada 60 pensilein aa sakti hain. Usmein 34 pensilein hain aur unmein se 7 nikaal di jaati hain. Dabbe ki jagah se zyaada bhare bina ab usmein zyaada se zyaada kitni pensilein aur rakhi ja sakti hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL008-C-v1",
+          "text": "Ek box mein at most 60 pencils aa sakti hain. Usmein 34 pencils hain aur 7 nikaal di jaati hain. How many more pencils can be added without exceeding the capacity?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "capacity",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL009",
+      "source_family_id": "PIL009-authored-source",
+      "template_group_id": "PIL009-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "14 + 9 + 4",
+      "reference_solution_en": "Saira originally had 14 + 9 = 23 stickers. Imran had 4 more, so he had 27.\nFINAL: 27 stickers",
+      "status": "DRAFT",
+      "gold": {
+        "value": "27",
+        "unit": "stickers",
+        "aliases": [
+          "sticker",
+          "parchiyan",
+          "parchi"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL009-E-v1",
+          "text": "Saira uses 9 stickers and has 14 stickers left. Before she used any, Imran had 4 more stickers than Saira. How many stickers did Imran have?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL009-R-v1",
+          "text": "Saira 9 chipkaane waali parchiyan istemaal karti hai aur uske paas 14 parchiyan bachti hain. Saira ke parchiyan istemaal karne se pehle, Imran ke paas Saira se 4 zyaada parchiyan thi. Imran ke paas kitni parchiyan thi?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL009-C-v1",
+          "text": "Saira 9 stickers use karti hai aur uske paas 14 stickers bachte hain. Before she used any, Imran had 4 more stickers than Saira. Imran ke paas kitne stickers the?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "time_condition",
+            "comparison"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL010",
+      "source_family_id": "PIL010-authored-source",
+      "template_group_id": "PIL010-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "200 - (3 * 18 + 35)",
+      "reference_solution_en": "The basket costs 54 + 35 = INR 89. The change is 200 - 89 = INR 111.\nFINAL: INR 111",
+      "status": "DRAFT",
+      "gold": {
+        "value": "111",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL010-E-v1",
+          "text": "Arun buys 3 pens at INR 18 each and 1 notebook at INR 35. There are no extra charges. He pays INR 200. How much change does he receive?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL010-R-v1",
+          "text": "Arun 3 kalamein khareedta hai, har kalam INR 18 ki, aur 1 kaapi INR 35 ki. Koi aur paisa nahi liya jaata. Vah INR 200 deta hai. Use kitne rupaye vaapas milte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL010-C-v1",
+          "text": "Arun 3 pens khareedta hai; each pen costs INR 18, aur 1 notebook INR 35 ki hai. There are no extra charges. Vah INR 200 deta hai. Use kitna change milta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "unit_price",
+            "negation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL011",
+      "source_family_id": "PIL011-authored-source",
+      "template_group_id": "PIL011-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "180 / 3 - 15",
+      "reference_solution_en": "One ticket costs INR 60. Deducting INR 15 leaves INR 45.\nFINAL: INR 45",
+      "status": "DRAFT",
+      "gold": {
+        "value": "45",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL011-E-v1",
+          "text": "Three tickets cost INR 180 in total and have equal prices. One ticket is cancelled. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. How much money is returned?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL011-R-v1",
+          "text": "3 tikaton ki kul keemat INR 180 hai aur har tikat ki keemat baraabar hai. 1 tikat radd ki jaati hai. Uski poori keemat vaapas ki jaati hai, lekin radd karne ke shulk ke taur par usi rakam mein se INR 15 kaat liye jaate hain. Kitne rupaye vaapas milte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL011-C-v1",
+          "text": "3 tickets ki total keemat INR 180 hai aur sabki keemat baraabar hai. 1 ticket cancel hoti hai. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. Kitne rupaye vaapas milte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "refund",
+            "deduction"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL012",
+      "source_family_id": "PIL012-authored-source",
+      "template_group_id": "PIL012-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "216 / 4 + 9",
+      "reference_solution_en": "Each bill share is INR 54. Adding the individual tip gives INR 63.\nFINAL: INR 63",
+      "status": "DRAFT",
+      "gold": {
+        "value": "63",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL012-E-v1",
+          "text": "Four friends split an INR 216 food bill equally. Each friend then pays an additional INR 9 tip. How much does each friend pay in total?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL012-R-v1",
+          "text": "4 dost khaane ka INR 216 ka kharch baraabar baantte hain. Phir har dost apni taraf se INR 9 bakhshish aur deta hai. Har dost kul kitne rupaye deta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL012-C-v1",
+          "text": "4 dost INR 216 ka food bill equally split karte hain. Each friend then pays an additional INR 9 tip. Har dost total kitne rupaye deta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equal_division",
+            "individual_addition"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL013",
+      "source_family_id": "PIL013-authored-source",
+      "template_group_id": "PIL013-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(150 - 30) / 20",
+      "reference_solution_en": "After delivery, INR 120 remains. At INR 20 each, at most 6 pens can be bought.\nFINAL: 6 pens",
+      "status": "DRAFT",
+      "gold": {
+        "value": "6",
+        "unit": "pens",
+        "aliases": [
+          "pen",
+          "kalamein",
+          "kalam"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL013-E-v1",
+          "text": "Leela can spend at most INR 150. A delivery fee of INR 30 is charged once for the order. Each pen costs INR 20, and there are no other charges. What is the greatest number of pens she can buy?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL013-R-v1",
+          "text": "Leela zyaada se zyaada INR 150 kharch kar sakti hai. Poore saamaan ko ghar pahunchane ke liye ek hi baar INR 30 liye jaate hain. Har kalam ki keemat INR 20 hai aur koi aur paisa nahi liya jaata. Vah zyaada se zyaada kitni kalamein khareed sakti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL013-C-v1",
+          "text": "Leela at most INR 150 kharch kar sakti hai. A delivery fee of INR 30 is charged once for the order. Har pen INR 20 ka hai aur koi aur charge nahi hai. Maximum kitne pens khareed sakti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "budget_bound",
+            "fixed_fee"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL014",
+      "source_family_id": "PIL014-authored-source",
+      "template_group_id": "PIL014-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "40 * 2/5 * 3/4",
+      "reference_solution_en": "There are 16 girls. Three quarters of 16 is 12.\nFINAL: 12 girls",
+      "status": "DRAFT",
+      "gold": {
+        "value": "12",
+        "unit": "girls",
+        "aliases": [
+          "girl",
+          "ladkiyan",
+          "ladki"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL014-E-v1",
+          "text": "A class has 40 students. Girls make up 2/5 of the class, and 3/4 of those girls attend a music club. How many girls in the class attend the music club?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL014-R-v1",
+          "text": "Ek kaksha mein 40 vidyarthi hain. Unmein se 2/5 ladkiyan hain, aur un ladkiyon mein se 3/4 sangeet ki mandali mein jaati hain. Kaksha ki kitni ladkiyan sangeet ki mandali mein jaati hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL014-C-v1",
+          "text": "Ek class mein 40 students hain. Girls make up 2/5 of the class, aur un girls mein se 3/4 music club attend karti hain. Class ki kitni girls music club attend karti hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "fraction_base",
+            "subgroup"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL015",
+      "source_family_id": "PIL015-authored-source",
+      "template_group_id": "PIL015-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "200 * (1 - 20/100) * (1 - 10/100)",
+      "reference_solution_en": "After the first discount the price is INR 160. Reducing that by 10% leaves INR 144.\nFINAL: INR 144",
+      "status": "DRAFT",
+      "gold": {
+        "value": "144",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL015-E-v1",
+          "text": "An item costs INR 200 before discounts. Its price is reduced by 20%, and then the reduced price is reduced by a further 10%. What is the final price, with no other charges?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL015-R-v1",
+          "text": "Chhooton se pehle ek cheez ki keemat INR 200 hai. Pehle keemat 20% ghataayi jaati hai, aur phir ghati hui keemat ko 10% aur ghataaya jaata hai. Koi aur paisa nahi liya jaata. Aakhiri keemat kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL015-C-v1",
+          "text": "Discounts se pehle ek item ki keemat INR 200 hai. Its price is reduced by 20%, aur phir reduced price par 10% aur discount milta hai. No other charges hain. Final price kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "percentage_change",
+            "fraction_base"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL016",
+      "source_family_id": "PIL016-authored-source",
+      "template_group_id": "PIL016-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "72 / (1 - 25/100)",
+      "reference_solution_en": "The remaining 72 kg is 75% of the original. The original is 72 / (3/4) = 96 kg.\nFINAL: 96 kg",
+      "status": "DRAFT",
+      "gold": {
+        "value": "96",
+        "unit": "kg",
+        "aliases": [
+          "kilogram",
+          "kilograms"
+        ],
+        "conversions": {
+          "g": "1/1000",
+          "gram": "1/1000",
+          "grams": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL016-E-v1",
+          "text": "After 25% of a sack of rice is used, 72 kg remains. There is no other change in its contents. How many kilograms of rice were in the sack originally?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL016-R-v1",
+          "text": "Chaawal ki ek bori ka 25% chaawal istemaal karne ke baad 72 kg chaawal bachta hai. Usmein aur koi badlaav nahi hota. Shuru mein bori mein kitne kilogram chaawal tha?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL016-C-v1",
+          "text": "Chaawal ki ek sack ka 25% use karne ke baad 72 kg bachta hai. There is no other change in its contents. Originally sack mein kitne kilograms chaawal tha?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "remaining_percentage",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL017",
+      "source_family_id": "PIL017-authored-source",
+      "template_group_id": "PIL017-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(3/4) / 3",
+      "reference_solution_en": "Dividing 3/4 L equally among 3 children gives 1/4 L each.\nFINAL: 1/4 L",
+      "status": "DRAFT",
+      "gold": {
+        "value": "1/4",
+        "unit": "L",
+        "aliases": [
+          "l",
+          "litre",
+          "litres",
+          "liter",
+          "liters"
+        ],
+        "conversions": {
+          "mL": "1/1000",
+          "millilitre": "1/1000",
+          "millilitres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL017-E-v1",
+          "text": "A jug contains 3/4 L of juice. All of it is shared equally among 3 children, with none spilled. How many litres of juice does each child receive?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL017-R-v1",
+          "text": "Ek jag mein 3/4 L ras hai. Poora ras 3 bachchon mein baraabar baanta jaata hai aur kuch bhi nahi girta. Har bachche ko kitne litre ras milta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL017-C-v1",
+          "text": "Ek jug mein 3/4 L juice hai. All of it is shared equally among 3 children, aur kuch bhi spill nahi hota. Har child ko kitne litres juice milta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equal_division",
+            "quantity"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL018",
+      "source_family_id": "PIL018-authored-source",
+      "template_group_id": "PIL018-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "14 / (5 - 3) * 5",
+      "reference_solution_en": "The difference is 2 parts, so each part is 7. The larger number is 5 * 7 = 35.\nFINAL: 35",
+      "status": "DRAFT",
+      "gold": {
+        "value": "35",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL018-E-v1",
+          "text": "Two positive numbers are in the ratio 5:3. The larger number exceeds the smaller by 14. What is the larger number?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL018-R-v1",
+          "text": "2 dhanaatmak sankhyaon ka anupaat 5:3 hai. Badi sankhya chhoti sankhya se 14 zyaada hai. Badi sankhya kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL018-C-v1",
+          "text": "2 positive numbers ka ratio 5:3 hai. The larger number exceeds the smaller by 14. Bada number kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "comparison",
+            "ratio"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL019",
+      "source_family_id": "PIL019-authored-source",
+      "template_group_id": "PIL019-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "350 * 2 / 5",
+      "reference_solution_en": "Five water parts total 350 mL, so one part is 70 mL. Two syrup parts require 140 mL.\nFINAL: 140 mL",
+      "status": "DRAFT",
+      "gold": {
+        "value": "140",
+        "unit": "mL",
+        "aliases": [
+          "ml",
+          "millilitre",
+          "millilitres",
+          "milliliter",
+          "milliliters"
+        ],
+        "conversions": {
+          "L": "1000",
+          "litre": "1000",
+          "litres": "1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL019-E-v1",
+          "text": "A drink is prepared with syrup and water in the volume ratio 2:5. If 350 mL of water is used, how many millilitres of syrup are needed?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL019-R-v1",
+          "text": "Ek pey mein sharbat ke gaadhe ghol aur paani ki maatra ka anupaat 2:5 rakha jaata hai. Agar 350 mL paani liya jaaye, to kitne millilitre gaadhe ghol ki zaroorat hogi?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL019-C-v1",
+          "text": "Ek drink mein syrup aur water ka volume ratio 2:5 hai. If 350 mL of water is used, kitne millilitres syrup chahiye?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "ratio",
+            "condition"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL020",
+      "source_family_id": "PIL020-authored-source",
+      "template_group_id": "PIL020-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(2/3) * (4/5)",
+      "reference_solution_en": "A/C = (A/B) * (B/C) = (2/3) * (4/5) = 8/15.\nFINAL: 8/15",
+      "status": "DRAFT",
+      "gold": {
+        "value": "8/15",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL020-E-v1",
+          "text": "Positive quantities A, B and C satisfy A:B = 2:3 and B:C = 4:5. What is A/C? Give a number or fraction.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL020-R-v1",
+          "text": "Dhanaatmak maatraon A, B aur C ke liye A:B = 2:3 aur B:C = 4:5 hai. A/C ka maan kya hai? Ek sankhya ya bhinn mein bataaiye.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL020-C-v1",
+          "text": "Positive quantities A, B aur C ke liye A:B = 2:3 hai, and B:C equals 4:5. A/C kya hai? Give a number or fraction.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "ratio",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL021",
+      "source_family_id": "PIL021-authored-source",
+      "template_group_id": "PIL021-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "15 / (15 * 4/3 + 5)",
+      "reference_solution_en": "Initially there are 20 blue balls. After adding 5, the red-to-blue ratio is 15/25 = 3/5.\nFINAL: 3/5",
+      "status": "DRAFT",
+      "gold": {
+        "value": "3/5",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL021-E-v1",
+          "text": "A box contains only red and blue balls in the ratio 3:4. It contains 15 red balls. Then 5 blue balls are added and none are removed. What is the new ratio of red balls to blue balls? Give it as a number or fraction, red count divided by blue count.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL021-R-v1",
+          "text": "Ek dabbe mein sirf laal aur neeli gendein hain aur unki sankhya ka anupaat 3:4 hai. Laal gendein 15 hain. Phir 5 neeli gendein aur daali jaati hain aur koi gend nikaali nahi jaati. Ab laal aur neeli gendon ki sankhya ka naya anupaat kya hai? Laal gendon ki sankhya ko neeli gendon ki sankhya se bhaag dekar sankhya ya bhinn mein bataaiye.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL021-C-v1",
+          "text": "Ek box mein sirf red aur blue balls hain, ratio 3:4 hai, aur red balls 15 hain. Then 5 blue balls are added and none are removed. Naya red-to-blue ratio kya hai? Give red count divided by blue count as a number or fraction.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "addition",
+            "negation",
+            "ratio_order"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL022",
+      "source_family_id": "PIL022-authored-source",
+      "template_group_id": "PIL022-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "60 * 45 / 60",
+      "reference_solution_en": "45 minutes is 3/4 hour. The distance is 60 * 3/4 = 45 km.\nFINAL: 45 km",
+      "status": "DRAFT",
+      "gold": {
+        "value": "45",
+        "unit": "km",
+        "aliases": [
+          "kilometre",
+          "kilometres",
+          "kilometer",
+          "kilometers"
+        ],
+        "conversions": {
+          "m": "1/1000",
+          "metre": "1/1000",
+          "metres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL022-E-v1",
+          "text": "A bus travels at a constant speed of 60 km per hour for 45 minutes, without stopping. How many kilometres does it travel?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL022-R-v1",
+          "text": "Ek bus bina ruke 45 minute tak lagaataar 60 km prati ghante ki raftaar se chalti hai. Vah kitne kilometre chalti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL022-C-v1",
+          "text": "Ek bus 45 minutes tak bina ruke chalti hai, at a constant speed of 60 km per hour. Vah kitne kilometres travel karti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "rate",
+            "time_condition"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL023",
+      "source_family_id": "PIL023-authored-source",
+      "template_group_id": "PIL023-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "2.4 * 100 / 30",
+      "reference_solution_en": "The cord is 240 cm long. At 30 cm per piece, it makes 8 pieces.\nFINAL: 8 pieces",
+      "status": "DRAFT",
+      "gold": {
+        "value": "8",
+        "unit": "pieces",
+        "aliases": [
+          "piece",
+          "tukde",
+          "tukda"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL023-E-v1",
+          "text": "A 2.4 m cord is cut into pieces exactly 30 cm long. Cutting loses no length and the whole cord is used. How many pieces are made?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL023-R-v1",
+          "text": "2.4 m lambi ek dori ko theek 30 cm lambe tukdon mein kaata jaata hai. Kaatne mein koi lambai nahi ghatti aur poori dori istemaal hoti hai. Kitne tukde bante hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL023-C-v1",
+          "text": "2.4 m lambi cord ko exactly 30 cm long pieces mein cut kiya jaata hai. Cutting loses no length aur poori cord use hoti hai. Kitne pieces bante hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "unit_length",
+            "negation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL024",
+      "source_family_id": "PIL024-authored-source",
+      "template_group_id": "PIL024-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "90 / (6 + 4)",
+      "reference_solution_en": "Together the machines seal 10 boxes per minute. They need 90/10 = 9 minutes.\nFINAL: 9 minute",
+      "status": "DRAFT",
+      "gold": {
+        "value": "9",
+        "unit": "minute",
+        "aliases": [
+          "minutes",
+          "min"
+        ],
+        "conversions": {
+          "h": "60",
+          "hour": "60",
+          "hours": "60"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL024-E-v1",
+          "text": "Two machines work together without stopping. One seals 6 boxes per minute and the other seals 4 different boxes per minute. How many minutes do they need to seal 90 boxes in total?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL024-R-v1",
+          "text": "2 yantra bina ruke ek saath kaam karte hain. Ek har minute 6 dabbe band karta hai aur doosra har minute 4 alag dabbe band karta hai. Dono milkar kul 90 dabbe band karne mein kitne minute lenge?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL024-C-v1",
+          "text": "2 machines bina ruke ek saath kaam karti hain. One seals 6 boxes per minute and the other seals 4 different boxes per minute. Total 90 boxes seal karne mein kitne minutes lagenge?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "rate",
+            "simultaneous_work"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL025",
+      "source_family_id": "PIL025-authored-source",
+      "template_group_id": "PIL025-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "40 / 20 + (120 - 40) / 40",
+      "reference_solution_en": "The first segment takes 2 hours and the remaining 80 km takes 2 hours. Total time is 4 hours.\nFINAL: 4 h",
+      "status": "DRAFT",
+      "gold": {
+        "value": "4",
+        "unit": "h",
+        "aliases": [
+          "hour",
+          "hours",
+          "ghante",
+          "ghanta"
+        ],
+        "conversions": {
+          "minute": "1/60",
+          "minutes": "1/60",
+          "min": "1/60"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL025-E-v1",
+          "text": "A cyclist completes a 120 km journey without stops. The first 40 km are travelled at 20 km per hour and the remaining distance at 40 km per hour. How many hours does the journey take?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL025-R-v1",
+          "text": "Ek cycle savaar bina ruke 120 km ka safar poora karta hai. Pehle 40 km vah 20 km prati ghante ki raftaar se chalta hai aur baaki doori 40 km prati ghante ki raftaar se. Safar mein kul kitne ghante lagte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL025-C-v1",
+          "text": "Ek cyclist bina ruke 120 km ka journey complete karta hai. The first 40 km are travelled at 20 km per hour, aur remaining distance par speed 40 km per hour hai. Total kitne hours lagte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "segment_rate",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL026",
+      "source_family_id": "PIL026-authored-source",
+      "template_group_id": "PIL026-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(28 - 7) / 3",
+      "reference_solution_en": "Subtracting 7 gives 3x = 21. Dividing by 3 gives x = 7.\nFINAL: 7",
+      "status": "DRAFT",
+      "gold": {
+        "value": "7",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL026-E-v1",
+          "text": "A number x satisfies 3x + 7 = 28. What is x?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL026-R-v1",
+          "text": "Ek sankhya x ke liye 3x + 7 = 28 hai. x ka maan kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL026-C-v1",
+          "text": "Ek number x ke liye three times x plus 7 equals 28, yaani 3x + 7 = 28. x kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equation_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL027",
+      "source_family_id": "PIL027-authored-source",
+      "template_group_id": "PIL027-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(41 - 1) / 2",
+      "reference_solution_en": "Let the smaller integer be x. Then x + (x + 1) = 41, so x = 20.\nFINAL: 20",
+      "status": "DRAFT",
+      "gold": {
+        "value": "20",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL027-E-v1",
+          "text": "The sum of two consecutive integers is 41. What is the smaller integer?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL027-R-v1",
+          "text": "2 lagaataar poornankon ka yog 41 hai. Chhota poornank kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL027-C-v1",
+          "text": "2 consecutive integers ka sum 41 hai. What is the smaller integer?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL028",
+      "source_family_id": "PIL028-authored-source",
+      "template_group_id": "PIL028-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "50 / 2 - 9",
+      "reference_solution_en": "The length plus width is 25 cm. Subtracting the 9 cm width gives a length of 16 cm.\nFINAL: 16 cm",
+      "status": "DRAFT",
+      "gold": {
+        "value": "16",
+        "unit": "cm",
+        "aliases": [
+          "centimetre",
+          "centimetres",
+          "centimeter",
+          "centimeters"
+        ],
+        "conversions": {
+          "m": "100",
+          "metre": "100",
+          "metres": "100"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL028-E-v1",
+          "text": "A rectangle has perimeter 50 cm and width 9 cm. What is its length in centimetres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL028-R-v1",
+          "text": "Ek aayat ka parimaap 50 cm hai aur chaudaai 9 cm hai. Uski lambai kitne centimetre hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL028-C-v1",
+          "text": "Ek rectangle ka perimeter 50 cm hai aur width 9 cm hai. What is its length in centimetres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL029",
+      "source_family_id": "PIL029-authored-source",
+      "template_group_id": "PIL029-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "58 - 39",
+      "reference_solution_en": "Subtracting the two baskets cancels the notebook and one pen. The extra pen costs INR 19.\nFINAL: INR 19",
+      "status": "DRAFT",
+      "gold": {
+        "value": "19",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL029-E-v1",
+          "text": "Two pens and one notebook cost INR 58. One pen and one notebook cost INR 39. All pens have the same price and all notebooks have the same price. What is the price of one pen?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL029-R-v1",
+          "text": "2 kalamein aur 1 kaapi milkar INR 58 ki hain. 1 kalam aur 1 kaapi milkar INR 39 ki hain. Sab kalamon ki keemat ek jaisi hai aur sab kaapiyon ki keemat ek jaisi hai. 1 kalam ki keemat kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL029-C-v1",
+          "text": "2 pens aur 1 notebook ki total cost INR 58 hai. One pen and one notebook cost INR 39. Sab pens ki price ek jaisi hai aur sab notebooks ki price ek jaisi hai. 1 pen ki price kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "basket_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    },
+    {
+      "family_id": "PIL030",
+      "source_family_id": "PIL030-authored-source",
+      "template_group_id": "PIL030-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "x^2 = 49; x > 0; x = 7",
+      "reference_solution_en": "Both 7 and -7 have square 49, but x is positive. Therefore x = 7.\nFINAL: 7",
+      "status": "DRAFT",
+      "gold": {
+        "value": "7",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL030-E-v1",
+          "text": "A positive number x satisfies x squared equals 49. What is x?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL030-R-v1",
+          "text": "Ek dhanaatmak sankhya x ka varg 49 hai. x ka maan kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL030-C-v1",
+          "text": "Ek positive number x hai, and x squared equals 49. x kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equation_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [],
+        "adjudication": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# CUDA PyTorch is supplied by Colab; record its actual build rather than replacing it.
+# Candidate inference stack. Actual T4 compatibility still requires execution.
+transformers==4.51.3
+accelerate==1.6.0
+bitsandbytes==0.50.2
+huggingface-hub==0.30.2
+tokenizers==0.21.1
+safetensors==0.5.3
+matplotlib==3.10.1
+nbformat==5.10.4

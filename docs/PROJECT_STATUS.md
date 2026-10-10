@@ -1,0 +1,29 @@
+# Current project status
+
+Updated: 10 October 2026. This file separates completed work from proposals.
+
+| Workstream | Current evidence | Next step |
+| --- | --- | --- |
+| Literature and novelty | Closest-work comparison written; no exact matched E+C versus E+R English-supervision control located in the examined work | Resolve remaining artifact/control questions; do not claim exhaustive novelty clearance |
+| Research design | E/R/C definitions, family-level analysis, exposure controls, draft review/scoring/split policies documented | Human-freeze borrowing policy and accepted data; refine later confirmatory sample/resource design |
+| Pilot implementation | Self-contained Colab notebook, strict input validation, incremental inference/resume, common scorer, reports/audit/export and software tests implemented | Execute only after accepted inputs and freeze |
+| Fake demo | Six synthetic outputs completed; exported checksums and original scores verified | Retain as software evidence only |
+| Real Qwen GPU smoke | Six short scored-fixture generations plus one format-only inference on Tesla T4; model loading and generation succeeded | Treat as limited inference feasibility, not research accuracy or training fit |
+| GPU smoke scoring diagnosis | Original automatic 0/6 invalid-unit scores preserved; all six extracted numeric values match fixture gold; count-fixture unit metadata repaired in demo-v2 | Keep strict dimensionless suffix policy; diagnose formatting separately without silently replacing original scores |
+| Human dataset review | Thirty AI-authored candidate families / 90 renderings prepared; user reports reviewers available; randomized packets and blank decision forms delivered | Actual independent solves, equivalence/classification/naturalness review, adjudication and family/split audit |
+| Training | Protocol/validation preparations only; no fine-tuning, RL or successful training hardware run | Separate bounded training feasibility test only after appropriate inputs and explicit scope |
+| Research conclusions | No completed reviewed pilot or confirmatory results | Analyze frozen reviewed pilot before deciding the next experiment |
+
+## What the real GPU smoke tells us
+
+The returned run used Qwen3-4B, immutable model/tokenizer revision `1cfa9a7208912126459214e8b04321603b3df60c`, on a Tesla T4 with 14.56 GiB reported device memory. The stack included bitsandbytes 0.50.2, Transformers 4.51.3 and torch 2.11.0+cu130. The six scored-fixture generations took about 33.79 seconds in total; none were truncated and no infrastructure failures were recorded. Per-generation PyTorch reserved peak reached about 4.19 GiB. Device free-memory values are endpoint observations, not continuous minima. Model load took about 224.75 seconds and may include download overhead.
+
+The original automatic score was 0/6, with all outputs failing unit validation. Three count outputs exposed a fixture-authoring error: blank canonical gold unit for a question asking for counters. The count fixture is repaired in a new demo version. Three fraction outputs appended words such as whole/fraction/part, rejected by the frozen strict dimensionless policy. Numeric-value checks diagnose these failures; they are not independently human-reviewed semantic scores. One R explanation also drifted into Hindi despite the English-output instruction. See the [full audit](../research/test1_gpu_smoke_audit_2026-10-10/README.md).
+
+## Practical team handoff
+
+The coordinator distributes the separated review packets, preserves submissions and versions, and manages the split-exclusion ledger. R01 and R02 independently solve before seeing gold, then review all triplets. A01 resolves documented disagreements, checks gold/units, and confirms real decisions. Code reviewers can inspect the model-free tests and notebook configuration. These are roles to assign, not claims that particular people completed work.
+
+After review, return four stage1/stage2 reviewer JSONs and the adjudication JSON with any repair/re-review records. No local DRAFT input should be relabeled ACCEPT just to pass validation. Pilot families, rejected drafts, format fixtures and all descendants stay excluded from future confirmatory training and final test. Later training/final-test families and the 16 planned training-smoke families have not been fabricated.
+
+The next research deliverable is a human-reviewed, versioned and frozen pilot dataset and split manifest. After that, run the main notebook's reviewed mode, return its results ZIP and executed notebook, and inspect failure modes, paired outcomes, uncertainty, tokens and memory. A descriptive gap from 30 families cannot demonstrate an E+C training benefit.

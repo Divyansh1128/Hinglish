@@ -1,0 +1,1412 @@
+[
+  {
+    "family_id": "PIL001",
+    "proposed_structure": "direct_fewer_than",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": null,
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "preserve the comparison's subject and direction. The C English clause carries the mathematical relationship; mark that switching role.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "a9781a74e1e05cb7d07af12f745bc2c6803ab31b099b1517e42c46239020f003",
+        "raw_character_count": 89,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "66f84101a37e2a294a6848be66d959bd94aa3a1bbbfbe6a2f795a4870b1d5ae1",
+        "raw_character_count": 100,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "3392f321e0e2ba981cf6e6dabad1c24e62bee3b16725f0a3d4bd8dafcb87a229",
+        "raw_character_count": 98,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL002",
+    "proposed_structure": "purchase_cost_then_change",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": null,
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "each notebook costs INR 24, rather than all five together; requested answer is change, rather than purchase cost.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "c611e626dcc83acb3c5627476c9308f0f539c01803405d4d7140f4dc1b02d158",
+        "raw_character_count": 107,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "7783c3f9c7965e11009abfbedc03d1dfa2ecaa188581bf42ea228ded64c6f3a9",
+        "raw_character_count": 133,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "342d0ae2e1e11469a1be0c39122a63bb5e33c77bd2770c75da757faf3176dedd",
+        "raw_character_count": 115,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL003",
+    "proposed_structure": "initial_stock_plus_rate_times_time",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": null,
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "filling continues for the full interval; no outflow or overflow changes the result. Decide how minute/litre are treated in the borrowing policy.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "b4163a50099206694834fb25c4f261562cc0daf81a94c2132900c4a69e9429c6",
+        "raw_character_count": 195,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "797e0db7b812a387fbbbc1dfc2d129a0cc2a83010d50b230e57a142e28276c3b",
+        "raw_character_count": 224,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "1cb06e3d64fb02435faa872c27a64eec9711e95a9870d7b6a2e88d0c2f0e1077",
+        "raw_character_count": 189,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL004",
+    "proposed_structure": "remove_fraction_of_original",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": null,
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "the removed fraction refers to original length, and the question asks for the remainder. Ask reviewers whether the final R/C sentences need a more natural phrasing.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "349cd76b78608b25585e0d0e4a26965d18da11506e00bd2ff82249c751a4aac8",
+        "raw_character_count": 119,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "364f936901818b1a869e2825ff0d3dbdca8ee51d77423f247ecf8a919ca8896e",
+        "raw_character_count": 122,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "ecfd097475d7c176ee1cd09db0578615b597d05bc4979a35c315968a52f1d0b7",
+        "raw_character_count": 127,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL005",
+    "proposed_structure": "total_partition_by_ordered_ratio",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": null,
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "red:blue order, exactly two colours, and naturalness of formal Hindi anupaat versus the English phrase.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "67627f09ed5fe56ef795560b3b4d43bf9afcf03396eee6b81a83f9c14c431811",
+        "raw_character_count": 153,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "7c9351839e4e00ed1ce705281888aa7812b62a61581f814c65513fd7681693ac",
+        "raw_character_count": 145,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "ac9d31ba88bb187d911c9a3b5e11288a12d9a9fab60efd48540dab84b61ab764",
+        "raw_character_count": 120,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL006",
+    "proposed_structure": "ordered_stock_changes",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Preserve the order, the additional books, and the no-other-changes condition.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "f16560677f42d057aac65a11b1c55d33cd1b417ad9a1fa24706f95f8627bf7a5",
+        "raw_character_count": 171,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "d9bed69a8211f28c667c94db98b0dc5c4d24d8baeff61ba9bf9baad132bf4a9a",
+        "raw_character_count": 262,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "c041edc3df33e610389c372ac1633493ff4238e72d4094e2fa99b1dac976224b",
+        "raw_character_count": 172,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL007",
+    "proposed_structure": "transfer_to_equalize_two_stocks",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "A transfer changes both counts; do not treat this as adding new beads.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "5022564349cc2783a562d5c771b14a05c81e79cca93d51c00aa868392ccd783e",
+        "raw_character_count": 150,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "bdac47a5932d6bb60be31bb0f33b3d0d704d57b6f4b5f00ec089fd4365de739d",
+        "raw_character_count": 191,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "ada3ce03dfc481085c71776a26a65bf61a219180b4a85cb25e7634e64dc76b1d",
+        "raw_character_count": 166,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL008",
+    "proposed_structure": "capacity_after_loss",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The unknown is additional capacity, not the number remaining; confirm Roman spelling pensilein.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "dbb1d846e38193b2a823bf334fbae6ac034e38ef38b9bb5fe1a62632d684ee1a",
+        "raw_character_count": 176,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "faa0930078c363778efaadebc89b7d013687c6747c1454fd79845182e7499ee4",
+        "raw_character_count": 225,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "5060f96da9e3d704edde786f9d79457b98bddb699d2052069217239f5309d005",
+        "raw_character_count": 163,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL009",
+    "proposed_structure": "recover_original_then_compare",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Comparison refers to Saira before use. R description of stickers especially needs naturalness review.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "cd60908603947d32d04f8b759f894a7a889d9c6a1c87b17f72f732b94da1ce02",
+        "raw_character_count": 140,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "90211fefbeb586ac72861e89b1b1df7d97c8ab93b0d728fe112b30e21498f0ce",
+        "raw_character_count": 218,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "30af6b81f066d5bed5b14f61228e835be9daba86222f44cb16671a0938c0901e",
+        "raw_character_count": 162,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL010",
+    "proposed_structure": "mixed_basket_then_change",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Both product prices are per item; assess overlap with PIL002 despite the additional basket term.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "43b2016f30d313bab38ef1ee2f146879b396524ea4a7153714cab2c2e3efd97a",
+        "raw_character_count": 135,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "87a73162b42594b7bd5bb03b878200fd1d4266010f7ded2938d579a36f884753",
+        "raw_character_count": 163,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "b79218a1bf51581a55ac9b31cd0f088d075d98bff9af35f47f90b673f52069d6",
+        "raw_character_count": 157,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL011",
+    "proposed_structure": "partial_refund_less_fixed_fee",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The fee is deducted once, from the one-ticket refund, not the entire prepaid sum.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "216473f8952be0ba79463684e052cad1604bcf16bb1e36bb86526929ffd33834",
+        "raw_character_count": 202,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "2c08289640cc1f8914e38f19a9670b28bf7d6685d6ab2eb4dd03a5a53b8b5a56",
+        "raw_character_count": 256,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "33da96c7c02206afaa2789d45b774b9492ffbb81f3464499ec9b20240f75ba39",
+        "raw_character_count": 217,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL012",
+    "proposed_structure": "equal_bill_share_plus_individual_tip",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "INR 9 is per friend, not a single shared tip; review bakhshish naturalness.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "f624935b4a9fdc4ee47464ece03bea6bff902ad6e5f48a8844f03ab235014564",
+        "raw_character_count": 135,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "8e2b989d41c3992ed04bfd35335509ce766deb7dc73726e60232019433c04c20",
+        "raw_character_count": 151,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "922abbcef3cefac4087a72e213125f040e37465e43e425f79b369805db728d93",
+        "raw_character_count": 138,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL013",
+    "proposed_structure": "budget_with_fixed_fee_maximum_count",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "A fixed once-per-order fee differs from a per-pen fee. All pens are whole objects.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "949a6113584b5b999ec942fd013567e9178d750bc109043ae5a3009095b4c4ed",
+        "raw_character_count": 192,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "5f38b4d55798a9d3171e49e53a25e84c043c1899e232125d9e564ed78842aff7",
+        "raw_character_count": 249,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "6f4f3b07b132289b227fb0acee44fa6683e6c297dd981ee21819e8576cdac294",
+        "raw_character_count": 188,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL014",
+    "proposed_structure": "fraction_of_subgroup",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The second fraction is of girls, not of the whole class.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "7f0b494f562011e6244efc62caace7574469ded4b3eb4011c750cc893958b6fd",
+        "raw_character_count": 151,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "7c740bc47f49d790755ee44c645d5a571b9307fea4b072b68d870614008a03e0",
+        "raw_character_count": 187,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "b7fee67606925fb44c38f566dc2d46a75844a80cdb5b5a63c8152f5055ca703e",
+        "raw_character_count": 169,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL015",
+    "proposed_structure": "successive_percentage_changes",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The second discount applies to the reduced price; percentages cannot simply be added.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "c9f9d6a1853e833a2356b3346ff55cc8d0edd9facf657ab74c2fc12900e16921",
+        "raw_character_count": 172,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "42dfc57b1aa52887705beed9b0908cb4f325de644311a53e42910b567d51ddc6",
+        "raw_character_count": 207,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "2f0ce889ada3847831a15754009bbf7be032cc8c945875f5f6480e6088376651",
+        "raw_character_count": 186,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL016",
+    "proposed_structure": "recover_whole_from_remaining_percent",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Remaining versus used percentage; kg/kilogram is a proposed standard unit borrowing.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "6de25b44a0c913899cdd6696f680019637aaf3b0575d9063b4aa3eeba5deba88",
+        "raw_character_count": 149,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "0a7d4241e71b752376a87a8370a85975007ee66fd6c9efb379b2fc9263f223e5",
+        "raw_character_count": 165,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "a3be006671580cb54be28ad02b696cd9624ef6e51d8f6b936de139b1f7224347",
+        "raw_character_count": 153,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL017",
+    "proposed_structure": "fractional_quantity_equal_shares",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Division of a fraction, equal sharing, and complete distribution must be unchanged.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "0bf34225a4433a0bb17693fb5f6e78eb28bd504747c64db0f22631dfc52b19f0",
+        "raw_character_count": 145,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "afffa707f832a32b605fcc9f52f1dc4a78bffcb09054fa0253897b4c74f45fc2",
+        "raw_character_count": 145,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "01000616624d18635b5adf0d7b7d0cd3bb2358e82806de538b3ea3d3a14e56d6",
+        "raw_character_count": 147,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL018",
+    "proposed_structure": "ratio_with_difference",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Difference is not total; assess formal Hindi vocabulary and C phrasing.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "94637542afbcafc5aec320201b27704767ebd4320425cb7216dcfd9fdb0de369",
+        "raw_character_count": 114,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "cd2af409e04890954a93a3b237baab9d26fa5b77506e01d3dc8fae5136cf3275",
+        "raw_character_count": 110,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "4b204315247a67f1a7274871aa95ecca12384d29c424751aaca7ea775f25bf22",
+        "raw_character_count": 102,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL019",
+    "proposed_structure": "mixture_component_given_other_component",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The known amount is water alone. Confirm R gaadha ghol denotes the syrup component rather than the finished drink.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "db0457cd6ddf86b00bc4d515da7678b57c27023c508bc95251721163ef08a03d",
+        "raw_character_count": 135,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "be845750f19efdedf096f898078346c9134b59ff5e21b4f0ecce65b054c9f367",
+        "raw_character_count": 166,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "4b8dd98379ebaf3abb7aa85c20385416fdfe47b687d42fcf66f2a6b373a9aa7c",
+        "raw_character_count": 115,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL020",
+    "proposed_structure": "compose_two_ratios_shared_middle",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The requested scalar is A/C, not a colon-form answer. All quantities are positive.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "777b454df56fe8e7a335e3ed9e57c7cda41077b4f0fdd1225dc386dd3b114d88",
+        "raw_character_count": 103,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "b797866b096688094cdc121b70f105260c4f2e99a7fdc667cc3e60dc140a1121",
+        "raw_character_count": 123,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "b18d6abb61c2a366805e5d984fcbf5e9939041971dbed1fcfc8cc0a3259ae46c",
+        "raw_character_count": 113,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL021",
+    "proposed_structure": "change_one_component_then_recompute_ratio",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "New ratio versus old ratio, red/blue order, and scalar-answer convention. Assess overlap with PIL005.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "5e4fd20d5ab3178144fa4eae3d2d80cb6124b80e15e95061fb47080839ffc775",
+        "raw_character_count": 248,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "44b73992ce501c22aa57d537a252716cd0c6a5e8788d1701e57a2ce041efd107",
+        "raw_character_count": 338,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "0803260430ead12a2fc42d4757c3b56ec4bd69148620e0908379cf114af73f69",
+        "raw_character_count": 223,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL022",
+    "proposed_structure": "speed_with_minutes_to_hours",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Minutes must become hours; the constant speed and no-stop assumptions must match.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "7c50637c86ea3f6d489b397b55ec4d24b6b9981ba8400b20298084c4cbe9e6cd",
+        "raw_character_count": 121,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "8aff8aa450902895d1a873921909d44fb9bdca09d16d0d230bf3d77296aa9d38",
+        "raw_character_count": 117,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "26066f32c6d20f7ca769dab4602d428eac17e387d31a75c283ae9bc21f34a069",
+        "raw_character_count": 121,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL023",
+    "proposed_structure": "convert_length_then_count_segments",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Length units differ and no kerf is lost; count is not a length.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "ce5d87834203ed8742293b2707c00ecd0dae1a8d7624b41873916585351b7454",
+        "raw_character_count": 129,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "70acce77c5794995c17eb7313df6eccf56b5bbd0a978cccb0af29a57f9161437",
+        "raw_character_count": 162,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "c14913f88144ec1690fdd5366fe22e013d04500d12ea54076dc44795a393ddfb",
+        "raw_character_count": 148,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL024",
+    "proposed_structure": "simultaneous_additive_work_rates",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Rates add because the machines process distinct boxes simultaneously; review yantra naturalness.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "c26df0de7e5641450a2aece68026a24575490f7daf15777051abe1f3fc28f973",
+        "raw_character_count": 180,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "05ab66d6957effca35b4631ed9364e1b4aadda40b8d981497985c6b4dcd7429d",
+        "raw_character_count": 193,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "2bed2d582f95e8da813619e6d009d74719a3080074534ad3294e4a73e5a2b5e8",
+        "raw_character_count": 179,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL025",
+    "proposed_structure": "piecewise_journey_times",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "The remaining distance is 80 km; do not average speeds arithmetically.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "06a424576c51b2b63391fa8e20edb15e254acb291884708b1c108ea1ce2b70c8",
+        "raw_character_count": 183,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "4d7b286f744b7bc7f70471d3172636cd026b8c1ada0eb7953767edb2bb9dfb60",
+        "raw_character_count": 208,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "c29c1bc21ee64bca33f31906a47015a72c0a0e78c663f6e030c74f2a2595363a",
+        "raw_character_count": 190,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL026",
+    "proposed_structure": "direct_linear_equation",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "C verbalizes the relation while retaining the equation; document this additional surface redundancy.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "75d79dda44e6ec803ff0fd3b98c51b0fd8d7217e1dc11950f5e6a29c4cd47989",
+        "raw_character_count": 44,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "3cfbc3a39eb386cf4a6030619503e7d2de98693430cd53b35c7e67e43f61e9eb",
+        "raw_character_count": 56,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "52616fe57e300a996af013dfde1dc066e6fd236454739bdb319f0470a2f2d8b3",
+        "raw_character_count": 81,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL027",
+    "proposed_structure": "consecutive_integer_sum",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Consecutive means a difference of 1, not consecutive odd integers; review poornank vocabulary.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "45b581cc5d980643f55045916f6f17dc127277d3e3b48222484185be3076cf0b",
+        "raw_character_count": 71,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "3385f6d76b465721315b6af9fed518bcec9c59437c407b179c1874dbbeb9c4fc",
+        "raw_character_count": 62,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "5072bfe6c8b37444569387e22e0dcda4cd0429a8eb408e2b66314cac98687976",
+        "raw_character_count": 66,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL028",
+    "proposed_structure": "rectangle_perimeter_inverse",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Perimeter versus area; assess standard educational Hindi aayat/parimaap naturalness.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "a2594d0c778b397333172ab97caea707209fcd9034d61f8e695a21b201f13816",
+        "raw_character_count": 82,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "7c77361847f314e79b7a3723eea5822bb4b4f4c50c53d18c31a88603f150da47",
+        "raw_character_count": 87,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "506de9108ea52c4350e57713bfcaed637108b4a2cca23615e0708e7c0e10ed5e",
+        "raw_character_count": 90,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL029",
+    "proposed_structure": "eliminate_shared_unknown_price",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Shared prices are invariant; the asked unknown is one pen rather than the notebook.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "67796a39c9a212716c67a2409349f447e9765f0c1569a6b31e82f5cd6dd2af82",
+        "raw_character_count": 174,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "5d84f6caf622acd0621957b8aecef5b3a4c7524af2ad3946efcf11bc7daf0380",
+        "raw_character_count": 200,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "8d6d2a95c8050b13e5411a9a3fd770740da88d1327eb62bf09be142c5f3db414",
+        "raw_character_count": 190,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  },
+  {
+    "family_id": "PIL030",
+    "proposed_structure": "positive_square_root_domain",
+    "independence_status": "UNVERIFIED",
+    "source_url_or_record": "AI-authored original candidate for this pilot review; no external source used.",
+    "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+    "original_creation_date": "2026-10-10",
+    "operation_count": null,
+    "operation_count_note": "Annotate consistently after the counting convention is frozen.",
+    "exclusion_reason": "Development exposure: reserve family and all descendants permanently.",
+    "focus": "Positivity is essential: exactly one root is requested. The reference check also verifies 7 squared is 49.",
+    "renderings": [
+      {
+        "form": "E",
+        "text_sha256": "9b5a9a2b090c6fd995f3ee57c99bcc589f61843b015cc666527e63f19879f3d9",
+        "raw_character_count": 61,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "R",
+        "text_sha256": "ea3f9895832e12e6e7e131f74edd454bbb3e5d7847a0cbaf439b1cdcd6795e56",
+        "raw_character_count": 58,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      },
+      {
+        "form": "C",
+        "text_sha256": "f01ba1a7cbbc8dcc84d66b5f8fc8ce9f3eb4c818fedddabc81c109c00d08dbc1",
+        "raw_character_count": 61,
+        "formatted_prompt_tokens": null,
+        "formatted_training_tokens": null,
+        "supervised_target_tokens": null,
+        "Hindi_spans": null,
+        "English_spans": null,
+        "romanization_notes": "Provisional readable Roman Hindi; bilingual review pending."
+      }
+    ]
+  }
+]

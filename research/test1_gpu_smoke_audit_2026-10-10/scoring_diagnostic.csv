@@ -1,0 +1,7 @@
+rendering_id,original_correct,original_invalid_reason,technical_numeric_check,corrected_count_metadata_diagnostic,label
+demo-1-C,False,invalid_unit,True,True,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE
+demo-1-E,False,invalid_unit,True,True,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE
+demo-1-R,False,invalid_unit,True,True,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE
+demo-2-C,False,invalid_unit,True,False,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE
+demo-2-E,False,invalid_unit,True,False,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE
+demo-2-R,False,invalid_unit,True,False,POST-HOC SOFTWARE DIAGNOSTIC — NOT RESEARCH EVIDENCE

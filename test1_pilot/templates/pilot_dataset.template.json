@@ -1,0 +1,149 @@
+{
+  "schema_version": "test1-1",
+  "version": "draft-v1",
+  "kind": "reviewed",
+  "borrowing_policy": "REPLACE with frozen policy",
+  "families": [
+    {
+      "family_id": "REPLACE-family",
+      "source_family_id": "REPLACE-source",
+      "template_group_id": "REPLACE-template",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "draft-v1",
+      "authoring_origin": "REPLACE",
+      "provenance": "REPLACE with source record; no names/emails",
+      "source_license": "REPLACE",
+      "reference_equation": "",
+      "reference_solution_en": "",
+      "status": "DRAFT",
+      "gold": {
+        "value": "0",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "REPLACE-E",
+          "text": "",
+          "creator_type": "REPLACE",
+          "generation_or_edit_history": "REPLACE",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "REPLACE-R",
+          "text": "",
+          "creator_type": "REPLACE",
+          "generation_or_edit_history": "REPLACE",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "REPLACE-C",
+          "text": "",
+          "creator_type": "REPLACE",
+          "generation_or_edit_history": "REPLACE",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "",
+            "independent_solve_before_gold": false,
+            "forms": {
+              "E": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              },
+              "R": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              },
+              "C": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              }
+            }
+          },
+          {
+            "reviewer_id": "",
+            "independent_solve_before_gold": false,
+            "forms": {
+              "E": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              },
+              "R": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              },
+              "C": {
+                "text_sha256": "",
+                "equation": "",
+                "answer": "",
+                "unit": "",
+                "semantic_equivalence": false,
+                "ambiguity_resolved": false,
+                "classification": "",
+                "naturalness": 0,
+                "readability": 0,
+                "disposition": "PENDING"
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "",
+          "status": "PENDING",
+          "unresolved_issues": null,
+          "reviewed_at": ""
+        }
+      }
+    }
+  ]
+}

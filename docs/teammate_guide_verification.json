@@ -1,0 +1,17 @@
+{
+  "status": "PASS - PDF content and layout geometry checks",
+  "pages": 12,
+  "project_snapshot_date": "2026-10-10",
+  "pdf_sha256": "3ad14602fbadda3c5f9d080ff7441ee3eee989ac324e0366efd58d3f020093fb",
+  "source_sha256": "c5cbcd43fbf0ab80cec55681a9bbf60f1b6af8e281fb955463d5a9440ea9078b",
+  "builder_sha256": "e4cd960420a555d004bd9c9eb7d14f9a5fe555fed98e323141221e36c86a337e",
+  "qa_versions": {
+    "PyMuPDF": "1.26.3"
+  },
+  "content_checks": "Current status, all three proposed arms, preserved smoke failure, review and analysis gates, no local personal path or pilot example gold",
+  "geometry_checks": "All page text blocks stay inside page margins; 12 substantive numbered pages",
+  "visual_review": "PASS: all 12 pages rendered and visually inspected in two contact sheets; pages 7 and 12 also inspected at full size. No clipping, overlap or unreadable glyphs. A future rebuild requires a new visual review.",
+  "limitations": "Summarizes project artifacts. Does not certify human review, run a research pilot or reproduce literature/model training.",
+  "deterministic_rebuild": "PASS: two builds with ReportLab 5.0.1 produce identical PDF SHA256",
+  "builder_version": "ReportLab 5.0.1"
+}

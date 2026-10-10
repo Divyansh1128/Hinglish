@@ -1,0 +1,30 @@
+# Local machine and Python artifacts
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Credentials and local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+token*.json
+
+# Private conversation history and downloaded/runtime scratch files
+codex-session-*.md
+tmp/
+test1_pilot/local_demo/
+test1_pilot/runs/
+test1_pilot/software_check/
+review_submissions/
+
+# Older personalized submission documents stay local. Research source remains.
+synopsis/Hinglish_Math_Synopsis_Sample_Format.docx
+synopsis/build_sample_format.py
+synopsis/assets/
+output/pdf/Hinglish_Math_Synopsis_Sample_Format.pdf

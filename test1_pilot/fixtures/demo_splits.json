@@ -1,0 +1,19 @@
+{
+  "schema_version": "test1-1",
+  "version": "demo-v2",
+  "kind": "demo",
+  "audit": null,
+  "PILOT_EVAL": [],
+  "SMOKE_TRAIN": [],
+  "RETIRED_DRAFT": [],
+  "CONFIRM_TRAIN": [],
+  "FINAL_TEST": [],
+  "development_exclusion_ids": [
+    "demo-1",
+    "demo-1-source",
+    "demo-1-template",
+    "demo-2",
+    "demo-2-source",
+    "demo-2-template"
+  ]
+}
