@@ -1,6 +1,6 @@
 # Current project status
 
-Updated: 10 October 2026. This file separates completed work from proposals.
+Updated: 11 October 2026. This file separates completed work from proposals.
 
 | Workstream | Current evidence | Next step |
 | --- | --- | --- |
@@ -39,3 +39,11 @@ The [static review audit](../research/astra_review_readiness_v1.md) found no com
 ## Current review distribution: draft v2
 
 [Version 2](../pilot/annotation_draft_v2/README.md) applies eight AI wording repairs across six families after a three-agent pre-review. All 30 candidates remain DRAFT, with no human acceptance or ancestry certification. v1 and any v1 submissions must be preserved; new v2 forms reject mismatched versions. Gold, units, scorer and model settings are unchanged. Verification passes 30-family/90-rendering coverage, 27 conversions, four JavaScript syntax checks, simulated import/export/resume, 22 checksums, exact repair/version mapping and unchanged v1 fingerprints. A rebuild-overwrite guard was also verified. Full real-browser annotation behavior remains unverified. See [today’s progress](PROGRESS_2026-10-10.md).
+
+## 11 October: analysis and annotation design
+
+Completed a [conditional inference contract](../research/conditional_inference_2026-10-11.md), separating fixed-benchmark description, new-family inference, new-author inference and training-process uncertainty. A [model-free stress test](../research/conditional_calibration/README.md) ran 18 synthetic cases, with 250 datasets and 10,000 bootstrap draws per case. Five validation categories passed. Rare-event and broader-target failures prevent treating this as final calibration approval. The original pilot implementation was not changed.
+
+A [sampling/annotation plan](../research/sampling_and_annotation_plan_2026-10-11.md) offers 100/300/600-family future scope options with explicitly hypothetical person-hour estimates and independent-author safeguards. No final sample, resource budget or practical effect margin has been approved. The immediate experimental gate remains actual v2 human review, exposure disclosures and adjudication. No new model inference or training took place.
+
+User decision recorded 11 October: annotation budget remains undecided; retain multiple future scope options. The 30-family diagnostic pilot is unchanged.

@@ -76,3 +76,5 @@ The [consolidated experiment specification](research/astra_experiment_spec_v1.md
 A [three-agent AI pre-review](research/ai_prereview_v1/README.md) covers all 30 candidates with mathematics, language and family-structure findings. It is coordinator material containing proposed answers, not human validation or a completed review submission. Original draft inputs remain unchanged.
 
 Current review distribution: [draft v2](pilot/annotation_draft_v2/README.md), with eight AI wording repairs across six families. v1 remains archived unchanged. [Today’s progress and next steps](docs/PROGRESS_2026-10-10.md) distinguishes delivered software/AI review from pending human acceptance and experiments.
+
+Research update, 11 October: [conditional inference contract](research/conditional_inference_2026-10-11.md), [synthetic interval stress tests](research/conditional_calibration/README.md), and [sampling/annotation options](research/sampling_and_annotation_plan_2026-10-11.md). These are design work, not model results or human acceptance.

@@ -1,0 +1,45 @@
+{
+  "status": "SYNTHETIC_DESIGN_CALIBRATION_NOT_RESEARCH_EVIDENCE",
+  "created_utc": "2026-10-11T06:27:25.032339+00:00",
+  "python": "3.12.7",
+  "numpy": "1.26.4",
+  "code_sha256": "24a9bc110dd136d4eaa57372a6d80d5e8fa6492e57f6e9bf85a09400b4892cc8",
+  "outputs": {
+    "synthetic_coverage.csv": "d59133a7ba3f80c4a69accf401e29e0e9ce8c1ba6cac3462c3442e07fb2d29cb"
+  },
+  "data_seed": 20261011,
+  "bootstrap_seed": 101,
+  "seed_derivation": "numpy SeedSequence([master_seed,case_index,N]); sequential replicates",
+  "repetitions": 250,
+  "bootstrap_resamples": 10000,
+  "cases": [
+    "symmetric_null",
+    "correlated_gain",
+    "asymmetric_null",
+    "rare_gain",
+    "random_seeds",
+    "random_authors"
+  ],
+  "N_values": [
+    30,
+    120,
+    300
+  ],
+  "checks": [
+    "All generators yield realizable paired binary differences",
+    "Zero sample gives degenerate bootstrap but nonzero bounded reference",
+    "Asymmetric weak-null construction has exact zero population mean",
+    "Histogram resampling matches explicit enumeration and mean/variance identities",
+    "Weight and shape guards; bounded interval formula and Monte Carlo Wilson boundaries checked"
+  ],
+  "elapsed_seconds": 22.297059875214472,
+  "limitations": [
+    "No real model results or family data used.",
+    "250 datasets per cell is a screening calibration with Monte Carlo uncertainty.",
+    "Broader-target coverage is intentionally misspecified when seeds/authors are random; bounded family formula has no broader-target guarantee.",
+    "Fixed-author conditional coverage assumes independent families given realized author effects; broader author inference requires an author sampling design.",
+    "Conditional coverage for random_seeds/authors is averaged across newly realized offsets, not uniform or one-fixed-parameter conditional coverage.",
+    "Author case uses pooled family resampling, not stratified conditional-author or author-block resampling.",
+    "Does not calibrate topic stratification, general author heterogeneity, formal p-values, or every real data distribution."
+  ]
+}
