@@ -14,7 +14,9 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 6 | Review Sol's code | Claude | DONE 2026-10-14 | `handoffs/2026-10-14_claude_review_of_sol.md` |
 | 7 | Evaluation dates and milestone timeline | HUMAN | DONE 2026-10-14: minor-project evaluation November 2026 (exact date TBC); final submission May 2027 | Timeline below |
 | 8 | v2 human review (R01, R02, A01) | HUMAN | IN PROGRESS (packets distributed) | reviewer JSONs |
-| 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | READY 2026-10-14 | `secondary_analysis/Hinglish_FMT2_Format_Test_Colab.ipynb` → results ZIP |
+| 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 36/36 complete; see `research/fmt2_format_test_2026-10-14/` | `secondary_analysis/Hinglish_FMT2_Format_Test_Colab.ipynb` → results ZIP |
+| 10 | Confirm prompt v2 (D020): rerun FMT2 notebook (fixtures 0.2.0) on Colab T4 | HUMAN runs Colab; Claude analyses | READY | same notebook, rebuilt |
+| 11 | Align `t4_smoke/protocol.py` instruction with prompt v2 before any training | Sol | OPEN | code + tests |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 

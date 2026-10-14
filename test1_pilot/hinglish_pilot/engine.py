@@ -17,9 +17,15 @@ from pathlib import Path
 from .data import DEMO_LABEL, digest, records, require, validate
 from .scorer_v1 import SCORER_VERSION, score_response
 
-INSTRUCTION = ('Solve the problem. Give a short explanation in English. End with exactly one '
-               'line: FINAL: <number or fraction> <unit when applicable>.')
-PROMPT_VERSION = 'test1-english-final-v1'
+# v1 is retained for the record. v2 (decision D020, 14 October 2026) replaced it before any
+# reviewed pilot generation, after the excluded FMT2 development run showed v1 eliciting
+# unit words such as 'unitless' after dimensionless answers and non-English explanations.
+INSTRUCTION_V1 = ('Solve the problem. Give a short explanation in English. End with exactly one '
+                  'line: FINAL: <number or fraction> <unit when applicable>.')
+INSTRUCTION = ('Solve the problem. Give a short explanation in English, even if the question is not '
+               'in English. End with exactly one line: FINAL: <number or fraction>, followed by its '
+               'unit in English only if the answer has a unit; write nothing after a pure number or fraction.')
+PROMPT_VERSION = 'test1-english-final-v2'
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
 

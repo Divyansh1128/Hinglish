@@ -1,0 +1,37 @@
+rendering_id,form,gold_value,gold_unit,final_line,strict_correct,strict_invalid_reason,numeric_status,devanagari_in_output,input_tokens,output_tokens,latency_seconds
+FMT2-001-C,C,330,INR,FINAL: 330 INR,True,,match,False,91,87,8.41
+FMT2-001-E,E,330,INR,FINAL: 330 INR,True,,match,False,82,79,7.65
+FMT2-001-R,R,330,INR,FINAL: 504 rupaye,False,,mismatch,True,113,162,15.18
+FMT2-002-C,C,141150,INR,"FINAL: 1,41,150 INR",True,,match,False,92,92,8.47
+FMT2-002-E,E,141150,INR,"FINAL: 1,41,150 INR",True,,match,False,92,97,9.39
+FMT2-002-R,R,141150,INR,"FINAL: 1,41,150 rupaye.",True,,match,False,114,115,15.84
+FMT2-003-C,C,8,,"FINAL: 8 unit (no unit specified, so just the number)",False,invalid_unit,unsupported_answer,False,78,104,9.93
+FMT2-003-E,E,8,,FINAL: 8 unitless,False,invalid_unit,match,False,67,92,8.61
+FMT2-003-R,R,8,,FINAL: 8 unitless,False,invalid_unit,match,True,78,176,16.41
+FMT2-004-C,C,24,,FINAL: 24 unit.,False,invalid_unit,match,False,78,116,10.75
+FMT2-004-E,E,24,,FINAL: 24 unitless.,False,invalid_unit,match,False,71,94,9.19
+FMT2-004-R,R,24,,FINAL: 24 unitless,False,invalid_unit,match,False,94,107,10.32
+FMT2-005-C,C,11/17,,FINAL: 11/17,True,,match,False,76,57,5.35
+FMT2-005-E,E,11/17,,FINAL: 11/17,True,,match,False,81,82,7.75
+FMT2-005-R,R,11/17,,FINAL: 11/17,True,,match,True,106,175,16.56
+FMT2-006-C,C,7/27,,FINAL: 7/27 positions.,False,invalid_unit,match,False,81,55,5.19
+FMT2-006-E,E,7/27,,FINAL: 7/27 positions.,False,invalid_unit,match,False,75,55,5.29
+FMT2-006-R,R,7/27,,FINAL: 20 sthaan,False,invalid_unit,mismatch,True,98,94,8.81
+FMT2-007-C,C,4.3,kg,FINAL: 4.3 kg,True,,match,False,88,55,5.22
+FMT2-007-E,E,4.3,kg,FINAL: 4.30 kg,True,,match,False,81,68,6.42
+FMT2-007-R,R,4.3,kg,FINAL: 4.30 kg,True,,match,True,108,59,5.44
+FMT2-008-C,C,3.75,kg,FINAL: 3.75 kg,True,,match,False,79,59,5.6
+FMT2-008-E,E,3.75,kg,FINAL: 3.75 kg,True,,match,False,73,60,5.67
+FMT2-008-R,R,3.75,kg,FINAL: 3.75 kg,True,,match,True,83,61,5.76
+FMT2-009-C,C,2.25,L,FINAL: 2.25 L,True,,match,False,80,66,6.26
+FMT2-009-E,E,2.25,L,FINAL: 2.25 L,True,,match,False,76,82,7.69
+FMT2-009-R,R,2.25,L,FINAL: 2.25 L,True,,match,False,90,67,6.32
+FMT2-010-C,C,2.45,km,FINAL: 2.45 km,True,,match,False,84,86,8.09
+FMT2-010-E,E,2.45,km,FINAL: 2.45 km,True,,match,False,82,65,6.03
+FMT2-010-R,R,2.45,km,FINAL: 2.45 km,True,,match,False,102,66,6.24
+FMT2-011-C,C,59,minute,FINAL: 59 minutes.,True,,match,False,83,73,6.78
+FMT2-011-E,E,59,minute,FINAL: 59 minutes.,True,,match,False,76,67,6.27
+FMT2-011-R,R,59,minute,FINAL: 59 minute,True,,match,True,97,172,16.03
+FMT2-012-C,C,109,beads,FINAL: 109 beads.,True,,match,False,84,89,8.29
+FMT2-012-E,E,109,beads,FINAL: 109 beads.,True,,match,False,78,94,8.82
+FMT2-012-R,R,109,beads,FINAL: 109 moti.,False,invalid_unit,match,True,101,104,9.89

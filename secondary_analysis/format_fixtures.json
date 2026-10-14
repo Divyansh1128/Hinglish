@@ -1,6 +1,6 @@
 {
   "schema_version": "secondary-format-fixtures-1",
-  "version": "FMT2-0.1.0",
+  "version": "FMT2-0.2.0",
   "label": "EXCLUDED_FORMAT_FIXTURE",
   "adoption_status": "UNADOPTED",
   "human_validated": false,
@@ -114,7 +114,7 @@
         },
         "R": {
           "rendering_id": "FMT2-001-R",
-          "text": "Ek pradarshani mein 7 chhoti numaishi thaaliyan kiraye par li jaati hain. Har thaali ka kiraya 43 rupaye hai aur sambhalne ka shulk 29 rupaye hai. Kul kitne rupaye dene honge?",
+          "text": "Ek pradarshani mein 7 chhoti numaishi thaaliyan kiraye par li jaati hain. Har thaali ka kiraya 43 rupaye hai. Iske alaava poore order par sirf ek baar 29 rupaye sambhalne ka shulk lagta hai. Kul kitne rupaye dene honge?",
           "status": "EXCLUDED_FORMAT_FIXTURE"
         },
         "C": {
@@ -533,7 +533,9 @@
         "value": "109",
         "unit": "beads",
         "aliases": [
-          "bead"
+          "bead",
+          "moti",
+          "motiyon"
         ],
         "conversions": {},
         "unit_omission_allowed": true,
@@ -557,5 +559,6 @@
         }
       }
     }
-  ]
+  ],
+  "revision_note": "FMT2-0.2.0 (Claude, 14 October 2026, after the excluded T4 development run): FMT2-001-R reworded so the 29 rupee handling fee is unambiguously charged once; FMT2-012 aliases gain moti/motiyon. Earlier outputs on 0.1.0 remain development evidence for 0.1.0 only. Still unreviewed by humans."
 }
