@@ -1,0 +1,29 @@
+Scorer 1.0.0; 30 DRAFT families (not human-accepted)
+
+All families, value + canonical unit:
+  plain FINAL line                 30/30 accepted  {'accepted': 30}
+  markdown header before FINAL     30/30 accepted  {'accepted': 30}
+  bold marker **FINAL:**           0/30 accepted  {'final_not_terminal_line': 30}
+  bold value FINAL: **v**          0/30 accepted  {'invalid_number': 30}
+  LaTeX FINAL: \boxed{v}           0/30 accepted  {'invalid_number': 30}
+  LaTeX FINAL: $v$                 0/30 accepted  {'invalid_number': 30}
+  note after FINAL line            0/30 accepted  {'final_not_terminal_line': 30}
+  "I cannot" inside reasoning      0/30 accepted  {'refusal': 30}
+
+INR families (6):
+  prefix Rs.                       0/6 accepted  {'invalid_number': 6}
+  prefix Rs                        0/6 accepted  {'invalid_number': 6}
+  prefix ₹                         6/6 accepted  {'accepted': 6}
+  suffix rupaye                    6/6 accepted  {'accepted': 6}
+  suffix /-                        0/6 accepted  {'invalid_answer': 6}
+
+Dimensionless elementary_algebra families (3):
+  FINAL: v                         3/3 accepted  {'accepted': 3}
+  FINAL: x = v                     0/3 accepted  {'invalid_number': 3}
+
+Romanized-Hindi unit words not in aliases/conversions:
+  kg     -> kilo       0/1 accepted  {'invalid_unit': 1}
+  minute -> minat      0/1 accepted  {'invalid_unit': 1}
+  L      -> litar      0/2 accepted  {'invalid_unit': 2}
+  m      -> mitar      0/1 accepted  {'invalid_unit': 1}
+  km     -> kilomitar  0/1 accepted  {'invalid_unit': 1}

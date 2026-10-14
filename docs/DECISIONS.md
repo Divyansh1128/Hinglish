@@ -1,0 +1,35 @@
+# Decision log
+
+Created 14 October 2026. This log distinguishes user instructions, human decisions, author recommendations and measured facts. Reconstructed dates identify the conversation/session where available; no exact date is invented when unavailable. AI proposals do not become adopted through silence or “take your time”. No consent or institutional approval is implied.
+
+| ID | Date / provenance | Decision or unresolved question | Decision maker | Status |
+| --- | --- | --- | --- | --- |
+| D001 | 10 October handoff; original decision date not recorded | Essential eventual arms E+E/E+R/E+C; match mathematical content, exposure and full English targets | User project instructions | Established requirement; training not executed |
+| D002 | 10 October handoff | Pilot = unchanged model, 30 families/90 E/R/C renderings; human acceptance required | User project instructions | Established requirement; reviewed execution pending |
+| D003 | 11 October conversation | Annotation person-hour budget undecided; retain multiple future scope options | User | Open budget; no N100/300/600 commitment |
+| D004 | Conversation before 14 October; exact message date not retained here | v2 packets distributed to two teammates; expected Wednesday return was an expectation, not completed review | User report | Superseded status by D008; no accepted submissions claimed |
+| D005 | 13 October conversation | Claude may access same folder; separate work ownership and coordinate writes | User authorization; coordination recommendation by assistant | Active; see TEAM_BOARD |
+| D006 | 14 October task instruction | Frozen scorer v1, pilot report scoring and v1/v2 packets must remain unchanged; versioned secondary analysis separate | User | Active constraint |
+| D007 | 14 October answer to deadline question | “take your time”; synopsis/evaluation/final-report dates not supplied | User | Dates unspecified, not an unlimited schedule or adoption |
+| D008 | 14 October answer to review question | Reviewers are not done yet | User | Human review pending; new return date and A01 assignment unconfirmed |
+| D009 | 14 October task instruction | Endpoint spec proposed first; Claude review and human adoption before adopted Sol implementation per team board | User task; Claude team workflow | Spec delivered for review, adoption pending |
+| D010 | 14 October spec | Raw-scalar secondary endpoint, extraction grammar, audit taxonomy, English compliance, CMI and consent wording | Assistant proposals | PENDING HUMAN DECISION; see endpoint spec |
+| D011 | 14 October spec | Rs/Rs. prefix handling and unit aliases; no parser change proposed now | Assistant recommendation; A01/user must decide | PENDING; prefixes cannot be enabled by v1 alias metadata alone |
+| D012 | 14 October task instruction | No commits while another agent works; one writer at a time; no branch/reset/push operations this handoff | User instruction / team board | Active; current changes uncommitted |
+| D013 | 14 October task instruction | Every cycle must change data/code/results or end with a concrete user question; a planning document alone is insufficient | User | Active stopping rule |
+| D014 | 14 October spec | Separate 12-prompt excluded format-only GPU suite and possible versioned prompt/parser decisions | Assistant proposal | Approval/execution pending; no paid compute authorized |
+| D015 | Existing design, reviewed 14 October | +5pp useful gain, −2pp English margin, three seeds and256 updates are discussion proposals | Earlier assistant proposals | NOT APPROVED; no final sample/recipe freeze |
+| D016 | 14 October, user to Claude (later the same day) | Minor-project evaluation in November 2026 (exact date TBC); final submission May 2027. User also asked Claude to proceed as fast as possible. Supersedes D007 | User | Active; timeline in TEAM_BOARD |
+| D017 | 14 October, user to Claude | User delegated the spec-adoption and format-test decisions to Claude ("do whatever you feel is best"); stated goal is a publishable research paper | User delegation | Active |
+| D018 | 14 October, Claude under D017 | Adopt the LEAN pre-pilot package from `research/pre_pilot_endpoint_spec_v1.md`: (1) numeric_literal_v1 secondary endpoint beside the unchanged strict v1.0.0 primary, as implemented in `secondary_analysis/` v0.1.0; (2) A01 decides suffix unit aliases in a ledger; (3) single bilingual auditor applies the section 3 taxonomy and section 4 English tags to every output, with A01 spot-checking disagreements with automatic scores; (4) CMI_v1 from heuristic pre-tags corrected by one human, labelled single-annotator; (5) no scorer v1.1; (6) section 8 consent note used with reviewers. Two-pass audit and two-tagger CMI are deferred to the confirmatory study. Must be frozen (hashes recorded) before the reviewed pilot generation | Claude, delegated by user | ADOPTED for the pilot; this is an AI decision under delegation, not human review or adjudication |
+| D019 | 14 October, Claude under D017 | Prepare a T4 format-compliance run on the 12 excluded FMT2 fixtures (36 prompts) with the frozen pilot prompt/config; development evidence only, never pilot data | Claude, delegated by user | ADOPTED; run pending (user runs Colab) |
+
+## How to record adoption
+
+Append a dated row naming the person/role, exact spec sections and version/hash adopted, exceptions, affected files and whether new data/prompt/scorer versions are needed. Record REJECT/DEFER explicitly. Preserve historical rows; supersede them by ID rather than rewriting a prior decision. Keep real contact details and signatures outside this shareable log. A01 unit adjudication and reviewer consent require real responses, not inferred agreement.
+
+## Cycle stopping rule
+
+At the start, state owner, write scope and verifiable output. At the end, list changed data/code/results with verification, or the exact pending user question and why it blocks the next gate. Report whether the gate advanced. Do not repeatedly expand literature/planning without a decision or implement a draft as adopted. Stop at required human evidence; do not fabricate it. Inspect TEAM_BOARD and latest handoff before every new write session.
+
+Current research cycle ran the requested scorer probe and delivered a proposal; its unresolved human question is adoption of the listed endpoint/alias/rubric choices after Claude review. Deadline and reviewer questions were asked and answered without dates or completed submissions. Human gate remains open. Sol's implementation/format-smoke run has not occurred in this cycle.

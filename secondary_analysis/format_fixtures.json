@@ -1,0 +1,561 @@
+{
+  "schema_version": "secondary-format-fixtures-1",
+  "version": "FMT2-0.1.0",
+  "label": "EXCLUDED_FORMAT_FIXTURE",
+  "adoption_status": "UNADOPTED",
+  "human_validated": false,
+  "model_inference_performed": false,
+  "exclusion_policy": "All families, source/template IDs, renderings and descendants are permanently excluded from confirmatory training and final tests. These are formatting diagnostics only.",
+  "compatibility": "Gold fields match pilot_dataset; this 12-family excluded fixture container is not an accepted Test 1 pilot dataset or a GPU-smoke input adapter.",
+  "borrowing_policy": "Unreviewed fixture phrasing: R permits standard unit symbols and mathematical variables; C includes productive English relations. Human language review is still required.",
+  "development_exclusion_ids": [
+    "FMT2-001",
+    "FMT2-001-SOURCE",
+    "FMT2-001-TEMPLATE",
+    "FMT2-001-E",
+    "FMT2-001-R",
+    "FMT2-001-C",
+    "FMT2-002",
+    "FMT2-002-SOURCE",
+    "FMT2-002-TEMPLATE",
+    "FMT2-002-E",
+    "FMT2-002-R",
+    "FMT2-002-C",
+    "FMT2-003",
+    "FMT2-003-SOURCE",
+    "FMT2-003-TEMPLATE",
+    "FMT2-003-E",
+    "FMT2-003-R",
+    "FMT2-003-C",
+    "FMT2-004",
+    "FMT2-004-SOURCE",
+    "FMT2-004-TEMPLATE",
+    "FMT2-004-E",
+    "FMT2-004-R",
+    "FMT2-004-C",
+    "FMT2-005",
+    "FMT2-005-SOURCE",
+    "FMT2-005-TEMPLATE",
+    "FMT2-005-E",
+    "FMT2-005-R",
+    "FMT2-005-C",
+    "FMT2-006",
+    "FMT2-006-SOURCE",
+    "FMT2-006-TEMPLATE",
+    "FMT2-006-E",
+    "FMT2-006-R",
+    "FMT2-006-C",
+    "FMT2-007",
+    "FMT2-007-SOURCE",
+    "FMT2-007-TEMPLATE",
+    "FMT2-007-E",
+    "FMT2-007-R",
+    "FMT2-007-C",
+    "FMT2-008",
+    "FMT2-008-SOURCE",
+    "FMT2-008-TEMPLATE",
+    "FMT2-008-E",
+    "FMT2-008-R",
+    "FMT2-008-C",
+    "FMT2-009",
+    "FMT2-009-SOURCE",
+    "FMT2-009-TEMPLATE",
+    "FMT2-009-E",
+    "FMT2-009-R",
+    "FMT2-009-C",
+    "FMT2-010",
+    "FMT2-010-SOURCE",
+    "FMT2-010-TEMPLATE",
+    "FMT2-010-E",
+    "FMT2-010-R",
+    "FMT2-010-C",
+    "FMT2-011",
+    "FMT2-011-SOURCE",
+    "FMT2-011-TEMPLATE",
+    "FMT2-011-E",
+    "FMT2-011-R",
+    "FMT2-011-C",
+    "FMT2-012",
+    "FMT2-012-SOURCE",
+    "FMT2-012-TEMPLATE",
+    "FMT2-012-E",
+    "FMT2-012-R",
+    "FMT2-012-C"
+  ],
+  "families": [
+    {
+      "family_id": "FMT2-001",
+      "source_family_id": "FMT2-001-SOURCE",
+      "template_group_id": "FMT2-001-TEMPLATE",
+      "topic": "two_step_money",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "7*43+29=330",
+      "gold": {
+        "value": "330",
+        "unit": "INR",
+        "aliases": [
+          "Rs.",
+          "Rs",
+          "rupees",
+          "rupaye"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-001-E",
+          "text": "An exhibit rents 7 small display plates at INR 43 each and pays an INR 29 handling fee. What is the total charge in INR?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-001-R",
+          "text": "Ek pradarshani mein 7 chhoti numaishi thaaliyan kiraye par li jaati hain. Har thaali ka kiraya 43 rupaye hai aur sambhalne ka shulk 29 rupaye hai. Kul kitne rupaye dene honge?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-001-C",
+          "text": "Pradarshani ke liye 7 display plates kiraye par li hain. Each plate costs INR 43, and the handling fee adds INR 29. Kul charge kitna hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-002",
+      "source_family_id": "FMT2-002-SOURCE",
+      "template_group_id": "FMT2-002-TEMPLATE",
+      "topic": "two_step_money",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "132400+8750=141150",
+      "gold": {
+        "value": "141150",
+        "unit": "INR",
+        "aliases": [
+          "Rs.",
+          "Rs",
+          "rupees",
+          "rupaye"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-002-E",
+          "text": "A community observatory has INR 1,32,400 in a repair fund. A fundraiser adds INR 8,750. How much is now in the fund, in INR?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-002-R",
+          "text": "Ek samudaayik vedhshala ki marammat ke kosh mein 1,32,400 rupaye hain. Chanda jama karne se 8,750 rupaye aur milte hain. Ab kosh mein kul kitne rupaye hain?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-002-C",
+          "text": "Vedhshala ke repair fund mein INR 1,32,400 hain. The fundraiser adds INR 8,750 to this fund. Ab total amount kitna hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-003",
+      "source_family_id": "FMT2-003-SOURCE",
+      "template_group_id": "FMT2-003-TEMPLATE",
+      "topic": "elementary_algebra",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "9*x-14=58; x=(58+14)/9=8",
+      "gold": {
+        "value": "8",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-003-E",
+          "text": "A sensor calibration equation is 9x - 14 = 58. Find x.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-003-R",
+          "text": "Ek sanvedak ki jaanch ka sameekaran 9x - 14 = 58 hai. x ka maan nikalo.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-003-C",
+          "text": "Sanvedak ki calibration karni hai. Its equation is 9x - 14 = 58. x ka value nikalo.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-004",
+      "source_family_id": "FMT2-004-SOURCE",
+      "template_group_id": "FMT2-004-TEMPLATE",
+      "topic": "elementary_algebra",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "x/4+11=17; x=4*(17-11)=24",
+      "gold": {
+        "value": "24",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-004-E",
+          "text": "A panel spacing worksheet gives x/4 + 11 = 17. What value of x satisfies it?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-004-R",
+          "text": "Pattiyon ke beech faasle ki ganana mein x/4 + 11 = 17 diya hai. x ka kaunsa maan is sameekaran ko poora karta hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-004-C",
+          "text": "Pattiyon ke spacing worksheet mein equation di hai. Find the value of x that satisfies x/4 + 11 = 17.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-005",
+      "source_family_id": "FMT2-005-SOURCE",
+      "template_group_id": "FMT2-005-TEMPLATE",
+      "topic": "ratios",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "bronze/silver=11/17",
+      "gold": {
+        "value": "11/17",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-005-E",
+          "text": "A display contains bronze and silver tokens in the ratio 11:17. Write the number of bronze tokens divided by the number of silver tokens as a fraction.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-005-R",
+          "text": "Ek pradarshan mein kaanse aur chaandi ke chinhon ki sankhya ka anupat 11:17 hai. Kaanse ke chinhon ki sankhya ko chaandi ke chinhon ki sankhya se bhaag dekar bhinn likho.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-005-C",
+          "text": "Pradarshan mein bronze aur silver tokens ka ratio 11:17 hai. Write bronze count divided by silver count as a fraction.",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-006",
+      "source_family_id": "FMT2-006-SOURCE",
+      "template_group_id": "FMT2-006-TEMPLATE",
+      "topic": "fractions_percentages",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "used/total=7/27",
+      "gold": {
+        "value": "7/27",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-006-E",
+          "text": "A stencil sheet has 27 cutout positions, of which 7 have been used. What fraction of all positions has been used?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-006-R",
+          "text": "Ek saanche ki chaadar mein kaatne ke 27 sthaan hain. Unmein se 7 ka istemaal ho chuka hai. Kul sthaanon ka kitna bhinn istemaal hua hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-006-C",
+          "text": "Saanche ki sheet mein 27 cutout positions hain; 7 istemaal ho chuke hain. What fraction of all positions has been used?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-007",
+      "source_family_id": "FMT2-007-SOURCE",
+      "template_group_id": "FMT2-007-TEMPLATE",
+      "topic": "rates_units",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "3.45+0.85=4.3",
+      "gold": {
+        "value": "4.3",
+        "unit": "kg",
+        "aliases": [
+          "kilogram",
+          "kilograms"
+        ],
+        "conversions": {
+          "g": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-007-E",
+          "text": "A pottery workshop mixes 3.45 kg of dry clay with 0.85 kg of another dry clay. What is the combined dry mass in kg?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-007-R",
+          "text": "Ek kumhaar ki karyashala mein 3.45 kg sookhi mitti mein 0.85 kg doosri sookhi mitti milaayi jaati hai. Donon ka mila hua sookha wajan kitne kg hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-007-C",
+          "text": "Kumhaar ki workshop mein 3.45 kg dry clay hai. Another dry clay adds 0.85 kg to the mixture. Mila hua dry mass kitne kg hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-008",
+      "source_family_id": "FMT2-008-SOURCE",
+      "template_group_id": "FMT2-008-TEMPLATE",
+      "topic": "rates_units",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "6*0.625=3.75",
+      "gold": {
+        "value": "3.75",
+        "unit": "kg",
+        "aliases": [
+          "kilogram",
+          "kilograms"
+        ],
+        "conversions": {
+          "g": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-008-E",
+          "text": "Each of 6 calibration weights has a mass of 0.625 kg. What is their total mass in kg?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-008-R",
+          "text": "Jaanch ke 6 baaton mein se har ek ka wajan 0.625 kg hai. Sabhi baaton ka kul wajan kitne kg hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-008-C",
+          "text": "Jaanch ke liye 6 calibration weights hain. Each one weighs 0.625 kg. Sabka total mass kitne kg hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-009",
+      "source_family_id": "FMT2-009-SOURCE",
+      "template_group_id": "FMT2-009-TEMPLATE",
+      "topic": "rates_units",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "2.7-0.45=2.25",
+      "gold": {
+        "value": "2.25",
+        "unit": "L",
+        "aliases": [
+          "litre",
+          "litres",
+          "liter",
+          "liters"
+        ],
+        "conversions": {
+          "mL": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-009-E",
+          "text": "A calibration tank contains 2.7 L of water. A valve releases 0.45 L. How much water remains in L?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-009-R",
+          "text": "Jaanch ki ek tanki mein 2.7 L paani hai. Ek nal se 0.45 L paani nikalta hai. Tanki mein kitne L paani bachaa hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-009-C",
+          "text": "Jaanch ki tank mein 2.7 L water hai. The valve releases 0.45 L from it. Kitne L water bachaa hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-010",
+      "source_family_id": "FMT2-010-SOURCE",
+      "template_group_id": "FMT2-010-TEMPLATE",
+      "topic": "rates_units",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "1.8+0.65=2.45",
+      "gold": {
+        "value": "2.45",
+        "unit": "km",
+        "aliases": [
+          "kilometre",
+          "kilometres",
+          "kilometer",
+          "kilometers"
+        ],
+        "conversions": {
+          "m": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-010-E",
+          "text": "A track inspector walks 1.8 km along the main section and then 0.65 km along a spur. What total distance does the inspector walk in km?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-010-R",
+          "text": "Patri ki jaanch karne waala pehle mukhya hisse par 1.8 km aur phir chhoti shaakha par 0.65 km chalta hai. Usne kul kitne km doori tay ki?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-010-C",
+          "text": "Patri ka inspector main section par 1.8 km chalta hai. The spur adds another 0.65 km to the walk. Kul distance kitne km hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-011",
+      "source_family_id": "FMT2-011-SOURCE",
+      "template_group_id": "FMT2-011-TEMPLATE",
+      "topic": "rates_units",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "4*13+7=59",
+      "gold": {
+        "value": "59",
+        "unit": "minute",
+        "aliases": [
+          "minutes",
+          "min"
+        ],
+        "conversions": {
+          "h": "60",
+          "seconds": "1/60"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-011-E",
+          "text": "A workshop performs 4 polishing cycles of 13 minutes each, then a 7-minute inspection. What is the total duration in minutes?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-011-R",
+          "text": "Ek karyashala mein chamkaane ke 4 daur hain, har daur 13 minute ka hai. Uske baad 7 minute ki jaanch hoti hai. Kul kitne minute lagte hain?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-011-C",
+          "text": "Karyashala mein polishing ke 4 cycles hain. Each lasts 13 minutes, and the final inspection takes 7 minutes. Kul duration kitne minutes hai?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    },
+    {
+      "family_id": "FMT2-012",
+      "source_family_id": "FMT2-012-SOURCE",
+      "template_group_id": "FMT2-012-TEMPLATE",
+      "topic": "comparison_remaining",
+      "status": "EXCLUDED_FORMAT_FIXTURE",
+      "split_role": "EXCLUDED_FORMAT_FIXTURE",
+      "authoring_origin": "AI_SYNTHETIC_UNREVIEWED",
+      "provenance": "Fresh model-free authoring for this secondary module; not copied or derived from pilot families or existing format fixtures.",
+      "reference_equation": "8*13+5=109",
+      "gold": {
+        "value": "109",
+        "unit": "beads",
+        "aliases": [
+          "bead"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "FMT2-012-E",
+          "text": "A mosaic kit has 8 trays with 13 beads in each tray and 5 spare beads in a pouch. How many beads are there altogether?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "R": {
+          "rendering_id": "FMT2-012-R",
+          "text": "Ek sajaavat ke saamaan mein 8 tashtariyan hain. Har tashtari mein 13 moti hain aur ek thaili mein 5 atirikt moti hain. Kul kitne moti hain?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        },
+        "C": {
+          "rendering_id": "FMT2-012-C",
+          "text": "Sajaavat ke kit mein 8 trays hain. Each tray holds 13 beads, and the pouch holds 5 spare beads. Kul kitne beads hain?",
+          "status": "EXCLUDED_FORMAT_FIXTURE"
+        }
+      }
+    }
+  ]
+}
