@@ -31,3 +31,20 @@ There were no Markdown-bold FINAL markers, no `\boxed{}` or `$…$` on the FINAL
 - **Fixtures:** version FMT2 to repair FMT2-001-R's ambiguity and add `moti` to FMT2-012 aliases; do not reuse the repaired items as evidence of model ability.
 - **Pilot data:** A01 should still check Hindi count/unit aliases (the `moti` mechanism is real). The English-compliance tag should be applied to every pilot output.
 - Keep numeric_literal_v1 as the secondary endpoint. It behaved as specified: it matched every correct dimensionless answer, and it rejected the two wrong values and the misread.
+
+## Prompt v2 confirmation run (decision D020)
+
+Same notebook rebuilt with prompt `test1-english-final-v2` and fixtures FMT2-0.2.0. User-executed on Colab T4. Returned ZIP SHA-256 `28794810b54579a6b78f61b36b9354d02eb338cf481dede5869791e7c5cb36d6`. Both parts COMPLETE, 36/36, no retries, 0 checksum mismatches. Per-rendering data: `per_rendering_prompt_v2.csv`.
+
+| Form | Strict v1.0.0 correct | numeric_literal_v1 match | Strict invalid | Output contains Devanagari |
+|---|---:|---:|---:|---:|
+| E | 12/12 | 12/12 | 0 | 0/12 |
+| R | 10/12 | 10/12 | 0 | 0/12 |
+| C | 12/12 | 12/12 | 0 | 0/12 |
+
+- **Format failures went from 10/36 to 0/36.** Dimensionless answers are now bare (`FINAL: 8`), and units are English (`330 rupees`, `59 minutes`). Strict and secondary endpoints agree on all 36 outputs.
+- **Explanations are now English.** Devanagari dropped from 8/12 to 0/12 R outputs; a heuristic marker found romanized-Hindi prose in 1/12 R outputs.
+- **The repaired FMT2-001-R is now answered correctly** (330), consistent with the 0.1.0 error being item ambiguity.
+- **Both remaining errors are R-only comprehension failures on Romanized-Hindi operation words. The renderings are correct.** FMT2-005-R: "bhaag dekar bhinn likho" (divide, write a fraction) was treated as a difference (answer 6). Under v1 this item was answered correctly with a Hindi explanation; with n=1 that is anecdote, not evidence that English reasoning hurts R. FMT2-006-R: "kitna bhinn istemaal hua" (what fraction was used) was answered as the remaining count (20) in both runs. *Bhinn* also means "different" in Hindi, a plausible source of the misreading.
+
+Interpretation, development evidence only: v2 removes the format and output-language confounds without changing E or C correctness. The surviving errors are the kind of language-form effect the study is designed to measure. Mathematical-operation vocabulary in R (bhaag, bhinn, anupat) should be a deliberate, balanced feature of the pilot and later datasets, and the error taxonomy should record it (`misread_quantity` / `wrong_relation_operation`). Prompt iteration on these fixtures stops here, as committed in D020.
