@@ -43,7 +43,9 @@ class HFBackend:
         self.tokenizer = AutoTokenizer.from_pretrained(config['model_id'], revision=config['tokenizer_revision'], trust_remote_code=False)
         model_config = AutoConfig.from_pretrained(config['model_id'], revision=config['model_revision'], trust_remote_code=False)
         require(model_config.model_type == MODELS[config['model_id']]['model_type'], 'Unexpected model architecture')
-        self.native_context = min(32768, model_config.max_position_embeddings)
+        # Multimodal configs (e.g. Gemma-3-4B) keep the context length on their text sub-config.
+        positions = getattr(model_config, 'max_position_embeddings', None) or model_config.get_text_config().max_position_embeddings
+        self.native_context = min(32768, positions)
         require(config['context_limit'] <= self.native_context, 'Requested context exceeds native bound')
         start = time.monotonic()
         torch.cuda.reset_peak_memory_stats()
