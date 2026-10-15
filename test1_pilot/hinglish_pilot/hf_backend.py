@@ -2,7 +2,7 @@
 import copy
 import time
 from .data import digest, require
-from .engine import default_config, environment, read, utc, validate_config
+from .engine import MODELS, default_config, environment, read, utc, validate_config
 
 PINS = {'transformers': '4.51.3', 'bitsandbytes': '0.50.2', 'accelerate': '1.6.0',
         'huggingface-hub': '0.30.2', 'tokenizers': '0.21.1', 'safetensors': '0.5.3'}
@@ -42,7 +42,7 @@ class HFBackend:
         self.config = copy.deepcopy(config)
         self.tokenizer = AutoTokenizer.from_pretrained(config['model_id'], revision=config['tokenizer_revision'], trust_remote_code=False)
         model_config = AutoConfig.from_pretrained(config['model_id'], revision=config['model_revision'], trust_remote_code=False)
-        require(model_config.model_type == 'qwen3', 'Unexpected model architecture')
+        require(model_config.model_type == MODELS[config['model_id']]['model_type'], 'Unexpected model architecture')
         self.native_context = min(32768, model_config.max_position_embeddings)
         require(config['context_limit'] <= self.native_context, 'Requested context exceeds native bound')
         start = time.monotonic()
@@ -83,7 +83,8 @@ class HFBackend:
         require(config == self.config, 'Backend config changed after loading')
         require(not any(marker and marker in text for marker in self.tokenizer.all_special_tokens), 'Literal special token in question')
         messages = [{'role': 'system', 'content': config['instruction']}, {'role': 'user', 'content': text}]
-        prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
+        prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True,
+                                                    **MODELS[config['model_id']]['chat_template_kwargs'])
         # Template already adds control tokens; do not duplicate BOS/EOS.
         token_ids = self.tokenizer(prompt, add_special_tokens=False, truncation=False)['input_ids']
         require(len(token_ids) + config['max_new_tokens'] <= min(config['context_limit'], self.native_context),

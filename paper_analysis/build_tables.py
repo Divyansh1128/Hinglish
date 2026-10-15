@@ -31,12 +31,15 @@ if __package__ in (None, ""):
     __package__ = "paper_analysis"
 
 from . import __version__  # noqa: E402
-from .safezip import UnsafeArchive, read_zip, verify_checksums  # noqa: E402
+from .safezip import ExpansionBudget, UnsafeArchive, read_zip, verify_checksums  # noqa: E402
 
 FORMS = ("E", "R", "C")
 # report.py consumes one RNG in this order; the order is fixed so intervals match exactly.
 REPORT_PAIR_ORDER = (("E", "C"), ("E", "R"), ("R", "C"))
 DISPLAY_PAIR_ORDER = (("E", "R"), ("E", "C"), ("R", "C"))
+PREDICTION_FIELDS = ("rendering_id", "attempt_id", "correct")
+# Files written at the output root; run folders must never take these names.
+TOP_LEVEL_OUTPUTS = ("README.md", "per_rendering.csv")
 REQUIRED = ("run_manifest.json", "experiment_config.json", "dataset.json", "generation_attempts.jsonl")
 REPO_ROOT = Path(__file__).resolve().parents[1]
 STORED_SCORE_NOTE = ("Stored scores only: strict correctness is the stored automatic `correct` "
@@ -124,10 +127,12 @@ def _numeric_evaluator():
 def _expand_inputs(paths):
     """Yield (source_label, members) for each results ZIP, expanding outer ZIPs one level."""
     runs, notes = [], []
+    # One budget for every archive expanded here: all expanded runs are retained in memory together.
+    budget = ExpansionBudget()
     for path in paths:
         path = Path(path)
         _require(path.is_file(), f"Input ZIP not found: {path}")
-        members = read_zip(path.read_bytes(), path.name)
+        members = read_zip(path.read_bytes(), path.name, budget)
         if "run_manifest.json" in members:
             runs.append((path.name, members))
             continue
@@ -138,7 +143,7 @@ def _expand_inputs(paths):
             notes.append(f"{path.name}: {len(ignored)} non-results member(s) ignored (not checksummed by the outer ZIP).")
         for name in inner:
             label = f"{path.name}!{name}"
-            runs.append((label, read_zip(members[name], label)))
+            runs.append((label, read_zip(members[name], label, budget)))
     return runs, notes
 
 
@@ -229,7 +234,14 @@ def load_run(source, members):
     predictions = None
     if "predictions.csv" in members:
         csv.field_size_limit(64 * 1024 * 1024)
-        predictions = list(csv.DictReader(io.StringIO(members["predictions.csv"].decode("utf-8"), newline="")))
+        try:
+            reader = csv.DictReader(io.StringIO(members["predictions.csv"].decode("utf-8"), newline=""))
+            header = reader.fieldnames or []
+            predictions = list(reader)
+        except (UnicodeDecodeError, csv.Error) as error:
+            raise AnalysisError(f"{source}: predictions.csv is unreadable ({type(error).__name__})") from None
+        missing = [field for field in PREDICTION_FIELDS if field not in header]
+        _require(not missing, f"{source}: predictions.csv lacks required column(s) {missing}")
     return dict(source=source, manifest=manifest, config=config, dataset=dataset, selected=selected,
                 history_count=history_count, complete=complete, metrics=metrics, predictions=predictions,
                 checksums=checksums, renderings=renderings)
@@ -463,13 +475,18 @@ def csv_rows(run, result, slug):
 
 
 def _slug(source, used):
+    """Allocate a run folder name unique among runs and top-level outputs.
+
+    Comparison is case-insensitive, since output directories may be on a case-insensitive filesystem.
+    """
     base = source.split("!")[-1].rsplit("/", 1)[-1]
     base = re.sub(r"(_results)?\.zip$", "", base)
     base = re.sub(r"[^A-Za-z0-9_.-]+", "-", base).strip(".-") or "run"
+    reserved = {name.casefold() for name in TOP_LEVEL_OUTPUTS}
     slug, index = base, 2
-    while slug in used:
+    while slug.casefold() in used or slug.casefold() in reserved:
         slug, index = f"{base}-{index}", index + 1
-    used.add(slug)
+    used.add(slug.casefold())
     return slug
 
 
@@ -491,11 +508,12 @@ def build(paths, out, figures=True):
         try:
             run = load_run(source, members)
             result = compute(run, numeric_module)
+            checks = consistency(run, result)
         except (KeyError, TypeError, AttributeError, ValueError) as error:
             if isinstance(error, (AnalysisError, UnsafeArchive)):
                 raise
             raise AnalysisError(f"{source}: malformed run content ({type(error).__name__}: {error})") from None
-        prepared.append((run, result, _slug(source, used), consistency(run, result)))
+        prepared.append((run, result, _slug(source, used), checks))
     # All validation is finished; only now touch the filesystem.
     out.mkdir(parents=True, exist_ok=True)
     figure_note = None
@@ -541,7 +559,7 @@ def build(paths, out, figures=True):
         index.append(f"| `{slug}` | {md_escape(result['label'])} | {result['status']} | "
                      f"{result['completed']}/{result['expected']} | "
                      f"{'MISMATCH' if any(s == 'MISMATCH' for _, s in checks) else 'ok'} |")
-    with (out / "per_rendering.csv").open("w", newline="", encoding="utf-8") as stream:
+    with (out / TOP_LEVEL_OUTPUTS[1]).open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, CSV_FIELDS)
         writer.writeheader()
         writer.writerows(all_rows)
@@ -553,7 +571,7 @@ def build(paths, out, figures=True):
               "Inputs (SHA-256):", ""] + [f"- `{name}` `{digest}`" for name, digest in inputs] + [
               "", "| Run | Label | Status | Completed | Consistency |", "|---|---|---|---:|---|"] + index + [
               "", "Combined per-rendering rows: `per_rendering.csv`.", ""] + [f"- {n}" for n in notes]
-    (out / "README.md").write_text("\n".join(readme) + "\n", encoding="utf-8")
+    (out / TOP_LEVEL_OUTPUTS[0]).write_text("\n".join(readme) + "\n", encoding="utf-8")
     return dict(out=out, runs=[(slug, result["status"]) for _, result, slug, _ in prepared],
                 mismatch=mismatched, notes=notes)
 

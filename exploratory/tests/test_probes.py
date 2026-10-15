@@ -82,6 +82,13 @@ class SelfTranslateTests(unittest.TestCase):
         self.assertTrue(out['families'][0]['forms']['R']['translation_equals_E_text'])
         self.assertFalse(out['families'][0]['forms']['C']['translation_equals_E_text'])
 
+    def test_st_ids_colliding_with_existing_ids_rejected(self):
+        """Regression: an E id equal to '<R id>-ST' must not yield duplicate rendering_ids."""
+        self.ds['families'][0]['forms']['E']['rendering_id'] = 'source-R-ST'
+        self.ds['families'][0]['forms']['R']['rendering_id'] = 'source-R'
+        with self.assertRaisesRegex(ValueError, 'Duplicate rendering_id.*source-R-ST'):
+            self_translate.second_stage_dataset(self.ds, self.translations())
+
 
 class GlossProbeTests(unittest.TestCase):
     def setUp(self):

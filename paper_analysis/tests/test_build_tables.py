@@ -294,6 +294,78 @@ class BuildTablesTests(unittest.TestCase):
         self.assertFalse((out / "synthetic" / "figures").exists())
         self.assertTrue((out / "synthetic" / "tables" / "accuracy.tex").is_file())
 
+    # ------------------------------------------------------------ regressions (GPT review 2026-10-15c)
+
+    def test_nested_zip_expansion_respects_cumulative_budget(self):
+        """Bug 1: inner archives each within limits must not jointly exceed the total bound."""
+        from unittest import mock
+        from paper_analysis import safezip
+        outer = self.dir / "nested_bomb.zip"
+        with zipfile.ZipFile(outer, "w", zipfile.ZIP_DEFLATED) as archive:
+            for index in range(4):
+                inner = io.BytesIO()
+                with zipfile.ZipFile(inner, "w", zipfile.ZIP_DEFLATED) as nested:
+                    for part in range(4):
+                        nested.writestr(f"file{part}.bin", b"\x00" * 500)
+                archive.writestr(f"run{index}_results.zip", inner.getvalue())
+        with mock.patch.object(safezip, "MAX_MEMBER_BYTES", 1024), mock.patch.object(safezip, "MAX_TOTAL_BYTES", 2048):
+            # The outer archive alone is within the bound; only the cumulative expansion is not.
+            self.assertLessEqual(sum(map(len, read_zip(outer.read_bytes()).values())), 2048)
+            with self.assertRaisesRegex(UnsafeArchive, "cumulative"):
+                bt._expand_inputs([outer])
+            out = self.out()
+            self.assertEqual(quiet(bt.main, [str(outer), "--out", str(out), "--no-figures"]), 1)
+            self.assertFalse(out.exists())
+
+    def test_run_slugs_never_shadow_top_level_outputs(self):
+        """Bug 3: a run named README.md / per_rendering.csv must not take the top-level file path."""
+        for name in ("README.md_results.zip", "per_rendering.csv_results.zip", "readme.md_results.zip"):
+            with self.subTest(name=name):
+                source = self.dir / "slugs" / name
+                source.parent.mkdir(exist_ok=True)
+                source.write_bytes(self.complete.read_bytes())
+                out = self.out()
+                self.assertEqual(quiet(bt.main, [str(source), "--out", str(out), "--no-figures"]), 0)
+                self.assertTrue((out / "README.md").is_file())
+                self.assertTrue((out / "per_rendering.csv").is_file())
+        used = set()
+        self.assertEqual([bt._slug(s, used) for s in ("a_results.zip", "A_results.zip")], ["a", "A-2"])
+
+    def test_corrupt_deflate_member_is_unsafe_archive(self):
+        """Bug 4: an invalid DEFLATE stream raises UnsafeArchive, not zlib.error."""
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr("file.txt", b"hello" * 100)
+        blob = bytearray(buffer.getvalue())
+        name_length = int.from_bytes(blob[26:28], "little")
+        extra_length = int.from_bytes(blob[28:30], "little")
+        blob[30 + name_length + extra_length] = 0xFF
+        with self.assertRaisesRegex(UnsafeArchive, "cannot read 'file.txt'"):
+            read_zip(bytes(blob))
+        path = self.dir / "corrupt_deflate_results.zip"
+        path.write_bytes(bytes(blob))
+        out = self.out()
+        self.assertEqual(quiet(bt.main, [str(path), "--out", str(out), "--no-figures"]), 1)
+        self.assertFalse(out.exists())
+
+    def test_malformed_predictions_and_metrics_rejected_with_exit_1(self):
+        """Bug 5: malformed predictions.csv headers / metrics.json shape exit 1 without a traceback."""
+        def bad_header(members):
+            members["predictions.csv"] = b"wrong_header\nfoo\n"
+            rechecksum(members)
+
+        def bad_metrics(members):
+            members["metrics.json"] = b"[]"
+            rechecksum(members)
+        for change, pattern in ((bad_header, "predictions.csv"), (bad_metrics, "malformed run content")):
+            with self.subTest(change=change.__name__):
+                bad = rewrite(self.complete, self.dir / f"{change.__name__}_results.zip", change)
+                with self.assertRaisesRegex(bt.AnalysisError, pattern):
+                    bt.build([bad], self.out(), figures=False)
+                out = self.out()
+                self.assertEqual(quiet(bt.main, [str(bad), "--out", str(out), "--no-figures"]), 1)
+                self.assertFalse(out.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

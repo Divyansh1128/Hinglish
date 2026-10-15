@@ -7,7 +7,7 @@ import tempfile
 import unittest
 import zipfile
 from hinglish_pilot.data import DEMO_LABEL, FORMS, TOPICS, validate
-from hinglish_pilot.engine import FakeBackend, attempts, default_config, read, recover_lock, run, write
+from hinglish_pilot.engine import MODELS, FakeBackend, attempts, default_config, read, recover_lock, run, validate_config, write
 from hinglish_pilot.report import analyze, export, paired, wilson
 from hinglish_pilot.scorer_v1 import score_response
 ROOT=Path(__file__).resolve().parents[1]
@@ -31,6 +31,17 @@ def reviewed_fixture():
     return d,s
 
 class Contracts(unittest.TestCase):
+    def test_model_registry(self):
+        for model_id in MODELS:
+            config = default_config('demo', model_id)
+            config.update(model_revision='0' * 40, tokenizer_revision='0' * 40)
+            validate_config(config)
+        self.assertEqual(default_config()['model_id'], 'Qwen/Qwen3-4B')
+        config = default_config('demo', 'some/unlisted-model')
+        config.update(model_revision='0' * 40, tokenizer_revision='0' * 40)
+        with self.assertRaises(ValueError):
+            validate_config(config)
+
     def test_valid_contracts(self):
         self.assertEqual(validate(*fixture(),'demo')['prompts'],6)
         self.assertEqual(validate(*reviewed_fixture(),'reviewed')['prompts'],90)

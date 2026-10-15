@@ -26,6 +26,12 @@ INSTRUCTION = ('Solve the problem. Give a short explanation in English, even if 
                'in English. End with exactly one line: FINAL: <number or fraction>, followed by its '
                'unit in English only if the answer has a unit; write nothing after a pure number or fraction.')
 PROMPT_VERSION = 'test1-english-final-v2'
+# Unchanged models evaluated with the identical frozen prompt, decoding and scorer.
+# Qwen3-4B is primary; Phi-4-mini-instruct is the second backbone (research/claude_deep_research/second_model_2026-10-15.md).
+MODELS = {
+    'Qwen/Qwen3-4B': {'model_type': 'qwen3', 'chat_template_kwargs': {'enable_thinking': False}},
+    'microsoft/Phi-4-mini-instruct': {'model_type': 'phi3', 'chat_template_kwargs': {}},
+}
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
 
@@ -80,8 +86,8 @@ def environment():
             'machine': platform.machine(), 'packages': packages}
 
 
-def default_config(mode='demo'):
-    return {'mode': mode, 'model_id': 'Qwen/Qwen3-4B', 'model_revision': None,
+def default_config(mode='demo', model_id='Qwen/Qwen3-4B'):
+    return {'mode': mode, 'model_id': model_id, 'model_revision': None,
             'tokenizer_revision': None, 'seed': 11, 'bootstrap_seed': 101,
             'bootstrap_resamples': 10000, 'max_new_tokens': 1024, 'context_limit': 2048,
             'thinking': False, 'do_sample': False, 'num_beams': 1,
@@ -94,7 +100,7 @@ def default_config(mode='demo'):
 def validate_config(config):
     require(set(config) == set(default_config()), 'Unknown/missing config fields')
     require(config['mode'] in ('demo', 'reviewed'), 'Bad config mode')
-    require(config['model_id'] == 'Qwen/Qwen3-4B', 'Test 1 supports Qwen/Qwen3-4B only')
+    require(config['model_id'] in MODELS, 'Unsupported model: Test 1 supports ' + ', '.join(MODELS))
     for key in ('model_revision', 'tokenizer_revision'):
         require(isinstance(config[key], str) and re.fullmatch('[0-9a-f]{40}', config[key]), 'Resolve immutable model/tokenizer SHAs before running')
     require(config['thinking'] is False and config['do_sample'] is False and config['num_beams'] == 1,

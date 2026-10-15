@@ -39,13 +39,24 @@ class FormatNotebookTests(unittest.TestCase):
                 self.assertEqual(sum(form["denominator"] for form in metrics["by_form"].values()), 18)
                 self.assertTrue(export(root).is_file())
 
-    def test_built_notebook_is_current_and_compiles(self):
-        notebook = json.loads((builder.HERE / builder.NAME).read_text(encoding="utf-8"))
-        sources = [cell["source"] for cell in notebook["cells"] if cell["cell_type"] == "code"]
-        for index, source in enumerate(sources):
-            compile(source, f"cell-{index}", "exec")
-        self.assertIn(hashlib.sha256(builder.payload()).hexdigest(), sources[0],
-                      "Notebook is stale: rerun build_format_notebook.py")
+    def test_built_notebooks_are_current_and_compile(self):
+        digest = hashlib.sha256(builder.payload()).hexdigest()
+        for model_id, name in builder.NOTEBOOKS.items():
+            with self.subTest(model=model_id):
+                notebook = json.loads((builder.HERE / name).read_text(encoding="utf-8"))
+                sources = [cell["source"] for cell in notebook["cells"] if cell["cell_type"] == "code"]
+                for index, source in enumerate(sources):
+                    compile(source, f"cell-{index}", "exec")
+                self.assertIn(digest, sources[0], "Notebook is stale: rerun build_format_notebook.py")
+                self.assertIn(f"MODEL_ID = {model_id!r}", sources[0])
+
+    def test_second_backbone_config_runs_with_fake_backend(self):
+        config = default_config("demo", "microsoft/Phi-4-mini-instruct")
+        config.update(model_revision="0" * 40, tokenizer_revision="0" * 40)
+        name, dataset, splits = builder.demo_parts()[0]
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = run(Path(directory) / name, dataset, splits, config, FakeBackend())
+            self.assertEqual(manifest["status"], "COMPLETE")
 
 
 if __name__ == "__main__":

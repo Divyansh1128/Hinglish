@@ -19,6 +19,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
 NAME = 'Hinglish_FMT2_Format_Test_Colab.ipynb'
+# Second-backbone load + format test on the same excluded fixtures (same prompt, decoding, scorer).
+NOTEBOOKS = {'Qwen/Qwen3-4B': NAME, 'microsoft/Phi-4-mini-instruct': 'Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb'}
 FIXTURES = HERE / 'format_fixtures.json'
 PART_SIZE = 6
 STAMP = (2026, 10, 14, 0, 0, 0)
@@ -81,7 +83,8 @@ def payload():
     return buffer.getvalue()
 
 
-def build():
+def build(model_id='Qwen/Qwen3-4B'):
+    name = NOTEBOOKS[model_id]
     blob = payload()
     cells = []
 
@@ -92,14 +95,15 @@ def build():
             cell.update(outputs=[], execution_count=None)
         cells.append(cell)
 
-    add('markdown', '''
-        # FMT2 format-compliance test — Qwen3-4B on T4
+    add('markdown', f'''
+        # FMT2 format-compliance test — {model_id} on T4
         **Development evidence only. Not research evidence and not pilot data.** Runs 12 AI-authored, unreviewed, permanently EXCLUDED fixture families (36 E/R/C prompts) through the unchanged Test 1 engine, frozen English instruction and inference recipe.
         It measures how often correct-looking answers break the strict FINAL format, and reports scorer v1.0.0 beside the proposed secondary `numeric_literal_v1` (decision D019).
         **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. Model download and loading take several minutes. At the end a ZIP downloads: send it to the team.
         Never tune the prompt on these outputs and then reuse them as evidence; any prompt change is a new protocol version.''')
     add('code', f'''
         import os, sys, json, base64, io, zipfile, hashlib, subprocess, traceback
+        MODEL_ID = {model_id!r}
         from pathlib import Path
         os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         PACKAGE = Path('/content/hinglish_fmt2') if Path('/content').exists() else Path.cwd() / 'hinglish_fmt2'
@@ -138,7 +142,7 @@ def build():
         write(RUNS / 'fmt2_environment.json', environment())''')
     add('code', '''
         backend = None
-        CONFIG = default_config('demo')
+        CONFIG = default_config('demo', MODEL_ID)
         if GPU_READY:
             try:
                 from hinglish_pilot.hf_backend import resolve_config, HFBackend
@@ -170,7 +174,7 @@ def build():
     add('code', '''
         STATUS['finished_at'] = utc()
         write(RUNS / 'fmt2_status.json', STATUS)
-        archive = PACKAGE / 'FMT2_format_test_results.zip'
+        archive = PACKAGE / ('FMT2_format_test_results' + ('' if MODEL_ID == 'Qwen/Qwen3-4B' else '_' + MODEL_ID.split('/')[-1]) + '.zip')
         with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
             for name, _, _ in PARTS:
                 if (RUNS / name / 'run_manifest.json').exists():
@@ -189,12 +193,13 @@ def build():
             print('Local: ZIP saved on disk.')''')
     notebook = {'nbformat': 4, 'nbformat_minor': 5, 'cells': cells,
                 'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'},
-                             'language_info': {'name': 'python'}, 'colab': {'name': NAME}, 'accelerator': 'GPU'}}
-    target = HERE / NAME
+                             'language_info': {'name': 'python'}, 'colab': {'name': name}, 'accelerator': 'GPU'}}
+    target = HERE / name
     target.write_text(json.dumps(notebook, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print(target)
     return target
 
 
 if __name__ == '__main__':
-    build()
+    for model in NOTEBOOKS:
+        build(model)

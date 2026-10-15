@@ -11,6 +11,7 @@ import io
 import re
 import stat
 import zipfile
+import zlib
 
 CHECKSUMS = "checksums.sha256"
 MAX_MEMBERS = 5000
@@ -41,14 +42,40 @@ def check_name(name):
     return name
 
 
-def read_zip(source, label="archive"):
-    """Return {member_name: bytes} for regular-file members of a ZIP path or bytes."""
+class ExpansionBudget:
+    """Cumulative uncompressed-byte budget shared by an outer archive and all nested archives.
+
+    Every archive expanded with the same budget draws from one MAX_TOTAL_BYTES allowance, so
+    retaining many individually small inner archives cannot exceed the total memory bound.
+    """
+
+    def __init__(self, limit=None):
+        self.limit = MAX_TOTAL_BYTES if limit is None else limit
+        self.used = 0
+
+    @property
+    def remaining(self):
+        return max(0, self.limit - self.used)
+
+    def charge(self, size, label):
+        self.used += size
+        _require(self.used <= self.limit,
+                 f"{label}: cumulative uncompressed content across all inputs and nested archives "
+                 f"exceeds {self.limit} bytes")
+
+
+def read_zip(source, label="archive", budget=None):
+    """Return {member_name: bytes} for regular-file members of a ZIP path or bytes.
+
+    ``budget`` (an ExpansionBudget) is shared across nested archives; a fresh one is used if omitted.
+    """
+    budget = ExpansionBudget() if budget is None else budget
     stream = io.BytesIO(source) if isinstance(source, (bytes, bytearray)) else source
     try:
         archive = zipfile.ZipFile(stream)
     except (zipfile.BadZipFile, OSError) as error:
         raise UnsafeArchive(f"{label}: not a readable ZIP ({type(error).__name__})") from None
-    members, folded, total = {}, set(), 0
+    members, folded = {}, set()
     with archive:
         infos = archive.infolist()
         _require(len(infos) <= MAX_MEMBERS, f"{label}: too many members")
@@ -63,14 +90,16 @@ def read_zip(source, label="archive"):
             _require(name.casefold() not in folded, f"{label}: case-colliding member {name!r}")
             folded.add(name.casefold())
             _require(info.file_size <= MAX_MEMBER_BYTES, f"{label}: member too large {name!r}")
+            # Never read more than one byte past what either limit allows.
+            cap = min(MAX_MEMBER_BYTES, budget.remaining)
             try:
                 with archive.open(info) as handle:
-                    data = handle.read(MAX_MEMBER_BYTES + 1)
-            except (zipfile.BadZipFile, OSError, NotImplementedError, RuntimeError) as error:
+                    data = handle.read(cap + 1)
+            except (zipfile.BadZipFile, zlib.error, EOFError, OSError, NotImplementedError,
+                    RuntimeError) as error:
                 raise UnsafeArchive(f"{label}: cannot read {name!r} ({type(error).__name__})") from None
             _require(len(data) <= MAX_MEMBER_BYTES, f"{label}: member too large {name!r}")
-            total += len(data)
-            _require(total <= MAX_TOTAL_BYTES, f"{label}: uncompressed content too large")
+            budget.charge(len(data), label)
             members[name] = data
     return members
 

@@ -61,4 +61,16 @@ def second_stage_dataset(dataset, translations):
             rendering['translation_equals_E_text'] = text.strip() == e_text
             rendering['generation_or_edit_history'] = (
                 f"Model self-translation ({SELF_TRANSLATE_PROMPT_VERSION}) of {source_id}")
+    _require_unique_ids(out)
     return out
+
+
+def _require_unique_ids(dataset):
+    """Every rendering_id in the dataset (all forms, all families) must be unique after '-ST' renaming."""
+    seen, duplicates = set(), set()
+    for family in dataset['families']:
+        for rendering in family['forms'].values():
+            rid = rendering['rendering_id']
+            (duplicates if rid in seen else seen).add(rid)
+    if duplicates:
+        raise ValueError(f'Duplicate rendering_id(s) after {ST_SUFFIX} renaming: {sorted(duplicates)}')
