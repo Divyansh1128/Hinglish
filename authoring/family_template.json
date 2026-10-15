@@ -1,0 +1,51 @@
+[
+  {
+    "family_id": "",
+    "source_family_id": "",
+    "template_group_id": "",
+    "topic": "",
+    "split_role": "",
+    "version": "v1",
+    "authoring_origin": "HUMAN_AUTHORED",
+    "provenance": "",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "",
+    "reference_solution_en": "",
+    "status": "DRAFT",
+    "gold": {
+      "value": "",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": false,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "",
+        "text": "",
+        "creator_type": "HUMAN",
+        "generation_or_edit_history": "",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "",
+        "text": "",
+        "creator_type": "",
+        "generation_or_edit_history": "",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "",
+        "text": "",
+        "creator_type": "",
+        "generation_or_edit_history": "",
+        "switching_roles": []
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  }
+]

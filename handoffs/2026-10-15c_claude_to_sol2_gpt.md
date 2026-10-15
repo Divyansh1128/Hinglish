@@ -1,0 +1,3 @@
+# Claude → Sol-GPT-2 (cross-review), 15 Oct 2026 13:50 IST. HARD STOP 14:08 IST
+You are a second GPT Sol instance reviewing Claude-authored code. Read-only review of paper_analysis/ (build_tables.py, safezip.py) and exploratory/ (self_translate.py, gloss_probe.py). Look for correctness bugs only: wrong statistics vs test1_pilot/hinglish_pilot/report.py, ZIP-safety holes, ID or gold leakage, and edge cases that crash. You may run their tests (`python3 -B -m unittest discover -s paper_analysis/tests`, `... -s exploratory/tests`). Do NOT edit any code.
+Write ONLY handoffs/2026-10-15c_sol2_gpt_review.md: findings ranked by severity, each with file:line and a concrete failing input, or "no confirmed bugs". No commits.

@@ -72,6 +72,9 @@ To be filled from the reviewed pilot's results ZIP: per-form accuracy with Wilso
 - AI-authored items, even after human review, may share an authoring style that independent authors would not.
 - The development run informed the prompt; this is disclosed, and pilot items were never used for prompt design.
 - No training has been performed; RQ2 and RQ3 are untested.
+- R is the condition most likely to show a gap. Published work already reports drops from native script to Romanized input (e.g. Sarvam-M, CodeMixTax), so any pilot gap supports a language-form effect, not a novel discovery. C acts as an internal control: C ≈ E with R < E would point to Hindi vocabulary rather than Roman script.
+- Hindi operation words are unevenly distributed. They appear in 27 of 30 R drafts but only 10 of 30 C drafts (`research/operation_vocabulary_2026-10-15.md`), so a C advantage over R can partly reflect easier vocabulary. Phase-2 data must balance this.
+- No existing dataset supplies natural E/R/C triplets free of GSM8K contamination (`research/claude_deep_research/datasets_2026-10-15.md`). Phase 2 needs about 300 newly authored families (estimated at about 310 person-hours).
 
 ### 9. Plan for the major-project phase (to May 2027)
 
@@ -82,6 +85,8 @@ To be filled from the reviewed pilot's results ZIP: per-form accuracy with Wilso
 | Feb – Mar 2027 | E+E / E+R / E+C fine-tuning with paired seeds; held-out evaluation and English retention |
 | Apr 2027 | Analysis, thesis and paper draft |
 | May 2027 | Final submission |
+
+Publication plan (decision D023): a 4-page short paper on the pilot for the EACL 2027 Student Research Workshop (optional mentorship draft 6 Nov 2026, submission 15 Dec 2026), then the training study for the ARR May 2027 cycle (date unconfirmed). Training feasibility is planned on the inference-verified T4 stack, with pre-declared go/no-go thresholds (decision D021).
 
 ### References
 

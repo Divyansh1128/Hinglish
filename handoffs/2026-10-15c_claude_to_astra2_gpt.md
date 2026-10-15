@@ -1,0 +1,4 @@
+# Claude → Astra-GPT-2 (cross-check), 15 Oct 2026 13:50 IST. HARD STOP 14:08 IST
+You are a second GPT Astra instance cross-checking Claude-authored research. Read research/claude_deep_research/second_model_2026-10-15.md and research/claude_deep_research/publication_venues_2026-10-15.md.
+Independently verify, from official model cards and CFP pages: (1) that microsoft/Phi-4-mini-instruct is ungated, MIT-licensed, loads without trust_remote_code in transformers 4.51.3 and has a system-capable chat template; (2) the EACL 2027 SRW dates (mentorship 6 Nov 2026, submission 15 Dec 2026). Report each claim as CONFIRMED / CONTRADICTED / UNVERIFIABLE with a URL. Name one better second-model candidate if you find one.
+Write ONLY research/claude_deep_research/crosscheck_gpt_2026-10-15.md (under 50 lines). No other files, no commits.
