@@ -34,8 +34,10 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 26 | Automated verification pipeline: blind solver tasks, Claude/GPT answer comparison, flags, review sheet | Sol | DONE 2026-10-15: 23 tests | `autoverify/` |
 | 27 | Checker validation protocol, drafter split, second-annotator plan | Astra | DONE 2026-10-15 | `research/autoverify_protocol_2026-10-15.md` |
 | 28 | Draft 70 Pilot-B families (operation-word balanced) | Claude subagent | DONE 2026-10-15: 70 families, checker clean | `pilot_b/` |
-| 29 | Draft 140 FINAL_TEST + DEV families (GPT) and 160 TRAIN families (2 Claude subagents) | GPT drafter, Claude subagents | IN PROGRESS 2026-10-15 | `phase2/` |
+| 29 | Draft 140 FINAL_TEST + DEV families (GPT) and 160 TRAIN families (2 Claude subagents) | GPT drafter, Claude subagents | TRAIN 160/160 done; FINAL_TEST 84/100 and DEV 34/40 (GPT paused by Codex usage limit until 18:48) | `phase2/` |
 | 30 | FMT2 screening runs: Qwen3-1.7B, Qwen3-8B, Gemma-3-4B, Llama-3.2-3B (≤3/36 invalid to join the pilot) | HUMAN runs Colab; Claude analyses | READY 2026-10-15 | `secondary_analysis/Hinglish_FMT2_Format_Test_*_Colab.ipynb` |
+| 31 | Pilot-B blind solve + comparison: Claude 210/210 and GPT 210/210 match gold; 2/70 families flagged (PB013, PB051) | Claude + GPT solvers | DONE 2026-10-15 | `autoverify_runs/pilot_b/` |
+| 32 | **Human review of all 70 Pilot-B families** | HUMAN | READY: see `docs/REVIEW_INSTRUCTIONS.md` | `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 

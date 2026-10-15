@@ -1,0 +1,1864 @@
+[
+  {
+    "family_id": "DV001",
+    "source_family_id": "DV001-source",
+    "template_group_id": "DV001-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kam. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = -1+2 = 1",
+    "reference_solution_en": "Undo the downward reading error by adding two degrees. Calculation: -1+2 = 1.\nFINAL: 1 degrees Celsius",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1",
+      "unit": "degrees Celsius",
+      "aliases": [
+        "degree Celsius",
+        "C",
+        "°C",
+        "degree selsiyas"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV001-E",
+        "text": "A garden thermometer displays 2 degrees Celsius less than the actual temperature. It displays -1 degree Celsius. What is the actual temperature?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV001-R",
+        "text": "Baag ka taapmaapi asli taapmaan se 2 degree selsiyas kam dikhata hai. Abhi us par -1 degree selsiyas hai. Asli taapmaan kitna hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV001-C",
+        "text": "Baag ka taapmaapi asli taapmaan se 2 degree selsiyas kam dikhata hai; abhi -1 degree selsiyas hai. What is the actual temperature in degrees Celsius?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV002",
+    "source_family_id": "DV002-source",
+    "template_group_id": "DV002-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: bacha. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 42-7-28 = 7",
+    "reference_solution_en": "Exclude reserved beds and occupied ordinary beds from admission capacity. Calculation: 42-7-28 = 7.\nFINAL: 7 beds",
+    "status": "DRAFT",
+    "gold": {
+      "value": "7",
+      "unit": "beds",
+      "aliases": [
+        "bed",
+        "bistar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV002-E",
+        "text": "A hospital can admit patients to 42 beds, but 7 are reserved for isolation. Of the other beds, 28 are occupied. How many unoccupied non-isolation beds remain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: bacha. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV002-R",
+        "text": "Aspataal mein mareezon ke liye 42 bistar hain, jinmein 7 alagaav ke liye rakhe hain. Anya bistaron mein 28 bhare hain. Alagaav wale bistaron ko chhodkar kitne khaali bistaron ka bacha hua sthaan hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: bacha. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV002-C",
+        "text": "Aspataal mein 42 bistar hain; 7 alagaav ke liye rakhe hain aur anya mein 28 bhare hain. How many unoccupied non-isolation beds remain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: bacha. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV003",
+    "source_family_id": "DV003-source",
+    "template_group_id": "DV003-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kul. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 31-(18+7) = 6",
+    "reference_solution_en": "Combine the two current states and compare their count with the target. Calculation: 31-(18+7) = 6.\nFINAL: 6 parcels",
+    "status": "DRAFT",
+    "gold": {
+      "value": "6",
+      "unit": "parcels",
+      "aliases": [
+        "parcel",
+        "gathri",
+        "gathriyan"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV003-E",
+        "text": "A dispatch board shows 18 parcels awaiting pickup and 7 already on vehicles. Its target is 31 parcels in these two states combined. How many further parcels must enter either state to meet the target?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kul. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV003-R",
+        "text": "Ravaangi ke pat par 18 gathriyan uthane ke intezaar mein aur 7 gaadiyon par hain. In dono sthitiyon mein kul 31 gathriyan honi chahiye. Lakshya tak pahunchne ke liye inmein kitni aur gathriyan aani chahiye?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kul. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV003-C",
+        "text": "Ravaangi ke pat par 18 gathriyan intezaar mein aur 7 gaadiyon par hain. The combined target for these states is 31 parcels. Lakshya ke liye kitni aur gathriyan chahiye?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kul. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "combined_target"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV004",
+    "source_family_id": "DV004-source",
+    "template_group_id": "DV004-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 81-64-1 = 16",
+    "reference_solution_en": "Exclude both bookmarked endpoints from the interval. Calculation: 81-64-1 = 16.\nFINAL: 16 pages",
+    "status": "DRAFT",
+    "gold": {
+      "value": "16",
+      "unit": "pages",
+      "aliases": [
+        "page",
+        "panna",
+        "panne"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV004-E",
+        "text": "Two bookmarks lie at pages 64 and 81 of a library volume. How many page numbers lie strictly between them?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV004-R",
+        "text": "Pustakalay ki kitab mein do panna-soochak 64 aur 81 par hain. In dono ko chhodkar inke beech kitne panna-ank hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV004-C",
+        "text": "Pustakalay ki kitab ke do panna-soochak 64 aur 81 par hain. How many page numbers lie strictly between them?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV005",
+    "source_family_id": "DV005-source",
+    "template_group_id": "DV005-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 850-620-140 = 90",
+    "reference_solution_en": "Subtract current free space and the temporary file's contribution from the requirement. Calculation: 850-620-140 = 90.\nFINAL: 90 MB",
+    "status": "DRAFT",
+    "gold": {
+      "value": "90",
+      "unit": "MB",
+      "aliases": [
+        "megabyte",
+        "megabytes",
+        "em bee"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV005-E",
+        "text": "A phone download needs 850 MB of free space. The phone currently has 620 MB free. Removing one temporary file frees 140 MB. How much additional space must be freed after removing that file?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV005-R",
+        "text": "Doorbhash par ek sanchika lene ke liye 850 MB khaali sthaan chahiye. Abhi 620 MB khaali hai. Ek asthaayi sanchika mitaane se 140 MB sthaan milega. Use mitaane ke baad aur kitne MB khaali karne honge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV005-C",
+        "text": "Doorbhash par sanchika lene ke liye 850 MB chahiye; abhi 620 MB khaali hai. Deleting a temporary file frees 140 MB. Uske baad aur kitne MB khaali karne honge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "change_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV006",
+    "source_family_id": "DV006-source",
+    "template_group_id": "DV006-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 120+95-160 = 55",
+    "reference_solution_en": "The sum of daily attendance exceeds the distinct count by the overlap. Calculation: 120+95-160 = 55.\nFINAL: 55 people",
+    "status": "DRAFT",
+    "gold": {
+      "value": "55",
+      "unit": "people",
+      "aliases": [
+        "person",
+        "vyakti",
+        "log"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV006-E",
+        "text": "At a two-day wedding, 120 people attend on the first day and 95 on the second. Exactly 160 distinct people attend across both days. How many attend on both days?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV006-R",
+        "text": "Do din ki shaadi mein pehle din 120 log aur doosre din 95 log aate hain. Dono dinon ko dekhein to 160 alag vyakti aate hain. Kitne log dono din aate hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV006-C",
+        "text": "Shaadi mein pehle din 120 aur doosre din 95 log aate hain; 160 alag vyakti aate hain. How many attend on both days?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV007",
+    "source_family_id": "DV007-source",
+    "template_group_id": "DV007-template",
+    "topic": "comparison_remaining",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 46-30-2*5 = 6",
+    "reference_solution_en": "A transfer decreases one count and increases the other, narrowing the gap twice. Calculation: 46-30-2*5 = 6.\nFINAL: 6",
+    "status": "DRAFT",
+    "gold": {
+      "value": "6",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV007-E",
+        "text": "Two hostel dining rooms start with 46 and 30 plates. Staff move 5 plates from the first room to the second. By how many plates does the first room's count now exceed the second's?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV007-R",
+        "text": "Chhatravaas ke do bhojan kakshon mein 46 aur 30 thaaliyan hain. Pehle se 5 thaaliyan doosre mein pahunchayi jaati hain. Ab pehle kaksh ki sankhya doosre ki sankhya se kitni aage hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV007-C",
+        "text": "Chhatravaas ke kakshon mein 46 aur 30 thaaliyan hain. Five plates move from the first to the second. Ab pehle kaksh ki sankhya doosre se kitni aage hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "transfer_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV008",
+    "source_family_id": "DV008-source",
+    "template_group_id": "DV008-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: hissa. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 1800*3-1800 = 3600",
+    "reference_solution_en": "Recover the full fee from its one-third deposit, then subtract the deposit. Calculation: 1800*3-1800 = 3600.\nFINAL: 3600 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "3600",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV008-E",
+        "text": "A wedding organiser pays a decorator INR 1800 as a deposit, representing a one-third share of the full charge. How many rupees must be paid after the deposit?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV008-R",
+        "text": "Shaadi ka aayojak sajaavat wale ko INR 1800 agrim deta hai. Yeh poore shulk ka ek tihaai hissa hai. Agrim ke baad kitne rupaye dene hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV008-C",
+        "text": "Shaadi ka aayojak INR 1800 agrim deta hai, jo poore shulk ka ek tihaai hissa hai. How many rupees must be paid after the deposit?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV009",
+    "source_family_id": "DV009-source",
+    "template_group_id": "DV009-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: zyada. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 920/2+140 = 600",
+    "reference_solution_en": "Find the daytime price per booking and add the evening surcharge. Calculation: 920/2+140 = 600.\nFINAL: 600 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "600",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV009-E",
+        "text": "A library's evening room booking costs INR 140 more than its daytime booking. Two daytime bookings cost INR 920. What does one evening booking cost?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: zyada. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV009-R",
+        "text": "Pustakalay ka shaam ka kamra aarakshan din ke aarakshan se INR 140 zyada ka hai. Din ke do aarakshan INR 920 ke hain. Shaam ka ek aarakshan kitne rupaye ka hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: zyada. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV009-C",
+        "text": "Pustakalay mein shaam ka kamra aarakshan din se INR 140 zyada ka hai; din ke do aarakshan INR 920 ke hain. What does one evening booking cost in rupees?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: zyada. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV010",
+    "source_family_id": "DV010-source",
+    "template_group_id": "DV010-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kaat. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 1260-(60+15*8) = 1080",
+    "reference_solution_en": "Compute the fixed and per-delivery fees, then subtract them from collections. Calculation: 1260-(60+15*8) = 1080.\nFINAL: 1080 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1080",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV010-E",
+        "text": "A courier collects INR 1260 from recipients. The courier keeps a fixed INR 60 handling fee plus INR 15 for each of 8 deliveries and remits the rest. How much is remitted?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV010-R",
+        "text": "Dooth praaptakartaon se INR 1260 leta hai. Ismein se INR 60 ka tay shulk aur 8 gathriyan pahunchane ke liye ek gathri ke INR 15 kaat leta hai. Woh kitne rupaye jama karega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV010-C",
+        "text": "Dooth INR 1260 leta hai. The courier keeps INR 60 plus INR 15 for each of 8 deliveries. Kitne rupaye jama karega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "deduction_rule"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV011",
+    "source_family_id": "DV011-source",
+    "template_group_id": "DV011-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 6*90-450 = 90",
+    "reference_solution_en": "Compare six individual visit charges with the booklet price. Calculation: 6*90-450 = 90.\nFINAL: 90 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "90",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV011-E",
+        "text": "A clinic sells appointment booklets containing 6 visits for INR 450. Individual visits cost INR 90. How much does one booklet save compared with paying individually for 6 visits?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV011-R",
+        "text": "Chikitsaalay mein 6 mulaqaton ki pustika INR 450 ki milti hai. Alag mulaqat ka shulk INR 90 hai. 6 mulaqatein alag dene ki tulna mein pustika se kitne rupaye ki bachat hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV011-C",
+        "text": "Chikitsaalay mein 6 mulaqaton ki pustika INR 450 ki hai; alag mulaqat INR 90 ki. How much does the booklet save against paying individually for 6 visits?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV012",
+    "source_family_id": "DV012-source",
+    "template_group_id": "DV012-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 18*50-16*35 = 340",
+    "reference_solution_en": "Subtract refunds for qualifying returns from the original payment. Calculation: 18*50-16*35 = 340.\nFINAL: 340 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "340",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV012-E",
+        "text": "A hostel collects INR 50 for each of 18 reusable bowls. Suppliers refund INR 35 for each bowl returned intact. Exactly 16 are returned intact. What is the net bowl expense?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV012-R",
+        "text": "Chhatravaas 18 dobara istemaal hone wale katoron ke liye ek katore ke INR 50 deta hai. Sahi-salaamat lautaaye katore ke INR 35 milte hain. 16 katore sahi-salaamat lautaye gaye. Katoron par vaastavik kharch kitne rupaye hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV012-C",
+        "text": "Chhatravaas 18 katoron ke liye ek ke INR 50 deta hai. The supplier refunds INR 35 for each intact return; 16 qualify. Katoron par vaastavik kharch kitne rupaye hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "refund_rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV013",
+    "source_family_id": "DV013-source",
+    "template_group_id": "DV013-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 380+20-75 = 325",
+    "reference_solution_en": "Combine the new bill and late fee, then use the existing account credit. Calculation: 380+20-75 = 325.\nFINAL: 325 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "325",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV013-E",
+        "text": "A garden watering account has INR 75 of credit. Its new bill is INR 380, and a late fee of INR 20 applies before payment. How much cash clears the account?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV013-R",
+        "text": "Baag ki sinchaai ke khaate mein INR 75 pehle se jama hain. Naya shulk INR 380 hai aur bhugtaan se pehle INR 20 ka vilamb shulk lagta hai. Khaata chukane ke liye kitne rupaye dene hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV013-C",
+        "text": "Baag ki sinchaai ke khaate mein INR 75 jama hain; naya shulk INR 380 hai. A late fee of INR 20 also applies. Khaata chukane ke liye kitne rupaye dene hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "fee_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV014",
+    "source_family_id": "DV014-source",
+    "template_group_id": "DV014-template",
+    "topic": "two_step_money",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 670-6*10 = 610",
+    "reference_solution_en": "Only six complete hundreds qualify, giving a sixty-rupee deduction. Calculation: 670-6*10 = 610.\nFINAL: 610 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "610",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV014-E",
+        "text": "A phone repair shop charges INR 670 before a promotional deduction. The deduction is INR 10 for each complete INR 100 of that charge. What is the final bill?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV014-R",
+        "text": "Doorbhash ki marammat ka shulk chhoot se pehle INR 670 hai. Us shulk ke INR 100 ke ek poore samooh par INR 10 ki chhoot milti hai. Antim shulk kitne rupaye hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV014-C",
+        "text": "Doorbhash ki marammat chhoot se pehle INR 670 ki hai. The discount is INR 10 per complete INR 100 of that charge. Antim shulk kitne rupaye hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "discount_rule"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV015",
+    "source_family_id": "DV015-source",
+    "template_group_id": "DV015-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: bhinn. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 30/6 = 5",
+    "reference_solution_en": "Divide both terms by their greatest common divisor, six; the denominator is five. Calculation: 30/6 = 5.\nFINAL: 5",
+    "status": "DRAFT",
+    "gold": {
+      "value": "5",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV015-E",
+        "text": "A library shelf label gives the occupied fraction as 18/30. When this fraction is reduced to lowest terms, what is its denominator?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: bhinn. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV015-R",
+        "text": "Pustakalay ki almaari par bhare sthaan ki bhinn 18/30 likhi hai. Is bhinn ke saraltam roop ka har kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: bhinn. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV015-C",
+        "text": "Pustakalay ki almaari par bhare sthaan ki bhinn 18/30 hai. When reduced to lowest terms, what is its denominator?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: bhinn. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV016",
+    "source_family_id": "DV016-source",
+    "template_group_id": "DV016-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: pratishat. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer =  (250-200)/250*100 = 20",
+    "reference_solution_en": "Measure the fifty-minute reduction against the new allowance. Calculation:  (250-200)/250*100 = 20.\nFINAL: 20 percent",
+    "status": "DRAFT",
+    "gold": {
+      "value": "20",
+      "unit": "percent",
+      "aliases": [
+        "%",
+        "percentage",
+        "pratishat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV016-E",
+        "text": "A phone's talk-time allowance rises from 200 to 250 minutes. What percentage reduction from the new allowance would restore the original allowance?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: pratishat. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV016-R",
+        "text": "Doorbhash par baatcheet ki seema 200 se 250 minute ho jaati hai. Nayi seema mein kitne pratishat ki katauti se puraani seema milegi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: pratishat. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV016-C",
+        "text": "Doorbhash par baatcheet ki seema 200 se 250 minute ho gayi. What pratishat reduction from the new allowance restores the original?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: pratishat. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV017",
+    "source_family_id": "DV017-source",
+    "template_group_id": "DV017-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: hissa. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = (1-2/5)/3 = 1/5",
+    "reference_solution_en": "Take the complement of tea drinkers and then one-third of that group. Calculation: (1-2/5)/3 = 1/5.\nFINAL: 1/5",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1/5",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV017-E",
+        "text": "At a wedding, 2/5 of guests choose tea. The other guests choose coffee, and 1/3 of those coffee drinkers request no sugar. What fraction of all guests choose unsweetened coffee?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV017-R",
+        "text": "Shaadi mein mehmaanon ka 2/5 hissa chaay leta hai. Anya mehmaan kaafi lete hain; unmein 1/3 bina cheeni maangte hain. Sab mehmaanon ka kitna hissa bina cheeni ki kaafi leta hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV017-C",
+        "text": "Shaadi mein 2/5 mehmaan chaay lete hain. The others choose coffee, and 1/3 of those request no sugar. Sab mehmaanon ke mukable bina cheeni ki kaafi waalon ki bhinnatmak matra kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "conditional_fraction"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV018",
+    "source_family_id": "DV018-source",
+    "template_group_id": "DV018-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: pratishat. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 120*40/100*(1-25/100) = 36",
+    "reference_solution_en": "Find vegetarian dinners and keep the three-quarters that include dairy. Calculation: 120*40/100*(1-25/100) = 36.\nFINAL: 36 meals",
+    "status": "DRAFT",
+    "gold": {
+      "value": "36",
+      "unit": "meals",
+      "aliases": [
+        "meal",
+        "bhojan",
+        "thaali",
+        "thali"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV018-E",
+        "text": "A hostel serves 120 dinners. Forty percent are vegetarian; 25 percent of the vegetarian dinners have no dairy. How many dinners are vegetarian but include dairy?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: pratishat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV018-R",
+        "text": "Chhatravaas mein 120 raat ke bhojan parose gaye. 40 pratishat shaakaahaari hain; shaakaahaari bhojanon mein 25 pratishat doodh se bani cheezon ke bina hain. Kitne shaakaahaari bhojanon mein doodh se bani cheezein hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: pratishat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV018-C",
+        "text": "Chhatravaas mein 120 raat ke bhojan hain. Forty percent are vegetarian, and 25 percent of those are dairy-free. Kitne shaakaahaari bhojanon mein doodh se bani cheezein hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: pratishat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "nested_percentage"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV019",
+    "source_family_id": "DV019-source",
+    "template_group_id": "DV019-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 90*(1-1/6)/5 = 15",
+    "reference_solution_en": "Remove the cleaning fraction and divide patient time among five appointments. Calculation: 90*(1-1/6)/5 = 15.\nFINAL: 15 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "15",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV019-E",
+        "text": "A clinic sets aside 1/6 of a 90-minute session for cleaning. It divides the patient time into 5 equal appointments. How many minutes does one appointment last?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV019-R",
+        "text": "Chikitsaalay mein 90 minute ke satra ka 1/6 safai ke liye hai. Mareezon ke samay mein 5 samaan avadhi ki mulaqatein hoti hain. Ek mulaqat kitne minute chalti hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV019-C",
+        "text": "Chikitsaalay ke 90 minute ke satra ka 1/6 safai mein lagta hai. The patient time is divided into 5 equal appointments. Ek mulaqat kitne minute chalti hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "allocation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV020",
+    "source_family_id": "DV020-source",
+    "template_group_id": "DV020-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = (84*2/7+18)/84 = 1/2",
+    "reference_solution_en": "Convert the initial fraction to a count, add newly scanned files, and divide by the fixed archive size. Calculation: (84*2/7+18)/84 = 1/2.\nFINAL: 1/2",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1/2",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV020-E",
+        "text": "An office stores 84 archived files. Two-sevenths are scanned. After another 18 files are scanned, what fraction of the archive is scanned?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV020-R",
+        "text": "Daftar mein 84 puraani sanchikayein hain. 2/7 ki yantrik chhavi bani hai. Aur 18 ki chhavi banne par kitni bhinnatmak matra ki chhavi ban chuki hogi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV020-C",
+        "text": "Daftar mein 84 puraani sanchikayein hain; 2/7 ki chhavi bani hai. After another 18 are scanned, what fraction of the archive is scanned?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV021",
+    "source_family_id": "DV021-source",
+    "template_group_id": "DV021-template",
+    "topic": "fractions_percentages",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 9/((80-35)/100) = 20",
+    "reference_solution_en": "Nine kilometres represents the forty-five-percentage-point increase in completion. Calculation: 9/((80-35)/100) = 20.\nFINAL: 20 kilometres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "20",
+      "unit": "kilometres",
+      "aliases": [
+        "kilometre",
+        "km",
+        "kilometer"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV021-E",
+        "text": "A dispatcher marks 35% of a route complete. The next 9 km brings completion to 80%. What is the full route length?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV021-R",
+        "text": "Ravaangi adhikaari ke anusaar raaste ka 35% tay hai. Agle 9 km chalne par 80% tay ho jaata hai. Poora raasta kitne km hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV021-C",
+        "text": "Ravaangi adhikaari ke anusaar 35% raasta tay hai. The next 9 km brings completion to 80%. Poora raasta kitne km hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "progress_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV022",
+    "source_family_id": "DV022-source",
+    "template_group_id": "DV022-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: baant. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 2100*8/(8+6) = 1200",
+    "reference_solution_en": "Allocate eight of fourteen hour-weighted shares to the first team. Calculation: 2100*8/(8+6) = 1200.\nFINAL: 1200 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1200",
+      "unit": "rupees",
+      "aliases": [
+        "rupee",
+        "INR",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV022-E",
+        "text": "A hospital divides an INR 2100 grant between teams in proportion to 8 and 6 training hours. How much goes to the team with 8 hours?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: baant. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV022-R",
+        "text": "Aspataal INR 2100 ka anudaan do dalon ke 8 aur 6 prashikshan ghanton ke anusaar baant deta hai. 8 ghante wale dal ko kitne rupaye milte hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: baant. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV022-C",
+        "text": "Aspataal INR 2100 ka anudaan 8 aur 6 prashikshan ghanton ke anusaar baant deta hai. How many rupees go to the team with 8 hours?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: baant. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV023",
+    "source_family_id": "DV023-source",
+    "template_group_id": "DV023-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: guna. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 28/4 = 7",
+    "reference_solution_en": "For fixed work, multiplying speed by four divides processing time by four. Calculation: 28/4 = 7.\nFINAL: 7 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "7",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV023-E",
+        "text": "An office printer's draft mode runs at four times its fine-mode speed. A job takes 28 minutes in fine mode. With no setup time, how long does it take in draft mode?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV023-R",
+        "text": "Daftar ke mudrak ki kacchi chhapaai ki raftaar maheen chhapaai ki 4 guna hai. Maheen mein kaam 28 minute ka hai. Taiyari ka samay na ho to kacchi chhapaai kitne minute legi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV023-C",
+        "text": "Daftar ke mudrak ki kacchi chhapaai ki raftaar maheen ki 4 guna hai; maheen mein kaam 28 minute ka hai. With no setup time, how long does the job take in draft mode?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV024",
+    "source_family_id": "DV024-source",
+    "template_group_id": "DV024-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: baraabar. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 10/(3-2)*3 = 30",
+    "reference_solution_en": "The ten additions close a one-unit gap; untreated books occupy three units. Calculation: 10/(3-2)*3 = 30.\nFINAL: 30 books",
+    "status": "DRAFT",
+    "gold": {
+      "value": "30",
+      "unit": "books",
+      "aliases": [
+        "book",
+        "kitab",
+        "kitabein",
+        "kitaben"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV024-E",
+        "text": "A library has restored and untreated books in the ratio 2:3. Adding 10 restored books makes the counts equal; no untreated books are added. How many untreated books were there?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV024-R",
+        "text": "Pustakalay mein marammat-shuda aur bina marammat ki kitabein 2:3 mein hain. 10 marammat-shuda kitabein aane se dono sankhyaen baraabar hoti hain; anya kitabein nahi aati. Bina marammat ki kitni thi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV024-C",
+        "text": "Pustakalay mein marammat-shuda aur bina marammat ki kitabein 2:3 mein hain. Adding 10 restored books makes the counts equal; no untreated books are added. Bina marammat ki kitni thi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "equalisation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV025",
+    "source_family_id": "DV025-source",
+    "template_group_id": "DV025-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: hissa. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 16/2*(2+3) = 40",
+    "reference_solution_en": "Find the ratio-unit size using red flowers, then count red and white units. Calculation: 16/2*(2+3) = 40.\nFINAL: 40",
+    "status": "DRAFT",
+    "gold": {
+      "value": "40",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV025-E",
+        "text": "A wedding garland contains red, white and yellow flowers in the ratio 2:3:5. Its red portion contains 16 flowers. How many flowers are not yellow?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV025-R",
+        "text": "Shaadi ki maala mein laal, safed aur peele phool 2:3:5 mein hain. Laal hissa 16 phoolon ka hai. Kitne phool peele nahi hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV025-C",
+        "text": "Shaadi ki maala mein laal, safed aur peele phool 2:3:5 mein hain. The red portion contains 16 flowers. Kitne phool peele nahi hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "known_component"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV026",
+    "source_family_id": "DV026-source",
+    "template_group_id": "DV026-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 240/180 = 4/3",
+    "reference_solution_en": "Equal total prices make per-minute prices inversely proportional to allowances. Calculation: 240/180 = 4/3.\nFINAL: 4/3",
+    "status": "DRAFT",
+    "gold": {
+      "value": "4/3",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV026-E",
+        "text": "Two phone plans have the same monthly price and include 180 and 240 talk minutes respectively. What is the first plan's cost per minute divided by the second's?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV026-R",
+        "text": "Do doorbhash yojanaon ka maasik daam samaan hai aur baatcheet ke 180 aur 240 minute milte hain. Pehli mein ek minute ke daam ko doosri ke ek minute ke daam se vibhaajit karne par kya milega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV026-C",
+        "text": "Do doorbhash yojanaon ka maasik daam samaan hai; baatcheet 180 aur 240 minute ki hai. What is the first plan's cost per minute divided by the second's?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV027",
+    "source_family_id": "DV027-source",
+    "template_group_id": "DV027-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = (12/2)/(18/6) = 2",
+    "reference_solution_en": "Compute both mass-per-volume strengths and divide the first by the second. Calculation: (12/2)/(18/6) = 2.\nFINAL: 2",
+    "status": "DRAFT",
+    "gold": {
+      "value": "2",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV027-E",
+        "text": "Tea strength is leaf mass divided by water volume. Two hostel pots use 12 g in 2 L and 18 g in 6 L. What is the first strength divided by the second?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV027-R",
+        "text": "Chaay ki taakat patti ke bhaar ko paani ki matra se vibhaajit karke milti hai. Chhatravaas ke do bartanon mein 2 L mein 12 g aur 6 L mein 18 g patti hai. Pehli taakat ko doosri se vibhaajit karne par kya milega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV027-C",
+        "text": "Chhatravaas mein chaay ki taakat patti ke bhaar ko paani se vibhaajit karke milti hai. One pot uses 12 g in 2 L and the other 18 g in 6 L. Pehli taakat ko doosri se vibhaajit karne par kya milega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "concentration_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV028",
+    "source_family_id": "DV028-source",
+    "template_group_id": "DV028-template",
+    "topic": "ratios",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = (12/3)/(15/5) = 4/3",
+    "reference_solution_en": "Compute staffing relative to each zone's own requirement and compare those factors. Calculation: (12/3)/(15/5) = 4/3.\nFINAL: 4/3",
+    "status": "DRAFT",
+    "gold": {
+      "value": "4/3",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV028-E",
+        "text": "Two delivery zones need 3 and 5 workers for equal coverage, but have 12 and 15 workers assigned. A coverage factor is assigned workers divided by required workers. What is the first factor divided by the second?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV028-R",
+        "text": "Samaan pahunchane ke do kshetron ko samaan pahunch ke liye 3 aur 5 karmachari chahiye; lage hain 12 aur 15. Lage karmachariyon ko zaroori sankhya se vibhaajit karne par pahunch ka maan mile. Pehle maan ko doosre se vibhaajit karne par kya milega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV028-C",
+        "text": "Samaan pahunchane ke do kshetron ko 3 aur 5 karmachari chahiye; lage hain 12 aur 15. Coverage factor is assigned workers divided by required workers. Samaan pahunch ke is maan mein pehle ko doosre se vibhaajit karne par kya milega?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "defined_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV029",
+    "source_family_id": "DV029-source",
+    "template_group_id": "DV029-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: har. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 4*9+3*3 = 45",
+    "reference_solution_en": "Four runs have only three intervening rests before the requested finish. Calculation: 4*9+3*3 = 45.\nFINAL: 45 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "45",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV029-E",
+        "text": "A hospital tray cleaner runs 9 minutes and rests 3 minutes after every run. It starts immediately. How long from the start until its fourth run finishes, excluding any rest after that finish?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: har. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV029-R",
+        "text": "Aspataal ka thaali safaai yantra 9 minute chalta aur har chalaav ke baad 3 minute rukta hai. Woh turant shuru hota hai. Chauthe chalaav ke ant tak kitne minute lagenge, uske baad ka viraam gine bina?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: har. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV029-C",
+        "text": "Aspataal ka thaali safaai yantra 9 minute chalta aur har chalaav ke baad 3 minute rukta hai; turant shuru hota hai. How many minutes until the fourth run finishes, excluding rest after that finish?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: har. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV030",
+    "source_family_id": "DV030-source",
+    "template_group_id": "DV030-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: prati. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 4.5*1000/300 = 15",
+    "reference_solution_en": "Convert the target volume to millilitres and divide by the flow rate. Calculation: 4.5*1000/300 = 15.\nFINAL: 15 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "15",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV030-E",
+        "text": "A garden drip line releases 300 mL per minute. How many minutes does it take to release 4.5 L?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: prati. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV030-R",
+        "text": "Baag ki boond sinchaai naali se 300 mL prati minute nikalta hai. 4.5 L chhodne mein kitne minute lagenge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: prati. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV030-C",
+        "text": "Baag ki boond sinchaai releases 300 mL per minute. 4.5 L chhodne mein kitne minute lagenge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: prati. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV031",
+    "source_family_id": "DV031-source",
+    "template_group_id": "DV031-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: baaki. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 36-(6+9) = 21",
+    "reference_solution_en": "Fifteen hours have elapsed since activation; subtract them from validity. Calculation: 36-(6+9) = 21.\nFINAL: 21 hours",
+    "status": "DRAFT",
+    "gold": {
+      "value": "21",
+      "unit": "hours",
+      "aliases": [
+        "hour",
+        "h",
+        "ghanta",
+        "ghante"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV031-E",
+        "text": "A phone pass lasts exactly 36 hours from activation. It is activated Tuesday at 18:00. At Wednesday 09:00, how many hours remain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: baaki. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV031-R",
+        "text": "Doorbhash ki suvidha chalu hone se theek 36 ghante chalti hai. Woh Mangalvaar 18:00 par chalu hoti hai. Budhvaar 09:00 par kitne ghante baaki hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: baaki. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV031-C",
+        "text": "Doorbhash ki suvidha Mangalvaar 18:00 se theek 36 ghante chalti hai. At Wednesday 09:00, how many hours remain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: baaki. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV032",
+    "source_family_id": "DV032-source",
+    "template_group_id": "DV032-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 3*15 = 45",
+    "reference_solution_en": "Nineteen books need three cycles because two cycles hold only sixteen. Calculation: 3*15 = 45.\nFINAL: 45 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "45",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV032-E",
+        "text": "A library's book dryer holds at most 8 books per cycle. Each cycle lasts 15 minutes, and cycles cannot overlap. Starting with 19 wet books, how long until all are dry if loading takes no time?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV032-R",
+        "text": "Pustakalay ka kitab sukhaane wala yantra ek chakkar mein adhiktam 8 kitabein leta hai. Ek chakkar 15 minute hai aur chakkar kram se chalte hain. Rakhne mein samay na lage to 19 geeli kitabein kitne minute mein sookhengi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV032-C",
+        "text": "Pustakalay ka sukhaane wala yantra holds at most 8 books per 15-minute cycle, with no overlapping cycles. Rakhne mein samay na lage to 19 geeli kitabein kitne minute mein sookhengi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "batch_rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV033",
+    "source_family_id": "DV033-source",
+    "template_group_id": "DV033-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 90-90+50 = 50",
+    "reference_solution_en": "At the viewer the start is 17:00; add the stream duration. Calculation: 90-90+50 = 50.\nFINAL: 50 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "50",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minutein",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV033-E",
+        "text": "An event stream starts at 18:30 on a venue clock that is 90 minutes ahead of the viewer's clock. The stream lasts 50 minutes. At the end, how many minutes after 17:00 is it on the viewer's clock?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV033-R",
+        "text": "Samaroh ka prasaaran sthal ki ghadi par 18:30 ko shuru hota hai. Sthal ki ghadi darshak ki ghadi se 90 minute aage hai. Prasaaran 50 minute chalta hai. Ant mein darshak ki ghadi par 17:00 se kitne minute beet chuke honge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV033-C",
+        "text": "Samaroh ka prasaaran sthal par 18:30 ko shuru aur 50 minute lamba hai. The venue clock is 90 minutes ahead of the viewer's clock. Ant mein darshak ki ghadi par 17:00 se kitne minute beetenge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "clock_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV034",
+    "source_family_id": "DV034-source",
+    "template_group_id": "DV034-template",
+    "topic": "rates_units",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "answer = 2.4*1000/6/40 = 10",
+    "reference_solution_en": "Convert to grams, obtain the daily allotment, and divide by daily tea volume. Calculation: 2.4*1000/6/40 = 10.\nFINAL: 10 grams per litre",
+    "status": "DRAFT",
+    "gold": {
+      "value": "10",
+      "unit": "grams per litre",
+      "aliases": [
+        "g/L",
+        "gram prati litre"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV034-E",
+        "text": "A hostel sets aside 2.4 kg of tea leaves for 6 days. The daily quantity is used to make 40 L of tea. How many grams of leaves are used per litre?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV034-R",
+        "text": "Chhatravaas mein 6 din ke liye 2.4 kg chaay-patti rakhi hai. Roz samaan matra se 40 L chaay banti hai. Ek L chaay mein kitne g patti lagti hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV034-C",
+        "text": "Chhatravaas mein 6 din ke liye 2.4 kg patti hai; roz samaan matra se 40 L chaay banti hai. How many grams of leaves are used per litre?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  }
+]
