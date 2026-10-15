@@ -21,7 +21,12 @@ HERE = Path(__file__).resolve().parent
 NAME = 'Hinglish_FMT2_Format_Test_Colab.ipynb'
 # Second-backbone load + format test on the same excluded fixtures (same prompt, decoding, scorer).
 NOTEBOOKS = {'Qwen/Qwen3-4B': NAME, 'microsoft/Phi-4-mini-instruct': 'Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb',
-             'ibm-granite/granite-3.3-2b-instruct': 'Hinglish_FMT2_Format_Test_Granite2b_Colab.ipynb'}
+             'ibm-granite/granite-3.3-2b-instruct': 'Hinglish_FMT2_Format_Test_Granite2b_Colab.ipynb',
+             'Qwen/Qwen3-1.7B': 'Hinglish_FMT2_Format_Test_Qwen3_1p7b_Colab.ipynb',
+             'Qwen/Qwen3-8B': 'Hinglish_FMT2_Format_Test_Qwen3_8b_Colab.ipynb',
+             'google/gemma-3-4b-it': 'Hinglish_FMT2_Format_Test_Gemma3_4b_Colab.ipynb',
+             'meta-llama/Llama-3.2-3B-Instruct': 'Hinglish_FMT2_Format_Test_Llama3p2_3b_Colab.ipynb'}
+GATED = {'google/gemma-3-4b-it', 'meta-llama/Llama-3.2-3B-Instruct'}
 FIXTURES = HERE / 'format_fixtures.json'
 PART_SIZE = 6
 STAMP = (2026, 10, 14, 0, 0, 0)
@@ -105,6 +110,13 @@ def build(model_id='Qwen/Qwen3-4B'):
     add('code', f'''
         import os, sys, json, base64, io, zipfile, hashlib, subprocess, traceback
         MODEL_ID = {model_id!r}
+        if {model_id in GATED!r}:
+            # Gated model: accept its licence on huggingface.co, then add a Colab secret named HF_TOKEN (key icon, left sidebar).
+            try:
+                from google.colab import userdata
+                os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')
+            except Exception as error:
+                print('HF_TOKEN secret not available:', type(error).__name__, '— gated model download will fail')
         from pathlib import Path
         os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         PACKAGE = Path('/content/hinglish_fmt2') if Path('/content').exists() else Path.cwd() / 'hinglish_fmt2'

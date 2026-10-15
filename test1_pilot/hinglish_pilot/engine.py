@@ -32,6 +32,12 @@ MODELS = {
     'Qwen/Qwen3-4B': {'model_type': 'qwen3', 'chat_template_kwargs': {'enable_thinking': False}},
     'microsoft/Phi-4-mini-instruct': {'model_type': 'phi3', 'chat_template_kwargs': {}},
     'ibm-granite/granite-3.3-2b-instruct': {'model_type': 'granite', 'chat_template_kwargs': {}},
+    # Scaling within the primary family (same chat template as Qwen3-4B).
+    'Qwen/Qwen3-1.7B': {'model_type': 'qwen3', 'chat_template_kwargs': {'enable_thinking': False}},
+    'Qwen/Qwen3-8B': {'model_type': 'qwen3', 'chat_template_kwargs': {'enable_thinking': False}},
+    # Gated (licence acceptance + HF_TOKEN). Llama's template would otherwise stamp today's date into every prompt.
+    'google/gemma-3-4b-it': {'model_type': 'gemma3', 'chat_template_kwargs': {}},
+    'meta-llama/Llama-3.2-3B-Instruct': {'model_type': 'llama', 'chat_template_kwargs': {'date_string': '15 Oct 2026'}},
 }
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
