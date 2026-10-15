@@ -31,6 +31,7 @@ PROMPT_VERSION = 'test1-english-final-v2'
 MODELS = {
     'Qwen/Qwen3-4B': {'model_type': 'qwen3', 'chat_template_kwargs': {'enable_thinking': False}},
     'microsoft/Phi-4-mini-instruct': {'model_type': 'phi3', 'chat_template_kwargs': {}},
+    'ibm-granite/granite-3.3-2b-instruct': {'model_type': 'granite', 'chat_template_kwargs': {}},
 }
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')

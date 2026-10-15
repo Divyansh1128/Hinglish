@@ -20,7 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
 NAME = 'Hinglish_FMT2_Format_Test_Colab.ipynb'
 # Second-backbone load + format test on the same excluded fixtures (same prompt, decoding, scorer).
-NOTEBOOKS = {'Qwen/Qwen3-4B': NAME, 'microsoft/Phi-4-mini-instruct': 'Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb'}
+NOTEBOOKS = {'Qwen/Qwen3-4B': NAME, 'microsoft/Phi-4-mini-instruct': 'Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb',
+             'ibm-granite/granite-3.3-2b-instruct': 'Hinglish_FMT2_Format_Test_Granite2b_Colab.ipynb'}
 FIXTURES = HERE / 'format_fixtures.json'
 PART_SIZE = 6
 STAMP = (2026, 10, 14, 0, 0, 0)
