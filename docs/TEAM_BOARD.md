@@ -28,7 +28,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 20 | Phase-2 family authoring kit: guide, JSON template, validator | Claude subagent (Sol-2) | DONE 2026-10-15: 10 tests | `authoring/` |
 | 21 | Self-translate and operation-gloss probe: frozen prompts and data builders (no inference) | Claude subagent (Sol-3) | DONE 2026-10-15: 11 tests | `exploratory/` |
 | 22 | Fix 5 bugs from GPT cross-review (`handoffs/2026-10-15c_sol2_gpt_review.md`): nested-ZIP memory bound, -ST ID collision, output-name collision, zlib error, CSV header check | Claude subagent | DONE 2026-10-15: all 5 fixed with regression tests | `paper_analysis/`, `exploratory/` |
-| 23 | Lexicon confirmation by the user (bilingual), 0/25 answered | HUMAN | OPEN | `research/lexicon_confirmation_user_2026-10-15.md` |
+| 23 | Lexicon confirmation by the user (bilingual) | HUMAN | PAUSED: entries 1–12 confirmed by the user; 13–16 provenance unconfirmed; 17–25 open | `research/lexicon_confirmation_user_2026-10-15.md` |
 | 24 | Phi-4-mini T4 load + format test (36 excluded prompts) | HUMAN runs Colab; Claude analyses | READY 2026-10-15 | `secondary_analysis/Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
