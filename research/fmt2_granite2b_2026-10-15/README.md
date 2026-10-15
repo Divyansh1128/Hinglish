@@ -10,7 +10,7 @@ Run: `ibm-granite/granite-3.3-2b-instruct` at revision `707f574c62054322f6b5b04b
 | R | 0/12 | 0/12 | 12 | 0 |
 | C | 0/12 | 1/12 | 12 | 0 |
 
-**Finding:** almost every output **comments on the unit instruction after the answer**, e.g. `FINAL: 3.75 kg. (No unit needed as it's already in kilograms.)`, `FINAL: 24, (units: none)`, `FINAL: \\(\\frac{11}{17}\\) (no unit, as it's a fraction)`. Some outputs used `Final answer: \\boxed{8}` or put a `Unit: …` line after FINAL. Most final values look numerically right, but both frozen endpoints reject the trailing commentary, so this run measures instruction-echo formatting, not mathematics. Unlike Phi-4-mini, Granite neither truncated nor drifted into Hindi on R inputs.
+**Finding:** almost every output **comments on the unit instruction after the answer**, e.g. `FINAL: 3.75 kg. (No unit needed as it's already in kilograms.)`, `FINAL: 24, (units: none)`, `FINAL: \(\frac{11}{17}\) (no unit, as it's a fraction)`. Some outputs used `Final answer: \(\boxed{8}\)` or put a `Unit: …` line after FINAL. Most final values look numerically right, but both frozen endpoints reject the trailing commentary, so this run measures instruction-echo formatting, not mathematics. Unlike Phi-4-mini, Granite neither truncated nor drifted into Hindi on R inputs.
 
 ## Cross-model summary (FMT2 development runs, same frozen protocol)
 
