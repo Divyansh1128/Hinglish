@@ -1,0 +1,4052 @@
+[
+  {
+    "family_id": "PB001",
+    "source_family_id": "PB001-source",
+    "template_group_id": "PB001-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bache' (bacha); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: bache; C: bache.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=5-1.75-2=1.25",
+    "reference_solution_en": "Rice used = 1.75 + 2 = 3.75 kg. Rice left = 5 - 3.75 = 1.25 kg. FINAL: 1.25 kg",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1.25",
+      "unit": "kg",
+      "aliases": [
+        "kilo",
+        "kilos",
+        "kilogram",
+        "kilograms",
+        "kgs"
+      ],
+      "conversions": {
+        "g": "1/1000",
+        "gram": "1/1000",
+        "grams": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB001-E-v1",
+        "text": "Meena bought a 5 kg bag of rice. She used 1.75 kg of it in the first week and 2 kg in the second week. How many kilograms of rice are left?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB001-R-v1",
+        "text": "Meena ne 5 kg chaawal ka bora khareeda. Pehle hafte usne 1.75 kg aur doosre hafte 2 kg chaawal istemaal kiya. Ab kitne kg chaawal bache hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB001-C-v1",
+        "text": "Meena ne 5 kg chaawal ka bora khareeda. She used 1.75 kg in the first week and 2 kg in the second week. Ab kitne kg chaawal bache hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bache' kept in C.",
+        "switching_roles": [
+          "deduction"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB002",
+    "source_family_id": "PB002-source",
+    "template_group_id": "PB002-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'kam' (kam); C SWITCHES it to English ('fewer'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: kam, milkar; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=68+(68-23)=113",
+    "reference_solution_en": "Kabir picked 68 - 23 = 45 mangoes. Together: 68 + 45 = 113 mangoes. FINAL: 113 mangoes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "113",
+      "unit": "mangoes",
+      "aliases": [
+        "mango",
+        "aam"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB002-E-v1",
+        "text": "Arjun picked 68 mangoes from the orchard. Kabir picked 23 fewer mangoes than Arjun. How many mangoes did the two boys pick together?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB002-R-v1",
+        "text": "Arjun ne bagiche se 68 aam tode. Kabir ne Arjun se 23 aam kam tode. Dono ladkon ne milkar kitne aam tode?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB002-C-v1",
+        "text": "Arjun ne bagiche se 68 aam tode. Kabir picked 23 fewer mangoes than Arjun. Dono ladkon ne total kitne aam tode?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'kam' switched to English 'fewer' in C.",
+        "switching_roles": [
+          "comparison",
+          "total"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB003",
+    "source_family_id": "PB003-source",
+    "template_group_id": "PB003-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'zyada' (zyada); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: zyada; C: zyada.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=240+(240+85)=565",
+    "reference_solution_en": "English books = 240 + 85 = 325. Total books = 240 + 325 = 565 books. FINAL: 565 books",
+    "status": "DRAFT",
+    "gold": {
+      "value": "565",
+      "unit": "books",
+      "aliases": [
+        "book",
+        "kitaabein",
+        "kitaab"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB003-E-v1",
+        "text": "A school library has 240 Hindi books. It has 85 more English books than Hindi books. How many books does the library have altogether?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB003-R-v1",
+        "text": "Ek school pustakaalay mein 240 Hindi kitaabein hain. Usmein Hindi kitaabon se 85 zyada Angrezi kitaabein hain. Pustakaalay mein sab milaakar kitni kitaabein hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB003-C-v1",
+        "text": "Ek school library mein 240 Hindi kitaabein hain. Usmein Hindi kitaabon se 85 zyada Angrezi kitaabein hain. How many books does the library have altogether?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'zyada' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB004",
+    "source_family_id": "PB004-source",
+    "template_group_id": "PB004-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'baaki' (baaki); C SWITCHES it to English ('left'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: baaki; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=312-97-128=87",
+    "reference_solution_en": "Pages read = 97 + 128 = 225. Pages still to read = 312 - 225 = 87 pages. FINAL: 87 pages",
+    "status": "DRAFT",
+    "gold": {
+      "value": "87",
+      "unit": "pages",
+      "aliases": [
+        "page",
+        "panne",
+        "panna"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB004-E-v1",
+        "text": "Ravi has to read a 312-page novel. He read 97 pages on Saturday and 128 pages on Sunday. How many pages does he still have to read?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB004-R-v1",
+        "text": "Ravi ko 312 panne ka ek upanyaas padhna hai. Usne shanivaar ko 97 panne aur ravivaar ko 128 panne padhe. Ab kitne panne padhna baaki hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB004-C-v1",
+        "text": "Ravi ko 312 panne ka ek novel padhna hai. Usne shanivaar ko 97 panne aur ravivaar ko 128 panne padhe. How many pages are still left for him to read?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'baaki' switched to English 'left' in C.",
+        "switching_roles": [
+          "requested_answer",
+          "remaining"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB005",
+    "source_family_id": "PB005-source",
+    "template_group_id": "PB005-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'ghataaya' (ghata); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: ghataaya; C: ghataaya.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1850-275=1575",
+    "reference_solution_en": "New price = 1850 - 275 = 1575 rupees. FINAL: 1575 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1575",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB005-E-v1",
+        "text": "A pressure cooker cost ₹1850. During a festival offer, the shopkeeper decreased its price by ₹275. What is the new price of the pressure cooker?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB005-R-v1",
+        "text": "Ek pressure cooker ka daam ₹1850 tha. Tyohaar ke mauke par dukaandaar ne uska daam ₹275 ghataaya. Ab pressure cooker ka naya daam kitna hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB005-C-v1",
+        "text": "Ek pressure cooker ka daam ₹1850 tha. Tyohaar ke mauke par dukaandaar ne uska daam ₹275 ghataaya. What is the new price of the cooker now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'ghataaya' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB006",
+    "source_family_id": "PB006-source",
+    "template_group_id": "PB006-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'kul' (kul); C SWITCHES it to English ('in total'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: kul; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=46+29-18=57",
+    "reference_solution_en": "Animals at first = 46 + 29 = 75. After selling 18: 75 - 18 = 57 animals. FINAL: 57 animals",
+    "status": "DRAFT",
+    "gold": {
+      "value": "57",
+      "unit": "animals",
+      "aliases": [
+        "animal",
+        "jaanvar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB006-E-v1",
+        "text": "A farmer has 46 cows and 29 buffaloes. He sells 18 of these animals. How many animals does he have now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB006-R-v1",
+        "text": "Ek kisaan ke paas 46 gaayein aur 29 bhainsein hain. Usne inmein se 18 jaanvar bech diye. Ab uske paas kul kitne jaanvar hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB006-C-v1",
+        "text": "Ek kisaan ke paas 46 gaayein aur 29 bhainsein hain. Usne inmein se 18 jaanvar bech diye. How many animals does he have in total now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'kul' switched to English 'in total' in C.",
+        "switching_roles": [
+          "requested_answer",
+          "total"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB007",
+    "source_family_id": "PB007-source",
+    "template_group_id": "PB007-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=38-12+9-15=20",
+    "reference_solution_en": "After the first stop: 38 - 12 + 9 = 35. After the second stop: 35 - 15 = 20 passengers. FINAL: 20 passengers",
+    "status": "DRAFT",
+    "gold": {
+      "value": "20",
+      "unit": "passengers",
+      "aliases": [
+        "passenger",
+        "yaatri",
+        "log",
+        "people"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB007-E-v1",
+        "text": "A bus left the depot with 38 passengers. At the first stop 12 people got off and 9 got on, and at the second stop 15 people got off. How many passengers were on the bus after the second stop?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB007-R-v1",
+        "text": "Depot se chalte samay ek bus mein 38 yaatri the. Pehle padaav par 12 log utre aur 9 log chadhe, aur doosre padaav par 15 log utre. Doosre padaav ke baad bus mein kitne yaatri the?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB007-C-v1",
+        "text": "Depot se chalte samay ek bus mein 38 yaatri the. At the first stop, 12 people got off and 9 got on, aur doosre padaav par 15 log utre. Doosre padaav ke baad bus mein kitne passengers the?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "transfer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB008",
+    "source_family_id": "PB008-source",
+    "template_group_id": "PB008-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=(1.42-1.18)*100=24",
+    "reference_solution_en": "Difference = 1.42 - 1.18 = 0.24 m = 24 cm. FINAL: 24 cm",
+    "status": "DRAFT",
+    "gold": {
+      "value": "24",
+      "unit": "cm",
+      "aliases": [
+        "centimetre",
+        "centimetres",
+        "centimeter",
+        "centimeters"
+      ],
+      "conversions": {
+        "m": "100",
+        "metre": "100",
+        "mm": "1/10"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB008-E-v1",
+        "text": "Kavya is 1.42 m tall and her brother Om is 1.18 m tall. By how many centimetres is Kavya taller than Om?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB008-R-v1",
+        "text": "Kavya ki lambaai 1.42 m hai aur uske bhai Om ki lambaai 1.18 m hai. Kavya apne bhai se kitne cm lambi hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB008-C-v1",
+        "text": "Kavya ki lambaai 1.42 m hai aur uske bhai Om ki lambaai 1.18 m hai. By how many centimetres is Kavya taller than Om?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "comparison",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB009",
+    "source_family_id": "PB009-source",
+    "template_group_id": "PB009-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1200-(1200-785+300)=485",
+    "reference_solution_en": "Water in tank = 1200 - 785 + 300 = 715 L. Needed = 1200 - 715 = 485 L. FINAL: 485 L",
+    "status": "DRAFT",
+    "gold": {
+      "value": "485",
+      "unit": "L",
+      "aliases": [
+        "litre",
+        "litres",
+        "liter",
+        "liters",
+        "l"
+      ],
+      "conversions": {
+        "mL": "1/1000",
+        "millilitre": "1/1000",
+        "millilitres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB009-E-v1",
+        "text": "A water tank holds 1200 litres when full. It was full in the morning, 785 litres were used by evening, and then 300 litres were pumped in. How many more litres are needed to fill the tank again?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB009-R-v1",
+        "text": "Ek paani ki tanki mein 1200 litre paani aata hai. Subah tanki bhari hui thi, shaam tak 785 litre paani kharch ho gaya, aur phir usmein 300 litre paani chadhaaya gaya. Tanki ko phir se bharne ke liye kitne litre paani aur chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB009-C-v1",
+        "text": "Ek paani ki tanki mein 1200 litre paani aata hai. Subah tanki bhari hui thi, shaam tak 785 litre paani kharch ho gaya, aur phir usmein 300 litre paani chadhaaya gaya. How many more litres are needed to fill the tank again?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB010",
+    "source_family_id": "PB010-source",
+    "template_group_id": "PB010-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=500-138-65=297",
+    "reference_solution_en": "Spent = 138 + 65 = 203. Money now = 500 - 203 = 297 rupees. FINAL: 297 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "297",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB010-E-v1",
+        "text": "Sunita had ₹500. She bought vegetables for ₹138 and paid ₹65 for an auto ride. How much money does she have now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB010-R-v1",
+        "text": "Sunita ke paas ₹500 the. Usne ₹138 ki sabziyaan khareedin aur auto ke ₹65 diye. Ab uske paas kitne rupaye hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB010-C-v1",
+        "text": "Sunita ke paas ₹500 the. She bought vegetables for ₹138 and paid ₹65 for an auto ride. Ab uske paas kitne rupaye hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "deduction"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB011",
+    "source_family_id": "PB011-source",
+    "template_group_id": "PB011-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=386-159-118=109",
+    "reference_solution_en": "Distance driven = 159 + 118 = 277 km. Distance left = 386 - 277 = 109 km. FINAL: 109 km",
+    "status": "DRAFT",
+    "gold": {
+      "value": "109",
+      "unit": "km",
+      "aliases": [
+        "kilometre",
+        "kilometres",
+        "kilometer",
+        "kilometers"
+      ],
+      "conversions": {
+        "m": "1/1000",
+        "metre": "1/1000",
+        "metres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB011-E-v1",
+        "text": "Grandfather's village is 386 km from Lucknow by road. Rohan's family has already driven 159 km and then another 118 km towards it. How many kilometres are they still from the village?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB011-R-v1",
+        "text": "Lucknow se Dadaji ka gaon sadak se 386 km door hai. Rohan ka parivaar us taraf pehle 159 km aur phir 118 km gaadi chala chuka hai. Ab gaon kitne km door hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB011-C-v1",
+        "text": "Lucknow se Dadaji ka gaon sadak se 386 km door hai. Rohan's family has already driven 159 km and then another 118 km towards it. Ab gaon kitne km door hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "distance_travelled"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB012",
+    "source_family_id": "PB012-source",
+    "template_group_id": "PB012-template",
+    "topic": "comparison_remaining",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=71-54=17",
+    "reference_solution_en": "Pooja needs 71 - 54 = 17 more shells. FINAL: 17 shells",
+    "status": "DRAFT",
+    "gold": {
+      "value": "17",
+      "unit": "shells",
+      "aliases": [
+        "shell",
+        "seepiyaan",
+        "seepi"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB012-E-v1",
+        "text": "At the beach, Pooja collected 54 shells and Isha collected 71 shells. How many more shells must Pooja collect to have as many shells as Isha?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB012-R-v1",
+        "text": "Samudra ke kinaare Pooja ne 54 seepiyaan aur Isha ne 71 seepiyaan ikattha keen. Isha jitni seepiyaan hone ke liye Pooja ko ab kitni aur seepiyaan ikattha karni hongi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB012-C-v1",
+        "text": "Samudra ke kinaare Pooja ne 54 seepiyaan aur Isha ne 71 seepiyaan ikattha keen. How many more shells must Pooja collect to have as many as Isha?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "comparison",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB013",
+    "source_family_id": "PB013-source",
+    "template_group_id": "PB013-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'guna' (guna); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: guna; C: guna.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=85+4*85=425",
+    "reference_solution_en": "Bag = 4 x 85 = 340. Together = 340 + 85 = 425 rupees. FINAL: 425 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "425",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB013-E-v1",
+        "text": "A pencil box costs ₹85. A school bag costs 4 times as much as the pencil box. What is the combined cost of the bag and the pencil box?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB013-R-v1",
+        "text": "Ek pensil box ka daam ₹85 hai. Ek school bag ka daam pensil box ke daam ka 4 guna hai. Bag aur pensil box dono ka daam milaakar kitna hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB013-C-v1",
+        "text": "Ek pensil box ka daam ₹85 hai. School bag ka daam pensil box ke daam ka 4 guna hai. What is the combined cost of the bag and the pencil box?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'guna' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB014",
+    "source_family_id": "PB014-source",
+    "template_group_id": "PB014-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'guna' (guna); C SWITCHES it to English ('3 times as much'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: guna; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=2*62+3*62=310",
+    "reference_solution_en": "Paneer = 3 x 62 = 186. Milk = 2 x 62 = 124. Total = 124 + 186 = 310 rupees. FINAL: 310 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "310",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB014-E-v1",
+        "text": "A litre of milk costs ₹62, and a packet of paneer costs 3 times as much as a litre of milk. How much do 2 litres of milk and 1 packet of paneer cost?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB014-R-v1",
+        "text": "Ek litre doodh ₹62 ka hai, aur paneer ke ek packet ka daam ek litre doodh ke daam ka 3 guna hai. 2 litre doodh aur 1 packet paneer kitne ka padega?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB014-C-v1",
+        "text": "Ek litre doodh ₹62 ka hai, and a packet of paneer costs 3 times as much as a litre of milk. 2 litre doodh aur 1 packet paneer kitne ka padega?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'guna' switched to English '3 times as much' in C.",
+        "switching_roles": [
+          "multiplicative_comparison"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB015",
+    "source_family_id": "PB015-source",
+    "template_group_id": "PB015-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'prati' (prati); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: prati; C: prati.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=36*2.5+20=110",
+    "reference_solution_en": "Tomatoes = 36 x 2.5 = 90. Total = 90 + 20 = 110 rupees. FINAL: 110 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "110",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB015-E-v1",
+        "text": "Tomatoes cost ₹36 per kg. Lata buys 2.5 kg of tomatoes and a bunch of coriander for ₹20. How much money does she spend altogether?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB015-R-v1",
+        "text": "Tamatar ₹36 prati kg bik rahe hain. Lata 2.5 kg tamatar aur ₹20 ki dhaniye ki ek gaddi khareedti hai. Usne kitne rupaye kharch kiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB015-C-v1",
+        "text": "Tamatar ₹36 prati kg bik rahe hain. Lata 2.5 kg tamatar aur ₹20 ki dhaniye ki ek gaddi khareedti hai. How much money does she spend altogether?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'prati' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB016",
+    "source_family_id": "PB016-source",
+    "template_group_id": "PB016-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'prati' (prati); C SWITCHES it to English ('per'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: prati; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=14*23+50=372",
+    "reference_solution_en": "Distance charge = 14 x 23 = 322. Fare = 322 + 50 = 372 rupees. FINAL: 372 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "372",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB016-E-v1",
+        "text": "A taxi charges ₹14 per km plus a fixed fee of ₹50. What is the fare for a 23 km ride?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB016-R-v1",
+        "text": "Ek taxi ka kiraaya ₹14 prati km hai, aur iske upar ₹50 ka nishchit shulk alag se lagta hai. 23 km ki sawaari ka kiraaya kitna hoga?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB016-C-v1",
+        "text": "Ek taxi charges ₹14 per km, aur iske upar ₹50 ka nishchit shulk alag se lagta hai. 23 km ki sawaari ka kiraaya kitna hoga?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'prati' switched to English 'per' in C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB017",
+    "source_family_id": "PB017-source",
+    "template_group_id": "PB017-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bache' (bacha); C SWITCHES it to English ('left'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: bache; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1200-3*265=405",
+    "reference_solution_en": "Shirts = 3 x 265 = 795. Left = 1200 - 795 = 405 rupees. FINAL: 405 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "405",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB017-E-v1",
+        "text": "Imran had ₹1200. He bought 3 shirts at ₹265 each. How much money did he have left?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB017-R-v1",
+        "text": "Imran ke paas ₹1200 the. Usne ₹265 waali 3 kameezein khareedin. Uske paas kitne rupaye bache?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB017-C-v1",
+        "text": "Imran ke paas ₹1200 the. Usne ₹265 waali 3 kameezein khareedin. How much money did he have left?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bache' switched to English 'left' in C.",
+        "switching_roles": [
+          "requested_answer",
+          "remaining"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB018",
+    "source_family_id": "PB018-source",
+    "template_group_id": "PB018-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'kul' (kul); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: kul; C: kul.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=5*(2*15+12)=210",
+    "reference_solution_en": "One friend = 2 x 15 + 12 = 42. Five friends = 5 x 42 = 210 rupees. FINAL: 210 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "210",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB018-E-v1",
+        "text": "At a canteen, a samosa costs ₹15 and a cup of tea costs ₹12. 5 friends each have 2 samosas and 1 cup of tea. What is the total bill?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB018-R-v1",
+        "text": "Canteen mein ek samosa ₹15 ka aur ek cup chai ₹12 ki hai. 5 doston ne apne-apne liye 2 samose aur 1 cup chai li. Kul bill kitne rupaye ka bana?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB018-C-v1",
+        "text": "Canteen mein ek samosa ₹15 ka aur ek cup chai ₹12 ki hai. 5 friends each had 2 samosas and 1 cup of tea. Kul bill kitne rupaye ka bana?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'kul' kept in C.",
+        "switching_roles": [
+          "individual_quantity"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB019",
+    "source_family_id": "PB019-source",
+    "template_group_id": "PB019-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=3*200-4*120=120",
+    "reference_solution_en": "Cost = 4 x 120 = 480. Paid = 3 x 200 = 600. Change = 600 - 480 = 120 rupees. FINAL: 120 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "120",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB019-E-v1",
+        "text": "Deepak bought 4 kg of apples at ₹120 a kg and paid with 3 notes of ₹200. How much change should he get?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB019-R-v1",
+        "text": "Deepak ne ₹120 kilo ke bhaav se 4 kg seb khareede aur dukaandaar ko ₹200 ke 3 note diye. Deepak ko kitne rupaye ka chhutta milna chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB019-C-v1",
+        "text": "Deepak ne ₹120 kilo ke bhaav se 4 kg seb khareede and paid with 3 notes of ₹200. Deepak ko kitne rupaye ka chhutta milna chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "payment"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB020",
+    "source_family_id": "PB020-source",
+    "template_group_id": "PB020-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=4*30+180=300",
+    "reference_solution_en": "Tickets = 4 x 30 = 120. Total = 120 + 180 = 300 rupees. FINAL: 300 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "300",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB020-E-v1",
+        "text": "A family of 4 goes to a fair. The entry ticket costs ₹30 per person, and they spend ₹180 on food. How much does the family spend at the fair?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB020-R-v1",
+        "text": "4 logon ka ek parivaar mele mein jaata hai. Ek vyakti ka pravesh tikat ₹30 ka hai, aur ve khaane par ₹180 kharch karte hain. Parivaar ne mele mein kitne rupaye kharch kiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB020-C-v1",
+        "text": "4 logon ka ek parivaar mele mein jaata hai. The entry ticket costs ₹30 per person, aur ve khaane par ₹180 kharch karte hain. Parivaar ne mele mein kitne rupaye kharch kiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "unit_price"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB021",
+    "source_family_id": "PB021-source",
+    "template_group_id": "PB021-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=3*46+2*155=448",
+    "reference_solution_en": "Sugar = 3 x 46 = 138. Oil = 2 x 155 = 310. Total = 138 + 310 = 448 rupees. FINAL: 448 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "448",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB021-E-v1",
+        "text": "Mohan bought 3 kg of sugar at ₹46 a kg and 2 litres of mustard oil at ₹155 a litre. How much did he pay?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB021-R-v1",
+        "text": "Mohan ne ₹46 kilo ke bhaav se 3 kg cheeni aur ₹155 litre ke bhaav se 2 litre sarson ka tel khareeda. Usne kitne rupaye diye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB021-C-v1",
+        "text": "Mohan ne ₹46 kilo ke bhaav se 3 kg cheeni khareedi, and he also bought 2 litres of mustard oil at ₹155 a litre. Usne kitne rupaye diye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "unit_price"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB022",
+    "source_family_id": "PB022-source",
+    "template_group_id": "PB022-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=35*(14+9)=805",
+    "reference_solution_en": "Candles sold = 14 + 9 = 23. Earnings = 23 x 35 = 805 rupees. FINAL: 805 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "805",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB022-E-v1",
+        "text": "Ritu sells handmade candles for ₹35 each. She sold 14 candles on Monday and 9 candles on Tuesday. How much money did she earn on these two days?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB022-R-v1",
+        "text": "Ritu haath se bani mombattiyaan ₹35 ki ek ke daam par bechti hai. Somvaar ko usne 14 mombattiyaan aur mangalvaar ko 9 mombattiyaan bechin. In do dinon mein usne kitne rupaye kamaaye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB022-C-v1",
+        "text": "Ritu haath se bani mombattiyaan ₹35 ki ek ke daam par bechti hai. On Monday she sold 14 candles and on Tuesday she sold 9. In do dinon mein usne kitne rupaye kamaaye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "quantity"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB023",
+    "source_family_id": "PB023-source",
+    "template_group_id": "PB023-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=18000-6500-4000=7500",
+    "reference_solution_en": "Rent and savings = 6500 + 4000 = 10500. Other expenses = 18000 - 10500 = 7500 rupees. FINAL: 7500 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "7500",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB023-E-v1",
+        "text": "Farhan earns ₹18000 a month. He pays ₹6500 as rent and saves ₹4000. How much money does he have for other expenses?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB023-R-v1",
+        "text": "Farhan ki mahine ki tankhwaah ₹18000 hai. Woh ₹6500 kiraaya deta hai aur ₹4000 ki bachat karta hai. Doosre kharchon ke liye uske paas kitne rupaye rehte hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB023-C-v1",
+        "text": "Farhan ki mahine ki tankhwaah ₹18000 hai. He pays ₹6500 as rent and saves ₹4000. Doosre kharchon ke liye uske paas kitne rupaye rehte hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "deduction"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB024",
+    "source_family_id": "PB024-source",
+    "template_group_id": "PB024-template",
+    "topic": "two_step_money",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=2100-(1650+120)=330",
+    "reference_solution_en": "Total cost = 1650 + 120 = 1770. Profit = 2100 - 1770 = 330 rupees. FINAL: 330 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "330",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB024-E-v1",
+        "text": "A shopkeeper buys a ceiling fan for ₹1650 and spends ₹120 to bring it to his shop. He sells the fan for ₹2100. How much profit does he make?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB024-R-v1",
+        "text": "Ek dukaandaar ₹1650 mein ek chhat ka pankha khareedta hai aur use dukaan tak laane mein ₹120 kharch karta hai. Woh pankha ₹2100 mein bechta hai. Use kitne rupaye ka munaafa hota hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB024-C-v1",
+        "text": "Ek dukaandaar ₹1650 mein ek chhat ka pankha khareedta hai aur use dukaan tak laane mein ₹120 kharch karta hai. He sells the fan for ₹2100. How much profit does he make?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "sale",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB025",
+    "source_family_id": "PB025-source",
+    "template_group_id": "PB025-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhinn' (bhinn); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: baraabar, hissa, bacha, bhinn; C: baraabar, hissa, bacha, bhinn.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=(8-3-2)/8=3/8",
+    "reference_solution_en": "Pieces eaten = 3 + 2 = 5, so 8 - 5 = 3 of 8 pieces are left. Fraction left = 3/8. FINAL: 3/8",
+    "status": "DRAFT",
+    "gold": {
+      "value": "3/8",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB025-E-v1",
+        "text": "A cake is cut into 8 equal pieces. Tanya eats 3 pieces and her brother eats 2 pieces. What fraction of the cake is left? Give your answer as a fraction.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB025-R-v1",
+        "text": "Ek cake ke 8 baraabar tukde kiye gaye. Tanya ne 3 tukde aur uske bhai ne 2 tukde khaaye. Cake ka kitna hissa bacha? Uttar bhinn mein dijiye.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB025-C-v1",
+        "text": "Ek cake ke 8 baraabar tukde kiye gaye. Tanya ate 3 pieces and her brother ate 2 pieces. Cake ka kitna hissa bacha? Uttar bhinn mein dijiye.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhinn' kept in C.",
+        "switching_roles": [
+          "consumption_events"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB026",
+    "source_family_id": "PB026-source",
+    "template_group_id": "PB026-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhinn' (bhinn); C SWITCHES it to English ('fraction'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: bhinn; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=(40-15)/40=5/8",
+    "reference_solution_en": "Students not coming by bus = 40 - 15 = 25. Fraction = 25/40 = 5/8. FINAL: 5/8",
+    "status": "DRAFT",
+    "gold": {
+      "value": "5/8",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB026-E-v1",
+        "text": "A class has 40 students, and 15 of them come to school by bus. What fraction of the students do not come by bus? Give your answer as a fraction in lowest terms.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB026-R-v1",
+        "text": "Ek kaksha mein 40 vidyaarthi hain, jinmein se 15 bus se school aate hain. Bus se na aane waale vidyaarthi kaksha ke sabhi vidyaarthiyon ka kaun sa bhinn hain? Uttar sabse saral bhinn mein dijiye.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB026-C-v1",
+        "text": "Ek kaksha mein 40 vidyaarthi hain, jinmein se 15 bus se school aate hain. What fraction of the students do not come by bus? Give the answer in lowest terms.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhinn' switched to English 'fraction' in C.",
+        "switching_roles": [
+          "requested_answer",
+          "fraction_base",
+          "negation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB027",
+    "source_family_id": "PB027-source",
+    "template_group_id": "PB027-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'pratishat' (pratishat); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: pratishat; C: pratishat.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=840-840*25/100=630",
+    "reference_solution_en": "Discount = 25% of 840 = 210. Price paid = 840 - 210 = 630 rupees. FINAL: 630 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "630",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB027-E-v1",
+        "text": "A shirt is priced at ₹840. The shop gives a 25% discount on it. How much does the customer have to pay?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB027-R-v1",
+        "text": "Ek kameez ka daam ₹840 hai. Dukaan us par 25 pratishat chhoot deti hai. Graahak ko kitne rupaye dene honge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB027-C-v1",
+        "text": "Ek kameez ka daam ₹840 hai. Dukaan us par 25 pratishat chhoot deti hai. How much does the customer have to pay?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'pratishat' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB028",
+    "source_family_id": "PB028-source",
+    "template_group_id": "PB028-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'pratishat' (pratishat); C SWITCHES it to English ('percent'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: pratishat; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=32000-32000*15/100=27200",
+    "reference_solution_en": "Savings = 15% of 32000 = 4800. Spending = 32000 - 4800 = 27200 rupees. FINAL: 27200 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "27200",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB028-E-v1",
+        "text": "Ramesh earns ₹32000 a month and saves 15% of it. How much does he spend each month?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB028-R-v1",
+        "text": "Ramesh ki maasik tankhwaah ₹32000 hai aur woh uska 15 pratishat bachaata hai. Woh mahine mein kitne rupaye kharch karta hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB028-C-v1",
+        "text": "Ramesh ki maasik tankhwaah ₹32000 hai, and he saves 15 percent of it. Woh mahine mein kitne rupaye kharch karta hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'pratishat' switched to English 'percent' in C.",
+        "switching_roles": [
+          "percentage"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB029",
+    "source_family_id": "PB029-source",
+    "template_group_id": "PB029-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhaag' (bhaag); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: bhaag; C: bhaag.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=36-36/3-4=20",
+    "reference_solution_en": "Given away = 36/3 = 12. Left = 36 - 12 - 4 = 20 laddoos. FINAL: 20 laddoos",
+    "status": "DRAFT",
+    "gold": {
+      "value": "20",
+      "unit": "laddoos",
+      "aliases": [
+        "laddoo",
+        "laddu",
+        "ladoo",
+        "laddus"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB029-E-v1",
+        "text": "Sneha had 36 laddoos. She gave 1/3 of them to her neighbours and then ate 4 herself. How many laddoos does she have now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB029-R-v1",
+        "text": "Sneha ke paas 36 laddoo the. Usne unka 1/3 bhaag padosiyon ko de diya aur phir 4 laddoo khud khaaye. Ab uske paas kitne laddoo hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB029-C-v1",
+        "text": "Sneha ke paas 36 laddoo the. Usne unka 1/3 bhaag padosiyon ko de diya and then ate 4 herself. How many laddoos does she have now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhaag' kept in C.",
+        "switching_roles": [
+          "subtraction",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB030",
+    "source_family_id": "PB030-source",
+    "template_group_id": "PB030-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'baaki' (baaki); C SWITCHES it to English ('remaining'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: baaki; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=600*(1-3/5)*(1-1/4)=180",
+    "reference_solution_en": "Monday: 3/5 of 600 = 360, leaving 240. Tuesday: 1/4 of 240 = 60. Yet to plant = 240 - 60 = 180 saplings. FINAL: 180 saplings",
+    "status": "DRAFT",
+    "gold": {
+      "value": "180",
+      "unit": "saplings",
+      "aliases": [
+        "sapling",
+        "paudhe",
+        "paudha",
+        "plants"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB030-E-v1",
+        "text": "Out of 600 saplings, 3/5 were planted on Monday. Of the remaining saplings, 1/4 were planted on Tuesday. How many saplings are yet to be planted?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB030-R-v1",
+        "text": "600 paudhon mein se 3/5 somvaar ko lagaaye gaye. Baaki paudhon ka 1/4 mangalvaar ko lagaaya gaya. Kitne paudhe abhi lagaane baaki hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB030-C-v1",
+        "text": "600 paudhon mein se 3/5 somvaar ko lagaaye gaye. Of the remaining saplings, 1/4 were planted on Tuesday. How many saplings are yet to be planted?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'baaki' switched to English 'remaining' in C.",
+        "switching_roles": [
+          "fraction_base",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB031",
+    "source_family_id": "PB031-source",
+    "template_group_id": "PB031-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=2000*(1-3/8)=1250",
+    "reference_solution_en": "2 L = 2000 mL. Poured = 3/8 x 2000 = 750 mL. In bottle = 2000 - 750 = 1250 mL. FINAL: 1250 mL",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1250",
+      "unit": "mL",
+      "aliases": [
+        "millilitre",
+        "millilitres",
+        "milliliter",
+        "milliliters"
+      ],
+      "conversions": {
+        "L": "1000",
+        "litre": "1000",
+        "litres": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB031-E-v1",
+        "text": "A 2-litre bottle of juice was full. Maya poured 3/8 of the juice into glasses. How many millilitres of juice are still in the bottle?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB031-R-v1",
+        "text": "Juice ki 2 litre ki botal bhari hui thi. Maya ne usmein se 3/8 juice gilaason mein daal diya. Botal mein ab kitne mL juice hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB031-C-v1",
+        "text": "Juice ki 2 litre ki botal bhari hui thi. Maya poured 3/8 of the juice into glasses. Botal mein ab kitne mL juice hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "fraction_base"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB032",
+    "source_family_id": "PB032-source",
+    "template_group_id": "PB032-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=2400*(100-35)/100=1560",
+    "reference_solution_en": "Not children = 65% of 2400 = 1560 people. FINAL: 1560 people",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1560",
+      "unit": "people",
+      "aliases": [
+        "log",
+        "persons"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB032-E-v1",
+        "text": "In a village of 2400 people, 35% are children. How many people in the village are not children?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB032-R-v1",
+        "text": "2400 logon ke ek gaon mein 35% log bachche hain. Gaon mein kitne log bachche nahin hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB032-C-v1",
+        "text": "2400 logon ke ek gaon mein 35% log bachche hain. How many people in the village are not children?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "requested_answer",
+          "negation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB033",
+    "source_family_id": "PB033-source",
+    "template_group_id": "PB033-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1.8/(1-2/5)=3",
+    "reference_solution_en": "The cycled part is 1 - 2/5 = 3/5 of the way, so the way = 1.8 / (3/5) = 3 km. FINAL: 3 km",
+    "status": "DRAFT",
+    "gold": {
+      "value": "3",
+      "unit": "km",
+      "aliases": [
+        "kilometre",
+        "kilometres",
+        "kilometer",
+        "kilometers"
+      ],
+      "conversions": {
+        "m": "1/1000",
+        "metre": "1/1000",
+        "metres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB033-E-v1",
+        "text": "Ajay walked 2/5 of the way to school and cycled the remaining 1.8 km. How long is the whole way to school, in km?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB033-R-v1",
+        "text": "Ajay ne school tak ke raaste ka 2/5 paidal tay kiya aur aakhri 1.8 km cycle se. Ghar se school tak raasta kitne km lamba hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB033-C-v1",
+        "text": "Ajay ne school tak ke raaste ka 2/5 paidal tay kiya and cycled the remaining 1.8 km. Ghar se school tak raasta kitne km lamba hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "remaining"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB034",
+    "source_family_id": "PB034-source",
+    "template_group_id": "PB034-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=750*(1-2/3)*(1-1/5)=200",
+    "reference_solution_en": "After sweets: 750 - 500 = 250 g. Dal used 1/5 of 250 = 50 g. Now: 250 - 50 = 200 g. FINAL: 200 g",
+    "status": "DRAFT",
+    "gold": {
+      "value": "200",
+      "unit": "g",
+      "aliases": [
+        "gram",
+        "grams",
+        "gm"
+      ],
+      "conversions": {
+        "kg": "1000",
+        "kilo": "1000",
+        "kilogram": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB034-E-v1",
+        "text": "A tin had 750 g of ghee. Grandmother used 2/3 of it to make sweets, and then used 1/5 of the ghee still in the tin for dal. How many grams of ghee are in the tin now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB034-R-v1",
+        "text": "Ek dibbe mein 750 g ghee tha. Daadi ne usmein se 2/3 ghee mithaai banaane mein lagaaya, aur phir dibbe mein jo ghee tha uska 1/5 daal mein daala. Ab dibbe mein kitne gram ghee hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB034-C-v1",
+        "text": "Ek dibbe mein 750 g ghee tha. Daadi ne usmein se 2/3 ghee mithaai banaane mein lagaaya, and then she used 1/5 of the ghee still in the tin for dal. Ab dibbe mein kitne gram ghee hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "fraction_base"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB035",
+    "source_family_id": "PB035-source",
+    "template_group_id": "PB035-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=480*(1-5/12)=280",
+    "reference_solution_en": "Girls = 5/12 x 480 = 200. Boys = 480 - 200 = 280 boys. FINAL: 280 boys",
+    "status": "DRAFT",
+    "gold": {
+      "value": "280",
+      "unit": "boys",
+      "aliases": [
+        "boy",
+        "ladke"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB035-E-v1",
+        "text": "A school has 480 students, and 5/12 of them are girls. How many boys are there in the school?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB035-R-v1",
+        "text": "Ek school mein 480 vidyaarthi hain aur unmein se 5/12 ladkiyaan hain. School mein kitne ladke hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB035-C-v1",
+        "text": "Ek school mein 480 vidyaarthi hain, and 5/12 of them are girls. School mein kitne ladke hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "fraction_base"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB036",
+    "source_family_id": "PB036-source",
+    "template_group_id": "PB036-template",
+    "topic": "fractions_percentages",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=12500*(100+8)/100=13500",
+    "reference_solution_en": "Increase = 8% of 12500 = 1000. New price = 12500 + 1000 = 13500 rupees. FINAL: 13500 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "13500",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB036-E-v1",
+        "text": "A mobile phone was priced at ₹12500. Its price went up by 8%. What is the new price?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB036-R-v1",
+        "text": "Ek mobile phone ka daam ₹12500 tha. Woh 8% mehnga ho gaya. Ab uska naya daam kitna hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB036-C-v1",
+        "text": "Ek mobile phone ka daam ₹12500 tha. Its price went up by 8%. Ab uska naya daam kitna hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "percentage_change"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB037",
+    "source_family_id": "PB037-source",
+    "template_group_id": "PB037-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'anupaat' (anupat); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: anupaat, baant; C: anupaat, baant.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1800*5/(4+5)=1000",
+    "reference_solution_en": "Total parts = 4 + 5 = 9. Simran = 5/9 x 1800 = 1000 rupees. FINAL: 1000 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "1000",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB037-E-v1",
+        "text": "Rahul and Simran share ₹1800 in the ratio 4:5. How much does Simran get?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB037-R-v1",
+        "text": "Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein aapas mein baant lete hain. Simran ko kitne rupaye milte hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB037-C-v1",
+        "text": "Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein aapas mein baant lete hain. How much does Simran get?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'anupaat' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB038",
+    "source_family_id": "PB038-source",
+    "template_group_id": "PB038-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'anupaat' (anupat); C SWITCHES it to English ('ratio'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: anupaat; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=21/3*7=49",
+    "reference_solution_en": "One part = 21 / 3 = 7. Bananas = 7 x 7 = 49 bananas. FINAL: 49 bananas",
+    "status": "DRAFT",
+    "gold": {
+      "value": "49",
+      "unit": "bananas",
+      "aliases": [
+        "banana",
+        "kele",
+        "kela"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB038-E-v1",
+        "text": "In a fruit basket, the ratio of apples to bananas is 3:7. If there are 21 apples, how many bananas are there?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB038-R-v1",
+        "text": "Ek phalon ki tokri mein seb aur kelon ka anupaat 3:7 hai. Agar tokri mein 21 seb hain, to usmein kitne kele hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB038-C-v1",
+        "text": "Ek phalon ki tokri mein the ratio of apples to bananas is 3:7. Agar tokri mein 21 seb hain, to usmein kitne kele hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'anupaat' switched to English 'ratio' in C.",
+        "switching_roles": [
+          "ratio",
+          "ratio_order"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB039",
+    "source_family_id": "PB039-source",
+    "template_group_id": "PB039-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhaag' (bhaag); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: anupaat, bhaag; C: anupaat, bhaag.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=84*5/(5+2)=60",
+    "reference_solution_en": "Total parts = 7. Longer piece = 5/7 x 84 = 60 m. FINAL: 60 m",
+    "status": "DRAFT",
+    "gold": {
+      "value": "60",
+      "unit": "m",
+      "aliases": [
+        "metre",
+        "metres",
+        "meter",
+        "meters",
+        "mitar"
+      ],
+      "conversions": {
+        "cm": "1/100",
+        "km": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB039-E-v1",
+        "text": "A rope 84 m long is cut into two pieces in the ratio 5:2. What is the length of the longer piece?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB039-R-v1",
+        "text": "84 m lambi rassi ke 5:2 ke anupaat mein do bhaag kiye gaye. Lambe bhaag ki lambaai kitne m hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB039-C-v1",
+        "text": "84 m lambi rassi ke 5:2 ke anupaat mein do bhaag kiye gaye. What is the length of the longer piece?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhaag' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB040",
+    "source_family_id": "PB040-source",
+    "template_group_id": "PB040-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'har' (har); C SWITCHES it to English ('for every'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: har; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=45/3*2=30",
+    "reference_solution_en": "Groups of 3 katlis = 45 / 3 = 15. Gulab jamuns = 15 x 2 = 30 gulab jamuns. FINAL: 30 gulab jamuns",
+    "status": "DRAFT",
+    "gold": {
+      "value": "30",
+      "unit": "gulab jamuns",
+      "aliases": [
+        "gulab jamun",
+        "jamuns",
+        "jamun"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB040-E-v1",
+        "text": "In the sweet boxes for a wedding, there are 2 gulab jamuns for every 3 kaju katlis. If the halwai puts 45 kaju katlis in the boxes, how many gulab jamuns does he need?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB040-R-v1",
+        "text": "Ek shaadi ke mithaai ke dibbon mein har 3 kaju katli par 2 gulab jamun rakhe jaate hain. Agar halwaai dibbon mein 45 kaju katli rakhta hai, to use kitne gulab jamun chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB040-C-v1",
+        "text": "Ek shaadi ke mithaai ke dibbon mein, there are 2 gulab jamuns for every 3 kaju katlis. Agar halwaai dibbon mein 45 kaju katli rakhta hai, to use kitne gulab jamun chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'har' switched to English 'for every' in C.",
+        "switching_roles": [
+          "ratio"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB041",
+    "source_family_id": "PB041-source",
+    "template_group_id": "PB041-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'baant' (baant); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: anupaat, baant; C: anupaat, baant.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1500*3000/(2000+3000+5000)=450",
+    "reference_solution_en": "Total invested = 10000. Share = 3000/10000 x 1500 = 450 rupees. FINAL: 450 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "450",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB041-E-v1",
+        "text": "Three friends put ₹2000, ₹3000 and ₹5000 into a food stall and divide a profit of ₹1500 in the ratio of the money they put in. How much profit does the friend who put in ₹3000 get?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB041-R-v1",
+        "text": "Teen doston ne ek khaane ki dukaan mein ₹2000, ₹3000 aur ₹5000 lagaaye. Unhone ₹1500 ka munaafa apne lagaaye paison ke anupaat mein baant liya. ₹3000 lagaane waale dost ko kitna munaafa mila?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB041-C-v1",
+        "text": "Teen doston ne ek food stall mein ₹2000, ₹3000 aur ₹5000 lagaaye. Unhone ₹1500 ka munaafa apne lagaaye paison ke anupaat mein baant liya. How much profit did the friend who put in ₹3000 get?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'baant' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB042",
+    "source_family_id": "PB042-source",
+    "template_group_id": "PB042-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'kul' (kul); C SWITCHES it to English ('in total'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: anupaat, kul; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=24/4*(7+4)=66",
+    "reference_solution_en": "One part = 24 / 4 = 6. Total = 6 x 11 = 66 children. FINAL: 66 children",
+    "status": "DRAFT",
+    "gold": {
+      "value": "66",
+      "unit": "children",
+      "aliases": [
+        "child",
+        "bachche",
+        "students"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB042-E-v1",
+        "text": "In a sports academy, the ratio of boys to girls is 7:4. If there are 24 girls, how many children are there in the academy in total?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB042-R-v1",
+        "text": "Ek khel academy mein ladkon aur ladkiyon ka anupaat 7:4 hai. Agar ladkiyaan 24 hain, to academy mein kul kitne bachche hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB042-C-v1",
+        "text": "Ek sports academy mein the ratio of boys to girls is 7:4. Agar ladkiyaan 24 hain, how many children are there in the academy in total?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'kul' switched to English 'in total' in C.",
+        "switching_roles": [
+          "ratio",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB043",
+    "source_family_id": "PB043-source",
+    "template_group_id": "PB043-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=2*20/5=8",
+    "reference_solution_en": "20 people is 4 times 5 people, so cups = 2 x 4 = 8 cups. FINAL: 8 cups",
+    "status": "DRAFT",
+    "gold": {
+      "value": "8",
+      "unit": "cups",
+      "aliases": [
+        "cup",
+        "katori"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB043-E-v1",
+        "text": "Mother cooks 2 cups of rice for 5 people. At the same rate, how many cups of rice does she need for 20 people?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB043-R-v1",
+        "text": "Maa 5 logon ke liye 2 cup chaawal banaati hain. Isi hisaab se 20 logon ke liye unhein kitne cup chaawal chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB043-C-v1",
+        "text": "Maa 5 logon ke liye 2 cup chaawal banaati hain. At the same rate, 20 logon ke liye unhein kitne cup chaawal chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB044",
+    "source_family_id": "PB044-source",
+    "template_group_id": "PB044-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=9*15/2=67.5",
+    "reference_solution_en": "1 cm stands for 15/2 = 7.5 km. Distance = 9 x 7.5 = 67.5 km. FINAL: 67.5 km",
+    "status": "DRAFT",
+    "gold": {
+      "value": "67.5",
+      "unit": "km",
+      "aliases": [
+        "kilometre",
+        "kilometres",
+        "kilometer",
+        "kilometers"
+      ],
+      "conversions": {
+        "m": "1/1000",
+        "metre": "1/1000",
+        "metres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB044-E-v1",
+        "text": "On a map, 2 cm stands for 15 km. Two towns are 9 cm apart on the map. What is the actual distance between them in km?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB044-R-v1",
+        "text": "Ek naqshe par 2 cm asal mein 15 km dikhaate hain. Naqshe par do kasbon ke beech 9 cm ki doori hai. Unke beech asli doori kitne km hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB044-C-v1",
+        "text": "On a map, 2 cm stands for 15 km. Naqshe par do kasbon ke beech 9 cm ki doori hai. Unke beech asli doori kitne km hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "scale"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB045",
+    "source_family_id": "PB045-source",
+    "template_group_id": "PB045-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=12/3*1=4",
+    "reference_solution_en": "Cement = 12 / 3 = 4 bags. FINAL: 4 bags",
+    "status": "DRAFT",
+    "gold": {
+      "value": "4",
+      "unit": "bags",
+      "aliases": [
+        "bag",
+        "bori",
+        "boriyaan"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB045-E-v1",
+        "text": "For a garden path, the mortar uses 1 bag of cement for every 3 bags of sand. If the mason uses 12 bags of sand, how many bags of cement does he use?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB045-R-v1",
+        "text": "Bageeche ke raaste ke masaale mein 1 bori cement par 3 bori ret milaayi jaati hai. Agar mistri 12 bori ret lagaata hai, to woh kitni bori cement lagaayega?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB045-C-v1",
+        "text": "Bageeche ke raaste ke masaale mein 1 bori cement par 3 bori ret milaayi jaati hai. If the mason uses 12 bags of sand, how many bags of cement will he use?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "condition",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB046",
+    "source_family_id": "PB046-source",
+    "template_group_id": "PB046-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=35*2/7+6=16",
+    "reference_solution_en": "Priya now = 2/7 x 35 = 10. After 6 years = 16 years. FINAL: 16 years",
+    "status": "DRAFT",
+    "gold": {
+      "value": "16",
+      "unit": "years",
+      "aliases": [
+        "year",
+        "yrs",
+        "saal",
+        "varsh"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB046-E-v1",
+        "text": "Priya's age is 2/7 of her mother's age. Her mother is 35 years old. How old will Priya be after 6 years?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB046-R-v1",
+        "text": "Priya ki umr uski maa ki umr ki 2/7 hai. Uski maa 35 saal ki hain. 6 saal baad Priya kitne saal ki hogi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB046-C-v1",
+        "text": "Priya's age is 2/7 of her mother's age. Uski maa 35 saal ki hain. 6 saal baad Priya kitne saal ki hogi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "fraction_base"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB047",
+    "source_family_id": "PB047-source",
+    "template_group_id": "PB047-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=240*6/96=15",
+    "reference_solution_en": "Mileage = 96 / 6 = 16 km per litre. Petrol = 240 / 16 = 15 L. FINAL: 15 L",
+    "status": "DRAFT",
+    "gold": {
+      "value": "15",
+      "unit": "L",
+      "aliases": [
+        "litre",
+        "litres",
+        "liter",
+        "liters",
+        "l"
+      ],
+      "conversions": {
+        "mL": "1/1000",
+        "millilitre": "1/1000",
+        "millilitres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB047-E-v1",
+        "text": "A car travels 96 km on 6 litres of petrol. How many litres of petrol will it need for a 240 km trip?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB047-R-v1",
+        "text": "Ek gaadi 6 litre petrol mein 96 km chalti hai. 240 km ki yaatra ke liye use kitne litre petrol lagega?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB047-C-v1",
+        "text": "Ek gaadi 6 litre petrol mein 96 km chalti hai. How many litres of petrol will it need for a 240 km trip?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB048",
+    "source_family_id": "PB048-source",
+    "template_group_id": "PB048-template",
+    "topic": "ratios",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1500*2/(2+3)=600",
+    "reference_solution_en": "1.5 L = 1500 mL. Juice = 2/5 x 1500 = 600 mL. FINAL: 600 mL",
+    "status": "DRAFT",
+    "gold": {
+      "value": "600",
+      "unit": "mL",
+      "aliases": [
+        "millilitre",
+        "millilitres",
+        "milliliter",
+        "milliliters"
+      ],
+      "conversions": {
+        "L": "1000",
+        "litre": "1000",
+        "litres": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB048-E-v1",
+        "text": "Gaurav makes a drink by mixing orange juice and water in the ratio 2:3. He wants to make 1.5 litres of the drink. How many millilitres of orange juice does he need?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB048-R-v1",
+        "text": "Gaurav santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai. Use 1.5 litre sharbat banaana hai. Use kitne mL santre ka ras chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB048-C-v1",
+        "text": "Gaurav makes a drink by mixing orange juice and water in the ratio 2:3. Use 1.5 litre sharbat banaana hai. Use kitne mL santre ka ras chahiye?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "ratio"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB049",
+    "source_family_id": "PB049-source",
+    "template_group_id": "PB049-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'prati' (prati); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: prati; C: prati.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=45/6=7.5",
+    "reference_solution_en": "Time = 45 / 6 = 7.5 minutes. FINAL: 7.5 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "7.5",
+      "unit": "minute",
+      "aliases": [
+        "minutes",
+        "min",
+        "mins",
+        "minat",
+        "minut"
+      ],
+      "conversions": {
+        "hour": "60",
+        "hours": "60",
+        "h": "60",
+        "ghanta": "60",
+        "ghante": "60",
+        "second": "1/60",
+        "seconds": "1/60"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB049-E-v1",
+        "text": "A tap fills water at 6 litres per minute. How many minutes will it take to fill a 45-litre drum?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB049-R-v1",
+        "text": "Ek nal 6 litre prati minute ki dar se paani bharta hai. 45 litre ka drum bharne mein kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB049-C-v1",
+        "text": "Ek nal 6 litre prati minute ki dar se paani bharta hai. How many minutes will it take to fill a 45 litre drum?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'prati' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB050",
+    "source_family_id": "PB050-source",
+    "template_group_id": "PB050-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'prati' (prati); C SWITCHES it to English ('per'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: prati; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=72*(2+15/60)=162",
+    "reference_solution_en": "2 hours 15 minutes = 2.25 hours. Distance = 72 x 2.25 = 162 km. FINAL: 162 km",
+    "status": "DRAFT",
+    "gold": {
+      "value": "162",
+      "unit": "km",
+      "aliases": [
+        "kilometre",
+        "kilometres",
+        "kilometer",
+        "kilometers"
+      ],
+      "conversions": {
+        "m": "1/1000",
+        "metre": "1/1000",
+        "metres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB050-E-v1",
+        "text": "A train runs at 72 km per hour. How far does it travel in 2 hours 15 minutes?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB050-R-v1",
+        "text": "Ek rail gaadi 72 km prati ghanta ki raftaar se chalti hai. 2 ghante 15 minute mein woh kitne km jaayegi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB050-C-v1",
+        "text": "The train runs at 72 km per hour. 2 ghante 15 minute mein woh kitne km jaayegi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'prati' switched to English 'per' in C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB051",
+    "source_family_id": "PB051-source",
+    "template_group_id": "PB051-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'har' (har); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: har; C: har.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=18*(25-5)=360",
+    "reference_solution_en": "Time = 20 minutes. Pages = 18 x 20 = 360 pages. FINAL: 360 pages",
+    "status": "DRAFT",
+    "gold": {
+      "value": "360",
+      "unit": "pages",
+      "aliases": [
+        "page",
+        "panne",
+        "panna"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB051-E-v1",
+        "text": "A printer prints 18 pages every minute. How many pages will it print between 10:05 am and 10:25 am?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB051-R-v1",
+        "text": "Ek printer har minute 18 panne chhaapta hai. Subah 10:05 se 10:25 tak woh kitne panne chhaapega?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB051-C-v1",
+        "text": "Ek printer har minute 18 panne chhaapta hai. How many pages will it print between 10:05 am and 10:25 am?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'har' kept in C.",
+        "switching_roles": [
+          "requested_answer",
+          "time_condition"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB052",
+    "source_family_id": "PB052-source",
+    "template_group_id": "PB052-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'har' (har); C SWITCHES it to English ('every'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: har; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=4.5*1000/250=18",
+    "reference_solution_en": "4.5 km = 4500 m. Time = 4500 / 250 = 18 minutes. FINAL: 18 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "18",
+      "unit": "minute",
+      "aliases": [
+        "minutes",
+        "min",
+        "mins",
+        "minat",
+        "minut"
+      ],
+      "conversions": {
+        "hour": "60",
+        "hours": "60",
+        "h": "60",
+        "ghanta": "60",
+        "ghante": "60",
+        "second": "1/60",
+        "seconds": "1/60"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB052-E-v1",
+        "text": "A cyclist rides 250 m every minute. How many minutes will she take to ride 4.5 km?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB052-R-v1",
+        "text": "Ek cycle sawaar har minute 250 m chalti hai. 4.5 km chalne mein use kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB052-C-v1",
+        "text": "Ek cycle sawaar rides 250 m every minute. 4.5 km chalne mein use kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'har' switched to English 'every' in C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB053",
+    "source_family_id": "PB053-source",
+    "template_group_id": "PB053-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'guna' (guna); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: prati, guna; C: prati, guna.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=9/(4*3)*60=45",
+    "reference_solution_en": "Sister's speed = 3 x 4 = 12 km per hour. Time = 9 / 12 hour = 0.75 hour = 45 minutes. FINAL: 45 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "45",
+      "unit": "minute",
+      "aliases": [
+        "minutes",
+        "min",
+        "mins",
+        "minat",
+        "minut"
+      ],
+      "conversions": {
+        "hour": "60",
+        "hours": "60",
+        "h": "60",
+        "ghanta": "60",
+        "ghante": "60",
+        "second": "1/60",
+        "seconds": "1/60"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB053-E-v1",
+        "text": "Ankit walks at 4 km per hour. His sister cycles 3 times as fast as he walks. How many minutes will his sister take to cover 9 km?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB053-R-v1",
+        "text": "Ankit 4 km prati ghanta ki chaal se paidal chalta hai. Uski behen usse 3 guna tez cycle chalaati hai. 9 km tay karne mein behen ko kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB053-C-v1",
+        "text": "Ankit 4 km prati ghanta ki chaal se paidal chalta hai. Uski behen usse 3 guna tez cycle chalaati hai. How many minutes will his sister take to cover 9 km?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'guna' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB054",
+    "source_family_id": "PB054-source",
+    "template_group_id": "PB054-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhaag' (bhaag); C SWITCHES it to English ('divided equally'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: baraabar, bhaag; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=3.6*1000/8=450",
+    "reference_solution_en": "3.6 kg = 3600 g. Each container = 3600 / 8 = 450 g. FINAL: 450 g",
+    "status": "DRAFT",
+    "gold": {
+      "value": "450",
+      "unit": "g",
+      "aliases": [
+        "gram",
+        "grams",
+        "gm"
+      ],
+      "conversions": {
+        "kg": "1000",
+        "kilo": "1000",
+        "kilogram": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB054-E-v1",
+        "text": "3.6 kg of flour is divided equally into 8 containers. How many grams of flour go into each container?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB054-R-v1",
+        "text": "3.6 kg aate ke 8 baraabar bhaag karke unhein dibbon mein rakha gaya. Ek dibbe mein kitne gram aata hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB054-C-v1",
+        "text": "3.6 kg of flour is divided equally into 8 containers. Ek dibbe mein kitne gram aata hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhaag' switched to English 'divided equally' in C.",
+        "switching_roles": [
+          "equal_division"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB055",
+    "source_family_id": "PB055-source",
+    "template_group_id": "PB055-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1500/250*28=168",
+    "reference_solution_en": "1.5 kg = 1500 g = 6 lots of 250 g. Cost = 6 x 28 = 168 rupees. FINAL: 168 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "168",
+      "unit": "INR",
+      "aliases": [
+        "rupees",
+        "rupee",
+        "rupaye",
+        "rupaiye",
+        "Rs",
+        "Rs.",
+        "₹"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB055-E-v1",
+        "text": "A shop sells 250 g of peanuts for ₹28. How much will 1.5 kg of peanuts cost?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB055-R-v1",
+        "text": "Ek dukaan par 250 g moongphali ₹28 ki milti hai. 1.5 kg moongphali kitne ki padegi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB055-C-v1",
+        "text": "Ek dukaan par 250 g moongphali ₹28 ki milti hai. How much will 1.5 kg of peanuts cost?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB056",
+    "source_family_id": "PB056-source",
+    "template_group_id": "PB056-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=(10*60+10)-(7*60+40)=150",
+    "reference_solution_en": "From 7:40 to 10:10 is 2 hours 30 minutes = 150 minutes. FINAL: 150 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "150",
+      "unit": "minute",
+      "aliases": [
+        "minutes",
+        "min",
+        "mins",
+        "minat",
+        "minut"
+      ],
+      "conversions": {
+        "hour": "60",
+        "hours": "60",
+        "h": "60",
+        "ghanta": "60",
+        "ghante": "60",
+        "second": "1/60",
+        "seconds": "1/60"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB056-E-v1",
+        "text": "A bus leaves Jaipur at 7:40 am and reaches Ajmer at 10:10 am. How many minutes does the journey take?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB056-R-v1",
+        "text": "Ek bus subah 7:40 baje Jaipur se chalti hai aur 10:10 baje Ajmer pahunchti hai. Yaatra mein kitne minute lagte hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB056-C-v1",
+        "text": "Ek bus subah 7:40 baje Jaipur se chalti hai and reaches Ajmer at 10:10 am. Yaatra mein kitne minute lagte hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "time_condition"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB057",
+    "source_family_id": "PB057-source",
+    "template_group_id": "PB057-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1.2*60/4=18",
+    "reference_solution_en": "1 hour = 60 minutes = 15 lots of 4 minutes. Water = 15 x 1.2 = 18 L. FINAL: 18 L",
+    "status": "DRAFT",
+    "gold": {
+      "value": "18",
+      "unit": "L",
+      "aliases": [
+        "litre",
+        "litres",
+        "liter",
+        "liters",
+        "l"
+      ],
+      "conversions": {
+        "mL": "1/1000",
+        "millilitre": "1/1000",
+        "millilitres": "1/1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB057-E-v1",
+        "text": "A water purifier gives 1.2 litres of clean water in 4 minutes. How many litres of clean water does it give in 1 hour?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB057-R-v1",
+        "text": "Paani saaf karne ki ek machine 4 minute mein 1.2 litre saaf paani deti hai. 1 ghante mein woh kitne litre saaf paani degi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB057-C-v1",
+        "text": "Paani saaf karne ki ek machine gives 1.2 litres of clean water in 4 minutes. 1 ghante mein woh kitne litre saaf paani degi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB058",
+    "source_family_id": "PB058-source",
+    "template_group_id": "PB058-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=12*100/75=16",
+    "reference_solution_en": "12 m = 1200 cm. Pieces = 1200 / 75 = 16 pieces. FINAL: 16 pieces",
+    "status": "DRAFT",
+    "gold": {
+      "value": "16",
+      "unit": "pieces",
+      "aliases": [
+        "piece",
+        "tukde",
+        "tukda"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB058-E-v1",
+        "text": "A tailor has a 12 m roll of cloth and makes pieces of 75 cm each from it. How many pieces does he make?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB058-R-v1",
+        "text": "Ek darzi ke paas 12 m kapde ka thaan hai aur woh usse 75 cm lambe tukde banaata hai. Woh kitne tukde banaata hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB058-C-v1",
+        "text": "Ek darzi ke paas 12 m kapde ka thaan hai, and he makes pieces of 75 cm each from it. Woh kitne tukde banaata hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "unit_length"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB059",
+    "source_family_id": "PB059-source",
+    "template_group_id": "PB059-template",
+    "topic": "rates_units",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x=1170/45=26",
+    "reference_solution_en": "Time = 1170 / 45 = 26 minutes. FINAL: 26 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "26",
+      "unit": "minute",
+      "aliases": [
+        "minutes",
+        "min",
+        "mins",
+        "minat",
+        "minut"
+      ],
+      "conversions": {
+        "hour": "60",
+        "hours": "60",
+        "h": "60",
+        "ghanta": "60",
+        "ghante": "60",
+        "second": "1/60",
+        "seconds": "1/60"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB059-E-v1",
+        "text": "Kiran types 45 words in a minute. How many minutes will she take to type an essay of 1170 words?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB059-R-v1",
+        "text": "Kiran computer par ek minute mein 45 shabd likhti hai. 1170 shabdon ka nibandh likhne mein use kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB059-C-v1",
+        "text": "Kiran types 45 words in a minute. 1170 shabdon ka nibandh likhne mein use kitne minute lagenge?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "rate"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB060",
+    "source_family_id": "PB060-source",
+    "template_group_id": "PB060-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'guna' (guna); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: guna, ghataaya; C: guna, ghataaya.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "7*x-15=69; x=(69+15)/7=12",
+    "reference_solution_en": "7x - 15 = 69, so 7x = 84 and x = 12. FINAL: 12",
+    "status": "DRAFT",
+    "gold": {
+      "value": "12",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB060-E-v1",
+        "text": "When a number is multiplied by 7 and then 15 is subtracted, the result is 69. What is the number?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB060-R-v1",
+        "text": "Ek sankhya ko 7 se guna karke usmein se 15 ghataaya jaaye to 69 milta hai. Woh sankhya kya hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB060-C-v1",
+        "text": "Ek sankhya ko 7 se guna karke usmein se 15 ghataaya jaaye to 69 milta hai. What is the number?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'guna' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB061",
+    "source_family_id": "PB061-source",
+    "template_group_id": "PB061-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'jod' (jod); C SWITCHES it to English ('adds'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: jod; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x+23=61; x=61-23=38",
+    "reference_solution_en": "x + 23 = 61, so x = 61 - 23 = 38. FINAL: 38",
+    "status": "DRAFT",
+    "gold": {
+      "value": "38",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB061-E-v1",
+        "text": "Mohit thinks of a number and adds 23 to it, and he gets 61. What number did Mohit think of?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB061-R-v1",
+        "text": "Mohit ek sankhya sochta hai aur usmein 23 jod deta hai, to use 61 milta hai. Mohit ne kaun si sankhya sochi thi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB061-C-v1",
+        "text": "Mohit ek sankhya sochta hai and adds 23 to it, to use 61 milta hai. Mohit ne kaun si sankhya sochi thi?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'jod' switched to English 'adds' in C.",
+        "switching_roles": [
+          "operation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB062",
+    "source_family_id": "PB062-source",
+    "template_group_id": "PB062-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'bhaag' (bhaag); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: bhaag, jod; C: bhaag, jod.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x/4+9=21; x=(21-9)*4=48",
+    "reference_solution_en": "x/4 + 9 = 21, so x/4 = 12 and x = 48. FINAL: 48",
+    "status": "DRAFT",
+    "gold": {
+      "value": "48",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB062-E-v1",
+        "text": "A number is divided by 4 and then 9 is added, giving 21. Find the number.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB062-R-v1",
+        "text": "Ek sankhya ko 4 se bhaag dekar usmein 9 jod diya jaaye to 21 milta hai. Woh sankhya gyaat kijiye.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB062-C-v1",
+        "text": "Ek sankhya ko 4 se bhaag dekar usmein 9 jod diya jaaye to 21 milta hai. Find the number.",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'bhaag' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB063",
+    "source_family_id": "PB063-source",
+    "template_group_id": "PB063-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'kul' (kul); C KEEPS it (English switch placed on another relation). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: kul, bade; C: kul, bade.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x+(x+28)=52; x=(52-28)/2=12",
+    "reference_solution_en": "Let the son be x. x + x + 28 = 52, so 2x = 24 and x = 12 years. FINAL: 12 years",
+    "status": "DRAFT",
+    "gold": {
+      "value": "12",
+      "unit": "years",
+      "aliases": [
+        "year",
+        "yrs",
+        "saal",
+        "varsh"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB063-E-v1",
+        "text": "The total of a father's age and his son's age is 52 years. The father is 28 years older than the son. How old is the son?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB063-R-v1",
+        "text": "Pita aur bete ki kul umr 52 saal hai. Pita bete se 28 saal bade hain. Beta kitne saal ka hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB063-C-v1",
+        "text": "Pita aur bete ki kul umr 52 saal hai. Pita bete se 28 saal bade hain. How old is the son?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'kul' kept in C.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB064",
+    "source_family_id": "PB064-source",
+    "template_group_id": "PB064-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: R uses Hindi operation word 'har' (har); C SWITCHES it to English ('each'). Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: har; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "12*x+30=126; x=(126-30)/12=8",
+    "reference_solution_en": "12x + 30 = 126, so 12x = 96 and x = 8 pencils. FINAL: 8 pencils",
+    "status": "DRAFT",
+    "gold": {
+      "value": "8",
+      "unit": "pencils",
+      "aliases": [
+        "pencil",
+        "pensil"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB064-E-v1",
+        "text": "Riya bought some pencils costing ₹12 each and a water bottle for ₹30. She spent ₹126 altogether. How many pencils did she buy?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB064-R-v1",
+        "text": "Riya ne kuch pensil khareedin, jinmein har pensil ₹12 ki thi, aur ₹30 ki ek paani ki botal bhi li. Usne sab milaakar ₹126 kharch kiye. Usne kitni pensil khareedin?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB064-C-v1",
+        "text": "Riya ne kuch pensil khareedin, each costing ₹12, aur ₹30 ki ek paani ki botal bhi li. Usne sab milaakar ₹126 kharch kiye. Usne kitni pensil khareedin?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Hindi operation word 'har' switched to English 'each' in C.",
+        "switching_roles": [
+          "unit_price"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB065",
+    "source_family_id": "PB065-source",
+    "template_group_id": "PB065-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "2*x+3=25; x=(25-3)/2=11",
+    "reference_solution_en": "2x + 3 = 25, so 2x = 22 and x = 11 years. FINAL: 11 years",
+    "status": "DRAFT",
+    "gold": {
+      "value": "11",
+      "unit": "years",
+      "aliases": [
+        "year",
+        "yrs",
+        "saal",
+        "varsh"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB065-E-v1",
+        "text": "If you double the age of Ishaan's cousin and add 3 years, you get Ishaan's age. Ishaan is 25 years old. How old is his cousin?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB065-R-v1",
+        "text": "Agar Ishaan ke chachere bhai ki umr ko dugna karke usmein 3 saal milaaye jaayein, to Ishaan ki umr milti hai. Ishaan 25 saal ka hai. Chachere bhai ki umr kitni hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB065-C-v1",
+        "text": "If you double the age of Ishaan's cousin and add 3 years, you get Ishaan's age. Ishaan 25 saal ka hai. Chachere bhai ki umr kitni hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "equation_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB066",
+    "source_family_id": "PB066-source",
+    "template_group_id": "PB066-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "2*(x+x+6)=64; x=(64/2-6)/2=13",
+    "reference_solution_en": "2(w + w + 6) = 64, so 2w + 6 = 32 and w = 13 m. FINAL: 13 m",
+    "status": "DRAFT",
+    "gold": {
+      "value": "13",
+      "unit": "m",
+      "aliases": [
+        "metre",
+        "metres",
+        "meter",
+        "meters",
+        "mitar"
+      ],
+      "conversions": {
+        "cm": "1/100",
+        "km": "1000"
+      },
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB066-E-v1",
+        "text": "A rectangular garden is 6 m longer than it is wide, and its perimeter is 64 m. What is the width of the garden?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB066-R-v1",
+        "text": "Ek aayataakaar bageecha apni chaudaai se 6 m lamba hai, aur uski parimiti 64 m hai. Bageeche ki chaudaai kitne m hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB066-C-v1",
+        "text": "Ek aayataakaar bageecha apni chaudaai se 6 m lamba hai, and its perimeter is 64 m. Bageeche ki chaudaai kitne m hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "condition"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB067",
+    "source_family_id": "PB067-source",
+    "template_group_id": "PB067-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "5*(30-x)+10*x=220; x=(220-5*30)/5=14",
+    "reference_solution_en": "Let x be the ₹10 coins. 5(30 - x) + 10x = 220, so 150 + 5x = 220 and x = 14 coins. FINAL: 14 coins",
+    "status": "DRAFT",
+    "gold": {
+      "value": "14",
+      "unit": "coins",
+      "aliases": [
+        "coin",
+        "sikke",
+        "sikka"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB067-E-v1",
+        "text": "A piggy bank has only ₹5 coins and ₹10 coins. There are 30 coins worth ₹220 altogether. How many ₹10 coins are there?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB067-R-v1",
+        "text": "Ek gullak mein sirf ₹5 aur ₹10 ke sikke hain. Sikkon ki ginti 30 hai aur unka mool ₹220 hai. Gullak mein ₹10 ke kitne sikke hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB067-C-v1",
+        "text": "Ek gullak mein sirf ₹5 aur ₹10 ke sikke hain. There are 30 coins worth ₹220 altogether. Gullak mein ₹10 ke kitne sikke hain?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "total"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB068",
+    "source_family_id": "PB068-source",
+    "template_group_id": "PB068-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "x+5=2*(x-4); x=5+2*4=13",
+    "reference_solution_en": "x + 5 = 2(x - 4) = 2x - 8, so x = 13 years. FINAL: 13 years",
+    "status": "DRAFT",
+    "gold": {
+      "value": "13",
+      "unit": "years",
+      "aliases": [
+        "year",
+        "yrs",
+        "saal",
+        "varsh"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB068-E-v1",
+        "text": "Megha's age 5 years from now will be twice her age 4 years ago. How old is Megha now?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB068-R-v1",
+        "text": "Ab se 5 saal baad Megha ki umr, 4 saal pehle ki uski umr ki dugni hogi. Megha abhi kitne saal ki hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB068-C-v1",
+        "text": "Megha's age 5 years from now will be twice her age 4 years ago. Megha abhi kitne saal ki hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "equation_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB069",
+    "source_family_id": "PB069-source",
+    "template_group_id": "PB069-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "4*x-(25-x)=70; x=(70+25)/5=19",
+    "reference_solution_en": "Let x be correct answers. 4x - (25 - x) = 70, so 5x = 95 and x = 19 answers. FINAL: 19 answers",
+    "status": "DRAFT",
+    "gold": {
+      "value": "19",
+      "unit": "answers",
+      "aliases": [
+        "answer",
+        "uttar",
+        "correct answers"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB069-E-v1",
+        "text": "In a test, a student gets 4 marks for a correct answer and loses 1 mark for a wrong answer. Arun answered all 25 questions and scored 70 marks. How many of his answers were correct?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB069-R-v1",
+        "text": "Ek pariksha mein sahi uttar par 4 ank milte hain aur galat uttar par 1 ank ka nuksaan hota hai. Arun ne saare 25 prashnon ke uttar diye aur use 70 ank mile. Uske kitne uttar sahi the?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB069-C-v1",
+        "text": "Ek pariksha mein sahi uttar par 4 ank milte hain, and a student loses 1 mark for a wrong answer. Arun ne saare 25 prashnon ke uttar diye aur use 70 ank mile. Uske kitne uttar sahi the?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "deduction"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "PB070",
+    "source_family_id": "PB070-source",
+    "template_group_id": "PB070-template",
+    "topic": "elementary_algebra",
+    "split_role": "PILOT_B_EVAL",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_CLAUDE",
+    "provenance": "AI-drafted by Claude (claude-opus-5-5) on 15 Oct 2026 for Pilot-B; written from scratch; no benchmark, pilot or FMT2 text consulted; unreviewed. Operation-word design: NO Hindi operation word by design (control cell); R and C contain no match under operation_vocab_draft_v1 lexicon plus the user's 15 Oct additions. Lexicon matches (operation_vocab_draft_v1 rule + user additions): R: -; C: -.",
+    "source_license": "No external source; release terms not assigned.",
+    "reference_equation": "(x-1)+x+(x+1)=114; x=114/3=38",
+    "reference_solution_en": "(x - 1) + x + (x + 1) = 3x = 114, so the middle number x = 38. FINAL: 38",
+    "status": "DRAFT",
+    "gold": {
+      "value": "38",
+      "unit": "",
+      "aliases": [],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "PB070-E-v1",
+        "text": "Three consecutive whole numbers add up to 114. What is the middle number?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "PB070-R-v1",
+        "text": "Teen lagaataar poorn sankhyaon ko milaane par 114 milta hai. Beech waali sankhya kaun si hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "PB070-C-v1",
+        "text": "Three consecutive whole numbers add up to 114. Beech waali sankhya kaun si hai?",
+        "creator_type": "AI_DRAFT_CLAUDE",
+        "generation_or_edit_history": "Drafted by Claude (claude-opus-5-5) under the Pilot-B drafting prompt v1 on 15 Oct 2026; no human edits; no transliteration cross-check; unreviewed. Control cell: no Hindi operation word in R or C.",
+        "switching_roles": [
+          "addition"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  }
+]

@@ -31,9 +31,9 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 23 | Lexicon confirmation by the user (bilingual) | HUMAN | DONE 2026-10-15: 24/25 reviewed and endorsed by the user (13–25 AI-assisted drafting); `anupat` unconfirmed | `research/lexicon_confirmation_user_2026-10-15.md` |
 | 24 | Phi-4-mini T4 load + format test (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-15: loads, but inline FINAL and R repetition collapse; excluded from the pilot (D025) | `research/fmt2_phi4mini_2026-10-15/` |
 | 25 | Granite-3.3-2B T4 load + format test (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-15: 0/36 strict (commentary after FINAL); pilot stays single-backbone (D026) | `research/fmt2_granite2b_2026-10-15/` |
-| 26 | Automated verification pipeline: blind solver tasks, Claude/GPT answer comparison, flags, review sheet | Sol | IN PROGRESS 2026-10-15 | `autoverify/` |
-| 27 | Checker validation protocol, drafter split, second-annotator plan | Astra | IN PROGRESS 2026-10-15 | `research/autoverify_protocol_2026-10-15.md` |
-| 28 | Draft 70 Pilot-B families (operation-word balanced) | Claude subagent | IN PROGRESS 2026-10-15 | `pilot_b/` |
+| 26 | Automated verification pipeline: blind solver tasks, Claude/GPT answer comparison, flags, review sheet | Sol | DONE 2026-10-15: 23 tests | `autoverify/` |
+| 27 | Checker validation protocol, drafter split, second-annotator plan | Astra | DONE 2026-10-15 | `research/autoverify_protocol_2026-10-15.md` |
+| 28 | Draft 70 Pilot-B families (operation-word balanced) | Claude subagent | DONE 2026-10-15: 70 families, checker clean | `pilot_b/` |
 | 29 | Draft 140 FINAL_TEST + DEV families (GPT) and 160 TRAIN families (2 Claude subagents) | GPT drafter, Claude subagents | IN PROGRESS 2026-10-15 | `phase2/` |
 | 30 | FMT2 screening runs: Qwen3-1.7B, Qwen3-8B, Gemma-3-4B, Llama-3.2-3B (≤3/36 invalid to join the pilot) | HUMAN runs Colab; Claude analyses | READY 2026-10-15 | `secondary_analysis/Hinglish_FMT2_Format_Test_*_Colab.ipynb` |
 
