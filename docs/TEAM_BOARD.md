@@ -16,7 +16,12 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 8 | v2 human review (R01, R02, A01) | HUMAN | IN PROGRESS (packets distributed) | reviewer JSONs |
 | 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 36/36 complete; see `research/fmt2_format_test_2026-10-14/` | `secondary_analysis/Hinglish_FMT2_Format_Test_Colab.ipynb` → results ZIP |
 | 10 | Confirm prompt v2 (D020): rerun FMT2 notebook (fixtures 0.2.0) on Colab T4 | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 0/36 format failures; prompt v2 frozen | `research/fmt2_format_test_2026-10-14/` |
-| 11 | Align `t4_smoke/protocol.py` instruction with prompt v2 before any training | Sol | OPEN | code + tests |
+| 11 | Align `t4_smoke/protocol.py` instruction with prompt v2 before any training | Sol | IN PROGRESS 2026-10-15 | code + tests |
+| 12 | Operation-vocabulary literature check, lexicon, pilot covariate tags, exploratory analysis plan | Astra | IN PROGRESS 2026-10-15 | `research/operation_vocabulary_2026-10-15.md` |
+| 13 | CMI aligned to spec tags + heuristic pre-tag sheet CLI | Sol | IN PROGRESS 2026-10-15 | `secondary_analysis/cmi.py` |
+| 14 | Minor-project report draft and slide outline from real evidence | Claude | DRAFTED 2026-10-15 (pilot section pending) | `docs/minor_project/` |
+| 15 | Deep research: datasets for scale-up, T4 training feasibility, publication venues, tokenization/mechanism controls | Claude subagents | IN PROGRESS 2026-10-15 | `research/claude_deep_research/` |
+| 16 | Paper-analysis tool: results ZIP → Markdown/LaTeX tables, figures | Claude subagent, Claude | DONE 2026-10-15: 13 tests; verified on both real FMT2 ZIPs (tables match stored metrics exactly) | `paper_analysis/` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 

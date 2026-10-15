@@ -38,16 +38,7 @@ equivalent quantity in another unit is a mismatch and a right number with a
 wrong unit can match. Suffixes outside the canonical unit and aliases are
 flagged `unvalidated_suffix`. This is not semantic or dimensional accuracy.
 
-`cmi(tagged_tokens)` uses CMI = 100 × (1 − max(hi,en)/(N−U)), or zero when N=U,
-for supplied `(token, tag)` pairs with `hi`, `en`, `univ` tags. `analyze_tags`
-returns counts and switch points; switches compare consecutive language-bearing
-tokens, skipping `univ`. The formula follows the Gambäck & Das (2014/2016)
-definition specified in the handoff. `heuristic_tag` and the CLI use tiny
-wordlists, mark numbers/punctuation/known or supplied names as `univ`, and
-default unknown/overlapping words to `univ`. Their editable JSON is explicitly
-**HEURISTIC — NOT GOLD; HUMAN CORRECTION REQUIRED**. Human token/tag correction,
-name identification and borrowing-policy decisions are necessary before using
-the result as annotated CMI. The CLI refuses existing output files.
+`cmi.py` implements CMI_v1 from `research/pre_pilot_endpoint_spec_v1.md` section 5 (decision D018, single annotator). Tags are HI/EN/SHARED/MIXED/UNCERTAIN; legacy hi/en/univ input maps to HI/EN/SHARED. CMI_v1 = 100 × (1 − max(H,E)/(N−U)) with U = SHARED tokens; it is 0 when N = U and null while any MIXED or UNCERTAIN token remains. Switch points skip SHARED tokens within a sentence but never bridge sentence ends or MIXED/UNCERTAIN tokens. `python3 -B -m secondary_analysis.cmi --dataset DATASET.json --output-dir NEW_DIR` writes heuristic `R.csv`/`C.csv` token sheets (one token per row) for one bilingual human to correct. Rows are labelled **HEURISTIC — NOT GOLD**. Unknown words and homographs default to UNCERTAIN, gold and E text are excluded, and existing or pilot directories are refused.
 
 `format_fixtures.json` contains 12 newly authored, unreviewed synthetic families
 and 36 E/R/C texts, all `FMT2-` and `EXCLUDED_FORMAT_FIXTURE`. Gold fields follow

@@ -2,14 +2,37 @@ import argparse
 import hashlib
 import json
 import re
+from fractions import Fraction
 from pathlib import Path
 
 
 MODEL = "Qwen/Qwen3-4B"
-INSTRUCTION = (
+INSTRUCTION_V1 = (
     "Solve the problem. Give a short explanation in English. End with exactly one "
     "line: FINAL: <number or fraction> <unit when applicable>."
 )
+INSTRUCTION = (
+    "Solve the problem. Give a short explanation in English, even if the question is not "
+    "in English. End with exactly one line: FINAL: <number or fraction>, followed by its "
+    "unit in English only if the answer has a unit; write nothing after a pure number or fraction."
+)
+# Conservative vocabulary for model-free validation, not the frozen scoring
+# alias ledger. New English units need an explicit vocabulary review here;
+# Romanized Hindi aliases must never become training-target suffixes.
+ENGLISH_UNITS = frozenset("""
+    % INR Rs rupee rupees L mL m cm km kg g h s
+    litre litres liter liters millilitre millilitres milliliter milliliters
+    metre metres meter meters centimetre centimetres centimeter centimeters
+    kilometre kilometres kilometer kilometers kilogram kilograms gram grams
+    hour hours minute minutes second seconds percent percentage
+    marble marbles bead beads ticket tickets notebook notebooks book books
+    pen pens pencil pencils bottle bottles box boxes bag bags apple apples
+    orange oranges mango mangoes student students person people plate plates
+    seat seats bus buses cycle cycles jug jugs coin coins item items
+    girl girls piece pieces sticker stickers
+""".casefold().split())
+_NUMBER = r"[+-]?(?:[0-9][0-9,]*(?:\.[0-9]+)?|\.[0-9]+)"
+_FINAL_ANSWER = re.compile(r"FINAL: (" + _NUMBER + r"(?:[ \t]*/[ \t]*[+-]?[0-9][0-9,]*)?)(?:[ \t]+([^\n]+))?")
 STACK = {
     "torch": "2.7.1", "transformers": "4.51.3", "peft": "0.15.2",
     "bitsandbytes": "0.45.5", "accelerate": "1.6.0",
@@ -73,6 +96,43 @@ def identifiers(record):
     return {record["family_id"], record["source_family_id"]}
 
 
+def validate_final(text, unit=None):
+    """Require the v2 terminal target format; optional gold unit disambiguates
+    dimensionless answers. This checks syntax/language, not answer correctness.
+    English suffixes use ENGLISH_UNITS; unsupported units fail for review.
+    """
+    require(isinstance(text, str) and bool(text.strip()), "Empty target/reference solution")
+    require(len(re.findall(r"\bFINAL\s*:", text, re.IGNORECASE)) == 1, "Need exactly one FINAL line")
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    match = _FINAL_ANSWER.fullmatch(lines[-1])
+    require(match is not None, "Target/reference FINAL must end with a number or fraction and optional English unit")
+    number, suffix = match.groups()
+    for part in number.split("/"):
+        whole = part.strip().split(".")[0].lstrip("+-")
+        require(
+            "," not in whole or bool(re.fullmatch(r"[1-9][0-9]{0,2}(?:,[0-9]{3})+|[1-9][0-9]?(?:,[0-9]{2})*,[0-9]{3}", whole)),
+            "Invalid numeric grouping in FINAL",
+        )
+    try:
+        parts = number.replace(",", "").split("/")
+        value = Fraction(parts[0].strip())
+        if len(parts) == 2:
+            value /= Fraction(parts[1].strip())
+    except (ValueError, ZeroDivisionError):
+        raise ValueError("Invalid number/fraction in FINAL") from None
+    require(suffix is None or suffix.casefold() in ENGLISH_UNITS, "FINAL suffix must be a supported English unit; nothing after a pure number/fraction")
+    if unit is not None:
+        require(isinstance(unit, str), "gold.unit must be text")
+        require(bool(suffix) == bool(unit), "FINAL unit presence must match gold.unit; nothing after a pure number/fraction")
+
+
+def validate_targets(family):
+    unit = family.get("gold", {}).get("unit")
+    validate_final(family["completion"], unit)
+    if "reference_solution_en" in family:
+        validate_final(family["reference_solution_en"], unit)
+
+
 def validate_data(data, manifest):
     require(bool(data.get("version")), "Missing smoke data version")
     families = data["families"]
@@ -89,6 +149,7 @@ def validate_data(data, manifest):
         require(family.get("split_role") == "SMOKE_TRAIN", "Not SMOKE_TRAIN")
         for field in ("provenance", "source_license", "completion"):
             require(isinstance(family.get(field), str) and family[field].strip(), f"Missing {field}")
+        validate_targets(family)
         require(set(family["forms"]) == {"E", "R", "C"}, "Need all three forms to validate both arms")
         for text in family["forms"].values():
             require(isinstance(text, str) and text.strip(), "Empty prompt")
@@ -116,6 +177,7 @@ def validate_data(data, manifest):
 
 
 def encode_record(tokenizer, family, form):
+    validate_targets(family)
     messages = [{"role": "system", "content": INSTRUCTION},
                 {"role": "user", "content": family["forms"][form]}]
     for text in (family["forms"][form], family["completion"]):

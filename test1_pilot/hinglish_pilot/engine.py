@@ -59,7 +59,7 @@ def csvfile(path, rows, fields):
         out.writeheader()
         for row in rows:
             # Prevent spreadsheet formula execution when opening user/model text.
-            safe = {k: ("'" + v if isinstance(v, str) and v[:1] in '=+-@' else v)
+            safe = {k: ("'" + v if isinstance(v, str) and v[:1] != '' and v[:1] in '=+-@' else v)
                     for k, v in row.items()}
             out.writerow(safe)
 
