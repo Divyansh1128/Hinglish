@@ -1860,5 +1860,337 @@
       "reviewers": [],
       "adjudication": null
     }
+  },
+  {
+    "family_id": "DV035",
+    "source_family_id": "DV035-source",
+    "template_group_id": "DV035-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kul. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x+(x+2)+(x+4)=81; answer = 81/3-2 = 25",
+    "reference_solution_en": "The middle label is one third of the sum, or 27. The first odd label is two below it.\nFINAL: 25",
+    "status": "DRAFT",
+    "gold": {
+      "value": "25",
+      "unit": "",
+      "aliases": [
+        "label number",
+        "pehchaan sankhya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV035-E",
+        "text": "Three adjacent library drawers have consecutive odd-number labels in ascending order. The labels total 81. What is the first label number?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV035-R",
+        "text": "Pustakalay ki teen paas-paas ki daraazon par chadhte kram mein lagaatar visham sankhyaon ke chihn hain. In sankhyaon ka kul yog 81 hai. Pehli daraaz ki sankhya kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV035-C",
+        "text": "Pustakalay ki teen paas-paas ki daraazon par chadhte kram mein lagaatar visham sankhyaon ke chihn hain. In sankhyaon ka kul yog 81 hai. What is the first label number?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV036",
+    "source_family_id": "DV036-source",
+    "template_group_id": "DV036-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: varg. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x*x=81; x>0; answer = 9 = 9",
+    "reference_solution_en": "The positive side length whose square is 81 is 9 cm.\nFINAL: 9 centimetres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "9",
+      "unit": "centimetres",
+      "aliases": [
+        "centimetre",
+        "cm",
+        "sentimetar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV036-E",
+        "text": "A square image displayed on a phone has area 81 square centimetres. If its side length is x cm, then x squared is 81. What is x?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: varg. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV036-R",
+        "text": "Doorbhaash par dikh rahe chaukor chitra ka kshetrafal 81 varg cm hai. Uski bhuja x cm ho to x ka varg 81 hai. x ka maan kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: varg. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV036-C",
+        "text": "Doorbhaash par dikh rahe chaukor chitra ka kshetrafal 81 varg cm hai. Uski bhuja x cm ho to x ka varg 81 hai. What is x?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: varg. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV037",
+    "source_family_id": "DV037-source",
+    "template_group_id": "DV037-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: ghata. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "F=9*C/5+32; F=77; answer = (77-32)*5/9 = 25",
+    "reference_solution_en": "Subtract 32 from 77 and multiply by 5/9 to invert the temperature conversion.\nFINAL: 25 degrees Celsius",
+    "status": "DRAFT",
+    "gold": {
+      "value": "25",
+      "unit": "degrees Celsius",
+      "aliases": [
+        "degree Celsius",
+        "C",
+        "deg C",
+        "degree selsiyas"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV037-E",
+        "text": "A weather display converts Celsius C to Fahrenheit F using F = 9*C/5 + 32. It currently shows 77 degrees Fahrenheit. To obtain C, subtract 32 from 77 and multiply by 5/9. What is the temperature in degrees Celsius?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: ghata. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV037-R",
+        "text": "Mausam ka yantra Celsius C se Fahrenheit F ke liye F = 9*C/5 + 32 lagaata hai. Ab F ka maan 77 hai. C paane ke liye 77 se 32 ghata kar 5/9 se guna karna hai. Taapmaan kitne degree Celsius hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: ghata. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV037-C",
+        "text": "Mausam ka yantra Celsius C se Fahrenheit F ke liye F = 9*C/5 + 32 lagaata hai. Ab F ka maan 77 hai. To obtain C, subtract 32 from 77 and multiply by 5/9. Taapmaan kitne degree Celsius hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: ghata. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "inverse_operations"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV038",
+    "source_family_id": "DV038-source",
+    "template_group_id": "DV038-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "0.08*w+2=6.8; answer = (6.8-2)/0.08 = 60",
+    "reference_solution_en": "Remove the fixed 2 kg allowance from the 6.8 kg setting, then divide by 0.08.\nFINAL: 60 kilograms",
+    "status": "DRAFT",
+    "gold": {
+      "value": "60",
+      "unit": "kilograms",
+      "aliases": [
+        "kilogram",
+        "kg",
+        "kilograam"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV038-E",
+        "text": "A hospital equipment test sets a support load L in kilograms using L = 0.08*w + 2, where w is the test dummy mass in kilograms. The support load is 6.8 kg. What is w?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV038-R",
+        "text": "Aspataal ke upkaran ki jaanch mein sahaare ka bhaar L kg, L = 0.08*w + 2 se tay hota hai. Yahaan w jaanch ke putle ka dravyamaan kg mein hai. Sahaare ka bhaar 6.8 kg hai. w kitne kg hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV038-C",
+        "text": "Aspataal ke upkaran ki jaanch mein sahaare ka bhaar L kg, L = 0.08*w + 2 se tay hota hai. Here w is the test dummy mass in kilograms. Sahaare ka bhaar 6.8 kg hai. w kitne kg hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "variable_definition"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV039",
+    "source_family_id": "DV039-source",
+    "template_group_id": "DV039-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x+y=11; 2*x+y=18; answer = 11-(18-11) = 4",
+    "reference_solution_en": "Subtract the first week from the second to obtain 7 hours of planning. The first week then has 4 hours of training.\nFINAL: 4 hours",
+    "status": "DRAFT",
+    "gold": {
+      "value": "4",
+      "unit": "hours",
+      "aliases": [
+        "hour",
+        "h",
+        "ghanta",
+        "ghante"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV039-E",
+        "text": "An office allocates 11 hours to planning and training in one week. The next week it doubles the planning hours and keeps training unchanged, making 18 hours for the two activities. How many hours of training are allocated each week?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV039-R",
+        "text": "Daftar mein ek hafte yojana banaane aur prashikshan ke liye 11 ghante hain. Agle hafte yojana banaane ka samay dugna hota hai aur prashikshan ka samay vahin rehta hai; donon gatividhiyon ke liye 18 ghante hote hain. Ek hafte mein prashikshan kitne ghante ka hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV039-C",
+        "text": "Daftar mein ek hafte yojana banaane aur prashikshan ke liye 11 ghante hain. The next week planning time doubles while training time stays unchanged, making 18 hours for the two activities. Ek hafte mein prashikshan kitne ghante ka hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "change_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "DV040",
+    "source_family_id": "DV040-source",
+    "template_group_id": "DV040-template",
+    "topic": "elementary_algebra",
+    "split_role": "DEV",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "abs(x-7)=5; x>7; answer = 7+5 = 12",
+    "reference_solution_en": "The two coordinates 5 m from 7 are 2 and 12. The cupboard is beyond the fountain from the entrance, selecting 12.\nFINAL: 12 metres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "12",
+      "unit": "metres",
+      "aliases": [
+        "metre",
+        "m",
+        "meetar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "DV040-E",
+        "text": "A straight hostel corridor is marked in metres from its entrance. A water fountain is at 7 m. A cupboard is 5 m from the fountain and lies farther from the entrance than the fountain does. At what metre mark is the cupboard?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "DV040-R",
+        "text": "Chhatravaas ke seedhe galiyaare mein pravesh se doori m mein likhi hai. Paani ka nal 7 m par hai. Almaari nal se 5 m door hai aur pravesh se chalne par nal ke aage aati hai. Almaari kitne m ke chihn par hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "DV040-C",
+        "text": "Chhatravaas ke seedhe galiyaare mein pravesh se doori m mein likhi hai. Paani ka nal 7 m par hai. The cupboard is 5 m from the fountain and lies farther from the entrance than the fountain does. Almaari kitne m ke chihn par hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "distance_constraint",
+          "direction_constraint"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
   }
 ]

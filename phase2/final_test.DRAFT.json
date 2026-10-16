@@ -4564,5 +4564,888 @@
       "reviewers": [],
       "adjudication": null
     }
+  },
+  {
+    "family_id": "FT085",
+    "source_family_id": "FT085-source",
+    "template_group_id": "FT085-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kam. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x+(x+8)=34; answer = (34-8)/2 = 13",
+    "reference_solution_en": "The second queue has 8 more people. Subtract that difference from the combined count, then halve it.\nFINAL: 13 people",
+    "status": "DRAFT",
+    "gold": {
+      "value": "13",
+      "unit": "people",
+      "aliases": [
+        "person",
+        "log",
+        "vyakti"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT085-E",
+        "text": "Two hospital registration queues contain 34 people altogether. The first queue has 8 fewer people than the second. How many people are in the first queue?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT085-R",
+        "text": "Aspataal mein panjikaran ki do panktiyon mein sab milaakar 34 log hain. Pehli mein doosri se 8 log kam hain. Pehli pankti mein kitne log hain?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT085-C",
+        "text": "Aspataal mein panjikaran ki do panktiyon mein sab milaakar 34 log hain. Pehli mein doosri se 8 log kam hain. How many people are in the first queue?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R focal operation word: kam. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT086",
+    "source_family_id": "FT086-source",
+    "template_group_id": "FT086-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kul. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "2*x-15=75; answer = (75+15)/2 = 45",
+    "reference_solution_en": "The overlap was counted in both bookings. Add it to the occupied time, then divide by two.\nFINAL: 45 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "45",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT086-E",
+        "text": "Two office room bookings have the same duration and overlap for 15 minutes. The room is occupied for a total of 75 minutes across the two bookings, with no gap. How many minutes does each booking last?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT086-R",
+        "text": "Daftar ke kamre ki do aarakshanon ki avadhi samaan hai aur unke 15 minute ek saath padte hain. Donon aarakshan se kamra kul 75 minute tak ghira rehta hai, beech mein viraam nahin hai. Ek aarakshan ki avadhi kitne minute hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT086-C",
+        "text": "Daftar ke kamre ki do aarakshanon ki avadhi samaan hai aur unke 15 minute ek saath padte hain. Donon se kamra kul 75 minute tak ghira rehta hai, beech mein viraam nahin hai. How many minutes does each booking last?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R focal operation word: kul. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT087",
+    "source_family_id": "FT087-source",
+    "template_group_id": "FT087-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: guna. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "3*x-2=19; answer = (19+2)/3 = 7",
+    "reference_solution_en": "Undo the subtraction of 2, then divide by the scale factor of 3.\nFINAL: 7 centimetres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "7",
+      "unit": "centimetres",
+      "aliases": [
+        "centimetre",
+        "cm",
+        "sentimetar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT087-E",
+        "text": "A pond gauge displays three times the actual water depth in centimetres, minus 2. Its displayed number is 19. What is the actual depth in centimetres?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT087-R",
+        "text": "Taalaab ka maapak, cm mein asli gehraai ke 3 guna se 2 ghataakar sankhya dikhaata hai. Dikhne waali sankhya 19 hai. Asli gehraai kitne cm hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT087-C",
+        "text": "Taalaab ka maapak, cm mein asli gehraai ke 3 guna se 2 ghataakar sankhya dikhaata hai. Dikhne waali sankhya 19 hai. What is the actual depth in centimetres?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R focal operation word: guna. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT088",
+    "source_family_id": "FT088-source",
+    "template_group_id": "FT088-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: jod. C kept this operation word and switches the requested-answer clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x+(x+1)=157; answer = (157-1)/2 = 78",
+    "reference_solution_en": "The right page number is one above the left. Removing that extra one leaves twice the left number.\nFINAL: 78",
+    "status": "DRAFT",
+    "gold": {
+      "value": "78",
+      "unit": "",
+      "aliases": [
+        "page number",
+        "prishth sankhya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT088-E",
+        "text": "An open library book shows consecutive numbered pages on the left and right. Their page numbers add to 157. What number is on the left page?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: jod. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT088-R",
+        "text": "Pustakalay ki khuli kitab mein baayein aur daayein panne ki sankhya lagaatar hain. Donon sankhyaon ka jod 157 hai. Baayein panne ki sankhya kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: jod. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT088-C",
+        "text": "Pustakalay ki khuli kitab mein baayein aur daayein panne ki sankhya lagaatar hain. Donon sankhyaon ka jod 157 hai. What number is on the left page?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R focal operation word: jod. C kept this operation word and switches the requested-answer clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT089",
+    "source_family_id": "FT089-source",
+    "template_group_id": "FT089-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: hissa. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x/4+6=23; answer = (23-6)*4 = 68",
+    "reference_solution_en": "Remove the fixed 6 MB header. The other 17 MB is one quarter of the original file.\nFINAL: 68 megabytes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "68",
+      "unit": "megabytes",
+      "aliases": [
+        "MB",
+        "megabyte",
+        "megabait"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT089-E",
+        "text": "A phone stores a compressed file at one quarter of its original size, then attaches a fixed 6 MB header. The resulting file occupies 23 MB. How large was the original file in MB?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT089-R",
+        "text": "Doorbhaash par dabaayi gayi sanchika ka aakaar mool aakaar ka chautha hissa hai. Usmein 6 MB ki nishchit shirsh jaankaari lagne par aakaar 23 MB hota hai. Mool sanchika kitne MB ki thi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT089-C",
+        "text": "Doorbhaash par the compressed file is one quarter of the original size, with a fixed 6 MB header added afterward. Isse aakaar 23 MB hota hai. Mool sanchika kitne MB ki thi?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R focal operation word: hissa. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "fraction_relation",
+          "additive_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT090",
+    "source_family_id": "FT090-source",
+    "template_group_id": "FT090-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: zyada. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "2*(x+x+4)=56; answer = (56/2-4)/2 = 12",
+    "reference_solution_en": "Half the perimeter is length plus width. Remove the 4 m difference, then halve the result.\nFINAL: 12 metres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "12",
+      "unit": "metres",
+      "aliases": [
+        "metre",
+        "m",
+        "meetar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT090-E",
+        "text": "A rectangular wedding canopy has a length 4 m greater than its width. Its perimeter is 56 m. What is its width in metres?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: zyada. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT090-R",
+        "text": "Shaadi ke aayataakaar shamiyane ki lambaai uski chaudaai se 4 m zyada hai. Uska parimaap 56 m hai. Chaudaai kitne m hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: zyada. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT090-C",
+        "text": "Shaadi ke aayataakaar shamiyane ki length is 4 m greater than its width. Uska parimaap 56 m hai. Chaudaai kitne m hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: zyada. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "comparison"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT091",
+    "source_family_id": "FT091-source",
+    "template_group_id": "FT091-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: kaat. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "(x-6)+(x-9)+(x-12)=99; answer = (99+6+9+12)/3 = 42",
+    "reference_solution_en": "Restore the three deductions to recover the combined starting balances, then divide by three.\nFINAL: 42 rupees",
+    "status": "DRAFT",
+    "gold": {
+      "value": "42",
+      "unit": "rupees",
+      "aliases": [
+        "INR",
+        "rupee",
+        "Rs",
+        "rupaye",
+        "rupaya"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT091-E",
+        "text": "Three hostel meal accounts start with the same balance. Deductions of INR 6, INR 9 and INR 12 are made from the respective accounts. The balances afterward total INR 99. What was the starting balance of one account?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT091-R",
+        "text": "Chhatravaas ke bhojan ke teen khaaton mein shuru ki raashi samaan hai. Pehle se INR 6, doosre se INR 9 aur teesre se INR 12 kaat diye jaate hain. Iske baad teenon raashiyon ka yog INR 99 hai. Ek khaate mein shuru mein kitne rupaye the?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT091-C",
+        "text": "Chhatravaas ke bhojan ke teen khaaton mein shuru ki raashi samaan hai. INR 6, INR 9 and INR 12 are deducted from the respective accounts; their balances then total INR 99. Ek khaate mein shuru mein kitne rupaye the?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R focal operation word: kaat. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "deduction",
+          "combined_balance"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT092",
+    "source_family_id": "FT092-source",
+    "template_group_id": "FT092-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R focal operation word: baraabar. C replaced this operation word with an English relation or clause.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "40+12*x=64+8*x; answer = (64-40)/(12-8) = 6",
+    "reference_solution_en": "The second quote starts INR 24 higher but adds INR 4 less per kilometre. The quotes meet at 6 km.\nFINAL: 6 kilometres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "6",
+      "unit": "kilometres",
+      "aliases": [
+        "kilometre",
+        "km",
+        "kilometar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT092-E",
+        "text": "For a delivery of x kilometres, one auto service quotes INR (40 + 12*x), and another quotes INR (64 + 8*x). At what distance are the quotes equal?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT092-R",
+        "text": "x km ki pahunchaai par ek tipahiya seva ka bhaada INR (40 + 12*x) aur doosri ka INR (64 + 8*x) hai. Kitne km par donon bhaade baraabar honge?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT092-C",
+        "text": "x km ki pahunchaai par ek tipahiya seva ka bhaada INR (40 + 12*x) aur doosri ka INR (64 + 8*x) hai. At what distance in kilometres are the two quotes equal?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R focal operation word: baraabar. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "equality",
+          "requested_answer"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT093",
+    "source_family_id": "FT093-source",
+    "template_group_id": "FT093-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "4*x+3*5=95; answer = (95-3*5)/4 = 20",
+    "reference_solution_en": "Four consultations create three internal gaps. Remove their 15 minutes and divide the consultation time by four.\nFINAL: 20 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "20",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT093-E",
+        "text": "A clinic schedules four consultations of identical length, with a 5-minute gap between consecutive consultations. From the first start to the last finish takes 95 minutes. How long is one consultation?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT093-R",
+        "text": "Chikitsalay mein samaan avadhi ke chaar paraamarsh hain. Lagaatar do paraamarshon ke beech 5 minute ka viraam hai. Pehle ki shuruaat se antim ke ant tak 95 minute lagte hain. Ek paraamarsh kitne minute ka hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT093-C",
+        "text": "Chikitsalay mein samaan avadhi ke chaar paraamarsh hain. There is a 5-minute gap between consecutive consultations. Pehle ki shuruaat se antim ke ant tak 95 minute lagte hain. Ek paraamarsh kitne minute ka hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hospitals and health. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "interval_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT094",
+    "source_family_id": "FT094-source",
+    "template_group_id": "FT094-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "(12+17+x)/3=15; answer = 3*15-12-17 = 16",
+    "reference_solution_en": "An average of 15 minutes across three sessions means 45 minutes overall. Remove the two known durations.\nFINAL: 16 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "16",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT094-E",
+        "text": "An office records the durations of three training sessions. Two lasted 12 minutes and 17 minutes. The arithmetic mean of all three durations is 15 minutes. How many minutes did the third session last?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT094-R",
+        "text": "Daftar mein teen prashikshan satron ki avadhi likhi gayi. Do satra 12 minute aur 17 minute chale. Teenon avadhiyon ka ankganitiya ausat 15 minute hai. Teesra satra kitne minute chala?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT094-C",
+        "text": "Daftar mein teen prashikshan satron mein se do 12 minute aur 17 minute chale. The arithmetic mean of all three durations is 15 minutes. Teesra satra kitne minute chala?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: offices and work schedules. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "mean_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT095",
+    "source_family_id": "FT095-source",
+    "template_group_id": "FT095-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x*(x+1)=42; x>0; answer = 6 = 6",
+    "reference_solution_en": "There are x rows and x+1 saplings in a row. The consecutive positive integers whose product is 42 are 6 and 7, so there are 6 rows.\nFINAL: 6 rows",
+    "status": "DRAFT",
+    "gold": {
+      "value": "6",
+      "unit": "rows",
+      "aliases": [
+        "row",
+        "pankti",
+        "panktiyan"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT095-E",
+        "text": "A nursery arranges 42 saplings in a rectangular grid. If there are x rows, there are x+1 saplings in a row. What is the positive whole-number value of x?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT095-R",
+        "text": "Paudhshaala mein 42 paudhe aayataakaar jaali mein lage hain. Panktiyon ki sankhya x ho to ek pankti mein x+1 paudhe hain. x ka dhan poornank maan kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT095-C",
+        "text": "Paudhshaala mein 42 paudhe aayataakaar jaali mein lage hain. If there are x rows, there are x+1 saplings in a row. x ka dhan poornank maan kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weather and nature. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "algebraic_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT096",
+    "source_family_id": "FT096-source",
+    "template_group_id": "FT096-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "(10*x+3)-(30+x)=27; answer = (27+27)/9 = 6",
+    "reference_solution_en": "The original code is 10*x+3 and the reversed code is 30+x. Their difference is 9*x-27, so 9*x is 54.\nFINAL: 6",
+    "status": "DRAFT",
+    "gold": {
+      "value": "6",
+      "unit": "",
+      "aliases": [
+        "digit",
+        "ank"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT096-E",
+        "text": "A library cabinet has a two-digit code ending in 3. Reversing its digits gives another two-digit code. Subtracting the reversed code from the original gives 27. What is the first digit of the original code?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT096-R",
+        "text": "Pustakalay ki almaari ki do ankon ki pehchaan sankhya ka antim ank 3 hai. Ankon ka kram palatne par bhi do ankon ki sankhya banti hai. Mool sankhya aur palti sankhya ka antar 27 hai, aur mool sankhya adhik hai. Mool sankhya ka pehla ank kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT096-C",
+        "text": "Pustakalay ki almaari ki do ankon ki pehchaan sankhya ka antim ank 3 hai. Ankon ka kram palatne par bhi do ankon ki sankhya banti hai. The original code minus the reversed code is 27. Mool sankhya ka pehla ank kya hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: libraries and books. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "subtraction_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT097",
+    "source_family_id": "FT097-source",
+    "template_group_id": "FT097-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "5*x<=27<6*x; x is a positive integer; answer = 5 = 5",
+    "reference_solution_en": "Five clips fitting implies x is at most 5.4 MB; six not fitting implies x is above 4.5 MB. The only whole number is 5.\nFINAL: 5 megabytes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "5",
+      "unit": "megabytes",
+      "aliases": [
+        "MB",
+        "megabyte",
+        "megabait"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT097-E",
+        "text": "A phone has exactly 27 MB free. Identical clips each occupy a positive whole number of MB, with no storage overhead. Five clips fit, but six do not. How many MB does one clip occupy?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT097-R",
+        "text": "Doorbhaash mein theek 27 MB jagah khaali hai. Samaan aakaar ki chhoti chalchitra sanchikaaon mein ek sanchika dhan poornank MB leti hai; alag se koi jagah nahin lagti. Paanch sanchika samaati hain, chhah nahin. Ek sanchika kitne MB ki hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT097-C",
+        "text": "Doorbhaash mein theek 27 MB jagah khaali hai. Samaan aakaar ki ek chalchitra sanchika dhan poornank MB leti hai; alag se koi jagah nahin lagti. Five files fit, but six do not. Ek sanchika kitne MB ki hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: mobile phones and data plans. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "capacity_constraints"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT098",
+    "source_family_id": "FT098-source",
+    "template_group_id": "FT098-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "(x+130)/2=95; answer = (2*95-130) = 60",
+    "reference_solution_en": "Measured from 13:00, the midpoint is minute 95 and the finish is minute 130. Reflect the finish about the midpoint to obtain the start.\nFINAL: 60 minutes",
+    "status": "DRAFT",
+    "gold": {
+      "value": "60",
+      "unit": "minutes",
+      "aliases": [
+        "minute",
+        "min",
+        "minat"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT098-E",
+        "text": "A wedding rehearsal has its exact time midpoint at 14:35 and finishes at 15:10 on the same afternoon. How many minutes after 13:00 did it start?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT098-R",
+        "text": "Shaadi ke abhyaas ki shuruaat aur ant ke theek madhya ka samay 14:35 hai. Abhyaas usi dopahar 15:10 par khatm hota hai. Vah 13:00 se kitne minute baad shuru hua?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT098-C",
+        "text": "Shaadi ke abhyaas ka exact time midpoint is 14:35, and it finishes at 15:10 that afternoon. Vah 13:00 se kitne minute baad shuru hua?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: weddings and events. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "midpoint_relation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT099",
+    "source_family_id": "FT099-source",
+    "template_group_id": "FT099-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "48/x-48/(x+4)=2; x*(x+4)=96; x>0; answer = 8 = 8",
+    "reference_solution_en": "The two allocations differ by 192/(x*(x+4)) litres, which is 2. Thus x*(x+4)=96; the positive solution is 8, giving 6 litres before and 4 litres after.\nFINAL: 8 residents",
+    "status": "DRAFT",
+    "gold": {
+      "value": "8",
+      "unit": "residents",
+      "aliases": [
+        "resident",
+        "nivaasi",
+        "nivaasiyon"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT099-E",
+        "text": "A hostel sets out 48 L of drinking water for an initial group, with identical allocations. Four residents then join, and the same 48 L is reallocated identically across the enlarged group. The allocation drops by 2 L per person. How many residents were in the initial group?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT099-R",
+        "text": "Chhatravaas mein pehle samooh ke liye 48 L peene ka paani hai aur sabko samaan matra milni hai. Phir chaar nivaasi judte hain; usi 48 L se naye samooh mein sabko samaan matra milti hai. Ek vyakti ki matra mein 2 L ki giraavat aati hai. Pehle samooh mein kitne nivaasi the?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT099-C",
+        "text": "Chhatravaas mein pehle samooh ke liye 48 L paani hai aur sabko samaan matra milni hai. Chaar nivaasi judne par usi 48 L se naye samooh mein sabko samaan matra milti hai. The allocation drops by 2 L per person. Pehle samooh mein kitne nivaasi the?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: hostels and messes. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "change_in_allocation"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
+  },
+  {
+    "family_id": "FT100",
+    "source_family_id": "FT100-source",
+    "template_group_id": "FT100-template",
+    "topic": "elementary_algebra",
+    "split_role": "FINAL_TEST",
+    "version": "v1",
+    "authoring_origin": "AI_DRAFT_GPT",
+    "provenance": "AI-drafted by GPT on 15 Oct 2026; unreviewed; written from scratch; no benchmark consulted. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable.",
+    "source_license": "No external source used; release terms not assigned.",
+    "reference_equation": "x/2+x/3+4=19; answer = (19-4)/(1/2+1/3) = 18",
+    "reference_solution_en": "Remove the final 4 km. The other 15 km equals five-sixths of the reference distance.\nFINAL: 18 kilometres",
+    "status": "DRAFT",
+    "gold": {
+      "value": "18",
+      "unit": "kilometres",
+      "aliases": [
+        "kilometre",
+        "km",
+        "kilometar"
+      ],
+      "conversions": {},
+      "unit_omission_allowed": true,
+      "rounding_rule": "exact"
+    },
+    "forms": {
+      "E": {
+        "rendering_id": "FT100-E",
+        "text": "A courier records three legs: half a reference distance x, one third of x, and a final 4 km. The complete journey is 19 km. What is x in kilometres?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "R": {
+        "rendering_id": "FT100-R",
+        "text": "Vaahak ki yaatra ke teen charan hain: sandarbh doori x ka aadha, x ka ek tihaai, aur antim 4 km. Poori yaatra 19 km hai. x kitne km hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": []
+      },
+      "C": {
+        "rendering_id": "FT100-C",
+        "text": "Vaahak ki yaatra ke teen charan hain: sandarbh doori x ka aadha, x ka ek tihaai, aur antim 4 km. The complete journey is 19 km. x kitne km hai?",
+        "creator_type": "GPT",
+        "generation_or_edit_history": "GPT; prompt task-29 resume v1; 15 Oct 2026; written from scratch; context: auto-rickshaws and deliveries. R operation-word condition: no focal lexicon operation word; relation expressed through Hindi phrasing or numeric notation. C retention: not applicable. No human edits or independent transliteration cross-check; unreviewed.",
+        "switching_roles": [
+          "total_distance"
+        ]
+      }
+    },
+    "review": {
+      "reviewers": [],
+      "adjudication": null
+    }
   }
 ]
