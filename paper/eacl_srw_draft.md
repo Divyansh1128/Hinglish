@@ -121,7 +121,7 @@ Everything in this section comes from 36 prompts (12 families × E/R/C). The pro
 
 **AI-assistance disclosure.** (1) *AI-drafted items:* every rendering was drafted by an LLM (Claude for Pilot-B and the training split, GPT for test and development [VERIFY: original 30]). The families were then checked against code-computed gold, verified blind by two LLM solvers and reviewed by humans. (2) *AI-assisted human review:* humans made every acceptance decision, but some lexicon entries and some text edits were drafted by AI before reviewers confirmed them (§3). (3) *Writing and coding:* AI assistants helped write the evaluation and analysis code, the research notes and this manuscript, and recorded protocol decisions under the authors' delegation. The authors reviewed all of this and take responsibility for it [VERIFY: name the assistant systems per venue policy].
 
-**Data.** The items are invented everyday word problems and are not expected to contain personal information [VERIFY: names/PII check before release]. Romanized Hindi varies by region and register, and our renderings reflect few speakers. The release licence is undecided [VERIFY]. FINAL_TEST stays unreleased until the confirmatory evaluation.
+**Data.** The items are invented everyday word problems and are not expected to contain personal information [VERIFY: names/PII check before release]. Romanized Hindi varies by region and register, and our renderings reflect few speakers. Data are released under CC BY 4.0 and code under MIT. FINAL_TEST stays unreleased until the confirmatory evaluation.
 
 ## References
 
