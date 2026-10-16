@@ -106,7 +106,7 @@ def default_config(mode='demo', model_id='Qwen/Qwen3-4B'):
 
 def validate_config(config):
     require(set(config) == set(default_config()), 'Unknown/missing config fields')
-    require(config['mode'] in ('demo', 'reviewed'), 'Bad config mode')
+    require(config['mode'] in ('demo', 'reviewed', 'pilot_b'), 'Bad config mode')
     require(config['model_id'] in MODELS, 'Unsupported model: Test 1 supports ' + ', '.join(MODELS))
     for key in ('model_revision', 'tokenizer_revision'):
         require(isinstance(config[key], str) and re.fullmatch('[0-9a-f]{40}', config[key]), 'Resolve immutable model/tokenizer SHAs before running')
@@ -219,7 +219,7 @@ def run(root, dataset, splits, config, backend, max_items=None, progress=None):
             order = sorted(by_id)
             random.Random(config['seed']).shuffle(order)
             manifest = dict(identity, run_id=config['mode'] + '-' + uuid.uuid4().hex,
-                mode=config['mode'], label=DEMO_LABEL if config['mode'] == 'demo' else 'REVIEWED PILOT — metadata attested',
+                mode=config['mode'], label={'demo': DEMO_LABEL, 'reviewed': 'REVIEWED PILOT — metadata attested', 'pilot_b': 'PILOT-B EVALUATION — single-reviewer frozen data'}[config['mode']],
                 created_at=utc(), status='INCOMPLETE', expected=len(order), evaluation_order=order,
                 backend=backend.metadata, scorer_version=SCORER_VERSION,
                 warnings=['Human review/semantic equivalence cannot be machine certified.',

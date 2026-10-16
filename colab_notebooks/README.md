@@ -6,6 +6,16 @@ Upload a notebook to https://colab.research.google.com (File → Upload notebook
 
 `test1_pilot/Hinglish_Math_Test1_Pilot_Colab.ipynb` runs the reviewed pilot. **Run it only after the human-reviewed dataset is frozen.** Set `MODE='reviewed'`, `BACKEND='huggingface'`, and run once per model with its own `RUN_NAME`: `MODEL_ID='Qwen/Qwen3-4B'` (primary) `MODEL_ID='Qwen/Qwen3-8B'` (second, decision D030) and `MODEL_ID='meta-llama/Llama-3.2-3B-Instruct'` (third, cross-family, decision D032; needs the HF token secret).
 
+## Pilot-B evaluation (`pilot_b_eval/`), ready now
+
+The real evaluation on the frozen, human-reviewed Pilot-B set (70 families × E/R/C = 210 prompts), pre-registered in `pilot_b/PREREGISTRATION.md`. Self-contained, with nothing to upload. About 25–35 minutes each.
+
+| Notebook | Model | Note |
+|---|---|---|
+| `PilotB_Qwen3-4B.ipynb` | Qwen3-4B | Primary; run first |
+| `PilotB_Qwen3-8B.ipynb` | Qwen3-8B | Scaling comparison |
+| `PilotB_Llama-3.2-3B.ipynb` | Llama-3.2-3B | Cross-family; needs your HF token |
+
 ## Model screening (`model_screening/`)
 
 Each notebook runs the same 36 excluded practice prompts with the frozen prompt, decoding and scorer. A model joins the pilot only with ≤3/36 format failures (decision D028).
