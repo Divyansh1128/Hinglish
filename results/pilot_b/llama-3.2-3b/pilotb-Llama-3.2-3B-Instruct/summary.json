@@ -1,0 +1,575 @@
+{
+  "run_id": "pilot_b-7ed6648488b4418d97e0467c57e3d88f",
+  "label": "PILOT-B EVALUATION — single-reviewer frozen data",
+  "mode": "pilot_b",
+  "status": "COMPLETE",
+  "expected": 210,
+  "completed": 210,
+  "families": 70,
+  "bootstrap_seed": 101,
+  "bootstrap_resamples": 10000,
+  "accuracy": {
+    "E": {
+      "correct": 66,
+      "denominator": 70,
+      "accuracy": 0.9428571428571428,
+      "wilson_95_interval": [
+        0.8620804952516177,
+        0.9775562208992887
+      ]
+    },
+    "R": {
+      "correct": 40,
+      "denominator": 70,
+      "accuracy": 0.5714285714285714,
+      "wilson_95_interval": [
+        0.45477836559850204,
+        0.6806469112000313
+      ]
+    },
+    "C": {
+      "correct": 49,
+      "denominator": 70,
+      "accuracy": 0.7,
+      "wilson_95_interval": [
+        0.5845568276122731,
+        0.79463394742362
+      ]
+    }
+  },
+  "paired": {
+    "E-C": {
+      "difference": 0.24285714285714285,
+      "bootstrap_95_interval": [
+        0.11428571428571428,
+        0.37142857142857144
+      ],
+      "both_correct": 45,
+      "both_wrong": 0,
+      "a_correct_b_wrong": 21,
+      "a_wrong_b_correct": 4,
+      "families": 70
+    },
+    "E-R": {
+      "difference": 0.37142857142857144,
+      "bootstrap_95_interval": [
+        0.24285714285714285,
+        0.5
+      ],
+      "both_correct": 38,
+      "both_wrong": 2,
+      "a_correct_b_wrong": 28,
+      "a_wrong_b_correct": 2,
+      "families": 70
+    },
+    "R-C": {
+      "difference": -0.12857142857142856,
+      "bootstrap_95_interval": [
+        -0.2714285714285714,
+        0.014285714285714285
+      ],
+      "both_correct": 30,
+      "both_wrong": 11,
+      "a_correct_b_wrong": 10,
+      "a_wrong_b_correct": 19,
+      "families": 70
+    }
+  },
+  "numeric": {
+    "E": {
+      "denominator": 70,
+      "strict_correct": 66,
+      "numeric_correct": 66,
+      "disagreements": 0
+    },
+    "R": {
+      "denominator": 70,
+      "strict_correct": 40,
+      "numeric_correct": 40,
+      "disagreements": 0
+    },
+    "C": {
+      "denominator": 70,
+      "strict_correct": 49,
+      "numeric_correct": 49,
+      "disagreements": 0
+    }
+  },
+  "invalid_reasons": {
+    "invalid_numeric_grouping": {
+      "E": 1,
+      "R": 0,
+      "C": 1
+    },
+    "invalid_unit": {
+      "E": 0,
+      "R": 1,
+      "C": 0
+    },
+    "missing_final": {
+      "E": 0,
+      "R": 0,
+      "C": 1
+    },
+    "truncated": {
+      "E": 0,
+      "R": 5,
+      "C": 2
+    }
+  },
+  "completed_by_form": {
+    "E": 70,
+    "R": 70,
+    "C": 70
+  },
+  "resources": {
+    "E": {
+      "input_tokens": 124.0,
+      "output_tokens": 99.0,
+      "latency_seconds": 5.95020342600003
+    },
+    "R": {
+      "input_tokens": 138.0,
+      "output_tokens": 119.5,
+      "latency_seconds": 7.143939980500022
+    },
+    "C": {
+      "input_tokens": 134.5,
+      "output_tokens": 96.5,
+      "latency_seconds": 5.746780602999934
+    }
+  },
+  "token_count_kinds": [
+    "actual tokenizer"
+  ],
+  "family_rows": [
+    {
+      "family_id": "PB001",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB002",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB003",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB004",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB005",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB006",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB007",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB008",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB009",
+      "E": false,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB010",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB011",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB012",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB013",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB014",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB015",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB016",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB017",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB018",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB019",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB020",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB021",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB022",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB023",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB024",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB025",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB026",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB027",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB028",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB029",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB030",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB031",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB032",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB033",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB034",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB035",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB036",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB037",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB038",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB039",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB040",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB041",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB042",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB043",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB044",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB045",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB046",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB047",
+      "E": false,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB048",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB049",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB050",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB051",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB052",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB053",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB054",
+      "E": false,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB055",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB056",
+      "E": false,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB057",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB058",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB059",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB060",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB061",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB062",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB063",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB064",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB065",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB066",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB067",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB068",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB069",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB070",
+      "E": true,
+      "R": false,
+      "C": false
+    }
+  ],
+  "numeric_endpoint": "numeric_literal_v1",
+  "consistency": {
+    "predictions.csv correct/attempt_id": "match",
+    "metrics.json status": "match",
+    "metrics.json accuracy + Wilson": "match",
+    "metrics.json paired bootstrap": "match"
+  },
+  "source": "PilotB_results_Llama-3.2-3B-Instruct.zip!pilotb-Llama-3.2-3B-Instruct_results.zip"
+}

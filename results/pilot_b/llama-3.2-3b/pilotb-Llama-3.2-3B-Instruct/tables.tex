@@ -1,0 +1,93 @@
+% Requires \usepackage{booktabs}
+\begin{table}[t]
+\centering
+\small
+\caption{Strict accuracy by form (PILOT-B EVALUATION --- single-reviewer frozen data; 70 families)}
+\label{tab:pilotb-Llama-3.2-3B-Instruct-accuracy}
+\begin{tabular}{lrrr}
+\toprule
+Form & Correct / families & Accuracy (\%) & Wilson 95\% CI (\%) \\
+\midrule
+E & 66/70 & 94.3 & [86.2, 97.8] \\
+R & 40/70 & 57.1 & [45.5, 68.1] \\
+C & 49/70 & 70.0 & [58.5, 79.5] \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\linewidth}{\footnotesize Stored scores only: strict correctness is the stored automatic correct (scorer v1.0.0); this tool adds no new scoring. One rendering per form per family; families are the unit of analysis.}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Paired family differences in strict accuracy (PILOT-B EVALUATION --- single-reviewer frozen data; 70 families)}
+\label{tab:pilotb-Llama-3.2-3B-Instruct-paired}
+\begin{tabular}{lrrrrrr}
+\toprule
+Contrast & Difference (pp) & Bootstrap 95\% interval (pp) & Only first correct & Only second correct & Both correct & Both wrong \\
+\midrule
+E$-$R & +37.1 & [+24.3, +50.0] & 28 & 2 & 38 & 2 \\
+E$-$C & +24.3 & [+11.4, +37.1] & 21 & 4 & 45 & 0 \\
+R$-$C & $-$12.9 & [$-$27.1, +1.4] & 10 & 19 & 30 & 11 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\linewidth}{\footnotesize Descriptive paired family bootstrap: 10,000 resamples, seed 101, identical to report.py. Discordant counts are families. No significance claim. Stored scores only: strict correctness is the stored automatic correct (scorer v1.0.0); this tool adds no new scoring.}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Stored invalid reasons by form (PILOT-B EVALUATION --- single-reviewer frozen data)}
+\label{tab:pilotb-Llama-3.2-3B-Instruct-invalid}
+\begin{tabular}{lrrrr}
+\toprule
+Invalid reason & E & R & C & Total \\
+\midrule
+invalid\_numeric\_grouping & 1 & 0 & 1 & 2 \\
+invalid\_unit & 0 & 1 & 0 & 1 \\
+missing\_final & 0 & 0 & 1 & 1 \\
+truncated & 0 & 5 & 2 & 7 \\
+\textbf{All invalid} & 1 & 6 & 4 & 11 \\
+Completed renderings & 70 & 70 & 70 & 210 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\linewidth}{\footnotesize Counts of stored scorer v1.0.0 invalid\_reason over completed renderings. Stored scores only: strict correctness is the stored automatic correct (scorer v1.0.0); this tool adds no new scoring.}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Median tokens and generation latency by form (PILOT-B EVALUATION --- single-reviewer frozen data)}
+\label{tab:pilotb-Llama-3.2-3B-Instruct-resources}
+\begin{tabular}{lrrrr}
+\toprule
+Form & Completed & Median input tokens & Median output tokens & Median latency (s) \\
+\midrule
+E & 70 & 124 & 99 & 5.95 \\
+R & 70 & 138 & 119.5 & 7.14 \\
+C & 70 & 134.5 & 96.5 & 5.75 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\linewidth}{\footnotesize Token count kind: actual tokenizer. Latency excludes model load and tokenization.}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Strict endpoint beside secondary numeric\_literal\_v1 (PILOT-B EVALUATION --- single-reviewer frozen data)}
+\label{tab:pilotb-Llama-3.2-3B-Instruct-numeric}
+\begin{tabular}{lrrrrr}
+\toprule
+Form & Strict correct & Strict (\%) & Numeric match & Numeric (\%) & Disagreements \\
+\midrule
+E & 66/70 & 94.3 & 66/70 & 94.3 & 0 \\
+R & 40/70 & 57.1 & 40/70 & 57.1 & 0 \\
+C & 49/70 & 70.0 & 49/70 & 70.0 & 0 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\parbox{\linewidth}{\footnotesize numeric\_literal\_v1 is the pre-registered secondary endpoint (D018): exact FINAL-line literal, no unit conversion. Strict scorer v1.0.0 remains primary.}
+\end{table}

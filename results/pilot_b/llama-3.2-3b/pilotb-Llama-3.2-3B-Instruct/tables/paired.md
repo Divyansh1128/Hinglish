@@ -1,0 +1,10 @@
+**Paired family differences in strict accuracy (PILOT-B EVALUATION — single-reviewer frozen data; 70 families)**
+
+| Contrast | Difference (pp) | Bootstrap 95% interval (pp) | Only first correct | Only second correct | Both correct | Both wrong |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| E−R | +37.1 | [+24.3, +50.0] | 28 | 2 | 38 | 2 |
+| E−C | +24.3 | [+11.4, +37.1] | 21 | 4 | 45 | 0 |
+| R−C | −12.9 | [−27.1, +1.4] | 10 | 19 | 30 | 11 |
+
+_Descriptive paired family bootstrap: 10,000 resamples, seed 101, identical to report.py. Discordant counts are families. No significance claim._
+_Stored scores only: strict correctness is the stored automatic `correct` (scorer v1.0.0); this tool adds no new scoring._

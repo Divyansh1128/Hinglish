@@ -41,7 +41,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 33 | Phase-2 blind solve: Claude 900/900, GPT 897/900 match gold (TRA072 GPT error); strict flags 10 FINAL_TEST + 6 TRAIN/DEV | Claude + GPT solvers | DONE 2026-10-16 | `autoverify_runs/phase2/verification/` |
 | 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | FINAL_TEST and TRAIN+DEV DONE and FROZEN 2026-10-16 (`phase2/*_FROZEN.md`) | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
 | 35 | EACL SRW paper draft (pilot results as placeholders; [VERIFY] items listed) | Claude subagent | DRAFTED 2026-10-16 | `paper/eacl_srw_draft.md` |
-| 36 | **Pilot-B evaluation runs: Qwen3-4B, Qwen3-8B, Llama-3.2-3B (210 prompts each)** | HUMAN runs Colab; Claude analyses | READY 2026-10-16 | `colab_notebooks/pilot_b_eval/` |
+| 36 | **Pilot-B evaluation runs: Qwen3-4B, Qwen3-8B, Llama-3.2-3B (210 prompts each)** | HUMAN runs Colab; Claude analyses | Llama DONE (E 94 / R 57 / C 70%); Qwen3-4B and Qwen3-8B pending | `results/pilot_b/` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 
