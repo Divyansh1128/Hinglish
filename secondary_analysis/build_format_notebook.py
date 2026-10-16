@@ -115,8 +115,15 @@ def build(model_id='Qwen/Qwen3-4B'):
             try:
                 from google.colab import userdata
                 os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')
+                print('HF_TOKEN read from Colab secret')
             except Exception as error:
-                print('HF_TOKEN secret not available:', type(error).__name__, '— gated model download will fail')
+                print('HF_TOKEN Colab secret not available (' + type(error).__name__ + '). Paste your Hugging Face read token below.')
+                import getpass
+                os.environ['HF_TOKEN'] = getpass.getpass('Hugging Face token: ').strip()
+            subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'huggingface-hub==0.30.2'], check=True)
+            from huggingface_hub import auth_check
+            auth_check(MODEL_ID, token=os.environ['HF_TOKEN'])  # raises with a clear message if access is missing
+            print('Access to', MODEL_ID, 'confirmed for this token')
         from pathlib import Path
         os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         PACKAGE = Path('/content/hinglish_fmt2') if Path('/content').exists() else Path.cwd() / 'hinglish_fmt2'
