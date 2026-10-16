@@ -43,7 +43,7 @@ class FormatNotebookTests(unittest.TestCase):
         digest = hashlib.sha256(builder.payload()).hexdigest()
         for model_id, name in builder.NOTEBOOKS.items():
             with self.subTest(model=model_id):
-                notebook = json.loads((builder.HERE / name).read_text(encoding="utf-8"))
+                notebook = json.loads((builder.OUT_DIR / name).read_text(encoding="utf-8"))
                 sources = [cell["source"] for cell in notebook["cells"] if cell["cell_type"] == "code"]
                 for index, source in enumerate(sources):
                     compile(source, f"cell-{index}", "exec")

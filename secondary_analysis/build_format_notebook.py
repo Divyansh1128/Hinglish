@@ -18,14 +18,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
-NAME = 'Hinglish_FMT2_Format_Test_Colab.ipynb'
-# Second-backbone load + format test on the same excluded fixtures (same prompt, decoding, scorer).
-NOTEBOOKS = {'Qwen/Qwen3-4B': NAME, 'microsoft/Phi-4-mini-instruct': 'Hinglish_FMT2_Format_Test_Phi4mini_Colab.ipynb',
-             'ibm-granite/granite-3.3-2b-instruct': 'Hinglish_FMT2_Format_Test_Granite2b_Colab.ipynb',
-             'Qwen/Qwen3-1.7B': 'Hinglish_FMT2_Format_Test_Qwen3_1p7b_Colab.ipynb',
-             'Qwen/Qwen3-8B': 'Hinglish_FMT2_Format_Test_Qwen3_8b_Colab.ipynb',
-             'google/gemma-3-4b-it': 'Hinglish_FMT2_Format_Test_Gemma3_4b_Colab.ipynb',
-             'meta-llama/Llama-3.2-3B-Instruct': 'Hinglish_FMT2_Format_Test_Llama3p2_3b_Colab.ipynb'}
+OUT_DIR = ROOT / 'colab_notebooks' / 'model_screening'
+# One self-contained Colab notebook per model: same excluded fixtures, prompt, decoding and scorer.
+NOTEBOOKS = {'Qwen/Qwen3-4B': 'ModelTest_Qwen3-4B.ipynb',
+             'Qwen/Qwen3-8B': 'ModelTest_Qwen3-8B.ipynb',
+             'Qwen/Qwen3-1.7B': 'ModelTest_Qwen3-1.7B.ipynb',
+             'microsoft/Phi-4-mini-instruct': 'ModelTest_Phi-4-mini.ipynb',
+             'ibm-granite/granite-3.3-2b-instruct': 'ModelTest_Granite-3.3-2B.ipynb',
+             'google/gemma-3-4b-it': 'ModelTest_Gemma-3-4B.ipynb',
+             'meta-llama/Llama-3.2-3B-Instruct': 'ModelTest_Llama-3.2-3B.ipynb'}
+NAME = NOTEBOOKS['Qwen/Qwen3-4B']
 GATED = {'google/gemma-3-4b-it', 'meta-llama/Llama-3.2-3B-Instruct'}
 FIXTURES = HERE / 'format_fixtures.json'
 PART_SIZE = 6
@@ -214,7 +216,8 @@ def build(model_id='Qwen/Qwen3-4B'):
     notebook = {'nbformat': 4, 'nbformat_minor': 5, 'cells': cells,
                 'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'},
                              'language_info': {'name': 'python'}, 'colab': {'name': name}, 'accelerator': 'GPU'}}
-    target = HERE / name
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    target = OUT_DIR / name
     target.write_text(json.dumps(notebook, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print(target)
     return target

@@ -14,7 +14,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 6 | Review Sol's code | Claude | DONE 2026-10-14 | `handoffs/2026-10-14_claude_review_of_sol.md` |
 | 7 | Evaluation dates and milestone timeline | HUMAN | DONE 2026-10-14: minor-project evaluation November 2026 (exact date TBC); final submission May 2027 | Timeline below |
 | 8 | v2 human review (R01, R02, A01) | HUMAN | IN PROGRESS (packets distributed) | reviewer JSONs |
-| 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 36/36 complete; see `research/fmt2_format_test_2026-10-14/` | `secondary_analysis/Hinglish_FMT2_Format_Test_Colab.ipynb` → results ZIP |
+| 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 36/36 complete; see `research/fmt2_format_test_2026-10-14/` | `colab_notebooks/model_screening/ModelTest_Qwen3-4B.ipynb` → results ZIP |
 | 10 | Confirm prompt v2 (D020): rerun FMT2 notebook (fixtures 0.2.0) on Colab T4 | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 0/36 format failures; prompt v2 frozen | `research/fmt2_format_test_2026-10-14/` |
 | 11 | Align `t4_smoke/protocol.py` instruction with prompt v2 before any training | Sol | IN PROGRESS 2026-10-15 | code + tests |
 | 12 | Operation-vocabulary literature check, lexicon, pilot covariate tags, exploratory analysis plan | Astra | IN PROGRESS 2026-10-15 | `research/operation_vocabulary_2026-10-15.md` |
@@ -35,7 +35,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 27 | Checker validation protocol, drafter split, second-annotator plan | Astra | DONE 2026-10-15 | `research/autoverify_protocol_2026-10-15.md` |
 | 28 | Draft 70 Pilot-B families (operation-word balanced) | Claude subagent | DONE 2026-10-15: 70 families, checker clean | `pilot_b/` |
 | 29 | Draft 140 FINAL_TEST + DEV families (GPT) and 160 TRAIN families (2 Claude subagents) | GPT drafter, Claude subagents | TRAIN 160/160 done; FINAL_TEST 84/100 and DEV 34/40 (GPT paused by Codex usage limit until 18:48) | `phase2/` |
-| 30 | FMT2 screening runs: Qwen3-1.7B, Qwen3-8B, Gemma-3-4B, Llama-3.2-3B (≤3/36 invalid to join the pilot) | HUMAN runs Colab; Claude analyses | 1.7B FAIL (D029); 8B PASS, joins pilot (D030); Gemma excluded, CUDA failure under FP16 (D031); Llama optional | `secondary_analysis/Hinglish_FMT2_Format_Test_*_Colab.ipynb` |
+| 30 | FMT2 screening runs: Qwen3-1.7B, Qwen3-8B, Gemma-3-4B, Llama-3.2-3B (≤3/36 invalid to join the pilot) | HUMAN runs Colab; Claude analyses | 1.7B FAIL (D029); 8B PASS, joins pilot (D030); Gemma excluded, CUDA failure under FP16 (D031); Llama optional | `colab_notebooks/model_screening/` |
 | 31 | Pilot-B blind solve + comparison: Claude 210/210 and GPT 210/210 match gold; 2/70 families flagged (PB013, PB051) | Claude + GPT solvers | DONE 2026-10-15 | `autoverify_runs/pilot_b/` |
 | 32 | **Human review of all 70 Pilot-B families** | HUMAN | READY: see `docs/REVIEW_INSTRUCTIONS.md` | `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` |
 | 33 | Phase-2 blind solve: Claude 900/900, GPT 897/900 match gold (TRA072 GPT error); strict flags 10 FINAL_TEST + 6 TRAIN/DEV | Claude + GPT solvers | DONE 2026-10-16 | `autoverify_runs/phase2/verification/` |
