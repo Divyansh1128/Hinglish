@@ -1,5 +1,6 @@
 """Lazy GPU dependencies: model-free tools never import CUDA packages."""
 import copy
+import os
 import time
 from .data import digest, require
 from .engine import MODELS, default_config, environment, read, utc, validate_config
@@ -17,7 +18,7 @@ def resolve_config(config, existing_run=None):
                 config[key] = saved[key]
     if config['model_revision'] is None:
         from huggingface_hub import HfApi
-        config['model_revision'] = HfApi().model_info(config['model_id'], revision='main').sha
+        config['model_revision'] = HfApi().model_info(config['model_id'], revision='main', token=os.environ.get('HF_TOKEN') or None).sha
     if config['tokenizer_revision'] is None:
         config['tokenizer_revision'] = config['model_revision']
     validate_config(config)
@@ -40,8 +41,10 @@ class HFBackend:
         torch.use_deterministic_algorithms(True)
         self.torch, self.sdpa_kernel, self.SDPBackend = torch, sdpa_kernel, SDPBackend
         self.config = copy.deepcopy(config)
-        self.tokenizer = AutoTokenizer.from_pretrained(config['model_id'], revision=config['tokenizer_revision'], trust_remote_code=False)
-        model_config = AutoConfig.from_pretrained(config['model_id'], revision=config['model_revision'], trust_remote_code=False)
+        # Pass the token explicitly: on Colab, huggingface_hub otherwise prefers a (possibly stale) HF_TOKEN secret.
+        token = os.environ.get('HF_TOKEN') or None
+        self.tokenizer = AutoTokenizer.from_pretrained(config['model_id'], revision=config['tokenizer_revision'], trust_remote_code=False, token=token)
+        model_config = AutoConfig.from_pretrained(config['model_id'], revision=config['model_revision'], trust_remote_code=False, token=token)
         require(model_config.model_type == MODELS[config['model_id']]['model_type'], 'Unexpected model architecture')
         # Multimodal configs (e.g. Gemma-3-4B) keep the context length on their text sub-config.
         positions = getattr(model_config, 'max_position_embeddings', None) or model_config.get_text_config().max_position_embeddings
@@ -53,7 +56,7 @@ class HFBackend:
                                    bnb_4bit_use_double_quant=True, bnb_4bit_compute_dtype=torch.float16)
         self.model = AutoModelForCausalLM.from_pretrained(config['model_id'], revision=config['model_revision'],
             trust_remote_code=False, torch_dtype=torch.float16, quantization_config=quant,
-            device_map={'': 0}, attn_implementation='sdpa', low_cpu_mem_usage=True)
+            device_map={'': 0}, attn_implementation='sdpa', low_cpu_mem_usage=True, token=token)
         self.model.eval()
         for parameter in self.model.parameters():
             parameter.requires_grad_(False)
