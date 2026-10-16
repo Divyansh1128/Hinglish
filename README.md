@@ -54,7 +54,7 @@ The [annotation package](pilot/annotation_draft_v2/README.md) has five draft fam
 | `docs/` | Teammate guide source and current status |
 | `output/pdf/` | Shareable teammate guide |
 
-Machine caches, Colab runtime directories, credentials, raw conversation transcripts, returned personal reviews and older personalized submission documents are excluded from version control. The project has no declared software or dataset release license yet; do not imply one from AI authorship. Record permissions and introduced sources before any public dataset release.
+Machine caches, Colab runtime directories, credentials, raw conversation transcripts, returned personal reviews and older personalized submission documents are excluded from version control. Code is released under the MIT licence (`LICENSE`); data under CC BY 4.0 (`DATA_LICENSE.md`), decision D034.
 
 ## Local software checks
 
