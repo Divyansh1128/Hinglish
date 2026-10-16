@@ -135,8 +135,9 @@ def build():
     SPLITS_FILENAME = 'split_manifest.json'
     MANUAL_OVERLAY_FILENAME = None    # optional uploaded completed manual_audit.csv
     EXECUTED_NOTEBOOK_FILENAME = None # optional uploaded downloaded .ipynb
+    MODEL_ID = 'Qwen/Qwen3-4B'        # primary; second pilot backbone: 'Qwen/Qwen3-8B' (decision D030). Use a separate RUN_NAME per model.
     from hinglish_pilot.engine import default_config
-    CONFIG = default_config(MODE)
+    CONFIG = default_config(MODE, MODEL_ID)
     # Optional immutable model/tokenizer SHAs. None resolves once and reuses saved SHAs on resume.
     CONFIG['max_new_tokens'] = 1024
     CONFIG['context_limit'] = 2048
