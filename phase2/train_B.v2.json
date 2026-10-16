@@ -11,7 +11,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "potatoes=7.5-2.75=4.75; total=7.5+(7.5-2.75)=12.25",
   "reference_solution_en": "The potato sack weighs 7.5 - 2.75 = 4.75 kg. Combined weight = 7.5 + 4.75 = 12.25 kg.\nFINAL: 12.25 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12.25",
    "unit": "kg",
@@ -71,7 +71,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "tuesday=340+85=425",
   "reference_solution_en": "Bricks laid on Tuesday = 340 + 85 = 425.\nFINAL: 425 bricks",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "425",
    "unit": "bricks",
@@ -126,7 +126,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "now=45-28=17",
   "reference_solution_en": "A full tank holds 45 litres. After using 28 litres, the tank has 45 - 28 = 17 litres.\nFINAL: 17 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "17",
    "unit": "litres",
@@ -187,7 +187,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "balance=5200-1750+900=4350",
   "reference_solution_en": "After the withdrawal: 5200 - 1750 = 3450 rupees. After the deposit: 3450 + 900 = 4350 rupees.\nFINAL: 4350 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4350",
    "unit": "rupees",
@@ -247,7 +247,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "difference=48-29=19",
   "reference_solution_en": "Difference = 48 - 29 = 19 plants.\nFINAL: 19 plants",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "19",
    "unit": "plants",
@@ -302,7 +302,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "used=6*3.5=21; left=25-6*3.5=4",
   "reference_solution_en": "Cloth used = 6 x 3.5 = 21 metres. Cloth left = 25 - 21 = 4 metres.\nFINAL: 4 m",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4",
    "unit": "m",
@@ -364,7 +364,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "train=4.5+1.25=5.75",
   "reference_solution_en": "Train time = 4.5 + 1.25 = 5.75 hours.\nFINAL: 5.75 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5.75",
    "unit": "hours",
@@ -426,7 +426,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "now=120-47-38=35",
   "reference_solution_en": "Notebooks sold = 47 + 38 = 85. Notebooks now = 120 - 85 = 35.\nFINAL: 35 notebooks",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "35",
    "unit": "notebooks",
@@ -482,7 +482,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "bedroom=3600-1150=2450; total=3600+(3600-1150)=6050",
   "reference_solution_en": "Bedroom cost = 3600 - 1150 = 2450 rupees. Total = 3600 + 2450 = 6050 rupees.\nFINAL: 6050 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6050",
    "unit": "rupees",
@@ -541,7 +541,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "remaining=64-27=37",
   "reference_solution_en": "Pots still to be watered = 64 - 27 = 37.\nFINAL: 37 pots",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "37",
    "unit": "pots",
@@ -597,7 +597,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "difference=1240-850=390",
   "reference_solution_en": "Difference = 1240 - 850 = 390 rupees.\nFINAL: 390 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "390",
    "unit": "rupees",
@@ -656,7 +656,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "now=500-275-95=130",
   "reference_solution_en": "Spent = 275 + 95 = 370 rupees. Money now = 500 - 370 = 130 rupees.\nFINAL: 130 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "130",
    "unit": "rupees",
@@ -715,7 +715,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "pyjamas=75-20=55; total=75+(75-20)=130",
   "reference_solution_en": "Pyjamas take 75 - 20 = 55 minutes. Shirt and pyjamas together: 75 + 55 = 130 minutes.\nFINAL: 130 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "130",
    "unit": "minutes",
@@ -778,7 +778,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "more=260-185=75",
   "reference_solution_en": "Distance still to drive = 260 - 185 = 75 km.\nFINAL: 75 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "75",
    "unit": "km",
@@ -839,7 +839,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "cost=3*60=180; change=200-3*60=20",
   "reference_solution_en": "Cost of mangoes = 3 x 60 = 180 rupees. Change = 200 - 180 = 20 rupees.\nFINAL: 20 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "rupees",
@@ -898,7 +898,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "taps=4*350=1400; total=4*350+200=1600",
   "reference_solution_en": "Charge for taps = 4 x 350 = 1400 rupees. Total = 1400 + 200 = 1600 rupees.\nFINAL: 1600 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1600",
    "unit": "rupees",
@@ -958,7 +958,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "fuel=12*104=1248; paid=12*104+50=1298",
   "reference_solution_en": "Fuel cost = 12 x 104 = 1248 rupees. Total paid = 1248 + 50 = 1298 rupees.\nFINAL: 1298 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1298",
    "unit": "rupees",
@@ -1018,7 +1018,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "interest=8000/100*6=480; total=8000+8000/100*6=8480",
   "reference_solution_en": "Interest = (8000 / 100) x 6 = 480 rupees. Amount at year end = 8000 + 480 = 8480 rupees.\nFINAL: 8480 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8480",
    "unit": "rupees",
@@ -1077,7 +1077,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "pots=15*40=600; spent=15*40+260=860",
   "reference_solution_en": "Pots cost 15 x 40 = 600 rupees. Total spent = 600 + 260 = 860 rupees.\nFINAL: 860 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "860",
    "unit": "rupees",
@@ -1137,7 +1137,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "total=1350+750=2100; share=(1350+750)/3=700",
   "reference_solution_en": "Total cost = 1350 + 750 = 2100 rupees. Each friend pays 2100 / 3 = 700 rupees.\nFINAL: 700 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "700",
    "unit": "rupees",
@@ -1197,7 +1197,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "boxes=4*54=216; pay=4*54+8=224",
   "reference_solution_en": "Four boxes cost 4 x 54 = 216 rupees. Total = 216 + 8 = 224 rupees.\nFINAL: 224 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "224",
    "unit": "rupees",
@@ -1256,7 +1256,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "wages=6*650=3900; paid=6*650-150=3750",
   "reference_solution_en": "Wages for 6 days = 6 x 650 = 3900 rupees. After the deduction: 3900 - 150 = 3750 rupees.\nFINAL: 3750 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3750",
    "unit": "rupees",
@@ -1316,7 +1316,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "adults=2*85=170; cost=2*85+3*45=305",
   "reference_solution_en": "Adult tickets = 2 x 85 = 170 rupees. Child tickets = 3 x 45 = 135 rupees. Total = 170 + 135 = 305 rupees.\nFINAL: 305 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "305",
    "unit": "rupees",
@@ -1375,7 +1375,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "monthly=18000-11500=6500; deposit=(18000-11500)*4=26000",
   "reference_solution_en": "Monthly deposit = 18000 - 11500 = 6500 rupees. In 4 months = 6500 x 4 = 26000 rupees.\nFINAL: 26000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "26000",
    "unit": "rupees",
@@ -1435,7 +1435,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "tulsi=10*30=300; paid=10*30+6*55=630",
   "reference_solution_en": "Tulsi saplings = 10 x 30 = 300 rupees. Neem saplings = 6 x 55 = 330 rupees. Total = 300 + 330 = 630 rupees.\nFINAL: 630 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "630",
    "unit": "rupees",
@@ -1494,7 +1494,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "per_bag=80-35=45; profit=(80-35)*25=1125",
   "reference_solution_en": "Profit per bag = 80 - 35 = 45 rupees. Profit on 25 bags = 45 x 25 = 1125 rupees.\nFINAL: 1125 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1125",
    "unit": "rupees",
@@ -1554,7 +1554,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "doll=120+45=165; spend=120+(120+45)=285",
   "reference_solution_en": "Doll price = 120 + 45 = 165 rupees. Total = 120 + 165 = 285 rupees.\nFINAL: 285 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "285",
    "unit": "rupees",
@@ -1613,7 +1613,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "bricks=150*9=1350; total=150*9+600=1950",
   "reference_solution_en": "Bricks cost 150 x 9 = 1350 rupees. Total = 1350 + 600 = 1950 rupees.\nFINAL: 1950 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1950",
    "unit": "rupees",
@@ -1672,7 +1672,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "discount=2400*15/100=360; price=2400-2400*15/100=2040",
   "reference_solution_en": "Discount = 2400 x 15 / 100 = 360 rupees. Selling price = 2400 - 360 = 2040 rupees.\nFINAL: 2040 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2040",
    "unit": "rupees",
@@ -1731,7 +1731,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "sown=600*3/5=360; left=600-600*3/5=240",
   "reference_solution_en": "Seeds sown = 600 x 3/5 = 360 g. Seeds left = 600 - 360 = 240 g.\nFINAL: 240 g",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "240",
    "unit": "g",
@@ -1791,7 +1791,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "monthly=24000/6=4000; yearly=24000/6*12=48000",
   "reference_solution_en": "Monthly saving = 24000 / 6 = 4000 rupees. Yearly saving = 4000 x 12 = 48000 rupees.\nFINAL: 48000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "48000",
    "unit": "rupees",
@@ -1850,7 +1850,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "highway=320*35/100=112; village=320-320*35/100=208",
   "reference_solution_en": "Highway distance = 320 x 35 / 100 = 112 km. Village roads = 320 - 112 = 208 km.\nFINAL: 208 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "208",
    "unit": "km",
@@ -1910,7 +1910,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "filled=1200*2/3=800; needed=1200-1200*2/3=400",
   "reference_solution_en": "Water in the tank = 1200 x 2/3 = 800 litres. Water needed = 1200 - 800 = 400 litres.\nFINAL: 400 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "400",
    "unit": "litres",
@@ -1972,7 +1972,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "increase=400*12/100=48; new=400+400*12/100=448",
   "reference_solution_en": "Increase = 400 x 12 / 100 = 48 rupees. New charge = 400 + 48 = 448 rupees.\nFINAL: 448 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "448",
    "unit": "rupees",
@@ -2031,7 +2031,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "sold=80*3/8=30",
   "reference_solution_en": "Rice sold = 80 x 3/8 = 30 kg.\nFINAL: 30 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "30",
    "unit": "kg",
@@ -2091,7 +2091,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "fd=9000*2/5=3600; sister=(9000-9000*2/5)/3=1800",
   "reference_solution_en": "Fixed deposit = 9000 x 2/5 = 3600 rupees. Remaining = 9000 - 3600 = 5400 rupees. Sister gets 5400 / 3 = 1800 rupees.\nFINAL: 1800 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1800",
    "unit": "rupees",
@@ -2150,7 +2150,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "sprouted=250*84/100=210; not_sprouted=250-250*84/100=40",
   "reference_solution_en": "Seeds that sprouted = 250 x 84 / 100 = 210. Seeds that did not sprout = 250 - 210 = 40.\nFINAL: 40 seeds",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "40",
    "unit": "seeds",
@@ -2205,7 +2205,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "first_day=360*5/9=200",
   "reference_solution_en": "Distance on day one = 360 x 5/9 = 200 km.\nFINAL: 200 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "200",
    "unit": "km",
@@ -2265,7 +2265,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "extra=60*25/100=15; this_month=60+60*25/100=75",
   "reference_solution_en": "Extra shirts = 60 x 25 / 100 = 15. This month = 60 + 15 = 75 shirts.\nFINAL: 75 shirts",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "75",
    "unit": "shirts",
@@ -2320,7 +2320,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "painted=12*0.4=4.8; unpainted=12-12*0.4=7.2",
   "reference_solution_en": "Painted length = 12 x 0.4 = 4.8 metres. Unpainted length = 12 - 4.8 = 7.2 metres.\nFINAL: 7.2 m",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7.2",
    "unit": "m",
@@ -2381,7 +2381,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "saved=20000*15/100=3000; spent=20000-20000*15/100=17000",
   "reference_solution_en": "Savings = 20000 x 15 / 100 = 3000 rupees. Spending = 20000 - 3000 = 17000 rupees.\nFINAL: 17000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "17000",
    "unit": "rupees",
@@ -2440,7 +2440,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "parts=3+2=5; first=15*3/(3+2)=9",
   "reference_solution_en": "Total parts = 3 + 2 = 5. First kind = 15 x 3/5 = 9 kg.\nFINAL: 9 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "kg",
@@ -2500,7 +2500,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "sand=6*4/1=24",
   "reference_solution_en": "Sand : cement = 4 : 1, so sand = 6 x 4 = 24 bags.\nFINAL: 24 bags",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "24",
    "unit": "bags",
@@ -2556,7 +2556,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "distance=120+80=200; aman=1500*120/(120+80)=900",
   "reference_solution_en": "Total distance = 120 + 80 = 200 km. Aman's share = 1500 x 120/200 = 900 rupees.\nFINAL: 900 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "900",
    "unit": "rupees",
@@ -2615,7 +2615,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=12000/(5+7)=1000; more=12000*(7-5)/(5+7)=2000",
   "reference_solution_en": "One part = 12000 / (5 + 7) = 1000 rupees. First gets 5000, second gets 7000. Difference = 7000 - 5000 = 2000 rupees.\nFINAL: 2000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2000",
    "unit": "rupees",
@@ -2674,7 +2674,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=28/4=7; marigold=28/4*7=49",
   "reference_solution_en": "One part = 28 / 4 = 7 plants. Marigold plants = 7 x 7 = 49.\nFINAL: 49 plants",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "49",
    "unit": "plants",
@@ -2729,7 +2729,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=45/(2+3)=9; blue=45*3/(2+3)=27",
   "reference_solution_en": "One part = 45 / 5 = 9 patches. Blue patches = 9 x 3 = 27.\nFINAL: 27 patches",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "27",
    "unit": "patches",
@@ -2785,7 +2785,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=40/5=8; orange=40/5*3=24",
   "reference_solution_en": "One part = 40 / 5 = 8 cartons. Orange juice cartons = 8 x 3 = 24.\nFINAL: 24 cartons",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "24",
    "unit": "cartons",
@@ -2840,7 +2840,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "length=4*3/2=6; perimeter=2*(4*3/2+4)=20",
   "reference_solution_en": "Length = 4 x 3/2 = 6 metres. Perimeter = 2 x (6 + 4) = 20 metres.\nFINAL: 20 m",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "m",
@@ -2902,7 +2902,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=3000/5=600; neha=3000/5*3=1800",
   "reference_solution_en": "One part = 3000 / 5 = 600 rupees. Neha saved 600 x 3 = 1800 rupees.\nFINAL: 1800 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1800",
    "unit": "rupees",
@@ -2961,7 +2961,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=210/3=70; total=210/3*(4+3)=490",
   "reference_solution_en": "One part = 210 / 3 = 70 km. First day = 70 x 4 = 280 km. Total = 280 + 210 = 490 km.\nFINAL: 490 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "490",
    "unit": "km",
@@ -3022,7 +3022,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=14/2=7; soil=14/2*5=35",
   "reference_solution_en": "One part = 14 / 2 = 7 kg. Soil = 7 x 5 = 35 kg.\nFINAL: 35 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "35",
    "unit": "kg",
@@ -3083,7 +3083,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "part=96/(4+3+1)=12; white=96*3/(4+3+1)=36",
   "reference_solution_en": "Total parts = 4 + 3 + 1 = 8. One part = 96 / 8 = 12 beads. White beads = 12 x 3 = 36.\nFINAL: 36 beads",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "36",
    "unit": "beads",
@@ -3138,7 +3138,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "selling=1500*6/5=1800; profit=1500*6/5-1500=300",
   "reference_solution_en": "Selling price = 1500 x 6/5 = 1800 rupees. Profit = 1800 - 1500 = 300 rupees.\nFINAL: 300 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "300",
    "unit": "rupees",
@@ -3198,7 +3198,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "fuel=440/16=27.5",
   "reference_solution_en": "Fuel needed = 440 / 16 = 27.5 litres.\nFINAL: 27.5 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "27.5",
    "unit": "litres",
@@ -3259,7 +3259,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "hours=78/12=6.5",
   "reference_solution_en": "Time = 78 / 12 = 6.5 hours.\nFINAL: 6.5 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6.5",
    "unit": "hours",
@@ -3321,7 +3321,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "cost=2.4*45=108",
   "reference_solution_en": "Cost = 2.4 x 45 = 108 rupees.\nFINAL: 108 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "108",
    "unit": "rupees",
@@ -3380,7 +3380,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "km_per_min=15/60; minutes=9/15*60=36",
   "reference_solution_en": "Time = 9 / 15 hours = 0.6 hours. In minutes: 0.6 x 60 = 36 minutes.\nFINAL: 36 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "36",
    "unit": "minutes",
@@ -3443,7 +3443,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "rate=1/6+1/3; hours=1/(1/6+1/3)=2",
   "reference_solution_en": "Combined rate = 1/6 + 1/3 = 1/2 tank per hour. Time = 1 / (1/2) = 2 hours.\nFINAL: 2 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2",
    "unit": "hours",
@@ -3505,7 +3505,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "shirts=10/2*3=15",
   "reference_solution_en": "10 hours = 5 periods of 2 hours. Shirts = 5 x 3 = 15.\nFINAL: 15 shirts",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "15",
    "unit": "shirts",
@@ -3560,7 +3560,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "months=2*12=24; total=750*2*12=18000",
   "reference_solution_en": "2 years = 24 months. Total deposit = 750 x 24 = 18000 rupees.\nFINAL: 18000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "18000",
    "unit": "rupees",
@@ -3619,7 +3619,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "plank_cm=2.4*100=240; pieces=2.4*100/30=8",
   "reference_solution_en": "2.4 metres = 240 cm. Pieces = 240 / 30 = 8.\nFINAL: 8 pieces",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8",
    "unit": "pieces",
@@ -3674,7 +3674,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "daily=4*38=152; total=4*38*5=760",
   "reference_solution_en": "Daily distance = 4 x 38 = 152 km. In 5 days = 152 x 5 = 760 km.\nFINAL: 760 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "760",
    "unit": "km",
@@ -3734,7 +3734,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "litres=750/1000; cost=750/1000*160=120",
   "reference_solution_en": "750 mL = 0.75 litre. Cost = 0.75 x 160 = 120 rupees.\nFINAL: 120 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "120",
    "unit": "rupees",
@@ -3793,7 +3793,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "minutes=25+15=40; water=18*(25+15)=720",
   "reference_solution_en": "Running time = 25 + 15 = 40 minutes. Water used = 18 x 40 = 720 litres.\nFINAL: 720 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "720",
    "unit": "litres",
@@ -3854,7 +3854,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "months=1080/45=24",
   "reference_solution_en": "Months = 1080 / 45 = 24.\nFINAL: 24 months",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "24",
    "unit": "months",
@@ -3910,7 +3910,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "metres=4*350/100=14; cost=4*350/100*24=336",
   "reference_solution_en": "Lace needed = 4 x 350 = 1400 cm = 14 metres. Cost = 14 x 24 = 336 rupees.\nFINAL: 336 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "336",
    "unit": "rupees",
@@ -3969,7 +3969,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "25*x+30=205; x=(205-30)/25=7",
   "reference_solution_en": "Let x be the kilograms of potatoes: 25x + 30 = 205. 25x = 175, so x = 7 kg.\nFINAL: 7 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7",
    "unit": "kg",
@@ -4029,7 +4029,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "300+200*x=1100; x=(1100-300)/200=4",
   "reference_solution_en": "Let x be the hours worked: 300 + 200x = 1100. 200x = 800, so x = 4 hours.\nFINAL: 4 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4",
    "unit": "hours",
@@ -4092,7 +4092,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "x+18=3*x; x=18/2=9",
   "reference_solution_en": "Let x be the starting fuel: x + 18 = 3x. 2x = 18, so x = 9 litres.\nFINAL: 9 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "litres",
@@ -4154,7 +4154,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1500+250*x=4000; x=(4000-1500)/250=10",
   "reference_solution_en": "Let x be the number of weeks: 1500 + 250x = 4000. 250x = 2500, so x = 10 weeks.\nFINAL: 10 weeks",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "10",
    "unit": "weeks",
@@ -4210,7 +4210,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "x+(x+8)=52; x=(52-8)/2=22",
   "reference_solution_en": "Let x be the plants in the second bed: x + (x + 8) = 52. 2x = 44, so x = 22 plants.\nFINAL: 22 plants",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "22",
    "unit": "plants",
@@ -4265,7 +4265,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "5*x+120=1620; x=(1620-120)/5=300",
   "reference_solution_en": "Let x be the charge per shirt: 5x + 120 = 1620. 5x = 1500, so x = 300 rupees.\nFINAL: 300 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "300",
    "unit": "rupees",
@@ -4324,7 +4324,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "4*x=500-140; x=(500-140)/4=90",
   "reference_solution_en": "Let x be the price of one bowl: 4x = 500 - 140 = 360. x = 360 / 4 = 90 rupees.\nFINAL: 90 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "90",
    "unit": "rupees",
@@ -4383,7 +4383,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*x+40=250; x=(250-40)/3=70",
   "reference_solution_en": "Let x be the speed: 3x + 40 = 250. 3x = 210, so x = 70 km/h.\nFINAL: 70 km/h",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "70",
    "unit": "km/h",
@@ -4440,7 +4440,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*(x+x+3)=26; x=(26-6)/4=5",
   "reference_solution_en": "Let x be the width; length = x + 3. 2(2x + 3) = 26, so 4x = 20 and x = 5 metres.\nFINAL: 5 m",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "m",
@@ -4501,7 +4501,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "x-x/4-600=1500; x=(1500+600)*4/3=2800",
   "reference_solution_en": "Let x be the starting savings: x - x/4 - 600 = 1500. 3x/4 = 2100, so x = 2800 rupees.\nFINAL: 2800 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2800",
    "unit": "rupees",
@@ -4561,7 +4561,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "12*x+9=105; x=(105-9)/12=8",
   "reference_solution_en": "Let x be the number of rows: 12x + 9 = 105. 12x = 96, so x = 8 rows.\nFINAL: 8 rows",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8",
    "unit": "rows",
@@ -4618,7 +4618,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "35*x+4*20=395; x=(395-4*20)/35=9",
   "reference_solution_en": "Let x be the bundles: 35x + 80 = 395. 35x = 315, so x = 9 bundles.\nFINAL: 9 bundles",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "bundles",
@@ -4674,7 +4674,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "(x-40)/2=35; x=35*2+40=110",
   "reference_solution_en": "Let x be the starting oranges: (x - 40)/2 = 35. x - 40 = 70, so x = 110 oranges.\nFINAL: 110 oranges",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "110",
    "unit": "oranges",

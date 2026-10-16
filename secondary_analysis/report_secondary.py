@@ -126,7 +126,7 @@ def analyze(root):
                                  for a in (True, False) for b in (True, False)},
                              unknown_units=dict(Counter(row["numeric"]["unknown_unit"] for row in group
                                                         if row["numeric"]["unknown_unit"] is not None)))
-    metrics = dict(label=LABEL, adoption_status="UNADOPTED", secondary_version=__version__,
+    metrics = dict(label=LABEL, adoption_status="ADOPTED_SECONDARY_D018", secondary_version=__version__,
                    primary_scorer_version="1.0.0", run_id=manifest["run_id"], source_label=manifest.get("label"),
                    created_at=datetime.now(timezone.utc).isoformat(), source_sha256=hashes,
                    completed=len(rows), journal_attempts=journal_count,
@@ -135,7 +135,7 @@ def analyze(root):
                                multiple_final="multiple_finals; never select a value", no_final="missing_final; no recovery from other lines",
                                refusal_truncation="truncated fails; refusal regex hits do not veto; original flags retained"),
                    by_form=by_form, renderings=rows)
-    lines = [f"# {LABEL}", "", "UNADOPTED, opt-in, model-free software diagnostic.", "",
+    lines = [f"# {LABEL}", "", "Pre-registered SECONDARY endpoint (decision D018); strict v1.0.0 remains primary.", "",
              "Strict accuracy copies stored `correct` unchanged. Numeric accuracy (numeric_literal_v1) checks only the sole FINAL line's literal value against gold, with no unit conversion or unit validation.",
              "Truncated outputs fail; refusal regex hits do not veto extraction. This is not semantic accuracy, a human-reviewed score or a training-benefit result.", "",
              f"Run: `{manifest['run_id']}`; completed renderings: {len(rows)}.", "",

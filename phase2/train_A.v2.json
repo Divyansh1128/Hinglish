@@ -11,7 +11,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "245-87-19=139",
   "reference_solution_en": "Books issued or sent for repair: 87 + 19 = 106. Books still on the shelves: 245 - 106 = 139.\nFINAL: 139 books",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "139",
    "unit": "books",
@@ -67,7 +67,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "176+38=214",
   "reference_solution_en": "Green team runs: 176 + 38 = 214.\nFINAL: 214 runs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "214",
    "unit": "runs",
@@ -121,7 +121,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3-1.25-0.75=1",
   "reference_solution_en": "Flour used: 1.25 + 0.75 = 2 kg. Flour left: 3 - 2 = 1 kg.\nFINAL: 1 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1",
    "unit": "kg",
@@ -182,7 +182,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "f=52-9=43; 52-9-5=38",
   "reference_solution_en": "Seated on Friday: 52 - 9 = 43. Seated on Saturday: 43 - 5 = 38.\nFINAL: 38 passengers",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "38",
    "unit": "passengers",
@@ -236,7 +236,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "last=1240-185=1055; 1240-185-600=455",
   "reference_solution_en": "Last year's harvest: 1240 - 185 = 1055 kg. Stored last year: 1055 - 600 = 455 kg.\nFINAL: 455 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "455",
    "unit": "kg",
@@ -297,7 +297,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "150-4*12-64=38",
   "reference_solution_en": "Lamps given away: 4 x 12 = 48. Lamps used: 48 + 64 = 112. Lamps not used: 150 - 112 = 38.\nFINAL: 38 lamps",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "38",
    "unit": "lamps",
@@ -354,7 +354,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "a=13+4=17; 13+4-6=11",
   "reference_solution_en": "Ananya: 13 + 4 = 17 points. Kabir: 17 - 6 = 11 points.\nFINAL: 11 points",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "11",
    "unit": "points",
@@ -408,7 +408,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "260-94-117=49",
   "reference_solution_en": "Runs so far: 94 + 117 = 211. Runs still needed: 260 - 211 = 49.\nFINAL: 49 runs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "49",
    "unit": "runs",
@@ -463,7 +463,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "18-11.5-4.25=2.25",
   "reference_solution_en": "Kheer sold: 11.5 + 4.25 = 15.75 kg. Kheer left: 18 - 15.75 = 2.25 kg.\nFINAL: 2.25 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2.25",
    "unit": "kg",
@@ -524,7 +524,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "505-178-142=185",
   "reference_solution_en": "Distance covered: 178 + 142 = 320 km. Distance still to cover: 505 - 320 = 185 km.\nFINAL: 185 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "185",
    "unit": "km",
@@ -587,7 +587,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "b=860-135=725; 860+860-135=1585",
   "reference_solution_en": "Field B: 860 - 135 = 725 kg. Both fields: 860 + 725 = 1585 kg.\nFINAL: 1585 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1585",
    "unit": "kg",
@@ -649,7 +649,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "p=750+250=1000; 750+250-400=600",
   "reference_solution_en": "Pink: 750 + 250 = 1000 g. Yellow: 1000 - 400 = 600 g.\nFINAL: 600 g",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "600",
    "unit": "g",
@@ -711,7 +711,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "4000-950-1020-980=1050",
   "reference_solution_en": "First three runners: 950 + 1020 + 980 = 2950 m. Last runner: 4000 - 2950 = 1050 m.\nFINAL: 1050 m",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1050",
    "unit": "m",
@@ -774,7 +774,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "500-135-142-158=65",
   "reference_solution_en": "Notebooks given: 135 + 142 + 158 = 435. Not yet given: 500 - 435 = 65.\nFINAL: 65 notebooks",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "65",
    "unit": "notebooks",
@@ -829,7 +829,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*380+3*62=946",
   "reference_solution_en": "Paneer: 2 x 380 = 760 rupees. Milk: 3 x 62 = 186 rupees. Total: 760 + 186 = 946 rupees.\nFINAL: 946 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "946",
    "unit": "rupees",
@@ -886,7 +886,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "4*500-5*345=275",
   "reference_solution_en": "Cost of tickets: 5 x 345 = 1725 rupees. Amount paid: 4 x 500 = 2000 rupees. Change: 2000 - 1725 = 275 rupees.\nFINAL: 275 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "275",
    "unit": "rupees",
@@ -943,7 +943,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "12*5600-1800=65400",
   "reference_solution_en": "Sale amount: 12 x 5600 = 67200 rupees. After transport: 67200 - 1800 = 65400 rupees.\nFINAL: 65400 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "65400",
    "unit": "rupees",
@@ -1000,7 +1000,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1000-(6*45+320)=410",
   "reference_solution_en": "Rakhis: 6 x 45 = 270 rupees. Total spent: 270 + 320 = 590 rupees. Change: 1000 - 590 = 410 rupees.\nFINAL: 410 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "410",
    "unit": "rupees",
@@ -1058,7 +1058,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "24*850+6*2400=34800",
   "reference_solution_en": "Chairs: 24 x 850 = 20400 rupees. Tables: 6 x 2400 = 14400 rupees. Total: 20400 + 14400 = 34800 rupees.\nFINAL: 34800 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "34800",
    "unit": "rupees",
@@ -1116,7 +1116,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "5*1200+2750=8750",
   "reference_solution_en": "Fees: 5 x 1200 = 6000 rupees. Total: 6000 + 2750 = 8750 rupees.\nFINAL: 8750 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8750",
    "unit": "rupees",
@@ -1173,7 +1173,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*160+3*90=590",
   "reference_solution_en": "Adults: 2 x 160 = 320 rupees. Children: 3 x 90 = 270 rupees. Total: 320 + 270 = 590 rupees.\nFINAL: 590 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "590",
    "unit": "rupees",
@@ -1230,7 +1230,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1500-(4*72+2*165)=882",
   "reference_solution_en": "Rice: 4 x 72 = 288 rupees. Oil: 2 x 165 = 330 rupees. Left: 1500 - (288 + 330) = 882 rupees.\nFINAL: 882 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "882",
    "unit": "rupees",
@@ -1288,7 +1288,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "10000-(3*2*450+4200)=3100",
   "reference_solution_en": "Wages: 3 x 2 x 450 = 2700 rupees. Total spent: 2700 + 4200 = 6900 rupees. Unspent: 10000 - 6900 = 3100 rupees.\nFINAL: 3100 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3100",
    "unit": "rupees",
@@ -1346,7 +1346,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "15*120+2500=4300",
   "reference_solution_en": "Garlands: 15 x 120 = 1800 rupees. Total: 1800 + 2500 = 4300 rupees.\nFINAL: 4300 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4300",
    "unit": "rupees",
@@ -1403,7 +1403,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "38*650-22000=2700",
   "reference_solution_en": "Total needed: 38 x 650 = 24700 rupees. Still to collect: 24700 - 22000 = 2700 rupees.\nFINAL: 2700 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2700",
    "unit": "rupees",
@@ -1460,7 +1460,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "8*275+2*1150=4500",
   "reference_solution_en": "Balls: 8 x 275 = 2200 rupees. Gloves: 2 x 1150 = 2300 rupees. Total: 2200 + 2300 = 4500 rupees.\nFINAL: 4500 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4500",
    "unit": "rupees",
@@ -1517,7 +1517,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*(385+540)=1850",
   "reference_solution_en": "One first-class ticket: 385 + 540 = 925 rupees. Two tickets: 2 x 925 = 1850 rupees.\nFINAL: 1850 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1850",
    "unit": "rupees",
@@ -1574,7 +1574,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "(3*299+103)/4=250",
   "reference_solution_en": "Bill: 3 x 299 + 103 = 1000 rupees. Each friend: 1000 / 4 = 250 rupees.\nFINAL: 250 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "250",
    "unit": "rupees",
@@ -1632,7 +1632,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "640-640*35/100=416",
   "reference_solution_en": "Bus users: 35% of 640 = 224. Not by bus: 640 - 224 = 416.\nFINAL: 416 students",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "416",
    "unit": "students",
@@ -1686,7 +1686,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "80-80*45/100=44",
   "reference_solution_en": "From fours and sixes: 45% of 80 = 36 runs. Other runs: 80 - 36 = 44 runs.\nFINAL: 44 runs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "44",
    "unit": "runs",
@@ -1740,7 +1740,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "900-900*2/3=300",
   "reference_solution_en": "Wheat flour: 2/3 of 900 = 600 g. Gram flour: 900 - 600 = 300 g.\nFINAL: 300 g",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "300",
    "unit": "g",
@@ -1803,7 +1803,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1200-1200*3/5-150=330",
   "reference_solution_en": "Reserved in advance: 3/5 of 1200 = 720. Reserved in all: 720 + 150 = 870. Empty: 1200 - 870 = 330.\nFINAL: 330 seats",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "330",
    "unit": "seats",
@@ -1858,7 +1858,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "(2500-2500*12/100)*15=33000",
   "reference_solution_en": "Damaged: 12% of 2500 = 300 kg. Good potatoes: 2500 - 300 = 2200 kg. Money: 2200 x 15 = 33000 rupees.\nFINAL: 33000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "33000",
    "unit": "rupees",
@@ -1916,7 +1916,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*(450-450*20/100)=1080",
   "reference_solution_en": "Discount: 20% of 450 = 90 rupees. Price of one lantern: 450 - 90 = 360 rupees. Three lanterns: 3 x 360 = 1080 rupees.\nFINAL: 1080 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1080",
    "unit": "rupees",
@@ -1974,7 +1974,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "480-480*3/8-480/4=180",
   "reference_solution_en": "Dance: 3/8 of 480 = 180. Music: 1/4 of 480 = 120. Art: 480 - 180 - 120 = 180.\nFINAL: 180 students",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "180",
    "unit": "students",
@@ -2029,7 +2029,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1.5-1.5*2/5-0.4=0.5",
   "reference_solution_en": "Served at lunch: 2/5 of 1.5 = 0.6 litres. Served in all: 0.6 + 0.4 = 1 litre. Still in the bottle: 1.5 - 1 = 0.5 litres.\nFINAL: 0.5 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "0.5",
    "unit": "litres",
@@ -2091,7 +2091,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*(240+240*15/100)=552",
   "reference_solution_en": "Increase: 15% of 240 = 36 rupees. New fare: 240 + 36 = 276 rupees. For 2 passengers: 2 x 276 = 552 rupees.\nFINAL: 552 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "552",
    "unit": "rupees",
@@ -2148,7 +2148,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "60-60*45/100-60/3=13",
   "reference_solution_en": "Wheat: 45% of 60 = 27 acres. Sugarcane: 1/3 of 60 = 20 acres. Neither: 60 - 27 - 20 = 13 acres.\nFINAL: 13 acres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "13",
    "unit": "acres",
@@ -2203,7 +2203,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2.4-2.4/6-2.4*3/8=1.1",
   "reference_solution_en": "Given away: 1/6 of 2.4 = 0.4 kg. Eaten: 3/8 of 2.4 = 0.9 kg. Left: 2.4 - 0.4 - 0.9 = 1.1 kg.\nFINAL: 1.1 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1.1",
    "unit": "kg",
@@ -2264,7 +2264,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "(16-16*75/100)/2=2",
   "reference_solution_en": "Won: 75% of 16 = 12. Not won: 16 - 12 = 4. Lost: half of 4 = 2, so tied: 4 - 2 = 2.\nFINAL: 2 matches",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2",
    "unit": "matches",
@@ -2319,7 +2319,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "27/36=3/4",
   "reference_solution_en": "Fraction correct: 27/36. Simplify by dividing by 9: 3/4.\nFINAL: 3/4",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3/4",
    "unit": "",
@@ -2371,7 +2371,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "350*2/5=140",
   "reference_solution_en": "One ratio part: 350 / 5 = 70 ml. Lemon juice: 2 x 70 = 140 ml.\nFINAL: 140 ml",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "140",
    "unit": "ml",
@@ -2433,7 +2433,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "57/3*4=76",
   "reference_solution_en": "One ratio part: 57 / 3 = 19 runs. Vikram: 4 x 19 = 76 runs.\nFINAL: 76 runs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "76",
    "unit": "runs",
@@ -2487,7 +2487,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "20/5*(5+7)=48",
   "reference_solution_en": "One ratio part: 20 / 5 = 4. Girls: 7 x 4 = 28. Students: 20 + 28 = 48.\nFINAL: 48 students",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "48",
    "unit": "students",
@@ -2542,7 +2542,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "84/7*(4-3)=12",
   "reference_solution_en": "One ratio part: 84 / 7 = 12 kg. Elder: 4 x 12 = 48 kg; younger: 3 x 12 = 36 kg. Difference: 48 - 36 = 12 kg.\nFINAL: 12 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "kg",
@@ -2604,7 +2604,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "288/9*7=224",
   "reference_solution_en": "One ratio part: 288 / 9 = 32. Sleeper class: 7 x 32 = 224.\nFINAL: 224 passengers",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "224",
    "unit": "passengers",
@@ -2658,7 +2658,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "45/5*2-4=14",
   "reference_solution_en": "One ratio part: 45 / 5 = 9. Riya's share: 2 x 9 = 18. After giving 4: 18 - 4 = 14.\nFINAL: 14 laddoos",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "14",
    "unit": "laddoos",
@@ -2714,7 +2714,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2000*3/4=1500",
   "reference_solution_en": "2 kg = 2000 g. Rice is 3 of 4 parts: 2000 x 3/4 = 1500 g.\nFINAL: 1500 g",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1500",
    "unit": "g",
@@ -2776,7 +2776,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "6/2*(5+2)=21",
   "reference_solution_en": "One ratio part: 6 / 2 = 3. Wins: 5 x 3 = 15. Matches: 15 + 6 = 21.\nFINAL: 21 matches",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "21",
    "unit": "matches",
@@ -2830,7 +2830,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "120/5*3=72",
   "reference_solution_en": "One ratio part: 120 / 5 = 24. English books: 3 x 24 = 72.\nFINAL: 72 books",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "72",
    "unit": "books",
@@ -2885,7 +2885,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "24/3*(5+3)=64",
   "reference_solution_en": "One ratio part: 24 / 3 = 8 kg. Urea: 5 x 8 = 40 kg. Mix: 40 + 24 = 64 kg.\nFINAL: 64 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "64",
    "unit": "kg",
@@ -2946,7 +2946,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "540/2/3=90",
   "reference_solution_en": "One train ticket: 540 / 2 = 270 rupees. Bus fare: 270 / 3 = 90 rupees.\nFINAL: 90 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "90",
    "unit": "rupees",
@@ -3003,7 +3003,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "1.2/3*4=1.6",
   "reference_solution_en": "One ratio part: 1.2 / 3 = 0.4 kg. Rice: 4 x 0.4 = 1.6 kg.\nFINAL: 1.6 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1.6",
    "unit": "kg",
@@ -3064,7 +3064,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "90/5*2=36",
   "reference_solution_en": "One ratio part: 90 / 5 = 18 minutes. Bowling: 2 x 18 = 36 minutes.\nFINAL: 36 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "36",
    "unit": "minutes",
@@ -3128,7 +3128,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "54/72*60=45",
   "reference_solution_en": "Time in hours: 54 / 72 = 0.75 hours. In minutes: 0.75 x 60 = 45 minutes.\nFINAL: 45 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "45",
    "unit": "minutes",
@@ -3192,7 +3192,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "75*120/1000=9",
   "reference_solution_en": "Milk in ml: 75 x 120 = 9000 ml. In litres: 9000 / 1000 = 9 litres.\nFINAL: 9 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "litres",
@@ -3253,7 +3253,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "27000/450=60",
   "reference_solution_en": "Time: 27000 / 450 = 60 minutes.\nFINAL: 60 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "60",
    "unit": "minutes",
@@ -3317,7 +3317,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "18*2.5+12*1.5=63",
   "reference_solution_en": "First part: 18 x 2.5 = 45 km. Second part: 12 x 1.5 = 18 km. Distance: 45 + 18 = 63 km.\nFINAL: 63 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "63",
    "unit": "km",
@@ -3381,7 +3381,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "30*16/24=20",
   "reference_solution_en": "Pages: 30 x 16 = 480. Time: 480 / 24 = 20 minutes.\nFINAL: 20 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "minutes",
@@ -3445,7 +3445,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "36*7*3=756",
   "reference_solution_en": "Modaks a day: 36 x 7 = 252. In 3 days: 252 x 3 = 756.\nFINAL: 756 modaks",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "756",
    "unit": "modaks",
@@ -3498,7 +3498,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "95/2.5=38",
   "reference_solution_en": "Travel time: 6:40 to 9:10 is 2.5 hours. Speed: 95 / 2.5 = 38 km/h.\nFINAL: 38 km/h",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "38",
    "unit": "km/h",
@@ -3558,7 +3558,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "340/4*100/1000=8.5",
   "reference_solution_en": "Groups of 4 rotis: 340 / 4 = 85. Flour: 85 x 100 = 8500 g = 8.5 kg.\nFINAL: 8.5 kg",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8.5",
    "unit": "kg",
@@ -3619,7 +3619,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3/0.25=12",
   "reference_solution_en": "Time: 3 / 0.25 = 12 hours.\nFINAL: 12 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "hours",
@@ -3682,7 +3682,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "5*8.4=42",
   "reference_solution_en": "Time: 5 x 8.4 = 42 minutes.\nFINAL: 42 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "42",
    "unit": "minutes",
@@ -3746,7 +3746,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "80/5=16",
   "reference_solution_en": "Periods: 80 / 5 = 16.\nFINAL: 16 periods",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "16",
    "unit": "periods",
@@ -3800,7 +3800,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "(9*2+72)/60=1.5",
   "reference_solution_en": "Stopping time: 9 x 2 = 18 minutes. Journey: 18 + 72 = 90 minutes = 1.5 hours.\nFINAL: 1.5 hours",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1.5",
    "unit": "hours",
@@ -3863,7 +3863,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*120*2.5=900",
   "reference_solution_en": "Puris an hour: 3 x 120 = 360. In 2.5 hours: 360 x 2.5 = 900.\nFINAL: 900 puris",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "900",
    "unit": "puris",
@@ -3917,7 +3917,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "4*x+9=61; x=(61-9)/4=13",
   "reference_solution_en": "4x + 9 = 61. 4x = 52, so x = 13.\nFINAL: 13",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "13",
    "unit": "",
@@ -3968,7 +3968,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*x+5=77; x=24; 2*24+5=53",
   "reference_solution_en": "x + 2x + 5 = 77, so 3x = 72 and x = 24. Second innings: 2 x 24 + 5 = 53 runs.\nFINAL: 53 runs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "53",
    "unit": "runs",
@@ -4022,7 +4022,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*x+8=50; x=(50-8)/3=14",
   "reference_solution_en": "3x + 8 = 50. 3x = 42, so x = 14.\nFINAL: 14 potatoes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "14",
    "unit": "potatoes",
@@ -4077,7 +4077,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "40*(9-y)+52*y=396; y=(396-40*9)/12=3",
   "reference_solution_en": "Let y buses have 52 seats: 40(9 - y) + 52y = 396. 360 + 12y = 396, so y = 3.\nFINAL: 3 buses",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3",
    "unit": "buses",
@@ -4130,7 +4130,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "2*h+4*(h-12)=120; h=28; (120+48)/6-12=16",
   "reference_solution_en": "Let h be hens; goats = h - 12. 2h + 4(h - 12) = 120, so 6h = 168 and h = 28. Goats: 28 - 12 = 16.\nFINAL: 16 goats",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "16",
    "unit": "goats",
@@ -4185,7 +4185,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "25*d+15=190; d=(190-15)/25=7",
   "reference_solution_en": "25d + 15 = 190. 25d = 175, so d = 7.\nFINAL: 7 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7",
    "unit": "rupees",
@@ -4243,7 +4243,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "x+6=2*(x-6); x=6+12=18",
   "reference_solution_en": "x + 6 = 2(x - 6). x + 6 = 2x - 12, so x = 18.\nFINAL: 18 students",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "18",
    "unit": "students",
@@ -4299,7 +4299,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "5*x+3=23; x=(23-3)/5=4",
   "reference_solution_en": "5x + 3 = 23. 5x = 20, so x = 4.\nFINAL: 4 goals",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4",
    "unit": "goals",
@@ -4353,7 +4353,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "3*s+2*10=80; s=(80-20)/3=20",
   "reference_solution_en": "3s + 2 x 10 = 80. 3s = 60, so s = 20 rupees.\nFINAL: 20 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "rupees",
@@ -4410,7 +4410,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "p+p+35=145; p=(145-35)/2=55",
   "reference_solution_en": "p + (p + 35) = 145. 2p = 110, so p = 55 km.\nFINAL: 55 km",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "55",
    "unit": "km",
@@ -4473,7 +4473,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "m+4*m=85; m=17; 85/5*4=68",
   "reference_solution_en": "m + 4m = 85, so m = 17. Lemon trees: 4 x 17 = 68.\nFINAL: 68 trees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "68",
    "unit": "trees",
@@ -4528,7 +4528,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "n=8*15+6; 8*15+6=126",
   "reference_solution_en": "n = 8 x 15 + 6. n = 120 + 6 = 126.\nFINAL: 126 peanuts",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "126",
    "unit": "peanuts",
@@ -4584,7 +4584,7 @@
   "source_license": "No external source; release terms not assigned.",
   "reference_equation": "350*f+600*(10-f)=4750; f=(6000-4750)/250=5",
   "reference_solution_en": "350f + 600(10 - f) = 4750. 6000 - 250f = 4750, so f = 5.\nFINAL: 5 footballs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "footballs",

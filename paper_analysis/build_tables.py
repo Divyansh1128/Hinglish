@@ -449,7 +449,7 @@ def build_tables(result):
         tables.append(Table("numeric", f"Strict endpoint beside secondary {result['numeric_endpoint']} ({label})",
                             ["Form", "Strict correct", "Strict (%)", "Numeric match", "Numeric (%)", "Disagreements"],
                             "lrrrrr", rows,
-                            ["numeric_literal_v1 is an UNADOPTED secondary diagnostic: exact FINAL-line literal, "
+                            ["numeric_literal_v1 is the pre-registered secondary endpoint (D018): exact FINAL-line literal, "
                              "no unit conversion. Strict scorer v1.0.0 remains primary."]))
     return tables
 

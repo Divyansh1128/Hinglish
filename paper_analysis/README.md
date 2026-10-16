@@ -2,7 +2,7 @@
 
 Turns Test 1 results ZIPs into paper-ready Markdown and LaTeX (booktabs) tables, a combined per-rendering CSV and optional figures. It uses only the Python 3 standard library. matplotlib is optional: without it, the tool skips the figures and says so.
 
-**This tool reports stored scores and adds no new scoring.** Strict correctness is the stored automatic `correct` (scorer v1.0.0) of the one terminal generated attempt for each rendering. Accuracy, Wilson intervals and the paired family bootstrap use the same formulas as `test1_pilot/hinglish_pilot/report.py`, including its RNG order (E−C, E−R, R−C) with the seed and resample count stored in the run's `experiment_config.json`. Each run's numbers are checked against the `metrics.json` and `predictions.csv` stored in its ZIP. Any mismatch is flagged and the exit code is 3. The `numeric_literal_v1` column is an UNADOPTED secondary diagnostic from `secondary_analysis`, shown beside the strict endpoint.
+**This tool reports stored scores and adds no new scoring.** Strict correctness is the stored automatic `correct` (scorer v1.0.0) of the one terminal generated attempt for each rendering. Accuracy, Wilson intervals and the paired family bootstrap use the same formulas as `test1_pilot/hinglish_pilot/report.py`, including its RNG order (E−C, E−R, R−C) with the seed and resample count stored in the run's `experiment_config.json`. Each run's numbers are checked against the `metrics.json` and `predictions.csv` stored in its ZIP. Any mismatch is flagged and the exit code is 3. The `numeric_literal_v1` column is the pre-registered secondary endpoint (D018) from `secondary_analysis`, shown beside the strict endpoint.
 
 ## Usage
 

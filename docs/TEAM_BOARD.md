@@ -39,7 +39,8 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 31 | Pilot-B blind solve + comparison: Claude 210/210 and GPT 210/210 match gold; 2/70 families flagged (PB013, PB051) | Claude + GPT solvers | DONE 2026-10-15 | `autoverify_runs/pilot_b/` |
 | 32 | **Human review of all 70 Pilot-B families** | HUMAN | DONE 2026-10-16: 57 ACCEPT, 13 REVISE applied as v2; blind re-solve 15/15 both solvers; Pilot-B FROZEN (`pilot_b/FROZEN.md`) | `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` |
 | 33 | Phase-2 blind solve: Claude 900/900, GPT 897/900 match gold (TRA072 GPT error); strict flags 10 FINAL_TEST + 6 TRAIN/DEV | Claude + GPT solvers | DONE 2026-10-16 | `autoverify_runs/phase2/verification/` |
-| 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | FINAL_TEST DONE and FROZEN 2026-10-16 (`phase2/FINAL_TEST_FROZEN.md`). TRAIN+DEV pending | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
+| 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | FINAL_TEST and TRAIN+DEV DONE and FROZEN 2026-10-16 (`phase2/*_FROZEN.md`) | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
+| 35 | EACL SRW paper draft (pilot results as placeholders; [VERIFY] items listed) | Claude subagent | DRAFTED 2026-10-16 | `paper/eacl_srw_draft.md` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 

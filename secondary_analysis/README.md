@@ -1,6 +1,6 @@
 # Secondary analysis 0.1.0
 
-**UNADOPTED, opt-in, secondary and model-free. Strict scorer v1.0.0 remains primary.**
+**Adopted as the pre-registered SECONDARY endpoint (decision D018); model-free. Strict scorer v1.0.0 remains primary.**
 Python 3 standard library only. This package does not run a model or alter any
 pilot scorer, prompt, dataset, notebook, stored score or research decision.
 
