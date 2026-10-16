@@ -39,7 +39,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 31 | Pilot-B blind solve + comparison: Claude 210/210 and GPT 210/210 match gold; 2/70 families flagged (PB013, PB051) | Claude + GPT solvers | DONE 2026-10-15 | `autoverify_runs/pilot_b/` |
 | 32 | **Human review of all 70 Pilot-B families** | HUMAN | DONE 2026-10-16: 57 ACCEPT, 13 REVISE applied as v2; blind re-solve 15/15 both solvers; Pilot-B FROZEN (`pilot_b/FROZEN.md`) | `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` |
 | 33 | Phase-2 blind solve: Claude 900/900, GPT 897/900 match gold (TRA072 GPT error); strict flags 10 FINAL_TEST + 6 TRAIN/DEV | Claude + GPT solvers | DONE 2026-10-16 | `autoverify_runs/phase2/verification/` |
-| 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | FINAL_TEST returned 2026-10-16: 32 ACCEPT, 68 REVISE (GPT-drafted R stilted); applying with R/C contrast check. TRAIN+DEV pending | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
+| 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | FINAL_TEST DONE and FROZEN 2026-10-16 (`phase2/FINAL_TEST_FROZEN.md`). TRAIN+DEV pending | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 

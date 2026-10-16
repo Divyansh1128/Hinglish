@@ -11,7 +11,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 86-9 = 77",
   "reference_solution_en": "Subtract the gap from the opening threshold. Calculation: 86-9 = 77.\nFINAL: 77 beds",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "77",
    "unit": "beds",
@@ -65,7 +65,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 18+7 = 25",
   "reference_solution_en": "Add the excess to the permitted delay. Calculation: 18+7 = 25.\nFINAL: 25 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "25",
    "unit": "minutes",
@@ -121,7 +121,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 14-9 = 5",
   "reference_solution_en": "The rise closes part of the original gap to the overflow mark. Calculation: 14-9 = 5.\nFINAL: 5 centimetres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "centimetres",
@@ -175,7 +175,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 55-8-32 = 15",
   "reference_solution_en": "Remove setup and reading time from the reservation. Calculation: 55-8-32 = 15.\nFINAL: 15 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "15",
    "unit": "minutes",
@@ -231,7 +231,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 43+29-12 = 60",
   "reference_solution_en": "Adding the two album counts counts shared photos twice; subtract the overlap once. Calculation: 43+29-12 = 60.\nFINAL: 60",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "60",
    "unit": "",
@@ -282,7 +282,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 96-14+6 = 88",
   "reference_solution_en": "Only eight of the original chairs remain outside the hall. Calculation: 96-14+6 = 88.\nFINAL: 88 chairs",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "88",
    "unit": "chairs",
@@ -337,7 +337,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 72-11-4 = 57",
   "reference_solution_en": "Exclude untouched and spoiled trays from the prepared count. Calculation: 72-11-4 = 57.\nFINAL: 57 meals",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "57",
    "unit": "meals",
@@ -393,7 +393,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 23-6 = 17",
   "reference_solution_en": "The known afternoon distance includes the six-kilometre excess. Calculation: 23-6 = 17.\nFINAL: 17 kilometres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "17",
    "unit": "kilometres",
@@ -448,7 +448,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 60-26-9 = 25",
   "reference_solution_en": "Find the second allocation, then remove the visiting team's contribution. Calculation: 60-26-9 = 25.\nFINAL: 25 visits",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "25",
    "unit": "visits",
@@ -503,7 +503,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 60-35 = 25",
   "reference_solution_en": "The common window begins at 09:35 and ends at 10:00. Calculation: 60-35 = 25.\nFINAL: 25 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "25",
    "unit": "minutes",
@@ -559,7 +559,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 126-118+1 = 9",
   "reference_solution_en": "An inclusive page interval contains one more page than the difference of its endpoints. Calculation: 126-118+1 = 9.\nFINAL: 9 pages",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "pages",
@@ -614,7 +614,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 2+1.5 = 7/2",
   "reference_solution_en": "The rollover cap admits only two gigabytes; add the fresh allowance. Calculation: 2+1.5 = 7/2.\nFINAL: 7/2 GB",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7/2",
    "unit": "GB",
@@ -669,7 +669,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 17-5+1 = 13",
   "reference_solution_en": "Remove the five departures from those ahead, then include the guest to obtain the position. Calculation: 17-5+1 = 13.\nFINAL: 13",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "13",
    "unit": "",
@@ -720,7 +720,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 38-6+9 = 41",
   "reference_solution_en": "Adjust the listed count for absences and additional guests. Calculation: 38-6+9 = 41.\nFINAL: 41 people",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "41",
    "unit": "people",
@@ -775,7 +775,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 4+7+3-9 = 5",
   "reference_solution_en": "Compare the sum of the three legs with the direct route. Calculation: 4+7+3-9 = 5.\nFINAL: 5 kilometres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "kilometres",
@@ -830,7 +830,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 8-(-3) = 11",
   "reference_solution_en": "Subtract the negative minimum from the maximum. Calculation: 8-(-3) = 11.\nFINAL: 11 degrees Celsius",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "11",
    "unit": "degrees Celsius",
@@ -886,7 +886,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 60-35-20 = 5",
   "reference_solution_en": "Work backward by both consecutive durations from the hour available after 17:00. Calculation: 60-35-20 = 5.\nFINAL: 5 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "minutes",
@@ -942,7 +942,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 900-120-45 = 735",
   "reference_solution_en": "Deduct both specified charges from the refundable deposit. Calculation: 900-120-45 = 735.\nFINAL: 735 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "735",
    "unit": "rupees",
@@ -999,7 +999,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 2*80+110 = 270",
   "reference_solution_en": "Price the first two hours at the initial rate and add the third hour's payment. Calculation: 2*80+110 = 270.\nFINAL: 270 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "270",
    "unit": "rupees",
@@ -1056,7 +1056,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 600*1.10-50 = 610",
   "reference_solution_en": "Apply the service charge to the base fee before deducting the voucher. Calculation: 600*1.10-50 = 610.\nFINAL: 610 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "610",
    "unit": "rupees",
@@ -1113,7 +1113,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 300-240-25 = 35",
   "reference_solution_en": "Find the change and deduct the donation retained by the library. Calculation: 300-240-25 = 35.\nFINAL: 35 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "35",
    "unit": "rupees",
@@ -1170,7 +1170,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (1440+180)/12 = 135",
   "reference_solution_en": "Recover the combined monthly cost by adding the saving, then divide by twelve. Calculation: (1440+180)/12 = 135.\nFINAL: 135 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "135",
    "unit": "rupees",
@@ -1227,7 +1227,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (3600-900)/3 = 900",
   "reference_solution_en": "Subtract the sponsor's contribution and divide the unpaid cost among the groups. Calculation: (3600-900)/3 = 900.\nFINAL: 900 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "900",
    "unit": "rupees",
@@ -1284,7 +1284,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (780-180)/75 = 8",
   "reference_solution_en": "Reserve the protected amount and divide spendable funds by the kit price. Calculation: (780-180)/75 = 8.\nFINAL: 8",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8",
    "unit": "",
@@ -1335,7 +1335,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 35+(6-1)*12 = 95",
   "reference_solution_en": "Charge the first kilometre once and the other five at the incremental rate. Calculation: 35+(6-1)*12 = 95.\nFINAL: 95 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "95",
    "unit": "rupees",
@@ -1392,7 +1392,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (1750-250)/2+250 = 1000",
   "reference_solution_en": "Isolate the scan cost, take the patient's half, and add the full consultation charge. Calculation: (1750-250)/2+250 = 1000.\nFINAL: 1000 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "1000",
    "unit": "rupees",
@@ -1449,7 +1449,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 640-500+90 = 230",
   "reference_solution_en": "The travel cap leaves part of travel unpaid, and all meal expense is also unpaid. Calculation: 640-500+90 = 230.\nFINAL: 230 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "230",
    "unit": "rupees",
@@ -1506,7 +1506,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (4-1+1)*95 = 380",
   "reference_solution_en": "Monday through Thursday is four chargeable days, including both endpoints. Calculation: (4-1+1)*95 = 380.\nFINAL: 380 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "380",
    "unit": "rupees",
@@ -1563,7 +1563,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1055-55-800 = 200",
   "reference_solution_en": "Reduce the bill by the waiver, then apply the grant. Calculation: 1055-55-800 = 200.\nFINAL: 200 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "200",
    "unit": "rupees",
@@ -1620,7 +1620,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 3*100-245 = 55",
   "reference_solution_en": "Use face value, not purchase price, to calculate unused service credit. Calculation: 3*100-245 = 55.\nFINAL: 55 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "55",
    "unit": "rupees",
@@ -1677,7 +1677,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 4200-18*200 = 600",
   "reference_solution_en": "Calculate the attendee-based fee and compare it with the flat fee. Calculation: 4200-18*200 = 600.\nFINAL: 600 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "600",
    "unit": "rupees",
@@ -1734,7 +1734,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (220-60)/32 = 5",
   "reference_solution_en": "Remove the activation fee before converting payment into meals. Calculation: (220-60)/32 = 5.\nFINAL: 5 meals",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "meals",
@@ -1790,7 +1790,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (15-3)*24+3*8 = 312",
   "reference_solution_en": "Price the twelve successful stops and the three unsuccessful attempts separately. Calculation: (15-3)*24+3*8 = 312.\nFINAL: 312 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "312",
    "unit": "rupees",
@@ -1847,7 +1847,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 500-430-40 = 30",
   "reference_solution_en": "Compute the original overpayment and remove the refund already received. Calculation: 500-430-40 = 30.\nFINAL: 30 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "30",
    "unit": "rupees",
@@ -1904,7 +1904,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 80*3/8/2 = 15",
   "reference_solution_en": "Find the chart-page count, then take half of it. Calculation: 80*3/8/2 = 15.\nFINAL: 15 pages",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "15",
    "unit": "pages",
@@ -1959,7 +1959,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 42*100/70 = 60",
   "reference_solution_en": "Divide the observed replies by the response fraction to recover invitees. Calculation: 42*100/70 = 60.\nFINAL: 60 workers",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "60",
    "unit": "workers",
@@ -2014,7 +2014,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (39-24)/24*100 = 125/2",
   "reference_solution_en": "Divide the increase in the reading by its original value, then convert to percent. Calculation: (39-24)/24*100 = 125/2.\nFINAL: 125/2 percent",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "125/2",
    "unit": "percent",
@@ -2069,7 +2069,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (10+30)/(40+60) = 2/5",
   "reference_solution_en": "Combine the illustrated counts and divide by the combined book count. Calculation: (10+30)/(40+60) = 2/5.\nFINAL: 2/5",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2/5",
    "unit": "",
@@ -2120,7 +2120,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1.2*0.8*100 = 96",
   "reference_solution_en": "Apply both percentage factors to one original-price unit and express the result as a percent. Calculation: 1.2*0.8*100 = 96.\nFINAL: 96 percent",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "96",
    "unit": "percent",
@@ -2175,7 +2175,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 3/5*2/9 = 2/15",
   "reference_solution_en": "Multiply the occupied fraction by the aisle fraction conditional on occupancy. Calculation: 3/5*2/9 = 2/15.\nFINAL: 2/15",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2/15",
    "unit": "",
@@ -2226,7 +2226,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1-1/4-1/3 = 5/12",
   "reference_solution_en": "Both usages are fractions of the original quantity, so subtract them from one. Calculation: 1-1/4-1/3 = 5/12.\nFINAL: 5/12",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5/12",
    "unit": "",
@@ -2277,7 +2277,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 15/3 = 5",
   "reference_solution_en": "Divide numerator and denominator by their greatest common divisor, three; the numerator becomes five. Calculation: 15/3 = 5.\nFINAL: 5",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "",
@@ -2328,7 +2328,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (92-80)/92 = 3/23",
   "reference_solution_en": "Use the new attendance as the denominator, as requested. Calculation: (92-80)/92 = 3/23.\nFINAL: 3/23",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3/23",
    "unit": "",
@@ -2379,7 +2379,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (1-5/8)*2/5 = 3/20",
   "reference_solution_en": "Find the unfinished fraction after Monday and take two-fifths of it. Calculation: (1-5/8)*2/5 = 3/20.\nFINAL: 3/20",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3/20",
    "unit": "",
@@ -2430,7 +2430,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (18-2)/(18/(3/4)) = 2/3",
   "reference_solution_en": "Recover the capacity from the initial fill, then compare the water left with that capacity. Calculation: (18-2)/(18/(3/4)) = 2/3.\nFINAL: 2/3",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2/3",
    "unit": "",
@@ -2481,7 +2481,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 150*(80-60)/100 = 30",
   "reference_solution_en": "Apply the twenty-percentage-point gap to the unchanged catalogue size. Calculation: 150*(80-60)/100 = 30.\nFINAL: 30",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "30",
    "unit": "",
@@ -2532,7 +2532,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 3/10/2 = 3/20",
   "reference_solution_en": "Halve the initially visible fraction. Calculation: 3/10/2 = 3/20.\nFINAL: 3/20",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "3/20",
    "unit": "",
@@ -2583,7 +2583,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 48/(3/4*4/5) = 80",
   "reference_solution_en": "The accepted fraction of all invitations is the product of the response and acceptance fractions. Calculation: 48/(3/4*4/5) = 80.\nFINAL: 80",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "80",
    "unit": "",
@@ -2634,7 +2634,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 2/3+3/4-1/2 = 11/12",
   "reference_solution_en": "Add the meal participation fractions and remove their double-counted overlap. Calculation: 2/3+3/4-1/2 = 11/12.\nFINAL: 11/12",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "11/12",
    "unit": "",
@@ -2685,7 +2685,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1/3+1/4 = 7/12",
   "reference_solution_en": "Both consecutive sections are measured against the whole route, so add their fractions. Calculation: 1/3+1/4 = 7/12.\nFINAL: 7/12",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7/12",
    "unit": "",
@@ -2736,7 +2736,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 30/(100-45)*100 = 600/11",
   "reference_solution_en": "Use the non-woodland area, fifty-five percent of the park, as the comparison base. Calculation: 30/(100-45)*100 = 600/11.\nFINAL: 600/11 percent",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "600/11",
    "unit": "percent",
@@ -2791,7 +2791,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 48*3/(5+3) = 18",
   "reference_solution_en": "Divide into eight ratio units and allocate three units to the second ward. Calculation: 48*3/(5+3) = 18.\nFINAL: 18",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "18",
    "unit": "",
@@ -2842,7 +2842,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 3*14 = 42",
   "reference_solution_en": "Apply the three-to-one relation to the interview room's seat count. Calculation: 3*14 = 42.\nFINAL: 42 seats",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "42",
    "unit": "seats",
@@ -2897,7 +2897,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 18/(7-4)*4 = 24",
   "reference_solution_en": "The three-unit gap represents eighteen saplings; find four units. Calculation: 18/(7-4)*4 = 24.\nFINAL: 24",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "24",
    "unit": "",
@@ -2948,7 +2948,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 20*3/2-24 = 6",
   "reference_solution_en": "The fixed awaiting-repair count requires thirty repaired books; subtract the current count. Calculation: 20*3/2-24 = 6.\nFINAL: 6 books",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "books",
@@ -3004,7 +3004,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 14*3/7-2 = 4",
   "reference_solution_en": "Scale the original blank space from the text length and subtract the crop. Calculation: 14*3/7-2 = 4.\nFINAL: 4 centimetres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4",
    "unit": "centimetres",
@@ -3058,7 +3058,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 60/(4+1)+18 = 30",
   "reference_solution_en": "One fifth of the first order is roses; add the second order's roses. Calculation: 60/(4+1)+18 = 30.\nFINAL: 30 stems",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "30",
    "unit": "stems",
@@ -3087,10 +3087,10 @@
     "switching_roles": []
    },
    "C": {
-    "rendering_id": "FT057-C-v2",
-    "text": "Pehle order ke 60 stems ka marigold-to-rose ratio 4:1 hai. Doosre mein 18 roses hain. Total rose stems kitne?",
+    "rendering_id": "FT057-C-v4",
+    "text": "Shaadi ke pehle order ke 60 stems ka marigold-to-rose ratio 4:1 hai. Doosre order mein 12 marigolds aur 18 roses hain. Total rose stems kitne hain?",
     "creator_type": "GPT",
-    "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: baant. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed. | v2: reviewer fix, verbatim, 2026-10-16",
+    "generation_or_edit_history": "GPT; prompt task-29 v1; 15 Oct 2026; written from scratch; context: weddings and events. R focal operation word: baant. C replaced this operation word with an English relation or clause. No human edits or independent transliteration cross-check; unreviewed. | v2: reviewer fix, verbatim, 2026-10-16 | v4: Claude restored the omitted distractor (12 marigolds) and wedding context for equivalence with E; reviewer delegated the decision 2026-10-16.",
     "switching_roles": [
      "allocation"
     ]
@@ -3113,7 +3113,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 2*3 = 6",
   "reference_solution_en": "Compose the cup-to-bowl and bowl-to-jug multipliers. Calculation: 2*3 = 6.\nFINAL: 6",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "",
@@ -3164,7 +3164,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 35/5*2 = 14",
   "reference_solution_en": "Convert vehicles to five-vehicle groups and assign two helpers to each group. Calculation: 35/5*2 = 14.\nFINAL: 14 workers",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "14",
    "unit": "workers",
@@ -3219,7 +3219,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 27/(2+3+4)*3 = 9",
   "reference_solution_en": "Pillowcases occupy three of the nine ratio units. Calculation: 27/(2+3+4)*3 = 9.\nFINAL: 9",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "9",
    "unit": "",
@@ -3270,7 +3270,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 35*2/5-3 = 11",
   "reference_solution_en": "Scale discussion time from silent work and remove the early finish interval. Calculation: 35*2/5-3 = 11.\nFINAL: 11 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "11",
    "unit": "minutes",
@@ -3326,7 +3326,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 120/3*8.5 = 340",
   "reference_solution_en": "Find real metres per map centimetre and scale the drawn path. Calculation: 120/3*8.5 = 340.\nFINAL: 340 metres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "340",
    "unit": "metres",
@@ -3381,7 +3381,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 12*5/3 = 20",
   "reference_solution_en": "With the same height and coverage, paint volume scales with width. Calculation: 12*5/3 = 20.\nFINAL: 20 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "litres",
@@ -3436,7 +3436,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 18*20/30 = 12",
   "reference_solution_en": "Keep the line count fixed and divide by the new lines per screen. Calculation: 18*20/30 = 12.\nFINAL: 12",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "",
@@ -3487,7 +3487,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (9+2)/2 = 11/2",
   "reference_solution_en": "Invert the staff fraction to express it as one in k. Calculation: (9+2)/2 = 11/2.\nFINAL: 11/2",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "11/2",
    "unit": "",
@@ -3538,7 +3538,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (14-2)/2 = 6",
   "reference_solution_en": "Reduce water only and divide by the unchanged concentrate volume. Calculation: (14-2)/2 = 6.\nFINAL: 6",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "",
@@ -3589,7 +3589,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 2/(5+2) = 2/7",
   "reference_solution_en": "Divide empty-distance units by all distance units; the absolute distance is unnecessary. Calculation: 2/(5+2) = 2/7.\nFINAL: 2/7",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "2/7",
    "unit": "",
@@ -3640,7 +3640,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1.5/2*8 = 6",
   "reference_solution_en": "Apply the post's height-to-shadow ratio to the tree's shadow. Calculation: 1.5/2*8 = 6.\nFINAL: 6 metres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "metres",
@@ -3695,7 +3695,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (18-5)*4 = 52",
   "reference_solution_en": "Subtract outflow from inflow, then multiply the net rate by elapsed time. Calculation: (18-5)*4 = 52.\nFINAL: 52 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "52",
    "unit": "litres",
@@ -3750,7 +3750,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 60/12+1 = 6",
   "reference_solution_en": "Count the five intervals and include the initial reminder. Calculation: 60/12+1 = 6.\nFINAL: 6",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "",
@@ -3801,7 +3801,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 6*2.5+4 = 19",
   "reference_solution_en": "Calculate rainfall during the steady period and add the earlier reading. Calculation: 6*2.5+4 = 19.\nFINAL: 19 millimetres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "19",
    "unit": "millimetres",
@@ -3855,7 +3855,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (180-40)/7 = 20",
   "reference_solution_en": "Find the unscanned page count and divide by processing speed. Calculation: (180-40)/7 = 20.\nFINAL: 20 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "minutes",
@@ -3911,7 +3911,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 30+4*5+2*3 = 56",
   "reference_solution_en": "Add the first-stage gain and the three-minute gain at half speed to the initial charge. Calculation: 30+4*5+2*3 = 56.\nFINAL: 56 percent",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "56",
    "unit": "percent",
@@ -3966,7 +3966,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 18-6 = 12",
   "reference_solution_en": "The slower handover station limits sustained output; the question asks for the count in one minute. Calculation: 18-6 = 12.\nFINAL: 12 meals",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "meals",
@@ -4022,7 +4022,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 1/(1/12+1/18) = 36/5",
   "reference_solution_en": "Add the machines' fractions of a batch per minute and invert the combined rate. Calculation: 1/(1/12+1/18) = 36/5.\nFINAL: 36/5 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "36/5",
    "unit": "minutes",
@@ -4078,7 +4078,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 27/(45/60) = 36",
   "reference_solution_en": "Convert forty-five minutes to hours before dividing distance by time. Calculation: 27/(45/60) = 36.\nFINAL: 36 kilometres per hour",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "36",
    "unit": "kilometres per hour",
@@ -4132,7 +4132,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 750*8/1000 = 6",
   "reference_solution_en": "Multiply volume per wash by the number of washes and convert millilitres to litres. Calculation: 750*8/1000 = 6.\nFINAL: 6 litres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "litres",
@@ -4187,7 +4187,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 20+75-10 = 85",
   "reference_solution_en": "Cross midnight using twenty minutes before it and seventy-five after it, then exclude the pause. Calculation: 20+75-10 = 85.\nFINAL: 85 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "85",
    "unit": "minutes",
@@ -4243,7 +4243,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (30-18)/3 = 4",
   "reference_solution_en": "Three days elapse between the two morning measurements; divide growth by that duration. Calculation: (30-18)/3 = 4.\nFINAL: 4 centimetres per day",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "4",
    "unit": "centimetres per day",
@@ -4299,7 +4299,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 144/(6*2) = 12",
   "reference_solution_en": "Convert sheet output to page output by counting both sides, then divide the required pages by that rate. Calculation: 144/(6*2) = 12.\nFINAL: 12 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "minutes",
@@ -4355,7 +4355,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 48/1.5+6 = 38",
   "reference_solution_en": "Divide recording length by playback speed and add the interruption. Calculation: 48/1.5+6 = 38.\nFINAL: 38 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "38",
    "unit": "minutes",
@@ -4411,7 +4411,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = 24/(8-5) = 8",
   "reference_solution_en": "The queue shrinks by the difference between admission and arrival rates. Calculation: 24/(8-5) = 8.\nFINAL: 8 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8",
    "unit": "minutes",
@@ -4467,7 +4467,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (69-20)/(9-2) = 7",
   "reference_solution_en": "Divide the required rise by the net filling rate. Calculation: (69-20)/(9-2) = 7.\nFINAL: 7 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7",
    "unit": "minutes",
@@ -4523,7 +4523,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "answer = (12+8)/((30+10+20)/60) = 20",
   "reference_solution_en": "Include waiting in elapsed time and divide total distance by the full hour. Calculation: (12+8)/((30+10+20)/60) = 20.\nFINAL: 20 kilometres per hour",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "kilometres per hour",
@@ -4577,7 +4577,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "x+(x+8)=34; answer = (34-8)/2 = 13",
   "reference_solution_en": "The second queue has 8 more people. Subtract that difference from the combined count, then halve it.\nFINAL: 13 people",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "13",
    "unit": "people",
@@ -4632,7 +4632,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "2*x-15=75; answer = (75+15)/2 = 45",
   "reference_solution_en": "The overlap was counted in both bookings. Add it to the occupied time, then divide by two.\nFINAL: 45 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "45",
    "unit": "minutes",
@@ -4687,7 +4687,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "3*x-2=19; answer = (19+2)/3 = 7",
   "reference_solution_en": "Undo the subtraction of 2, then divide by the scale factor of 3.\nFINAL: 7 centimetres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "7",
    "unit": "centimetres",
@@ -4742,7 +4742,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "x+(x+1)=157; answer = (157-1)/2 = 78",
   "reference_solution_en": "The right page number is one above the left. Removing that extra one leaves twice the left number.\nFINAL: 78",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "78",
    "unit": "",
@@ -4796,7 +4796,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "x/4+6=23; answer = (23-6)*4 = 68",
   "reference_solution_en": "Remove the fixed 6 MB header. The other 17 MB is one quarter of the original file.\nFINAL: 68 megabytes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "68",
    "unit": "megabytes",
@@ -4852,7 +4852,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "2*(x+x+4)=56; answer = (56/2-4)/2 = 12",
   "reference_solution_en": "Half the perimeter is length plus width. Remove the 4 m difference, then halve the result.\nFINAL: 12 metres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "12",
    "unit": "metres",
@@ -4907,7 +4907,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "(x-6)+(x-9)+(x-12)=99; answer = (99+6+9+12)/3 = 42",
   "reference_solution_en": "Restore the three deductions to recover the combined starting balances, then divide by three.\nFINAL: 42 rupees",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "42",
    "unit": "rupees",
@@ -4965,7 +4965,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "40+12*x=64+8*x; answer = (64-40)/(12-8) = 6",
   "reference_solution_en": "The second quote starts INR 24 higher but adds INR 4 less per kilometre. The quotes meet at 6 km.\nFINAL: 6 kilometres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "kilometres",
@@ -5021,7 +5021,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "4*x+3*5=95; answer = (95-3*5)/4 = 20",
   "reference_solution_en": "Four consultations create three internal gaps. Remove their 15 minutes and divide the consultation time by four.\nFINAL: 20 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "20",
    "unit": "minutes",
@@ -5076,7 +5076,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "(12+17+x)/3=15; answer = 3*15-12-17 = 16",
   "reference_solution_en": "An average of 15 minutes across three sessions means 45 minutes overall. Remove the two known durations.\nFINAL: 16 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "16",
    "unit": "minutes",
@@ -5131,7 +5131,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "x*(x+1)=42; x>0; answer = 6 = 6",
   "reference_solution_en": "There are x rows and x+1 saplings in a row. The consecutive positive integers whose product is 42 are 6 and 7, so there are 6 rows.\nFINAL: 6 rows",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "rows",
@@ -5186,7 +5186,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "(10*x+3)-(30+x)=27; answer = (27+27)/9 = 6",
   "reference_solution_en": "The original code is 10*x+3 and the reversed code is 30+x. Their difference is 9*x-27, so 9*x is 54.\nFINAL: 6",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "6",
    "unit": "",
@@ -5240,7 +5240,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "5*x<=27<6*x; x is a positive integer; answer = 5 = 5",
   "reference_solution_en": "Five clips fitting implies x is at most 5.4 MB; six not fitting implies x is above 4.5 MB. The only whole number is 5.\nFINAL: 5 megabytes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "5",
    "unit": "megabytes",
@@ -5295,7 +5295,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "(x+130)/2=95; answer = (2*95-130) = 60",
   "reference_solution_en": "Measured from 13:00, the midpoint is minute 95 and the finish is minute 130. Reflect the finish about the midpoint to obtain the start.\nFINAL: 60 minutes",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "60",
    "unit": "minutes",
@@ -5350,7 +5350,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "48/x-48/(x+4)=2; x*(x+4)=96; x>0; answer = 8 = 8",
   "reference_solution_en": "The two allocations differ by 192/(x*(x+4)) litres, which is 2. Thus x*(x+4)=96; the positive solution is 8, giving 6 litres before and 4 litres after.\nFINAL: 8 residents",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "8",
    "unit": "residents",
@@ -5405,7 +5405,7 @@
   "source_license": "No external source used; release terms not assigned.",
   "reference_equation": "x/2+x/3+4=19; answer = (19-4)/(1/2+1/3) = 18",
   "reference_solution_en": "Remove the final 4 km. The other 15 km equals five-sixths of the reference distance.\nFINAL: 18 kilometres",
-  "status": "DRAFT",
+  "status": "ACCEPT",
   "gold": {
    "value": "18",
    "unit": "kilometres",
