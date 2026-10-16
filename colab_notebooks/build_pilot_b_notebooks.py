@@ -125,13 +125,22 @@ def build(model_id):
         RUNS.mkdir(parents=True, exist_ok=True)
         if {model_id in GATED!r}:
             # Gated model: needs a Hugging Face read token (Colab secret HF_TOKEN, or paste when asked).
+            token = ''
             try:
                 from google.colab import userdata
-                os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')
+                token = (userdata.get('HF_TOKEN') or '').strip()
+                print('HF_TOKEN read from Colab secret')
             except Exception as error:
-                import getpass
-                print('HF_TOKEN Colab secret not available (' + type(error).__name__ + ').')
-                os.environ['HF_TOKEN'] = getpass.getpass('Hugging Face token: ').strip()''')
+                print('HF_TOKEN Colab secret not available (' + type(error).__name__ + '): turn on Notebook access for it in the key sidebar, or paste the token now.')
+            import getpass
+            while not token.startswith('hf_'):
+                token = getpass.getpass('Paste your Hugging Face read token (starts with hf_): ').strip()
+            os.environ['HF_TOKEN'] = token
+            subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'huggingface-hub==0.30.2'], check=True)
+            from huggingface_hub import login, auth_check
+            login(token=token, add_to_git_credential=False)
+            auth_check(MODEL_ID, token=token)  # clear error if this token lacks access
+            print('Access to', MODEL_ID, 'confirmed')''')
     add('code', '''
         import torch
         assert torch.cuda.is_available(), 'Select Runtime → Change runtime type → T4 GPU'
