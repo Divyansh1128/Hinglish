@@ -1,6 +1,12 @@
 # How to review a family batch
 
-For the human reviewer. Start with **Pilot-B**: `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` (70 families, about 4–5 hours across several sittings).
+For the human reviewer. Three sheets, in priority order:
+
+1. **Pilot-B**: `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv`: 70 families, needed for the EACL paper (about 1.5–2 h in quick mode).
+2. **Phase-2 FINAL_TEST**: `autoverify_runs/phase2/verification/review_FINAL_TEST.csv`: 100 families, all reviewed; 10 flagged first (about 2–2.5 h).
+3. **Phase-2 TRAIN+DEV**: `autoverify_runs/phase2/verification/review_TRAIN_DEV.csv`: 6 flagged plus 39 sampled (about 1 h).
+
+Same columns and rules for all three. The Phase-2 sheets also have a `split` column, for information only.
 
 ## What is already done for you
 

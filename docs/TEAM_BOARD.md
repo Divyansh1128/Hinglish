@@ -38,6 +38,8 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 30 | FMT2 screening runs: Qwen3-1.7B, Qwen3-8B, Gemma-3-4B, Llama-3.2-3B (≤3/36 invalid to join the pilot) | HUMAN runs Colab; Claude analyses | 1.7B FAIL (D029); 8B PASS, joins pilot (D030); Gemma (fixed) and Llama (access granted) to rerun | `secondary_analysis/Hinglish_FMT2_Format_Test_*_Colab.ipynb` |
 | 31 | Pilot-B blind solve + comparison: Claude 210/210 and GPT 210/210 match gold; 2/70 families flagged (PB013, PB051) | Claude + GPT solvers | DONE 2026-10-15 | `autoverify_runs/pilot_b/` |
 | 32 | **Human review of all 70 Pilot-B families** | HUMAN | READY: see `docs/REVIEW_INSTRUCTIONS.md` | `autoverify_runs/pilot_b/verification/review_sheet_FULL.csv` |
+| 33 | Phase-2 blind solve: Claude 900/900, GPT 897/900 match gold (TRA072 GPT error); strict flags 10 FINAL_TEST + 6 TRAIN/DEV | Claude + GPT solvers | DONE 2026-10-16 | `autoverify_runs/phase2/verification/` |
+| 34 | **Human review: FINAL_TEST (100, full) and TRAIN+DEV (flagged + 20% sample)** | HUMAN | READY | `review_FINAL_TEST.csv`, `review_TRAIN_DEV.csv` |
 
 ## Timeline (proposed by Claude 2026-10-14; exact November date TBC by the user)
 
