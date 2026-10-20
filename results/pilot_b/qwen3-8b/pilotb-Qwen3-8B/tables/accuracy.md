@@ -1,0 +1,10 @@
+**Strict accuracy by form (PILOT-B EVALUATION — single-reviewer frozen data; 70 families)**
+
+| Form | Correct / families | Accuracy (%) | Wilson 95% CI (%) |
+| --- | ---: | ---: | ---: |
+| E | 69/70 | 98.6 | [92.3, 99.7] |
+| R | 64/70 | 91.4 | [82.5, 96.0] |
+| C | 69/70 | 98.6 | [92.3, 99.7] |
+
+_Stored scores only: strict correctness is the stored automatic `correct` (scorer v1.0.0); this tool adds no new scoring._
+_One rendering per form per family; families are the unit of analysis._
