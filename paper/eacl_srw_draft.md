@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Many Indian users ask mathematical questions in Hinglish, Hindi and English mixed in Roman script. We ask whether the language form of an otherwise identical word problem changes whether a small open LLM solves it. Each problem family is rendered as English (E), Romanized Hindi (R) and Roman-script code-mixed Hinglish (C). Gold answers are computed in code, every rendering is verified blind by two LLM solvers, and bilingual humans review the families. Before the pilot, we ran 36 permanently excluded fixture prompts through the frozen pipeline. The original answer-format instruction made 10/36 Qwen3-4B outputs fail strict scoring, mostly through unit words appended to dimensionless answers. It also pushed 8/12 Romanized-Hindi explanations into Devanagari. One disclosed prompt revision reduced both to zero. Screening seven models under the frozen protocol showed that strict-format compliance is strongly model-specific. The errors that remained involved the Romanized-Hindi operation words *bhaag* (divide) and *bhinn* (fraction, but also "different"). One *bhinn* misreading recurred in a second model family. Results of the human-reviewed pilot (up to 100 families, three backbones) are **[PLACEHOLDER: pilot headline]**.
+Many Indian users ask mathematical questions in Hinglish, Hindi and English mixed in Roman script. We ask whether the language form of an otherwise identical word problem changes whether a small open LLM solves it. Each problem family is rendered as English (E), Romanized Hindi (R) and Roman-script code-mixed Hinglish (C). Gold answers are computed in code, every rendering is verified blind by two LLM solvers, and bilingual humans review the families. Before the pilot, we ran 36 permanently excluded fixture prompts through the frozen pipeline. The original answer-format instruction made 10/36 Qwen3-4B outputs fail strict scoring, mostly through unit words appended to dimensionless answers. It also pushed 8/12 Romanized-Hindi explanations into Devanagari. One disclosed prompt revision reduced both to zero. Screening seven models under the frozen protocol showed that strict-format compliance is strongly model-specific. The errors that remained involved the Romanized-Hindi operation words *bhaag* (divide) and *bhinn* (fraction, but also "different"). One *bhinn* misreading recurred in a second model family. On 70 human-reviewed families (210 prompts per model) evaluated under a pre-registered plan, Romanized Hindi is the weakest form for all three backbones: Qwen3-4B scores 94.3/85.7/94.3% on E/R/C, Qwen3-8B 98.6/91.4/98.6%, and Llama-3.2-3B 94.3/57.1/70.0%. Code-mixed input is as easy as English for both Qwen models, while the Romanized-Hindi deficit ranges from about 8 to 37 points across models. The R errors are not concentrated in items with Hindi operation words, so the misreading hypothesis suggested by development data is not supported.
 
 ## 1 Introduction
 
@@ -81,28 +81,39 @@ Everything in this section comes from 36 prompts (12 families × E/R/C). The pro
 
 ## 6 Pilot Results
 
-**[PLACEHOLDER: fill only from `paper_analysis.build_tables` outputs on each complete, checksummed results ZIP. Report each backbone and cohort (original 30; Pilot-B 70) separately, never pool with fixture runs, and keep null or negative results.]**
+We report the Pilot-B cohort (70 families, single bilingual reviewer; Section 3). Analysis followed `pilot_b/PREREGISTRATION.md`, committed before any Pilot-B output. Each backbone ran once; all three runs completed 210/210 renderings, with no infrastructure failures, verified checksums, and tables reproduced exactly from stored scores. The original 30-family pilot, under two-reviewer adjudication, is reported separately once complete [VERIFY: R01/R02/A01 status] and is never pooled with Pilot-B.
 
-*Table 3 (shell): Source `tables/accuracy`, `tables/numeric`, `tables/invalid`.*
+**Table 3: Strict accuracy by form (Pilot-B, 70 families).** Accuracy % with 95% Wilson intervals; *invalid* = strict-invalid outputs (truncated in parentheses). No refusals occurred.
 
-| Backbone | Cohort | Form | Strict correct / N | Strict acc. [95% Wilson] | Numeric match / N | Invalid / refusal / truncated |
-|---|---|---|---|---|---|---|
-| Qwen3-4B | Pilot (30) | E / R / C | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] |
-| Qwen3-4B | Pilot-B (70) | E / R / C | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] |
-| Qwen3-8B | each | E / R / C | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] |
-| Llama-3.2-3B | each | E / R / C | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] | [PLACEHOLDER] |
-
-*Table 4 (shell): Source `tables/paired`; stored sign order E−C, E−R, R−C; 10,000 family-bootstrap resamples, frozen run seed.*
-
-| Backbone | Cohort | Contrast | Difference (pp) [95% CI] | Discordant pairs |
+| Backbone | E | R | C | Invalid E / R / C |
 |---|---|---|---|---|
-| each | each | E−C / E−R / R−C | [PLACEHOLDER] | [PLACEHOLDER] |
+| Qwen3-4B (primary) | 94.3 [86.2, 97.8] | 85.7 [75.7, 92.1] | 94.3 [86.2, 97.8] | 3 / 2 / 1 |
+| Qwen3-8B | 98.6 [92.3, 99.7] | 91.4 [82.5, 96.0] | 98.6 [92.3, 99.7] | 1 / 1 / 0 |
+| Llama-3.2-3B | 94.3 [86.2, 97.8] | 57.1 [45.5, 68.1] | 70.0 [58.5, 79.5] | 1 / 6 (5) / 4 (2) |
 
-*Figure 1 (shell): `figures/accuracy_by_form.pdf`, strict accuracy with Wilson intervals by form, one panel per backbone. [PLACEHOLDER]*
+**Table 4: Paired family differences** (percentage points; 10,000 family-bootstrap resamples, seed 101; discordant families as first-only / second-only correct).
 
-*Table 5 (shell): Primary-backbone audit of R and C outputs: taxonomy counts, English-compliance tags, and misread_quantity + wrong_relation_operation counts, by operation-word exposure and keep/switch/control cell. Planned, generated, scored and audited N per cell; NA for empty cells. [PLACEHOLDER: requires a verified audit sidecar; paper_analysis does not yet compute audit or vocabulary strata.]*
+| Backbone | E−R | E−C | R−C |
+|---|---|---|---|
+| Qwen3-4B | +8.6 [−1.4, +18.6] (9/3) | 0.0 [−7.1, +7.1] (3/3) | −8.6 [−15.7, −1.4] (1/7) |
+| Qwen3-8B | +7.1 [0.0, +14.3] (6/1) | 0.0 [−4.3, +4.3] (1/1) | −7.1 [−14.3, 0.0] (1/6) |
+| Llama-3.2-3B | +37.1 [+24.3, +50.0] (28/2) | +24.3 [+11.4, +37.1] (21/4) | −12.9 [−27.1, +1.4] (10/19) |
 
-**Prose to write after the run [PLACEHOLDER]:** whether the development failure classes recur; quoted evidence for each misreading, with counterexamples and unresolved cases; strict-versus-numeric discordance; question-only token counts as descriptive correlates. No significance tests on vocabulary strata.
+![Figure 1](figures/accuracy_by_form.png)
+
+*Figure 1: Strict accuracy by form with 95% Wilson intervals, Pilot-B (70 families per bar).*
+
+**Romanized Hindi is the hard case.** R is the lowest-scoring form for every backbone. The deficit is modest for Qwen (8.6 and 7.1 points; intervals touch zero) and large for Llama (37.1 points, interval [+24.3, +50.0]; 28 families correct only in E against 2 only in R). Within the Qwen family, moving from 4B to 8B improves all forms but leaves the R deficit roughly unchanged.
+
+**Code-mixing is not the problem.** For both Qwen models, C matches E exactly (E−C = 0.0) and exceeds R; for Qwen3-4B the R−C interval excludes zero (7 families correct only in C against 1 only in R). For Llama, C lies between E and R. Under our design, which holds the mathematics and the English output instruction fixed, mixing in English lexical material does not hurt and appears to help relative to Romanized Hindi alone.
+
+**The operation-word hypothesis is not supported.** Section 5 motivated a pre-registered descriptive split by whether R contains a Hindi operation word and whether C keeps or switches it. R accuracy is similar across strata for every model: Qwen3-4B 89% (keep), 82% (switch), 86% (none); Qwen3-8B 94/94/89%; Llama 67/59/51%. The R deficit is therefore not concentrated in items with *bhaag*/*bhinn*-type vocabulary. Many Llama R errors are arithmetic slips on simple items, for example 1200 − 3×265 answered as 435.
+
+**Residual format effects.** The secondary numeric endpoint agrees with strict scoring on every Llama rendering, so the gaps are not formatting artifacts. For the Qwen models, the pre-registered secondary grammar does not accept a *trailing* rupee symbol (`FINAL: 1575 ₹`), which strict scoring accepts. This accounts for every strict-correct/numeric-fail case (30 for Qwen3-4B, 36 for Qwen3-8B). We report the secondary endpoint as specified and note that a post-hoc allowance for the trailing symbol restores agreement. Three of Qwen3-4B's four E failures are numerically correct answers with unlisted English unit phrases (`11 years old`, `4 bags of cement`); one C failure is an unlisted spelling (`300 rupye`), the form-dependent alias penalty anticipated in Section 5.
+
+**Exploratory (not pre-registered).** Despite the English-explanation instruction, Llama explained 60/70 R and 27/70 C outputs in romanized-Hindi prose (heuristic detection). On C, Hindi-prose explanations were correct 13/27 against 36/43 for English explanations. This association is confounded by item difficulty and awaits the planned English-compliance audit [PLACEHOLDER: audit results, Table 5].
+
+*Table 5 (planned): primary-backbone audit of R and C outputs (error taxonomy, English-compliance tags) by operation-word stratum. [PLACEHOLDER: requires the verified audit sidecar.]*
 
 ## 7 Limitations
 
