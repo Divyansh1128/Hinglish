@@ -1,0 +1,560 @@
+{
+  "run_id": "pilot_b-bdfdb8cc35794bd68ef87ad29eddad4e",
+  "label": "PILOT-B EVALUATION — single-reviewer frozen data",
+  "mode": "pilot_b",
+  "status": "COMPLETE",
+  "expected": 210,
+  "completed": 210,
+  "families": 70,
+  "bootstrap_seed": 101,
+  "bootstrap_resamples": 10000,
+  "accuracy": {
+    "E": {
+      "correct": 66,
+      "denominator": 70,
+      "accuracy": 0.9428571428571428,
+      "wilson_95_interval": [
+        0.8620804952516177,
+        0.9775562208992887
+      ]
+    },
+    "R": {
+      "correct": 60,
+      "denominator": 70,
+      "accuracy": 0.8571428571428571,
+      "wilson_95_interval": [
+        0.7566158011633325,
+        0.920510582829334
+      ]
+    },
+    "C": {
+      "correct": 66,
+      "denominator": 70,
+      "accuracy": 0.9428571428571428,
+      "wilson_95_interval": [
+        0.8620804952516177,
+        0.9775562208992887
+      ]
+    }
+  },
+  "paired": {
+    "E-C": {
+      "difference": 0.0,
+      "bootstrap_95_interval": [
+        -0.07142857142857142,
+        0.07142857142857142
+      ],
+      "both_correct": 63,
+      "both_wrong": 1,
+      "a_correct_b_wrong": 3,
+      "a_wrong_b_correct": 3,
+      "families": 70
+    },
+    "E-R": {
+      "difference": 0.08571428571428572,
+      "bootstrap_95_interval": [
+        -0.014285714285714285,
+        0.18571428571428572
+      ],
+      "both_correct": 57,
+      "both_wrong": 1,
+      "a_correct_b_wrong": 9,
+      "a_wrong_b_correct": 3,
+      "families": 70
+    },
+    "R-C": {
+      "difference": -0.08571428571428572,
+      "bootstrap_95_interval": [
+        -0.15749999999999967,
+        -0.014285714285714285
+      ],
+      "both_correct": 59,
+      "both_wrong": 3,
+      "a_correct_b_wrong": 1,
+      "a_wrong_b_correct": 7,
+      "families": 70
+    }
+  },
+  "numeric": {
+    "E": {
+      "denominator": 70,
+      "strict_correct": 66,
+      "numeric_correct": 51,
+      "disagreements": 21
+    },
+    "R": {
+      "denominator": 70,
+      "strict_correct": 60,
+      "numeric_correct": 58,
+      "disagreements": 4
+    },
+    "C": {
+      "denominator": 70,
+      "strict_correct": 66,
+      "numeric_correct": 58,
+      "disagreements": 10
+    }
+  },
+  "invalid_reasons": {
+    "invalid_unit": {
+      "E": 3,
+      "R": 2,
+      "C": 1
+    }
+  },
+  "completed_by_form": {
+    "E": 70,
+    "R": 70,
+    "C": 70
+  },
+  "resources": {
+    "E": {
+      "input_tokens": 109.0,
+      "output_tokens": 104.0,
+      "latency_seconds": 9.592955764000067
+    },
+    "R": {
+      "input_tokens": 123.0,
+      "output_tokens": 98.5,
+      "latency_seconds": 9.262586271500027
+    },
+    "C": {
+      "input_tokens": 119.0,
+      "output_tokens": 93.5,
+      "latency_seconds": 8.646752957499984
+    }
+  },
+  "token_count_kinds": [
+    "actual tokenizer"
+  ],
+  "family_rows": [
+    {
+      "family_id": "PB001",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB002",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB003",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB004",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB005",
+      "E": true,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB006",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB007",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB008",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB009",
+      "E": false,
+      "R": false,
+      "C": false
+    },
+    {
+      "family_id": "PB010",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB011",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB012",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB013",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB014",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB015",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB016",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB017",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB018",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB019",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB020",
+      "E": true,
+      "R": true,
+      "C": false
+    },
+    {
+      "family_id": "PB021",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB022",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB023",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB024",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB025",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB026",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB027",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB028",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB029",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB030",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB031",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB032",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB033",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB034",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB035",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB036",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB037",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB038",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB039",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB040",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB041",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB042",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB043",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB044",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB045",
+      "E": false,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB046",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB047",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB048",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB049",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB050",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB051",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB052",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB053",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB054",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB055",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB056",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB057",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB058",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB059",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB060",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB061",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB062",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB063",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB064",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB065",
+      "E": false,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB066",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PB067",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB068",
+      "E": false,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB069",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PB070",
+      "E": true,
+      "R": false,
+      "C": false
+    }
+  ],
+  "numeric_endpoint": "numeric_literal_v1",
+  "consistency": {
+    "predictions.csv correct/attempt_id": "match",
+    "metrics.json status": "match",
+    "metrics.json accuracy + Wilson": "match",
+    "metrics.json paired bootstrap": "match"
+  },
+  "source": "PilotB_results_Qwen3-4B.zip!pilotb-Qwen3-4B_results.zip"
+}
