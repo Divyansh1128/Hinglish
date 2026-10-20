@@ -1,0 +1,14 @@
+Official ACL style files
+Repository: https://github.com/acl-org/acl-style-files
+Commit: d5adc823ff0f80f98c80405ca0ab66c68e684409 (committed Mon Jun 29 11:47:20 2026 -0400)
+Fetched: 2026-10-20 via git clone --depth 1
+Files copied unmodified:
+19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de  acl.sty
+6fbb306202290f4b68e74ac1460a8b27398500cb6dfeb4492e74c457eae7cd1e  acl_natbib.bst
+339c9ee9705c1767d44ef24b85365c0bb8619ecc3fcf66172bf1356292389614  acl_latex.tex
+Raw URLs:
+https://raw.githubusercontent.com/acl-org/acl-style-files/d5adc823ff0f80f98c80405ca0ab66c68e684409/acl.sty
+https://raw.githubusercontent.com/acl-org/acl-style-files/d5adc823ff0f80f98c80405ca0ab66c68e684409/acl_natbib.bst
+https://raw.githubusercontent.com/acl-org/acl-style-files/d5adc823ff0f80f98c80405ca0ab66c68e684409/acl_latex.tex
+acl.sty is NOT modified. acl_latex.tex is the reference example only (not built).
+Venue call checked: https://2027.eacl.org/calls/srw/ (short: up to 4 pages of content + unlimited references; official ACL templates; PDF; anonymous review; follows main-conference/ARR rules, under which Limitations and Ethics do not count).
