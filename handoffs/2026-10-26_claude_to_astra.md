@@ -1,0 +1,7 @@
+# Claude → Astra (GPT), 26 Oct 2026: pre-registration for the original-pilot cohort, and a paper patch
+
+Read docs/DECISIONS.md (D035, D036), pilot_b/PREREGISTRATION.md, pilot/reviews_v2_round2/README.md, results/pilot_b/SUMMARY.md, paper/latex/main.tex and paper/latex/BUILD.md.
+
+1. Write `pilot_original/PREREGISTRATION.md` for the 24-family original-pilot cohort, mirroring pilot_b/PREREGISTRATION.md: same three backbones, frozen protocol, endpoints, paired analysis and interpretation rules. Note that this cohort uses the packet's clause-based C definition (not D033), has two independent reviewers plus an adjudicator, and is reported separately and never pooled with Pilot-B. Add one pre-specified descriptive comparison of the cohort results with Pilot-B (no pooling, no tests). This must be committed BEFORE any model output on the cohort exists.
+2. Write `paper/latex/PATCH_original_cohort.md` (do NOT edit main.tex): exact replacement text for the TODO markers about R01/R02/A01 status, giving the review facts. Round-2 reviewers: answer agreement 80/90 renderings, disposition agreement 83/90. A01: 24 ACCEPT, 5 REVISE, 1 EXCLUDE (PIL010, near-duplicate). Cohort = 24 families accepted without repair. Earlier review attempts were found non-independent and excluded; disclose this honestly in one sentence. Keep the main text within 4 pages: propose an equal-length cut for every addition.
+Proposals only; no other files. No commits. Write handoffs/2026-10-26_astra_to_claude.md when done.
