@@ -52,3 +52,6 @@ The official `R01_stage2_responses.json` carries a field `_annotation_provenance
 PIL001-C-v1, PIL001-E-v1, PIL001-R-v1, PIL002-C-v1, PIL002-E-v1, PIL002-R-v1, PIL003-C-v1, PIL003-E-v1, PIL003-R-v1, PIL006-C-v1, PIL006-E-v1, PIL006-R-v2, PIL007-C-v1, PIL007-E-v1, PIL007-R-v1, PIL008-C-v2, PIL008-E-v1, PIL008-R-v1, PIL011-C-v1, PIL011-E-v1, PIL011-R-v1, PIL012-C-v1, PIL012-E-v1, PIL012-R-v1, PIL014-C-v1, PIL016-C-v2, PIL016-E-v1, PIL016-R-v1, PIL017-C-v1, PIL017-E-v1, PIL017-R-v1, PIL022-C-v1, PIL022-E-v1, PIL022-R-v1, PIL023-C-v1, PIL023-E-v1, PIL023-R-v1, PIL025-C-v2, PIL025-E-v1, PIL025-R-v1, PIL026-C-v2, PIL026-E-v1, PIL026-R-v1, PIL027-C-v1, PIL027-E-v1, PIL027-R-v1, PIL028-C-v1, PIL028-E-v1, PIL028-R-v1, PIL029-C-v1, PIL029-E-v1, PIL029-R-v1
 
 R02 rows with this field: 0.
+
+## Amendment (D037)
+`cohort_dataset.json` (current SHA-256 `5c3e8746f0629d1908902658bda2c280aeb388c55e741fb8e612bc49b5d43103`) records `judgment_source` for every reviewer form: R02 72/72 human; R01 20 human and 52 `ai_prefill_unverified` (R01's stage-2 rows carrying `_annotation_provenance: AI prefill suggestion, human_verified: false`). Stage-1 answers are human for both reviewers. The conversion was cross-checked against the independent GPT implementation in `independent_expected.json`: cohort, text hashes, answers and decisions all match.
