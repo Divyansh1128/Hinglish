@@ -24,3 +24,5 @@ Rubric inconsistencies, left as entered (human judgments) and **for A01 to resol
 - ACCEPT 24; REVISE 5 (PIL009-R, PIL015-R, PIL019-R, PIL024-R wording; PIL020 E/R/C asks for a fraction in lowest terms); EXCLUDE 1 (PIL010, near-duplicate of PIL002).
 - Pending from A01: decisions on the PIL005/PIL021 and PIL011/PIL012 relationships, borrowing-policy view (adding 'machine' to R), consent and credit.
 - Pending decision: re-review of the 5 repaired families by R01 and R02 (packet rule) before acceptance.
+
+**A01 follow-up (2026-10-26, via the coordinator):** PIL005 and PIL021 are accepted as distinct families (both kept). A01 consents and does not require credit. Still pending: the PIL011/PIL012 relationship and the borrowing-policy view on adding 'machine' to R.
