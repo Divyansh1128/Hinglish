@@ -26,3 +26,6 @@ Rubric inconsistencies, left as entered (human judgments) and **for A01 to resol
 - Pending decision: re-review of the 5 repaired families by R01 and R02 (packet rule) before acceptance.
 
 **A01 follow-up (2026-10-26, via the coordinator):** PIL005 and PIL021 are accepted as distinct families (both kept). A01 consents and does not require credit. Still pending: the PIL011/PIL012 relationship and the borrowing-policy view on adding 'machine' to R.
+
+**Re-review of the 5 repaired families (returned 2026-10-26): not independent, not used.** `R01_rereview_returned.csv` and `R02_rereview_returned.csv` are byte-identical (same SHA-256), with identical ratings and notes. The repairs are therefore not independently re-reviewed.
+**Decision (Claude, delegated):** the original-pilot cohort is the **24 families A01 accepted without repair**: all 30 except PIL010 (EXCLUDE, near-duplicate of PIL002) and the repaired PIL009, PIL015, PIL019, PIL020, PIL024. These 24 rest on the independent round-2 R01/R02 reviews plus A01 adjudication.
