@@ -13,7 +13,7 @@ Rules: read this board and the latest file in `handoffs/` before starting. One a
 | 5 | Implement adopted spec as a versioned analysis module, CMI calculator, excluded format-smoke fixtures, tests | Sol, Claude | BUILT 2026-10-14, UNADOPTED (aligned to spec by Claude) | `secondary_analysis/` |
 | 6 | Review Sol's code | Claude | DONE 2026-10-14 | `handoffs/2026-10-14_claude_review_of_sol.md` |
 | 7 | Evaluation dates and milestone timeline | HUMAN | DONE 2026-10-14: minor-project evaluation November 2026 (exact date TBC); final submission May 2027 | Timeline below |
-| 8 | v2 human review (R01, R02, A01) | HUMAN | First returned set (20 Oct) not independent, recorded in `pilot/reviews_v2_returned_2026-10-20/PROVENANCE.md`; new round with two different people IN PROGRESS | reviewer JSONs |
+| 8 | v2 human review (R01, R02, A01) | HUMAN | First returned set (20 Oct) not independent, recorded in `pilot/reviews_v2_returned_2026-10-20/PROVENANCE.md`; round 2 R01 and R02 COMPLETE (independent; 80/90 answer and 83/90 disposition agreement); A01 packet ready (`pilot/reviews_v2_round2/A01_round2_packet.zip`) | reviewer JSONs |
 | 9 | FMT2 format test on Colab T4 (36 excluded prompts) | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 36/36 complete; see `research/fmt2_format_test_2026-10-14/` | `colab_notebooks/model_screening/ModelTest_Qwen3-4B.ipynb` → results ZIP |
 | 10 | Confirm prompt v2 (D020): rerun FMT2 notebook (fixtures 0.2.0) on Colab T4 | HUMAN runs Colab; Claude analyses | DONE 2026-10-14: 0/36 format failures; prompt v2 frozen | `research/fmt2_format_test_2026-10-14/` |
 | 11 | Align `t4_smoke/protocol.py` instruction with prompt v2 before any training | Sol | IN PROGRESS 2026-10-15 | code + tests |
