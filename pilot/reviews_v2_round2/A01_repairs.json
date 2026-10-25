@@ -1,0 +1,19 @@
+{
+ "PIL009": {
+  "R": "Saira 9 sticker istemaal karti hai aur uske paas 14 sticker bachte hain. Saira ke sticker istemaal karne se pehle, Imran ke paas Saira se 4 zyaada sticker the. Imran ke paas kitne sticker the?"
+ },
+ "PIL015": {
+  "R": "Chhoot milne se pehle ek cheez ki keemat INR 200 hai. Pehle keemat par 20% ki chhoot milti hai, aur phir ghati hui keemat par 10% ki aur chhoot milti hai. Koi aur paisa nahi liya jaata. Aakhiri keemat kitne rupaye hai?"
+ },
+ "PIL019": {
+  "R": "Ek sharbat banane ke liye chashni aur paani ki maatra ka anupaat 2:5 rakha jaata hai. Agar 350 mL paani liya jaaye, to kitne millilitre chashni ki zaroorat hogi?"
+ },
+ "PIL020": {
+  "E": "Positive quantities A, B and C satisfy A:B = 2:3 and B:C = 4:5. What is A/C? Give your answer as a fraction in lowest terms.",
+  "R": "Dhanaatmak maatraon A, B aur C ke liye A:B = 2:3 aur B:C = 4:5 hai. A/C ka maan kya hai? Uttar sabse saral bhinn ke roop mein bataaiye.",
+  "C": "Positive quantities A, B aur C ke liye A:B = 2:3 hai, and B:C equals 4:5. A/C kya hai? Give the answer as a fraction in lowest terms."
+ },
+ "PIL024": {
+  "R": "2 machinein bina ruke ek saath kaam karti hain. Ek machine har minute 6 dabbe band karti hai aur doosri har minute 4 alag dabbe band karti hai. Dono milkar kul 90 dabbe band karne mein kitne minute lengi?"
+ }
+}
