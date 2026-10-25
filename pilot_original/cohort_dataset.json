@@ -1,0 +1,3846 @@
+{
+  "schema_version": "test1-1",
+  "version": "pilot_original-v1-9a4434b67941",
+  "kind": "pilot_adjudicated",
+  "borrowing_policy": "PROPOSED v1, NOT YET HUMAN-FROZEN: Arabic digits, mathematical symbols, variable names, INR/rupee notation, %, L, mL, m, cm, km, kg, g, h, minute, metre, litre, kilometre, centimetre, millilitre, kilogram, gram, hour and their ordinary Roman spellings may be shared. Established Hindi loan nouns bus, cycle, jag, tikat and pensil are proposed common borrowings. Names are shared entities. R must otherwise use Hindi phrasing in Roman script; substantive English clauses/relations are disallowed. C requires a productive English predicate, clause or mathematical relation alongside Hindi; object nouns alone do not qualify. Reviewers must flag disputed borrowings before the policy is frozen.",
+  "families": [
+    {
+      "family_id": "PIL001",
+      "source_family_id": "PIL001-authored-source",
+      "template_group_id": "PIL001-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "36 - 5",
+      "reference_solution_en": "Aman has 5 fewer marbles than Riya, so 36 - 5 = 31.\nFINAL: 31 marbles",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "31",
+        "unit": "marbles",
+        "aliases": [
+          "marble",
+          "kanche",
+          "kancha"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL001-E-v1",
+          "text": "Riya has 36 marbles. Aman has 5 fewer marbles than Riya. How many marbles does Aman have?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL001-R-v1",
+          "text": "Riya ke paas 36 kanche hain. Aman ke paas Riya se 5 kam kanche hain. Aman ke paas kitne kanche hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL001-C-v1",
+          "text": "Riya ke paas 36 marbles hain. Aman has 5 fewer marbles than Riya. Aman ke paas kitne marbles hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "comparison"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "a9781a74e1e05cb7d07af12f745bc2c6803ab31b099b1517e42c46239020f003",
+                "raw_answer": "31",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "66f84101a37e2a294a6848be66d959bd94aa3a1bbbfbe6a2f795a4870b1d5ae1",
+                "raw_answer": "26",
+                "raw_unit": "",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " Stage 1 independent answer is 26, but 36 - 5 = 31. Preserve original answer; log a solution correction only."
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "3392f321e0e2ba981cf6e6dabad1c24e62bee3b16725f0a3d4bd8dafcb87a229",
+                "raw_answer": "31",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "a9781a74e1e05cb7d07af12f745bc2c6803ab31b099b1517e42c46239020f003",
+                "raw_answer": "31",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "66f84101a37e2a294a6848be66d959bd94aa3a1bbbfbe6a2f795a4870b1d5ae1",
+                "raw_answer": "31",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "3392f321e0e2ba981cf6e6dabad1c24e62bee3b16725f0a3d4bd8dafcb87a229",
+                "raw_answer": "31",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's R answer 26 is an arithmetic slip (36-5=31); R01 itself notes this. Texts equivalent and natural.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL002",
+      "source_family_id": "PIL002-authored-source",
+      "template_group_id": "PIL002-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "150 - 5 * 24",
+      "reference_solution_en": "The notebooks cost 5 x 24 = INR 120. The change is 150 - 120 = INR 30.\nFINAL: INR 30",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "30",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL002-E-v1",
+          "text": "Meena buys 5 notebooks at INR 24 each. She pays the shopkeeper INR 150. How much change should she receive?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL002-R-v1",
+          "text": "Meena ne 5 kaapiyan khareedin. Har kaapi ki keemat INR 24 hai. Usne dukandaar ko INR 150 diye. Use kitne rupaye vaapas milne chahiye?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL002-C-v1",
+          "text": "Meena ne 5 notebooks khareedin; each costs INR 24. Usne shopkeeper ko INR 150 diye. Use kitna change milna chahiye?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "unit_price"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "c611e626dcc83acb3c5627476c9308f0f539c01803405d4d7140f4dc1b02d158",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "7783c3f9c7965e11009abfbedc03d1dfa2ecaa188581bf42ea228ded64c6f3a9",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "342d0ae2e1e11469a1be0c39122a63bb5e33c77bd2770c75da757faf3176dedd",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "c611e626dcc83acb3c5627476c9308f0f539c01803405d4d7140f4dc1b02d158",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7783c3f9c7965e11009abfbedc03d1dfa2ecaa188581bf42ea228ded64c6f3a9",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "342d0ae2e1e11469a1be0c39122a63bb5e33c77bd2770c75da757faf3176dedd",
+                "raw_answer": "30",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 150-5x24=30. Texts equivalent. See look-alike note: kept; PIL010 is the near-duplicate.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL003",
+      "source_family_id": "PIL003-authored-source",
+      "template_group_id": "PIL003-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "20 + 3 * 4",
+      "reference_solution_en": "Adding water for 4 minutes adds 3 x 4 = 12 L. The total is 20 + 12 = 32 L.\nFINAL: 32 L",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "32",
+        "unit": "L",
+        "aliases": [
+          "l",
+          "litre",
+          "litres",
+          "liter",
+          "liters"
+        ],
+        "conversions": {
+          "mL": "1/1000",
+          "millilitre": "1/1000",
+          "millilitres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL003-E-v1",
+          "text": "A tank initially contains 20 L of water. Water is added at 3 L per minute for 4 minutes. No water leaves the tank, and it has enough capacity. How many litres of water are in the tank at the end?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL003-R-v1",
+          "text": "Ek tanki mein pehle se 20 L paani hai. Usmein 4 minute tak har minute 3 L paani dala jaata hai. Koi paani bahar nahi nikalta aur tanki mein is paani ke liye kaafi jagah hai. Aakhir mein tanki mein kul kitne litre paani hoga?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL003-C-v1",
+          "text": "Ek tank mein pehle se 20 L paani hai. Water is added at 3 L per minute for 4 minutes. Koi paani bahar nahi nikalta aur tank mein enough space hai. Aakhir mein total kitne litres paani hoga?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "rate"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "b4163a50099206694834fb25c4f261562cc0daf81a94c2132900c4a69e9429c6",
+                "raw_answer": "32",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "797e0db7b812a387fbbbc1dfc2d129a0cc2a83010d50b230e57a142e28276c3b",
+                "raw_answer": "32",
+                "raw_unit": "Litres",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "1cb06e3d64fb02435faa872c27a64eec9711e95a9870d7b6a2e88d0c2f0e1077",
+                "raw_answer": "32",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "b4163a50099206694834fb25c4f261562cc0daf81a94c2132900c4a69e9429c6",
+                "raw_answer": "32",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "797e0db7b812a387fbbbc1dfc2d129a0cc2a83010d50b230e57a142e28276c3b",
+                "raw_answer": "32",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "1cb06e3d64fb02435faa872c27a64eec9711e95a9870d7b6a2e88d0c2f0e1077",
+                "raw_answer": "32",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 20+3x4=32. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL004",
+      "source_family_id": "PIL004-authored-source",
+      "template_group_id": "PIL004-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "24 * (1 - 3/8)",
+      "reference_solution_en": "The removed length is 24 x 3/8 = 9 m. The remaining length is 24 - 9 = 15 m.\nFINAL: 15 m",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "15",
+        "unit": "m",
+        "aliases": [
+          "metre",
+          "metres",
+          "meter",
+          "meters"
+        ],
+        "conversions": {
+          "cm": "1/100",
+          "centimetre": "1/100",
+          "centimetres": "1/100"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL004-E-v2",
+          "text": "A ribbon is 24 m long. 3/8 of its original length is cut off. What length of ribbon remains, in metres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL004-R-v2",
+          "text": "Ek feeta 24 m lamba hai. Uski shuruaati lambai ka 3/8 hissa kaat diya gaya. Bache hue feete ki lambai metre mein kitni hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL004-C-v2",
+          "text": "Ek ribbon ki length 24 m hai. Uski original length ka 3/8 hissa cut kar diya gaya. Ribbon ki remaining length metres mein kitni hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": [
+            "fraction_base",
+            "operation",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "d812f896de4c44d560e391a48561bc6dddc29b536778a3d2f02665053607bb5c",
+                "raw_answer": "15",
+                "raw_unit": "Metre",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "48e5c78f86449354453b528270b33c9f6efba34f1146e07d684939e79e40fd2c",
+                "raw_answer": "15",
+                "raw_unit": "m",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "2e1b4877b92ed6f41ab42ef4c73a26fcc7cf6832df4f67b2e628dbf100a29456",
+                "raw_answer": "15",
+                "raw_unit": "m",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "d812f896de4c44d560e391a48561bc6dddc29b536778a3d2f02665053607bb5c",
+                "raw_answer": "15",
+                "raw_unit": "m",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "48e5c78f86449354453b528270b33c9f6efba34f1146e07d684939e79e40fd2c",
+                "raw_answer": "15",
+                "raw_unit": "m",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "2e1b4877b92ed6f41ab42ef4c73a26fcc7cf6832df4f67b2e628dbf100a29456",
+                "raw_answer": "15",
+                "raw_unit": "m",
+                "answer_matches_gold": true,
+                "disposition": "REVISE",
+                "classification": "UNCLEAR",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "C qualifies: 'cut kar diya gaya' is an English verb in a Hindi light-verb construction (the standard productive Hinglish predicate pattern), plus 'original/remaining length'. If the packet requires a full English clause, use: 'C: Ek ribbon ki length 24 m hai. 3/8 of its original length is cut off. Ribbon ki remaining length metres mein kitni hai?'",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL005",
+      "source_family_id": "PIL005-authored-source",
+      "template_group_id": "PIL005-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "Carried forward unchanged from pilot_review_packet.md, section 4.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "30 * 2 / (2 + 3)",
+      "reference_solution_en": "There are 2 + 3 = 5 ratio parts. Each part is 30/5 = 6 marbles, so there are 2 x 6 = 12 red marbles.\nFINAL: 12 marbles",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "12",
+        "unit": "marbles",
+        "aliases": [
+          "marble",
+          "kanche",
+          "kancha"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL005-E-v1",
+          "text": "A bag contains only red and blue marbles. The ratio of red marbles to blue marbles is 2:3. There are 30 marbles in total. How many red marbles are there?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL005-R-v1",
+          "text": "Ek thaili mein sirf laal aur neele kanche hain. Laal aur neele kanchon ki sankhya ka anupaat 2:3 hai. Kul 30 kanche hain. Laal kanche kitne hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL005-C-v1",
+          "text": "Ek bag mein sirf red aur blue marbles hain. Red to blue ratio 2:3 hai aur total 30 marbles hain. Red marbles kitne hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "Verbatim carry-forward of illustrative draft in pilot_review_packet.md; no human review.",
+          "switching_roles": [
+            "ratio_order",
+            "total"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "67627f09ed5fe56ef795560b3b4d43bf9afcf03396eee6b81a83f9c14c431811",
+                "raw_answer": "12",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7c9351839e4e00ed1ce705281888aa7812b62a61581f814c65513fd7681693ac",
+                "raw_answer": "12",
+                "raw_unit": "Marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "ac9d31ba88bb187d911c9a3b5e11288a12d9a9fab60efd48540dab84b61ab764",
+                "raw_answer": "12",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Borderline C classification: \"Red to blue ratio 2:3\" expresses a mathematical relation in English, but there is no complete English clause. Consider \"bag\" as a common borrowing when freezing the policy. Mathematical meaning is preserved across E/R/C. Stage 1 answer 12 is correct."
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "67627f09ed5fe56ef795560b3b4d43bf9afcf03396eee6b81a83f9c14c431811",
+                "raw_answer": "12",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7c9351839e4e00ed1ce705281888aa7812b62a61581f814c65513fd7681693ac",
+                "raw_answer": "12",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "ac9d31ba88bb187d911c9a3b5e11288a12d9a9fab60efd48540dab84b61ab764",
+                "raw_answer": "12",
+                "raw_unit": "marbles",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 30x2/5=12. C's 'Red to blue ratio 2:3' is an English mathematical relation, so it meets the C rule. Distinct from PIL021.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL006",
+      "source_family_id": "PIL006-authored-source",
+      "template_group_id": "PIL006-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "42 - 13 + 8",
+      "reference_solution_en": "After borrowing, 42 - 13 = 29 books remain. Adding 8 gives 37.\nFINAL: 37 books",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "37",
+        "unit": "books",
+        "aliases": [
+          "book",
+          "kitaabein",
+          "kitaab"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL006-E-v1",
+          "text": "A library has 42 books on a shelf. Readers borrow 13 of them, and then 8 different books are added to that shelf. No other books move. How many books are on the shelf now?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL006-R-v2",
+          "text": "Ek pustakalaya mein almaari ke ek takhte par 42 kitaabein hain. Padhne waale unmein se 13 kitaabein le jaate hain, aur phir usi takhte par 8 doosri kitaabein rakhi jaati hain. Koi aur kitaab na nikaali jaati hai na rakhi jaati hai. Ab us takhte par kitni kitaabein hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL006-C-v1",
+          "text": "Ek library ki shelf par 42 books hain. Readers borrow 13 of them, aur phir us shelf par 8 doosri books rakhi jaati hain. No other books move. Ab shelf par kitni books hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "subtraction",
+            "negation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "f16560677f42d057aac65a11b1c55d33cd1b417ad9a1fa24706f95f8627bf7a5",
+                "raw_answer": "37",
+                "raw_unit": "books",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "60534e805347200f2518d1469874b3deb04dfce004e58e8b4a9ec65839727e13",
+                "raw_answer": "37",
+                "raw_unit": "Books",
+                "answer_matches_gold": true,
+                "disposition": "REVISE",
+                "classification": "R",
+                "naturalness": 3,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Formal/lengthy phrasing (pustakalaya, almaari ke ek takhte), though the quantities and scenario remain equivalent."
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "c041edc3df33e610389c372ac1633493ff4238e72d4094e2fa99b1dac976224b",
+                "raw_answer": "37",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "f16560677f42d057aac65a11b1c55d33cd1b417ad9a1fa24706f95f8627bf7a5",
+                "raw_answer": "37",
+                "raw_unit": "books",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "60534e805347200f2518d1469874b3deb04dfce004e58e8b4a9ec65839727e13",
+                "raw_answer": "37",
+                "raw_unit": "books",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "c041edc3df33e610389c372ac1633493ff4238e72d4094e2fa99b1dac976224b",
+                "raw_answer": "37",
+                "raw_unit": "books",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R is somewhat formal (pustakalaya, almaari ke ek takhte) but grammatical and clear; I agree with R02's nat 4. Formality alone is not grounds for REVISE.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL007",
+      "source_family_id": "PIL007-authored-source",
+      "template_group_id": "PIL007-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(28 - 16) / 2",
+      "reference_solution_en": "Each transferred bead reduces the difference by 2. The difference is 12, so 6 beads are transferred.\nFINAL: 6 beads",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "6",
+        "unit": "beads",
+        "aliases": [
+          "bead",
+          "moti"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL007-E-v1",
+          "text": "Nisha has 28 beads and Kabir has 16 beads. Nisha gives some of her beads to Kabir until they have equal numbers. How many beads does Nisha give Kabir?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL007-R-v1",
+          "text": "Nisha ke paas 28 moti hain aur Kabir ke paas 16 moti hain. Nisha apne kuch moti Kabir ko deti hai, taaki dono ke paas motiyon ki sankhya baraabar ho jaaye. Nisha Kabir ko kitne moti deti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL007-C-v1",
+          "text": "Nisha ke paas 28 beads hain aur Kabir ke paas 16 beads hain. Nisha gives some of her beads to Kabir until their counts are equal. Nisha Kabir ko kitne beads deti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "transfer",
+            "equality"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "5022564349cc2783a562d5c771b14a05c81e79cca93d51c00aa868392ccd783e",
+                "raw_answer": "6",
+                "raw_unit": "Beads",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "bdac47a5932d6bb60be31bb0f33b3d0d704d57b6f4b5f00ec089fd4365de739d",
+                "raw_answer": "6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "ada3ce03dfc481085c71776a26a65bf61a219180b4a85cb25e7634e64dc76b1d",
+                "raw_answer": "6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "5022564349cc2783a562d5c771b14a05c81e79cca93d51c00aa868392ccd783e",
+                "raw_answer": "6",
+                "raw_unit": "beads",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "bdac47a5932d6bb60be31bb0f33b3d0d704d57b6f4b5f00ec089fd4365de739d",
+                "raw_answer": "6",
+                "raw_unit": "beads",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "ada3ce03dfc481085c71776a26a65bf61a219180b4a85cb25e7634e64dc76b1d",
+                "raw_answer": "6",
+                "raw_unit": "beads",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: (28-16)/2=6. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL008",
+      "source_family_id": "PIL008-authored-source",
+      "template_group_id": "PIL008-proposed-family",
+      "topic": "comparison_remaining",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "60 - (34 - 7)",
+      "reference_solution_en": "There are 34 - 7 = 27 pencils left. The free capacity is 60 - 27 = 33.\nFINAL: 33 pencils",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "33",
+        "unit": "pencils",
+        "aliases": [
+          "pencil",
+          "pensilein",
+          "pensil"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL008-E-v1",
+          "text": "A box holds at most 60 pencils. It contains 34 pencils, and 7 of these are removed. What is the greatest number of pencils that can now be added without exceeding the capacity?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL008-R-v1",
+          "text": "Ek dabbe mein zyaada se zyaada 60 pensilein aa sakti hain. Usmein 34 pensilein hain aur unmein se 7 nikaal di jaati hain. Dabbe ki jagah se zyaada bhare bina ab usmein zyaada se zyaada kitni pensilein aur rakhi ja sakti hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL008-C-v2",
+          "text": "Ek box mein at most 60 pencils aa sakti hain. Usmein 34 pencils hain aur unmein se 7 nikaal di jaati hain. What is the greatest number of pencils that can now be added without exceeding the capacity?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": [
+            "capacity",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "dbb1d846e38193b2a823bf334fbae6ac034e38ef38b9bb5fe1a62632d684ee1a",
+                "raw_answer": "33",
+                "raw_unit": "Pencils",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "faa0930078c363778efaadebc89b7d013687c6747c1454fd79845182e7499ee4",
+                "raw_answer": "33",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "8e1090f50b5a7a4f1cade54237c947ab57dcccd57461a4c2ee287b3a7407b1ec",
+                "raw_answer": "33",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "dbb1d846e38193b2a823bf334fbae6ac034e38ef38b9bb5fe1a62632d684ee1a",
+                "raw_answer": "33",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "faa0930078c363778efaadebc89b7d013687c6747c1454fd79845182e7499ee4",
+                "raw_answer": "33",
+                "raw_unit": "pencils",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "8e1090f50b5a7a4f1cade54237c947ab57dcccd57461a4c2ee287b3a7407b1ec",
+                "raw_answer": "33",
+                "raw_unit": "pencils",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 3,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "C final question is entirely English and formal, but grammatical and unambiguous; I rate it 4. R02's nat 3 is a mild style preference, not a defect.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL011",
+      "source_family_id": "PIL011-authored-source",
+      "template_group_id": "PIL011-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "180 / 3 - 15",
+      "reference_solution_en": "One ticket costs INR 60. Deducting INR 15 leaves INR 45.\nFINAL: INR 45",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "45",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL011-E-v1",
+          "text": "Three tickets cost INR 180 in total and have equal prices. One ticket is cancelled. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. How much money is returned?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL011-R-v1",
+          "text": "3 tikaton ki kul keemat INR 180 hai aur har tikat ki keemat baraabar hai. 1 tikat radd ki jaati hai. Uski poori keemat vaapas ki jaati hai, lekin radd karne ke shulk ke taur par usi rakam mein se INR 15 kaat liye jaate hain. Kitne rupaye vaapas milte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL011-C-v1",
+          "text": "3 tickets ki total keemat INR 180 hai aur sabki keemat baraabar hai. 1 ticket cancel hoti hai. Its full price is refunded, but INR 15 is deducted from that refund as a cancellation fee. Kitne rupaye vaapas milte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "refund",
+            "deduction"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "216473f8952be0ba79463684e052cad1604bcf16bb1e36bb86526929ffd33834",
+                "raw_answer": "45",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "2c08289640cc1f8914e38f19a9670b28bf7d6685d6ab2eb4dd03a5a53b8b5a56",
+                "raw_answer": "135",
+                "raw_unit": "INR",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Stage 1 independent answer 135 reflects refund for three tickets; only one was cancelled. Correct result 180/3 - 15 = INR 45."
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "33da96c7c02206afaa2789d45b774b9492ffbb81f3464499ec9b20240f75ba39",
+                "raw_answer": "135",
+                "raw_unit": "INR",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Stage 1 independent answer 135 reflects refund for three tickets; only one was cancelled. Correct result 180/3 - 15 = INR 45."
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "216473f8952be0ba79463684e052cad1604bcf16bb1e36bb86526929ffd33834",
+                "raw_answer": "45",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "2c08289640cc1f8914e38f19a9670b28bf7d6685d6ab2eb4dd03a5a53b8b5a56",
+                "raw_answer": "45",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "33da96c7c02206afaa2789d45b774b9492ffbb81f3464499ec9b20240f75ba39",
+                "raw_answer": "45",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's 135 (R and C) refunds all three tickets; only one was cancelled (R01 acknowledges). 180/3-15=45. Texts are clear that the fee comes from the one-ticket refund.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL012",
+      "source_family_id": "PIL012-authored-source",
+      "template_group_id": "PIL012-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "216 / 4 + 9",
+      "reference_solution_en": "Each bill share is INR 54. Adding the individual tip gives INR 63.\nFINAL: INR 63",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "63",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL012-E-v1",
+          "text": "Four friends split an INR 216 food bill equally. Each friend then pays an additional INR 9 tip. How much does each friend pay in total?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL012-R-v1",
+          "text": "4 dost khaane ka INR 216 ka kharch baraabar baantte hain. Phir har dost apni taraf se INR 9 bakhshish aur deta hai. Har dost kul kitne rupaye deta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL012-C-v1",
+          "text": "4 dost INR 216 ka food bill equally split karte hain. Each friend then pays an additional INR 9 tip. Har dost total kitne rupaye deta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equal_division",
+            "individual_addition"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "f624935b4a9fdc4ee47464ece03bea6bff902ad6e5f48a8844f03ab235014564",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "8e2b989d41c3992ed04bfd35335509ce766deb7dc73726e60232019433c04c20",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "922abbcef3cefac4087a72e213125f040e37465e43e425f79b369805db728d93",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "f624935b4a9fdc4ee47464ece03bea6bff902ad6e5f48a8844f03ab235014564",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "8e2b989d41c3992ed04bfd35335509ce766deb7dc73726e60232019433c04c20",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "922abbcef3cefac4087a72e213125f040e37465e43e425f79b369805db728d93",
+                "raw_answer": "63",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 216/4+9=63. Shares the total/n +/- constant shape with PIL011 but differs in context, sign and trap; keep, tag as same structural cluster.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL013",
+      "source_family_id": "PIL013-authored-source",
+      "template_group_id": "PIL013-proposed-family",
+      "topic": "two_step_money",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(150 - 30) / 20",
+      "reference_solution_en": "After delivery, INR 120 remains. At INR 20 each, at most 6 pens can be bought.\nFINAL: 6 pens",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "6",
+        "unit": "pens",
+        "aliases": [
+          "pen",
+          "kalamein",
+          "kalam"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL013-E-v1",
+          "text": "Leela can spend at most INR 150. A delivery fee of INR 30 is charged once for the order. Each pen costs INR 20, and there are no other charges. What is the greatest number of pens she can buy?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL013-R-v1",
+          "text": "Leela zyaada se zyaada INR 150 kharch kar sakti hai. Poore saamaan ko ghar pahunchane ke liye ek hi baar INR 30 liye jaate hain. Har kalam ki keemat INR 20 hai aur koi aur paisa nahi liya jaata. Vah zyaada se zyaada kitni kalamein khareed sakti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL013-C-v1",
+          "text": "Leela at most INR 150 kharch kar sakti hai. A delivery fee of INR 30 is charged once for the order. Har pen INR 20 ka hai aur koi aur charge nahi hai. Maximum kitne pens khareed sakti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "budget_bound",
+            "fixed_fee"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "949a6113584b5b999ec942fd013567e9178d750bc109043ae5a3009095b4c4ed",
+                "raw_answer": "6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "5f38b4d55798a9d3171e49e53a25e84c043c1899e232125d9e564ed78842aff7",
+                "raw_answer": "6",
+                "raw_unit": "Pens",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "6f4f3b07b132289b227fb0acee44fa6683e6c297dd981ee21819e8576cdac294",
+                "raw_answer": "x<=6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": true,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "949a6113584b5b999ec942fd013567e9178d750bc109043ae5a3009095b4c4ed",
+                "raw_answer": "6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "5f38b4d55798a9d3171e49e53a25e84c043c1899e232125d9e564ed78842aff7",
+                "raw_answer": "6",
+                "raw_unit": "pens",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "6f4f3b07b132289b227fb0acee44fa6683e6c297dd981ee21819e8576cdac294",
+                "raw_answer": "6",
+                "raw_unit": "pens",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's 'x<=6' and ambiguity flag reflect describing the feasible set; the question asks the maximum, which is 6 in all three versions. Not ambiguous.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL014",
+      "source_family_id": "PIL014-authored-source",
+      "template_group_id": "PIL014-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "40 * 2/5 * 3/4",
+      "reference_solution_en": "There are 16 girls. Three quarters of 16 is 12.\nFINAL: 12 girls",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "12",
+        "unit": "girls",
+        "aliases": [
+          "girl",
+          "ladkiyan",
+          "ladki"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL014-E-v1",
+          "text": "A class has 40 students. Girls make up 2/5 of the class, and 3/4 of those girls attend a music club. How many girls in the class attend the music club?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL014-R-v1",
+          "text": "Ek kaksha mein 40 vidyarthi hain. Unmein se 2/5 ladkiyan hain, aur un ladkiyon mein se 3/4 sangeet ki mandali mein jaati hain. Kaksha ki kitni ladkiyan sangeet ki mandali mein jaati hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL014-C-v1",
+          "text": "Ek class mein 40 students hain. Girls make up 2/5 of the class, aur un girls mein se 3/4 music club attend karti hain. Class ki kitni girls music club attend karti hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "fraction_base",
+            "subgroup"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "7f0b494f562011e6244efc62caace7574469ded4b3eb4011c750cc893958b6fd",
+                "raw_answer": "12",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": true,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7c740bc47f49d790755ee44c645d5a571b9307fea4b072b68d870614008a03e0",
+                "raw_answer": "12",
+                "raw_unit": "girls",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "b7fee67606925fb44c38f566dc2d46a75844a80cdb5b5a63c8152f5055ca703e",
+                "raw_answer": "12",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "7f0b494f562011e6244efc62caace7574469ded4b3eb4011c750cc893958b6fd",
+                "raw_answer": "12",
+                "raw_unit": "girls",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7c740bc47f49d790755ee44c645d5a571b9307fea4b072b68d870614008a03e0",
+                "raw_answer": "12",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "b7fee67606925fb44c38f566dc2d46a75844a80cdb5b5a63c8152f5055ca703e",
+                "raw_answer": "12",
+                "raw_unit": "girls",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's E ambiguity flag not supported: '3/4 of those girls' clearly refers to the girls. 40x2/5x3/4=12.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL016",
+      "source_family_id": "PIL016-authored-source",
+      "template_group_id": "PIL016-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "72 / (1 - 25/100)",
+      "reference_solution_en": "The remaining 72 kg is 75% of the original. The original is 72 / (3/4) = 96 kg.\nFINAL: 96 kg",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "96",
+        "unit": "kg",
+        "aliases": [
+          "kilogram",
+          "kilograms"
+        ],
+        "conversions": {
+          "g": "1/1000",
+          "gram": "1/1000",
+          "grams": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL016-E-v1",
+          "text": "After 25% of a sack of rice is used, 72 kg remains. There is no other change in its contents. How many kilograms of rice were in the sack originally?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL016-R-v1",
+          "text": "Chaawal ki ek bori ka 25% chaawal istemaal karne ke baad 72 kg chaawal bachta hai. Usmein aur koi badlaav nahi hota. Shuru mein bori mein kitne kilogram chaawal tha?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL016-C-v2",
+          "text": "Ek sack mein rakhe chaawal ka 25% use karne ke baad 72 kg chaawal bachta hai. There is no other change in its contents. Originally sack mein kitne kilograms chaawal tha?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": [
+            "remaining_percentage",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "6de25b44a0c913899cdd6696f680019637aaf3b0575d9063b4aa3eeba5deba88",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "0a7d4241e71b752376a87a8370a85975007ee66fd6c9efb379b2fc9263f223e5",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "8a7ec3a69857b74aa3fd6decbe3cf9e972f243ddd3af55a73531ee345988dfbc",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "6de25b44a0c913899cdd6696f680019637aaf3b0575d9063b4aa3eeba5deba88",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "0a7d4241e71b752376a87a8370a85975007ee66fd6c9efb379b2fc9263f223e5",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "8a7ec3a69857b74aa3fd6decbe3cf9e972f243ddd3af55a73531ee345988dfbc",
+                "raw_answer": "96",
+                "raw_unit": "kg",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 72/0.75=96. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL017",
+      "source_family_id": "PIL017-authored-source",
+      "template_group_id": "PIL017-proposed-family",
+      "topic": "fractions_percentages",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(3/4) / 3",
+      "reference_solution_en": "Dividing 3/4 L equally among 3 children gives 1/4 L each.\nFINAL: 1/4 L",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "1/4",
+        "unit": "L",
+        "aliases": [
+          "l",
+          "litre",
+          "litres",
+          "liter",
+          "liters"
+        ],
+        "conversions": {
+          "mL": "1/1000",
+          "millilitre": "1/1000",
+          "millilitres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL017-E-v1",
+          "text": "A jug contains 3/4 L of juice. All of it is shared equally among 3 children, with none spilled. How many litres of juice does each child receive?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL017-R-v1",
+          "text": "Ek jag mein 3/4 L ras hai. Poora ras 3 bachchon mein baraabar baanta jaata hai aur kuch bhi nahi girta. Har bachche ko kitne litre ras milta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL017-C-v1",
+          "text": "Ek jug mein 3/4 L juice hai. All of it is shared equally among 3 children, aur kuch bhi spill nahi hota. Har child ko kitne litres juice milta hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equal_division",
+            "quantity"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "0bf34225a4433a0bb17693fb5f6e78eb28bd504747c64db0f22631dfc52b19f0",
+                "raw_answer": "1/4",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "afffa707f832a32b605fcc9f52f1dc4a78bffcb09054fa0253897b4c74f45fc2",
+                "raw_answer": "1/4",
+                "raw_unit": "Ml",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "01000616624d18635b5adf0d7b7d0cd3bb2358e82806de538b3ea3d3a14e56d6",
+                "raw_answer": "1/4",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "0bf34225a4433a0bb17693fb5f6e78eb28bd504747c64db0f22631dfc52b19f0",
+                "raw_answer": "1/4",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "afffa707f832a32b605fcc9f52f1dc4a78bffcb09054fa0253897b4c74f45fc2",
+                "raw_answer": "1/4",
+                "raw_unit": "Litre",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "01000616624d18635b5adf0d7b7d0cd3bb2358e82806de538b3ea3d3a14e56d6",
+                "raw_answer": "1/4",
+                "raw_unit": "L",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: (3/4)/3=1/4. R01's R unit 'Ml' is a reviewer slip, not a text issue.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL018",
+      "source_family_id": "PIL018-authored-source",
+      "template_group_id": "PIL018-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "14 / (5 - 3) * 5",
+      "reference_solution_en": "The difference is 2 parts, so each part is 7. The larger number is 5 * 7 = 35.\nFINAL: 35",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "35",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL018-E-v1",
+          "text": "Two positive numbers are in the ratio 5:3. The larger number exceeds the smaller by 14. What is the larger number?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL018-R-v1",
+          "text": "2 dhanaatmak sankhyaon ka anupaat 5:3 hai. Badi sankhya chhoti sankhya se 14 zyaada hai. Badi sankhya kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL018-C-v1",
+          "text": "2 positive numbers ka ratio 5:3 hai. The larger number exceeds the smaller by 14. Bada number kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "comparison",
+            "ratio"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "94637542afbcafc5aec320201b27704767ebd4320425cb7216dcfd9fdb0de369",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "cd2af409e04890954a93a3b237baab9d26fa5b77506e01d3dc8fae5136cf3275",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 3,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "4b204315247a67f1a7274871aa95ecca12384d29c424751aaca7ea775f25bf22",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": false,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "94637542afbcafc5aec320201b27704767ebd4320425cb7216dcfd9fdb0de369",
+                "raw_answer": "35",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "cd2af409e04890954a93a3b237baab9d26fa5b77506e01d3dc8fae5136cf3275",
+                "raw_answer": "35",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "4b204315247a67f1a7274871aa95ecca12384d29c424751aaca7ea775f25bf22",
+                "raw_answer": "35",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's 7 in E/R/C is the value of one ratio part (14/2), not the larger number (5x7=35): a solver slip. R uses standard school Hindi terms (dhanaatmak, anupaat).",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL021",
+      "source_family_id": "PIL021-authored-source",
+      "template_group_id": "PIL021-proposed-family",
+      "topic": "ratios",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "15 / (15 * 4/3 + 5)",
+      "reference_solution_en": "Initially there are 20 blue balls. After adding 5, the red-to-blue ratio is 15/25 = 3/5.\nFINAL: 3/5",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "3/5",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL021-E-v1",
+          "text": "A box contains only red and blue balls in the ratio 3:4. It contains 15 red balls. Then 5 blue balls are added and none are removed. What is the new ratio of red balls to blue balls? Give it as a number or fraction, red count divided by blue count.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL021-R-v1",
+          "text": "Ek dabbe mein sirf laal aur neeli gendein hain aur unki sankhya ka anupaat 3:4 hai. Laal gendein 15 hain. Phir 5 neeli gendein aur daali jaati hain aur koi gend nikaali nahi jaati. Ab laal aur neeli gendon ki sankhya ka naya anupaat kya hai? Laal gendon ki sankhya ko neeli gendon ki sankhya se bhaag dekar sankhya ya bhinn mein bataaiye.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL021-C-v1",
+          "text": "Ek box mein sirf red aur blue balls hain, ratio 3:4 hai, aur red balls 15 hain. Then 5 blue balls are added and none are removed. Naya red-to-blue ratio kya hai? Give red count divided by blue count as a number or fraction.",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "addition",
+            "negation",
+            "ratio_order"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "5e4fd20d5ab3178144fa4eae3d2d80cb6124b80e15e95061fb47080839ffc775",
+                "raw_answer": "0.6",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [
+                  "explicit_assumptions"
+                ],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "44b73992ce501c22aa57d537a252716cd0c6a5e8788d1701e57a2ce041efd107",
+                "raw_answer": "3/5",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "0803260430ead12a2fc42d4757c3b56ec4bd69148620e0908379cf114af73f69",
+                "raw_answer": "3/5",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "5e4fd20d5ab3178144fa4eae3d2d80cb6124b80e15e95061fb47080839ffc775",
+                "raw_answer": "3/5",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "44b73992ce501c22aa57d537a252716cd0c6a5e8788d1701e57a2ce041efd107",
+                "raw_answer": "3 / 5",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "0803260430ead12a2fc42d4757c3b56ec4bd69148620e0908379cf114af73f69",
+                "raw_answer": "3/5",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's 0.6 equals 3/5 and is exact; grader should accept 0.6 as an alias. The failed 'explicit_assumptions' check is not supported: 'only red and blue' and 'none are removed' are stated.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL022",
+      "source_family_id": "PIL022-authored-source",
+      "template_group_id": "PIL022-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "60 * 45 / 60",
+      "reference_solution_en": "45 minutes is 3/4 hour. The distance is 60 * 3/4 = 45 km.\nFINAL: 45 km",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "45",
+        "unit": "km",
+        "aliases": [
+          "kilometre",
+          "kilometres",
+          "kilometer",
+          "kilometers"
+        ],
+        "conversions": {
+          "m": "1/1000",
+          "metre": "1/1000",
+          "metres": "1/1000"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL022-E-v1",
+          "text": "A bus travels at a constant speed of 60 km per hour for 45 minutes, without stopping. How many kilometres does it travel?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL022-R-v1",
+          "text": "Ek bus bina ruke 45 minute tak lagaataar 60 km prati ghante ki raftaar se chalti hai. Vah kitne kilometre chalti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL022-C-v1",
+          "text": "Ek bus 45 minutes tak bina ruke chalti hai, at a constant speed of 60 km per hour. Vah kitne kilometres travel karti hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "rate",
+            "time_condition"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "7c50637c86ea3f6d489b397b55ec4d24b6b9981ba8400b20298084c4cbe9e6cd",
+                "raw_answer": "45",
+                "raw_unit": "Km",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "8aff8aa450902895d1a873921909d44fb9bdca09d16d0d230bf3d77296aa9d38",
+                "raw_answer": "45",
+                "raw_unit": "kkm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Stage 1 independent unit \"kkm\" appears a transcription typo; answer is 45 km."
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "26066f32c6d20f7ca769dab4602d428eac17e387d31a75c283ae9bc21f34a069",
+                "raw_answer": "45",
+                "raw_unit": "Km",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "7c50637c86ea3f6d489b397b55ec4d24b6b9981ba8400b20298084c4cbe9e6cd",
+                "raw_answer": "45",
+                "raw_unit": "km",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "8aff8aa450902895d1a873921909d44fb9bdca09d16d0d230bf3d77296aa9d38",
+                "raw_answer": "45",
+                "raw_unit": "km",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "26066f32c6d20f7ca769dab4602d428eac17e387d31a75c283ae9bc21f34a069",
+                "raw_answer": "45",
+                "raw_unit": "km",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 60x0.75=45. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL023",
+      "source_family_id": "PIL023-authored-source",
+      "template_group_id": "PIL023-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "2.4 * 100 / 30",
+      "reference_solution_en": "The cord is 240 cm long. At 30 cm per piece, it makes 8 pieces.\nFINAL: 8 pieces",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "8",
+        "unit": "pieces",
+        "aliases": [
+          "piece",
+          "tukde",
+          "tukda"
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL023-E-v1",
+          "text": "A 2.4 m cord is cut into pieces exactly 30 cm long. Cutting loses no length and the whole cord is used. How many pieces are made?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL023-R-v1",
+          "text": "2.4 m lambi ek dori ko theek 30 cm lambe tukdon mein kaata jaata hai. Kaatne mein koi lambai nahi ghatti aur poori dori istemaal hoti hai. Kitne tukde bante hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL023-C-v1",
+          "text": "2.4 m lambi cord ko exactly 30 cm long pieces mein cut kiya jaata hai. Cutting loses no length aur poori cord use hoti hai. Kitne pieces bante hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "unit_length",
+            "negation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "ce5d87834203ed8742293b2707c00ecd0dae1a8d7624b41873916585351b7454",
+                "raw_answer": "8",
+                "raw_unit": "Peices",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": "Stage 1 independent equation says \"2.4 * 10 = 240 cm\"; the correct conversion is 2.4 * 100 = 240 cm. Final answer 8 is correct."
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "70acce77c5794995c17eb7313df6eccf56b5bbd0a978cccb0af29a57f9161437",
+                "raw_answer": "8",
+                "raw_unit": "pieces",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "c14913f88144ec1690fdd5366fe22e013d04500d12ea54076dc44795a393ddfb",
+                "raw_answer": "8",
+                "raw_unit": "Pieces",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "ce5d87834203ed8742293b2707c00ecd0dae1a8d7624b41873916585351b7454",
+                "raw_answer": "8",
+                "raw_unit": "pieces",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "70acce77c5794995c17eb7313df6eccf56b5bbd0a978cccb0af29a57f9161437",
+                "raw_answer": "8",
+                "raw_unit": "pieces",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "c14913f88144ec1690fdd5366fe22e013d04500d12ea54076dc44795a393ddfb",
+                "raw_answer": "8",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 240/30=8. R01's '2.4x10' note is a working slip; final answer correct.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL025",
+      "source_family_id": "PIL025-authored-source",
+      "template_group_id": "PIL025-proposed-family",
+      "topic": "rates_units",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "40 / 20 + (120 - 40) / 40",
+      "reference_solution_en": "The first segment takes 2 hours and the remaining 80 km takes 2 hours. Total time is 4 hours.\nFINAL: 4 h",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "4",
+        "unit": "h",
+        "aliases": [
+          "hour",
+          "hours",
+          "ghante",
+          "ghanta"
+        ],
+        "conversions": {
+          "minute": "1/60",
+          "minutes": "1/60",
+          "min": "1/60"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL025-E-v1",
+          "text": "A cyclist completes a 120 km journey without stops. The first 40 km are travelled at 20 km per hour and the remaining distance at 40 km per hour. How many hours does the journey take?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL025-R-v1",
+          "text": "Ek cycle savaar bina ruke 120 km ka safar poora karta hai. Pehle 40 km vah 20 km prati ghante ki raftaar se chalta hai aur baaki doori 40 km prati ghante ki raftaar se. Safar mein kul kitne ghante lagte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL025-C-v2",
+          "text": "Ek cyclist bina ruke 120 km ka safar complete karta hai. The first 40 km are travelled at 20 km per hour, aur remaining distance par speed 40 km per hour hai. Total kitne hours lagte hain?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": [
+            "segment_rate",
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "06a424576c51b2b63391fa8e20edb15e254acb291884708b1c108ea1ce2b70c8",
+                "raw_answer": "4",
+                "raw_unit": "Hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "4d7b286f744b7bc7f70471d3172636cd026b8c1ada0eb7953767edb2bb9dfb60",
+                "raw_answer": "4 ",
+                "raw_unit": "Hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "db55c5b9d95f28aaeaa047d3e77c7b39ae4e05d00a4dedd99215f9ae2f50695a",
+                "raw_answer": "4",
+                "raw_unit": "Hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "06a424576c51b2b63391fa8e20edb15e254acb291884708b1c108ea1ce2b70c8",
+                "raw_answer": "4",
+                "raw_unit": "hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "4d7b286f744b7bc7f70471d3172636cd026b8c1ada0eb7953767edb2bb9dfb60",
+                "raw_answer": "4",
+                "raw_unit": "hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "db55c5b9d95f28aaeaa047d3e77c7b39ae4e05d00a4dedd99215f9ae2f50695a",
+                "raw_answer": "4",
+                "raw_unit": "hours",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 40/20+80/40=4. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL026",
+      "source_family_id": "PIL026-authored-source",
+      "template_group_id": "PIL026-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v2",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used. Versioned AI wording repair from pilot-draft-v1; family/source/template identity retained; no human validation.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(28 - 7) / 3",
+      "reference_solution_en": "Subtracting 7 gives 3x = 21. Dividing by 3 gives x = 7.\nFINAL: 7",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "7",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL026-E-v1",
+          "text": "A number x satisfies 3x + 7 = 28. What is x?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL026-R-v1",
+          "text": "Ek sankhya x ke liye 3x + 7 = 28 hai. x ka maan kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL026-C-v2",
+          "text": "Ek number x hai. It satisfies 3x + 7 = 28. x kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review. AI pre-review repair 2026-10-10; v1 preserved; human re-review pending.",
+          "switching_roles": [
+            "equation_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "75d79dda44e6ec803ff0fd3b98c51b0fd8d7217e1dc11950f5e6a29c4cd47989",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "3cfbc3a39eb386cf4a6030619503e7d2de98693430cd53b35c7e67e43f61e9eb",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "b811778f2ec617c127386f1162deb344f0cf2bf3dd322f5fc1b501589139cd81",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "75d79dda44e6ec803ff0fd3b98c51b0fd8d7217e1dc11950f5e6a29c4cd47989",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "3cfbc3a39eb386cf4a6030619503e7d2de98693430cd53b35c7e67e43f61e9eb",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "b811778f2ec617c127386f1162deb344f0cf2bf3dd322f5fc1b501589139cd81",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: (28-7)/3=7. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL027",
+      "source_family_id": "PIL027-authored-source",
+      "template_group_id": "PIL027-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "(41 - 1) / 2",
+      "reference_solution_en": "Let the smaller integer be x. Then x + (x + 1) = 41, so x = 20.\nFINAL: 20",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "20",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL027-E-v1",
+          "text": "The sum of two consecutive integers is 41. What is the smaller integer?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL027-R-v1",
+          "text": "2 lagaataar poornankon ka yog 41 hai. Chhota poornank kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL027-C-v1",
+          "text": "2 consecutive integers ka sum 41 hai. What is the smaller integer?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "45b581cc5d980643f55045916f6f17dc127277d3e3b48222484185be3076cf0b",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "3385f6d76b465721315b6af9fed518bcec9c59437c407b179c1874dbbeb9c4fc",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "5072bfe6c8b37444569387e22e0dcda4cd0429a8eb408e2b66314cac98687976",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "45b581cc5d980643f55045916f6f17dc127277d3e3b48222484185be3076cf0b",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "3385f6d76b465721315b6af9fed518bcec9c59437c407b179c1874dbbeb9c4fc",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "5072bfe6c8b37444569387e22e0dcda4cd0429a8eb408e2b66314cac98687976",
+                "raw_answer": "20",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 20+21=41. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL028",
+      "source_family_id": "PIL028-authored-source",
+      "template_group_id": "PIL028-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "50 / 2 - 9",
+      "reference_solution_en": "The length plus width is 25 cm. Subtracting the 9 cm width gives a length of 16 cm.\nFINAL: 16 cm",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "16",
+        "unit": "cm",
+        "aliases": [
+          "centimetre",
+          "centimetres",
+          "centimeter",
+          "centimeters"
+        ],
+        "conversions": {
+          "m": "100",
+          "metre": "100",
+          "metres": "100"
+        },
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL028-E-v1",
+          "text": "A rectangle has perimeter 50 cm and width 9 cm. What is its length in centimetres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL028-R-v1",
+          "text": "Ek aayat ka parimaap 50 cm hai aur chaudaai 9 cm hai. Uski lambai kitne centimetre hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL028-C-v1",
+          "text": "Ek rectangle ka perimeter 50 cm hai aur width 9 cm hai. What is its length in centimetres?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "requested_answer"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "a2594d0c778b397333172ab97caea707209fcd9034d61f8e695a21b201f13816",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "7c77361847f314e79b7a3723eea5822bb4b4f4c50c53d18c31a88603f150da47",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "506de9108ea52c4350e57713bfcaed637108b4a2cca23615e0708e7c0e10ed5e",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "a2594d0c778b397333172ab97caea707209fcd9034d61f8e695a21b201f13816",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "7c77361847f314e79b7a3723eea5822bb4b4f4c50c53d18c31a88603f150da47",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "506de9108ea52c4350e57713bfcaed637108b4a2cca23615e0708e7c0e10ed5e",
+                "raw_answer": "16",
+                "raw_unit": "cm",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 25-9=16. Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL029",
+      "source_family_id": "PIL029-authored-source",
+      "template_group_id": "PIL029-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "58 - 39",
+      "reference_solution_en": "Subtracting the two baskets cancels the notebook and one pen. The extra pen costs INR 19.\nFINAL: INR 19",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "19",
+        "unit": "INR",
+        "aliases": [
+          "rupee",
+          "rupees",
+          "rupaye",
+          "rupaya",
+          "rs",
+          "Rs."
+        ],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL029-E-v1",
+          "text": "Two pens and one notebook cost INR 58. One pen and one notebook cost INR 39. All pens have the same price and all notebooks have the same price. What is the price of one pen?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL029-R-v1",
+          "text": "2 kalamein aur 1 kaapi milkar INR 58 ki hain. 1 kalam aur 1 kaapi milkar INR 39 ki hain. Sab kalamon ki keemat ek jaisi hai aur sab kaapiyon ki keemat ek jaisi hai. 1 kalam ki keemat kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL029-C-v1",
+          "text": "2 pens aur 1 notebook ki total cost INR 58 hai. One pen and one notebook cost INR 39. Sab pens ki price ek jaisi hai aur sab notebooks ki price ek jaisi hai. 1 pen ki price kitne rupaye hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "basket_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "67796a39c9a212716c67a2409349f447e9765f0c1569a6b31e82f5cd6dd2af82",
+                "raw_answer": "19",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "5d84f6caf622acd0621957b8aecef5b3a4c7524af2ad3946efcf11bc7daf0380",
+                "raw_answer": "19",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "ai_prefill_unverified",
+                "text_sha256": "8d6d2a95c8050b13e5411a9a3fd770740da88d1327eb62bf09be142c5f3db414",
+                "raw_answer": "19",
+                "raw_unit": "inr",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "67796a39c9a212716c67a2409349f447e9765f0c1569a6b31e82f5cd6dd2af82",
+                "raw_answer": "19",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "5d84f6caf622acd0621957b8aecef5b3a4c7524af2ad3946efcf11bc7daf0380",
+                "raw_answer": "19",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 4,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "8d6d2a95c8050b13e5411a9a3fd770740da88d1327eb62bf09be142c5f3db414",
+                "raw_answer": "1 pen ki cost = INR 19",
+                "raw_unit": "INR",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": " "
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "Checked: 58-39=19 (notebook 20). Texts equivalent.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    },
+    {
+      "family_id": "PIL030",
+      "source_family_id": "PIL030-authored-source",
+      "template_group_id": "PIL030-proposed-family",
+      "topic": "elementary_algebra",
+      "split_role": "PILOT_EVAL",
+      "version": "v1",
+      "authoring_origin": "AI_DRAFT",
+      "provenance": "AI-authored original candidate for this pilot review; no external source used.",
+      "source_license": "No external source used; release terms not assigned. Human edits and any introduced sources must be logged before release.",
+      "reference_equation": "x^2 = 49; x > 0; x = 7",
+      "reference_solution_en": "Both 7 and -7 have square 49, but x is positive. Therefore x = 7.\nFINAL: 7",
+      "status": "ACCEPT",
+      "gold": {
+        "value": "7",
+        "unit": "",
+        "aliases": [],
+        "conversions": {},
+        "unit_omission_allowed": true,
+        "rounding_rule": "exact"
+      },
+      "forms": {
+        "E": {
+          "rendering_id": "PIL030-E-v1",
+          "text": "A positive number x satisfies x squared equals 49. What is x?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "R": {
+          "rendering_id": "PIL030-R-v1",
+          "text": "Ek dhanaatmak sankhya x ka varg 49 hai. x ka maan kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": []
+        },
+        "C": {
+          "rendering_id": "PIL030-C-v1",
+          "text": "Ek positive number x hai, and x squared equals 49. x kya hai?",
+          "creator_type": "AI_DRAFT",
+          "generation_or_edit_history": "New AI-authored draft 2026-10-10; no human review.",
+          "switching_roles": [
+            "equation_relation"
+          ]
+        }
+      },
+      "review": {
+        "reviewers": [
+          {
+            "reviewer_id": "R01",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "9b5a9a2b090c6fd995f3ee57c99bcc589f61843b015cc666527e63f19879f3d9",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "ea3f9895832e12e6e7e131f74edd454bbb3e5d7847a0cbaf439b1cdcd6795e56",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 5,
+                "readability": 2,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "f01ba1a7cbbc8dcc84d66b5f8fc8ce9f3eb4c818fedddabc81c109c00d08dbc1",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": true,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          },
+          {
+            "reviewer_id": "R02",
+            "independent": true,
+            "forms": {
+              "E": {
+                "judgment_source": "human",
+                "text_sha256": "9b5a9a2b090c6fd995f3ee57c99bcc589f61843b015cc666527e63f19879f3d9",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "E",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "R": {
+                "judgment_source": "human",
+                "text_sha256": "ea3f9895832e12e6e7e131f74edd454bbb3e5d7847a0cbaf439b1cdcd6795e56",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "R",
+                "naturalness": 4,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              },
+              "C": {
+                "judgment_source": "human",
+                "text_sha256": "f01ba1a7cbbc8dcc84d66b5f8fc8ce9f3eb4c818fedddabc81c109c00d08dbc1",
+                "raw_answer": "7",
+                "raw_unit": "",
+                "answer_matches_gold": true,
+                "disposition": "ACCEPT",
+                "classification": "C",
+                "naturalness": 5,
+                "readability": 5,
+                "ambiguity_flag": false,
+                "failed_semantic_checks": [],
+                "notes": ""
+              }
+            }
+          }
+        ],
+        "adjudication": {
+          "adjudicator_id": "A01",
+          "status": "ACCEPT",
+          "gold_confirmed": true,
+          "reason": "R01's R readability 2 and C ambiguity flag not supported: 'dhanaatmak' and 'varg' are standard school terms, and 'positive' removes the -7 root in every version.",
+          "reviewed_at": "2026-10-26"
+        }
+      }
+    }
+  ]
+}

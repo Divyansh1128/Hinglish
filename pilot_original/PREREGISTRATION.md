@@ -38,3 +38,7 @@ Produce **one side-by-side table**, for each of the three backbones, showing eac
 ## Source record
 
 `docs/DECISIONS.md` (D018, D030, D032–D036); `pilot_b/PREREGISTRATION.md`; `pilot/reviews_v2_round2/README.md`; `pilot/annotation_draft_v2/R01/README.md`; `research/operation_vocabulary_2026-10-15.md`; `results/pilot_b/SUMMARY.md`. Acceptance and review facts are recorded evidence; this proposed analysis plan is not a new human adjudication.
+
+## Amendment 1 (26 October 2026, before any model output on this cohort)
+
+R01's official stage-2 file marks 70 of 90 renderings (52 of the cohort's 72) with `_annotation_provenance: {"source": "AI prefill suggestion", "human_verified": false}`, a field the review form never writes. R01's stage-1 solves and all of R02's files carry no such marking. The cohort is therefore described as: **mathematics independently solved by two humans (R01, R02 stage 1); language and equivalence review by one human reviewer (R02) plus the adjudicator (A01); R01's AI-prefilled stage-2 judgments are recorded (`judgment_source = ai_prefill_unverified`) and excluded from any human-review or agreement statistic.** Human inter-reviewer agreement is reported only for stage-1 answers (and for the 20 R01 renderings with human stage-2 judgments). Endpoints and analyses are otherwise unchanged. Decision D037.
