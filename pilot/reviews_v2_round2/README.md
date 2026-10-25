@@ -19,3 +19,8 @@ Rubric inconsistencies, left as entered (human judgments) and **for A01 to resol
 - REVISE: PIL019-R, PIL024-R, PIL006-R, PIL009-R (naturalness); see the notes.
 
 **A01 packet built 2026-10-26:** `A01_round2_packet.zip` (worksheet with 15 of 30 families flagged, answer key, raw reviewer files, instructions). Give it only to a third independent person.
+
+**A01 worksheet returned 2026-10-26** (`A01_worksheet_returned.csv`, SHA-256 ece059d68bbb0d4233ce8e8b06dfec403c31ba92136b8299ae9aec709fd65a18). The coordinator states A01 is a third person, independent of R01 and R02. All 30 rows decided with reasons; gold and units confirmed correct for all 30.
+- ACCEPT 24; REVISE 5 (PIL009-R, PIL015-R, PIL019-R, PIL024-R wording; PIL020 E/R/C asks for a fraction in lowest terms); EXCLUDE 1 (PIL010, near-duplicate of PIL002).
+- Pending from A01: decisions on the PIL005/PIL021 and PIL011/PIL012 relationships, borrowing-policy view (adding 'machine' to R), consent and credit.
+- Pending decision: re-review of the 5 repaired families by R01 and R02 (packet rule) before acceptance.
