@@ -121,7 +121,10 @@ def build(model_id='Qwen/Qwen3-4B'):
             except Exception as error:
                 print('HF_TOKEN Colab secret not available (' + type(error).__name__ + '). Paste your Hugging Face read token below.')
                 import getpass
-                os.environ['HF_TOKEN'] = getpass.getpass('Hugging Face token: ').strip()
+                raw = getpass.getpass('Hugging Face token: ')
+                if isinstance(raw, dict):
+                    raw = raw.get('value') or raw.get('text') or ''
+                os.environ['HF_TOKEN'] = str(raw or '').strip()
             subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'huggingface-hub==0.30.2'], check=True)
             from huggingface_hub import auth_check
             auth_check(MODEL_ID, token=os.environ['HF_TOKEN'])  # raises with a clear message if access is missing

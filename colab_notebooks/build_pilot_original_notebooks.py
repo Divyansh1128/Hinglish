@@ -116,7 +116,12 @@ def build(model_id):
                 print('HF_TOKEN Colab secret not available (' + type(error).__name__ + '): turn on Notebook access for it in the key sidebar, or paste the token now.')
             import getpass
             while not token.startswith('hf_'):
-                token = getpass.getpass('Paste your Hugging Face read token (starts with hf_): ').strip()
+                raw = getpass.getpass('Paste your Hugging Face read token (starts with hf_): ')
+                if isinstance(raw, dict):  # Colab can return the widget payload instead of text
+                    raw = raw.get('value') or raw.get('text') or ''
+                token = str(raw or '').strip()
+                if not token.startswith('hf_'):
+                    print('That does not look like a token (it should start with hf_). Try again.')
             os.environ['HF_TOKEN'] = token
             subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'huggingface-hub==0.30.2'], check=True)
             from huggingface_hub import login, auth_check
