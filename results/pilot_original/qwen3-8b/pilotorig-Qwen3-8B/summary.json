@@ -1,0 +1,278 @@
+{
+  "run_id": "pilot_adjudicated-c8e9a75e60734d99ab30274066d5cb89",
+  "label": "ORIGINAL PILOT — two independent human solvers; language review by one human reviewer + adjudicator (24 accepted families)",
+  "mode": "pilot_adjudicated",
+  "status": "COMPLETE",
+  "expected": 72,
+  "completed": 72,
+  "families": 24,
+  "bootstrap_seed": 101,
+  "bootstrap_resamples": 10000,
+  "accuracy": {
+    "E": {
+      "correct": 24,
+      "denominator": 24,
+      "accuracy": 1.0,
+      "wilson_95_interval": [
+        0.8620237953250198,
+        1
+      ]
+    },
+    "R": {
+      "correct": 23,
+      "denominator": 24,
+      "accuracy": 0.9583333333333334,
+      "wilson_95_interval": [
+        0.7975819352134406,
+        0.9926065438344942
+      ]
+    },
+    "C": {
+      "correct": 24,
+      "denominator": 24,
+      "accuracy": 1.0,
+      "wilson_95_interval": [
+        0.8620237953250198,
+        1
+      ]
+    }
+  },
+  "paired": {
+    "E-C": {
+      "difference": 0.0,
+      "bootstrap_95_interval": [
+        0.0,
+        0.0
+      ],
+      "both_correct": 24,
+      "both_wrong": 0,
+      "a_correct_b_wrong": 0,
+      "a_wrong_b_correct": 0,
+      "families": 24
+    },
+    "E-R": {
+      "difference": 0.041666666666666664,
+      "bootstrap_95_interval": [
+        0.0,
+        0.125
+      ],
+      "both_correct": 23,
+      "both_wrong": 0,
+      "a_correct_b_wrong": 1,
+      "a_wrong_b_correct": 0,
+      "families": 24
+    },
+    "R-C": {
+      "difference": -0.041666666666666664,
+      "bootstrap_95_interval": [
+        -0.125,
+        0.0
+      ],
+      "both_correct": 23,
+      "both_wrong": 0,
+      "a_correct_b_wrong": 0,
+      "a_wrong_b_correct": 1,
+      "families": 24
+    }
+  },
+  "numeric": {
+    "E": {
+      "denominator": 24,
+      "strict_correct": 24,
+      "numeric_correct": 24,
+      "disagreements": 0
+    },
+    "R": {
+      "denominator": 24,
+      "strict_correct": 23,
+      "numeric_correct": 23,
+      "disagreements": 0
+    },
+    "C": {
+      "denominator": 24,
+      "strict_correct": 24,
+      "numeric_correct": 24,
+      "disagreements": 0
+    }
+  },
+  "invalid_reasons": {},
+  "completed_by_form": {
+    "E": 24,
+    "R": 24,
+    "C": 24
+  },
+  "resources": {
+    "E": {
+      "input_tokens": 111.5,
+      "output_tokens": 72.0,
+      "latency_seconds": 6.973295435000011
+    },
+    "R": {
+      "input_tokens": 133.5,
+      "output_tokens": 75.0,
+      "latency_seconds": 7.267752176000101
+    },
+    "C": {
+      "input_tokens": 118.0,
+      "output_tokens": 69.5,
+      "latency_seconds": 7.090733875000012
+    }
+  },
+  "token_count_kinds": [
+    "actual tokenizer"
+  ],
+  "family_rows": [
+    {
+      "family_id": "PIL001",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL002",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL003",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL004",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL005",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL006",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL007",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL008",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL011",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL012",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL013",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL014",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL016",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL017",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL018",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL021",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL022",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL023",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL025",
+      "E": true,
+      "R": false,
+      "C": true
+    },
+    {
+      "family_id": "PIL026",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL027",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL028",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL029",
+      "E": true,
+      "R": true,
+      "C": true
+    },
+    {
+      "family_id": "PIL030",
+      "E": true,
+      "R": true,
+      "C": true
+    }
+  ],
+  "numeric_endpoint": "numeric_literal_v1",
+  "consistency": {
+    "predictions.csv correct/attempt_id": "match",
+    "metrics.json status": "match",
+    "metrics.json accuracy + Wilson": "match",
+    "metrics.json paired bootstrap": "match"
+  },
+  "source": "PilotOrig_results_Qwen3-8B.zip!pilotorig-Qwen3-8B_results.zip"
+}
