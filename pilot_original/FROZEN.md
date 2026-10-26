@@ -55,3 +55,6 @@ R02 rows with this field: 0.
 
 ## Amendment (D037)
 `cohort_dataset.json` (current SHA-256 `5c3e8746f0629d1908902658bda2c280aeb388c55e741fb8e612bc49b5d43103`) records `judgment_source` for every reviewer form: R02 72/72 human; R01 20 human and 52 `ai_prefill_unverified` (R01's stage-2 rows carrying `_annotation_provenance: AI prefill suggestion, human_verified: false`). Stage-1 answers are human for both reviewers. The conversion was cross-checked against the independent GPT implementation in `independent_expected.json`: cohort, text hashes, answers and decisions all match.
+
+## Provenance correction (author statement, 27 October 2026)
+The project author states that the **English (E) problem statements of the original 30 families were written by the author**, and that the **Romanized Hindi (R) and Hinglish (C) renderings were produced by AI translation** (OpenAI GPT via Codex) and then reviewed by humans. The draft metadata created on 10 October records `authoring_origin = AI_DRAFT` for all 30 families. Per the author, that label is mistaken for the E texts. The frozen files are left unchanged so their hashes and the review record stay valid. This note is the authoritative provenance for the original cohort (decision D038).
