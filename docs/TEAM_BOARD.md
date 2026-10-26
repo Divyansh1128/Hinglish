@@ -60,3 +60,6 @@ Target for the November minor evaluation: a human-reviewed, frozen 30-family pil
 | May 2027 | Final submission | HUMAN |
 
 Slip rule: if human review is not back by 31 Oct, present the minor evaluation as design + software + format-fixture evidence, clearly labelled, rather than delaying the human gate.
+
+| — | **EACL 2027 SRW mentorship draft submitted (OpenReview #12), 26 Oct 2026** | HUMAN | DONE | `paper/submission/` |
+| — | Revise from mentor feedback (due 5 Dec); final SRW submission by 15 Dec 2026 | All | PENDING | |
