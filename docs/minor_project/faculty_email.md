@@ -1,34 +1,34 @@
-# Email to the faculty coordinator (draft — edit names and send yourself)
-
-**Subject:** Major Project update — Hinglish math reasoning in LLMs: first results, and three requests
+Subject: Major Project update: Hinglish maths reasoning in LLMs (results, and a request for co-authorship before 6 Nov)
 
 Dear Prof. ____,
 
-I am writing with an update on my Major Project, "Hinglish Mathematical Reasoning in Large Language Models", and to ask for your guidance on three points.
+I am writing with an update on my Major Project, "Hinglish Mathematical Reasoning in Large Language Models", and to request your guidance and support on a paper submission.
 
-**What we studied.** We test whether the language of an otherwise identical math word problem changes whether a language model solves it. Each problem is written three ways: English (E), Romanized Hindi (R) and Hinglish code-mixed (C). The mathematics and the expected answer stay the same.
+**What we study.** We test whether the language of an otherwise identical maths word problem changes whether a small open AI model solves it. Each problem is written three ways: English (E), Romanized Hindi (R) and Hinglish code-mixed (C). The mathematics and the answer stay the same.
 
 **What is done.**
-- A reproducible evaluation pipeline (Colab T4, 4-bit models, frozen prompt and scorer, checksummed results).
-- A dataset of 370 newly written problem families. Answers are computed in code, every item is checked independently by two AI solvers, and the Hindi/Hinglish wording was reviewed by a bilingual reviewer.
-- A first pre-registered evaluation on 70 reviewed families with three models:
+- A reproducible evaluation pipeline (Google Colab T4, 4-bit models, frozen prompt and scorer, checksum-verified results, analysis plans pre-registered before each run).
+- 370 newly written problem families, frozen with SHA-256 hashes. Answers are computed in code, every item is checked independently by two AI solvers, and the Hindi/Hinglish wording was reviewed by a bilingual reviewer.
+- A second, original set of 24 families, solved independently by two human reviewers and finalised by an adjudicator.
+- Evaluation of three models on both sets:
 
-| Model | English | Romanized Hindi | Hinglish |
-|---|---|---|---|
-| Qwen3-4B | 94.3% | 85.7% | 94.3% |
-| Qwen3-8B | 98.6% | 91.4% | 98.6% |
-| Llama-3.2-3B | 94.3% | 57.1% | 70.0% |
+| Model | Set 1 (70 families) E / R / C | Set 2 (24 families) E / R / C |
+|---|---|---|
+| Qwen3-4B | 94.3 / 85.7 / 94.3 % | 100 / 91.7 / 100 % |
+| Qwen3-8B | 98.6 / 91.4 / 98.6 % | 100 / 95.8 / 100 % |
+| Llama-3.2-3B | 94.3 / 57.1 / 70.0 % | 87.5 / 62.5 / 91.7 % |
 
-**Main findings so far.** Romanized Hindi is consistently the hardest form, with a gap of about 8 points for Qwen and 37 for Llama. Hinglish is as easy as English for Qwen. One of our hypotheses, that misreading Hindi math words such as *bhaag* and *bhinn* drives the errors, was not supported, and we report that honestly. We also found that the answer-format instruction itself can distort scores, and fixed this before the main run.
+**Main findings.** In both sets and for every model, Romanized Hindi is the hardest form, while Hinglish scores at or near English. The gap is small for Qwen (about 4–9 points) and large for Llama (25–37 points). We also found that the answer-format instruction itself can distort scores, and we corrected this before the main runs. One hypothesis, that misreading Hindi maths words such as *bhaag* and *bhinn* drives the errors, was not supported, and we report that honestly. Earlier work (CodeMixTax) has reported a similar Romanized-Hindi gap, so we position the paper as a careful, reproducible audit on new human-reviewed problems rather than a first discovery.
 
 **Requests.**
-1. **Co-authorship and paper:** we plan a 4-page short paper for the **EACL 2027 Student Research Workshop**. The optional mentorship draft is due **6 November 2026** and submission is **15 December 2026**. Would you be willing to be a co-author and supervising author? The review system (ARR) also needs one author who qualifies as a reviewer, which we expect a faculty co-author to satisfy.
-2. **Feedback on scope:** could we have a short meeting to discuss the results and the plan for the major phase (fine-tuning comparison, December–March)?
-3. **Minor-project evaluation:** please let me know the exact date and format of the November evaluation.
+1. **Paper and co-authorship:** we have a 4-page short-paper draft in the official ACL format, titled "Romanized Hindi Is Harder Than Hinglish: A Scoring-Aware Audit of Small LLMs", for the **EACL 2027 Student Research Workshop**. The optional mentorship draft is due **6 November 2026** and submission is due **15 December 2026**. Would you be willing to review it and join as co-author and supervising author? The review system also requires one author who qualifies as a reviewer.
+2. **A short meeting** to discuss the results and the plan for the next phase (a controlled fine-tuning comparison, December to March).
+3. **The minor-project evaluation:** please let me know the exact date and format.
 
-For transparency, AI assistants (Claude and GPT) helped with drafting problem items, coding and analysis. All of this is disclosed in the paper, and human review covers the data. The data will be released under CC BY 4.0 and the code under MIT. The report draft and results tables are ready whenever you would like to see them.
+For transparency: AI assistants (Claude and GPT) helped with drafting problem items, coding and analysis, and this is fully disclosed in the paper. The data will be released under CC BY 4.0 and the code under MIT. I can share the draft PDF and the results whenever convenient.
 
 Thank you for your time.
 
-Regards,
-____ (Roll no. ____)
+With regards,
+____
+____ (Roll No. ____)
