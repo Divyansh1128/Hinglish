@@ -1,0 +1,44 @@
+{
+ "categories": {
+  "no_error": {
+   "E": 66,
+   "R": 47,
+   "C": 56
+  },
+  "format_only": {
+   "E": 3,
+   "R": 2,
+   "C": 1
+  },
+  "language_drift": {
+   "E": 0,
+   "R": 13,
+   "C": 10
+  },
+  "wrong_relation_operation": {
+   "E": 1,
+   "R": 4,
+   "C": 2
+  },
+  "misread_quantity": {
+   "E": 0,
+   "R": 2,
+   "C": 0
+  },
+  "arithmetic_slip": {
+   "E": 0,
+   "R": 1,
+   "C": 1
+  },
+  "unresolved": {
+   "E": 0,
+   "R": 1,
+   "C": 0
+  }
+ },
+ "english_compliant": {
+  "E": 70,
+  "R": 53,
+  "C": 59
+ }
+}

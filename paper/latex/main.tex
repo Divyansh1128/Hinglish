@@ -159,7 +159,7 @@ Each cohort was analysed under a pre-registration fixed before any of its output
 
 \paragraph{Residual format effects.} The numeric endpoint agrees with strict scoring on every Llama Pilot-B rendering and on all 72 original-cohort renderings for each model; this does not rule out formatting failures that both endpoints reject (Llama had 11 strict-invalid Pilot-B outputs, 7 of them truncated). For Qwen, the pre-registered secondary grammar does not accept a \emph{trailing} rupee symbol (\texttt{FINAL: 1575 \rs}), which strict scoring accepts; this accounts for every strict-correct/numeric-fail case (30 for Qwen3-4B, 36 for Qwen3-8B). We report the secondary endpoint as specified; a post-hoc allowance for the trailing symbol restores agreement. Three of Qwen3-4B's four Pilot-B E failures are numerically correct answers with unlisted English unit phrases (\texttt{11 years old}, \texttt{4 bags of cement}), and one C failure is an unlisted spelling (\texttt{300 rupye}): the form-dependent alias penalty anticipated in \S\ref{sec:dev}.
 
-\paragraph{Exploratory (not pre-registered).} Despite the English-explanation instruction, Llama explained 60/70 R and 27/70 C Pilot-B outputs in Romanized-Hindi prose (heuristic detection). On C, Hindi-prose explanations were correct 13/27 against 36/43 for English explanations, an association confounded by item difficulty. For the Qwen3-4B Pilot-B outputs, two AI models pre-tagged error category and English compliance blind to each other ($\kappa = 0.94$ and $0.96$); the human check is pending, so no audit result is reported \todo{human audit check, then audit table}.
+\paragraph{Audit and instruction following.} Two AI models pre-tagged Qwen3-4B's Pilot-B outputs blind to each other ($\kappa = 0.94$, $0.96$); a human checked all disagreements and 20 agreed rows (App.~\ref{app:audit}). Of 18 strict failures, 6 are format-only; substantive errors concentrate in R (8, vs.\ 1 in E and 3 in C). English explanations fell from 70/70 (E) to 53/70 (R) and 59/70 (C); in an exploratory heuristic count, Llama explained 60/70 R outputs in Romanized-Hindi prose.
 
 \section{Conclusion}
 
@@ -197,5 +197,28 @@ System message used for every form and model (\texttt{test1-english-final-v2}):
 Solve the problem. Give a short explanation in English, even if the question is not in English. End with exactly one line: FINAL: <number or fraction>, followed by its unit in English only if the answer has a unit; write nothing after a pure number or fraction.
 \end{quote}
 The user message is the question text alone. Decoding is greedy and non-thinking, with a 1,024-token output cap.
+
+
+\section{Audit of Qwen3-4B Pilot-B outputs}\label{app:audit}
+Primary category per output (first applicable in the pre-registered order; 70 per form). Labels are the agreed AI pre-tag (186 outputs) or the human label (24 outputs: the 4 tagger disagreements and 20 random agreed rows). One human label, ``ambiguous'' (PB033-R, flagged as an ambiguous question), is mapped to \emph{unresolved}.
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Category & E & R & C \\
+\midrule
+no\_error & 66 & 47 & 56 \\
+format\_only & 3 & 2 & 1 \\
+language\_drift & 0 & 13 & 10 \\
+wrong\_relation\_operation & 1 & 4 & 2 \\
+misread\_quantity & 0 & 2 & 0 \\
+arithmetic\_slip & 0 & 1 & 1 \\
+unresolved & 0 & 1 & 0 \\
+\midrule
+English-compliant explanation & 70 & 53 & 59 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Exploratory (not pre-registered): on Llama's Pilot-B C outputs, Romanized-Hindi-prose explanations were correct 13/27 against 36/43 for English explanations, an association confounded by item difficulty.
 
 \end{document}
