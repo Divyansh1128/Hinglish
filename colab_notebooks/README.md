@@ -16,6 +16,10 @@ The real evaluation on the frozen, human-reviewed Pilot-B set (70 families × E/
 | `PilotB_Qwen3-8B.ipynb` | Qwen3-8B | Scaling comparison |
 | `PilotB_Llama-3.2-3B.ipynb` | Llama-3.2-3B | Cross-family; needs your HF token |
 
+## Training smoke test (`training_smoke/`), decision D021
+
+`TrainSmoke_Qwen3-4B.ipynb`: 6 QLoRA updates per arm (E+E, E+R, E+C) on 16 TRAIN families, checkpoint reload, a 32-update E+C stability probe, and the pre-declared go/no-go timing verdict. Never touches DEV or FINAL_TEST. About 40–120 minutes on a T4. Rebuild with `python3 -B colab_notebooks/build_training_smoke_notebook.py`.
+
 ## Model screening (`model_screening/`)
 
 Each notebook runs the same 36 excluded practice prompts with the frozen prompt, decoding and scorer. A model joins the pilot only with ≤3/36 format failures (decision D028).

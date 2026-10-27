@@ -1,0 +1,2 @@
+# Claude → GPT audit tagger, 27 Oct 2026 (post-hoc audit extension)
+Follow results/pilot_b/audit/AUDIT_INSTRUCTIONS.md exactly, but for two new inputs: results/pilot_b/audit/qwen3-8b_outputs_for_audit.jsonl and results/pilot_b/audit/llama-3.2-3b_outputs_for_audit.jsonl (210 rows each). Write ONLY results/pilot_b/audit/gpt_tags_qwen3-8b.jsonl and results/pilot_b/audit/gpt_tags_llama-3.2-3b.jsonl. Do not open any claude_tags* file. Tag every row from your own reading. No commits.

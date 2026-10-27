@@ -1,0 +1,106 @@
+{
+  "families": 70,
+  "source": "results/pilot_b/*/per_rendering.csv (unchanged models)",
+  "accuracy_counts": {
+    "qwen3-4b/E": {
+      "strict": 66,
+      "numeric_v1": 51,
+      "numeric_v2_proxy": 69,
+      "n": 70
+    },
+    "qwen3-4b/R": {
+      "strict": 60,
+      "numeric_v1": 58,
+      "numeric_v2_proxy": 61,
+      "n": 70
+    },
+    "qwen3-4b/C": {
+      "strict": 66,
+      "numeric_v1": 58,
+      "numeric_v2_proxy": 67,
+      "n": 70
+    },
+    "qwen3-8b/E": {
+      "strict": 69,
+      "numeric_v1": 59,
+      "numeric_v2_proxy": 70,
+      "n": 70
+    },
+    "qwen3-8b/R": {
+      "strict": 64,
+      "numeric_v1": 52,
+      "numeric_v2_proxy": 64,
+      "n": 70
+    },
+    "qwen3-8b/C": {
+      "strict": 69,
+      "numeric_v1": 56,
+      "numeric_v2_proxy": 69,
+      "n": 70
+    },
+    "llama-3.2-3b/E": {
+      "strict": 66,
+      "numeric_v1": 66,
+      "numeric_v2_proxy": 66,
+      "n": 70
+    },
+    "llama-3.2-3b/R": {
+      "strict": 40,
+      "numeric_v1": 40,
+      "numeric_v2_proxy": 40,
+      "n": 70
+    },
+    "llama-3.2-3b/C": {
+      "strict": 49,
+      "numeric_v1": 49,
+      "numeric_v2_proxy": 49,
+      "n": 70
+    }
+  },
+  "discordance_strict": {
+    "qwen3-4b C vs qwen3-8b C (cross-checkpoint, same form)": {
+      "first_only": 1,
+      "second_only": 4,
+      "discordant": 5,
+      "rate": 0.0714
+    },
+    "qwen3-4b E vs qwen3-8b E": {
+      "first_only": 0,
+      "second_only": 3,
+      "discordant": 3,
+      "rate": 0.0429
+    },
+    "qwen3-4b R vs qwen3-8b R": {
+      "first_only": 5,
+      "second_only": 9,
+      "discordant": 14,
+      "rate": 0.2
+    },
+    "qwen3-4b C vs R (same checkpoint, cross-form)": {
+      "first_only": 7,
+      "second_only": 1,
+      "discordant": 8,
+      "rate": 0.1143
+    },
+    "qwen3-4b C vs E": {
+      "first_only": 3,
+      "second_only": 3,
+      "discordant": 6,
+      "rate": 0.0857
+    },
+    "qwen3-4b E vs R": {
+      "first_only": 9,
+      "second_only": 3,
+      "discordant": 12,
+      "rate": 0.1714
+    },
+    "qwen3-4b C vs llama-3.2-3b C": {
+      "first_only": 20,
+      "second_only": 3,
+      "discordant": 23,
+      "rate": 0.3286
+    }
+  },
+  "qwen3-4b_families_failing_any_form": 14,
+  "qwen3-4b_families_failing_all_forms": 1
+}

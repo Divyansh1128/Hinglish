@@ -1,31 +1,52 @@
-# Astra → Claude: novelty refresh for the short paper
+# Astra → Claude, 27 Oct 2026: Phase-2 confirmatory protocol v1 + real-data power
 
-Requested filename date: 27 October 2026. Work actually performed and sources checked **26 October 2026**; no future search coverage is implied.
+**Provenance:** this task was done by a **Claude Opus research subagent in place of Astra (GPT)**, because Codex authentication had expired. It replaces an older, unrelated handoff with the same filename (the novelty-refresh handoff; that content lives on in `research/novelty_refresh_2026-10-27.md`). No commits. No other files were touched. No training, no new inference, and FINAL_TEST was not read.
 
-Delivered:
+## Delivered
+- `research/phase2_protocol_v1_2026-10-27.md` (202 lines): estimands, design, power, analysis plan, optional controls with costs, threats to validity, and the D021 fallback.
+- `research/phase2_power/phase2_power.py`: standard library only, deterministic (byte-identical outputs on rerun, checked twice), about 30 s. Run it with `python3 research/phase2_power/phase2_power.py`.
+  - Inputs: `results/pilot_b/{qwen3-4b,qwen3-8b,llama-3.2-3b}/per_rendering.csv` (SHA-256s recorded).
+  - Outputs: `pilot_estimates.json`, `power_grid_n100.csv`, `n_scaling.csv`, `secondary_and_validation.json`, `manifest.json`.
 
-- `research/novelty_refresh_2026-10-27.md`: 15-source comparison matrix, verified full citations/locators, search/access limitations, verdict, exact Introduction positioning sentence and submission-facing cautions.
-- `research/novelty_refresh_2026-10-27.bib`: 11 verified new/replacement citation candidates. Four already-cited sources are not duplicated. Optional references are distinguished from essential additions in the memo.
+## Key numbers (N = 100 families, 3 paired seeds; family-bootstrap-equivalent 95% interval)
+- **Pilot inputs.** Qwen3-4B C accuracy is 66/70 = 94.3%. Discordance proxies:
+  - 0.071 for C across checkpoints (4B vs 8B);
+  - 0.114 for C vs R within Qwen3-4B;
+  - 0.200 for R across checkpoints.
+- **Ceiling.** If the E+R arm's C accuracy stays at about 94%, the headroom is 5.7 pp, so **+10 pp is impossible** and discordance above about 0.114 is infeasible.
+- **Precision.** Δ_C half-width is about 2–5 pp. The false "support" rate is 1.6–2.8%.
+- **Power, P(lower bound > 0).**
+  - +3 pp: 0.21–0.58.
+  - +5 pp: 0.45–0.96 (0.67 in the central case p0 = 0.857, q0 = 0.114).
+  - +10 pp: 0.95–1.00 where it is feasible.
+- **"Useful ≥5 pp" claim** (lower bound > 5 pp): ≤0.025 at true +5, and 0.41–0.60 at true +10.
+- **Per-seed McNemar** at +5: 0.13–0.37. **All 3 seeds positive** under the null: 0.05–0.10.
+- **English non-inferiority** (−2 pp margin) when the true loss is zero: shown only 29–52% of the time. **Not establishable.**
+- **Δ_C − Δ_R** null half-width: about 2.9–4.3 pp.
+- **Hoeffding reference interval** radius: 27.2 pp (uninformative).
+- **Larger N, central case:** +3 pp needs about 600 families for 96% power; +5 pp reaches 92% at N = 200. Only 100 FINAL_TEST families exist.
+- **Check of the Wald shortcut** against the real percentile bootstrap: decisions agree 98.7–100%.
 
-## Decision for integration
+## Recommended claims
+1. Present Δ_C as a **pre-registered estimate with about ±3–4 pp precision**, conditional on the checkpoints.
+2. Decision rules:
+   - **support:** lower bound > 0;
+   - **useful support:** lower bound > 5;
+   - **informative null:** the interval contains 0 and the upper bound is < 5, which rules out the useful gain;
+   - **harm:** upper bound < 0;
+   - **inconclusive:** anything else.
+3. Keep English retention, R transfer and specificity descriptive (Holm across them if any is ever tested). Say "retention not established" unless the lower bound is > −2 pp.
+4. Flag the ceiling openly. Also flag that E+R shares Hindi with C, so a small Δ_C is expected a priori.
 
-The broad R<C framing is **not new**: Sthānika's CodeMixTax explicitly compares aligned Romanized Hindi and Romanized Hinglish on GSM8K. Cite it as direct prior work, not merely as an aligned dataset. Peter et al., GEM 2026, is essential missing related work on translation/extraction-induced multilingual math gaps. The exact Qwen/cohort/protocol result was not found, but that is a bounded search result, not novelty proof. Position the paper as a reproducible small-model audit/extension on new reviewed problems.
+## Decisions needed (proposals, not adopted)
+- **Margins.** Adopt +5 pp useful gain and −2 pp retention.
+- **128-update timing rule.** Use 128 updates if 2,304 updates are infeasible (decided on timing only). 256 updates over 160 families is about 13 passes.
+- **Amend D021's fallback.** Switch to Llama-3.2-3B instead of Qwen3-1.7B, which failed the format rule (D029).
+- **Ceiling flag.** Check unchanged-model DEV difficulty before training; flag the ceiling if DEV C ≥ 95%.
+- **Numeric endpoint.** Pre-register `numeric_literal_v2`, which accepts a ₹/Rs/INR/rupees affix when the gold unit is rupees, as a secondary only. On Pilot-B it gives Qwen3-4B E/R/C 69/61/67 vs v1 51/58/58.
+- **Optional controls.** Recommended: self-translate (400 generations) and the operation-word analysis (free). Llama-3.2-3B second backbone only if the ceiling flag fires (doubles cost). Devanagari arm not recommended (about +33% training plus new reviewed renderings and a new FINAL_TEST version).
 
-Use the exact sentence proposed in the memo; say **equal observed aggregate E/C accuracy**, not established equivalence. Retain Llama's E/C deficit. Native-script control is absent, so do not infer a causal script effect. Keep 70-family Pilot-B and 24-family original cohort separate.
-
-Additional priorities: TeluguEval; Khattar et al.'s 19 October 2026 Indic pretraining/evaluation preprint; MathIF; Azime et al.'s multilingual math localization. Script Gap now has an EMNLP 2026 Industry proceedings record; replace its old preprint label/key if integrated. Do not import every optional citation into a four-page paper.
-
-## Manuscript issues exposed by the refresh
-
-- D037 supersedes earlier two-independent-language-review claims: two independent solves, R02+A01 language review, R01 AI-prefill judgments excluded. Original RESULTS files now exist while main.tex still has pending-cohort text.
-- Strict/numeric agreement does not establish absence of formatting confounds: both can reject the same malformed or truncated response. Keep the audit outstanding and preserve frozen scores.
-- Equal E/C counts hide discordant items; ceiling-cohort zero bootstrap width is not evidence of population equivalence.
-- Development prompt/fixture/alias changes cannot be attributed solely to prompting. Sparse lexical strata cannot rule out every vocabulary explanation.
-
-## Verification and limits
-
-Read all requested local inputs, team board and latest handoffs. Checked substantive citations against primary ACL/arXiv/author sources; inspected relevant full-text sections for closest comparisons. OpenReview was searched and a relevant PDF inspected. Semantic Scholar targeted searches/lookup produced no usable extra records; coverage is explicitly incomplete. One OpenReview lead remains UNVERIFIED and is excluded from the bibliography and verdict. No external study was rerun; no new model evaluation or human validation was performed.
-
-Only these two research files and this explicitly requested handoff were written. No commits, pushes, branch changes, paper edits or existing-bibliography edits. The existing untracked `paper/latex/PATCH_original_cohort.md` remains untouched. Manuscript and existing bibliography hashes are recorded in the memo for verification.
-
-Next action: review/adopt the narrower positioning, integrate chosen citations and current D037/cohort facts, then complete the scoring/language audit and remaining author decisions. This task completes the requested evidence refresh, not the submission-readiness gate.
+## Caveats
+- The trained-arm seed-to-seed discordance is unobserved; the grid uses unchanged-model proxies.
+- The effect model assumes proportional gains with no offsetting losses, which is optimistic; heterogeneous effects mean lower power.
+- C/R independence for specificity is an assumption.

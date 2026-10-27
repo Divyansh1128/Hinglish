@@ -1,0 +1,72 @@
+{
+  "retention_E_margin_2pp": [
+    {
+      "p0_E": 0.943,
+      "q0": 0.035,
+      "families": 100,
+      "status": "ok",
+      "p_noninferiority_shown_at_true_0": 0.522,
+      "median_ci_halfwidth_pp": 2.06
+    },
+    {
+      "p0_E": 0.943,
+      "q0": 0.071,
+      "families": 100,
+      "status": "ok",
+      "p_noninferiority_shown_at_true_0": 0.289,
+      "median_ci_halfwidth_pp": 2.94
+    },
+    {
+      "p0_E": 0.943,
+      "q0": 0.114,
+      "families": 100,
+      "status": "infeasible"
+    }
+  ],
+  "specificity_null_halfwidth": [
+    {
+      "p0_C": 0.943,
+      "p0_R": 0.857,
+      "q0": 0.035,
+      "families": 100,
+      "status": "ok",
+      "median_ci_halfwidth_pp": 2.93
+    },
+    {
+      "p0_C": 0.943,
+      "p0_R": 0.857,
+      "q0": 0.071,
+      "families": 100,
+      "status": "ok",
+      "median_ci_halfwidth_pp": 4.25
+    },
+    {
+      "status": "infeasible"
+    }
+  ],
+  "hoeffding_radius_pp_n100": 27.16,
+  "bootstrap_validation": [
+    {
+      "p0": 0.857,
+      "q0": 0.114,
+      "delta_pp": 5.0,
+      "families": 100,
+      "reps": 300,
+      "bootstrap_draws": 2000,
+      "wald_power": 0.7167,
+      "percentile_bootstrap_power": 0.71,
+      "decision_agreement": 0.9867
+    },
+    {
+      "p0": 0.943,
+      "q0": 0.071,
+      "delta_pp": 5.0,
+      "families": 100,
+      "reps": 300,
+      "bootstrap_draws": 2000,
+      "wald_power": 0.9667,
+      "percentile_bootstrap_power": 0.9667,
+      "decision_agreement": 1.0
+    }
+  ]
+}

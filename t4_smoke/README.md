@@ -1,8 +1,24 @@
 # T4 smoke-test preparation
 
-Status: input validation and model-free tests only. There is no GPU training
-runner yet, and no hardware feasibility or research result is established.
-The governing draft is `../pilot_review_packet.md`, section 7.
+Status (27 Oct 2026): the D021 GPU runner `train_smoke.py` and its Colab
+notebook (`../colab_notebooks/training_smoke/TrainSmoke_Qwen3-4B.ipynb`, built
+by `../colab_notebooks/build_training_smoke_notebook.py`) exist and pass
+model-free tests. They have **not run on a GPU**, so no hardware feasibility
+result is established. The governing decision is D021 in `../docs/DECISIONS.md`.
+
+## D021 training smoke (`train_smoke.py`)
+
+- Stack: Colab torch 2.11.0+cu130 (recorded, not reinstalled), transformers
+  4.51.3, bitsandbytes 0.50.2, PEFT 0.15.2; project-owned loop, no TRL.
+- Data: 16 TRAIN families (8 per frozen TRAIN file, hash-ranked with seed
+  `D021-smoke-2026-10-27`; see `SELECTION_RULE`). No DEV or FINAL_TEST file is read.
+- Labels via `labels.py`; arms E+E, E+R, E+C with identical English targets.
+- Per arm: updates 1-4, save, new-process reload and state/probe check, updates
+  5-6. Then a 32-update E+C stability probe. `decide` prints the D021 go/no-go.
+- These adapters are discarded: never evaluate them.
+
+The older `protocol.py` preflight below targets the 2.7.1/0.45.5 stack in
+`requirements.txt` (the D021 fallback stack) and remains unchanged.
 
 ## Local checks
 
@@ -13,6 +29,7 @@ library only. Do not install the CUDA requirements to run these checks.
 python3 -B t4_smoke/protocol.py self-check
 python3 -B -m unittest discover -s t4_smoke -p 'test_*.py' -v
 python3 -B -m unittest discover -s pilot/scripts -p 'test_*.py' -v
+python3 -B colab_notebooks/build_training_smoke_notebook.py --check
 ```
 
 The in-memory fixtures are software tests, not authored pilot/smoke datasets
@@ -44,16 +61,10 @@ explicit unverified checks. It verifies SHA syntax only, not existence of
 the model revision. It does not load a tokenizer, download weights, validate
 human judgments, or launch training. Errors exit nonzero.
 
-## Remaining implementation
+## Remaining
 
-- Real-tokenizer preflight against the pinned model revision, with no target
-  truncation, completion-only masking, and identical paired targets.
-- Fresh-process E+C and E+R GPU runners with the frozen recipe, six updates
-  per arm, bounded runtime, resource telemetry, and training-integrity checks.
-- Cold checkpoint save/reload after update four, restoring adapters,
-  optimizer, scaler, RNG, cursor, and configuration before the last two updates.
-- Before/after reload state and probe checks, per-arm reports, and the
-  review packet's memory/time decision gates.
+- Run the notebook on a real T4 and review the returned ZIP. Everything that
+  touches torch, bitsandbytes, PEFT or the real tokenizer is untested until then.
 
 Dependency compatibility and GPU feasibility remain unverified. Human
 review and audited input preparation remain prerequisites for real runs.

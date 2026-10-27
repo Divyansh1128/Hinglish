@@ -1,0 +1,3838 @@
+{
+ "label": "POST-HOC EXPLORATORY (outputs already seen; descriptive; no causal claims)",
+ "tokenizer": {
+  "repo": "Qwen/Qwen3-4B",
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "file": "tokenizer.json",
+  "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+  "tokenizers_version": "0.23.3",
+  "add_special_tokens": false
+ },
+ "lexicon_source": "research/operation_vocabulary_2026-10-15.md section 2 (whole-word, case-insensitive; entry + listed variants)",
+ "scoring": "strict scorer v1.0.0 `correct` column of per_rendering.csv",
+ "cohorts": {
+  "pilot_b": {
+   "n_families": 70,
+   "A1": {
+    "E": {
+     "question_tokens": {
+      "n": 70,
+      "median": 35.0,
+      "q25": 29.0,
+      "q75": 40.0,
+      "mean": 35.614,
+      "min": 18,
+      "max": 60
+     },
+     "whitespace_words": {
+      "n": 70,
+      "median": 24.0,
+      "q25": 20.0,
+      "q75": 28.0,
+      "mean": 24.714,
+      "min": 13,
+      "max": 40
+     },
+     "tokens_per_word": {
+      "n": 70,
+      "median": 1.4487,
+      "q25": 1.3333,
+      "q75": 1.5495,
+      "mean": 1.455,
+      "min": 1.2069,
+      "max": 1.9286
+     },
+     "pct_alpha_words_ge3_pieces": 1.4,
+     "mean_pieces_per_alpha_word": 1.071
+    },
+    "R": {
+     "question_tokens": {
+      "n": 70,
+      "median": 49.0,
+      "q25": 43.0,
+      "q75": 57.75,
+      "mean": 50.943,
+      "min": 32,
+      "max": 87
+     },
+     "whitespace_words": {
+      "n": 70,
+      "median": 24.0,
+      "q25": 21.0,
+      "q75": 28.75,
+      "mean": 25.043,
+      "min": 16,
+      "max": 43
+     },
+     "tokens_per_word": {
+      "n": 70,
+      "median": 2.0,
+      "q25": 1.9,
+      "q75": 2.1980750000000002,
+      "mean": 2.048,
+      "min": 1.5625,
+      "max": 2.6875
+     },
+     "pct_alpha_words_ge3_pieces": 16.5,
+     "mean_pieces_per_alpha_word": 1.76
+    },
+    "C": {
+     "question_tokens": {
+      "n": 70,
+      "median": 45.0,
+      "q25": 36.0,
+      "q75": 50.0,
+      "mean": 44.557,
+      "min": 23,
+      "max": 77
+     },
+     "whitespace_words": {
+      "n": 70,
+      "median": 24.5,
+      "q25": 21.0,
+      "q75": 28.75,
+      "mean": 25.1,
+      "min": 14,
+      "max": 42
+     },
+     "tokens_per_word": {
+      "n": 70,
+      "median": 1.7792,
+      "q25": 1.643475,
+      "q75": 1.90585,
+      "mean": 1.78,
+      "min": 1.3333,
+      "max": 2.32
+     },
+     "pct_alpha_words_ge3_pieces": 9.4,
+     "mean_pieces_per_alpha_word": 1.462
+    },
+    "R-E_paired": {
+     "token_diff": {
+      "n": 70,
+      "median": 15.0,
+      "q25": 10.25,
+      "q75": 18.75,
+      "mean": 15.329,
+      "min": 3,
+      "max": 35
+     },
+     "token_ratio": {
+      "n": 70,
+      "median": 1.4172500000000001,
+      "q25": 1.31115,
+      "q75": 1.5667,
+      "mean": 1.444,
+      "min": 1.0833,
+      "max": 1.9459
+     },
+     "tokens_per_word_diff": {
+      "n": 70,
+      "median": 0.5951500000000001,
+      "q25": 0.44580000000000003,
+      "q75": 0.710175,
+      "mean": 0.593,
+      "min": 0.2214,
+      "max": 1.2083
+     },
+     "families_longer": 70,
+     "families_equal": 0
+    },
+    "C-E_paired": {
+     "token_diff": {
+      "n": 70,
+      "median": 8.0,
+      "q25": 5.0,
+      "q75": 12.0,
+      "mean": 8.943,
+      "min": -1,
+      "max": 24
+     },
+     "token_ratio": {
+      "n": 70,
+      "median": 1.2358500000000001,
+      "q25": 1.152075,
+      "q75": 1.358775,
+      "mean": 1.256,
+      "min": 0.9688,
+      "max": 1.7059
+     },
+     "tokens_per_word_diff": {
+      "n": 70,
+      "median": 0.3498,
+      "q25": 0.21475,
+      "q75": 0.403275,
+      "mean": 0.325,
+      "min": -0.0167,
+      "max": 0.7518
+     },
+     "families_longer": 67,
+     "families_equal": 2
+    },
+    "per_family": {
+     "PB001": {
+      "E": {
+       "tokens": 42,
+       "words": 32,
+       "ops": []
+      },
+      "R": {
+       "tokens": 61,
+       "words": 27,
+       "ops": [
+        "bache:2"
+       ]
+      },
+      "C": {
+       "tokens": 49,
+       "words": 29,
+       "ops": [
+        "bache:2"
+       ]
+      }
+     },
+     "PB002": {
+      "E": {
+       "tokens": 37,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 22,
+       "ops": [
+        "kam:1",
+        "milkar:2"
+       ]
+      },
+      "C": {
+       "tokens": 40,
+       "words": 21,
+       "ops": []
+      }
+     },
+     "PB003": {
+      "E": {
+       "tokens": 32,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 61,
+       "words": 24,
+       "ops": [
+        "zyada:3"
+       ]
+      },
+      "C": {
+       "tokens": 47,
+       "words": 25,
+       "ops": [
+        "zyada:3"
+       ]
+      }
+     },
+     "PB004": {
+      "E": {
+       "tokens": 40,
+       "words": 27,
+       "ops": []
+      },
+      "R": {
+       "tokens": 57,
+       "words": 26,
+       "ops": [
+        "baaki:2"
+       ]
+      },
+      "C": {
+       "tokens": 54,
+       "words": 30,
+       "ops": []
+      }
+     },
+     "PB005": {
+      "E": {
+       "tokens": 37,
+       "words": 25,
+       "ops": []
+      },
+      "R": {
+       "tokens": 49,
+       "words": 25,
+       "ops": [
+        "ghataaya:3"
+       ]
+      },
+      "C": {
+       "tokens": 47,
+       "words": 26,
+       "ops": [
+        "ghataaya:3"
+       ]
+      }
+     },
+     "PB006": {
+      "E": {
+       "tokens": 32,
+       "words": 21,
+       "ops": []
+      },
+      "R": {
+       "tokens": 54,
+       "words": 24,
+       "ops": [
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 50,
+       "words": 26,
+       "ops": []
+      }
+     },
+     "PB007": {
+      "E": {
+       "tokens": 51,
+       "words": 40,
+       "ops": []
+      },
+      "R": {
+       "tokens": 67,
+       "words": 36,
+       "ops": []
+      },
+      "C": {
+       "tokens": 63,
+       "words": 38,
+       "ops": []
+      }
+     },
+     "PB008": {
+      "E": {
+       "tokens": 38,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 23,
+       "ops": []
+      },
+      "C": {
+       "tokens": 46,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PB009": {
+      "E": {
+       "tokens": 53,
+       "words": 38,
+       "ops": []
+      },
+      "R": {
+       "tokens": 87,
+       "words": 43,
+       "ops": []
+      },
+      "C": {
+       "tokens": 77,
+       "words": 42,
+       "ops": []
+      }
+     },
+     "PB010": {
+      "E": {
+       "tokens": 35,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 48,
+       "words": 21,
+       "ops": []
+      },
+      "C": {
+       "tokens": 43,
+       "words": 23,
+       "ops": []
+      }
+     },
+     "PB011": {
+      "E": {
+       "tokens": 49,
+       "words": 32,
+       "ops": []
+      },
+      "R": {
+       "tokens": 60,
+       "words": 33,
+       "ops": []
+      },
+      "C": {
+       "tokens": 51,
+       "words": 31,
+       "ops": []
+      }
+     },
+     "PB012": {
+      "E": {
+       "tokens": 39,
+       "words": 26,
+       "ops": []
+      },
+      "R": {
+       "tokens": 68,
+       "words": 29,
+       "ops": []
+      },
+      "C": {
+       "tokens": 51,
+       "words": 27,
+       "ops": []
+      }
+     },
+     "PB013": {
+      "E": {
+       "tokens": 35,
+       "words": 29,
+       "ops": []
+      },
+      "R": {
+       "tokens": 49,
+       "words": 30,
+       "ops": [
+        "guna:2"
+       ]
+      },
+      "C": {
+       "tokens": 43,
+       "words": 31,
+       "ops": [
+        "guna:2"
+       ]
+      }
+     },
+     "PB014": {
+      "E": {
+       "tokens": 44,
+       "words": 34,
+       "ops": []
+      },
+      "R": {
+       "tokens": 50,
+       "words": 32,
+       "ops": [
+        "guna:2"
+       ]
+      },
+      "C": {
+       "tokens": 45,
+       "words": 31,
+       "ops": []
+      }
+     },
+     "PB015": {
+      "E": {
+       "tokens": 39,
+       "words": 25,
+       "ops": []
+      },
+      "R": {
+       "tokens": 54,
+       "words": 25,
+       "ops": [
+        "prati:2"
+       ]
+      },
+      "C": {
+       "tokens": 50,
+       "words": 27,
+       "ops": [
+        "prati:2"
+       ]
+      }
+     },
+     "PB016": {
+      "E": {
+       "tokens": 29,
+       "words": 21,
+       "ops": []
+      },
+      "R": {
+       "tokens": 53,
+       "words": 27,
+       "ops": [
+        "prati:2"
+       ]
+      },
+      "C": {
+       "tokens": 37,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PB017": {
+      "E": {
+       "tokens": 29,
+       "words": 17,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 16,
+       "ops": [
+        "bache:2"
+       ]
+      },
+      "C": {
+       "tokens": 39,
+       "words": 18,
+       "ops": []
+      }
+     },
+     "PB018": {
+      "E": {
+       "tokens": 45,
+       "words": 30,
+       "ops": []
+      },
+      "R": {
+       "tokens": 54,
+       "words": 31,
+       "ops": [
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 48,
+       "words": 30,
+       "ops": [
+        "kul:1"
+       ]
+      }
+     },
+     "PB019": {
+      "E": {
+       "tokens": 34,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 57,
+       "words": 27,
+       "ops": []
+      },
+      "C": {
+       "tokens": 52,
+       "words": 26,
+       "ops": []
+      }
+     },
+     "PB020": {
+      "E": {
+       "tokens": 40,
+       "words": 30,
+       "ops": []
+      },
+      "R": {
+       "tokens": 65,
+       "words": 33,
+       "ops": []
+      },
+      "C": {
+       "tokens": 59,
+       "words": 32,
+       "ops": []
+      }
+     },
+     "PB021": {
+      "E": {
+       "tokens": 35,
+       "words": 25,
+       "ops": []
+      },
+      "R": {
+       "tokens": 50,
+       "words": 26,
+       "ops": []
+      },
+      "C": {
+       "tokens": 50,
+       "words": 28,
+       "ops": []
+      }
+     },
+     "PB022": {
+      "E": {
+       "tokens": 37,
+       "words": 28,
+       "ops": []
+      },
+      "R": {
+       "tokens": 72,
+       "words": 32,
+       "ops": []
+      },
+      "C": {
+       "tokens": 58,
+       "words": 33,
+       "ops": []
+      }
+     },
+     "PB023": {
+      "E": {
+       "tokens": 39,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 67,
+       "words": 28,
+       "ops": []
+      },
+      "C": {
+       "tokens": 58,
+       "words": 25,
+       "ops": []
+      }
+     },
+     "PB024": {
+      "E": {
+       "tokens": 44,
+       "words": 29,
+       "ops": []
+      },
+      "R": {
+       "tokens": 72,
+       "words": 33,
+       "ops": []
+      },
+      "C": {
+       "tokens": 60,
+       "words": 32,
+       "ops": []
+      }
+     },
+     "PB025": {
+      "E": {
+       "tokens": 39,
+       "words": 31,
+       "ops": []
+      },
+      "R": {
+       "tokens": 55,
+       "words": 28,
+       "ops": [
+        "baraabar:2",
+        "hissa:2",
+        "bacha:2",
+        "bhinn:2"
+       ]
+      },
+      "C": {
+       "tokens": 46,
+       "words": 27,
+       "ops": [
+        "baraabar:2",
+        "hissa:2",
+        "bacha:2",
+        "bhinn:2"
+       ]
+      }
+     },
+     "PB026": {
+      "E": {
+       "tokens": 41,
+       "words": 33,
+       "ops": []
+      },
+      "R": {
+       "tokens": 61,
+       "words": 30,
+       "ops": [
+        "hissa:2",
+        "bhinn:2"
+       ]
+      },
+      "C": {
+       "tokens": 48,
+       "words": 30,
+       "ops": []
+      }
+     },
+     "PB027": {
+      "E": {
+       "tokens": 31,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 45,
+       "words": 20,
+       "ops": [
+        "pratishat:3"
+       ]
+      },
+      "C": {
+       "tokens": 39,
+       "words": 22,
+       "ops": [
+        "pratishat:3"
+       ]
+      }
+     },
+     "PB028": {
+      "E": {
+       "tokens": 29,
+       "words": 17,
+       "ops": []
+      },
+      "R": {
+       "tokens": 50,
+       "words": 21,
+       "ops": [
+        "pratishat:3"
+       ]
+      },
+      "C": {
+       "tokens": 45,
+       "words": 21,
+       "ops": []
+      }
+     },
+     "PB029": {
+      "E": {
+       "tokens": 41,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 60,
+       "words": 26,
+       "ops": [
+        "bhaag:3"
+       ]
+      },
+      "C": {
+       "tokens": 51,
+       "words": 26,
+       "ops": [
+        "bhaag:3"
+       ]
+      }
+     },
+     "PB030": {
+      "E": {
+       "tokens": 43,
+       "words": 26,
+       "ops": []
+      },
+      "R": {
+       "tokens": 58,
+       "words": 23,
+       "ops": [
+        "baaki:2",
+        "baaki:2"
+       ]
+      },
+      "C": {
+       "tokens": 47,
+       "words": 26,
+       "ops": []
+      }
+     },
+     "PB031": {
+      "E": {
+       "tokens": 36,
+       "words": 25,
+       "ops": []
+      },
+      "R": {
+       "tokens": 45,
+       "words": 26,
+       "ops": []
+      },
+      "C": {
+       "tokens": 37,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PB032": {
+      "E": {
+       "tokens": 28,
+       "words": 18,
+       "ops": []
+      },
+      "R": {
+       "tokens": 34,
+       "words": 17,
+       "ops": []
+      },
+      "C": {
+       "tokens": 31,
+       "words": 19,
+       "ops": []
+      }
+     },
+     "PB033": {
+      "E": {
+       "tokens": 35,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 44,
+       "words": 26,
+       "ops": []
+      },
+      "C": {
+       "tokens": 40,
+       "words": 25,
+       "ops": []
+      }
+     },
+     "PB034": {
+      "E": {
+       "tokens": 55,
+       "words": 38,
+       "ops": []
+      },
+      "R": {
+       "tokens": 71,
+       "words": 36,
+       "ops": []
+      },
+      "C": {
+       "tokens": 68,
+       "words": 38,
+       "ops": []
+      }
+     },
+     "PB035": {
+      "E": {
+       "tokens": 29,
+       "words": 19,
+       "ops": []
+      },
+      "R": {
+       "tokens": 39,
+       "words": 17,
+       "ops": []
+      },
+      "C": {
+       "tokens": 34,
+       "words": 17,
+       "ops": []
+      }
+     },
+     "PB036": {
+      "E": {
+       "tokens": 27,
+       "words": 18,
+       "ops": []
+      },
+      "R": {
+       "tokens": 37,
+       "words": 18,
+       "ops": []
+      },
+      "C": {
+       "tokens": 33,
+       "words": 19,
+       "ops": []
+      }
+     },
+     "PB037": {
+      "E": {
+       "tokens": 27,
+       "words": 14,
+       "ops": []
+      },
+      "R": {
+       "tokens": 44,
+       "words": 20,
+       "ops": [
+        "anupaat:3",
+        "baant:2"
+       ]
+      },
+      "C": {
+       "tokens": 38,
+       "words": 19,
+       "ops": [
+        "anupaat:3",
+        "baant:2"
+       ]
+      }
+     },
+     "PB038": {
+      "E": {
+       "tokens": 31,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 46,
+       "words": 23,
+       "ops": [
+        "anupaat:3"
+       ]
+      },
+      "C": {
+       "tokens": 33,
+       "words": 19,
+       "ops": []
+      }
+     },
+     "PB039": {
+      "E": {
+       "tokens": 29,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 40,
+       "words": 20,
+       "ops": [
+        "anupaat:3",
+        "bhaag:3",
+        "bhaag:3"
+       ]
+      },
+      "C": {
+       "tokens": 35,
+       "words": 21,
+       "ops": [
+        "anupaat:3",
+        "bhaag:3"
+       ]
+      }
+     },
+     "PB040": {
+      "E": {
+       "tokens": 52,
+       "words": 34,
+       "ops": []
+      },
+      "R": {
+       "tokens": 64,
+       "words": 33,
+       "ops": [
+        "har:1"
+       ]
+      },
+      "C": {
+       "tokens": 61,
+       "words": 32,
+       "ops": []
+      }
+     },
+     "PB041": {
+      "E": {
+       "tokens": 60,
+       "words": 37,
+       "ops": []
+      },
+      "R": {
+       "tokens": 82,
+       "words": 33,
+       "ops": [
+        "anupaat:3",
+        "baant:2"
+       ]
+      },
+      "C": {
+       "tokens": 73,
+       "words": 35,
+       "ops": [
+        "anupaat:3",
+        "baant:2"
+       ]
+      }
+     },
+     "PB042": {
+      "E": {
+       "tokens": 36,
+       "words": 27,
+       "ops": []
+      },
+      "R": {
+       "tokens": 44,
+       "words": 22,
+       "ops": [
+        "anupaat:3",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 36,
+       "words": 22,
+       "ops": []
+      }
+     },
+     "PB043": {
+      "E": {
+       "tokens": 31,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 22,
+       "ops": []
+      },
+      "C": {
+       "tokens": 47,
+       "words": 23,
+       "ops": []
+      }
+     },
+     "PB044": {
+      "E": {
+       "tokens": 35,
+       "words": 27,
+       "ops": []
+      },
+      "R": {
+       "tokens": 52,
+       "words": 29,
+       "ops": []
+      },
+      "C": {
+       "tokens": 45,
+       "words": 27,
+       "ops": []
+      }
+     },
+     "PB045": {
+      "E": {
+       "tokens": 42,
+       "words": 33,
+       "ops": []
+      },
+      "R": {
+       "tokens": 58,
+       "words": 29,
+       "ops": []
+      },
+      "C": {
+       "tokens": 51,
+       "words": 32,
+       "ops": []
+      }
+     },
+     "PB046": {
+      "E": {
+       "tokens": 35,
+       "words": 22,
+       "ops": []
+      },
+      "R": {
+       "tokens": 48,
+       "words": 24,
+       "ops": []
+      },
+      "C": {
+       "tokens": 44,
+       "words": 22,
+       "ops": []
+      }
+     },
+     "PB047": {
+      "E": {
+       "tokens": 31,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 37,
+       "words": 21,
+       "ops": []
+      },
+      "C": {
+       "tokens": 34,
+       "words": 23,
+       "ops": []
+      }
+     },
+     "PB048": {
+      "E": {
+       "tokens": 45,
+       "words": 32,
+       "ops": []
+      },
+      "R": {
+       "tokens": 51,
+       "words": 25,
+       "ops": []
+      },
+      "C": {
+       "tokens": 45,
+       "words": 27,
+       "ops": []
+      }
+     },
+     "PB049": {
+      "E": {
+       "tokens": 27,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 33,
+       "words": 21,
+       "ops": [
+        "prati:2"
+       ]
+      },
+      "C": {
+       "tokens": 32,
+       "words": 24,
+       "ops": [
+        "prati:2"
+       ]
+      }
+     },
+     "PB050": {
+      "E": {
+       "tokens": 25,
+       "words": 18,
+       "ops": []
+      },
+      "R": {
+       "tokens": 40,
+       "words": 21,
+       "ops": [
+        "prati:2"
+       ]
+      },
+      "C": {
+       "tokens": 30,
+       "words": 17,
+       "ops": []
+      }
+     },
+     "PB051": {
+      "E": {
+       "tokens": 33,
+       "words": 19,
+       "ops": []
+      },
+      "R": {
+       "tokens": 42,
+       "words": 17,
+       "ops": [
+        "har:1"
+       ]
+      },
+      "C": {
+       "tokens": 38,
+       "words": 20,
+       "ops": [
+        "har:1"
+       ]
+      }
+     },
+     "PB052": {
+      "E": {
+       "tokens": 25,
+       "words": 17,
+       "ops": []
+      },
+      "R": {
+       "tokens": 32,
+       "words": 17,
+       "ops": [
+        "har:1"
+       ]
+      },
+      "C": {
+       "tokens": 33,
+       "words": 19,
+       "ops": [
+        "har:1"
+       ]
+      }
+     },
+     "PB053": {
+      "E": {
+       "tokens": 35,
+       "words": 28,
+       "ops": []
+      },
+      "R": {
+       "tokens": 54,
+       "words": 30,
+       "ops": [
+        "prati:2",
+        "guna:2"
+       ]
+      },
+      "C": {
+       "tokens": 50,
+       "words": 31,
+       "ops": [
+        "prati:2",
+        "guna:2"
+       ]
+      }
+     },
+     "PB054": {
+      "E": {
+       "tokens": 24,
+       "words": 19,
+       "ops": []
+      },
+      "R": {
+       "tokens": 38,
+       "words": 20,
+       "ops": [
+        "baraabar:2",
+        "bhaag:3"
+       ]
+      },
+      "C": {
+       "tokens": 25,
+       "words": 17,
+       "ops": []
+      }
+     },
+     "PB055": {
+      "E": {
+       "tokens": 27,
+       "words": 17,
+       "ops": []
+      },
+      "R": {
+       "tokens": 39,
+       "words": 16,
+       "ops": []
+      },
+      "C": {
+       "tokens": 35,
+       "words": 18,
+       "ops": []
+      }
+     },
+     "PB056": {
+      "E": {
+       "tokens": 33,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 21,
+       "ops": []
+      },
+      "C": {
+       "tokens": 43,
+       "words": 21,
+       "ops": []
+      }
+     },
+     "PB057": {
+      "E": {
+       "tokens": 32,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 24,
+       "ops": []
+      },
+      "C": {
+       "tokens": 31,
+       "words": 19,
+       "ops": []
+      }
+     },
+     "PB058": {
+      "E": {
+       "tokens": 30,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 24,
+       "ops": []
+      },
+      "C": {
+       "tokens": 42,
+       "words": 25,
+       "ops": []
+      }
+     },
+     "PB059": {
+      "E": {
+       "tokens": 29,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 38,
+       "words": 20,
+       "ops": []
+      },
+      "C": {
+       "tokens": 34,
+       "words": 17,
+       "ops": []
+      }
+     },
+     "PB060": {
+      "E": {
+       "tokens": 29,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 39,
+       "words": 20,
+       "ops": [
+        "guna:2",
+        "ghataaya:3"
+       ]
+      },
+      "C": {
+       "tokens": 36,
+       "words": 20,
+       "ops": [
+        "guna:2",
+        "ghataaya:3"
+       ]
+      }
+     },
+     "PB061": {
+      "E": {
+       "tokens": 29,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 23,
+       "ops": [
+        "jod:2"
+       ]
+      },
+      "C": {
+       "tokens": 40,
+       "words": 22,
+       "ops": []
+      }
+     },
+     "PB062": {
+      "E": {
+       "tokens": 23,
+       "words": 16,
+       "ops": []
+      },
+      "R": {
+       "tokens": 42,
+       "words": 20,
+       "ops": [
+        "bhaag:3",
+        "jod:2"
+       ]
+      },
+      "C": {
+       "tokens": 35,
+       "words": 19,
+       "ops": [
+        "bhaag:3",
+        "jod:2"
+       ]
+      }
+     },
+     "PB063": {
+      "E": {
+       "tokens": 36,
+       "words": 27,
+       "ops": []
+      },
+      "R": {
+       "tokens": 39,
+       "words": 21,
+       "ops": [
+        "kul:1",
+        "bade:2"
+       ]
+      },
+      "C": {
+       "tokens": 37,
+       "words": 21,
+       "ops": [
+        "kul:1",
+        "bade:2"
+       ]
+      }
+     },
+     "PB064": {
+      "E": {
+       "tokens": 34,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 52,
+       "words": 24,
+       "ops": [
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 58,
+       "words": 27,
+       "ops": []
+      }
+     },
+     "PB065": {
+      "E": {
+       "tokens": 41,
+       "words": 26,
+       "ops": []
+      },
+      "R": {
+       "tokens": 56,
+       "words": 28,
+       "ops": [
+        "jodo:2"
+       ]
+      },
+      "C": {
+       "tokens": 45,
+       "words": 26,
+       "ops": []
+      }
+     },
+     "PB066": {
+      "E": {
+       "tokens": 30,
+       "words": 24,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 22,
+       "ops": []
+      },
+      "C": {
+       "tokens": 33,
+       "words": 23,
+       "ops": [
+        "zyada:3"
+       ]
+      }
+     },
+     "PB067": {
+      "E": {
+       "tokens": 37,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 50,
+       "words": 25,
+       "ops": [
+        "kul:1",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 47,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PB068": {
+      "E": {
+       "tokens": 26,
+       "words": 19,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 23,
+       "ops": []
+      },
+      "C": {
+       "tokens": 30,
+       "words": 20,
+       "ops": []
+      }
+     },
+     "PB069": {
+      "E": {
+       "tokens": 47,
+       "words": 36,
+       "ops": []
+      },
+      "R": {
+       "tokens": 68,
+       "words": 38,
+       "ops": []
+      },
+      "C": {
+       "tokens": 64,
+       "words": 38,
+       "ops": []
+      }
+     },
+     "PB070": {
+      "E": {
+       "tokens": 18,
+       "words": 13,
+       "ops": []
+      },
+      "R": {
+       "tokens": 34,
+       "words": 16,
+       "ops": []
+      },
+      "C": {
+       "tokens": 23,
+       "words": 14,
+       "ops": []
+      }
+     }
+    },
+    "operation_words": {
+     "E": {
+      "occurrences": 0,
+      "families_with_any": 0,
+      "pieces": {
+       "n": 0
+      },
+      "pct_ge3_pieces": null,
+      "by_entry": {}
+     },
+     "R": {
+      "occurrences": 54,
+      "families_with_any": 37,
+      "pieces": {
+       "n": 54,
+       "median": 2.0,
+       "q25": 2.0,
+       "q75": 3.0,
+       "mean": 2.074,
+       "min": 1,
+       "max": 3
+      },
+      "pct_ge3_pieces": 27.8,
+      "by_entry": {
+       "anupat": {
+        "n": 5,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "baaki": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "baant": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bacha": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "bada/chhota": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "baraabar": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bhaag": {
+        "n": 5,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "bhinn": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "ghata": {
+        "n": 2,
+        "median_pieces": 3.0,
+        "max": 3
+       },
+       "guna": {
+        "n": 4,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "har": {
+        "n": 3,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "hissa": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "jod": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "kam": {
+        "n": 1,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "kul": {
+        "n": 7,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "milkar": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "prati": {
+        "n": 5,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "pratishat": {
+        "n": 2,
+        "median_pieces": 3.0,
+        "max": 3
+       },
+       "zyada": {
+        "n": 1,
+        "median_pieces": 3,
+        "max": 3
+       }
+      }
+     },
+     "C": {
+      "occurrences": 30,
+      "families_with_any": 20,
+      "pieces": {
+       "n": 30,
+       "median": 2.0,
+       "q25": 2.0,
+       "q75": 3.0,
+       "mean": 2.233,
+       "min": 1,
+       "max": 3
+      },
+      "pct_ge3_pieces": 36.7,
+      "by_entry": {
+       "anupat": {
+        "n": 3,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "baant": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bacha": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bada/chhota": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "baraabar": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "bhaag": {
+        "n": 3,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "bhinn": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "ghata": {
+        "n": 2,
+        "median_pieces": 3.0,
+        "max": 3
+       },
+       "guna": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "har": {
+        "n": 2,
+        "median_pieces": 1.0,
+        "max": 1
+       },
+       "hissa": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "jod": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "kul": {
+        "n": 2,
+        "median_pieces": 1.0,
+        "max": 1
+       },
+       "prati": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "pratishat": {
+        "n": 1,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "zyada": {
+        "n": 2,
+        "median_pieces": 3.0,
+        "max": 3
+       }
+      }
+     }
+    }
+   },
+   "A2": {
+    "qwen3-4b": {
+     "accuracy": {
+      "E": 94.3,
+      "R": 85.7,
+      "C": 94.3
+     },
+     "output_tokens": {
+      "E": {
+       "n": 70,
+       "median": 104.0,
+       "q25": 85.5,
+       "q75": 120.75,
+       "mean": 106.057,
+       "min": 37,
+       "max": 181
+      },
+      "R": {
+       "n": 70,
+       "median": 98.5,
+       "q25": 83.25,
+       "q75": 125.25,
+       "mean": 109.4,
+       "min": 54,
+       "max": 363
+      },
+      "C": {
+       "n": 70,
+       "median": 93.5,
+       "q25": 81.0,
+       "q75": 123.75,
+       "mean": 102.871,
+       "min": 66,
+       "max": 185
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 70,
+       "median": 109.0,
+       "q25": 103.0,
+       "q75": 114.0,
+       "mean": 109.614,
+       "min": 92,
+       "max": 134
+      },
+      "R": {
+       "n": 70,
+       "median": 123.0,
+       "q25": 117.0,
+       "q75": 131.75,
+       "mean": 124.943,
+       "min": 106,
+       "max": 161
+      },
+      "C": {
+       "n": 70,
+       "median": 119.0,
+       "q25": 110.0,
+       "q75": 124.0,
+       "mean": 118.557,
+       "min": 97,
+       "max": 151
+      }
+     },
+     "stored_input_R-E": {
+      "n": 70,
+      "median": 15.0,
+      "q25": 10.25,
+      "q75": 18.75,
+      "mean": 15.329,
+      "min": 3,
+      "max": 35
+     },
+     "stored_input_C-E": {
+      "n": 70,
+      "median": 8.0,
+      "q25": 5.0,
+      "q75": 12.0,
+      "mean": 8.943,
+      "min": -1,
+      "max": 24
+     },
+     "check_stored_diff_equals_question_diff": {
+      "R": 70,
+      "C": 70
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 23,
+       "R_tokens_range": [
+        32,
+        44
+       ],
+       "R_correct": 19,
+       "R_acc_pct": 82.6,
+       "E_acc_pct": 95.7
+      },
+      {
+       "tercile": 2,
+       "n": 24,
+       "R_tokens_range": [
+        44,
+        54
+       ],
+       "R_correct": 21,
+       "R_acc_pct": 87.5,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 3,
+       "n": 23,
+       "R_tokens_range": [
+        54,
+        87
+       ],
+       "R_correct": 20,
+       "R_acc_pct": 87.0,
+       "E_acc_pct": 87.0
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 9,
+       "families": [
+        "PB005",
+        "PB030",
+        "PB033",
+        "PB034",
+        "PB038",
+        "PB052",
+        "PB063",
+        "PB066",
+        "PB070"
+       ],
+       "R-E_tokens": {
+        "n": 9,
+        "median": 15,
+        "q25": 9.0,
+        "q75": 16.0,
+        "mean": 12.222,
+        "min": 3,
+        "max": 17
+       },
+       "R_tokens": {
+        "n": 9,
+        "median": 46,
+        "q25": 39.0,
+        "q75": 49.0,
+        "mean": 46.667,
+        "min": 32,
+        "max": 71
+       },
+       "R-E_ratio_median": 1.3243243243243243
+      },
+      "both_correct": {
+       "n": 57,
+       "R-E_tokens": {
+        "n": 57,
+        "median": 14,
+        "q25": 10.0,
+        "q75": 19.0,
+        "mean": 15.456,
+        "min": 6,
+        "max": 35
+       },
+       "R_tokens": {
+        "n": 57,
+        "median": 50,
+        "q25": 43.0,
+        "q75": 57.0,
+        "mean": 50.912,
+        "min": 33,
+        "max": 82
+       },
+       "R-E_ratio_median": 1.425
+      },
+      "E_wrong_excluded": 4
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.1731,
+      "exact_permutation_p_two_sided_mean_R_tokens": 0.2946,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "fitted",
+       "outcome": "R correct (among E-correct families)",
+       "predictor": "R-E question tokens",
+       "n": 66,
+       "events_R_wrong": 9,
+       "beta_per_token": 0.0911,
+       "se": 0.0668,
+       "OR_per_10_tokens": 2.488,
+       "OR_per_10_tokens_wald95": [
+        0.671,
+        9.221
+       ],
+       "wald_p": 0.1728
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models."
+     }
+    },
+    "qwen3-8b": {
+     "accuracy": {
+      "E": 98.6,
+      "R": 91.4,
+      "C": 98.6
+     },
+     "output_tokens": {
+      "E": {
+       "n": 70,
+       "median": 72.5,
+       "q25": 60.25,
+       "q75": 83.0,
+       "mean": 76.243,
+       "min": 40,
+       "max": 156
+      },
+      "R": {
+       "n": 70,
+       "median": 73.5,
+       "q25": 63.25,
+       "q75": 89.75,
+       "mean": 78.129,
+       "min": 33,
+       "max": 183
+      },
+      "C": {
+       "n": 70,
+       "median": 72.5,
+       "q25": 60.25,
+       "q75": 87.0,
+       "mean": 75.957,
+       "min": 32,
+       "max": 154
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 70,
+       "median": 109.0,
+       "q25": 103.0,
+       "q75": 114.0,
+       "mean": 109.614,
+       "min": 92,
+       "max": 134
+      },
+      "R": {
+       "n": 70,
+       "median": 123.0,
+       "q25": 117.0,
+       "q75": 131.75,
+       "mean": 124.943,
+       "min": 106,
+       "max": 161
+      },
+      "C": {
+       "n": 70,
+       "median": 119.0,
+       "q25": 110.0,
+       "q75": 124.0,
+       "mean": 118.557,
+       "min": 97,
+       "max": 151
+      }
+     },
+     "stored_input_R-E": {
+      "n": 70,
+      "median": 15.0,
+      "q25": 10.25,
+      "q75": 18.75,
+      "mean": 15.329,
+      "min": 3,
+      "max": 35
+     },
+     "stored_input_C-E": {
+      "n": 70,
+      "median": 8.0,
+      "q25": 5.0,
+      "q75": 12.0,
+      "mean": 8.943,
+      "min": -1,
+      "max": 24
+     },
+     "check_stored_diff_equals_question_diff": {
+      "R": 70,
+      "C": 70
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 23,
+       "R_tokens_range": [
+        32,
+        44
+       ],
+       "R_correct": 20,
+       "R_acc_pct": 87.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 2,
+       "n": 24,
+       "R_tokens_range": [
+        44,
+        54
+       ],
+       "R_correct": 23,
+       "R_acc_pct": 95.8,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 3,
+       "n": 23,
+       "R_tokens_range": [
+        54,
+        87
+       ],
+       "R_correct": 21,
+       "R_acc_pct": 91.3,
+       "E_acc_pct": 95.7
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 6,
+       "families": [
+        "PB007",
+        "PB020",
+        "PB028",
+        "PB033",
+        "PB036",
+        "PB051"
+       ],
+       "R-E_tokens": {
+        "n": 6,
+        "median": 13.0,
+        "q25": 9.25,
+        "q75": 19.75,
+        "mean": 15,
+        "min": 9,
+        "max": 25
+       },
+       "R_tokens": {
+        "n": 6,
+        "median": 47.0,
+        "q25": 42.5,
+        "q75": 61.25,
+        "mean": 50.833,
+        "min": 37,
+        "max": 67
+       },
+       "R-E_ratio_median": 1.3420479302832244
+      },
+      "both_correct": {
+       "n": 63,
+       "R-E_tokens": {
+        "n": 63,
+        "median": 15,
+        "q25": 11.0,
+        "q75": 18.5,
+        "mean": 15.365,
+        "min": 3,
+        "max": 35
+       },
+       "R_tokens": {
+        "n": 63,
+        "median": 49,
+        "q25": 43.0,
+        "q75": 57.5,
+        "mean": 50.873,
+        "min": 32,
+        "max": 87
+       },
+       "R-E_ratio_median": 1.425
+      },
+      "E_wrong_excluded": 1
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.9266,
+      "exact_permutation_p_two_sided_mean_R_tokens": 1.0,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "fitted",
+       "outcome": "R correct (among E-correct families)",
+       "predictor": "R-E question tokens",
+       "n": 69,
+       "events_R_wrong": 6,
+       "beta_per_token": 0.0081,
+       "se": 0.0643,
+       "OR_per_10_tokens": 1.085,
+       "OR_per_10_tokens_wald95": [
+        0.307,
+        3.829
+       ],
+       "wald_p": 0.8994
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models."
+     }
+    },
+    "llama-3.2-3b": {
+     "accuracy": {
+      "E": 94.3,
+      "R": 57.1,
+      "C": 70.0
+     },
+     "output_tokens": {
+      "E": {
+       "n": 70,
+       "median": 99.0,
+       "q25": 81.5,
+       "q75": 127.5,
+       "mean": 106.529,
+       "min": 44,
+       "max": 174
+      },
+      "R": {
+       "n": 70,
+       "median": 119.5,
+       "q25": 76.25,
+       "q75": 178.75,
+       "mean": 190.443,
+       "min": 25,
+       "max": 1024
+      },
+      "C": {
+       "n": 70,
+       "median": 96.5,
+       "q25": 77.0,
+       "q75": 127.25,
+       "mean": 131.586,
+       "min": 28,
+       "max": 1024
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 70,
+       "median": 124.0,
+       "q25": 119.25,
+       "q75": 129.75,
+       "mean": 125.2,
+       "min": 108,
+       "max": 145
+      },
+      "R": {
+       "n": 70,
+       "median": 138.0,
+       "q25": 133.0,
+       "q75": 146.75,
+       "mean": 140.143,
+       "min": 122,
+       "max": 173
+      },
+      "C": {
+       "n": 70,
+       "median": 134.5,
+       "q25": 126.0,
+       "q75": 139.75,
+       "mean": 133.9,
+       "min": 113,
+       "max": 163
+      }
+     },
+     "stored_input_R-E": {
+      "n": 70,
+      "median": 14.0,
+      "q25": 10.0,
+      "q75": 17.0,
+      "mean": 14.943,
+      "min": 3,
+      "max": 35
+     },
+     "stored_input_C-E": {
+      "n": 70,
+      "median": 8.0,
+      "q25": 4.25,
+      "q75": 12.0,
+      "mean": 8.7,
+      "min": -1,
+      "max": 24
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 23,
+       "R_tokens_range": [
+        32,
+        44
+       ],
+       "R_correct": 14,
+       "R_acc_pct": 60.9,
+       "E_acc_pct": 91.3
+      },
+      {
+       "tercile": 2,
+       "n": 24,
+       "R_tokens_range": [
+        44,
+        54
+       ],
+       "R_correct": 16,
+       "R_acc_pct": 66.7,
+       "E_acc_pct": 95.8
+      },
+      {
+       "tercile": 3,
+       "n": 23,
+       "R_tokens_range": [
+        54,
+        87
+       ],
+       "R_correct": 10,
+       "R_acc_pct": 43.5,
+       "E_acc_pct": 95.7
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 28,
+       "families": [
+        "PB006",
+        "PB007",
+        "PB014",
+        "PB017",
+        "PB018",
+        "PB019",
+        "PB022",
+        "PB023",
+        "PB024",
+        "PB025",
+        "PB026",
+        "PB028",
+        "PB030",
+        "PB032",
+        "PB033",
+        "PB034",
+        "PB039",
+        "PB041",
+        "PB044",
+        "PB048",
+        "PB060",
+        "PB062",
+        "PB064",
+        "PB065",
+        "PB066",
+        "PB068",
+        "PB069",
+        "PB070"
+       ],
+       "R-E_tokens": {
+        "n": 28,
+        "median": 16.5,
+        "q25": 13.25,
+        "q75": 21.0,
+        "mean": 16.893,
+        "min": 6,
+        "max": 35
+       },
+       "R_tokens": {
+        "n": 28,
+        "median": 53.0,
+        "q25": 43.75,
+        "q75": 62.5,
+        "mean": 54.107,
+        "min": 34,
+        "max": 82
+       },
+       "R-E_ratio_median": 1.4647835656639767
+      },
+      "both_correct": {
+       "n": 38,
+       "R-E_tokens": {
+        "n": 38,
+        "median": 13.5,
+        "q25": 10.0,
+        "q75": 16.75,
+        "mean": 14,
+        "min": 3,
+        "max": 29
+       },
+       "R_tokens": {
+        "n": 38,
+        "median": 47.0,
+        "q25": 43.0,
+        "q75": 54.0,
+        "mean": 48.474,
+        "min": 32,
+        "max": 68
+       },
+       "R-E_ratio_median": 1.3827838827838828
+      },
+      "E_wrong_excluded": 4
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.0727,
+      "exact_permutation_p_two_sided_mean_R_tokens": 0.0371,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "fitted",
+       "outcome": "R correct (among E-correct families)",
+       "predictor": "R-E question tokens",
+       "n": 66,
+       "events_R_wrong": 28,
+       "beta_per_token": -0.0729,
+       "se": 0.0415,
+       "OR_per_10_tokens": 0.482,
+       "OR_per_10_tokens_wald95": [
+        0.214,
+        1.087
+       ],
+       "wald_p": 0.0785
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models.",
+      "own_tokenizer_stored_R-E": {
+       "E_correct_R_wrong": {
+        "n": 28,
+        "median": 16.0,
+        "q25": 13.25,
+        "q75": 20.25,
+        "mean": 16.464,
+        "min": 4,
+        "max": 35
+       },
+       "both_correct": {
+        "n": 38,
+        "median": 13.0,
+        "q25": 10.0,
+        "q75": 15.0,
+        "mean": 13.605,
+        "min": 3,
+        "max": 29
+       },
+       "exact_permutation_p_two_sided_mean": 0.074,
+       "logistic": {
+        "status": "fitted",
+        "outcome": "R correct (among E-correct families)",
+        "predictor": "R-E stored whole-prompt input_tokens (Llama tokenizer)",
+        "n": 66,
+        "events_R_wrong": 28,
+        "beta_per_token": -0.0731,
+        "se": 0.0419,
+        "OR_per_10_tokens": 0.482,
+        "OR_per_10_tokens_wald95": [
+         0.212,
+         1.094
+        ],
+        "wald_p": 0.0808
+       }
+      }
+     }
+    }
+   }
+  },
+  "pilot_original": {
+   "n_families": 24,
+   "A1": {
+    "E": {
+     "question_tokens": {
+      "n": 24,
+      "median": 37.5,
+      "q25": 30.0,
+      "q75": 45.25,
+      "mean": 37.5,
+      "min": 16,
+      "max": 63
+     },
+     "whitespace_words": {
+      "n": 24,
+      "median": 28.5,
+      "q25": 20.75,
+      "q75": 35.25,
+      "mean": 27.708,
+      "min": 12,
+      "max": 51
+     },
+     "tokens_per_word": {
+      "n": 24,
+      "median": 1.3333,
+      "q25": 1.29365,
+      "q75": 1.430825,
+      "mean": 1.378,
+      "min": 1.2195,
+      "max": 1.7647
+     },
+     "pct_alpha_words_ge3_pieces": 0.2,
+     "mean_pieces_per_alpha_word": 1.056
+    },
+    "R": {
+     "question_tokens": {
+      "n": 24,
+      "median": 59.5,
+      "q25": 43.75,
+      "q75": 78.5,
+      "mean": 63.125,
+      "min": 24,
+      "max": 124
+     },
+     "whitespace_words": {
+      "n": 24,
+      "median": 30.0,
+      "q25": 21.75,
+      "q75": 42.0,
+      "mean": 31.958,
+      "min": 11,
+      "max": 63
+     },
+     "tokens_per_word": {
+      "n": 24,
+      "median": 1.9564,
+      "q25": 1.8643,
+      "q75": 2.10105,
+      "mean": 1.988,
+      "min": 1.6875,
+      "max": 2.3636
+     },
+     "pct_alpha_words_ge3_pieces": 15.0,
+     "mean_pieces_per_alpha_word": 1.784
+    },
+    "C": {
+     "question_tokens": {
+      "n": 24,
+      "median": 44.0,
+      "q25": 37.75,
+      "q75": 57.25,
+      "mean": 44.458,
+      "min": 16,
+      "max": 64
+     },
+     "whitespace_words": {
+      "n": 24,
+      "median": 29.5,
+      "q25": 19.75,
+      "q75": 37.25,
+      "mean": 28.417,
+      "min": 12,
+      "max": 44
+     },
+     "tokens_per_word": {
+      "n": 24,
+      "median": 1.5430000000000001,
+      "q25": 1.504575,
+      "q75": 1.6032250000000001,
+      "mean": 1.572,
+      "min": 1.3333,
+      "max": 2.1
+     },
+     "pct_alpha_words_ge3_pieces": 3.4,
+     "mean_pieces_per_alpha_word": 1.295
+    },
+    "R-E_paired": {
+     "token_diff": {
+      "n": 24,
+      "median": 22.5,
+      "q25": 12.75,
+      "q75": 31.75,
+      "mean": 25.625,
+      "min": 8,
+      "max": 61
+     },
+     "token_ratio": {
+      "n": 24,
+      "median": 1.6077,
+      "q25": 1.4837,
+      "q75": 1.7543250000000001,
+      "mean": 1.643,
+      "min": 1.2727,
+      "max": 2.2
+     },
+     "tokens_per_word_diff": {
+      "n": 24,
+      "median": 0.6037,
+      "q25": 0.510525,
+      "q75": 0.735025,
+      "mean": 0.61,
+      "min": 0.1042,
+      "max": 1.0559
+     },
+     "families_longer": 24,
+     "families_equal": 0
+    },
+    "C-E_paired": {
+     "token_diff": {
+      "n": 24,
+      "median": 8.0,
+      "q25": 3.75,
+      "q75": 9.0,
+      "mean": 6.958,
+      "min": -4,
+      "max": 16
+     },
+     "token_ratio": {
+      "n": 24,
+      "median": 1.20525,
+      "q25": 1.155725,
+      "q75": 1.2667,
+      "mean": 1.184,
+      "min": 0.9091,
+      "max": 1.381
+     },
+     "tokens_per_word_diff": {
+      "n": 24,
+      "median": 0.19825,
+      "q25": 0.1411,
+      "q75": 0.258475,
+      "mean": 0.194,
+      "min": -0.0486,
+      "max": 0.45
+     },
+     "families_longer": 20,
+     "families_equal": 2
+    },
+    "per_family": {
+     "PIL001": {
+      "E": {
+       "tokens": 30,
+       "words": 17,
+       "ops": []
+      },
+      "R": {
+       "tokens": 41,
+       "words": 21,
+       "ops": [
+        "kam:1"
+       ]
+      },
+      "C": {
+       "tokens": 37,
+       "words": 19,
+       "ops": []
+      }
+     },
+     "PIL002": {
+      "E": {
+       "tokens": 33,
+       "words": 20,
+       "ops": []
+      },
+      "R": {
+       "tokens": 54,
+       "words": 24,
+       "ops": [
+        "har:1",
+        "vaapas:2"
+       ]
+      },
+      "C": {
+       "tokens": 42,
+       "words": 20,
+       "ops": []
+      }
+     },
+     "PIL003": {
+      "E": {
+       "tokens": 50,
+       "words": 41,
+       "ops": []
+      },
+      "R": {
+       "tokens": 77,
+       "words": 45,
+       "ops": [
+        "har:1",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 58,
+       "words": 38,
+       "ops": []
+      }
+     },
+     "PIL004": {
+      "E": {
+       "tokens": 30,
+       "words": 21,
+       "ops": []
+      },
+      "R": {
+       "tokens": 47,
+       "words": 24,
+       "ops": [
+        "hissa:2",
+        "kaat:2",
+        "bache:2"
+       ]
+      },
+      "C": {
+       "tokens": 38,
+       "words": 25,
+       "ops": [
+        "hissa:2"
+       ]
+      }
+     },
+     "PIL005": {
+      "E": {
+       "tokens": 44,
+       "words": 30,
+       "ops": []
+      },
+      "R": {
+       "tokens": 56,
+       "words": 27,
+       "ops": [
+        "anupaat:3",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 40,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PIL006": {
+      "E": {
+       "tokens": 45,
+       "words": 35,
+       "ops": []
+      },
+      "R": {
+       "tokens": 99,
+       "words": 49,
+       "ops": [
+        "nikaali:3"
+       ]
+      },
+      "C": {
+       "tokens": 53,
+       "words": 34,
+       "ops": []
+      }
+     },
+     "PIL007": {
+      "E": {
+       "tokens": 42,
+       "words": 29,
+       "ops": []
+      },
+      "R": {
+       "tokens": 73,
+       "words": 38,
+       "ops": [
+        "baraabar:2"
+       ]
+      },
+      "C": {
+       "tokens": 52,
+       "words": 33,
+       "ops": []
+      }
+     },
+     "PIL008": {
+      "E": {
+       "tokens": 42,
+       "words": 33,
+       "ops": []
+      },
+      "R": {
+       "tokens": 91,
+       "words": 42,
+       "ops": [
+        "zyaada:3",
+        "zyaada:3",
+        "nikaal:3",
+        "zyaada:3",
+        "zyaada:3",
+        "zyaada:3"
+       ]
+      },
+      "C": {
+       "tokens": 58,
+       "words": 38,
+       "ops": [
+        "nikaal:3"
+       ]
+      }
+     },
+     "PIL011": {
+      "E": {
+       "tokens": 49,
+       "words": 37,
+       "ops": []
+      },
+      "R": {
+       "tokens": 94,
+       "words": 51,
+       "ops": [
+        "kul:1",
+        "har:1",
+        "baraabar:2",
+        "vaapas:2",
+        "kaat:2",
+        "vaapas:2"
+       ]
+      },
+      "C": {
+       "tokens": 64,
+       "words": 40,
+       "ops": [
+        "baraabar:2",
+        "vaapas:2"
+       ]
+      }
+     },
+     "PIL012": {
+      "E": {
+       "tokens": 35,
+       "words": 26,
+       "ops": []
+      },
+      "R": {
+       "tokens": 56,
+       "words": 30,
+       "ops": [
+        "baraabar:2",
+        "baantte:3",
+        "har:1",
+        "har:1",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 42,
+       "words": 27,
+       "ops": [
+        "har:1"
+       ]
+      }
+     },
+     "PIL013": {
+      "E": {
+       "tokens": 56,
+       "words": 40,
+       "ops": []
+      },
+      "R": {
+       "tokens": 101,
+       "words": 48,
+       "ops": [
+        "zyaada:3",
+        "zyaada:3",
+        "har:1",
+        "zyaada:3",
+        "zyaada:3"
+       ]
+      },
+      "C": {
+       "tokens": 64,
+       "words": 39,
+       "ops": [
+        "har:1"
+       ]
+      }
+     },
+     "PIL014": {
+      "E": {
+       "tokens": 43,
+       "words": 31,
+       "ops": []
+      },
+      "R": {
+       "tokens": 71,
+       "words": 33,
+       "ops": []
+      },
+      "C": {
+       "tokens": 51,
+       "words": 33,
+       "ops": []
+      }
+     },
+     "PIL016": {
+      "E": {
+       "tokens": 39,
+       "words": 30,
+       "ops": []
+      },
+      "R": {
+       "tokens": 63,
+       "words": 30,
+       "ops": [
+        "bachta:2"
+       ]
+      },
+      "C": {
+       "tokens": 50,
+       "words": 31,
+       "ops": [
+        "bachta:2"
+       ]
+      }
+     },
+     "PIL017": {
+      "E": {
+       "tokens": 36,
+       "words": 28,
+       "ops": []
+      },
+      "R": {
+       "tokens": 50,
+       "words": 29,
+       "ops": [
+        "baraabar:2",
+        "baanta:2",
+        "har:1"
+       ]
+      },
+      "C": {
+       "tokens": 44,
+       "words": 30,
+       "ops": [
+        "har:1"
+       ]
+      }
+     },
+     "PIL018": {
+      "E": {
+       "tokens": 29,
+       "words": 21,
+       "ops": []
+      },
+      "R": {
+       "tokens": 44,
+       "words": 19,
+       "ops": [
+        "anupaat:3",
+        "badi:2",
+        "chhoti:3",
+        "zyaada:3",
+        "badi:2"
+       ]
+      },
+      "C": {
+       "tokens": 29,
+       "words": 19,
+       "ops": [
+        "bada:2"
+       ]
+      }
+     },
+     "PIL021": {
+      "E": {
+       "tokens": 63,
+       "words": 51,
+       "ops": []
+      },
+      "R": {
+       "tokens": 124,
+       "words": 63,
+       "ops": [
+        "anupaat:3",
+        "nikaali:3",
+        "anupaat:3",
+        "bhaag:3",
+        "bhinn:2"
+       ]
+      },
+      "C": {
+       "tokens": 63,
+       "words": 44,
+       "ops": []
+      }
+     },
+     "PIL022": {
+      "E": {
+       "tokens": 30,
+       "words": 23,
+       "ops": []
+      },
+      "R": {
+       "tokens": 43,
+       "words": 22,
+       "ops": [
+        "prati:2"
+       ]
+      },
+      "C": {
+       "tokens": 38,
+       "words": 24,
+       "ops": []
+      }
+     },
+     "PIL023": {
+      "E": {
+       "tokens": 35,
+       "words": 27,
+       "ops": []
+      },
+      "R": {
+       "tokens": 63,
+       "words": 31,
+       "ops": [
+        "kaata:2",
+        "kaatne:3",
+        "ghatti:3"
+       ]
+      },
+      "C": {
+       "tokens": 44,
+       "words": 29,
+       "ops": []
+      }
+     },
+     "PIL025": {
+      "E": {
+       "tokens": 48,
+       "words": 36,
+       "ops": []
+      },
+      "R": {
+       "tokens": 78,
+       "words": 42,
+       "ops": [
+        "prati:2",
+        "baaki:2",
+        "prati:2",
+        "kul:1"
+       ]
+      },
+      "C": {
+       "tokens": 57,
+       "words": 37,
+       "ops": []
+      }
+     },
+     "PIL026": {
+      "E": {
+       "tokens": 19,
+       "words": 12,
+       "ops": []
+      },
+      "R": {
+       "tokens": 27,
+       "words": 16,
+       "ops": []
+      },
+      "C": {
+       "tokens": 23,
+       "words": 14,
+       "ops": []
+      }
+     },
+     "PIL027": {
+      "E": {
+       "tokens": 17,
+       "words": 13,
+       "ops": []
+      },
+      "R": {
+       "tokens": 26,
+       "words": 11,
+       "ops": [
+        "yog:1",
+        "chhota:3"
+       ]
+      },
+      "C": {
+       "tokens": 16,
+       "words": 12,
+       "ops": []
+      }
+     },
+     "PIL028": {
+      "E": {
+       "tokens": 23,
+       "words": 16,
+       "ops": []
+      },
+      "R": {
+       "tokens": 33,
+       "words": 17,
+       "ops": []
+      },
+      "C": {
+       "tokens": 25,
+       "words": 18,
+       "ops": []
+      }
+     },
+     "PIL029": {
+      "E": {
+       "tokens": 46,
+       "words": 36,
+       "ops": []
+      },
+      "R": {
+       "tokens": 80,
+       "words": 42,
+       "ops": [
+        "ek jaisi:4",
+        "ek jaisi:4",
+        "milkar:2",
+        "milkar:2"
+       ]
+      },
+      "C": {
+       "tokens": 60,
+       "words": 41,
+       "ops": [
+        "ek jaisi:4",
+        "ek jaisi:4"
+       ]
+      }
+     },
+     "PIL030": {
+      "E": {
+       "tokens": 16,
+       "words": 12,
+       "ops": []
+      },
+      "R": {
+       "tokens": 24,
+       "words": 13,
+       "ops": [
+        "varg:2"
+       ]
+      },
+      "C": {
+       "tokens": 19,
+       "words": 13,
+       "ops": []
+      }
+     }
+    },
+    "operation_words": {
+     "E": {
+      "occurrences": 0,
+      "families_with_any": 0,
+      "pieces": {
+       "n": 0
+      },
+      "pct_ge3_pieces": null,
+      "by_entry": {}
+     },
+     "R": {
+      "occurrences": 63,
+      "families_with_any": 21,
+      "pieces": {
+       "n": 63,
+       "median": 2,
+       "q25": 2.0,
+       "q75": 3.0,
+       "mean": 2.206,
+       "min": 1,
+       "max": 4
+      },
+      "pct_ge3_pieces": 39.7,
+      "by_entry": {
+       "anupat": {
+        "n": 4,
+        "median_pieces": 3.0,
+        "max": 3
+       },
+       "baaki": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "baant": {
+        "n": 2,
+        "median_pieces": 2.5,
+        "max": 3
+       },
+       "bacha": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bada/chhota": {
+        "n": 4,
+        "median_pieces": 2.5,
+        "max": 3
+       },
+       "baraabar": {
+        "n": 4,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "bhaag": {
+        "n": 1,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "bhinn": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "ek jaisi": {
+        "n": 2,
+        "median_pieces": 4.0,
+        "max": 4
+       },
+       "ghata": {
+        "n": 1,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "har": {
+        "n": 7,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "hissa": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "kaat": {
+        "n": 4,
+        "median_pieces": 2.0,
+        "max": 3
+       },
+       "kam": {
+        "n": 1,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "kul": {
+        "n": 5,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "milkar": {
+        "n": 2,
+        "median_pieces": 2.0,
+        "max": 2
+       },
+       "nikaal": {
+        "n": 3,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "prati": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "vaapas": {
+        "n": 3,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "varg": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "yog": {
+        "n": 1,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "zyada": {
+        "n": 10,
+        "median_pieces": 3.0,
+        "max": 3
+       }
+      }
+     },
+     "C": {
+      "occurrences": 11,
+      "families_with_any": 9,
+      "pieces": {
+       "n": 11,
+       "median": 2,
+       "q25": 1.5,
+       "q75": 2.5,
+       "mean": 2.182,
+       "min": 1,
+       "max": 4
+      },
+      "pct_ge3_pieces": 27.3,
+      "by_entry": {
+       "bacha": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "bada/chhota": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "baraabar": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "ek jaisi": {
+        "n": 2,
+        "median_pieces": 4.0,
+        "max": 4
+       },
+       "har": {
+        "n": 3,
+        "median_pieces": 1,
+        "max": 1
+       },
+       "hissa": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       },
+       "nikaal": {
+        "n": 1,
+        "median_pieces": 3,
+        "max": 3
+       },
+       "vaapas": {
+        "n": 1,
+        "median_pieces": 2,
+        "max": 2
+       }
+      }
+     }
+    }
+   },
+   "A2": {
+    "qwen3-4b": {
+     "accuracy": {
+      "E": 100.0,
+      "R": 91.7,
+      "C": 100.0
+     },
+     "output_tokens": {
+      "E": {
+       "n": 24,
+       "median": 94.5,
+       "q25": 84.25,
+       "q75": 118.0,
+       "mean": 99.458,
+       "min": 54,
+       "max": 165
+      },
+      "R": {
+       "n": 24,
+       "median": 101.5,
+       "q25": 82.5,
+       "q75": 113.0,
+       "mean": 104.375,
+       "min": 43,
+       "max": 272
+      },
+      "C": {
+       "n": 24,
+       "median": 91.5,
+       "q25": 76.75,
+       "q75": 105.25,
+       "mean": 94.792,
+       "min": 57,
+       "max": 174
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 24,
+       "median": 111.5,
+       "q25": 104.0,
+       "q75": 119.25,
+       "mean": 111.5,
+       "min": 90,
+       "max": 137
+      },
+      "R": {
+       "n": 24,
+       "median": 133.5,
+       "q25": 117.75,
+       "q75": 152.5,
+       "mean": 137.125,
+       "min": 98,
+       "max": 198
+      },
+      "C": {
+       "n": 24,
+       "median": 118.0,
+       "q25": 111.75,
+       "q75": 131.25,
+       "mean": 118.458,
+       "min": 90,
+       "max": 138
+      }
+     },
+     "stored_input_R-E": {
+      "n": 24,
+      "median": 22.5,
+      "q25": 12.75,
+      "q75": 31.75,
+      "mean": 25.625,
+      "min": 8,
+      "max": 61
+     },
+     "stored_input_C-E": {
+      "n": 24,
+      "median": 8.0,
+      "q25": 3.75,
+      "q75": 9.0,
+      "mean": 6.958,
+      "min": -4,
+      "max": 16
+     },
+     "check_stored_diff_equals_question_diff": {
+      "R": 24,
+      "C": 24
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 8,
+       "R_tokens_range": [
+        24,
+        47
+       ],
+       "R_correct": 6,
+       "R_acc_pct": 75.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 2,
+       "n": 8,
+       "R_tokens_range": [
+        50,
+        73
+       ],
+       "R_correct": 8,
+       "R_acc_pct": 100.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 3,
+       "n": 8,
+       "R_tokens_range": [
+        77,
+        124
+       ],
+       "R_correct": 8,
+       "R_acc_pct": 100.0,
+       "E_acc_pct": 100.0
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 2,
+       "families": [
+        "PIL001",
+        "PIL028"
+       ],
+       "R-E_tokens": {
+        "n": 2,
+        "median": 10.5,
+        "q25": 10.25,
+        "q75": 10.75,
+        "mean": 10.5,
+        "min": 10,
+        "max": 11
+       },
+       "R_tokens": {
+        "n": 2,
+        "median": 37.0,
+        "q25": 35.0,
+        "q75": 39.0,
+        "mean": 37,
+        "min": 33,
+        "max": 41
+       },
+       "R-E_ratio_median": 1.4007246376811593
+      },
+      "both_correct": {
+       "n": 22,
+       "R-E_tokens": {
+        "n": 22,
+        "median": 25.5,
+        "q25": 14.25,
+        "q75": 33.25,
+        "mean": 27,
+        "min": 8,
+        "max": 61
+       },
+       "R_tokens": {
+        "n": 22,
+        "median": 63.0,
+        "q25": 47.75,
+        "q75": 79.5,
+        "mean": 65.5,
+        "min": 24,
+        "max": 124
+       },
+       "R-E_ratio_median": 1.6201923076923077
+      },
+      "E_wrong_excluded": 0
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.1449,
+      "exact_permutation_p_two_sided_mean_R_tokens": 0.1522,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "not_fitted",
+       "reason": "fewer than 5 events in a class"
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models."
+     }
+    },
+    "qwen3-8b": {
+     "accuracy": {
+      "E": 100.0,
+      "R": 95.8,
+      "C": 100.0
+     },
+     "output_tokens": {
+      "E": {
+       "n": 24,
+       "median": 72.0,
+       "q25": 65.75,
+       "q75": 78.0,
+       "mean": 72.708,
+       "min": 37,
+       "max": 115
+      },
+      "R": {
+       "n": 24,
+       "median": 75.0,
+       "q25": 63.5,
+       "q75": 90.25,
+       "mean": 78.333,
+       "min": 33,
+       "max": 176
+      },
+      "C": {
+       "n": 24,
+       "median": 69.5,
+       "q25": 53.5,
+       "q75": 80.25,
+       "mean": 69.25,
+       "min": 34,
+       "max": 117
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 24,
+       "median": 111.5,
+       "q25": 104.0,
+       "q75": 119.25,
+       "mean": 111.5,
+       "min": 90,
+       "max": 137
+      },
+      "R": {
+       "n": 24,
+       "median": 133.5,
+       "q25": 117.75,
+       "q75": 152.5,
+       "mean": 137.125,
+       "min": 98,
+       "max": 198
+      },
+      "C": {
+       "n": 24,
+       "median": 118.0,
+       "q25": 111.75,
+       "q75": 131.25,
+       "mean": 118.458,
+       "min": 90,
+       "max": 138
+      }
+     },
+     "stored_input_R-E": {
+      "n": 24,
+      "median": 22.5,
+      "q25": 12.75,
+      "q75": 31.75,
+      "mean": 25.625,
+      "min": 8,
+      "max": 61
+     },
+     "stored_input_C-E": {
+      "n": 24,
+      "median": 8.0,
+      "q25": 3.75,
+      "q75": 9.0,
+      "mean": 6.958,
+      "min": -4,
+      "max": 16
+     },
+     "check_stored_diff_equals_question_diff": {
+      "R": 24,
+      "C": 24
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 8,
+       "R_tokens_range": [
+        24,
+        47
+       ],
+       "R_correct": 8,
+       "R_acc_pct": 100.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 2,
+       "n": 8,
+       "R_tokens_range": [
+        50,
+        73
+       ],
+       "R_correct": 8,
+       "R_acc_pct": 100.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 3,
+       "n": 8,
+       "R_tokens_range": [
+        77,
+        124
+       ],
+       "R_correct": 7,
+       "R_acc_pct": 87.5,
+       "E_acc_pct": 100.0
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 1,
+       "families": [
+        "PIL025"
+       ],
+       "R-E_tokens": {
+        "n": 1,
+        "median": 30,
+        "q25": 30.0,
+        "q75": 30.0,
+        "mean": 30,
+        "min": 30,
+        "max": 30
+       },
+       "R_tokens": {
+        "n": 1,
+        "median": 78,
+        "q25": 78.0,
+        "q75": 78.0,
+        "mean": 78,
+        "min": 78,
+        "max": 78
+       },
+       "R-E_ratio_median": 1.625
+      },
+      "both_correct": {
+       "n": 23,
+       "R-E_tokens": {
+        "n": 23,
+        "median": 21,
+        "q25": 12.5,
+        "q75": 32.5,
+        "mean": 25.435,
+        "min": 8,
+        "max": 61
+       },
+       "R_tokens": {
+        "n": 23,
+        "median": 56,
+        "q25": 43.5,
+        "q75": 78.5,
+        "mean": 62.478,
+        "min": 24,
+        "max": 124
+       },
+       "R-E_ratio_median": 1.6
+      },
+      "E_wrong_excluded": 0
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.8333,
+      "exact_permutation_p_two_sided_mean_R_tokens": 0.625,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "not_fitted",
+       "reason": "fewer than 5 events in a class"
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models."
+     }
+    },
+    "llama-3.2-3b": {
+     "accuracy": {
+      "E": 87.5,
+      "R": 62.5,
+      "C": 91.7
+     },
+     "output_tokens": {
+      "E": {
+       "n": 24,
+       "median": 97.0,
+       "q25": 78.5,
+       "q75": 116.0,
+       "mean": 98.875,
+       "min": 51,
+       "max": 205
+      },
+      "R": {
+       "n": 24,
+       "median": 128.0,
+       "q25": 100.75,
+       "q75": 163.75,
+       "mean": 151.958,
+       "min": 40,
+       "max": 467
+      },
+      "C": {
+       "n": 24,
+       "median": 105.0,
+       "q25": 85.0,
+       "q75": 116.25,
+       "mean": 100.292,
+       "min": 49,
+       "max": 139
+      }
+     },
+     "stored_input_tokens_whole_prompt": {
+      "E": {
+       "n": 24,
+       "median": 128.5,
+       "q25": 120.75,
+       "q75": 135.0,
+       "mean": 127.792,
+       "min": 107,
+       "max": 154
+      },
+      "R": {
+       "n": 24,
+       "median": 150.0,
+       "q25": 134.5,
+       "q75": 167.75,
+       "mean": 153.292,
+       "min": 115,
+       "max": 215
+      },
+      "C": {
+       "n": 24,
+       "median": 135.5,
+       "q25": 128.0,
+       "q75": 145.0,
+       "mean": 134.667,
+       "min": 107,
+       "max": 154
+      }
+     },
+     "stored_input_R-E": {
+      "n": 24,
+      "median": 22.5,
+      "q25": 12.75,
+      "q75": 31.0,
+      "mean": 25.5,
+      "min": 8,
+      "max": 61
+     },
+     "stored_input_C-E": {
+      "n": 24,
+      "median": 8.0,
+      "q25": 3.75,
+      "q75": 9.0,
+      "mean": 6.875,
+      "min": -4,
+      "max": 16
+     },
+     "a_R_accuracy_by_R_question_token_tercile_qwen_tokenizer": [
+      {
+       "tercile": 1,
+       "n": 8,
+       "R_tokens_range": [
+        24,
+        47
+       ],
+       "R_correct": 6,
+       "R_acc_pct": 75.0,
+       "E_acc_pct": 100.0
+      },
+      {
+       "tercile": 2,
+       "n": 8,
+       "R_tokens_range": [
+        50,
+        73
+       ],
+       "R_correct": 4,
+       "R_acc_pct": 50.0,
+       "E_acc_pct": 87.5
+      },
+      {
+       "tercile": 3,
+       "n": 8,
+       "R_tokens_range": [
+        77,
+        124
+       ],
+       "R_correct": 5,
+       "R_acc_pct": 62.5,
+       "E_acc_pct": 75.0
+      }
+     ],
+     "b_E_correct_R_wrong_vs_both_correct": {
+      "E_correct_R_wrong": {
+       "n": 7,
+       "families": [
+        "PIL011",
+        "PIL016",
+        "PIL017",
+        "PIL023",
+        "PIL027",
+        "PIL028",
+        "PIL029"
+       ],
+       "R-E_tokens": {
+        "n": 7,
+        "median": 24,
+        "q25": 12.0,
+        "q75": 31.0,
+        "mean": 23.429,
+        "min": 9,
+        "max": 45
+       },
+       "R_tokens": {
+        "n": 7,
+        "median": 63,
+        "q25": 41.5,
+        "q75": 71.5,
+        "mean": 58.429,
+        "min": 26,
+        "max": 94
+       },
+       "R-E_ratio_median": 1.6153846153846154
+      },
+      "both_correct": {
+       "n": 14,
+       "R-E_tokens": {
+        "n": 14,
+        "median": 19.0,
+        "q25": 12.25,
+        "q75": 27.75,
+        "mean": 22.143,
+        "min": 8,
+        "max": 54
+       },
+       "R_tokens": {
+        "n": 14,
+        "median": 55.0,
+        "q25": 43.25,
+        "q75": 75.5,
+        "mean": 58.429,
+        "min": 24,
+        "max": 101
+       },
+       "R-E_ratio_median": 1.5533333333333332
+      },
+      "E_wrong_excluded": 3
+     },
+     "c_family_level": {
+      "exact_permutation_p_two_sided_mean_R-E_tokens": 0.8537,
+      "exact_permutation_p_two_sided_mean_R_tokens": 1.0,
+      "logistic_R_correct_on_R-E_tokens": {
+       "status": "fitted",
+       "outcome": "R correct (among E-correct families)",
+       "predictor": "R-E question tokens",
+       "n": 21,
+       "events_R_wrong": 7,
+       "beta_per_token": -0.0076,
+       "se": 0.0353,
+       "OR_per_10_tokens": 0.927,
+       "OR_per_10_tokens_wald95": [
+        0.464,
+        1.852
+       ],
+       "wald_p": 0.8306
+      },
+      "note": "Among E-correct families only. Post hoc; small n; tokens are Qwen3 counts for all models.",
+      "own_tokenizer_stored_R-E": {
+       "E_correct_R_wrong": {
+        "n": 7,
+        "median": 24,
+        "q25": 12.0,
+        "q75": 31.0,
+        "mean": 23.429,
+        "min": 9,
+        "max": 45
+       },
+       "both_correct": {
+        "n": 14,
+        "median": 18.5,
+        "q25": 12.25,
+        "q75": 27.5,
+        "mean": 22,
+        "min": 8,
+        "max": 54
+       },
+       "exact_permutation_p_two_sided_mean": 0.8273,
+       "logistic": {
+        "status": "fitted",
+        "outcome": "R correct (among E-correct families)",
+        "predictor": "R-E stored whole-prompt input_tokens (Llama tokenizer)",
+        "n": 21,
+        "events_R_wrong": 7,
+        "beta_per_token": -0.0084,
+        "se": 0.0353,
+        "OR_per_10_tokens": 0.92,
+        "OR_per_10_tokens_wald95": [
+         0.46,
+         1.836
+        ],
+        "wald_p": 0.8121
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
