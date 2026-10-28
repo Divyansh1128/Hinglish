@@ -1,0 +1,583 @@
+﻿model,rendering_id,why_listed,question,model_output,gold,strict_correct,tagger_A_category,tagger_A_english,tagger_A_reason,tagger_B_category,tagger_B_english,tagger_B_reason,YOUR_category,YOUR_english_status,YOUR_note
+qwen3-8b,PB003-C-v1,TAGGERS DISAGREE,Ek school library mein 240 Hindi kitaabein hain. Usmein Hindi kitaabon se 85 zyada Angrezi kitaabein hain. How many books does the library have altogether?,"The library has 240 Hindi books and 85 more English books, so it has 240 + 85 = 325 books altogether.  
+FINAL: 325 books",565 books,False,wrong_relation_operation,compliant,"Treats '85 more English books than Hindi' as 85 English books, so it never computes 325 English books and gives 325 instead of 565.",misread_quantity,compliant,"Gives English-book count as the total, wrong requested target.",,,
+qwen3-8b,PB027-C-v1,TAGGERS DISAGREE,Ek kameez ka daam ₹840 hai. Dukaan us par 25 pratishat chhoot deti hai. How much does the customer have to pay?,"The original price of the kameez is ₹840. A 25% discount is given, so the discount amount is 25% of ₹840.  
+25% of ₹840 = 0.25 × 840 = ₹210  
+The customer has to pay ₹840 - ₹210 = ₹630  
+FINAL: ₹630",630 INR,True,language_drift,non_english,"Correct answer, but the Hindi word 'kameez' is used in English prose.",no_error,compliant,"Correct; kameez is a garment word used as item name, but surrounding prose is English.",,,
+qwen3-8b,PB028-R-v1,TAGGERS DISAGREE,Ramesh ki maasik tankhwaah ₹32000 hai aur woh uska 15 pratishat bachaata hai. Woh mahine mein kitne rupaye kharch karta hai?,"Ramesh spends 15% of his monthly income, so we calculate 15% of ₹32000.  
+15% of 32000 is 0.15 × 32000 = 4800.  
+FINAL: 4800 ₹",27200 INR,False,wrong_relation_operation,compliant,"Treats the 15% saved as the amount spent, giving 4800 instead of 85% = 27200.",misread_quantity,compliant,"Treats the saved 15% as spending, wrong target.",,,
+qwen3-8b,PB007-C-v1,RANDOM AGREED SAMPLE,"Depot se chalte samay ek bus mein 38 yaatri the. At the first stop, 12 people got off and 9 got on, aur doosre padaav par 15 log utre. Doosre padaav ke baad bus mein kitne passengers the?","Starting with 38 passengers, 12 got off and 9 got on at the first stop: 38 - 12 + 9 = 35. Then, 15 people got off at the second stop: 35 - 15 = 20.  
+FINAL: 20 passengers.",20 passengers,True,no_error,compliant,Answer matches gold 20 passengers with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB009-C-v1,RANDOM AGREED SAMPLE,"Ek paani ki tanki mein 1200 litre paani aata hai. Subah tanki bhari hui thi, shaam tak 785 litre paani kharch ho gaya, aur phir usmein 300 litre paani chadhaaya gaya. How many more litres are needed to fill the tank again?","The tank initially had 1200 liters. In the evening, 785 liters were used, so the remaining water is $1200 - 785 = 415$ liters. Then 300 liters were added, making the total $415 + 300 = 715$ liters. To fill the tank again, $1200 - 715 = 485$ liters are needed.  
+FINAL: 485 liters",485 L,True,no_error,compliant,Answer matches gold 485 L with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB009-R-v1,RANDOM AGREED SAMPLE,"Ek paani ki tanki mein 1200 litre paani aata hai. Subah tanki bhari hui thi, shaam tak 785 litre paani kharch ho gaya, aur phir usmein 300 litre paani chadhaaya gaya. Tanki ko phir se bharne ke liye kitne litre paani aur chahiye?","Total water in the tank initially = 1200 liters  
+Water used by evening = 785 liters  
+Water added later = 300 liters  
+
+Remaining water in the tank = 1200 - 785 + 300 = 715 liters  
+Water needed to refill the tank = 1200 - 715 = 485 liters  
+
+FINAL: 485 liters",485 L,True,no_error,compliant,Answer matches gold 485 L with valid reasoning and English explanation.,no_error,compliant,Correct; English labelled steps.,,,
+qwen3-8b,PB010-C-v1,RANDOM AGREED SAMPLE,Sunita ke paas ₹500 the. She bought vegetables for ₹138 and paid ₹65 for an auto ride. Ab uske paas kitne rupaye hain?,"Sunita had ₹500. She spent ₹138 on vegetables and ₹65 on an auto ride.  
+Total spent: ₹138 + ₹65 = ₹203  
+Remaining money: ₹500 - ₹203 = ₹297  
+FINAL: ₹297",297 INR,True,no_error,compliant,Answer matches gold 297 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB011-C-v1,RANDOM AGREED SAMPLE,Lucknow se Dadaji ka gaon sadak se 386 km door hai. Rohan's family has already driven 159 km and then another 118 km towards it. Ab gaon kitne km door hai?,"Rohan's family has driven a total of 159 km + 118 km = 277 km.  
+The total distance is 386 km, so the remaining distance is 386 km - 277 km = 109 km.  
+FINAL: 109 km",109 km,True,no_error,compliant,Answer matches gold 109 km with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB013-R-v1,RANDOM AGREED SAMPLE,Ek pensil box ka daam ₹85 hai. Ek school bag ka daam pensil box ke daam ka 4 guna hai. Bag aur pensil box dono ka daam milaakar kitna hai?,"Pensil box ka daam ₹85 hai.  
+School bag ka daam pensil box ka 4 guna hai, jis me ₹85 × 4 = ₹340.  
+Bag aur pensil box dono ka daam = ₹85 + ₹340 = ₹425.  
+FINAL: 425 ₹",425 INR,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, explanation in romanized Hindi.",,,
+qwen3-8b,PB018-E-v1,RANDOM AGREED SAMPLE,"At a canteen, a samosa costs ₹15 and a cup of tea costs ₹12. 5 friends each have 2 samosas and 1 cup of tea. What is the total bill?","Each friend has 2 samosas and 1 cup of tea, so each friend's meal costs:  
+2 samosas = 2 × ₹15 = ₹30  
+1 cup of tea = ₹12  
+Total per friend = ₹30 + ₹12 = ₹42  
+
+For 5 friends: 5 × ₹42 = ₹210  
+
+FINAL: ₹210",210 INR,True,no_error,compliant,Answer matches gold 210 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB021-E-v1,RANDOM AGREED SAMPLE,Mohan bought 3 kg of sugar at ₹46 a kg and 2 litres of mustard oil at ₹155 a litre. How much did he pay?,"Mohan paid for the sugar: 3 kg × ₹46/kg = ₹138  
+Mohan paid for the mustard oil: 2 litres × ₹155/litre = ₹310  
+Total amount paid = ₹138 + ₹310 = ₹448  
+FINAL: ₹448",448 INR,True,no_error,compliant,Answer matches gold 448 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB025-C-v1,RANDOM AGREED SAMPLE,Ek cake ke 8 baraabar tukde kiye gaye. Tanya ate 3 pieces and her brother ate 2 pieces. Cake ka kitna hissa bacha? Uttar bhinn mein dijiye.,"Total pieces of cake = 8  
+Pieces eaten by Tanya = 3  
+Pieces eaten by her brother = 2  
+Total pieces eaten = 3 + 2 = 5  
+Pieces left = 8 - 5 = 3  
+Fraction of cake left = 3/8  
+FINAL: 3/8",3/8,True,no_error,compliant,Answer matches gold 3/8 with valid reasoning and English explanation.,no_error,compliant,Correct; English labelled steps.,,,
+qwen3-8b,PB030-C-v1,RANDOM AGREED SAMPLE,"600 paudhon mein se 3/5 somvaar ko lagaaye gaye. Of the remaining saplings, 1/4 were planted on Tuesday. How many saplings are yet to be planted?","Total saplings = 600  
+Saplings planted on Wednesday = $ \frac{3}{5} \times 600 = 360 $  
+Remaining saplings = $ 600 - 360 = 240 $  
+Saplings planted on Tuesday = $ \frac{1}{4} \times 240 = 60 $  
+Saplings yet to be planted = $ 240 - 60 = 180 $  
+FINAL: 180",180 saplings,True,no_error,compliant,Answer matches gold 180 saplings; Monday is mislabelled Wednesday but the calculation is correct and the prose is English.,no_error,compliant,Correct answer; day label slip (Wednesday) is immaterial. Labelled English steps.,,,
+qwen3-8b,PB034-C-v1,RANDOM AGREED SAMPLE,"Ek dibbe mein 750 g ghee tha. Daadi ne usmein se 2/3 ghee mithaai banaane mein lagaaya, and then she used 1/5 of the ghee still in the tin for dal. Ab dibbe mein kitne gram ghee hai?","Ek dibbe mein 750 g ghee tha. Daadi ne 2/3 ghee mithaai banaane mein lagaaya, jo 750 × 2/3 = 500 g hai. Ab dibbe mein 750 - 500 = 250 g ghee bach gaya. Phir woh 1/5 ghee ko dal ke liye use karne laga, jo 250 × 1/5 = 50 g hai. Ab dibbe mein 250 - 50 = 200 g ghee hai.  
+FINAL: 200 gram",200 g,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, explanation in romanized Hindi.",,,
+qwen3-8b,PB034-R-v1,RANDOM AGREED SAMPLE,"Ek dibbe mein 750 g ghee tha. Daadi ne usmein se 2/3 ghee mithaai banaane mein lagaaya, aur phir dibbe mein jo ghee tha uska 1/5 daal mein daala. Ab dibbe mein kitne gram ghee hai?","Ek dibbe mein 750 g ghee tha. Daadi ne usmein se $ \frac{2}{3} $ ghee mithaai banaane mein lagaaya, to बचे ghee ka weight $ 750 \times \left(1 - \frac{2}{3}\right) = 750 \times \frac{1}{3} = 250 $ g. Phir dibbe mein jo ghee tha, uska $ \frac{1}{5} $ daal mein daala, to बचे ghee ka weight $ 250 \times \left(1 - \frac{1}{5}\right) = 250 \times \frac{4}{5} = 200 $ g.  
+FINAL: 200 g",200 g,True,language_drift,non_english,Correct answer but the explanation is in romanized and Devanagari Hindi.,language_drift,non_english,Correct answer but Hindi (romanized and Devanagari) prose.,,,
+qwen3-8b,PB037-R-v1,RANDOM AGREED SAMPLE,Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein aapas mein baant lete hain. Simran ko kitne rupaye milte hain?,"Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein baant lete hain, to Simran ko (5/(4+5)) × 1800 = 1000 rupaye milte hain.  
+FINAL: 1000 ₹",1000 INR,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+qwen3-8b,PB040-C-v1,RANDOM AGREED SAMPLE,"Ek shaadi ke mithaai ke dibbon mein, there are 2 gulab jamuns for every 3 kaju katlis. Agar halwaai dibbon mein 45 kaju katli rakhta hai, to use kitne gulab jamun chahiye?","The ratio of gulab jamuns to kaju katlis is 2:3. If there are 45 kaju katlis, we calculate the number of gulab jamuns as follows:  
+(2/3) × 45 = 30  
+FINAL: 30",30 gulab jamuns,True,no_error,compliant,Answer matches gold 30 gulab jamuns with valid reasoning and English explanation.,no_error,compliant,Correct and English; sweet names are E-question words.,,,
+qwen3-8b,PB040-R-v1,RANDOM AGREED SAMPLE,"Ek shaadi ke mithaai ke dibbon mein har 3 kaju katli par 2 gulab jamun rakhe jaate hain. Agar halwaai dibbon mein 45 kaju katli rakhta hai, to use kitne gulab jamun chahiye?","Har 3 kaju katli par 2 gulab jamun rakhaye jate hain, isliye 45 kaju katli par $ \frac{45}{3} \times 2 = 30 $ gulab jamun chahiye.  
+FINAL: 30",30 gulab jamuns,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi (beyond the item names).,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+qwen3-8b,PB043-C-v1,RANDOM AGREED SAMPLE,"Maa 5 logon ke liye 2 cup chaawal banaati hain. At the same rate, 20 logon ke liye unhein kitne cup chaawal chahiye?","For 5 people, 2 cups of rice are needed. So for 1 person, $\frac{2}{5}$ cups are needed. For 20 people, it would be $20 \times \frac{2}{5} = 8$ cups.  
+FINAL: 8",8 cups,True,no_error,compliant,Answer matches gold 8 cups with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB047-C-v1,RANDOM AGREED SAMPLE,Ek gaadi 6 litre petrol mein 96 km chalti hai. How many litres of petrol will it need for a 240 km trip?,"The car uses 6 liters of petrol for 96 km, so it uses 6/96 = 0.0625 liters per km. For 240 km, it will need 240 * 0.0625 = 15 liters of petrol.  
+FINAL: 15",15 L,True,no_error,compliant,Answer matches gold 15 L with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB047-E-v1,RANDOM AGREED SAMPLE,A car travels 96 km on 6 litres of petrol. How many litres of petrol will it need for a 240 km trip?,"The car travels 96 km on 6 litres, so it uses 96/6 = 16 km per litre. For a 240 km trip, it will need 240/16 = 15 litres.  
+FINAL: 15",15 L,True,no_error,compliant,Answer matches gold 15 L with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB048-C-v1,RANDOM AGREED SAMPLE,Gaurav makes a drink by mixing orange juice and water in the ratio 2:3. Use 1.5 litre sharbat banaana hai. Use kitne mL santre ka ras chahiye?,"The ratio of orange juice to water is 2:3, so out of every 5 parts, 2 parts are orange juice.  
+For 1.5 liters (1500 mL), the amount of orange juice needed is $ \frac{2}{5} \times 1500 = 600 $ mL.  
+FINAL: 600 mL",600 mL,True,no_error,compliant,Answer matches gold 600 mL with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB049-R-v1,RANDOM AGREED SAMPLE,Ek nal 6 litre prati minute ki dar se paani bharta hai. 45 litre ka drum bharne mein kitne minute lagenge?,"Ek nal 6 litre prati minute paani bharta hai. 45 litre ka drum bharna ke liye 45/6 = 7.5 minute lagenge.  
+FINAL: 7.5 minute",7.5 minute,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+qwen3-8b,PB051-R-v1,RANDOM AGREED SAMPLE,Ek printer har minute 18 panne chhaapta hai. Subah 10:05 se 10:25 tak woh kitne panne chhaapega?,"The printer breaks down for 18 minutes per hour. From 10:05 to 10:25 is 20 minutes.  
+In 20 minutes, the printer will break down for $ \frac{20}{60} \times 18 = 6 $ minutes.  
+FINAL: 6 minutes",360 pages,False,misread_quantity,compliant,Misreads '18 pages every minute' as 18 minutes of breakdown per hour and answers 6 minutes instead of 360 pages.,misread_quantity,compliant,Misreads the 18 pages per minute rate as breakdown time and answers in minutes.,,,
+qwen3-8b,PB053-R-v1,RANDOM AGREED SAMPLE,Ankit 4 km prati ghanta ki chaal se paidal chalta hai. Uski behen usse 3 guna tez cycle chalaati hai. 9 km tay karne mein behen ko kitne minute lagenge?,"Ankit's speed is 4 km/h, so his sister's speed is 3 times that, which is 12 km/h. To cover 9 km at 12 km/h, time = distance/speed = 9/12 = 0.75 hours. Convert hours to minutes: 0.75 * 60 = 45 minutes.  
+FINAL: 45 minute",45 minute,True,no_error,compliant,Answer matches gold 45 minute with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB057-E-v1,RANDOM AGREED SAMPLE,A water purifier gives 1.2 litres of clean water in 4 minutes. How many litres of clean water does it give in 1 hour?,"To find how many liters of clean water the purifier gives in 1 hour, first calculate the rate per minute: 1.2 liters / 4 minutes = 0.3 liters per minute. Then multiply by 60 minutes in an hour: 0.3 liters/minute * 60 minutes = 18 liters.  
+FINAL: 18 liters",18 L,True,no_error,compliant,Answer matches gold 18 L with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB058-E-v1,RANDOM AGREED SAMPLE,A tailor has a 12 m roll of cloth and makes pieces of 75 cm each from it. How many pieces does he make?,"Convert 12 meters to centimeters: $12 \times 100 = 1200$ cm.  
+Divide by the length of each piece: $1200 \div 75 = 16$.  
+
+FINAL: 16",16 pieces,True,no_error,compliant,Answer matches gold 16 pieces with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB059-E-v1,RANDOM AGREED SAMPLE,Kiran types 45 words in a minute. How many minutes will she take to type an essay of 1170 words?,"To find the time taken, divide the total number of words by the rate of typing:  
+1170 ÷ 45 = 26 minutes.  
+FINAL: 26 minutes.",26 minute,True,no_error,compliant,Answer matches gold 26 minute with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB060-E-v1,RANDOM AGREED SAMPLE,"When a number is multiplied by 7 and then 15 is subtracted, the result is 69. What is the number?","Let the number be $ x $.  
+The equation is:  
+$ 7x - 15 = 69 $  
+
+Add 15 to both sides:  
+$ 7x = 84 $  
+
+Divide both sides by 7:  
+$ x = 12 $  
+
+FINAL: 12",12,True,no_error,compliant,Answer matches gold 12 with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB064-C-v1,RANDOM AGREED SAMPLE,"Riya ne kuch pensil khareedin, each costing ₹12, aur ₹30 ki ek paani ki botal bhi li. Usne sab milaakar ₹126 kharch kiye. Usne kitni pensil khareedin?","Let the number of pencils Riya bought be $ x $.  
+The cost of pencils is $ 12x $ and the cost of the water bottle is ₹30.  
+Total cost is $ 12x + 30 = 126 $.  
+Solving for $ x $:  
+$ 12x = 126 - 30 $  
+$ 12x = 96 $  
+$ x = 8 $  
+Riya bought 8 pencils.  
+FINAL: 8",8 pencils,True,no_error,compliant,Answer matches gold 8 pencils with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB066-E-v1,RANDOM AGREED SAMPLE,"A rectangular garden is 6 m longer than it is wide, and its perimeter is 64 m. What is the width of the garden?","Let the width of the garden be $ w $ meters. Then the length is $ w + 6 $ meters.
+
+The perimeter of a rectangle is given by:
+$$
+2(\text{length} + \text{width}) = 64
+$$
+Substitute the values:
+$$
+2(w + (w + 6)) = 64
+$$
+$$
+2(2w + 6) = 64
+$$
+$$
+4w + 12 = 64
+$$
+$$
+4w = 52
+$$
+$$
+w = 13
+$$
+
+FINAL: 13 m",13 m,True,no_error,compliant,Answer matches gold 13 m with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB067-C-v1,RANDOM AGREED SAMPLE,Ek gullak mein sirf ₹5 aur ₹10 ke sikke hain. There are 30 coins worth ₹220 altogether. Gullak mein ₹10 ke kitne sikke hain?,"Let the number of ₹5 coins be $ x $ and the number of ₹10 coins be $ y $.  
+We are given:  
+1. $ x + y = 30 $ (total coins)  
+2. $ 5x + 10y = 220 $ (total value)  
+
+From the first equation, $ x = 30 - y $. Substitute into the second equation:  
+$ 5(30 - y) + 10y = 220 $  
+$ 150 - 5y + 10y = 220 $  
+$ 5y = 70 $  
+$ y = 14 $  
+
+FINAL: 14",14 coins,True,no_error,compliant,Answer matches gold 14 coins with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+qwen3-8b,PB069-C-v1,RANDOM AGREED SAMPLE,"Ek pariksha mein sahi uttar par 4 ank milte hain, and a student loses 1 mark for a wrong answer. Arun ne saare 25 prashnon ke uttar diye aur use 70 ank mile. Uske kitne uttar sahi the?","Let the number of correct answers be $ x $. Then the number of incorrect answers is $ 25 - x $.  
+The total marks = $ 4x - (25 - x) = 70 $  
+Solving: $ 4x - 25 + x = 70 $  
+$ 5x = 95 $  
+$ x = 19 $  
+FINAL: 19",19 answers,True,no_error,compliant,Answer matches gold 19 answers with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB014-R-v1,TAGGERS DISAGREE,"Ek litre doodh ₹62 ka hai, aur paneer ke ek packet ka daam ek litre doodh ke daam ka 3 guna hai. 2 litre doodh aur 1 packet paneer kitne ka padega?","Ek litre doodh ₹62 ka hai, isliye 2 litre doodh ka daam 2 * ₹62 = ₹124 hoga.
+
+Paneer ke ek packet ka daam ek litre doodh ke daam ka 3 guna hai, isliye 1 packet paneer ka daam ₹62 * 3 = ₹186 hoga.
+
+Iske liye, 2 litre doodh aur 1 packet paneer ka total pad 2 * ₹124 + ₹186 = ₹494 hoga.
+
+FINAL: ₹494",310 INR,False,misread_quantity,non_english,"Doubles the already-computed cost of 2 litres (₹124), effectively pricing 4 litres of milk; explanation is romanized Hindi.",wrong_relation_operation,non_english,Doubles the already-doubled milk cost; prose in Hindi.,,,
+llama-3.2-3b,PB018-C-v1,TAGGERS DISAGREE,Canteen mein ek samosa ₹15 ka aur ek cup chai ₹12 ki hai. 5 friends each had 2 samosas and 1 cup of tea. Kul bill kitne rupaye ka bana?,"Sabhi 5 friends ke liye, 2 samosas aur 1 cup chai ke liye bill 15 + 12 = ₹27 hai. Is bill ko 5 friends ke beech baantne ke liye, hum 27/5 = ₹5.40 ko pratyek friend ke liye divide karte hain.
+
+FINAL: ₹5.40",210 INR,False,misread_quantity,non_english,"Prices one samosa instead of two and then divides by 5 instead of multiplying, giving ₹5.40; explanation is romanized Hindi.",wrong_relation_operation,non_english,Ignores quantities and divides by 5 instead of multiplying; prose in Hindi.,,,
+llama-3.2-3b,PB019-R-v1,TAGGERS DISAGREE,Deepak ne ₹120 kilo ke bhaav se 4 kg seb khareede aur dukaandaar ko ₹200 ke 3 note diye. Deepak ko kitne rupaye ka chhutta milna chahiye?,"Sabse pehle, 4 kg seb ki keemat ₹120/4 = ₹30 hoga. Deepak ne ₹200 ke 3 note diye, jisse uski chhutta ₹200 - ₹30 = ₹170 hoga.
+
+FINAL: 170",120 INR,False,misread_quantity,non_english,"Uses a single ₹200 note instead of ₹600 paid, and divides the per-kg price by 4 instead of multiplying; explanation is romanized Hindi.",wrong_relation_operation,non_english,Divides price per kg by 4 instead of multiplying; then subtracts from one note; Hindi prose.,,,
+llama-3.2-3b,PB038-C-v2,TAGGERS DISAGREE,"Ek fruit basket mein apples aur bananas ka ratio 3:7 hai. Agar 21 apples hain, toh kitne bananas honge?","Ek fruit basket mein apples aur bananas ka ratio 3:7 hai, jiska matlab hai ki har 3 apples mein 7 bananas honge. 
+
+Aapke paas 21 apples hain, jo 3 se vibhakt hain. Isliye, 21/3 = 7 banana honge.
+
+FINAL: 7",49 bananas,False,wrong_relation_operation,non_english,"Stops at the scale factor 7 instead of multiplying by the banana ratio term 7, giving 7 instead of 49; explanation is romanized Hindi.",misread_quantity,non_english,Reports the scale factor 7 as the banana count instead of 49; Hindi prose.,,,
+llama-3.2-3b,PB044-C-v1,TAGGERS DISAGREE,"On a map, 2 cm stands for 15 km. Naqshe par do kasbon ke beech 9 cm ki doori hai. Unke beech asli doori kitne km hai?","To find the actual distance between the two points, we need to multiply the distance on the map (in cm) by the scale factor (15 km/cm).
+
+Distance on the map = 9 cm
+Scale factor = 15 km/cm
+
+Actual distance = 9 cm * 15 km/cm = 135 km
+
+FINAL: 135",67.5 km,False,misread_quantity,compliant,"Uses 15 km per cm although 2 cm stands for 15 km, giving 135 instead of 67.5 km.",wrong_relation_operation,compliant,"Uses 15 km per cm, ignoring that 2 cm stands for 15 km.",,,
+llama-3.2-3b,PB004-C-v1,RANDOM AGREED SAMPLE,Ravi ko 312 panne ka ek novel padhna hai. Usne shanivaar ko 97 panne aur ravivaar ko 128 panne padhe. How many pages are still left for him to read?,"Ravi ne shanivaar aur ravivaar ko mila kar 97 + 128 = 225 panne padhe hain. Isliye, usko abhi 312 - 225 = 87 panne padhne hain.
+
+FINAL: 87",87 pages,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB007-E-v1,RANDOM AGREED SAMPLE,"A bus left the depot with 38 passengers. At the first stop 12 people got off and 9 got on, and at the second stop 15 people got off. How many passengers were on the bus after the second stop?","To find the number of passengers after the second stop, we need to subtract the people who got off at the first and second stops from the initial number of passengers, and then add the people who got on at the first stop.
+
+Initial passengers: 38
+People who got off at the first stop: 12
+People who got off at the second stop: 15
+People who got on at the first stop: 9
+
+Passengers after the first stop: 38 - 12 + 9 = 35
+Passengers after the second stop: 35 - 15 = 20
+
+FINAL: 20",20 passengers,True,no_error,compliant,Answer matches gold 20 passengers with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB009-R-v1,RANDOM AGREED SAMPLE,"Ek paani ki tanki mein 1200 litre paani aata hai. Subah tanki bhari hui thi, shaam tak 785 litre paani kharch ho gaya, aur phir usmein 300 litre paani chadhaaya gaya. Tanki ko phir se bharne ke liye kitne litre paani aur chahiye?","Sabse pehle, tanki ki asli tanki ki kshamata ko pata lagayein. Tanki ki tanki ki kshamata 1200 litre hai.
+
+Ab, tanki se kharch ho gaye paani ko gyaat karein: 785 litre.
+
+Ab, tanki se chadhaaya gaya paani ko gyaat karein: 300 litre.
+
+Ab, tanki ki asli tanki ki kshamata se tanki mein aaye paani ke saath tanki mein aane wale paani ke saamanya ki gyaat karein: 1200 - 785 + 300 = 815 litre.
+
+Ab, tanki ki tanki ki kshamata se tanki mein aane wale paani ke saamanya ki aavashyakta ki gyaat karein: 1200 - 815 = 385 litre.
+
+FINAL: 385",485 L,False,arithmetic_slip,non_english,"Correct setup 1200 - 785 + 300 but evaluates it as 815 instead of 715, giving 385; explanation is romanized Hindi.",arithmetic_slip,non_english,Correct setup but 1200-785+300 miscomputed as 815; prose in Hindi.,,,
+llama-3.2-3b,PB012-E-v1,RANDOM AGREED SAMPLE,"At the beach, Pooja collected 54 shells and Isha collected 71 shells. How many more shells must Pooja collect to have as many shells as Isha?","To find out how many more shells Pooja needs to collect, we need to subtract the number of shells Pooja has from the number of shells Isha has.
+
+Isha's shells: 71
+Pooja's shells: 54
+
+Difference: 71 - 54 = 17
+
+So, Pooja needs to collect 17 more shells to have as many shells as Isha.
+
+FINAL: 17",17 shells,True,no_error,compliant,Answer matches gold 17 shells with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB014-E-v1,RANDOM AGREED SAMPLE,"A litre of milk costs ₹62, and a packet of paneer costs 3 times as much as a litre of milk. How much do 2 litres of milk and 1 packet of paneer cost?","To find the cost of 2 litres of milk, we multiply the cost of 1 litre by 2: 
+2 litres * ₹62/litre = ₹124
+
+The cost of 1 packet of paneer is 3 times the cost of 1 litre of milk: 
+1 packet = 3 * ₹62 = ₹186
+
+Now, we add the cost of 2 litres of milk and 1 packet of paneer: 
+₹124 + ₹186 = ₹310
+
+FINAL: 310",310 INR,True,no_error,compliant,Answer matches gold 310 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB015-R-v1,RANDOM AGREED SAMPLE,Tamatar ₹36 prati kg bik rahe hain. Lata 2.5 kg tamatar aur ₹20 ki dhaniye ki ek gaddi khareedti hai. Usne kitne rupaye kharch kiye?,"Lata ne 2.5 kg tamatar aur ₹20 ki dhaniye ki ek gaddi khareedi, jiski kharch ki ghatna ko samajhne ke liye hum dono kharch ko alag-alag karke dekhein.
+
+Tamatar ki kharch: ₹36 prati kg, aur Lata ne 2.5 kg tamatar khareedi hain, isliye tamatar ki kharch 36 * 2.5 = ₹90 hoga.
+
+Dhaniye ki gaddi ki kharch: ₹20.
+
+Ab hum dono kharch ko mila kar dekhte hain: ₹90 + ₹20 = ₹110.
+
+FINAL: ₹110",110 INR,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB019-E-v1,RANDOM AGREED SAMPLE,Deepak bought 4 kg of apples at ₹120 a kg and paid with 3 notes of ₹200. How much change should he get?,"To find the total cost of the apples, multiply the cost per kg by the total weight: 4 kg * ₹120/kg = ₹480.
+
+Deepak paid with 3 notes of ₹200 each, so the total amount paid is: 3 * ₹200 = ₹600.
+
+The change Deepak should get is the difference between the amount paid and the total cost of the apples: ₹600 - ₹480 = ₹120.
+
+FINAL: ₹120",120 INR,True,no_error,compliant,Answer matches gold 120 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB022-C-v1,RANDOM AGREED SAMPLE,Ritu haath se bani mombattiyaan ₹35 ki ek ke daam par bechti hai. On Monday she sold 14 candles and on Tuesday she sold 9. In do dinon mein usne kitne rupaye kamaaye?,"Monday aur Tuesday ke dinon mein Ritu ne kaha ke ₹35 ki ek candle ki keemat par 14 aur 9 mombattiyaan bechi hain. 
+
+Isliye, Ritu ne Monday aur Tuesday ke dinon mein ₹35 * 14 + ₹35 * 9 = ₹490 + ₹315 = ₹805 rupaye kamaaye hain.
+
+FINAL: 805",805 INR,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in Hindi mixed with English.",,,
+llama-3.2-3b,PB024-E-v1,RANDOM AGREED SAMPLE,A shopkeeper buys a ceiling fan for ₹1650 and spends ₹120 to bring it to his shop. He sells the fan for ₹2100. How much profit does he make?,"To find the profit, we need to calculate the total cost price of the fan and then subtract the selling price.
+
+Cost price = Cost of ceiling fan + Cost of bringing it to the shop
+= ₹1650 + ₹120
+= ₹1770
+
+Profit = Selling price - Cost price
+= ₹2100 - ₹1770
+= ₹330
+
+FINAL: 330",330 INR,True,no_error,compliant,Answer matches gold 330 INR with valid reasoning and English explanation.,no_error,compliant,Correct math; sentence says subtract the selling price (wording slip).,,,
+llama-3.2-3b,PB024-R-v1,RANDOM AGREED SAMPLE,Ek dukaandaar ₹1650 mein ek chhat ka pankha khareedta hai aur use dukaan tak laane mein ₹120 kharch karta hai. Woh pankha ₹2100 mein bechta hai. Use kitne rupaye ka munaafa hota hai?,"Pahle, hamen pankha ke khareedne ke liye kharch ko jaanana hoga: ₹120.
+
+Pankha ke khareedne ke baad, hamen pankha ki keemat ko jaanana hoga: ₹1650.
+
+Pankha ki keemat se pankha ki keemat ko ghataana hoga: ₹1650 - ₹120 = ₹1530.
+
+Pankha ki keemat se pankha ki keemat ko ghataane ke baad, hamen pankha ki keemat ko jaanana hoga: ₹2100.
+
+Pankha ki keemat se pankha ki keemat ko ghataane ke baad, hamen pankha ki keemat se pankha ki keemat ko ghataana hoga: ₹2100 - ₹1530 = ₹570.
+
+Pankha ki keemat se pankha ki keemat ko ghataane ke baad, hamen pankha ki keemat se pankha ki keemat ko ghataane ke liye munaafa ko jaanana hoga: ₹570.
+
+FINAL: 570",330 INR,False,wrong_relation_operation,non_english,"Subtracts the ₹120 transport cost from the purchase price instead of adding it, giving 570; explanation is romanized Hindi.",wrong_relation_operation,non_english,Subtracts shipping cost from price instead of adding; incoherent Hindi prose.,,,
+llama-3.2-3b,PB030-C-v1,RANDOM AGREED SAMPLE,"600 paudhon mein se 3/5 somvaar ko lagaaye gaye. Of the remaining saplings, 1/4 were planted on Tuesday. How many saplings are yet to be planted?","To find the number of saplings planted, first find the number of saplings planted on Tuesday. 
+
+600 saplings were planted, and 3/5 of them were planted. 
+3/5 * 600 = 360 saplings were planted.
+
+Now, 1/4 of the remaining saplings were planted on Tuesday. 
+The remaining saplings are 600 - 360 = 240.
+
+1/4 * 240 = 60 saplings were planted on Tuesday.
+
+The number of saplings yet to be planted is 240 - 60 = 180.
+
+FINAL: 180",180 saplings,True,no_error,compliant,Answer matches gold 180 saplings with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB031-E-v1,RANDOM AGREED SAMPLE,A 2-litre bottle of juice was full. Maya poured 3/8 of the juice into glasses. How many millilitres of juice are still in the bottle?,"To find the amount of juice left in the bottle, we need to subtract the amount Maya poured from the total capacity of the bottle.
+
+The bottle's capacity is 2 litres, which is equal to 2000 milliliters (mL).
+
+Maya poured 3/8 of the juice, which is (3/8) * 2000 mL = 750 mL.
+
+Now, subtract the amount poured from the total capacity:
+2000 mL - 750 mL = 1250 mL
+
+So, 1250 milliliters of juice are still in the bottle.
+
+FINAL: 1250",1250 mL,True,no_error,compliant,Answer matches gold 1250 mL with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB033-C-v2,RANDOM AGREED SAMPLE,Ajay ne school tak ke raaste ka 2/5 paidal tay kiya and cycled the remaining 1.8 km. School tak ka total distance kitne km hai?,"Ajay ne school tak ke raaste ka 2/5 paidal tay kiya, isliye uske paas 2/5 * x = 1.8 km distance ki aavashyakta hai.
+
+Isse x = 1.8 * 5/2 = 4.5 km milega.
+
+FINAL: 4.5",3 km,False,misread_quantity,non_english,"Assigns the 1.8 km to the walked 2/5 instead of the cycled 3/5, giving 4.5 km; explanation is romanized Hindi.",misread_quantity,non_english,Equates the 2/5 walked part to the 1.8 km cycled part; Hindi prose.,,,
+llama-3.2-3b,PB034-C-v1,RANDOM AGREED SAMPLE,"Ek dibbe mein 750 g ghee tha. Daadi ne usmein se 2/3 ghee mithaai banaane mein lagaaya, and then she used 1/5 of the ghee still in the tin for dal. Ab dibbe mein kitne gram ghee hai?","Ek pehli baar, 2/3 ghee ko mithaai banaane mein lagaaya gaya, jiska matlab hai 2/3 * 750 = 500 g ghee mithaai banaane mein lagee. 
+
+Ab, 1/5 ghee ko dal mein lagaaya gaya, jiska matlab hai 1/5 * 750 = 150 g ghee dal mein lagee.
+
+Ab, ghee ke aadhaar par, 750 - 500 - 150 = 100 g ghee aadhaar par hai.
+
+FINAL: 100",200 g,False,wrong_relation_operation,non_english,"Takes 1/5 of the original 750 g instead of the remaining 250 g, giving 100 g; explanation is romanized Hindi.",wrong_relation_operation,non_english,Takes 1/5 of the original 750 g instead of the remaining ghee; Hindi prose.,,,
+llama-3.2-3b,PB035-R-v1,RANDOM AGREED SAMPLE,Ek school mein 480 vidyaarthi hain aur unmein se 5/12 ladkiyaan hain. School mein kitne ladke hain?,"Ek school mein 480 vidyaarthi hain aur unmein se 5/12 ladkiyaan hain. 
+
+Ladkiyon ki sankhya 5/12 * 480 = 200 hai. 
+
+Ab, ladke ki sankhya 480 - 200 = 280 hai. 
+
+Isliye, school mein 280 ladke hain. 
+
+FINAL: 280",280 boys,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB037-R-v1,RANDOM AGREED SAMPLE,Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein aapas mein baant lete hain. Simran ko kitne rupaye milte hain?,"Rahul aur Simran ₹1800 ko 4:5 ke anupaat mein aapas mein baantne ke liye, hum unke hissaon ko 4+5=9 hisson mein baant sakte hain.
+
+Rahul ka hissa = (4/9) × 1800 = ₹800
+Simran ka hissa = (5/9) × 1800 = ₹1000
+
+Simran ko ₹1000 milte hain.
+
+FINAL: 1000",1000 INR,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB039-R-v1,RANDOM AGREED SAMPLE,84 m lambi rassi ke 5:2 ke anupaat mein do bhaag kiye gaye. Lambe bhaag ki lambaai kitne m hai?,"Pehle, 5:2 ke anupaat mein do bhaag kiye gaye hain, jo 5 aur 2 hain. 
+
+Ab, humein 84 m lambi rassi ko 5 aur 2 ke anupaat mein do bhaag kiye gaye hain. 
+
+Isliye, hum 84 m ko 5 aur 2 ke anupaat mein do bhaag kiye gaye hain: 84 m / (5 + 2) = 84 m / 7 = 12 m.
+
+FINAL: 12",60 m,False,misread_quantity,non_english,Reports one ratio part (12 m) instead of the longer piece (60 m); explanation is romanized Hindi.,misread_quantity,non_english,"Stops at the size of one part, not the longer piece; Hindi prose.",,,
+llama-3.2-3b,PB042-C-v2,RANDOM AGREED SAMPLE,"Ek sports academy mein boys aur girls ka ratio 7:4 hai. Agar 24 girls hain, toh academy mein total kitne bachche hain?","Ek sports academy mein boys aur girls ka ratio 7:4 hai, aur 24 girls hain. 
+
+Ismein 7:4 ka ratio 7+4=11 se badh jata hai, isliye total bachche 24*11=264 honge. 
+
+FINAL: 264",66 children,False,wrong_relation_operation,non_english,"Multiplies the 24 girls by the 11 total ratio parts instead of using 24/4 per part, giving 264; explanation is romanized Hindi.",wrong_relation_operation,non_english,Multiplies the 24 girls by 11 parts instead of finding the part size; Hindi prose.,,,
+llama-3.2-3b,PB043-R-v1,RANDOM AGREED SAMPLE,Maa 5 logon ke liye 2 cup chaawal banaati hain. Isi hisaab se 20 logon ke liye unhein kitne cup chaawal chahiye?,"Pehle, hum 5 logon ke liye 2 cup chaawal ka hisaab lenge. Isse humein 1 cup chaawal 5 logon ke liye padta hai. 
+
+Ab, hum 20 logon ke liye 1 cup chaawal 5 logon ke liye padne wale hisaab ko 4 baar badhaenge, kyunki 20 log 5 logon ke 4 baar hota hai. 
+
+Isliye, 20 logon ke liye 1 cup chaawal 5 logon ke liye padne wale hisaab 4*2 = 8 cup chaawal hai. 
+
+FINAL: 8",8 cups,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,Final answer 8 correct although reasoning is muddled; Hindi prose.,,,
+llama-3.2-3b,PB044-E-v1,RANDOM AGREED SAMPLE,"On a map, 2 cm stands for 15 km. Two towns are 9 cm apart on the map. What is the actual distance between them in km?","To find the actual distance between the two towns, we need to set up a proportion. 
+
+Since 2 cm represents 15 km, we can write the proportion as:
+
+2 cm / 15 km = 9 cm / x km
+
+Now, we can cross-multiply and solve for x:
+
+2x = 9 * 15
+2x = 135
+x = 135 / 2
+x = 67.5 km
+
+FINAL: 67.5",67.5 km,True,no_error,compliant,Answer matches gold 67.5 km with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB048-R-v1,RANDOM AGREED SAMPLE,Gaurav santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai. Use 1.5 litre sharbat banaana hai. Use kitne mL santre ka ras chahiye?,"Sabse pahle, hume santre ka ras aur paani ke aadhar par sharbat ki matriya (density) ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska matlab hai ki har 2 unit santre ka ras hain aur har 3 unit paani hain. 
+
+Iske liye, hume santre ka ras aur paani ke aadhar par sharbat ki matriya ki ghatna ko samajhna hoga. 
+
+Santre ka ras aur paani 2:3 mein milaakar sharbat banaata hai, jiska",600 mL,False,truncated,non_english,"Output loops on romanized Hindi sentences until the token cap, with no calculation or answer.",truncated,non_english,Hindi prose repeats the same sentences until cut off with no answer.,,,
+llama-3.2-3b,PB051-E-v1,RANDOM AGREED SAMPLE,A printer prints 18 pages every minute. How many pages will it print between 10:05 am and 10:25 am?,"To find the total number of pages printed, we need to calculate the time elapsed and multiply it by the rate of pages printed per minute.
+
+The time elapsed is 20 minutes (from 10:05 am to 10:25 am).
+
+The printer prints 18 pages per minute.
+
+Total pages printed = 18 pages/minute * 20 minutes = 360 pages
+
+FINAL: 360",360 pages,True,no_error,compliant,Answer matches gold 360 pages with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB052-R-v1,RANDOM AGREED SAMPLE,Ek cycle sawaar har minute 250 m chalti hai. 4.5 km chalne mein use kitne minute lagenge?,"Ek cycle 4.5 km chalne ke liye kaise samay lagta hai?
+
+Sabse pehle, hum 4.5 km ko meter mein badalne ki koshish karte hain. 1 km mein 1000 meter hote hain, isliye:
+
+4.5 km = 4.5 x 1000 = 4500 meter
+
+Ab, hum cycle ki gati ko minute mein meter prati minute mein badalne ki koshish karte hain. Cycle 250 m chalti hai, isliye:
+
+Gati = 250 m/minute
+
+Ab, hum 4500 meter ko gati ke saath chalne ke liye samay badalne ki koshish karte hain:
+
+Samay = 4500 meter / (250 m/minute) = 18 minute
+
+FINAL: 18",18 minute,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB054-C-v1,RANDOM AGREED SAMPLE,3.6 kg of flour is divided equally into 8 containers. Ek dibbe mein kitne gram aata hai?,"To find the weight of flour in each container, we need to divide the total weight of flour (3.6 kg) by the number of containers (8).
+
+First, we need to convert the weight from kilograms to grams. Since 1 kg = 1000 grams, we can convert 3.6 kg to grams as follows:
+
+3.6 kg * 1000 grams/kg = 3600 grams
+
+Now, we can divide the total weight in grams (3600) by the number of containers (8):
+
+3600 grams / 8 = 450 grams
+
+So, each container has 450 grams of flour.
+
+FINAL: 450",450 g,True,no_error,compliant,Answer matches gold 450 g with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB054-R-v1,RANDOM AGREED SAMPLE,3.6 kg aate ke 8 baraabar bhaag karke unhein dibbon mein rakha gaya. Ek dibbe mein kitne gram aata hai?,"Aata ko 8 bhaagon mein baant kar, pratyek bhaag mein aata ki grammat ka hissa hai. Aata ke 3.6 kg ka total weight hai, jo ki 3600 gram ke barabar hai.
+
+Ab, aata ko 8 bhaagon mein baant kar, pratyek bhaag mein aata ki grammat ka hissa hai. Isliye, pratyek bhaag mein aata ki grammat ka hissa hai 3600/8 = 450 gram.
+
+FINAL: 450",450 g,True,language_drift,non_english,Correct answer but the explanation is in romanized Hindi.,language_drift,non_english,"Correct answer, prose in romanized Hindi.",,,
+llama-3.2-3b,PB055-E-v1,RANDOM AGREED SAMPLE,A shop sells 250 g of peanuts for ₹28. How much will 1.5 kg of peanuts cost?,"To find the cost of 1.5 kg of peanuts, we need to first find the cost of 1 kg of peanuts. 
+
+Cost of 250 g = ₹28
+Cost of 1 kg = Cost of 1000 g = 4 * ₹28 = ₹112
+
+Now, we can find the cost of 1.5 kg of peanuts:
+Cost of 1.5 kg = 1.5 * ₹112 = ₹168
+
+FINAL: 168",168 INR,True,no_error,compliant,Answer matches gold 168 INR with valid reasoning and English explanation.,no_error,compliant,Correct and English.,,,
+llama-3.2-3b,PB062-C-v1,RANDOM AGREED SAMPLE,Ek sankhya ko 4 se bhaag dekar usmein 9 jod diya jaaye to 21 milta hai. Find the number.,"Aapke samasya ka samadhan karne ke liye, aapke diye gaye samasya ko samajhna hoga. 
+
+Ek sankhya ko 4 se bhaag diya jaaye to uska aadhaar 4 se bhaag hoga. Iske baad, usmein 9 jod diya jaaye to uska parinaam 21 hota hai.
+
+Isliye, aapke samasya ka samadhan hai: 
+
+Sankhya - 4 = 21 
+Sankhya = 21 + 4 
+Sankhya = 25 
+
+FINAL: 25",48,False,wrong_relation_operation,non_english,"Replaces 'divide by 4, add 9' with 'subtract 4', giving 25 instead of 48; explanation is romanized Hindi.",wrong_relation_operation,non_english,Misrepresents divide-by-4-then-add-9 as subtract 4; Hindi prose.,,,
+llama-3.2-3b,PB064-C-v1,RANDOM AGREED SAMPLE,"Riya ne kuch pensil khareedin, each costing ₹12, aur ₹30 ki ek paani ki botal bhi li. Usne sab milaakar ₹126 kharch kiye. Usne kitni pensil khareedin?","Pensil ki dukaan mein Riya ₹12 ki pensil khareedti thi. Usne ₹30 ki paani ki botal bhi li. 
+
+Aapke samajhne ke liye, aap yah samajh sakte hain ki Riya ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Iske liye, aap yah samajh sakte hain ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹126 kharch kiya hai. Ismein pensil ki kharch ₹12 hai, aur paani ki botal ki kharch ₹30 hai. 
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹126 kharch kiya hai. Ismein pensil ki kharch ₹12 hai, aur paani ki botal ki kharch ₹30 hai. 
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹126 kharch kiya hai. Ismein pensil ki kharch ₹12 hai, aur paani ki botal ki kharch ₹30 hai. 
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹126 kharch kiya hai. Ismein pensil ki kharch ₹12 hai, aur paani ki botal ki kharch ₹30 hai. 
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi.
+
+Riya ₹12 ki pensil ke liye ₹30 ki paani ki botal ke saath ₹12 ki pensil khareedti thi. Isliye, yah samajhna chahiye ki",8 pencils,False,truncated,non_english,"Output loops on a romanized Hindi sentence until the token cap, with no equation or answer.",truncated,non_english,"Hindi repetition loop, cut off with no equation or answer.",,,
+llama-3.2-3b,PB067-C-v1,RANDOM AGREED SAMPLE,Ek gullak mein sirf ₹5 aur ₹10 ke sikke hain. There are 30 coins worth ₹220 altogether. Gullak mein ₹10 ke kitne sikke hain?,"Ek gullak mein ₹10 ke sikke hain ₹10 aur ₹5 ke sikke hain. 
+
+Aapke pahle samasya ko hal karne ke liye, aapke gullak mein ₹10 ke sikke hain ₹10x aur ₹5 ke sikke hain ₹5y. 
+
+Aapke samasya ke anusar, ₹10 ke sikke hain ₹10x aur ₹5 ke sikke hain ₹5y hote hain ₹220. 
+
+Isliye, ₹10 ke sikke hain ₹10x aur ₹5 ke sikke hain ₹5y hote hain ₹10x + ₹5y = ₹220. 
+
+Ab, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain ₹220 - ₹5y. 
+
+Isliye, ₹10 ke sikke hain ₹10x hote hain ₹220 - ₹5y. 
+
+Ab, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain ₹220 - ₹5y = ₹220 - ₹5(44-y) = ₹220 - ₹220 + 5y = 5y. 
+
+Isliye, ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Ab, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10x hote hain 5y. 
+
+Isliye, aapke gullak mein ₹10 ke sikke hain ₹10",14 coins,False,truncated,non_english,Output loops until the token cap with no answer; visible prose is romanized Hindi.,truncated,non_english,"Hindi repetition loop, cut off with no answer.",,,
+llama-3.2-3b,PB070-C-v1,RANDOM AGREED SAMPLE,Three consecutive whole numbers add up to 114. Beech waali sankhya kaun si hai?,"To find the middle number, let's denote the three consecutive whole numbers as x, x+1, and x+2. 
+
+Since their sum is 114, we can write the equation: 
+x + (x+1) + (x+2) = 114
+
+Combine like terms: 
+3x + 3 = 114
+
+Subtract 3 from both sides: 
+3x = 111
+
+Divide by 3: 
+x = 37
+
+So, the three consecutive whole numbers are 37, 38, and 39. 
+
+The middle number, which is the Beech waali sankhya (the third number in the sequence), is 39.
+
+FINAL: 39",38,False,misread_quantity,non_english,"Finds 37, 38, 39 but reports the third number (39) as the middle; the Hindi phrase 'Beech waali sankhya' is used unquoted.",misread_quantity,non_english,"Finds 37, 38, 39 but reports 39 as middle; Hindi phrase in English prose (unmarked restatement).",,,

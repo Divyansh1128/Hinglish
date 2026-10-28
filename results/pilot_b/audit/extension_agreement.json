@@ -1,0 +1,30 @@
+{
+  "qwen3-8b": {
+    "category": {
+      "agree": 207,
+      "n": 210,
+      "kappa": 0.959
+    },
+    "english_status": {
+      "agree": 209,
+      "n": 210,
+      "kappa": 0.985
+    },
+    "disagreements": 3,
+    "random_agreed_sample": 30
+  },
+  "llama-3.2-3b": {
+    "category": {
+      "agree": 205,
+      "n": 210,
+      "kappa": 0.965
+    },
+    "english_status": {
+      "agree": 210,
+      "n": 210,
+      "kappa": 1.0
+    },
+    "disagreements": 5,
+    "random_agreed_sample": 30
+  }
+}
