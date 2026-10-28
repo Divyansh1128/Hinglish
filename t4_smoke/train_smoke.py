@@ -657,19 +657,30 @@ class Trainer:
         return values
 
 
+def setup_failure(report, report_path):
+    """Record a failure that happened before the GPU work began, so the reason travels in the ZIP."""
+    report.update(status="FAILED", error=traceback.format_exc())
+    print(report["error"], file=sys.stderr, flush=True)
+    write_json(report_path, report)
+    return 1
+
+
 def run_phase(arguments):
-    torch, mismatches = gpu_setup(arguments.allow_stack_mismatch)
     phase, arm = arguments.phase, arguments.arm
     require(arm in ARMS, "Unknown arm")
     require(phase != "probe" or arm == PROBE_ARM, "The 32-update stability probe is for E+C only")
     out = Path(arguments.out) / arm
     out.mkdir(parents=True, exist_ok=True)
     report_path = out / f"{phase}_report.json"
-    data = read_json(arguments.data)
-    families = validate_dataset(data)
     report = {"phase": phase, "arm": arm, "status": "STARTED", "oom": False, "recipe": RECIPE,
-              "recipe_sha256": digest(RECIPE), "data_sha256": data["families_sha256"], "updates": [],
-              "environment": environment(torch, mismatches)}
+              "recipe_sha256": digest(RECIPE), "updates": [], "summary": summarize_updates([])}
+    try:  # GPU, stack and data checks: a failure here still leaves a report behind
+        torch, mismatches = gpu_setup(arguments.allow_stack_mismatch)
+        data = read_json(arguments.data)
+        families = validate_dataset(data)
+        report.update(data_sha256=data["families_sha256"], environment=environment(torch, mismatches))
+    except Exception:
+        return setup_failure(report, report_path)
     sampler = MemorySampler().start()
     report["nvml_sampler_error"] = sampler.error
     try:
@@ -715,7 +726,8 @@ def run_phase(arguments):
 def save(torch, trainer, folder, probe_example, report):
     folder.mkdir(parents=True, exist_ok=True)
     probe = trainer.probe(probe_example)
-    trainer.model.save_pretrained(folder / "adapter")
+    # Embeddings are frozen; "auto" would fetch the base config from the Hub (unpinned) mid-checkpoint.
+    trainer.model.save_pretrained(folder / "adapter", save_embedding_layers=False)
     state = {"adapter": {name: parameter.detach().cpu().clone() for name, parameter in trainer.trainable},
              "optimizer": trainer.optimizer.state_dict(), "scaler": trainer.scaler.state_dict(),
              "rng_torch": torch.get_rng_state(), "rng_cuda": torch.cuda.get_rng_state(), "probe_logits": probe}
@@ -782,12 +794,18 @@ def file_sha256(path):
 
 
 def run_preflight(arguments):
-    torch, mismatches = gpu_setup(arguments.allow_stack_mismatch)
-    data = read_json(arguments.data)
-    families = validate_dataset(data)
-    report = {"status": "STARTED", "environment": environment(torch, mismatches), "recipe": RECIPE,
-              "recipe_sha256": digest(RECIPE), "data_sha256": data["families_sha256"],
-              "selection_rule": data["selection_rule"], "families": [family["family_id"] for family in families]}
+    report_path = Path(arguments.out) / "preflight_report.json"
+    report = {"status": "STARTED", "passed": False, "recipe": RECIPE, "recipe_sha256": digest(RECIPE)}
+    try:  # GPU, stack and data checks: a failure here still leaves a report behind
+        torch, mismatches = gpu_setup(arguments.allow_stack_mismatch)
+        data = read_json(arguments.data)
+        families = validate_dataset(data)
+        report.update(environment=environment(torch, mismatches), data_sha256=data["families_sha256"],
+                      selection_rule=data["selection_rule"], families=[family["family_id"] for family in families])
+    except Exception:
+        setup_failure(report, report_path)
+        print("preflight: FAILED before the tokenizer audit; see the error above", flush=True)
+        return 1
     try:
         tokenizer = load_tokenizer()
         report["chat_template_sha256"] = digest(tokenizer.chat_template)
@@ -801,7 +819,7 @@ def run_preflight(arguments):
     except Exception:
         report.update(status="FAILED", passed=False, error=traceback.format_exc())
         print(report["error"], file=sys.stderr, flush=True)
-    write_json(Path(arguments.out) / "preflight_report.json", report)
+    write_json(report_path, report)
     print("preflight:", report["status"], "mask audit passed:", report.get("passed"), flush=True)
     return 0 if report.get("passed") else 1
 
@@ -823,7 +841,7 @@ def run_decide(arguments):
     result = decide(arms, probe, preflight_passed=bool(preflight and preflight.get("passed")),
                     paired_initialization=paired)
     result.update(arms=arms, probe=probe, initial_adapter_sha256=sorted(initial - {None}),
-                  stack_matches_d021=bool(preflight and preflight["environment"]["stack_matches_d021"]))
+                  stack_matches_d021=bool(((preflight or {}).get("environment") or {}).get("stack_matches_d021")))
     write_json(out / "decision.json", result)
     print(json.dumps({key: result[key] for key in ("decision", "message", "worst_median_seconds", "median_seconds",
                                                    "failed_checks", "stack_matches_d021")}, indent=2))

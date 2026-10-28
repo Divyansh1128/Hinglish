@@ -69,7 +69,7 @@ def render():
         Data: 16 TRAIN families ({ids}), chosen by a fixed seeded rule (below). No DEV or FINAL_TEST data is included.
         Per arm (E+E, E+R, E+C): updates 1–4, save adapter/optimizer/scaler/RNG, reload in a **new process** (new model load), check the restored state, run updates 5–6. Then a 32-update E+C stability probe.
         **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. Expect roughly 40–120 minutes. A results ZIP with checksums downloads at the end; send it unchanged.
-        Optional: set `USE_DRIVE = True` in the next cell so a disconnect can resume (re-run all; completed phases are skipped).''')
+        Drive is on by default (`USE_DRIVE = True`) so a disconnect can resume; allow access when asked (re-run all; completed phases are skipped).''')
     add('markdown', f'''
         **Selection rule:** {train_smoke.SELECTION_RULE}
         **Go/no-go (D021, decided before results):** worst-arm median over timed updates 3–6 ≤ 56 s/update → stay on Colab; 56–150 → Kaggle 2×T4; > 150 → fall back to Qwen3-1.7B. Also required: no OOM, ≥ 2 GiB minimum free device memory, finite losses, no GradScaler skips after update 4, reloaded state and probe within atol = rtol = 1e-3.''')
@@ -77,10 +77,11 @@ def render():
         import os, sys, json, base64, io, zipfile, hashlib, subprocess, time
         from pathlib import Path
         RUN_NAME = 'trainsmoke-Qwen3-4B'
-        USE_DRIVE = False
+        USE_DRIVE = True  # resume after a disconnect; set False to keep everything in the runtime
         ALLOW_STACK_MISMATCH = False  # True only to measure anyway on a changed Colab image; the result is then flagged
         os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         os.environ['PYTHONHASHSEED'] = '0'
+        os.environ['HF_HUB_DISABLE_PROGRESS_BARS'] = '1'  # download bars would become thousands of streamed lines
         PACKAGE = Path('/content/hinglish_trainsmoke') if Path('/content').exists() else Path.cwd() / 'hinglish_trainsmoke'
         PACKAGE.mkdir(parents=True, exist_ok=True)
         blob = base64.b64decode({base64.b64encode(blob).decode()!r})
@@ -93,7 +94,7 @@ def render():
         assert len(data['families']) == 16 and all(f['split_role'] == 'CONFIRM_TRAIN' for f in data['families'])
         print('Smoke families:', ', '.join(f['family_id'] for f in data['families']))
         print('Data SHA-256:', data['families_sha256'])
-        if USE_DRIVE:
+        if USE_DRIVE and Path('/content').exists():  # Drive only inside Colab
             from google.colab import drive
             drive.mount('/content/drive')
             OUT = Path('/content/drive/MyDrive/Hinglish_TrainSmoke') / RUN_NAME
@@ -116,16 +117,29 @@ def render():
             command = [sys.executable, '-u', str(PACKAGE / 't4_smoke/train_smoke.py'), *args, '--out', str(OUT)]
             if args[0] != 'decide':
                 command += ['--data', str(DATA)] + (['--allow-stack-mismatch'] if ALLOW_STACK_MISMATCH else [])
-            started = time.time()
-            with open(OUT / 'log.txt', 'a') as log, subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True) as process:
-                for line in process.stdout:
-                    print(line, end='', flush=True)
-                    log.write(line)
-            with open(OUT / 'attempts.jsonl', 'a') as attempts:
-                attempts.write(json.dumps({{'args': list(args), 'returncode': process.returncode, 'started': started, 'seconds': time.time() - started}}) + '\\n')
-            return process.returncode''')
+            started, returncode = time.time(), None
+            try:
+                with open(OUT / 'log.txt', 'a') as log, subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                                                         text=True, errors='replace') as process:
+                    try:
+                        for line in process.stdout:
+                            print(line, end='', flush=True)
+                            log.write(line)
+                    except BaseException:  # interrupt: never leave a phase running on the GPU behind the notebook
+                        process.kill()
+                        process.wait()
+                        log.write('[notebook] interrupted; phase process killed\\n')
+                        raise
+                returncode = process.returncode
+            finally:
+                with open(OUT / 'attempts.jsonl', 'a') as attempts:
+                    attempts.write(json.dumps({{'args': list(args), 'returncode': returncode, 'started': started, 'seconds': time.time() - started}}) + '\\n')
+            return returncode''')
     add('code', '''
-        gpu = subprocess.run(['nvidia-smi', '--query-gpu=name,memory.total,driver_version', '--format=csv,noheader'], capture_output=True, text=True).stdout.strip()
+        try:
+            gpu = subprocess.run(['nvidia-smi', '--query-gpu=name,memory.total,driver_version', '--format=csv,noheader'], capture_output=True, text=True).stdout.strip()
+        except FileNotFoundError:  # CPU runtime: no nvidia-smi at all
+            gpu = ''
         print('GPU:', gpu or 'none')
         assert 'T4' in gpu, 'Select Runtime → Change runtime type → T4 GPU'
         subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-r', str(PACKAGE / 'requirements-train.txt')], check=True)
@@ -137,8 +151,9 @@ def render():
         # Tokenizer-only preflight: completion-only masks and identical E/R/C targets for all 16 families.
         if not complete(OUT / 'preflight_report.json'):
             step('preflight')
-        assert json.loads((OUT / 'preflight_report.json').read_text()).get('passed'), 'Mask/target preflight failed: send the ZIP (last cell)'
-        print(json.dumps(json.loads((OUT / 'preflight_report.json').read_text())['mask_audit']['arms'], indent=1))''')
+        PREFLIGHT = OUT / 'preflight_report.json'
+        assert PREFLIGHT.exists() and json.loads(PREFLIGHT.read_text()).get('passed'), 'Preflight failed (error printed above): run the Download cell and send the ZIP'
+        print(json.dumps(json.loads(PREFLIGHT.read_text())['mask_audit']['arms'], indent=1))''')
     add('code', '''
         # Six updates per arm: 1-4 in one process, save; 5-6 in a new process after a fresh model load and state check.
         for arm in ('EE', 'ER', 'EC'):

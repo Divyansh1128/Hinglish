@@ -3,8 +3,12 @@ import copy
 import hashlib
 import io
 import json
+import os
 import re
+import subprocess
 import sys
+import tempfile
+import textwrap
 import unittest
 import zipfile
 from pathlib import Path
@@ -379,6 +383,62 @@ class NotebookTests(unittest.TestCase):
             for marker in ("DV0", "FT0", "PB0", "PIL0", '"gold"', "reference_equation"):
                 self.assertNotIn(marker, embedded)
 
+    def test_step_kills_the_phase_on_interrupt_and_tolerates_bad_bytes(self):
+        """Review 2026-10-28: an interrupted cell must not leave a training process on the GPU."""
+        stub = textwrap.dedent('''
+            import os, sys, time
+            if sys.argv[1] == "bytes":
+                sys.stdout.buffer.write(b"bad \\xff byte\\n")
+                sys.exit(3)
+            open(os.environ["PIDFILE"], "w").write(str(os.getpid()))
+            print("started", flush=True)
+            time.sleep(60)
+        ''')
+        driver = textwrap.dedent('''
+            import json, os, signal, sys
+            from pathlib import Path
+            namespace = {}
+            exec(Path(sys.argv[1]).read_text(), namespace)
+            Path(namespace["PACKAGE"], "t4_smoke", "train_smoke.py").write_text(Path(sys.argv[2]).read_text())
+            result = {"bytes_returncode": namespace["step"]("bytes")}
+            def interrupt(*_):
+                raise KeyboardInterrupt
+            signal.signal(signal.SIGALRM, interrupt)
+            signal.setitimer(signal.ITIMER_REAL, 3.0)
+            try:
+                namespace["step"]("sleep")
+                result["interrupted"] = False
+            except KeyboardInterrupt:
+                result["interrupted"] = True
+            pid = int(Path(os.environ["PIDFILE"]).read_text())
+            try:
+                os.kill(pid, 0)
+                result["child_alive"] = True
+            except ProcessLookupError:
+                result["child_alive"] = False
+            attempts = [json.loads(line) for line in (namespace["OUT"] / "attempts.jsonl").read_text().splitlines()]
+            result["attempts"] = [attempt["returncode"] for attempt in attempts]
+            print("RESULT " + json.dumps(result))
+        ''')
+        with tempfile.TemporaryDirectory() as folder:
+            folder = Path(folder)
+            (folder / "cell.py").write_text(self.notebook["cells"][2]["source"])
+            (folder / "stub.py").write_text(stub)
+            (folder / "driver.py").write_text(driver)
+            (folder / "work").mkdir()  # the cell unpacks its payload under the working directory
+            env = dict(os.environ, PIDFILE=str(folder / "pid"))
+            run = subprocess.run([sys.executable, "-I", str(folder / "driver.py"), str(folder / "cell.py"), str(folder / "stub.py")],
+                                 cwd=folder / "work", env=env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        result = json.loads(run.stdout.split("RESULT ", 1)[1])
+        self.assertEqual(result, {"bytes_returncode": 3, "interrupted": True, "child_alive": False, "attempts": [3, None]})
+
+    def test_preflight_cell_survives_a_missing_report(self):
+        cell = next(cell["source"] for cell in self.notebook["cells"] if "step('preflight')" in cell["source"])
+        self.assertIn("PREFLIGHT.exists() and", cell)
+        source = "\n".join(cell["source"] for cell in self.notebook["cells"])
+        self.assertIn("except FileNotFoundError", source)
+
     def test_notebook_checks_t4_runs_all_phases_and_downloads_checksums(self):
         source = "\n".join(cell["source"] for cell in self.notebook["cells"])
         for needle in ("'T4' in gpu", "requirements-train.txt", "step('preflight')", "'--phase', 'first'",
@@ -386,6 +446,56 @@ class NotebookTests(unittest.TestCase):
                        "SHA256SUMS.txt", "files.download", "attempts.jsonl"):
             self.assertIn(needle, source)
         self.assertEqual(self.notebook["metadata"]["accelerator"], "GPU")
+
+
+class SetupFailureTests(unittest.TestCase):
+    """Review 2026-10-28: a failure before the GPU work must still leave a report (and a decision)."""
+
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.out = Path(self.folder.name)
+        self.data = self.out / "smoke_data.json"
+        self.data.write_text(json.dumps(ts.smoke_dataset(ROOT)))
+
+    def tearDown(self):
+        self.folder.cleanup()
+
+    def failing_setup(self, allow):
+        raise ValueError("D021 stack mismatch: torch 2.11.0+cu130 expected (Colab build), found 2.12.0+cu130")
+
+    def test_preflight_setup_failure_is_reported(self):
+        with mock.patch.object(ts, "gpu_setup", self.failing_setup), mock.patch("sys.stderr", io.StringIO()), \
+                mock.patch("sys.stdout", io.StringIO()):
+            code = ts.main(["preflight", "--data", str(self.data), "--out", str(self.out)])
+            self.assertEqual(code, 1)
+            report = json.loads((self.out / "preflight_report.json").read_text())
+            self.assertEqual((report["status"], report["passed"]), ("FAILED", False))
+            self.assertIn("D021 stack mismatch", report["error"])
+            self.assertEqual(ts.main(["decide", "--out", str(self.out)]), 0)
+        decision = json.loads((self.out / "decision.json").read_text())
+        self.assertEqual(decision["decision"], "NO_GO_INTEGRITY")
+        self.assertFalse(decision["stack_matches_d021"])
+
+    def test_phase_setup_failure_is_reported(self):
+        with mock.patch.object(ts, "gpu_setup", self.failing_setup), mock.patch("sys.stderr", io.StringIO()):
+            code = ts.main(["run", "--phase", "first", "--arm", "EE", "--data", str(self.data), "--out", str(self.out)])
+        self.assertEqual(code, 1)
+        report = json.loads((self.out / "EE" / "first_report.json").read_text())
+        self.assertEqual(report["status"], "FAILED")
+        self.assertIn("D021 stack mismatch", report["error"])
+        self.assertEqual(report["summary"]["updates"], [])
+        self.assertFalse(ts.summarize_arm(report, None)["complete"])
+
+    def test_checkpoint_does_not_ask_the_hub_about_embeddings(self):
+        trainer = mock.MagicMock(trainable=[], cursor=64)
+        trainer.probe.return_value = "probe"
+        fake_torch = mock.MagicMock()
+        with mock.patch.object(ts, "state_digests", return_value={"adapter": "x"}), \
+                mock.patch.object(ts, "file_sha256", return_value="y"):
+            ts.save(fake_torch, trainer, self.out / "checkpoint", {"family_id": "TRA012", "form": "E"},
+                    {"data_sha256": "z"})
+        trainer.model.save_pretrained.assert_called_once_with(self.out / "checkpoint" / "adapter",
+                                                              save_embedding_layers=False)
 
 
 if __name__ == "__main__":
