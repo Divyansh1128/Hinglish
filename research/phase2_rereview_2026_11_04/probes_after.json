@@ -1,0 +1,158 @@
+{
+  "reviewed_head": "86854bd",
+  "data": "DEV/TRAIN and synthetic fixtures only",
+  "R1_swapped_arms": {
+    "accepted": false,
+    "exception": "AnalysisError",
+    "message": "Refused: ER:11: run adapter EC:11 attempt 1 (model 11f796628086…, config f8ac0b0190a2…) is not the frozen slot ER:11 attempt 1 (model 5ab0366c93c1…, config 4f8a0092e34f…)"
+  },
+  "R1_substituted_seed": {
+    "accepted": false,
+    "exception": "AnalysisError",
+    "message": "Refused: supplied runs differ from the frozen checkpoint set (retained seeds [11, 22, 33], S = 3): missing ['EC:33', 'EE:33', 'ER:33']; extra or substituted ['EC:44', 'EE:44', 'ER:44']"
+  },
+  "R2_unverified_CPU_backend": {
+    "accepted": true,
+    "value": true
+  },
+  "R2_wrong_recorded_environment": {
+    "accepted": true,
+    "value": null
+  },
+  "R2_excluded_model": {
+    "accepted": false,
+    "exception": "AnalysisError",
+    "message": "Refused: FINAL_TEST model 'meta-llama/Llama-3.2-3B-Instruct' is not Qwen/Qwen3-4B; every other backbone, Llama-3.2-3B included, is excluded from this registration (Amendment 1 item 15)"
+  },
+  "R2_fixture_metadata": {
+    "backend": "huggingface",
+    "hardware": "none: scripted test fixture on DEV families",
+    "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "chat_template_sha256": "0b2379b3fe1500d2ffb7b1f249a31c8de1d75c19348512d13e1813a8b41be616",
+    "gpu_verified": false,
+    "adapter": {
+      "arm": "EC",
+      "seed": 11,
+      "attempt": 1,
+      "adapter_model_sha256": "11f79662808677551ea71fe50d6a0810067b2d97327f79144c8aa0348e5e4724",
+      "adapter_config_sha256": "f8ac0b0190a238532207a439b987a618f1972f62599166449021b64331cbb008"
+    },
+    "base_weight_shards_sha256": {
+      "model-00001-of-00003.safetensors": "54bd97413337c66bb03d1a4842c9fed3115ff980770481a83453ed1125d1e180",
+      "model-00002-of-00003.safetensors": "c199d39115c89ecceb374c91150125739548f45103cdb9ada72ca228e5beae58",
+      "model-00003-of-00003.safetensors": "b9c9edd88673f6cb966720bbf312eb1efdb199cd2557dbc8fea2af114d54a2b5"
+    }
+  },
+  "R3_original_probes": {
+    "TypeError_training": "protocol",
+    "OSError_data": "infrastructure",
+    "AssertionError_reload": "protocol"
+  },
+  "R4_wrong_Hub_template_entries": {
+    "accepted": true,
+    "value": "aa483736938a9a3af31712a4165b12edae0ce806bbcc48e176e0db6d3b7f24d6"
+  },
+  "R8_two_metadata_files_as_baseline": {
+    "accepted": true,
+    "value": true
+  },
+  "new_live_attempt_reconcile": [
+    "infrastructure"
+  ],
+  "new_live_attempt_next_run": {
+    "kind": "train",
+    "slot": 11,
+    "seed": 11,
+    "arm": "EC",
+    "attempt": 2,
+    "retry": true,
+    "reserve": false
+  },
+  "R4_freeze_wrong_non_file_stack": {
+    "accepted": true,
+    "value": 3
+  },
+  "SystemExit_training": {
+    "exit_code": 1,
+    "outcomes": [
+      [
+        "start",
+        "EC",
+        11,
+        1,
+        null
+      ],
+      [
+        "finish",
+        "EC",
+        11,
+        1,
+        "infrastructure"
+      ]
+    ]
+  },
+  "targeted_regressions": {
+    "run": 5,
+    "failures": 0,
+    "errors": 0
+  },
+  "R9_boundaries": {
+    "38": {
+      "cells": 16,
+      "feasible": 6,
+      "degenerate": 0,
+      "infeasible": 10,
+      "feasible_cells": [
+        [
+          0.035,
+          0.0
+        ],
+        [
+          0.035,
+          3.0
+        ],
+        [
+          0.035,
+          5.0
+        ],
+        [
+          0.071,
+          0.0
+        ],
+        [
+          0.071,
+          3.0
+        ],
+        [
+          0.071,
+          5.0
+        ]
+      ]
+    },
+    "39": {
+      "cells": 16,
+      "feasible": 1,
+      "degenerate": 0,
+      "infeasible": 15,
+      "feasible_cells": [
+        [
+          0.035,
+          0.0
+        ]
+      ]
+    },
+    "40": {
+      "cells": 17,
+      "feasible": 0,
+      "degenerate": 1,
+      "infeasible": 16,
+      "feasible_cells": []
+    }
+  },
+  "R10_observed_accuracies": {
+    "null_ceiling": 0.91199,
+    "null_ceiling_observed": 0.943
+  },
+  "R10_archive_analysis_hash_matches": true
+}

@@ -204,3 +204,20 @@ Any change to this plan is a dated amendment appended here and recorded in `docs
    - The item 7 planning rerun becomes a versioned planning-only script that treats p0 = 1 as the degenerate zero-headroom cell.
    - The calibration's "C baseline 0.943" is relabelled as a latent accuracy. One extra scenario, with an observed comparator accuracy of 0.943, is archived before any output.
    - Neither change alters the design, labels or thresholds.
+
+## Amendment 3 (4 November 2026)
+
+**Exposure at adoption:** unchanged from Amendment 2. No Phase-2 training, DEV or evaluation-backbone FINAL_TEST output exists. Basis: Sol's re-review, `handoffs/2026-11-04_sol_rereview_phase2.md`.
+
+1. **Completing the Amendment 2 item 1 disclosure.**
+   - The 535b1e9 gate-notebook tests did more than embed the FINAL_TEST bytes: their setup cells also extracted them into temporary test workspaces.
+   - The affected suites were run unattended by the Claude implementers and also by Sol (GPT) at the start of its 3 November review, before the paths were found.
+   - The statements that no person or model viewed any item content, and that no information reached any analysis choice, are participant attestations: by the user, by Claude as coordinator and by the agents' reports. The repository cannot prove them independently. The test code shows pass/fail output only and no evaluation-backbone generation.
+2. **Writer ownership (B4).**
+   - A training root has exactly one writer, enforced by a writer lock that records a session ID and a heartbeat.
+   - An open attempt is never treated as abandoned automatically.
+   - Recovery from a stale writer requires an explicit operator confirmation (`RECOVER_STALE_WRITER = True`) that no other session is running. It is logged, and only then is the open attempt closed as an infrastructure failure.
+   - This changes no retry or reserve rule.
+3. **Baseline evidence and environment binding (B1–B3).** These enforce registered values and change none of them:
+   - The baseline prerequisite and the analysis ceiling-risk count k must come from a validated, complete 120-generation unchanged-model DEV archive.
+   - Every Phase-2 archive must record, and the analysis must check against the implementation manifest and §2: T4 hardware, the pinned package versions including PEFT, and the execution settings.

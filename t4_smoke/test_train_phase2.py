@@ -807,6 +807,33 @@ class TrainerEntryTests(unittest.TestCase):
         with mock.patch.object(tp, "RECIPE", dict(tp.RECIPE, lr=2e-4)):  # a changed recipe is a changed identity
             self.assertNotEqual(tp.attempt_identity(self.fixture.inputs, "x")["recipe_sha256"], original["recipe_sha256"])
 
+    def test_each_optional_run_assertion_can_be_supplied_independently(self):
+        for option, value in (("--arm", "EC"), ("--seed", "11"), ("--slot", "11"), ("--attempt", "1")):
+            with self.subTest(option=option):
+                shutil.rmtree(self.fixture.train_root, ignore_errors=True)
+                code, err, _ = self.train(None, option, value)
+                self.assertEqual(code, 0, err)
+                self.assertEqual(self.outcomes()[-1], ("finish", "EC", 11, 1, "valid"))
+        shutil.rmtree(self.fixture.train_root, ignore_errors=True)
+        code, err, _ = self.train(None, "--arm", "EE")
+        self.assertEqual(code, tp.EXIT_CODES["refused"])
+        self.assertIn("authorises EC", err)
+        self.assertFalse(self.fixture.log.exists())
+
+    def test_system_exit_records_infrastructure_at_setup_and_during_training(self):
+        for stage in ("setup", "training"):
+            with self.subTest(stage=stage):
+                shutil.rmtree(self.fixture.train_root, ignore_errors=True)
+                trainer = type("T", (FakeRunTrainer,), {"fail_at": 2, "error": SystemExit(9)})
+                patches = [mock.patch.object(ts, "gpu_setup", side_effect=SystemExit(9))] if stage == "setup" else []
+                code, _, _ = self.train(trainer, patches=patches)
+                self.assertEqual(code, tp.EXIT_CODES["infrastructure"])
+                report = self.report()
+                self.assertEqual((report["status"], report["failure_stage"], report["failure_class"], report["failure_kind"]),
+                                 ("FAILED", stage, "infrastructure", "runtime disconnect or kill"))
+                self.assertEqual(self.outcomes()[-1], ("finish", "EC", 11, 1, "infrastructure"))
+                self.assertEqual(tp.next_run(tp.plan(self.fixture.entries()))["attempt"], 2)
+
     def test_manifest_train_and_exposure_are_verified_inside_the_attempt(self):
         """R4: a manifest that does not describe the running trainer, changed TRAIN bytes or a changed exposure order
         are protocol failures detected at the trainer entry point; the study halts."""

@@ -1,0 +1,36 @@
+{
+  "reviewed_commit": "86854bd",
+  "suites": {
+    "t4": {
+      "tests": 174,
+      "seconds": 31.966,
+      "status": "OK"
+    },
+    "pilot": {
+      "tests": 32,
+      "seconds": 1.881,
+      "status": "OK"
+    },
+    "secondary": {
+      "tests": 81,
+      "seconds": 6.968,
+      "status": "OK"
+    },
+    "analysis": {
+      "tests": 73,
+      "seconds": 50.331,
+      "status": "OK"
+    }
+  },
+  "total_tests": 360,
+  "sha256": {
+    "phase2/PREREGISTRATION.md": "b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396",
+    "phase2/IMPLEMENTATION_MANIFEST.md": "1a471b2ec2dbe10bdfafc02044316aeb680ee7b2dd3ad2a268238181c083bd78",
+    "t4_smoke/train_phase2.py": "5b626240ef8531555285c842fbdf6efd138187a97a99a417a936e7adee56255e",
+    "phase2_analysis/analyze.py": "1e9bb699d8ee34f1fa871e4c936e17a6ac9d8b211bcb0bc0e3989b90465c5fd2",
+    "colab_notebooks/phase2/Phase2_Baseline_DEV.ipynb": "25a2fadb4ca8dea81ad3d953171552616abae1d0adc6951df5467490f140b9ed",
+    "colab_notebooks/phase2/Phase2_Train.ipynb": "19aeb2a0c0d32fd8bc625c19d9838b1fe43bfdbd5dabfb728a9bbbe4ba5141f4"
+  },
+  "final_test_access": "Isolated byte hashing only; all semantic fixtures use DEV.",
+  "verdict": "Ready to freeze: NO"
+}

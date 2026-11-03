@@ -1097,7 +1097,7 @@ def preflight(arguments):
     spec = dict(action, attempt=attempt)
     given = (arguments.arm, arguments.seed, arguments.slot, arguments.attempt)
     authorised = (spec["arm"], spec["seed"], spec["slot"], attempt)
-    if any(value is not None for value in given) and given != authorised:
+    if any(value is not None and value != expected for value, expected in zip(given, authorised)):
         raise Refused(f"The attempt plan authorises {spec['arm']} seed {spec['seed']} slot {spec['slot']} attempt {attempt}, "
                       f"not {given} (Amendment 2 item 4).")
     out = attempt_dir(train_root, spec["arm"], spec["seed"], attempt)
@@ -1176,7 +1176,7 @@ def train_attempt(spec, out, inputs, identity, resume):
         torch, mismatches = ts.gpu_setup(False)  # Amendment 2 item 3: no override exists
         require(not mismatches, "D021 stack mismatch inside the attempt: " + "; ".join(mismatches))
         report["environment"] = ts.environment(torch, mismatches)
-    except (Exception, KeyboardInterrupt) as error:
+    except (Exception, KeyboardInterrupt, SystemExit) as error:
         fail_report(report, report_path, error, stage)
         return report
     sampler = ts.MemorySampler().start()
@@ -1246,7 +1246,7 @@ def train_attempt(spec, out, inputs, identity, resume):
         print(f"final adapter SHA-256 {final['adapter_model_sha256']} (config {final['adapter_config_sha256']})", flush=True)
         if resumed:
             print("This run was RESUMED: it is never valid for the FinalTest gate (Amendment 1 item 11).", flush=True)
-    except (Exception, KeyboardInterrupt) as error:
+    except (Exception, KeyboardInterrupt, SystemExit) as error:
         report["oom"] = is_cuda_oom(error)
         fail_report(report, report_path, error, stage)
     finally:
