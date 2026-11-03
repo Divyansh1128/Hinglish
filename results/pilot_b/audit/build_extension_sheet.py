@@ -1,8 +1,10 @@
 """Post-hoc audit extension (Qwen3-8B, Llama-3.2-3B): agreement between the two AI taggers and the human-check sheet.
 
-Taggers: A = Claude Opus (claude_tags_<model>.jsonl), B = Claude Sonnet (second_tags_<model>.jsonl), each blind to
-the other. Both are Claude models (GPT unavailable), so the sheet adds every disagreement plus 30 seeded random
-agreed rows per model (vs 20 for the pre-registered Qwen3-4B audit). Usage: python3 -B build_extension_sheet.py
+Taggers, each blind to the others: A = Claude Opus (claude_tags_<model>.jsonl), B = GPT (gpt_tags_<model>.jsonl,
+added 3 Nov 2026 once Codex was available again), C = Claude Sonnet (second_tags_<model>.jsonl). The headline
+agreement is A vs B (cross-family, as in the pre-registered audit); A vs C and B vs C are also reported. The sheet
+lists every row where any two taggers differ, plus 30 seeded random rows where all three agree, per model.
+Usage: python3 -B build_extension_sheet.py
 """
 import csv
 import json
@@ -31,14 +33,18 @@ def kappa(pairs):
 summary, sheet = {}, []
 for model in MODELS:
     inputs = load(HERE / f'{model}_outputs_for_audit.jsonl')
-    a, b = load(HERE / f'claude_tags_{model}.jsonl'), load(HERE / f'second_tags_{model}.jsonl')
-    assert set(inputs) == set(a) == set(b) and len(inputs) == 210, model
+    a, b = load(HERE / f'claude_tags_{model}.jsonl'), load(HERE / f'gpt_tags_{model}.jsonl')
+    c = load(HERE / f'second_tags_{model}.jsonl')
+    assert set(inputs) == set(a) == set(b) == set(c) and len(inputs) == 210, model
     ids = sorted(inputs)
     stats = {}
-    for field in ('category', 'english_status'):
-        pairs = [(a[i][field], b[i][field]) for i in ids]
-        stats[field] = {'agree': sum(x == y for x, y in pairs), 'n': len(pairs), 'kappa': round(kappa(pairs), 3)}
-    disagree = [i for i in ids if (a[i]['category'], a[i]['english_status']) != (b[i]['category'], b[i]['english_status'])]
+    for name, x, y in (('A_vs_B', a, b), ('A_vs_C', a, c), ('B_vs_C', b, c)):
+        stats[name] = {}
+        for field in ('category', 'english_status'):
+            pairs = [(x[i][field], y[i][field]) for i in ids]
+            stats[name][field] = {'agree': sum(p == q for p, q in pairs), 'n': len(pairs), 'kappa': round(kappa(pairs), 3)}
+    key = lambda t, i: (t[i]['category'], t[i]['english_status'])
+    disagree = [i for i in ids if len({key(a, i), key(b, i), key(c, i)}) > 1]
     agreed = [i for i in ids if i not in disagree]
     sample = sorted(random.Random(f'{SEED}-{model}').sample(agreed, SAMPLE))
     stats.update(disagreements=len(disagree), random_agreed_sample=SAMPLE)
@@ -51,6 +57,8 @@ for model in MODELS:
                           'tagger_A_category': a[i]['category'], 'tagger_A_english': a[i]['english_status'],
                           'tagger_A_reason': a[i]['reason'], 'tagger_B_category': b[i]['category'],
                           'tagger_B_english': b[i]['english_status'], 'tagger_B_reason': b[i]['reason'],
+                          'tagger_C_category': c[i]['category'], 'tagger_C_english': c[i]['english_status'],
+                          'tagger_C_reason': c[i]['reason'],
                           'YOUR_category': '', 'YOUR_english_status': '', 'YOUR_note': ''})
 
 with open(HERE / 'human_check_sheet_extension.csv', 'w', newline='', encoding='utf-8-sig') as handle:
