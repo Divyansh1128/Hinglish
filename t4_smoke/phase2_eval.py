@@ -26,8 +26,8 @@ for candidate in (HERE.parent, HERE.parent / "test1_pilot"):  # notebook payload
     if (candidate / "hinglish_pilot").is_dir() and str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-from hinglish_pilot.data import validate  # noqa: E402
-from hinglish_pilot.engine import default_config, read, run, write  # noqa: E402
+from hinglish_pilot.data import digest, validate  # noqa: E402
+from hinglish_pilot.engine import code_hash, default_config, read, run, write  # noqa: E402
 from hinglish_pilot.hf_backend import adapter_digests  # noqa: E402
 from hinglish_pilot.report import wilson  # noqa: E402
 
@@ -57,6 +57,7 @@ BORROWING_POLICY = ("Phase-2 policy (D033): R = Hindi phrasing in Roman script w
 IDENTITY = ("family_id", "source_family_id", "template_group_id")
 FROZEN_SCHEMA = "phase2-adapters-frozen-2"
 ENGINE_SEED = 11
+PREREGISTRATION_SHA256 = "37ef68bfcb7cfa0bb530bfbecbf2082d18e916c0217370085d4180e8ea759ada"
 SHA256 = re.compile("[0-9a-f]{64}")
 
 
@@ -149,6 +150,14 @@ def parse_frozen(text):
     require(frozen.get("base_model") == MODEL_ID and frozen.get("base_revision") == MODEL_REVISION, "Base model/revision mismatch")
     for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "attempt_log_sha256"):
         require(SHA256.fullmatch(str(frozen.get(key))), f"{key} must be a SHA-256")
+    logs = frozen.get("training_logs_sha256")
+    require(isinstance(logs, dict) and logs, "Freeze must include training_logs_sha256")
+    for name, checksum in logs.items():
+        require(not Path(name).is_absolute() and ".." not in Path(name).parts and SHA256.fullmatch(str(checksum)),
+                "Invalid training log path or SHA-256")
+    shards = frozen.get("base_weight_shards_sha256")
+    require(isinstance(shards, dict) and shards and all(SHA256.fullmatch(str(v)) for v in shards.values()),
+            "Freeze must include base_weight_shards_sha256")
     retained = frozen.get("retained_seeds")
     require(isinstance(retained, list), "retained_seeds must be a list of {slot, seed}")
     S = len(retained)
@@ -183,14 +192,19 @@ def parse_frozen(text):
 def gate(frozen, train_root, *, expected_data_sha256=None):
     """Refuse FINAL_TEST unless every frozen adapter is present, valid (60/60 steps, not resumed), hash-identical,
     built by the frozen implementation and exposure order, and the attempt log still yields the frozen seeds."""
-    problems, found = [], []
+    problems, found, current = [], [], None
     log_path = Path(train_root) / tp.ATTEMPT_LOG
     if not log_path.is_file() or ts.file_sha256(log_path) != frozen["attempt_log_sha256"]:
         problems.append(f"attempt log {log_path} missing or changed since the freeze")
     else:
         current = tp.plan(tp.read_log(log_path))
-        if current["halted"] or [list(pair) for pair in current["retained"]] != [[e["slot"], e["seed"]] for e in frozen["retained_seeds"]]:
+        if current["halted"] or not current["final"] or [list(pair) for pair in current["retained"]] != [[e["slot"], e["seed"]] for e in frozen["retained_seeds"]]:
             problems.append("attempt log does not yield the frozen retained seeds")
+    logs = frozen.get("training_logs_sha256", {})
+    for name, checksum in logs.items():
+        path = Path(train_root) / name
+        if not path.is_file() or ts.file_sha256(path) != checksum:
+            problems.append(f"training log {name} missing or changed since the freeze")
     for entry in sorted(frozen["adapters"], key=lambda a: (a["seed"], a["arm"])):
         folder = attempt_dir(train_root, entry["arm"], entry["seed"], entry["attempt"])
         label = f"{run_name(entry['arm'], entry['seed'])} attempt {entry['attempt']}"
@@ -199,6 +213,14 @@ def gate(frozen, train_root, *, expected_data_sha256=None):
             problems.append(f"{label}: final_adapter.json not found at {record_path}")
             continue
         record = json.loads(record_path.read_text(encoding="utf-8"))
+        report_name = str((folder / "train_report.json").relative_to(train_root))
+        if report_name not in logs:
+            problems.append(f"{label}: training report not frozen")
+        if current is not None:
+            slot = next((e["slot"] for e in frozen["retained_seeds"] if e["seed"] == entry["seed"]), None)
+            state = current["slots"][slot]["arms"].get(entry["arm"], {})
+            if state.get("valid_attempt") != entry["attempt"]:
+                problems.append(f"{label}: attempt is not the valid attempt in the frozen log")
         checks = {
             "valid run (60/60 steps, finite, not resumed; Amendment 1 items 10-11)": not tp.valid_run_problems(record),
             "recipe": record.get("recipe_sha256") == ts.digest(RECIPE),
@@ -242,6 +264,8 @@ def freeze_manifest(train_root):
             attempt = current["slots"][slot]["arms"][arm]["valid_attempt"]
             record = ts.read_json(attempt_dir(train_root, arm, seed, attempt) / "final_adapter.json")
             require(not tp.valid_run_problems(record), f"{run_name(arm, seed)} attempt {attempt} is not a valid run")
+            require(tp.attempt_outcome(attempt_dir(train_root, arm, seed, attempt))[0] == "valid",
+                    f"{run_name(arm, seed)} attempt {attempt}: training report does not confirm a valid run")
             records.append(record)
     shared = {}
     for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "base_weight_shards_sha256"):
@@ -249,8 +273,17 @@ def freeze_manifest(train_root):
         require(len(values) == 1 and records[0].get(key) is not None, f"Retained runs differ in (or lack) {key}")
         shared[key] = records[0][key]
     S = current["S"]
+    logs = {}
+    for record in records:
+        folder = attempt_dir(train_root, record["arm"], record["seed"], record["attempt"])
+        require((folder / "train_report.json").is_file(), f"{folder}: training report missing")
+        for name in ("train_report.json", "log.txt", "attempts.jsonl"):
+            path = folder / name
+            if path.is_file():
+                logs[str(path.relative_to(train_root))] = ts.file_sha256(path)
     frozen = {"schema": FROZEN_SCHEMA, "base_model": MODEL_ID, "base_revision": MODEL_REVISION, **shared,
               "attempt_log_sha256": ts.file_sha256(log_path),
+              "training_logs_sha256": logs,
               "retained_seeds": [{"slot": slot, "seed": seed} for slot, seed in current["retained"]], "S": S,
               "confirmatory": S == 3, "descriptive_only": S < 3,
               "adapters": [adapter_record(r) for r in sorted(records, key=lambda r: (r["seed"], r["arm"]))]}
@@ -267,6 +300,22 @@ def check_preregistration(text_bytes, expected_sha256):
 
 # ---------------------------------------------------------------- GPU evaluation (lazy imports)
 
+def authorize_final_test(arguments):
+    """Enforce the complete freeze before the executable entry point reads test bytes."""
+    require(arguments.train_root is not None, "FINAL_TEST refused: --train-root is required for the freeze gate")
+    folder = Path(arguments.inputs)
+    check_preregistration((folder / "PREREGISTRATION.md").read_bytes(), PREREGISTRATION_SHA256)
+    frozen = parse_frozen((folder / "ADAPTERS_FROZEN.md").read_text(encoding="utf-8"))
+    require(ts.file_sha256(folder / "IMPLEMENTATION_MANIFEST.md") == frozen["implementation_manifest_sha256"],
+            "FINAL_TEST refused: implementation manifest differs from the freeze")
+    authorized = gate(frozen, arguments.train_root)
+    if arguments.adapter_record is not None:
+        record = adapter_record(ts.read_json(arguments.adapter_record))
+        require(any(record == item and Path(arguments.adapter_dir).resolve() == path.resolve()
+                    for item, path in authorized), "FINAL_TEST refused: adapter is outside the frozen set")
+    return frozen
+
+
 def sealed_status(run_dir, manifest, archive):
     """Completion, checksum and infrastructure status only (no answers, no accuracy)."""
     errors = run_dir / "errors.jsonl"
@@ -281,6 +330,7 @@ def sealed_status(run_dir, manifest, archive):
 def run_evaluate(arguments):
     split, run_dir = arguments.split, Path(arguments.run_dir)
     sealed = split == "final_test" or arguments.sealed  # FINAL_TEST can never be unsealed (Amendment 1 item 14)
+    frozen = authorize_final_test(arguments) if split == "final_test" else None
     folder = Path(arguments.inputs)
     dataset, splits = inputs((folder / Path(FROZEN[split][0]).name).read_bytes(), split,
                              json.loads((folder / "identities.json").read_text(encoding="utf-8")))
@@ -290,10 +340,18 @@ def run_evaluate(arguments):
     config = config_for(split, adapter)
     manifest_path = run_dir / "run_manifest.json"
     if manifest_path.exists() and read(manifest_path).get("status") == "COMPLETE":
+        manifest = read(manifest_path)
+        require(all(manifest.get(key) == value for key, value in {
+            "config_sha256": digest(config), "dataset_sha256": digest(dataset),
+            "split_sha256": digest(splits), "code_sha256": code_hash(),
+        }.items()), "Completed run identity differs: data/config/code changed; refusing to relabel stored outputs")
         print(run_dir.name, "already COMPLETE; nothing regenerated", flush=True)
     else:
         from hinglish_pilot.hf_backend import HFBackend
         backend = HFBackend(config, adapter_path=arguments.adapter_dir)
+        if frozen is not None:
+            require(backend.metadata.get("base_weight_shards_sha256") == frozen["base_weight_shards_sha256"],
+                    "FINAL_TEST refused: loaded base shards differ from the freeze")
         write(run_dir.parent / f"{run_dir.name}_model_load_report.json", backend.load_report)
         if sealed:
             def progress(done, total, item):
@@ -355,6 +413,7 @@ def main(argv=None):
     evaluate.add_argument("--run-dir", type=Path, required=True)
     evaluate.add_argument("--adapter-dir", type=Path)
     evaluate.add_argument("--adapter-record", type=Path)
+    evaluate.add_argument("--train-root", type=Path, help="Required for FINAL_TEST: recheck the complete adapter freeze")
     evaluate.add_argument("--sealed", action="store_true", help="Print only completion/checksum/infrastructure status")
     gate_command = commands.add_parser("gate")
     gate_command.add_argument("--frozen", type=Path, required=True)

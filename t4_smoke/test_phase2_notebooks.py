@@ -335,6 +335,20 @@ class FinalTestGateNotebookTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        # The rendered notebook is only a gate fixture. Never package real test bytes
+        # before freeze; all gate mechanics work with a DEV payload under that name.
+        original_read = Path.read_bytes
+        dev_bytes = (ROOT / "phase2" / "dev.v2.json").read_bytes()
+
+        def fixture_read(path):
+            if path.resolve() == (ROOT / "phase2" / "final_test.v3.json").resolve():
+                return dev_bytes
+            return original_read(path)
+
+        cls.fixture_bytes = dev_bytes
+        cls.read_patch = mock.patch.object(Path, "read_bytes", fixture_read)
+        cls.read_patch.start()
+        cls.addClassCleanup(cls.read_patch.stop)
         cls.prereg = (ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()
         cls.manifest = builder.implementation_manifest()
         cls.store = tempfile.TemporaryDirectory()
@@ -425,7 +439,7 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         with payload_of(self.text) as archive:
             self.assertEqual(archive.read("inputs/PREREGISTRATION.md"), self.prereg)
             self.assertNotIn("inputs/phase2_train.json", archive.namelist())
-            self.assertEqual(hashlib.sha256(archive.read("inputs/final_test.v3.json")).hexdigest(), pe.FROZEN["final_test"][1])
+            self.assertEqual(archive.read("inputs/final_test.v3.json"), self.fixture_bytes)
         self.assertIn(builder.PREREGISTRATION_SHA256, code_cells(self.text)[1])
         self.assertNotIn(OLD_PREREGISTRATION_SHA256, self.text)
         evaluation = code_cells(self.text)[3]

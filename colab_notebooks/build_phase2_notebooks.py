@@ -458,7 +458,8 @@ def render_final_test(prereg, frozen_text, prereg_sha256=PREREGISTRATION_SHA256,
             assert GATE_PASSED, 'Gate did not pass'
             for name, adapter, folder in CHECKPOINTS:  # sealed: phase2_eval prints completion/checksum/infrastructure only
                 run_dir = STORE / 'final_test' / name
-                args = ['evaluate', '--split', 'final_test', '--sealed', '--inputs', INPUTS, '--run-dir', run_dir]
+                args = ['evaluate', '--split', 'final_test', '--sealed', '--inputs', INPUTS, '--run-dir', run_dir,
+                        '--train-root', STORE / 'train']
                 if adapter is not None:
                     record = run_dir.parent / f'{name}_adapter_record.json'
                     if not record.exists():

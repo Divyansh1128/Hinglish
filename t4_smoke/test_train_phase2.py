@@ -602,6 +602,7 @@ class RunClassificationTests(unittest.TestCase):
     def test_step_count_mismatch_is_a_protocol_failure(self):
         code, report, err = self.run_with(type("T", (FakeRunTrainer,), {"short": True}))
         self.assertEqual((code, report["failure_class"]), (tp.EXIT_CODES["protocol"], "protocol"))
+        self.assertTrue(report["study_halt"])
         self.assertIn("60 successful steps", report["error"])
         self.assertIn("THE STUDY HALTS", err)
 
@@ -724,6 +725,15 @@ class AttemptLogTests(unittest.TestCase):
                         with self.assertRaisesRegex(tp.StudyHalted, "THE STUDY HALTS"):
                             tp.next_action(current, arm, slot)
                 self.assertIn("STUDY HALTED", tp.describe_plan(current))
+
+    def test_log_rejects_new_attempt_after_a_halt(self):
+        for outcome in ("numerical", "protocol"):
+            with self.subTest(outcome=outcome):
+                self.log.unlink(missing_ok=True)
+                self.attempt("EC", 11, 11, outcome)
+                tp.log_event(self.log, "start", arm="EE", seed=22, slot=22, attempt=1)
+                with self.assertRaisesRegex(tp.ProtocolFailure, "study halted"):
+                    self.plan()
 
     def test_resumed_run_is_never_valid(self):
         self.attempt("EC", 11, 11, "infrastructure")

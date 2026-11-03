@@ -583,6 +583,10 @@ def plan(entries):
         protocol(arm in ARMS and seed in SLOTS + RESERVE_QUEUE and slot in SLOTS, f"Attempt log entry {entry.get('n')}: bad arm/seed/slot")
         history = attempts.setdefault((seed, arm), [])
         if event == "start":
+            protocol(not any(a.get("outcome") in ("numerical", "protocol") or
+                             a.get("resume_outcome") in ("numerical", "protocol")
+                             for prior in attempts.values() for a in prior),
+                     f"Attempt log entry {entry['n']}: new training after the study halted")
             protocol(number == len(history) + 1 and number <= MAX_ATTEMPTS,
                      f"Attempt log entry {entry['n']}: {run_name(arm, seed)} attempt {number} is not the next allowed attempt")
             protocol(not history or history[-1]["outcome"] is not None, f"Attempt log entry {entry['n']}: previous attempt still open")
@@ -709,7 +713,7 @@ def describe_plan(current):
 def fail_report(report, report_path, error, stage):
     report.update(status="FAILED", failure_stage=stage, failure_class=classify_failure(error, stage),
                   error="".join(traceback.format_exception(error)), valid_for_gate=False)
-    if report["failure_class"] == "numerical":
+    if report["failure_class"] in ("numerical", "protocol"):
         report["study_halt"] = True
     print(report["error"], file=sys.stderr, flush=True)
     ts.write_json(report_path, report)

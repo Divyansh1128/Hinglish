@@ -70,7 +70,21 @@ class InputTests(unittest.TestCase):
             pe.inputs((ROOT / "phase2" / "dev.DRAFT.json").read_bytes(), "dev", self.identities)
 
     def test_final_test_mode_validates_structure(self):
-        dataset, splits = pe.inputs((ROOT / "phase2" / "final_test.v3.json").read_bytes(), "final_test", self.identities)
+        # Exercise FINAL_TEST validation with DEV content, never the sealed test set.
+        dev = json.loads(self.dev)
+        families = [copy.deepcopy(dev[i % len(dev)]) for i in range(100)]
+        for i, family in enumerate(families):
+            family["split_role"] = "FINAL_TEST"
+            for key in pe.IDENTITY:
+                family[key] = f"fixture-{key}-{i}"
+            for form, rendering in family["forms"].items():
+                rendering["rendering_id"] = f"fixture-{i}-{form}"
+                rendering["text"] += f" Fixture {i}."
+        raw = json.dumps(families).encode()
+        identities = dict(self.identities, DEV=[])
+        fixture = ("phase2/final_test.fixture.json", hashlib.sha256(raw).hexdigest(), "FINAL_TEST", 100)
+        with mock.patch.dict(pe.FROZEN, final_test=fixture):
+            dataset, splits = pe.inputs(raw, "final_test", identities)
         self.assertEqual(validate(dataset, splits, "phase2_final_test")["prompts"], 300)
         overlap = copy.deepcopy(splits)
         overlap["development_exclusion_ids"].append(splits["FINAL_TEST"][0]["family_id"])
@@ -158,6 +172,13 @@ class EngineTests(unittest.TestCase):
             with mock.patch.object(hf_backend, "HFBackend", side_effect=AssertionError("reloaded")):
                 self.assertEqual(pe.main(["evaluate", "--split", "dev", "--inputs", str(inputs),
                                           "--run-dir", str(self.root / "runs" / "base")]), 0)
+            changed = pe.config_for("dev")
+            changed["seed"] = 22
+            with mock.patch.object(pe, "config_for", return_value=changed), \
+                    mock.patch.object(hf_backend, "HFBackend", side_effect=AssertionError("reloaded")):
+                with self.assertRaisesRegex(ValueError, "Completed run identity differs"):
+                    pe.main(["evaluate", "--split", "dev", "--inputs", str(inputs),
+                             "--run-dir", str(self.root / "runs" / "base")])
 
 
 MANIFEST_SHA = "e" * 64
@@ -268,6 +289,47 @@ class GateTests(unittest.TestCase):
         tp.log_event(self.train / tp.ATTEMPT_LOG, "start", arm="EE", seed=44, slot=11, attempt=1)
         self.refuses("attempt log")
 
+    def test_training_reports_are_frozen_and_checked(self):
+        path = pe.attempt_dir(self.train, "EC", 11, 1) / "train_report.json"
+        name = str(path.relative_to(self.train))
+        self.assertEqual(self.frozen["training_logs_sha256"][name], ts.file_sha256(path))
+        path.write_text(json.dumps({"status": "FAILED", "failure_class": "numerical"}))
+        self.refuses("training log")
+        with self.assertRaisesRegex(ValueError, "training report"):
+            pe.freeze_manifest(self.train)
+
+    def test_freeze_without_training_log_hashes_is_refused(self):
+        frozen = copy.deepcopy(self.frozen)
+        frozen.pop("training_logs_sha256")
+        with self.assertRaisesRegex(ValueError, "training_logs_sha256"):
+            pe.parse_frozen("```json\n" + json.dumps(frozen) + "\n```")
+
+    def test_driver_requires_the_full_gate_before_reading_test_data(self):
+        with mock.patch.object(pe, "inputs") as load_inputs:
+            with self.assertRaisesRegex(ValueError, "--train-root"):
+                pe.main(["evaluate", "--split", "final_test", "--inputs", "absent", "--run-dir", "absent"])
+            load_inputs.assert_not_called()
+
+    def test_driver_authorizes_only_frozen_adapters(self):
+        inputs = Path(self.folder.name) / "inputs"
+        inputs.mkdir()
+        manifest = "implementation fixture"
+        (inputs / "IMPLEMENTATION_MANIFEST.md").write_text(manifest)
+        (inputs / "PREREGISTRATION.md").write_bytes((ROOT / "phase2" / "PREREGISTRATION.md").read_bytes())
+        for seed in tp.SLOTS:
+            for arm in tp.ARMS:
+                make_run(self.train, arm, seed, seed, implementation_manifest_sha256=H(manifest))
+        frozen = pe.freeze_manifest(self.train)
+        (inputs / "ADAPTERS_FROZEN.md").write_text("```json\n" + json.dumps(frozen) + "\n```")
+        args = pe.argparse.Namespace(train_root=self.train, inputs=inputs, adapter_record=None, adapter_dir=None)
+        self.assertEqual(pe.authorize_final_test(args), frozen)
+        folder = pe.attempt_dir(self.train, "EC", 11, 1)
+        args.adapter_record, args.adapter_dir = folder / "final_adapter.json", folder / "final_adapter"
+        self.assertEqual(pe.authorize_final_test(args), frozen)
+        args.adapter_dir = inputs / "other_adapter"
+        with self.assertRaisesRegex(ValueError, "outside the frozen set"):
+            pe.authorize_final_test(args)
+
     def test_reduced_s_is_descriptive_only(self):
         folder = Path(self.folder.name) / "reduced"
         complete_slots(folder, slots=(11, 22))
@@ -364,6 +426,7 @@ class SealedEvaluationTests(unittest.TestCase):
         original_inputs, original_config = pe.inputs, pe.config_for
         run_dir = self.root / "runs" / "base"
         with mock.patch.object(pe, "inputs", lambda raw, split, ids: original_inputs(raw, "dev", ids)), \
+                mock.patch.object(pe, "authorize_final_test", return_value=None), \
                 mock.patch.object(pe, "config_for", lambda split, adapter=None: original_config("dev", adapter)), \
                 mock.patch.object(hf_backend, "HFBackend", fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
             self.assertEqual(pe.main(["evaluate", "--split", "final_test", "--inputs", str(self.inputs), "--run-dir", str(run_dir)]), 0)
@@ -376,6 +439,7 @@ class SealedEvaluationTests(unittest.TestCase):
         self.assertFalse((self.root / "runs" / "base_ceiling_flag.json").exists())
         journal = sorted(p.name for p in (run_dir / "journal").glob("*.json"))
         with mock.patch.object(pe, "inputs", lambda raw, split, ids: original_inputs(raw, "dev", ids)), \
+                mock.patch.object(pe, "authorize_final_test", return_value=None), \
                 mock.patch.object(pe, "config_for", lambda split, adapter=None: original_config("dev", adapter)), \
                 mock.patch.object(hf_backend, "HFBackend", side_effect=AssertionError("regenerated")), mock.patch("sys.stdout", io.StringIO()) as out:
             self.assertEqual(pe.main(["evaluate", "--split", "final_test", "--inputs", str(self.inputs), "--run-dir", str(run_dir)]), 0)

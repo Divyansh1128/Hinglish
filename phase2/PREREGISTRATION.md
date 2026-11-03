@@ -172,3 +172,35 @@ Any change to this plan is a dated amendment appended here and recorded in `docs
     - A human checks every audited output, which covers every strict-incorrect C output of every retained E+R and E+C seed, and resolves disagreements; anything still unresolved is labelled unresolved.
     - Counts are reported over all C generations; no mechanism claims are made.
 18. **Precedence evidence** (§18, adopted): the commit hash identifies content. Independent evidence of order is the GitHub server-side push record of the repository (github.com/Divyansh1128/Hinglish) and a read-only archive of the plan, code hashes and the first-run manifest. A local commit time alone is not claimed as proof.
+
+## Amendment 2 (4 November 2026)
+
+**Exposure at adoption:** no Phase-2 training run, trained adapter, DEV generation or evaluation-backbone FINAL_TEST generation exists. Basis: Sol's (GPT) independent code review, `handoffs/2026-11-03_sol_review_phase2.md` (findings R1–R10, F1–F5).
+
+1. **Access incident (disclosure).** Automated unit tests added in commits 60bcd99 and 535b1e9 (written by Claude subagents) parsed the FINAL_TEST JSON and passed it to schema validation and the scorer. Other tests embedded its bytes in synthetic notebooks. These tests ran unattended on 3 November 2026, several times, on a CPU.
+   - No language model generated an answer to any FINAL_TEST item.
+   - No human or model displayed, read or inspected a problem, rendering or gold answer.
+   - Output went only to pass/fail test results.
+
+   This exceeds Amendment 1 item 13's byte-hash-only rule. It is reported as a protocol deviation. The data, design and labels are unchanged, because no information about item content or model behaviour reached any person or any training or analysis choice. The tests now use DEV-derived fixtures (F1); only isolated hashing of the real file remains.
+2. **Failure classes (clarifies item 11; R3).**
+   - **Infrastructure:** only failures from a fixed, typed list:
+     - runtime disconnect or kill;
+     - CUDA out-of-memory;
+     - an `OSError` from Drive or the filesystem;
+     - a network or Hub download error;
+     - a failed checkpoint write.
+   - **Protocol (study halts for diagnosis):** every hash, identity, label or data assertion, wherever it is detected, including at reload, and every other exception, including programming errors such as `TypeError`.
+   - Unknown errors never earn a retry or a reserve.
+3. **Frozen stack only (R5).** A gate-valid study run requires the exact §2 stack on a T4, checked before the attempt opens. A mismatch means no study run takes place until a dated amendment. Engineering overrides can never produce a valid run.
+4. **Run order (clarifies item 11; R6).** The training notebook does not let the operator choose ARM and SEED. It runs the next pending run from the attempt plan: slot 11 (arms in the order EC, ER, EE), then slot 22, then slot 33. A slot is fully settled, valid or replaced by its reserve, before the next slot starts. Reserves are therefore allocated in the registered slot order.
+5. **Stale evaluation lock (R7).** After a runtime kill, the operator may set `RECOVER_STALE_LOCK = True` after confirming that no other Colab session is running the evaluation. The recovery is logged with a timestamp and never regenerates stored outputs.
+6. **Baseline first (R8).** The first training attempt is refused unless a complete unchanged-model DEV run exists with the same implementation-manifest hash. Its result-ZIP hash is recorded in the attempt log and in `phase2/ADAPTERS_FROZEN.md`.
+7. **Binding analysis inputs (R1, R2, R4).**
+   - The FINAL_TEST analysis takes its checkpoints, retained seeds, S and adapter hashes from `phase2/ADAPTERS_FROZEN.md`, not from operator-supplied labels.
+   - It rejects any model other than Qwen3-4B at the pinned revision, any instruction other than the frozen one, any engine or source hash that differs from the implementation manifest, and any attempt count above the configured budget.
+   - The trainer verifies the implementation manifest and the authoritative TRAIN and exposure hashes at its entry point, consults the attempt plan before running, and refuses a configuration that differs between attempts.
+8. **Planning rerun (R9) and calibration wording (R10).**
+   - The item 7 planning rerun becomes a versioned planning-only script that treats p0 = 1 as the degenerate zero-headroom cell.
+   - The calibration's "C baseline 0.943" is relabelled as a latent accuracy. One extra scenario, with an observed comparator accuracy of 0.943, is archived before any output.
+   - Neither change alters the design, labels or thresholds.
