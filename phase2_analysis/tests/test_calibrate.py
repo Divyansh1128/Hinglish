@@ -37,8 +37,36 @@ class CalibrationTests(unittest.TestCase):
         targets = {s[0]: (C.target(s[3]), C.target(s[4])) for s in C.SCENARIOS}
         self.assertAlmostEqual(targets["boundary_plus5"][0], 0.05)            # margin boundary Δ_C = +5
         self.assertAlmostEqual(targets["retention_boundary_minus2"][1], -0.02)  # margin boundary retention = −2
-        self.assertEqual([s[3]["p0"] for s in C.SCENARIOS if s[1] == "ceiling"], [0.943, 0.943])
+        self.assertEqual([s[3]["p0"] for s in C.SCENARIOS if s[1] == "ceiling"], [0.943, 0.943])  # latent states
         self.assertEqual({s[1] for s in C.SCENARIOS}, {"null", "asymmetric", "sparse/degenerate", "margin boundary", "ceiling"})
+
+    def test_latent_and_observed_accuracy(self):
+        by = {s[0]: s for s in C.SCENARIOS}
+        # Sol's probe (R10): null_ceiling's 0.943 is latent; its observed comparator accuracy is .035 + .93 * .943.
+        self.assertAlmostEqual(C.observed_accuracy(by["null_ceiling"][3]), 0.91199, places=12)
+        self.assertIn("LATENT", by["null_ceiling"][2])
+        self.assertIn("0.912", by["null_ceiling"][2])
+        for name in ("ceiling_plus3", "ceiling_plus5"):
+            self.assertIn("latent", by[name][2])
+            self.assertNotIn("baseline", by[name][2])
+        self.assertFalse(any("baseline" in s[2] for s in C.SCENARIOS))
+        # The added scenario: OBSERVED comparator accuracy 0.943 at q 0.035, latent solved from it, Δ_C = 0.
+        name, group, description, primary, retention = by["null_ceiling_observed"]
+        self.assertEqual(group, "null")
+        self.assertIn("OBSERVED", description)
+        self.assertAlmostEqual(primary["q"], 0.035)
+        self.assertAlmostEqual(primary["p0"], (0.943 - 0.035) / (1 - 0.07), places=12)
+        self.assertAlmostEqual(C.observed_accuracy(primary), 0.943, places=12)
+        self.assertAlmostEqual(C.observed_accuracy(primary, "first"), 0.943, places=12)  # no effect
+        self.assertEqual(C.target(primary), 0.0)
+        self.assertEqual(retention, C.RET_NULL)
+        self.assertEqual([s[0] for s in C.SCENARIOS][-1], "null_ceiling_observed")  # appended: earlier seeds unchanged
+        # The formula agrees with the generating model, simulated directly.
+        rng = random.Random(3)
+        draws = 200000
+        hits = sum((rng.random() < primary["p0"]) != (rng.random() < primary["q"]) for _ in range(draws))
+        self.assertAlmostEqual(hits / draws, 0.943, delta=0.002)
+        self.assertAlmostEqual(C.latent_for_observed(C.observed_accuracy(by["null_typical"][3]), 0.05), 0.6, places=12)
 
     def test_scenario_deterministic_and_degenerate_handling(self):
         index = [s[0] for s in C.SCENARIOS].index("sparse_zero")
@@ -69,6 +97,13 @@ class CalibrationTests(unittest.TestCase):
         self.assertEqual(data["settings"]["resamples"], 10000)
         self.assertGreaterEqual(data["settings"]["datasets"], 1000)
         self.assertEqual([s["name"] for s in data["scenarios"]], [s[0] for s in C.SCENARIOS])
+        self.assertEqual([s["description"] for s in data["scenarios"]], [s[2] for s in C.SCENARIOS])
+        self.assertEqual(data["version"], C.CALIBRATION_VERSION)
+        added = next(s for s in data["scenarios"] if s["name"] == "null_ceiling_observed")
+        self.assertAlmostEqual(added["primary"]["observed_second_arm_accuracy"], 0.943, places=12)
+        self.assertAlmostEqual(next(s for s in data["scenarios"] if s["name"] == "null_ceiling")
+                               ["primary"]["observed_second_arm_accuracy"], 0.91199, places=12)
+        self.assertIn("null_ceiling_observed", data["headline"]["null_false_support_rate"])
         self.assertTrue((HERE / "CALIBRATION.md").is_file())
 
 

@@ -12,14 +12,21 @@ Model (conditional on fixed checkpoints, N = 100 families, S = 3 seeds). Familie
 independently from a population; each family's outcome vector for the fixed checkpoints is
 part of the draw. For one contrast "first arm − second arm" on one form:
 
-    b ~ Bernoulli(p0)                            second-arm family state
-    e = b, except: b = 1 -> e = 0 w.p. loss;     first-arm family state (sticky family
+    b ~ Bernoulli(p0)                            LATENT second-arm family state
+    e = b, except: b = 1 -> e = 0 w.p. loss;     LATENT first-arm family state (sticky family
                    b = 0 -> e = 1 w.p. gain      gains/losses, identical in all seeds)
     second arm, seed k: b XOR Bernoulli(q)       seed-level discordance q
     first arm,  seed k: e XOR Bernoulli(q)
 
 The conditional target (the population mean of the seed-averaged family contrast d_i) is
 exactly  (1 − 2q) · [(1 − p0) · gain − p0 · loss].
+
+p0 is a LATENT accuracy, not an observed one (Sol review R10, Amendment 2 item 8). The
+expected OBSERVED accuracy of the second arm (the comparator, E+R on C for the primary) is
+q + (1 − 2q) · p0, and of the first arm q + (1 − 2q) · P(e = 1). So null_ceiling's latent 0.943
+with q = 0.035 is an observed comparator accuracy of about 0.912; the scenario
+null_ceiling_observed instead has an observed comparator accuracy of exactly 0.943, with the
+latent value solved as (0.943 − q) / (1 − 2q).
 
 Each scenario has a primary component (E+C − E+R on C) and an independent English-retention
 component (E+C − E+E on E), so the retention trade-off flag is also exercised. Unfavourable
@@ -48,7 +55,7 @@ if str(ROOT) not in sys.path:
 
 from phase2_analysis import analyze as A  # noqa: E402
 
-CALIBRATION_VERSION = "phase2_calibration 1.0.0"
+CALIBRATION_VERSION = "phase2_calibration 1.1.0"
 N, S = 100, 3
 BASE_SEED = 20261103
 OUT_DIR = Path(__file__).resolve().parent
@@ -74,21 +81,42 @@ def target(c):
     return (1 - 2 * c["q"]) * ((1 - c["p0"]) * c["gain"] - c["p0"] * c["loss"])
 
 
+def latent_first(c):
+    """P(e = 1): the latent first-arm family state."""
+    return c["p0"] * (1 - c["loss"]) + (1 - c["p0"]) * c["gain"]
+
+
+def observed_accuracy(c, arm="second"):
+    """Expected observed per-seed accuracy of one arm: q + (1 − 2q) · latent state."""
+    latent = c["p0"] if arm == "second" else latent_first(c)
+    return c["q"] + (1 - 2 * c["q"]) * latent
+
+
+def latent_for_observed(observed, q):
+    """The latent p0 whose observed second-arm accuracy is `observed` at seed discordance q."""
+    return (observed - q) / (1 - 2 * q)
+
+
 # Typical retention component (no true effect) and the +5 pp primary used with retention cases.
 RET_NULL = component(0.9, 0.035)
 PRI_PLUS5 = component(0.7, 0.05, gain_for(0.05, 0.7, 0.05))
 
+OBSERVED_CEILING = 0.943  # Pilot-B Qwen3-4B C, 66/70 (PREREGISTRATION §9)
+CEILING_LATENT = latent_for_observed(OBSERVED_CEILING, 0.035)
+
 SCENARIOS = [
     # name, group, description, primary component, retention component
-    ("null_typical", "null", "Δ_C = 0; C baseline 0.60, seed discordance q 0.05",
+    # p0 is the latent second-arm state; observed accuracies are q + (1 − 2q) · latent (see the docstring).
+    ("null_typical", "null", "Δ_C = 0; latent C state 0.60, seed discordance q 0.05 (observed E+R C accuracy 0.59)",
      component(0.6, 0.05), RET_NULL),
-    ("null_ceiling", "null", "Δ_C = 0 at the ceiling (C baseline 0.943, q 0.035)",
+    ("null_ceiling", "null", "Δ_C = 0 at a LATENT C state of 0.943 with q 0.035; the observed E+R C accuracy is "
+     "q + (1 − 2q) · 0.943 ≈ 0.912, not 0.943",
      component(0.943, 0.035), RET_NULL),
-    ("null_asymmetric_churn", "asymmetric", "Δ_C = 0 from offsetting sticky gains (0.15) and losses (0.10)",
+    ("null_asymmetric_churn", "asymmetric", "Δ_C = 0 from offsetting sticky gains (0.15) and losses (0.10); latent C state 0.60",
      component(0.6, 0.05, 0.15, 0.10), RET_NULL),
-    ("plus3_with_losses", "asymmetric", "Δ_C = +3 pp: sticky gains with 5% sticky losses (C baseline 0.70)",
+    ("plus3_with_losses", "asymmetric", "Δ_C = +3 pp: sticky gains with 5% sticky losses (latent C state 0.70)",
      component(0.7, 0.05, gain_for(0.03, 0.7, 0.05, 0.05), 0.05), RET_NULL),
-    ("minus3_losses_only", "asymmetric", "Δ_C = −3 pp from sticky losses only (C baseline 0.70)",
+    ("minus3_losses_only", "asymmetric", "Δ_C = −3 pp from sticky losses only (latent C state 0.70)",
      component(0.7, 0.05, 0.0, loss_for(-0.03, 0.7, 0.05)), RET_NULL),
     ("sparse_zero", "sparse/degenerate", "Δ_C = 0 with no discordance at all (every family contrast 0)",
      component(0.9, 0.0), RET_NULL),
@@ -100,19 +128,24 @@ SCENARIOS = [
      PRI_PLUS5, RET_NULL),
     ("boundary_plus5_with_losses", "margin boundary", "Δ_C = +5 pp exactly with 5% sticky losses",
      component(0.7, 0.05, gain_for(0.05, 0.7, 0.05, 0.05), 0.05), RET_NULL),
-    ("ceiling_plus3", "ceiling", "Δ_C = +3 pp at C baseline 0.943 (q 0.035)",
+    ("ceiling_plus3", "ceiling", "Δ_C = +3 pp at a latent E+R C state of 0.943, q 0.035 (observed E+R C accuracy ≈ 0.912)",
      component(0.943, 0.035, gain_for(0.03, 0.943, 0.035)), RET_NULL),
-    ("ceiling_plus5", "ceiling", "Δ_C = +5 pp at C baseline 0.943 (q 0.035)",
+    ("ceiling_plus5", "ceiling", "Δ_C = +5 pp at a latent E+R C state of 0.943, q 0.035 (observed E+R C accuracy ≈ 0.912)",
      component(0.943, 0.035, gain_for(0.05, 0.943, 0.035)), RET_NULL),
-    ("retention_boundary_minus2", "margin boundary", "Retention = −2 pp exactly (E baseline 0.90, q 0.035); Δ_C = +5",
+    ("retention_boundary_minus2", "margin boundary", "Retention = −2 pp exactly (latent E+E E state 0.90, q 0.035); Δ_C = +5",
      PRI_PLUS5, component(0.9, 0.035, 0.0, loss_for(-0.02, 0.9, 0.035))),
     ("retention_boundary_minus2_sparse", "sparse/degenerate",
      "Retention = −2 pp exactly from two expected lost families (P(d_i = −1) = .02, q 0); Δ_C = +5",
      PRI_PLUS5, component(0.9, 0.0, 0.0, loss_for(-0.02, 0.9, 0.0))),
     ("retention_zero_sparse", "sparse/degenerate", "Retention = 0 with no English discordance (always degenerate); Δ_C = +5",
      PRI_PLUS5, component(0.9, 0.0)),
-    ("retention_minus4", "asymmetric", "Retention = −4 pp (E baseline 0.90, q 0.035); Δ_C = +5 (trade-off case)",
+    ("retention_minus4", "asymmetric", "Retention = −4 pp (latent E+E E state 0.90, q 0.035); Δ_C = +5 (trade-off case)",
      PRI_PLUS5, component(0.9, 0.035, 0.0, loss_for(-0.04, 0.9, 0.035))),
+    # Added under Amendment 2 item 8 (Sol review R10), appended so every earlier scenario keeps its seed.
+    ("null_ceiling_observed", "null",
+     f"Δ_C = 0 at an OBSERVED E+R C accuracy of {OBSERVED_CEILING} (q 0.035; latent C state solved as "
+     f"(0.943 − q)/(1 − 2q) = {CEILING_LATENT:.4f})",
+     component(CEILING_LATENT, 0.035), RET_NULL),
 ]
 
 
@@ -228,6 +261,9 @@ def _summarise(tally, comp, true_value):
     M = tally["datasets"]
     widths = sorted(tally["halfwidth_pp"])
     out = dict(component=comp, target_pp=100 * true_value, datasets=M,
+               latent_second_arm_state=comp["p0"], latent_first_arm_state=latent_first(comp),
+               observed_second_arm_accuracy=observed_accuracy(comp, "second"),
+               observed_first_arm_accuracy=observed_accuracy(comp, "first"),
                coverage=tally["covered"] / M, interval_below_target=tally["miss_low"] / M,
                interval_above_target=tally["miss_high"] / M,
                wald_coverage=tally["wald_covered"] / M, hoeffding_coverage=tally["hoeffding_covered"] / M,
@@ -254,12 +290,12 @@ def simulate(datasets=1000, resamples=A.RESAMPLES, workers=None):
 
 def headline(results):
     by = {r["name"]: r for r in results}
-    nulls = [by[n]["primary"] for n in ("null_typical", "null_ceiling", "null_asymmetric_churn", "sparse_zero")]
+    null_names = ("null_typical", "null_ceiling", "null_ceiling_observed", "null_asymmetric_churn", "sparse_zero")
+    nulls = [by[n]["primary"] for n in null_names]
     support = lambda p: p["labels"][A.SUPPORT] + p["labels"][A.USEFUL]
     covs = [r["primary"]["coverage"] for r in results] + [r["retention"]["coverage"] for r in results]
     return dict(
-        null_false_support_rate={n: support(by[n]["primary"]) for n in
-                                 ("null_typical", "null_ceiling", "null_asymmetric_churn", "sparse_zero")},
+        null_false_support_rate={n: support(by[n]["primary"]) for n in null_names},
         max_null_false_support_rate=max(support(p) for p in nulls),
         primary_coverage={r["name"]: r["primary"]["coverage"] for r in results},
         retention_coverage={r["name"]: r["retention"]["coverage"] for r in results},
@@ -283,7 +319,7 @@ def _pct(x):
 
 def markdown(report):
     s = report["settings"]
-    lines = ["# Phase-2 interval calibration (Amendment 1 item 16)", "",
+    lines = ["# Phase-2 interval calibration (Amendment 1 item 16; Amendment 2 item 8)", "",
              f"`{report['version']}`, generated by `phase2_analysis/calibrate.py` (standard library, deterministic seeds "
              f"{BASE_SEED} + scenario index). Python {s['python_version']}. Analysis code `phase2_analysis/analyze.py` "
              f"SHA-256 `{report['analyze_sha256']}`.", "",
@@ -295,7 +331,11 @@ def markdown(report):
              f"{100 * (0.95 * 0.05 / s['datasets']) ** 0.5:.1f} pp; near 2.5% about {100 * (0.025 * 0.975 / s['datasets']) ** 0.5:.1f} pp.",
              "", "Target: the conditional population mean of the seed-averaged family contrast (fixed checkpoints, "
              "independent families); see the module docstring for the generating model. Coverage counts L ≤ target ≤ U "
-             "with closed bounds. Unfavourable cases are kept.", ""]
+             "with closed bounds. Unfavourable cases are kept.", "",
+             "Scenario p0 values are LATENT family states; the expected observed accuracy of an arm is "
+             "q + (1 − 2q) · latent state (Amendment 2 item 8, Sol review R10). The archived null_ceiling scenario "
+             "therefore has an observed comparator accuracy of about 0.912; null_ceiling_observed, added before any "
+             "Phase-2 output, has an observed comparator accuracy of 0.943.", ""]
     h = report["headline"]
     lines += ["## Headline", "",
               f"- **Null false-support rate** (Support or Useful support when Δ_C = 0): "
@@ -333,12 +373,17 @@ def markdown(report):
         lines.append(f"| {r['name']} | {p['target_pp']:+.2f} | {_pct(p['coverage'])} | {_pct(p['interval_below_target'])} / "
                      f"{_pct(p['interval_above_target'])} | {_pct(p['degenerate_rate'])} | {p['mean_nonzero_family_contrasts']:.1f} | "
                      f"{p['median_halfwidth_pp']:.2f} | " + " | ".join(_pct(p["flags"][k]) for k in flag_names) + " |")
-    lines += ["", "## Scenarios", "", "| Scenario | Group | Description | Primary (p0, q, gain, loss) | Retention (p0, q, gain, loss) |",
-              "|---|---|---|---|---|"]
+    lines += ["", "## Scenarios", "",
+              "p0 is the latent second-arm family state. Observed accuracies are the expected per-seed accuracies "
+              "q + (1 − 2q) · latent state (second arm = comparator: E+R for Δ_C, E+E for retention).", "",
+              "| Scenario | Group | Description | Primary (p0, q, gain, loss) | Primary observed comparator / first arm | "
+              "Retention (p0, q, gain, loss) | Retention observed comparator / first arm |",
+              "|---|---|---|---|---:|---|---:|"]
     for r in report["scenarios"]:
         fmt = lambda c: ", ".join(f"{c[k]:.4g}" for k in ("p0", "q", "gain", "loss"))
+        obs = lambda p: f"{p['observed_second_arm_accuracy']:.4f} / {p['observed_first_arm_accuracy']:.4f}"
         lines.append(f"| {r['name']} | {r['group']} | {r['description']} | {fmt(r['primary']['component'])} | "
-                     f"{fmt(r['retention']['component'])} |")
+                     f"{obs(r['primary'])} | {fmt(r['retention']['component'])} | {obs(r['retention'])} |")
     lines += ["", "## Reading", "", *report["reading"], ""]
     return "\n".join(lines) + "\n"
 
@@ -363,6 +408,13 @@ def reading(results):
     r = by["retention_boundary_minus2_sparse"]["retention"]
     out.append(f"- retention_boundary_minus2_sparse: degenerate {_pct(r['degenerate_rate'])}; the override keeps the "
                f"false 'within-margin criterion met' rate at {_pct(r['flags'][A.WITHIN])}.")
+    nc, nco = by["null_ceiling"]["primary"], by["null_ceiling_observed"]["primary"]
+    out.append(f"- Latent vs observed: null_ceiling has latent C state {nc['latent_second_arm_state']:.3f}, i.e. an "
+               f"observed E+R C accuracy of {nc['observed_second_arm_accuracy']:.4f}; null_ceiling_observed has an "
+               f"observed E+R C accuracy of {nco['observed_second_arm_accuracy']:.4f} (latent "
+               f"{nco['latent_second_arm_state']:.4f}): coverage {_pct(nco['coverage'])}, false support "
+               f"{_pct(nco['labels'][A.SUPPORT] + nco['labels'][A.USEFUL])}, median half-width "
+               f"{nco['median_halfwidth_pp']:.2f} pp, degenerate {_pct(nco['degenerate_rate'])}.")
     out.append("- 'Within-margin criterion met' is a descriptive interval criterion, not multiplicity-controlled "
                "non-inferiority; 'Informative null' rules out ≥ 5 pp gains under this sampling model only.")
     return out

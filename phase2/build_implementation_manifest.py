@@ -1,4 +1,4 @@
-"""Build or check phase2/IMPLEMENTATION_MANIFEST.md (PREREGISTRATION Amendment 1 item 14).
+"""Build or check phase2/IMPLEMENTATION_MANIFEST.md (PREREGISTRATION Amendment 1 item 14, Amendment 2 items 2-7).
 
 The manifest hashes every executable choice of the Phase-2 study: trainer, label builder, prompt text, chat template
 and tokenizer/config files (by pinned revision), generation configuration, engine, scorer v1, numeric_literal_v1 and
@@ -142,6 +142,10 @@ def build():
     exposure = json.loads((ROOT / train_phase2.EXPOSURE_ORDER_PATH).read_text(encoding="utf-8"))
     if (ROOT / train_phase2.EXPOSURE_ORDER_PATH).read_text(encoding="utf-8") != train_phase2.exposure_text(train_phase2.phase2_dataset(ROOT)):
         raise ValueError("phase2/EXPOSURE_ORDER.json is stale: python3 -B t4_smoke/train_phase2.py exposure-order")
+    if files[train_phase2.EXPOSURE_ORDER_PATH] != train_phase2.EXPOSURE_ORDER_SHA256:
+        raise ValueError("phase2/EXPOSURE_ORDER.json differs from its frozen SHA-256 (train_phase2.EXPOSURE_ORDER_SHA256)")
+    if train_phase2.phase2_dataset(ROOT)["families_sha256"] != train_phase2.TRAIN_FAMILIES_SHA256:
+        raise ValueError("TRAIN families differ from train_phase2.TRAIN_FAMILIES_SHA256")
     hub_cache_check()
     builder = load_notebook_builder()
     configs = {split: phase2_eval.config_for(split) for split in phase2_eval.FROZEN}
@@ -151,7 +155,7 @@ def build():
     return {
         "schema": SCHEMA,
         "preregistration": {"path": "phase2/PREREGISTRATION.md", "sha256": sha256_file("phase2/PREREGISTRATION.md"),
-                            "includes": "Amendment 1 (D045)"},
+                            "includes": "Amendments 1 (D045) and 2 (D046)"},
         "groups": files_by_group,
         "files": dict(sorted(files.items())),
         "preregistered_hashes_verified": PREREGISTERED,
@@ -179,20 +183,44 @@ def build():
         "eos_stopping": EOS_STOPPING,
         "dtype_preparation": DTYPE_PREPARATION,
         "training": {"recipe_sha256": train_smoke.digest(train_phase2.RECIPE), "grad_scaler": train_phase2.SCALER,
-                     "valid_run": train_phase2.RECIPE["valid_run"], "failure_policy": train_phase2.RECIPE["failure_policy"]},
-        "dependencies": {"python": "recorded per run (Colab default)", "torch": train_smoke.TORCH_BUILD + " (Colab build; recorded, not installed)",
+                     "valid_run": train_phase2.RECIPE["valid_run"], "failure_policy": train_phase2.RECIPE["failure_policy"],
+                     "train_families_sha256": train_phase2.TRAIN_FAMILIES_SHA256,
+                     "trainer_code_verified_at_entry": ["t4_smoke/" + name for name in train_phase2.TRAINER_CODE],
+                     "failure_classes": {
+                         "infrastructure": list(train_phase2.INFRASTRUCTURE_KINDS),
+                         "protocol": "every ProtocolError (hash, identity, label or data assertion, wherever detected, "
+                                     "including at reload) and every other exception, e.g. TypeError",
+                         "numerical": "GradScaler skip, non-finite loss, gradient or saved parameter",
+                         "rule": "Amendment 2 item 2: unknown errors never earn a retry or a reserve"},
+                     "run_order": {"slots": list(train_phase2.SLOTS), "arms": list(train_phase2.ARM_ORDER),
+                                   "reserve_queue": list(train_phase2.RESERVE_QUEUE),
+                                   "rule": "Amendment 2 item 4: the attempt plan chooses the next pending run; a slot is "
+                                           "fully settled before the next slot starts"},
+                     "baseline_first": {"record": train_phase2.BASELINE_RECORD, "prompts": train_phase2.BASELINE_PROMPTS,
+                                        "rule": "Amendment 2 item 6: no training attempt without a complete unchanged-model "
+                                                "DEV run under this manifest; its results-ZIP SHA-256 is in every start "
+                                                "event and in ADAPTERS_FROZEN.md"},
+                     "identical_across_attempts": "Amendment 2 item 7: configuration and implementation identity in "
+                                                  "every start event; a different one is refused"},
+        "dependencies": {"python": "recorded per run (Colab default)",
+                         "torch": train_smoke.TORCH_BUILD + " (Colab build; never installed; required exactly)",
+                         "torch_build": train_smoke.TORCH_BUILD,
+                         "stack_policy": "Amendment 2 item 3: the exact stack on a Tesla T4, checked before any attempt "
+                                         "opens and in the Baseline/FinalTest notebooks; a mismatch means no study run",
                          "train": train_smoke.PINS, "evaluation": hf_backend.PINS, "adapter_evaluation": hf_backend.ADAPTER_PINS},
     }
 
 
 def render(document):
     return (
-        "# Phase-2 implementation manifest (PREREGISTRATION Amendment 1 item 14)\n\n"
+        "# Phase-2 implementation manifest (PREREGISTRATION Amendment 1 item 14, Amendment 2)\n\n"
         "Generated by `python3 -B phase2/build_implementation_manifest.py`; verify with `--check`. Do not edit by hand.\n\n"
         "- Commit this file **before the first Phase-2 DEV generation**. The DEV-baseline and Train notebooks embed it "
         "with its SHA-256 and refuse to run if any embedded code or data differs from it.\n"
-        "- It is rechecked at adapter freeze: every retained run records this file's SHA-256, and "
-        "`phase2/ADAPTERS_FROZEN.md` and the FinalTest gate require it.\n"
+        "- The trainer rechecks it against the running code and the frozen TRAIN/exposure files before every attempt, "
+        "and refuses an attempt whose manifest differs from earlier attempts or from the unchanged-DEV baseline's.\n"
+        "- It is rechecked at adapter freeze against the real files and every start event: every retained run records "
+        "this file's SHA-256, and `phase2/ADAPTERS_FROZEN.md` and the FinalTest gate require it.\n"
         "- Any change to a hashed file needs a regenerated manifest and rebuilt notebooks before use.\n\n"
         "```json\n" + json.dumps(document, indent=1, ensure_ascii=False) + "\n```\n"
     )

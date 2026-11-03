@@ -1,5 +1,6 @@
 """The Phase-2 notebooks: current, compilable, self-contained, data-separated, manifest-verified (Amendment 1 item 14),
-attempt-logged (item 11), sealed and gated FinalTest (items 12-14), no second backbone (item 15)."""
+attempt-logged (item 11), sealed and gated FinalTest (items 12-14), no second backbone (item 15); exact stack only,
+plan-chosen runs, stale-lock recovery and baseline first (Amendment 2 items 3-6)."""
 import base64
 import hashlib
 import io
@@ -18,6 +19,7 @@ from unittest import mock
 
 from t4_smoke import phase2_eval as pe
 from t4_smoke import test_phase2_eval as fixtures
+from t4_smoke.test_train_phase2 import write_baseline
 from t4_smoke import train_phase2 as tp
 from t4_smoke import train_smoke as ts
 
@@ -26,6 +28,7 @@ sys.path.insert(0, str(ROOT / "colab_notebooks"))
 import build_phase2_notebooks as builder  # noqa: E402
 
 OLD_PREREGISTRATION_SHA256 = "74be23282ce9e53e3a69456bebf89f9cd71d3859b80090692e4548ef34182840"
+AMENDMENT_1_PREREGISTRATION_SHA256 = "37ef68bfcb7cfa0bb530bfbecbf2082d18e916c0217370085d4180e8ea759ada"
 
 
 def code_cells(text):
@@ -86,19 +89,47 @@ class BuiltNotebookTests(unittest.TestCase):
                 for package, version in ts.PINS.items():
                     self.assertIn(f"{package}=={version}\n", requirements)
                 self.assertNotIn("torch==", requirements)
-                self.assertEqual(("inputs/phase2_train.json" in names), kind == "train")
+                self.assertIn("any other build refuses every study run", requirements)
+                self.assertNotIn("inputs/phase2_train.json", names)  # the trainer builds the families from the raw bytes
                 self.assertEqual(("inputs/EXPOSURE_ORDER.json" in names), kind == "train")
+                self.assertEqual(("inputs/train_A.v2.json" in names), kind == "train")
         with payload_of(self.texts["train"]) as archive:
-            self.assertEqual(json.loads(archive.read("inputs/phase2_train.json")), tp.phase2_dataset(ROOT))
+            for name in ts.TRAIN_FILES:
+                self.assertEqual(archive.read("inputs/" + Path(name).name), (ROOT / name).read_bytes())
             self.assertEqual(archive.read("inputs/EXPOSURE_ORDER.json"), (ROOT / tp.EXPOSURE_ORDER_PATH).read_bytes())
 
     def test_notebooks_check_t4_use_drive_and_zip_with_checksums(self):
         for kind, text in self.texts.items():
             source = "\n".join(code_cells(text))
             for needle in ("'T4' in gpu", "requirements-phase2.txt", "USE_DRIVE = True", "SHA256SUMS.txt", "files.download",
-                           "process.kill()", "attempts.jsonl", "HUB_CHECK", "STACK_MISMATCHES"):
+                           "process.kill()", "attempts.jsonl", "HUB_CHECK", "STACK_MISMATCHES",
+                           "assert not STACK_MISMATCHES", "RECOVER_STALE_LOCK = False", "'--recover-stale-lock'"):
                 self.assertIn(needle, source, kind)
+            self.assertNotIn("ALLOW_STACK_MISMATCH", text, kind)  # Amendment 2 item 3: no override on any study path
+            self.assertNotIn("allow-stack-mismatch", text, kind)
             self.assertEqual(json.loads(text)["metadata"]["accelerator"], "GPU")
+
+    def test_gpu_cell_refuses_a_stack_mismatch(self):
+        """Amendment 2 item 3 (R5): the shared GPU cell (Baseline, Train, FinalTest) asserts STACK_MISMATCHES is empty."""
+        gpu = code_cells(self.texts["baseline"])[1]
+        self.assertEqual(gpu, code_cells(self.texts["train"])[1])
+        check = next(line for line in gpu.splitlines() if line.startswith("assert not STACK_MISMATCHES"))
+        exec(check, {"STACK_MISMATCHES": []})
+        with self.assertRaisesRegex(AssertionError, "Amendment 2 item 3"):
+            exec(check, {"STACK_MISMATCHES": ["torch 2.11.0+cu130 expected (Colab build), found 2.5.1+cu121"]})
+        self.assertLess(gpu.index("'T4' in gpu"), gpu.index("assert not STACK_MISMATCHES"))
+        for path in ("t4_smoke/train_phase2.py", "t4_smoke/phase2_eval.py", "colab_notebooks/build_phase2_notebooks.py"):
+            self.assertNotIn("allow_stack_mismatch", (ROOT / path).read_text().lower(), path)
+
+    def test_eval_notebooks_offer_logged_stale_lock_recovery(self):
+        """Amendment 2 item 5 (R7)."""
+        for kind, text in self.texts.items():
+            settings = code_cells(text)[0].split("os.environ")[0]
+            self.assertIn("RECOVER_STALE_LOCK = False", settings, kind)
+            self.assertIn("no other Colab session", settings, kind)
+            self.assertIn("RECOVER_STALE_LOCK = True", json.loads(text)["cells"][0]["source"], kind)
+        baseline = code_cells(self.texts["baseline"])[2]
+        self.assertIn("*(['--recover-stale-lock'] if RECOVER_STALE_LOCK else [])", baseline)
 
     def test_baseline_prints_the_ceiling_risk_proxy_with_wilson_interval(self):
         """Amendment 1 item 7."""
@@ -108,32 +139,53 @@ class BuiltNotebookTests(unittest.TestCase):
         self.assertIn("{flag['k']}/{flag['n']}", baseline)
         self.assertNotIn("CEILING FLAG", baseline)
         self.assertIn("high unchanged-DEV accuracy (ceiling-risk proxy)", json.loads(self.texts["baseline"])["cells"][0]["source"])
-        namespace = {"json": json, "Path": Path}
+        namespace = {"json": json, "Path": Path, "RECOVER_STALE_LOCK": False, "MANIFEST_SHA256": "m" * 64}
         cell = code_cells(self.texts["baseline"])[2]
+        self.assertIn("'--implementation-manifest', INPUTS / 'IMPLEMENTATION_MANIFEST.md'", cell)  # Amendment 2 item 6
         flag = pe.ceiling_flag({"accuracy": {"C": {"correct": 39, "denominator": 40}}})
+        calls = []
         with tempfile.TemporaryDirectory() as folder:
             store = Path(folder)
             (store / "baseline_dev").mkdir()
             (store / "baseline_dev" / "base_ceiling_flag.json").write_text(json.dumps(flag))
-            namespace.update(STORE=store, INPUTS=store, step=lambda *args: 0)
+            namespace.update(STORE=store, INPUTS=store, step=lambda *args: calls.append(args) or 0)
+            with self.assertRaisesRegex(AssertionError, "incomplete"):  # no baseline record yet
+                exec(cell, dict(namespace))
+            (store / "baseline_dev" / "base_baseline_record.json").write_text(json.dumps(
+                {"implementation_manifest_sha256": "m" * 64, "results_zip": "base_results.zip", "results_zip_sha256": "z" * 64}))
             with mock.patch("sys.stdout", io.StringIO()) as out:
-                exec(cell, namespace)
+                exec(cell, dict(namespace))
+            with self.assertRaises(AssertionError), mock.patch("sys.stdout", io.StringIO()):
+                exec(cell, dict(namespace, MANIFEST_SHA256="0" * 64))
+            with mock.patch("sys.stdout", io.StringIO()):
+                exec(cell, dict(namespace, RECOVER_STALE_LOCK=True))
         self.assertIn("high unchanged-DEV accuracy (ceiling-risk proxy): FIRES — unchanged DEV C 39/40 (Wilson 95%", out.getvalue())
+        self.assertIn("baseline recorded for training (Amendment 2 item 6): base_results.zip " + "z" * 64, out.getvalue())
+        self.assertNotIn("--recover-stale-lock", calls[0])
+        self.assertIn("--recover-stale-lock", calls[-1])
 
-    def test_train_notebook_settings_and_item_11(self):
+    def test_train_notebook_has_no_run_choice_and_follows_the_plan(self):
+        """Amendment 2 item 4 (R6): no ARM/SEED/SLOT setting; the plan picks the next pending run."""
         cells = code_cells(self.texts["train"])
         self.assertTrue(cells[0].startswith("import os"))
         settings = cells[0].split("os.environ")[0]
-        for needle in ("ARM = 'EC'", "SLOT = 11", "RESUME_AFTER_DISCONNECT = False", "(11, 22, 33)"):
+        for needle in ("RESUME_AFTER_DISCONNECT = False", "USE_DRIVE = True", "RECOVER_STALE_LOCK = False"):
             self.assertIn(needle, settings)
-        self.assertNotIn("SEED =", settings)
+        for forbidden in ("ARM =", "SEED =", "SLOT =", "ALLOW_STACK_MISMATCH"):
+            self.assertNotIn(forbidden, settings)
         source = "\n".join(cells)
-        for needle in ("'train_phase2.py'", "'--resume'", "tp.next_action", "tp.reconcile", "tp.log_event", "tp.attempt_outcome",
-                       "'--exposure-order'", "'--implementation-manifest-sha256'", "tp.HALT_MESSAGE", "'--slot'", "'dev_eval'",
-                       "never overwritten"):
+        for needle in ("'train_phase2.py'", "'--resume'", "tp.next_run(PLAN)", "tp.reconcile", "tp.resume_target", "'--train-root'",
+                       "'--inputs'", "'--baseline-dir'", "tp.HALT_MESSAGE", "'dev_eval'", "never overwritten",
+                       "'--implementation-manifest'", "ARM, SEED, SLOT, ATTEMPT, RESUME = ACTION['arm'], ACTION['seed'], ACTION['slot']"):
             self.assertIn(needle, source)
+        for gone in ("tp.next_action", "tp.log_event", "'--exposure-order'", "'--implementation-manifest-sha256'", "'--data'"):
+            self.assertNotIn(gone, source)  # the trainer itself logs, verifies and consults the plan
+        self.assertLess(source.index("assert not STACK_MISMATCHES, 'D021 stack mismatch (no attempt was opened)"),
+                        source.index("step(ATTEMPT_DIR, 'train_phase2.py'"))
         markdown = json.loads(self.texts["train"])["cells"][0]["source"]
-        for needle in ("the study halts", "60 successful optimizer steps", "44, then 55", "never valid", "ATTEMPT_LOG.jsonl"):
+        for needle in ("the study halts", "60 successful optimizer steps", "44, then 55", "never valid", "ATTEMPT_LOG.jsonl",
+                       "seed slot 11, then 22, then 33", "the arms EC, then ER, then EE", "fully settled",
+                       "Phase2_Baseline_DEV", "TypeError", "no override"):
             self.assertIn(needle, markdown)
 
     def test_no_second_backbone_in_any_phase2_notebook(self):
@@ -143,14 +195,20 @@ class BuiltNotebookTests(unittest.TestCase):
             self.assertNotIn("MODEL_ID =", text, kind)
         self.assertNotIn("llama", (ROOT / "colab_notebooks" / "build_phase2_notebooks.py").read_text().lower())
 
-    def test_current_preregistration_hash_with_amendment_1(self):
+    def test_current_preregistration_hash_with_amendment_2(self):
         digest = hashlib.sha256((ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()).hexdigest()
         self.assertEqual(builder.PREREGISTRATION_SHA256, digest)
-        self.assertNotEqual(builder.PREREGISTRATION_SHA256, OLD_PREREGISTRATION_SHA256)
-        self.assertIn("## Amendment 1", (ROOT / "phase2" / "PREREGISTRATION.md").read_text())
+        self.assertEqual(pe.PREREGISTRATION_SHA256, digest)
+        for old in (OLD_PREREGISTRATION_SHA256, AMENDMENT_1_PREREGISTRATION_SHA256):
+            self.assertNotEqual(builder.PREREGISTRATION_SHA256, old)
+        text = (ROOT / "phase2" / "PREREGISTRATION.md").read_text()
+        self.assertIn("## Amendment 1", text)
+        self.assertIn("## Amendment 2", text)
+        self.assertEqual(builder.manifest_module().parse(builder.implementation_manifest()[0])["preregistration"]["sha256"], digest)
         for kind, text in self.texts.items():
             self.assertIn(digest, code_cells(text)[0], kind)
-            self.assertNotIn(OLD_PREREGISTRATION_SHA256, text, kind)
+            for old in (OLD_PREREGISTRATION_SHA256, AMENDMENT_1_PREREGISTRATION_SHA256):
+                self.assertNotIn(old, text, kind)
 
     def test_final_test_is_skipped_until_the_freeze_manifest_exists(self):
         prereg, reason = builder.final_test_inputs()
@@ -231,6 +289,10 @@ class ManifestEmbeddingTests(unittest.TestCase):
         self.assertEqual(document["eos_stopping"]["generation_eos_token_id"], [151645, 151643])
         self.assertEqual(set(document["dtype_preparation"]), {"train", "evaluation", "difference"})
         self.assertEqual(document["dependencies"]["train"], ts.PINS)
+        self.assertEqual(document["dependencies"]["torch_build"], ts.TORCH_BUILD)
+        self.assertEqual(document["dependencies"]["evaluation"]["torch"], ts.TORCH_BUILD)
+        self.assertEqual(document["training"]["run_order"]["arms"], ["EC", "ER", "EE"])
+        self.assertEqual(set(document["training"]["failure_classes"]["infrastructure"]), set(tp.INFRASTRUCTURE_KINDS))
         self.assertEqual(document["generation_config"]["decoding"]["max_new_tokens"], 1024)
         self.assertEqual(document["training"]["grad_scaler"], tp.SCALER)
         self.assertEqual(document["exposure_order"]["sha256"], files["phase2/EXPOSURE_ORDER.json"])
@@ -252,69 +314,97 @@ class ManifestEmbeddingTests(unittest.TestCase):
 
 
 class TrainNotebookFlowTests(unittest.TestCase):
-    """Execute the Train notebook's setup and control cells with a stub training step (no GPU)."""
+    """Execute the Train notebook's setup and control cells with a stub trainer (no GPU). The stub logs the way the
+    trainer does: start (with identity) and finish; nothing when it refuses."""
 
     @classmethod
     def setUpClass(cls):
         cls.text = builder.render_train()
 
-    def run_control(self, work, outcomes, arm="EC", slot=11, resume=False):
+    def run_control(self, work, outcomes, resume=False):
         cells = code_cells(self.text)
-        settings = cells[0].replace("ARM = 'EC'", f"ARM = {arm!r}").replace("SLOT = 11", f"SLOT = {slot}")
+        settings = cells[0]
         if resume:
             settings = settings.replace("RESUME_AFTER_DISCONNECT = False", "RESUME_AFTER_DISCONNECT = True")
         stub = textwrap.dedent(f'''
             STACK_MISMATCHES = []
             OUTCOMES = {outcomes!r}
+            CALLS = []
             def step(log_dir, script, *args):
                 outcome = OUTCOMES.pop(0)
-                out = Path(args[args.index('--out') + 1])
+                CALLS.append(args)
+                get = lambda flag: args[args.index(flag) + 1]
+                if outcome == 'refused':
+                    return 2
+                arm, seed, slot, attempt, resume = get('--arm'), int(get('--seed')), int(get('--slot')), int(get('--attempt')), '--resume' in args
+                root = Path(get('--train-root'))
+                out = tp.attempt_dir(root, arm, seed, attempt)
                 out.mkdir(parents=True, exist_ok=True)
+                keys = dict(arm=arm, seed=seed, slot=slot, attempt=attempt)
+                tp.log_event(root / tp.ATTEMPT_LOG, 'resume_start' if resume else 'start', **keys,
+                             identity={{'implementation_manifest_sha256': MANIFEST_SHA256}})
                 status = 'COMPLETE' if outcome == 'valid' else ('STARTED' if outcome == 'disconnect' else 'FAILED')
                 (out / 'train_report.json').write_text(json.dumps({{'status': status, 'failure_class': None if status != 'FAILED' else outcome,
                                                                    'error': 'Traceback\\nX: ' + outcome}}))
                 if outcome == 'disconnect':
                     (out / 'checkpoint').mkdir(exist_ok=True)
+                    return None  # killed: no finish is logged
                 if outcome == 'valid':
-                    (out / 'final_adapter.json').write_text(json.dumps({{'status': 'COMPLETE', 'updates': 60, 'arm': ARM, 'slot': SLOT,
-                        'seed': int(args[args.index('--seed') + 1]), 'attempt': int(args[args.index('--attempt') + 1]),
-                        'steps': {{'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}}, 'scaler_skips': 0,
-                        'saved_parameters_finite': True, 'resumed': '--resume' in args, 'valid_for_gate': '--resume' not in args,
-                        'adapter_model_sha256': 'a', 'adapter_config_sha256': 'b', 'initial_adapter_sha256': 'i', 'order_sha256': 'o'}}))
+                    (out / 'final_adapter.json').write_text(json.dumps({{'status': 'COMPLETE', 'updates': 60, 'arm': arm, 'slot': slot,
+                        'seed': seed, 'attempt': attempt, 'steps': {{'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}},
+                        'scaler_skips': 0, 'saved_parameters_finite': True, 'resumed': resume, 'valid_for_gate': not resume,
+                        'adapter_model_sha256': 'a', 'adapter_config_sha256': 'b', 'initial_adapter_sha256': 'i', 'order_sha256': 'o',
+                        'baseline_dev_results_zip_sha256': 'z'}}))
+                result, detail = tp.attempt_outcome(out)
+                tp.log_event(root / tp.ATTEMPT_LOG, 'resume_finish' if resume else 'finish', **keys, outcome=result, detail=detail)
                 return 0 if outcome == 'valid' else 1
         ''')
         return run_python(settings + "\n" + stub + "\n" + cells[2], work)
 
-    def test_attempt_log_retry_reserve_and_halt(self):
+    def test_plan_drives_retry_reserve_refusal_and_halt(self):
         with tempfile.TemporaryDirectory() as folder:
             work = Path(folder) / "work"
             work.mkdir()
             log = work / "hinglish_phase2" / "runs" / "train" / tp.ATTEMPT_LOG
             result = self.run_control(work, ["infrastructure"])
+            self.assertIn("Next run from the plan: EC seed 11 (slot 11): attempt 1", result.stdout)
             self.assertIn("Infrastructure failure", result.stderr)
-            result = self.run_control(work, ["disconnect"])  # second attempt: from scratch, then a disconnect
+            result = self.run_control(work, ["disconnect"])  # second attempt: from scratch, then the runtime is killed
             self.assertIn("from-scratch retry", result.stdout)
-            current = tp.plan(tp.read_log(log))
-            self.assertEqual(current["slots"][11]["chain"], [11, 44])
-            result = self.run_control(work, ["valid"], arm="EE")
+            self.assertIn("no recorded outcome", result.stderr)
+            result = self.run_control(work, ["valid"])  # reconciled -> seed 11 retired -> reserve 44, arm EC first
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertIn("EE seed 44 (slot 11, reserve): attempt 1", result.stdout)
-            result = self.run_control(work, [], arm="EE")
-            self.assertIn("Already trained (valid): EE seed 44 attempt 1", result.stdout)
+            self.assertIn("Recorded an attempt left open earlier: EC seed 11 attempt 2 -> infrastructure", result.stdout)
+            self.assertIn("Next run from the plan: EC seed 44 (slot 11, reserve): attempt 1", result.stdout)
+            self.assertEqual(tp.plan(tp.read_log(log))["slots"][11]["chain"], [11, 44])
+            result = self.run_control(work, ["refused"])
+            self.assertIn("refused before opening an attempt", result.stderr)
+            result = self.run_control(work, ["valid"])  # the plan, not the operator, moves on to ER
+            self.assertIn("Next run from the plan: ER seed 44 (slot 11, reserve): attempt 1", result.stdout)
             self.assertTrue((tp.attempt_dir(log.parent, "EC", 11, 1) / "train_report.json").exists())  # never overwritten
-            result = self.run_control(work, ["numerical"], arm="ER")
+            result = self.run_control(work, ["numerical"])
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("NUMERICAL FAILURE", result.stdout)
             self.assertIn("THE STUDY HALTS", result.stdout)
-            for arm, slot in (("EC", 11), ("EE", 22)):
-                result = self.run_control(work, ["valid"], arm=arm, slot=slot)
-                self.assertNotEqual(result.returncode, 0)
-                self.assertIn("StudyHalted", result.stderr)
+            result = self.run_control(work, ["valid"])
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("StudyHalted", result.stderr)
             outcomes = [(e["event"], e["arm"], e["seed"], e.get("outcome")) for e in tp.read_log(log)]
             self.assertEqual(outcomes, [("start", "EC", 11, None), ("finish", "EC", 11, "infrastructure"),
                                         ("start", "EC", 11, None), ("finish", "EC", 11, "infrastructure"),
-                                        ("start", "EE", 44, None), ("finish", "EE", 44, "valid"),
-                                        ("start", "ER", 44, None), ("finish", "ER", 44, "numerical")])
+                                        ("start", "EC", 44, None), ("finish", "EC", 44, "valid"),
+                                        ("start", "ER", 44, None), ("finish", "ER", 44, "valid"),
+                                        ("start", "EE", 44, None), ("finish", "EE", 44, "numerical")])
+
+    def test_trainer_receives_the_plan_choice_and_the_baseline(self):
+        with tempfile.TemporaryDirectory() as folder:
+            work = Path(folder) / "work"
+            work.mkdir()
+            result = self.run_control(work, ["valid"])
+            self.assertEqual(result.returncode, 0, result.stderr)
+        cell = code_cells(self.text)[2]
+        self.assertIn("BASELINE_DIR = STORE / 'baseline_dev'", cell)
+        self.assertIn("'--arm', ARM, '--seed', SEED, '--slot', SLOT, '--attempt', ATTEMPT", cell)
 
     def test_resume_is_logged_and_never_valid(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -327,7 +417,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
             self.assertIn("never valid", result.stderr)
             current = tp.plan(tp.read_log(log))
             self.assertEqual(current["attempts"]["EC-s11"][0]["resume_outcome"], "resumed_invalid")
-            self.assertEqual(tp.next_action(current, "EC", 11)["attempt"], 2)
+            self.assertEqual(tp.next_run(current)["attempt"], 2)
 
 
 class FinalTestGateNotebookTests(unittest.TestCase):
@@ -352,15 +442,19 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         cls.prereg = (ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()
         cls.manifest = builder.implementation_manifest()
         cls.store = tempfile.TemporaryDirectory()
+        cls.baseline = Path(cls.store.name) / "baseline_dev"
+        baseline_sha = write_baseline(cls.baseline, cls.manifest[1])  # the unchanged-DEV run on Drive (Amendment 2 item 6)
         cls.trees = {}
         with mock.patch.object(fixtures, "MANIFEST_SHA", cls.manifest[1]), \
+                mock.patch.object(fixtures, "MANIFEST_PATH", ROOT / "phase2" / "IMPLEMENTATION_MANIFEST.md"), \
+                mock.patch.object(fixtures, "BASELINE_SHA", baseline_sha), \
                 mock.patch.object(fixtures, "DATA_SHA", tp.phase2_dataset(ROOT)["families_sha256"]):
             for name, slots in (("full", (11, 22, 33)), ("reduced", (11, 22))):
                 train = Path(cls.store.name) / name
                 fixtures.complete_slots(train, slots=slots)
                 if name == "reduced":
                     fixtures.exhaust_slot(train, 33)
-                frozen = pe.freeze_manifest(train)
+                frozen = fixtures.freeze(train, baseline_dir=cls.baseline)
                 cls.trees[name] = (train, frozen, "# Adapters frozen (TEST FIXTURE)\n\n```json\n" + json.dumps(frozen, indent=1) + "\n```\n")
         cls.text = builder.render_final_test(cls.prereg, cls.trees["full"][2])
 
@@ -368,7 +462,7 @@ class FinalTestGateNotebookTests(unittest.TestCase):
     def tearDownClass(cls):
         cls.store.cleanup()
 
-    def run_gate(self, text, tree="full", mutate=None):
+    def run_gate(self, text, tree="full", mutate=None, baseline=True):
         cells = code_cells(text)
         self.assertIn("GATE", cells[1])
         self.assertIn("assert GATE_PASSED", cells[3])  # evaluations refuse to start without the gate
@@ -379,6 +473,10 @@ class FinalTestGateNotebookTests(unittest.TestCase):
                 shutil.copytree(self.trees[tree][0], work / "hinglish_phase2" / "runs" / "train")
                 if mutate:
                     mutate(work / "hinglish_phase2" / "runs" / "train")
+            if baseline:
+                shutil.copytree(self.baseline, work / "hinglish_phase2" / "runs" / "baseline_dev")
+                if callable(baseline):
+                    baseline(work / "hinglish_phase2" / "runs" / "baseline_dev")
             return run_python(cells[0] + "\n" + cells[1], work)
 
     def test_refuses_without_adapters(self):
@@ -417,6 +515,16 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         result = self.run_gate(text)
         self.assertIn("another implementation manifest", result.stderr)
 
+    def test_refuses_without_the_frozen_unchanged_dev_baseline(self):
+        """Amendment 2 item 6 (R8): the gate requires the baseline the attempts were started with."""
+        result = self.run_gate(self.text, baseline=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("unchanged-DEV baseline", result.stderr)
+        result = self.run_gate(self.text, baseline=lambda folder: (folder / "base_results.zip").write_bytes(b"rerun"))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("unchanged-DEV baseline", result.stderr)
+        self.assertNotIn("GATE PASSED", result.stdout)
+
     def test_passes_with_three_triplets_confirmatory(self):
         result = self.run_gate(self.text)
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -444,6 +552,11 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         self.assertNotIn(OLD_PREREGISTRATION_SHA256, self.text)
         evaluation = code_cells(self.text)[3]
         self.assertIn("'--sealed'", evaluation)
+        self.assertIn("'--baseline-dir', BASELINE_DIR", evaluation)
+        self.assertIn("*(['--recover-stale-lock'] if RECOVER_STALE_LOCK else [])", evaluation)
+        self.assertIn("RECOVER_STALE_LOCK = False", code_cells(self.text)[0])
+        self.assertIn("assert not STACK_MISMATCHES", code_cells(self.text)[2])
+        self.assertNotIn(AMENDMENT_1_PREREGISTRATION_SHA256, self.text)
         for leak in ("summary", "accuracy", "predictions", "metrics", "correct", "raw_response"):
             self.assertNotIn(leak, evaluation.lower())
         self.assertIn("Sealed", json.loads(self.text)["cells"][0]["source"])

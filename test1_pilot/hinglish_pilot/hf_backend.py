@@ -8,8 +8,11 @@ from pathlib import Path
 from .data import digest, require
 from .engine import MODELS, default_config, environment, read, utc, validate_config
 
-PINS = {'transformers': '4.51.3', 'bitsandbytes': '0.50.2', 'accelerate': '1.6.0',
+# torch is the Colab build of the D021 stack (PREREGISTRATION §2): never installed, but required exactly
+# (Amendment 2 item 3), as is a single Tesla T4.
+PINS = {'torch': '2.11.0+cu130', 'transformers': '4.51.3', 'bitsandbytes': '0.50.2', 'accelerate': '1.6.0',
         'huggingface-hub': '0.30.2', 'tokenizers': '0.21.1', 'safetensors': '0.5.3'}
+T4 = {'name': 'T4', 'capability': (7, 5)}
 ADAPTER_PINS = {'peft': '0.15.2'}  # D021 training stack; needed only when an adapter is loaded
 ADAPTER_FILES = {'adapter_model_sha256': 'adapter_model.safetensors', 'adapter_config_sha256': 'adapter_config.json'}
 
@@ -85,6 +88,8 @@ class HFBackend:
         require(all(environment()['packages'][k] == v for k, v in PINS.items()), 'Pinned dependency mismatch: fresh runtime, run installation, then restart if imports are stale')
         require(torch.cuda.device_count() == 1, 'Test 1 expects one visible CUDA GPU')
         torch.cuda.set_device(0)
+        require(T4['name'] in torch.cuda.get_device_name(0) and tuple(torch.cuda.get_device_capability(0)) == T4['capability'],
+                'Tesla T4 required (PREREGISTRATION §2, Amendment 2 item 3), found ' + torch.cuda.get_device_name(0))
         torch.backends.cuda.matmul.allow_tf32 = False
         torch.backends.cudnn.allow_tf32 = False
         torch.backends.cudnn.benchmark = False

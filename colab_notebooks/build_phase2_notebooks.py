@@ -1,10 +1,11 @@
-"""Build the Phase-2 notebooks (D043; binding plan phase2/PREREGISTRATION.md with Amendment 1) into colab_notebooks/phase2/.
+"""Build the Phase-2 notebooks (D043; binding plan phase2/PREREGISTRATION.md with Amendments 1 and 2) into colab_notebooks/phase2/.
 
 - Phase2_Baseline_DEV.ipynb: unchanged Qwen3-4B on DEV; prints "high unchanged-DEV accuracy (ceiling-risk proxy)"
-  with k/40 and its Wilson interval (Amendment 1 item 7).
-- Phase2_Train.ipynb: one notebook for all runs (ARM and seed SLOT at the top). The append-only attempt log decides
-  the seed (reserves 44/55 automatically), the attempt and whether training is allowed at all (Amendment 1 item 11);
-  trains 60 updates under the item-10 numerical contract, then a DEV sanity evaluation; downloads a ZIP.
+  with k/40 and its Wilson interval (Amendment 1 item 7) and records the run for the trainer (Amendment 2 item 6).
+- Phase2_Train.ipynb: one notebook for all runs, with no ARM or SEED setting: the append-only attempt plan chooses
+  the next pending run (slots 11 -> 22 -> 33, arms EC -> ER -> EE, reserves 44 then 55; Amendment 2 item 4), the
+  attempt and whether training is allowed at all (Amendment 1 item 11); trains 60 updates under the item-10
+  numerical contract, then a DEV sanity evaluation; downloads a ZIP.
 - Phase2_FinalTest.ipynb: unchanged model + the 3S frozen adapters on FINAL_TEST, sealed (completion, checksum and
   infrastructure status only). Built only when phase2/PREREGISTRATION.md matches PREREGISTRATION_SHA256 below, the
   implementation manifest is current and phase2/ADAPTERS_FROZEN.md exists and records it (§11, items 12-14).
@@ -31,9 +32,10 @@ OUT_DIR = ROOT / 'colab_notebooks' / 'phase2'
 STAMP = (2026, 11, 3, 0, 0, 0)
 NAMES = {'baseline': 'Phase2_Baseline_DEV.ipynb', 'train': 'Phase2_Train.ipynb', 'final_test': 'Phase2_FinalTest.ipynb'}
 PREREGISTRATION = ROOT / 'phase2' / 'PREREGISTRATION.md'
-# SHA-256 of the committed pre-registration WITH Amendment 1 (commit b4fb956, D045). The original 74be2328... (commit
-# 58d330d) is superseded. Any further edit needs an amendment and a new constant (§13).
-PREREGISTRATION_SHA256 = '37ef68bfcb7cfa0bb530bfbecbf2082d18e916c0217370085d4180e8ea759ada'
+# SHA-256 of the committed pre-registration WITH Amendments 1 and 2 (commit 17986d4, D046). 37ef68bf... (Amendment 1
+# only, b4fb956) and the original 74be2328... (58d330d) are superseded. Any further edit needs an amendment and a new
+# constant (§13); the tests compare it with the file.
+PREREGISTRATION_SHA256 = 'b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396'
 ADAPTERS_FROZEN = ROOT / 'phase2' / 'ADAPTERS_FROZEN.md'
 MANIFEST_BUILDER = ROOT / 'phase2' / 'build_implementation_manifest.py'
 T4_CODE = ('train_smoke.py', 'labels.py', 'protocol.py', 'train_phase2.py', 'phase2_eval.py')
@@ -54,8 +56,10 @@ def payload_sources(kind):
     sources.update({'t4_smoke/' + name: 't4_smoke/' + name for name in T4_CODE})
     if kind in ('baseline', 'train'):
         sources['inputs/dev.v2.json'] = phase2_eval.FROZEN['dev'][0]
-    if kind == 'train':
+    if kind == 'train':  # the trainer re-verifies these bytes against their frozen hashes (Amendment 2 item 7)
         sources['inputs/EXPOSURE_ORDER.json'] = train_phase2.EXPOSURE_ORDER_PATH
+        for name in sorted(train_smoke.TRAIN_FILES):
+            sources['inputs/' + Path(name).name] = name
     return sources
 
 
@@ -81,7 +85,8 @@ def implementation_manifest():
 
 def requirements():
     return ('# D021 stack (training and evaluation). Colab supplies torch ' + train_smoke.TORCH_BUILD
-            + '; it is recorded, not replaced.\n' + ''.join(f'{n}=={v}\n' for n, v in train_smoke.PINS.items()))
+            + '; it is never installed, but any other build refuses every study run (Amendment 2 item 3).\n'
+            + ''.join(f'{n}=={v}\n' for n, v in train_smoke.PINS.items()))
 
 
 def payload(kind, prereg=None, frozen_text=None):
@@ -105,8 +110,9 @@ def payload(kind, prereg=None, frozen_text=None):
         put(archive, 'inputs/identities.json', json.dumps(identities, indent=1) + '\n')
         if kind in ('baseline', 'train'):
             put(archive, 'inputs/dev.v2.json', (ROOT / phase2_eval.FROZEN['dev'][0]).read_bytes())
-        if kind == 'train':
-            put(archive, 'inputs/phase2_train.json', json.dumps(train_phase2.phase2_dataset(ROOT), indent=1, ensure_ascii=False) + '\n')
+        if kind == 'train':  # raw frozen TRAIN bytes: the trainer builds and authenticates the families itself
+            for name in sorted(train_smoke.TRAIN_FILES):
+                put(archive, 'inputs/' + Path(name).name, (ROOT / name).read_bytes())
             put(archive, 'inputs/EXPOSURE_ORDER.json', (ROOT / train_phase2.EXPOSURE_ORDER_PATH).read_bytes())
         if kind == 'final_test':
             put(archive, 'inputs/final_test.v3.json', (ROOT / phase2_eval.FROZEN['final_test'][0]).read_bytes())
@@ -221,6 +227,8 @@ STACK = json.loads(subprocess.run([sys.executable, '-c', 'import sys; sys.path.i
 print(json.dumps(STACK['versions'], indent=1))
 STACK_MISMATCHES = STACK['mismatches']
 print('D021 stack mismatches:', STACK_MISMATCHES or 'none')
+# Amendment 2 item 3: only the exact §2 stack on a T4 can produce a study run; there is no override.
+assert not STACK_MISMATCHES, 'D021 stack mismatch: no study run until a dated amendment (Amendment 2 item 3): ' + '; '.join(STACK_MISMATCHES)
 # Tokenizer, chat template and config files at the pinned revision must match the implementation manifest.
 HUB_CHECK = """
 import hashlib, json, os, sys
@@ -235,6 +243,14 @@ print('Pinned Hub files match the implementation manifest:', ', '.join(sorted(mo
 print(subprocess.run([sys.executable, '-c', HUB_CHECK, json.dumps(MANIFEST['model'])], capture_output=True, text=True, check=True).stdout)
 '''
 
+RECOVER = ("RECOVER_STALE_LOCK = False  # Amendment 2 item 5: set True ONLY after confirming that no other Colab session is "
+           "running this evaluation (a killed runtime left RUNNING.lock); the recovery is logged with a timestamp and stored "
+           "outputs are never regenerated")
+RECOVER_ARGS = "*(['--recover-stale-lock'] if RECOVER_STALE_LOCK else [])"
+RECOVER_NOTE = ('**Stale lock (Amendment 2 item 5).** If a runtime was killed during an evaluation, re-running may stop with '
+                '"Run lock exists". First make sure no other Colab session is running this notebook, then set '
+                '`RECOVER_STALE_LOCK = True` and re-run all: the lock is removed, a timestamped record is written next to '
+                'the run, and generation resumes from the stored journal (nothing is regenerated). Set it back to False afterwards.')
 PROTOCOL = ('Frozen protocol (PREREGISTRATION §4): prompt `test1-english-final-v2`, greedy non-thinking decoding, NF4 + FP16, '
             'SDPA math, output cap 1,024 tokens, scorer v1.0.0, engine seed 11. **Do not change any setting.**')
 
@@ -281,46 +297,51 @@ def render_baseline(manifest=None):
             # Phase 2 — unchanged Qwen3-4B on DEV (PREREGISTRATION §5 with Amendment 1)
             Run this **once, before any training run**. 40 DEV families × E/R/C = 120 generations with the unchanged model.
             {PROTOCOL}
-            The notebook embeds `phase2/IMPLEMENTATION_MANIFEST.md` (SHA-256 `{manifest[1]}`) and refuses to run if any embedded code or data differs from it, or if the pinned tokenizer/config files differ (Amendment 1 item 14).
+            The notebook embeds `phase2/IMPLEMENTATION_MANIFEST.md` (SHA-256 `{manifest[1]}`) and refuses to run if any embedded code or data differs from it, or if the pinned tokenizer/config files differ (Amendment 1 item 14). It refuses any stack other than the exact §2 stack (torch {train_smoke.TORCH_BUILD} included) on a T4 (Amendment 2 item 3).
             At the end it prints **high unchanged-DEV accuracy (ceiling-risk proxy)** with k/40 and its Wilson 95% interval; the flag fires at C ≥ 38/40 (Amendment 1 item 7). It is a proxy only: Δ_C stays first in the report whatever it shows. DEV is a sanity set: it never selects anything. No FINAL_TEST data is in this notebook.
+            **Baseline first (Amendment 2 item 6).** The complete run is recorded on Drive (`MyDrive/{DRIVE}/baseline_dev/base_baseline_record.json`: results-ZIP SHA-256 and implementation-manifest SHA-256). The Train notebook refuses the first training attempt without it, and every attempt and the adapter freeze record its ZIP hash. Do not delete or rerun it.
+            {RECOVER_NOTE}
             **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all** (about 15–20 minutes). Drive is on by default so a disconnect resumes (re-run all; finished prompts are kept, never regenerated). A results ZIP with checksums downloads at the end; send it unchanged.'''
         yield 'code', setup
         yield 'code', GPU
-        yield 'code', '''
+        yield 'code', f'''
             RUN_DIR = STORE / 'baseline_dev' / 'base'
-            step(RUN_DIR.parent, 'phase2_eval.py', 'evaluate', '--split', 'dev', '--inputs', INPUTS, '--run-dir', RUN_DIR)
+            step(RUN_DIR.parent, 'phase2_eval.py', 'evaluate', '--split', 'dev', '--inputs', INPUTS, '--run-dir', RUN_DIR,
+                 '--implementation-manifest', INPUTS / 'IMPLEMENTATION_MANIFEST.md', {RECOVER_ARGS})
             FLAG = RUN_DIR.parent / 'base_ceiling_flag.json'
-            assert FLAG.exists(), 'Evaluation incomplete (see above): re-run all to resume, then download'
+            RECORD = RUN_DIR.parent / 'base_baseline_record.json'
+            assert FLAG.exists() and RECORD.exists(), 'Evaluation incomplete (see above): re-run all to resume, then download'
             flag = json.loads(FLAG.read_text())
             low, high = flag['wilson95']
-            print(f"\\n{flag['name']}: {'FIRES' if flag['flag'] else 'does not fire'} — unchanged DEV C {flag['k']}/{flag['n']}"
-                  f" (Wilson 95% {100 * low:.1f}–{100 * high:.1f}%; threshold >= 38/40)")'''
+            print(f"\\n{{flag['name']}}: {{'FIRES' if flag['flag'] else 'does not fire'}} — unchanged DEV C {{flag['k']}}/{{flag['n']}}"
+                  f" (Wilson 95% {{100 * low:.1f}}–{{100 * high:.1f}}%; threshold >= 38/40)")
+            record = json.loads(RECORD.read_text())
+            assert record['implementation_manifest_sha256'] == MANIFEST_SHA256, 'Baseline was recorded under another implementation manifest'
+            print('Unchanged-DEV baseline recorded for training (Amendment 2 item 6):', record['results_zip'], record['results_zip_sha256'])'''
         yield 'markdown', '## Download\nIf the run stopped early, re-run all cells first. Then run this cell.'
         yield 'code', "zip_results(STORE / 'baseline_dev', PACKAGE / 'Phase2_Baseline_DEV_results.zip', 'baseline_dev')"
 
-    return notebook(NAMES['baseline'], cells_for('baseline', blob, "USE_DRIVE = True  # resume after a disconnect", body, manifest))
+    settings = "USE_DRIVE = True  # resume after a disconnect\n" + RECOVER
+    return notebook(NAMES['baseline'], cells_for('baseline', blob, settings, body, manifest))
 
 
 def render_train(manifest=None):
     manifest = manifest or implementation_manifest()
     blob = payload('train')
-    settings = '''
-        ARM = 'EC'   # 'EE', 'ER' or 'EC'
-        SLOT = 11    # seed slot 11, 22 or 33; the attempt log assigns reserve seed 44, then 55, when Amendment 1 item 11 requires it
-        USE_DRIVE = True  # adapters, checkpoints and the attempt log live on Drive; keep this on
-        RESUME_AFTER_DISCONNECT = False  # engineering only: a resumed run is NEVER valid for the FinalTest gate
-        ALLOW_STACK_MISMATCH = False
-        assert ARM in ('EE', 'ER', 'EC') and SLOT in (11, 22, 33)'''
+    # Amendment 2 item 4: no ARM or SEED setting; the attempt plan chooses the next pending run.
+    settings = ('USE_DRIVE = True  # adapters, checkpoints, the attempt log and the unchanged-DEV baseline live on Drive; keep this on\n'
+                'RESUME_AFTER_DISCONNECT = False  # engineering only: a resumed run is NEVER valid for the FinalTest gate\n' + RECOVER)
 
     def body(setup):
         yield 'markdown', f'''
-            # Phase 2 — QLoRA training run (D043, Amendment 1) + DEV sanity check
-            One notebook for all runs: set **ARM** and the seed **SLOT** (11, 22 or 33) in the next cell and run all. Each run: all 160 TRAIN families, 320 examples, **exactly 60 accumulation windows with 60 successful optimizer steps** of 16 examples (8 families) over 3 passes, AdamW lr 1e-4 with 6 warm-up updates then cosine decay to 1e-5 (lr set before each step, gradients unscaled before clipping), GradScaler init 65,536 / growth 2.0 / backoff 0.5 / interval 2,000, the D021 recipe otherwise (NF4 + FP16, LoRA r16/α32/dropout 0.05 on all 7 projections, fp32 adapter). The exposure order is the frozen `phase2/EXPOSURE_ORDER.json`; it and the LoRA initialisation are identical across arms within a seed. About 25 minutes of training plus about 15 minutes of DEV evaluation on a T4.
-            The notebook embeds `phase2/IMPLEMENTATION_MANIFEST.md` (SHA-256 `{manifest[1]}`) and refuses to run if any embedded code or data differs from it (Amendment 1 item 14). After update 60 the adapter is saved to Drive with its SHA-256s; then it is evaluated **on DEV as a sanity report only** (never used for selection). {PROTOCOL} No FINAL_TEST data is in this notebook.
-            **Failures (Amendment 1 items 10–11).** Every attempt is recorded in the append-only `MyDrive/{DRIVE}/train/ATTEMPT_LOG.jsonl` (hash-chained, never overwritten) and the plan is printed before training.
-            - *Infrastructure* (disconnect, crash, OOM, failed save or reload): re-run all — one fresh attempt from scratch with the same seed. After a second infrastructure failure of any arm the whole seed triplet is replaced by the next unused reserve (44, then 55, filling slots in order 11, 22, 33); just keep the same SLOT and the notebook switches seed. Reserves get the same two-attempt limit and are never reused.
-            - *Numerical* (GradScaler skip, non-finite loss, gradient or saved parameter) or *protocol* (hash, data, exposure-order, label or step-count assertion): the run is invalid and **the study halts** — no retry, no reserve. The notebook then refuses all further training. Send the ZIP.
+            # Phase 2 — QLoRA training run (D043, Amendments 1–2) + DEV sanity check
+            One notebook for all runs, with **nothing to choose**: the append-only attempt plan picks the next pending run (Amendment 2 item 4) — seed slot 11, then 22, then 33; within a slot the arms EC, then ER, then EE; a slot is fully settled (all three arms valid, or replaced by a reserve that is itself settled) before the next slot starts; reserves come from the queue 44, then 55. Just run all, once per run. Each run: all 160 TRAIN families, 320 examples, **exactly 60 accumulation windows with 60 successful optimizer steps** of 16 examples (8 families) over 3 passes, AdamW lr 1e-4 with 6 warm-up updates then cosine decay to 1e-5 (lr set before each step, gradients unscaled before clipping), GradScaler init 65,536 / growth 2.0 / backoff 0.5 / interval 2,000, the D021 recipe otherwise (NF4 + FP16, LoRA r16/α32/dropout 0.05 on all 7 projections, fp32 adapter). The exposure order is the frozen `phase2/EXPOSURE_ORDER.json`; it and the LoRA initialisation are identical across arms within a seed. About 25 minutes of training plus about 15 minutes of DEV evaluation on a T4.
+            **Before any attempt opens, the trainer refuses** (nothing is logged) unless: the complete unchanged-model DEV run from `Phase2_Baseline_DEV` is on Drive under the same implementation manifest (Amendment 2 item 6); the configuration and implementation equal those of every earlier attempt (item 7); and the stack is exactly the §2 stack, torch {train_smoke.TORCH_BUILD} included, on a T4 (item 3; there is no override). Inside the attempt it re-verifies `phase2/IMPLEMENTATION_MANIFEST.md` (SHA-256 `{manifest[1]}`) against its own code, and the TRAIN bytes and the exposure order against their frozen hashes. After update 60 the adapter is saved to Drive with its SHA-256s; then it is evaluated **on DEV as a sanity report only** (never used for selection). {PROTOCOL} No FINAL_TEST data is in this notebook.
+            **Failures (Amendment 1 items 10–11, Amendment 2 item 2).** Every attempt is recorded in the append-only `MyDrive/{DRIVE}/train/ATTEMPT_LOG.jsonl` (hash-chained, never overwritten) and the plan is printed before training.
+            - *Infrastructure* — only: runtime disconnect or kill, CUDA out-of-memory, a Drive/filesystem `OSError`, a network/Hub download error, a failed checkpoint write. Re-run all: one fresh attempt from scratch with the same seed. After a second infrastructure failure of any arm the whole seed triplet is replaced by the next unused reserve (44, then 55); the plan switches seed by itself. Reserves get the same two-attempt limit and are never reused.
+            - *Numerical* (GradScaler skip, non-finite loss, gradient or saved parameter) or *protocol* (any hash, identity, label, data or step-count assertion, and **any other error**, e.g. a `TypeError`): the run is invalid and **the study halts** — no retry, no reserve. The notebook then refuses all further training. Send the ZIP.
             - A run continued with `RESUME_AFTER_DISCONNECT = True` is never valid for the FinalTest gate.
+            {RECOVER_NOTE}
             **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. A ZIP (adapter hashes, training log, attempt log, DEV results; weights stay on Drive) downloads at the end; send it unchanged.'''
         yield 'code', setup
         yield 'code', GPU
@@ -328,68 +349,69 @@ def render_train(manifest=None):
             sys.path.insert(0, str(PACKAGE / 't4_smoke'))
             import train_phase2 as tp
             TRAIN_ROOT = STORE / 'train'
+            BASELINE_DIR = STORE / 'baseline_dev'  # Amendment 2 item 6: written by Phase2_Baseline_DEV
             LOG = TRAIN_ROOT / tp.ATTEMPT_LOG
             for entry in tp.reconcile(TRAIN_ROOT):  # attempts left open by a disconnect are closed from their own reports
                 print('Recorded an attempt left open earlier:', entry['arm'], 'seed', entry['seed'], 'attempt', entry['attempt'], '->', entry['outcome'])
             PLAN = tp.plan(tp.read_log(LOG))
             print(tp.describe_plan(PLAN))
-            ACTION = tp.next_action(PLAN, ARM, SLOT)  # refuses after a numerical/protocol failure (study halted) or an exhausted slot
-            SEED = ACTION['seed']
-            RESUME = False
-            if ACTION['kind'] == 'done':
-                ATTEMPT = ACTION['attempt']
-                print(f'Already trained (valid): {ARM} seed {SEED} attempt {ATTEMPT}')
+            ACTION = tp.next_run(PLAN)  # Amendment 2 item 4: the plan chooses ARM and SEED; refuses after a numerical/protocol failure
+            assert not STACK_MISMATCHES, 'D021 stack mismatch (no attempt was opened): ' + '; '.join(STACK_MISMATCHES)
+            ATTEMPT_DIR, OUTCOME = None, None
+            if ACTION['kind'] == 'complete':
+                print(f"Every seed slot is settled (S = {ACTION['S']}): nothing left to train. Next: the adapter freeze (ADAPTERS_FROZEN.md).")
             else:
-                history = PLAN['slots'][SLOT]['arms'][ARM]['attempts']
-                last = history[-1] if history else None
-                if RESUME_AFTER_DISCONNECT and last and last['outcome'] == 'infrastructure' and not last['resumed'] \\
-                        and (tp.attempt_dir(TRAIN_ROOT, ARM, SEED, last['attempt']) / 'checkpoint').is_dir():
-                    ATTEMPT, RESUME = last['attempt'], True
+                ARM, SEED, SLOT, ATTEMPT, RESUME = ACTION['arm'], ACTION['seed'], ACTION['slot'], ACTION['attempt'], False
+                target = tp.resume_target(PLAN, ACTION, TRAIN_ROOT) if RESUME_AFTER_DISCONNECT else None
+                if target is not None:
+                    ATTEMPT, RESUME = target, True
                     print('RESUMING attempt', ATTEMPT, 'for engineering use only: a resumed run is NEVER valid for the FinalTest gate')
                 else:
-                    ATTEMPT = ACTION['attempt']
-                    print(f"{ARM} seed {SEED} (slot {SLOT}{', reserve' if ACTION['reserve'] else ''}): attempt {ATTEMPT}"
+                    print(f"Next run from the plan: {ARM} seed {SEED} (slot {SLOT}{', reserve' if ACTION['reserve'] else ''}): attempt {ATTEMPT}"
                           + (' — from-scratch retry after an infrastructure failure' if ACTION['retry'] else ''))
-                assert not STACK_MISMATCHES or ALLOW_STACK_MISMATCH, ('D021 stack mismatch (no attempt was opened): ' + '; '.join(STACK_MISMATCHES))
-            ATTEMPT_DIR = tp.attempt_dir(TRAIN_ROOT, ARM, SEED, ATTEMPT)
-            if ACTION['kind'] == 'train':
-                assert RESUME or not ATTEMPT_DIR.exists(), f'{ATTEMPT_DIR} already exists: attempts are never overwritten'
-                ATTEMPT_DIR.mkdir(parents=True, exist_ok=True)
-                tp.log_event(LOG, 'resume_start' if RESUME else 'start', arm=ARM, seed=SEED, slot=SLOT, attempt=ATTEMPT,
-                             implementation_manifest_sha256=MANIFEST_SHA256)
-                args = ['train', '--arm', ARM, '--seed', SEED, '--slot', SLOT, '--attempt', ATTEMPT, '--data', INPUTS / 'phase2_train.json',
-                        '--exposure-order', INPUTS / 'EXPOSURE_ORDER.json', '--out', ATTEMPT_DIR, '--implementation-manifest-sha256', MANIFEST_SHA256]
-                returncode = step(ATTEMPT_DIR, 'train_phase2.py', *args, *(['--resume'] if RESUME else []),
-                                  *(['--allow-stack-mismatch'] if ALLOW_STACK_MISMATCH else []))
-                OUTCOME, DETAIL = tp.attempt_outcome(ATTEMPT_DIR)
-                tp.log_event(LOG, 'resume_finish' if RESUME else 'finish', arm=ARM, seed=SEED, slot=SLOT, attempt=ATTEMPT,
-                             outcome=OUTCOME, detail=DETAIL, returncode=returncode, report_sha256=tp.report_sha(ATTEMPT_DIR))
-                PLAN = tp.plan(tp.read_log(LOG))
+                ATTEMPT_DIR = tp.attempt_dir(TRAIN_ROOT, ARM, SEED, ATTEMPT)
+                assert RESUME or not (ATTEMPT_DIR / 'train_report.json').exists(), f'{ATTEMPT_DIR} already holds an attempt: attempts are never overwritten'
+                args = ['train', '--train-root', TRAIN_ROOT, '--inputs', INPUTS, '--baseline-dir', BASELINE_DIR,
+                        '--arm', ARM, '--seed', SEED, '--slot', SLOT, '--attempt', ATTEMPT]  # the trainer re-derives and asserts these
+                returncode = step(ATTEMPT_DIR, 'train_phase2.py', *args, *(['--resume'] if RESUME else []))
+                ENTRIES = tp.read_log(LOG)
+                PLAN = tp.plan(ENTRIES)
                 print('\\n' + tp.describe_plan(PLAN))
+                same = lambda e: (e['arm'], e['seed'], e['attempt']) == (ARM, SEED, ATTEMPT)
+                opened = [e for e in ENTRIES if e['event'] == ('resume_start' if RESUME else 'start') and same(e)]
+                closed = [e for e in ENTRIES if e['event'] == ('resume_finish' if RESUME else 'finish') and same(e)]
+                assert opened, f'The trainer refused before opening an attempt (exit {returncode}; see its message above). Nothing was logged.'
+                assert closed, 'The attempt has no recorded outcome (runtime killed?): re-run all; it is reconciled from its report first.'
+                OUTCOME, DETAIL = closed[-1]['outcome'], closed[-1].get('detail')
                 if OUTCOME in ('numerical', 'protocol'):
                     print('\\n' + '!' * 100 + f'\\n{OUTCOME.upper()} FAILURE — {DETAIL}\\n' + tp.HALT_MESSAGE + '\\n' + '!' * 100)
                 assert OUTCOME == 'valid', {
                     'infrastructure': f'Infrastructure failure ({DETAIL}). Run the Download cell, send the ZIP, then re-run all: the plan above decides the retry or the reserve seed.',
                     'resumed_invalid': 'Resumed run finished but is never valid. Set RESUME_AFTER_DISCONNECT = False and re-run all for a fresh attempt if one is left.',
                 }.get(OUTCOME, f'{OUTCOME} failure: the study halts. Run the Download cell and send the ZIP.')
-            FINAL = ATTEMPT_DIR / 'final_adapter.json'
-            final = json.loads(FINAL.read_text())
-            print(json.dumps({k: final[k] for k in ('arm', 'seed', 'slot', 'attempt', 'steps', 'adapter_model_sha256', 'adapter_config_sha256',
-                                                    'initial_adapter_sha256', 'order_sha256', 'resumed', 'valid_for_gate')}, indent=1))'''
-        yield 'code', '''
+                FINAL = ATTEMPT_DIR / 'final_adapter.json'
+                final = json.loads(FINAL.read_text())
+                print(json.dumps({k: final[k] for k in ('arm', 'seed', 'slot', 'attempt', 'steps', 'adapter_model_sha256', 'adapter_config_sha256',
+                                                        'initial_adapter_sha256', 'order_sha256', 'resumed', 'valid_for_gate',
+                                                        'baseline_dev_results_zip_sha256')}, indent=1))'''
+        yield 'code', f'''
             # DEV sanity report only (PREREGISTRATION §5): never selects checkpoints, arms or reruns.
-            DEV_RUN = ATTEMPT_DIR / 'dev_eval'
-            step(ATTEMPT_DIR, 'phase2_eval.py', 'evaluate', '--split', 'dev', '--inputs', INPUTS, '--run-dir', DEV_RUN,
-                 '--adapter-dir', ATTEMPT_DIR / 'final_adapter', '--adapter-record', FINAL)'''
+            if OUTCOME == 'valid':
+                DEV_RUN = ATTEMPT_DIR / 'dev_eval'
+                step(ATTEMPT_DIR, 'phase2_eval.py', 'evaluate', '--split', 'dev', '--inputs', INPUTS, '--run-dir', DEV_RUN,
+                     '--adapter-dir', ATTEMPT_DIR / 'final_adapter', '--adapter-record', FINAL,
+                     '--implementation-manifest', INPUTS / 'IMPLEMENTATION_MANIFEST.md', {RECOVER_ARGS})
+            else:
+                print('Nothing was trained in this session: no DEV sanity run.')'''
         yield 'markdown', '## Download\nRun this cell even after a failure or a refusal: the ZIP carries the error, the logs and a snapshot of the attempt log.'
         yield 'code', '''
             import shutil
-            if 'ATTEMPT_DIR' in globals() and ATTEMPT_DIR.exists():
+            if globals().get('ATTEMPT_DIR') is not None and ATTEMPT_DIR.exists():
                 if LOG.exists():
                     shutil.copyfile(LOG, ATTEMPT_DIR / 'ATTEMPT_LOG.snapshot.jsonl')
                 zip_results(ATTEMPT_DIR, PACKAGE / f'Phase2_Train_{ARM}-s{SEED}_{ATTEMPT_DIR.name}.zip', f'{ARM}-s{SEED}/{ATTEMPT_DIR.name}')
-            else:  # refused before an attempt was opened (e.g. study halted): send the whole training log tree
-                zip_results(STORE / 'train', PACKAGE / f'Phase2_Train_slot{SLOT}_{ARM}_logs.zip', 'train')'''
+            else:  # refused before an attempt was opened (e.g. study halted, no baseline): send the whole training log tree
+                zip_results(STORE / 'train', PACKAGE / 'Phase2_Train_logs.zip', 'train')'''
 
     return notebook(NAMES['train'], cells_for('train', blob, settings, body, manifest))
 
@@ -422,10 +444,11 @@ def render_final_test(prereg, frozen_text, prereg_sha256=PREREGISTRATION_SHA256,
 
     def body(setup):
         yield 'markdown', f'''
-            # Phase 2 — FINAL_TEST: unchanged Qwen3-4B + the frozen adapters (PREREGISTRATION §11 with Amendment 1)
+            # Phase 2 — FINAL_TEST: unchanged Qwen3-4B + the frozen adapters (PREREGISTRATION §11 with Amendments 1–2)
             **Run once.** 1 + 3S checkpoints × 100 families × E/R/C (3,000 generations at S = 3; it resumes across sessions from Drive: re-run all; generated responses are never regenerated or retried).
-            The gate below refuses to run unless (1) the embedded `phase2/PREREGISTRATION.md` (with Amendment 1) has SHA-256 `{prereg_sha256}`, (2) the embedded freeze manifest `phase2/ADAPTERS_FROZEN.md` is intact, records the embedded implementation manifest and at least one complete seed triplet, and (3) every retained adapter on Drive (`MyDrive/{DRIVE}/train/`) is a valid run (60/60 successful steps, not resumed), paired within its seed, hash-identical to the manifest, and the attempt log still yields the frozen seeds. S = 3 is confirmatory; S = 1 or 2 runs only as a **descriptive-only reduced-S report**; S = 0 never reaches this notebook.
+            The gate below refuses to run unless (1) the embedded `phase2/PREREGISTRATION.md` (with Amendments 1 and 2) has SHA-256 `{prereg_sha256}`, (2) the embedded freeze manifest `phase2/ADAPTERS_FROZEN.md` is intact, records the embedded implementation manifest, the unchanged-DEV baseline and at least one complete seed triplet, (3) every retained adapter on Drive (`MyDrive/{DRIVE}/train/`) is a valid run (60/60 successful steps, not resumed), paired within its seed, hash-identical to the manifest, and the attempt log still yields the frozen seeds, every attempt having been started after the frozen unchanged-DEV baseline under the frozen implementation, and (4) that baseline's results ZIP on Drive (`MyDrive/{DRIVE}/baseline_dev/`) still has its frozen SHA-256 (Amendment 2 item 6). The GPU cell refuses any stack other than the exact §2 stack on a T4 (Amendment 2 item 3). S = 3 is confirmatory; S = 1 or 2 runs only as a **descriptive-only reduced-S report**; S = 0 never reaches this notebook.
             **Sealed (Amendment 1 item 14):** this notebook prints only completion, checksum and infrastructure status. Answers, scores and accuracy are never shown; the scored records stay in the results ZIP until every evaluation is complete. {PROTOCOL} Adapters are loaded unmerged on the same NF4 base. The analysis script runs afterwards, unchanged.
+            {RECOVER_NOTE}
             **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. A results ZIP with checksums downloads at the end; send it unchanged.'''
         yield 'code', setup
         yield 'code', f'''
@@ -442,43 +465,48 @@ def render_final_test(prereg, frozen_text, prereg_sha256=PREREGISTRATION_SHA256,
             FROZEN = phase2_eval.parse_frozen(frozen_text)
             assert FROZEN['implementation_manifest_sha256'] == MANIFEST_SHA256, 'Adapters were frozen under another implementation manifest: FINAL_TEST refused'
             S = FROZEN['S']
+            BASELINE_DIR = STORE / 'baseline_dev'  # Amendment 2 item 6: the frozen unchanged-DEV run
             CHECKPOINTS = [('base', None, None)] + [(phase2_eval.run_name(a['arm'], a['seed']), a, folder)
-                                                     for a, folder in phase2_eval.gate(FROZEN, STORE / 'train', expected_data_sha256=TRAIN_DATA_SHA256)]
+                                                     for a, folder in phase2_eval.gate(FROZEN, STORE / 'train', expected_data_sha256=TRAIN_DATA_SHA256,
+                                                                                       baseline_dir=BASELINE_DIR)]
             assert len(CHECKPOINTS) == 1 + 3 * S
             MODE = 'CONFIRMATORY (S = 3)' if FROZEN['confirmatory'] else f'DESCRIPTIVE-ONLY reduced-S report (S = {{S}}): no confirmatory label'
             GATE_PASSED = True
             (STORE / 'final_test').mkdir(parents=True, exist_ok=True)
             (STORE / 'final_test' / 'gate.json').write_text(json.dumps({{'preregistration_sha256': PREREG_SHA256, 'freeze_manifest_sha256': FROZEN_SHA256,
-                'implementation_manifest_sha256': MANIFEST_SHA256, 'S': S, 'confirmatory': FROZEN['confirmatory'],
+                'implementation_manifest_sha256': MANIFEST_SHA256, 'baseline_dev_results_zip_sha256': FROZEN['baseline_dev_results_zip_sha256'],
+                'S': S, 'confirmatory': FROZEN['confirmatory'],
                 'descriptive_only': FROZEN['descriptive_only'], 'checkpoints': [[name, adapter] for name, adapter, _ in CHECKPOINTS],
                 'passed_at': time.time()}}, indent=1))
             print('GATE PASSED:', MODE, [name for name, _, _ in CHECKPOINTS])'''
         yield 'code', GPU
-        yield 'code', '''
+        yield 'code', f'''
             assert GATE_PASSED, 'Gate did not pass'
             for name, adapter, folder in CHECKPOINTS:  # sealed: phase2_eval prints completion/checksum/infrastructure only
                 run_dir = STORE / 'final_test' / name
                 args = ['evaluate', '--split', 'final_test', '--sealed', '--inputs', INPUTS, '--run-dir', run_dir,
-                        '--train-root', STORE / 'train']
+                        '--train-root', STORE / 'train', '--baseline-dir', BASELINE_DIR,
+                        '--implementation-manifest', INPUTS / 'IMPLEMENTATION_MANIFEST.md', {RECOVER_ARGS}]
                 if adapter is not None:
-                    record = run_dir.parent / f'{name}_adapter_record.json'
+                    record = run_dir.parent / f'{{name}}_adapter_record.json'
                     if not record.exists():
                         record.write_text(json.dumps(adapter, indent=1))
                     args += ['--adapter-dir', folder, '--adapter-record', record]
                 step(run_dir.parent, 'phase2_eval.py', *args)
             def sealed(name):
-                path = STORE / 'final_test' / f'{name}_status.json'
-                return json.loads(path.read_text()) if path.exists() else {'run': name, 'status': 'NOT STARTED'}
+                path = STORE / 'final_test' / f'{{name}}_status.json'
+                return json.loads(path.read_text()) if path.exists() else {{'run': name, 'status': 'NOT STARTED'}}
             STATUS = [sealed(name) for name, _, _ in CHECKPOINTS]
             for item in STATUS:
-                print(json.dumps({k: item.get(k) for k in ('run', 'status', 'completed', 'expected', 'unresolved', 'attempts',
-                                                           'infrastructure_failures', 'results_zip_sha256')}))
+                print(json.dumps({{k: item.get(k) for k in ('run', 'status', 'completed', 'expected', 'unresolved', 'attempts',
+                                                           'infrastructure_failures', 'results_zip_sha256')}}))
             assert all(item['status'] == 'COMPLETE' for item in STATUS), 'Incomplete: re-run all to resume (generated responses are kept, never retried)'
             print('All', len(STATUS), 'FINAL_TEST runs complete.', MODE)'''
         yield 'markdown', '## Download\nIf a run is incomplete, re-run all first; then run this cell. The ZIP holds the sealed scored records; do not open them before every run is complete.'
         yield 'code', "zip_results(STORE / 'final_test', PACKAGE / 'Phase2_FinalTest_results.zip', 'final_test')"
 
-    return notebook(NAMES['final_test'], cells_for('final_test', blob, "USE_DRIVE = True  # the adapters are on Drive; required", body, manifest))
+    settings = "USE_DRIVE = True  # the adapters and the unchanged-DEV baseline are on Drive; required\n" + RECOVER
+    return notebook(NAMES['final_test'], cells_for('final_test', blob, settings, body, manifest))
 
 
 def renders():

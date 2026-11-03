@@ -137,8 +137,41 @@ class BackwardCompatibilityTests(unittest.TestCase):
                       adapter={'arm': 'EE', 'seed': 22, 'attempt': 1, 'adapter_model_sha256': 'a' * 64, 'adapter_config_sha256': 'b' * 64})
         with self.assertRaisesRegex(ValueError, 'exactly when'):
             hf_backend.HFBackend(phase2)
-        self.assertEqual(hf_backend.PINS, {'transformers': '4.51.3', 'bitsandbytes': '0.50.2', 'accelerate': '1.6.0',
-                                           'huggingface-hub': '0.30.2', 'tokenizers': '0.21.1', 'safetensors': '0.5.3'})
+        self.assertEqual(hf_backend.PINS, {'torch': '2.11.0+cu130', 'transformers': '4.51.3', 'bitsandbytes': '0.50.2',
+                                           'accelerate': '1.6.0', 'huggingface-hub': '0.30.2', 'tokenizers': '0.21.1',
+                                           'safetensors': '0.5.3'})
+
+    def test_hf_backend_requires_the_pinned_torch_and_a_t4(self):
+        """Amendment 2 item 3 (R5): torch is pinned and a non-T4 GPU is refused before any model is loaded."""
+        from unittest import mock
+        import types
+        config = live_engine.default_config('phase2_dev')
+        config.update(model_revision='0' * 40, tokenizer_revision='0' * 40)
+
+        def fake_modules(name, capability):
+            cuda = types.SimpleNamespace(is_available=lambda: True, device_count=lambda: 1, set_device=lambda i: None,
+                                         get_device_name=lambda i: name, get_device_capability=lambda i: capability)
+            torch = types.ModuleType('torch')
+            torch.cuda = cuda
+            nn, attention = types.ModuleType('torch.nn'), types.ModuleType('torch.nn.attention')
+            attention.SDPBackend, attention.sdpa_kernel = object(), object()
+            torch.nn = nn
+            nn.attention = attention
+            transformers = types.ModuleType('transformers')
+            for item in ('AutoConfig', 'AutoModelForCausalLM', 'AutoTokenizer', 'BitsAndBytesConfig', 'GenerationConfig'):
+                setattr(transformers, item, mock.MagicMock(side_effect=AssertionError('model loading reached')))
+            return {'torch': torch, 'torch.nn': nn, 'torch.nn.attention': attention, 'transformers': transformers}
+
+        pinned = {'packages': dict(hf_backend.PINS)}
+        with mock.patch.dict(sys.modules, fake_modules('NVIDIA A100-SXM4-40GB', (8, 0))), \
+                mock.patch.object(hf_backend, 'environment', return_value=pinned):
+            with self.assertRaisesRegex(ValueError, 'Tesla T4 required'):
+                hf_backend.HFBackend(config)
+        other_torch = {'packages': dict(hf_backend.PINS, torch='2.5.1+cu121')}
+        with mock.patch.dict(sys.modules, fake_modules('Tesla T4', (7, 5))), \
+                mock.patch.object(hf_backend, 'environment', return_value=other_torch):
+            with self.assertRaisesRegex(ValueError, 'Pinned dependency mismatch'):
+                hf_backend.HFBackend(config)
 
     def test_adapter_file_verification(self):
         with tempfile.TemporaryDirectory() as folder:

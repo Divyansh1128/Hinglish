@@ -1,8 +1,10 @@
 """Model-free tests of Phase-2 evaluation inputs, the engine modes and the FINAL_TEST gate."""
+import atexit
 import copy
 import hashlib
 import io
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +13,8 @@ from unittest import mock
 from t4_smoke import phase2_eval as pe
 from t4_smoke import train_phase2 as tp
 from t4_smoke import train_smoke as ts
+from t4_smoke.test_train_phase2 import IDENTITY, write_baseline
+from hinglish_pilot import engine as live_engine
 from hinglish_pilot import hf_backend
 from hinglish_pilot.data import validate
 from hinglish_pilot.engine import FakeBackend, default_config, run, validate_config
@@ -181,10 +185,124 @@ class EngineTests(unittest.TestCase):
                              "--run-dir", str(self.root / "runs" / "base")])
 
 
-MANIFEST_SHA = "e" * 64
+class BaselineRecordAndLockTests(unittest.TestCase):
+    """Amendment 2 items 5 (stale lock, Sol R7) and 6 (baseline first, Sol R8) through the evaluate command."""
+
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.root = Path(self.folder.name)
+        self.inputs = self.root / "inputs"
+        self.inputs.mkdir()
+        (self.inputs / "dev.v2.json").write_bytes((ROOT / "phase2" / "dev.v2.json").read_bytes())
+        (self.inputs / "identities.json").write_text(json.dumps(pe.split_identities(ROOT)))
+        self.manifest = self.inputs / "IMPLEMENTATION_MANIFEST.md"
+        self.manifest.write_text(FIXTURE_MANIFEST_TEXT)
+        self.run_dir = self.root / "baseline_dev" / "base"
+
+    def tearDown(self):
+        self.folder.cleanup()
+
+    def evaluate(self, *extra, backend=None):
+        with mock.patch.object(hf_backend, "HFBackend", backend or fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
+            code = pe.main(["evaluate", "--split", "dev", "--inputs", str(self.inputs), "--run-dir", str(self.run_dir), *extra])
+        return code, out.getvalue()
+
+    def test_complete_baseline_is_recorded_once_and_accepted_by_the_trainer(self):
+        code, out = self.evaluate("--implementation-manifest", str(self.manifest))
+        self.assertEqual(code, 0)
+        record = json.loads((self.run_dir.parent / tp.BASELINE_RECORD).read_text())
+        archive = self.run_dir.parent / "base_results.zip"
+        self.assertEqual((record["status"], record["completed"], record["unresolved"], record["adapter"], record["mode"]),
+                         ("COMPLETE", 120, 0, None, "phase2_dev"))
+        self.assertEqual(record["results_zip_sha256"], hashlib.sha256(archive.read_bytes()).hexdigest())
+        self.assertEqual(record["implementation_manifest_sha256"], MANIFEST_SHA)
+        self.assertIn("Unchanged-DEV baseline recorded", out)
+        self.assertEqual(tp.verify_baseline(self.run_dir.parent, MANIFEST_SHA), record["results_zip_sha256"])
+        with self.assertRaisesRegex(tp.Refused, "another implementation manifest|not"):
+            tp.verify_baseline(self.run_dir.parent, "0" * 64)
+        before = archive.read_bytes()
+        code, out = self.evaluate("--implementation-manifest", str(self.manifest),
+                                  backend=mock.MagicMock(side_effect=AssertionError("reloaded")))
+        self.assertEqual(code, 0)
+        self.assertIn("baseline record kept", out)
+        self.assertEqual(archive.read_bytes(), before)  # the recorded ZIP is never rewritten
+        other = self.inputs / "OTHER_MANIFEST.md"
+        other.write_text(FIXTURE_MANIFEST_TEXT + "\n")
+        with self.assertRaisesRegex(ValueError, "refusing to mix implementations"):
+            self.evaluate("--implementation-manifest", str(other))
+
+    def test_no_baseline_record_without_a_manifest_or_for_an_incomplete_run(self):
+        dataset, splits = pe.inputs((ROOT / "phase2" / "dev.v2.json").read_bytes(), "dev", pe.split_identities(ROOT))
+        self.assertEqual(self.evaluate()[0], 0)
+        self.assertFalse((self.run_dir.parent / tp.BASELINE_RECORD).exists())
+        with self.assertRaisesRegex(tp.Refused, "Phase2_Baseline_DEV"):
+            tp.verify_baseline(self.run_dir.parent, MANIFEST_SHA)
+        unbound = self.root / "unbound" / "base"  # started without a manifest: cannot become a baseline later
+        run(unbound, dataset, splits, pe.config_for("dev"), fake_backend(None)(), max_items=5)
+        self.run_dir = unbound
+        with self.assertRaisesRegex(ValueError, "without a recorded implementation manifest"):
+            self.evaluate("--implementation-manifest", str(self.manifest))
+        self.run_dir = self.root / "partial" / "base"
+        with mock.patch.object(pe, "run", side_effect=lambda *a, **k: run(*a, **dict(k, max_items=3))):
+            self.assertEqual(self.evaluate("--implementation-manifest", str(self.manifest))[0], 1)
+        self.assertFalse((self.run_dir.parent / tp.BASELINE_RECORD).exists())
+
+    def test_stale_lock_is_recovered_only_when_requested_and_nothing_is_regenerated(self):
+        dataset, splits = pe.inputs((ROOT / "phase2" / "dev.v2.json").read_bytes(), "dev", pe.split_identities(ROOT))
+        run(self.run_dir, dataset, splits, pe.config_for("dev"), fake_backend(None)(), max_items=4)
+        stored = {p.name: p.read_bytes() for p in (self.run_dir / "journal").glob("*.json")}
+        (self.run_dir / "RUNNING.lock").write_text("2026-11-04T01:02:03+00:00")  # left by a killed runtime
+        with self.assertRaisesRegex(ValueError, "Run lock exists"):
+            self.evaluate()
+        self.assertFalse((self.run_dir.parent / "base_lock_recoveries.jsonl").exists())
+        code, out = self.evaluate("--recover-stale-lock")
+        self.assertEqual(code, 0)
+        self.assertIn("removed the stale RUNNING.lock", out)
+        records = [json.loads(line) for line in (self.run_dir.parent / "base_lock_recoveries.jsonl").read_text().splitlines()]
+        self.assertEqual(len(records), 1)
+        self.assertEqual((records[0]["event"], records[0]["lock_created_at"], records[0]["journal_records_kept"],
+                          records[0]["operator_confirmed_no_active_writer"]),
+                         ("stale_lock_recovered", "2026-11-04T01:02:03+00:00", 4, True))
+        self.assertRegex(records[0]["at"], r"^\d{4}-\d\d-\d\dT")
+        for name, content in stored.items():  # stored outputs kept byte for byte, never regenerated
+            self.assertEqual((self.run_dir / "journal" / name).read_bytes(), content)
+        attempts = [json.loads(p.read_text()) for p in (self.run_dir / "journal").glob("*.json")]
+        self.assertEqual((len(attempts), {a["attempt_number"] for a in attempts}), (120, {1}))
+        self.assertFalse((self.run_dir / "RUNNING.lock").exists())
+        code, out = self.evaluate("--recover-stale-lock")  # nothing to recover: no new record
+        self.assertIn("nothing to recover", out)
+        self.assertEqual(len((self.run_dir.parent / "base_lock_recoveries.jsonl").read_text().splitlines()), 1)
+
+    def test_engine_recover_lock_still_requires_confirmation(self):
+        (self.root / "RUNNING.lock").write_text("x")
+        with self.assertRaises(ValueError):
+            live_engine.recover_lock(self.root)
+        self.assertTrue((self.root / "RUNNING.lock").exists())
+
+
+# A fixture implementation manifest that is true of this repository (one hashed file), so freeze_manifest's recheck
+# against the real implementation passes; the notebook tests swap in the real manifest.
+FIXTURE_MANIFEST_TEXT = ("# Implementation manifest (TEST FIXTURE)\n\n```json\n" + json.dumps(
+    {"schema": tp.MANIFEST_SCHEMA, "files": {tp.EXPOSURE_ORDER_PATH: tp.EXPOSURE_ORDER_SHA256}}) + "\n```\n")
+_FIXTURE_DIR = tempfile.mkdtemp()
+atexit.register(shutil.rmtree, _FIXTURE_DIR, True)
+MANIFEST_PATH = Path(_FIXTURE_DIR) / "IMPLEMENTATION_MANIFEST.md"
+MANIFEST_PATH.write_text(FIXTURE_MANIFEST_TEXT)
+MANIFEST_SHA = H(FIXTURE_MANIFEST_TEXT)
+BASELINE_SHA = "b" * 64  # results-ZIP SHA-256 of the unchanged-DEV run every attempt was started with
 EXPOSURE_SHA = hashlib.sha256((ROOT / tp.EXPOSURE_ORDER_PATH).read_bytes()).hexdigest()
 SHARDS = {"model-00001-of-00003.safetensors": "5" * 64}
 DATA_SHA = "d"
+
+
+def identity():
+    return dict(IDENTITY, implementation_manifest_sha256=MANIFEST_SHA, baseline_dev_results_zip_sha256=BASELINE_SHA,
+                exposure_order_file_sha256=EXPOSURE_SHA)
+
+
+def freeze(train, **kwargs):
+    """freeze_manifest against MANIFEST_PATH, rechecked against this repository."""
+    return pe.freeze_manifest(train, manifest_path=MANIFEST_PATH, root=ROOT, **kwargs)
 
 
 def make_run(train, arm, seed, slot, attempt=1, **changes):
@@ -202,7 +320,7 @@ def make_run(train, arm, seed, slot, attempt=1, **changes):
               "adapter_model_sha256": H(weights), "adapter_config_sha256": H(settings),
               "initial_adapter_sha256": f"init-{seed}", "order_sha256": f"order-{seed}", "data_sha256": DATA_SHA,
               "implementation_manifest_sha256": MANIFEST_SHA, "exposure_order_file_sha256": EXPOSURE_SHA,
-              "base_weight_shards_sha256": SHARDS}
+              "baseline_dev_results_zip_sha256": BASELINE_SHA, "base_weight_shards_sha256": SHARDS}
     record.update(changes)
     (folder / "final_adapter.json").write_text(json.dumps(record))
     (folder / "train_report.json").write_text(json.dumps({"status": "COMPLETE"}))
@@ -210,11 +328,11 @@ def make_run(train, arm, seed, slot, attempt=1, **changes):
 
 
 def log_attempt(train, arm, seed, slot, outcome):
-    """Log one attempt the way the Train notebook does; a valid one also gets its run folder."""
+    """Log the plan's next run (it must be arm/seed/slot) the way the trainer does; a valid one gets its run folder."""
     log = Path(train) / tp.ATTEMPT_LOG
-    action = tp.next_action(tp.plan(tp.read_log(log)), arm, slot)
-    assert (action["kind"], action["seed"]) == ("train", seed), action
-    tp.log_event(log, "start", arm=arm, seed=seed, slot=slot, attempt=action["attempt"])
+    action = tp.next_run(tp.plan(tp.read_log(log)))
+    assert (action["kind"], action["arm"], action["seed"], action["slot"]) == ("train", arm, seed, slot), action
+    tp.log_event(log, "start", arm=arm, seed=seed, slot=slot, attempt=action["attempt"], identity=identity())
     if outcome == "valid":
         make_run(train, arm, seed, slot, action["attempt"])
     tp.log_event(log, "finish", arm=arm, seed=seed, slot=slot, attempt=action["attempt"], outcome=outcome)
@@ -223,14 +341,14 @@ def log_attempt(train, arm, seed, slot, outcome):
 
 def complete_slots(train, slots=(11, 22, 33)):
     for slot in slots:
-        for arm in sorted(tp.ARMS):
+        for arm in tp.ARM_ORDER:
             log_attempt(train, arm, slot, slot, "valid")
 
 
 def exhaust_slot(train, slot):
     for seed in (slot, 44, 55):
         for _ in range(2):
-            log_attempt(train, "EE", seed, slot, "infrastructure")
+            log_attempt(train, "EC", seed, slot, "infrastructure")
 
 
 class GateTests(unittest.TestCase):
@@ -238,7 +356,7 @@ class GateTests(unittest.TestCase):
         self.folder = tempfile.TemporaryDirectory()
         self.train = Path(self.folder.name) / "train"
         complete_slots(self.train)
-        self.frozen = pe.freeze_manifest(self.train)
+        self.frozen = freeze(self.train)
 
     def tearDown(self):
         self.folder.cleanup()
@@ -296,7 +414,7 @@ class GateTests(unittest.TestCase):
         path.write_text(json.dumps({"status": "FAILED", "failure_class": "numerical"}))
         self.refuses("training log")
         with self.assertRaisesRegex(ValueError, "training report"):
-            pe.freeze_manifest(self.train)
+            freeze(self.train)
 
     def test_freeze_without_training_log_hashes_is_refused(self):
         frozen = copy.deepcopy(self.frozen)
@@ -313,28 +431,37 @@ class GateTests(unittest.TestCase):
     def test_driver_authorizes_only_frozen_adapters(self):
         inputs = Path(self.folder.name) / "inputs"
         inputs.mkdir()
-        manifest = "implementation fixture"
-        (inputs / "IMPLEMENTATION_MANIFEST.md").write_text(manifest)
+        (inputs / "IMPLEMENTATION_MANIFEST.md").write_text(FIXTURE_MANIFEST_TEXT)
         (inputs / "PREREGISTRATION.md").write_bytes((ROOT / "phase2" / "PREREGISTRATION.md").read_bytes())
-        for seed in tp.SLOTS:
-            for arm in tp.ARMS:
-                make_run(self.train, arm, seed, seed, implementation_manifest_sha256=H(manifest))
-        frozen = pe.freeze_manifest(self.train)
+        baseline = Path(self.folder.name) / "baseline_dev"
+        zip_sha = write_baseline(baseline, MANIFEST_SHA)
+        frozen = dict(self.frozen, baseline_dev_results_zip_sha256=zip_sha)
         (inputs / "ADAPTERS_FROZEN.md").write_text("```json\n" + json.dumps(frozen) + "\n```")
-        args = pe.argparse.Namespace(train_root=self.train, inputs=inputs, adapter_record=None, adapter_dir=None)
-        self.assertEqual(pe.authorize_final_test(args), frozen)
+        args = pe.argparse.Namespace(train_root=self.train, inputs=inputs, adapter_record=None, adapter_dir=None, baseline_dir=None)
+        with self.assertRaisesRegex(ValueError, "--baseline-dir"):
+            pe.authorize_final_test(args)
+        args.baseline_dir = baseline
+        with self.assertRaisesRegex(ValueError, "without the frozen unchanged-DEV baseline"):  # log records BASELINE_SHA
+            pe.authorize_final_test(args)
+        frozen = self.frozen
+        (inputs / "ADAPTERS_FROZEN.md").write_text("```json\n" + json.dumps(frozen) + "\n```")
+        with self.assertRaisesRegex(ValueError, "unchanged-DEV baseline: .*differs from the frozen"):
+            pe.authorize_final_test(args)
+        with mock.patch.object(tp, "verify_baseline", return_value=BASELINE_SHA):
+            self.assertEqual(pe.authorize_final_test(args), frozen)
         folder = pe.attempt_dir(self.train, "EC", 11, 1)
         args.adapter_record, args.adapter_dir = folder / "final_adapter.json", folder / "final_adapter"
-        self.assertEqual(pe.authorize_final_test(args), frozen)
-        args.adapter_dir = inputs / "other_adapter"
-        with self.assertRaisesRegex(ValueError, "outside the frozen set"):
-            pe.authorize_final_test(args)
+        with mock.patch.object(tp, "verify_baseline", return_value=BASELINE_SHA):
+            self.assertEqual(pe.authorize_final_test(args), frozen)
+            args.adapter_dir = inputs / "other_adapter"
+            with self.assertRaisesRegex(ValueError, "outside the frozen set"):
+                pe.authorize_final_test(args)
 
     def test_reduced_s_is_descriptive_only(self):
         folder = Path(self.folder.name) / "reduced"
         complete_slots(folder, slots=(11, 22))
         exhaust_slot(folder, 33)
-        frozen = pe.freeze_manifest(folder)
+        frozen = freeze(folder)
         self.assertEqual((frozen["S"], frozen["confirmatory"], frozen["descriptive_only"]), (2, False, True))
         self.assertEqual(len(pe.gate(frozen, folder)), 6)
         for change, pattern in ((lambda f: f.update(descriptive_only=False), "descriptive_only"),
@@ -352,16 +479,16 @@ class GateTests(unittest.TestCase):
                 for _ in range(2):
                     log_attempt(folder, "EC", seed, slot, "infrastructure")
         with self.assertRaisesRegex(ValueError, "still open"):
-            pe.freeze_manifest(folder)
+            freeze(folder)
         zero = copy.deepcopy(self.frozen)
         zero.update(S=0, retained_seeds=[], adapters=[], confirmatory=False, descriptive_only=True)
         with self.assertRaisesRegex(ValueError, "S = 0"):
             pe.parse_frozen("```json\n" + json.dumps(zero) + "\n```")
         halted = Path(self.folder.name) / "halted"
         complete_slots(halted, slots=(11, 22))
-        log_attempt(halted, "EE", 33, 33, "numerical")
+        log_attempt(halted, "EC", 33, 33, "numerical")
         with self.assertRaisesRegex(ValueError, "halted"):
-            pe.freeze_manifest(halted)
+            freeze(halted)
 
     def test_manifest_parsing(self):
         for change in (lambda f: f["adapters"].pop(), lambda f: f.update(base_revision="0" * 40),
@@ -369,7 +496,8 @@ class GateTests(unittest.TestCase):
                        lambda f: f["adapters"][0].update(attempt=3), lambda f: f.update(schema="phase2-adapters-frozen-1"),
                        lambda f: f.update(S=2), lambda f: f.update(descriptive_only=True),
                        lambda f: f["retained_seeds"][0].update(seed=22), lambda f: f["retained_seeds"][0].update(seed=55),
-                       lambda f: f.update(implementation_manifest_sha256=None)):
+                       lambda f: f.update(implementation_manifest_sha256=None),
+                       lambda f: f.pop("baseline_dev_results_zip_sha256"), lambda f: f.update(schema="phase2-adapters-frozen-2")):
             broken = copy.deepcopy(self.frozen)
             change(broken)
             with self.subTest(change=change), self.assertRaises(ValueError):
@@ -379,16 +507,61 @@ class GateTests(unittest.TestCase):
 
     def test_reserve_seed_triplet_replaces_a_slot(self):
         folder = Path(self.folder.name) / "reserve"
-        log_attempt(folder, "EE", 11, 11, "valid")
+        log_attempt(folder, "EC", 11, 11, "valid")
         log_attempt(folder, "ER", 11, 11, "infrastructure")
         log_attempt(folder, "ER", 11, 11, "infrastructure")
-        complete_slots(folder, slots=(22, 33))
-        for arm in sorted(tp.ARMS):
+        for arm in tp.ARM_ORDER:  # slot 11 is settled on reserve 44 before slot 22 starts (Amendment 2 item 4)
             log_attempt(folder, arm, 44, 11, "valid")
-        frozen = pe.freeze_manifest(folder)
+        complete_slots(folder, slots=(22, 33))
+        frozen = freeze(folder)
         self.assertEqual(frozen["retained_seeds"], [{"slot": 11, "seed": 44}, {"slot": 22, "seed": 22}, {"slot": 33, "seed": 33}])
         self.assertEqual(sorted({a["seed"] for a in frozen["adapters"]}), [22, 33, 44])
         self.assertEqual(len(pe.gate(frozen, folder)), 9)
+
+    def test_freeze_rechecks_the_manifest_against_the_real_files_and_the_start_events(self):
+        """Amendment 2 item 7 (Sol R4): an asserted manifest hash is not enough to freeze."""
+        stale = Path(self.folder.name) / "stale_manifest.md"
+        stale.write_text(FIXTURE_MANIFEST_TEXT.replace(tp.EXPOSURE_ORDER_SHA256, "0" * 64))
+        with self.assertRaisesRegex(ValueError, "differs from the real implementation: phase2/EXPOSURE_ORDER.json"):
+            pe.freeze_manifest(self.train, manifest_path=stale, root=ROOT)
+        other = Path(self.folder.name) / "other_manifest.md"  # true of the repository, but not what the attempts ran
+        other.write_text(FIXTURE_MANIFEST_TEXT + "\n")
+        with self.assertRaisesRegex(ValueError, "another implementation manifest"):
+            pe.freeze_manifest(self.train, manifest_path=other, root=ROOT)
+        arbitrary = Path(self.folder.name) / "arbitrary"  # Sol's probe: runs claiming eee...eee everywhere
+        with mock.patch(__name__ + ".MANIFEST_SHA", "e" * 64):
+            complete_slots(arbitrary)
+        with self.assertRaisesRegex(ValueError, "another implementation manifest"):
+            freeze(arbitrary)
+        mixed = Path(self.folder.name) / "mixed"  # start events right, a retained record wrong
+        complete_slots(mixed)
+        make_run(mixed, "ER", 22, 22, implementation_manifest_sha256="e" * 64)
+        with self.assertRaisesRegex(ValueError, "differ in"):
+            freeze(mixed)
+
+    def test_freeze_records_the_baseline_and_the_gate_requires_it(self):
+        """Amendment 2 item 6 (Sol R8)."""
+        self.assertEqual(self.frozen["baseline_dev_results_zip_sha256"], BASELINE_SHA)
+        baseline = Path(self.folder.name) / "baseline_dev"
+        zip_sha = write_baseline(baseline, MANIFEST_SHA)
+        with self.assertRaisesRegex(ValueError, "Unchanged-DEV baseline: .*differs from the frozen"):
+            freeze(self.train, baseline_dir=baseline)
+        good = Path(self.folder.name) / "good"
+        with mock.patch(__name__ + ".BASELINE_SHA", zip_sha):
+            complete_slots(good)
+            frozen = freeze(good, baseline_dir=baseline)
+        self.assertEqual(frozen["baseline_dev_results_zip_sha256"], zip_sha)
+        self.assertEqual(len(pe.gate(frozen, good, baseline_dir=baseline)), 9)
+        (baseline / "base_results.zip").write_bytes(b"rerun")
+        with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*unchanged-DEV baseline"):
+            pe.gate(frozen, good, baseline_dir=baseline)
+        with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*without the frozen unchanged-DEV baseline"):
+            pe.gate(dict(frozen, baseline_dev_results_zip_sha256="0" * 64), good)
+        no_baseline = Path(self.folder.name) / "no_baseline"
+        with mock.patch(__name__ + ".BASELINE_SHA", None):
+            complete_slots(no_baseline)
+        with self.assertRaisesRegex(ValueError, "no unchanged-DEV baseline"):
+            freeze(no_baseline)
 
     def test_preregistration_hash_check(self):
         text = (ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()

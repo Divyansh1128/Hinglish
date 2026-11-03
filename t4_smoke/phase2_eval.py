@@ -1,8 +1,15 @@
-"""Phase-2 evaluation through the frozen Test 1 engine (phase2/PREREGISTRATION.md §4, §5, §11 with Amendment 1).
+"""Phase-2 evaluation through the frozen Test 1 engine (phase2/PREREGISTRATION.md §4, §5, §11 with Amendments 1-2).
 
-  python3 t4_smoke/phase2_eval.py evaluate --split dev --inputs INPUTS_DIR --run-dir RUN [--adapter-dir D --adapter-record R] [--sealed]
-  python3 t4_smoke/phase2_eval.py gate --frozen adapters_frozen.json --train-root TRAIN_ROOT
-  python3 t4_smoke/phase2_eval.py freeze-manifest --train-root TRAIN_ROOT   # reads ATTEMPT_LOG.jsonl and the retained runs
+  python3 t4_smoke/phase2_eval.py evaluate --split dev --inputs INPUTS_DIR --run-dir RUN [--adapter-dir D --adapter-record R]
+      [--implementation-manifest M] [--sealed] [--recover-stale-lock]
+  python3 t4_smoke/phase2_eval.py gate --frozen adapters_frozen.json --train-root TRAIN_ROOT [--baseline-dir B]
+  python3 t4_smoke/phase2_eval.py freeze-manifest --train-root TRAIN_ROOT --baseline-dir B [--manifest M --root R]
+
+The unchanged-model DEV run started with --implementation-manifest writes ``base_baseline_record.json`` (results-ZIP
+SHA-256 and manifest SHA-256) once it is complete; the trainer refuses the first attempt without it (Amendment 2
+item 6). --recover-stale-lock removes a RUNNING.lock left by a killed runtime, after the operator confirmed that no
+other session is running this evaluation, and logs a timestamped record; stored outputs are never regenerated
+(Amendment 2 item 5).
 
 FINAL_TEST evaluations are always sealed (Amendment 1 item 14): the operator sees only completion, checksum and
 infrastructure status; scored records go into the results ZIP and are never printed.
@@ -27,7 +34,7 @@ for candidate in (HERE.parent, HERE.parent / "test1_pilot"):  # notebook payload
         sys.path.insert(0, str(candidate))
 
 from hinglish_pilot.data import digest, validate  # noqa: E402
-from hinglish_pilot.engine import code_hash, default_config, read, run, write  # noqa: E402
+from hinglish_pilot.engine import code_hash, default_config, read, recover_lock, run, utc, write  # noqa: E402
 from hinglish_pilot.hf_backend import adapter_digests  # noqa: E402
 from hinglish_pilot.report import wilson  # noqa: E402
 
@@ -55,15 +62,17 @@ PHASE2_MODEL = "Qwen/Qwen3-4B"  # Amendment 1 item 15: Llama-3.2-3B (or any seco
 BORROWING_POLICY = ("Phase-2 policy (D033): R = Hindi phrasing in Roman script with established English loan nouns; "
                     "C = insertional Hinglish with English lexical material beyond R's borrowings. Frozen data, unchanged.")
 IDENTITY = ("family_id", "source_family_id", "template_group_id")
-FROZEN_SCHEMA = "phase2-adapters-frozen-2"
+FROZEN_SCHEMA = "phase2-adapters-frozen-3"  # 3: + baseline_dev_results_zip_sha256 (Amendment 2 item 6)
 ENGINE_SEED = 11
-PREREGISTRATION_SHA256 = "37ef68bfcb7cfa0bb530bfbecbf2082d18e916c0217370085d4180e8ea759ada"
+# SHA-256 of phase2/PREREGISTRATION.md with Amendments 1 and 2 (commit 17986d4, D046); supersedes 37ef68bf... and 74be2328...
+PREREGISTRATION_SHA256 = "b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396"
 SHA256 = re.compile("[0-9a-f]{64}")
 
 
 def require(condition, message):
+    """Hash, identity and data assertions raise the dedicated ProtocolError (a ValueError; Amendment 2 item 2)."""
     if not condition:
-        raise ValueError(message)
+        raise tp.ProtocolError(message)
 
 
 def sha256(data):
@@ -148,7 +157,8 @@ def parse_frozen(text):
     frozen = json.loads(match.group(1))
     require(frozen.get("schema") == FROZEN_SCHEMA, f"Freeze manifest schema must be {FROZEN_SCHEMA}")
     require(frozen.get("base_model") == MODEL_ID and frozen.get("base_revision") == MODEL_REVISION, "Base model/revision mismatch")
-    for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "attempt_log_sha256"):
+    for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "attempt_log_sha256",
+                "baseline_dev_results_zip_sha256"):
         require(SHA256.fullmatch(str(frozen.get(key))), f"{key} must be a SHA-256")
     logs = frozen.get("training_logs_sha256")
     require(isinstance(logs, dict) and logs, "Freeze must include training_logs_sha256")
@@ -189,17 +199,60 @@ def parse_frozen(text):
     return frozen
 
 
-def gate(frozen, train_root, *, expected_data_sha256=None):
+def verify_manifest_against(manifest_path, root):
+    """Amendment 1 item 14 / Amendment 2 item 7: recheck IMPLEMENTATION_MANIFEST.md against the real files under
+    ``root`` (every hashed file must exist with that SHA-256). Returns (document, manifest SHA-256)."""
+    raw = Path(manifest_path).read_bytes()
+    document = tp.parse_manifest(raw.decode("utf-8"))
+    files = document.get("files")
+    require(isinstance(files, dict) and files, "Implementation manifest lists no files")
+    root = Path(root)
+    bad = [path for path, expected in sorted(files.items())
+           if not (root / path).is_file() or ts.file_sha256(root / path) != expected]
+    require(not bad, "Implementation manifest differs from the real implementation: " + ", ".join(bad))
+    prereg = document.get("preregistration") or {}
+    if prereg.get("path") and (root / prereg["path"]).is_file():
+        require(ts.file_sha256(root / prereg["path"]) == prereg.get("sha256"), "Implementation manifest records another PREREGISTRATION.md")
+    return document, sha256(raw)
+
+
+def started_identities(entries):
+    """The configuration identity of every start/resume_start event of the attempt log."""
+    return [entry.get("identity") for entry in entries if entry.get("event") in ("start", "resume_start")]
+
+
+def baseline_problem(baseline_dir, manifest_sha256, expected_zip_sha256):
+    """None if the unchanged-model DEV run on disk is complete, made under the manifest and has the expected ZIP."""
+    try:
+        actual = tp.verify_baseline(baseline_dir, manifest_sha256)
+    except tp.Refused as error:
+        return str(error)
+    return None if actual == expected_zip_sha256 else f"baseline results ZIP {actual} differs from the frozen {expected_zip_sha256}"
+
+
+def gate(frozen, train_root, *, expected_data_sha256=None, baseline_dir=None):
     """Refuse FINAL_TEST unless every frozen adapter is present, valid (60/60 steps, not resumed), hash-identical,
-    built by the frozen implementation and exposure order, and the attempt log still yields the frozen seeds."""
+    built by the frozen implementation and exposure order after the frozen unchanged-DEV baseline, and the attempt
+    log still yields the frozen seeds with one configuration identity throughout."""
     problems, found, current = [], [], None
     log_path = Path(train_root) / tp.ATTEMPT_LOG
     if not log_path.is_file() or ts.file_sha256(log_path) != frozen["attempt_log_sha256"]:
         problems.append(f"attempt log {log_path} missing or changed since the freeze")
     else:
-        current = tp.plan(tp.read_log(log_path))
+        entries = tp.read_log(log_path)
+        current = tp.plan(entries)
         if current["halted"] or not current["final"] or [list(pair) for pair in current["retained"]] != [[e["slot"], e["seed"]] for e in frozen["retained_seeds"]]:
             problems.append("attempt log does not yield the frozen retained seeds")
+        for identity in started_identities(entries):
+            identity = identity or {}
+            if identity.get("implementation_manifest_sha256") != frozen["implementation_manifest_sha256"]:
+                problems.append("an attempt was started under another implementation manifest")
+            if identity.get("baseline_dev_results_zip_sha256") != frozen["baseline_dev_results_zip_sha256"]:
+                problems.append("an attempt was started without the frozen unchanged-DEV baseline (Amendment 2 item 6)")
+    if baseline_dir is not None:
+        problem = baseline_problem(baseline_dir, frozen["implementation_manifest_sha256"], frozen["baseline_dev_results_zip_sha256"])
+        if problem:
+            problems.append("unchanged-DEV baseline: " + problem)
     logs = frozen.get("training_logs_sha256", {})
     for name, checksum in logs.items():
         path = Path(train_root) / name
@@ -229,6 +282,7 @@ def gate(frozen, train_root, *, expected_data_sha256=None):
             "base revision": record.get("base_revision") == MODEL_REVISION,
             "implementation manifest": record.get("implementation_manifest_sha256") == frozen["implementation_manifest_sha256"],
             "exposure order file": record.get("exposure_order_file_sha256") == frozen["exposure_order_file_sha256"],
+            "baseline DEV run": record.get("baseline_dev_results_zip_sha256") == frozen["baseline_dev_results_zip_sha256"],
         }
         if "base_weight_shards_sha256" in frozen:
             checks["base weight shards"] = record.get("base_weight_shards_sha256") == frozen["base_weight_shards_sha256"]
@@ -244,20 +298,36 @@ def gate(frozen, train_root, *, expected_data_sha256=None):
             if len({record.get(key) for record in group}) != 1:
                 problems.append(f"seed {seed}: arms differ in {key} (pairing broken)")
     if problems or len(found) != 3 * frozen["S"]:
-        raise ValueError("FINAL_TEST gate REFUSED:\n- " + "\n- ".join(problems or ["adapters missing"]))
+        raise tp.ProtocolError("FINAL_TEST gate REFUSED:\n- " + "\n- ".join(dict.fromkeys(problems or ["adapters missing"])))
     return [(adapter_record(record), folder) for _, record, folder in found]
 
 
-def freeze_manifest(train_root):
+def freeze_manifest(train_root, *, manifest_path=None, root=None, baseline_dir=None):
     """JSON block for phase2/ADAPTERS_FROZEN.md from the attempt log and the retained valid runs (operator aid).
 
-    Refuses while the study is halted, while any slot is still open, and when S = 0 (Amendment 1 item 12)."""
+    Rechecks the implementation manifest against the real files under ``root`` (default: this repository) and
+    against every start event of the attempt log (Amendment 2 item 7), records the unchanged-DEV baseline ZIP hash
+    that every attempt was started with (item 6; checked on disk when ``baseline_dir`` is given), and refuses while
+    the study is halted, while any slot is still open, and when S = 0 (Amendment 1 item 12)."""
     train_root = Path(train_root)
+    root = Path(root) if root is not None else HERE.parent
+    _, manifest_sha = verify_manifest_against(Path(manifest_path) if manifest_path is not None else root / "phase2" / tp.MANIFEST_NAME, root)
     log_path = train_root / tp.ATTEMPT_LOG
-    current = tp.plan(tp.read_log(log_path))
+    entries = tp.read_log(log_path)
+    current = tp.plan(entries)
     require(not current["halted"], "Study halted: no freeze and no FINAL_TEST access")
     require(current["final"], "Some seed slot is still open: finish or exhaust every slot before the freeze")
     require(current["S"] >= 1, "S = 0: no complete seed triplet, so FINAL_TEST is never accessed (Amendment 1 item 12)")
+    identities = started_identities(entries)
+    require(identities and all(identity == identities[0] for identity in identities), "Attempts differ in configuration identity")
+    identity = identities[0]
+    require(identity.get("implementation_manifest_sha256") == manifest_sha,
+            "Attempts were started under another implementation manifest than the current one (recheck at freeze failed)")
+    baseline = identity.get("baseline_dev_results_zip_sha256")
+    require(SHA256.fullmatch(str(baseline)), "Attempts carry no unchanged-DEV baseline ZIP hash (Amendment 2 item 6)")
+    if baseline_dir is not None:
+        problem = baseline_problem(baseline_dir, manifest_sha, baseline)
+        require(problem is None, f"Unchanged-DEV baseline: {problem}")
     records = []
     for slot, seed in current["retained"]:
         for arm in sorted(ARMS):
@@ -268,10 +338,14 @@ def freeze_manifest(train_root):
                     f"{run_name(arm, seed)} attempt {attempt}: training report does not confirm a valid run")
             records.append(record)
     shared = {}
-    for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "base_weight_shards_sha256"):
+    for key in ("implementation_manifest_sha256", "exposure_order_file_sha256", "base_weight_shards_sha256",
+                "baseline_dev_results_zip_sha256"):
         values = {json.dumps(r.get(key), sort_keys=True) for r in records}
         require(len(values) == 1 and records[0].get(key) is not None, f"Retained runs differ in (or lack) {key}")
         shared[key] = records[0][key]
+    require(shared["implementation_manifest_sha256"] == manifest_sha, "Retained runs were trained under another implementation manifest")
+    require(shared["exposure_order_file_sha256"] == identity.get("exposure_order_file_sha256"), "Retained runs differ from the logged exposure order")
+    require(shared["baseline_dev_results_zip_sha256"] == baseline, "Retained runs differ from the logged unchanged-DEV baseline")
     S = current["S"]
     logs = {}
     for record in records:
@@ -303,12 +377,14 @@ def check_preregistration(text_bytes, expected_sha256):
 def authorize_final_test(arguments):
     """Enforce the complete freeze before the executable entry point reads test bytes."""
     require(arguments.train_root is not None, "FINAL_TEST refused: --train-root is required for the freeze gate")
+    require(getattr(arguments, "baseline_dir", None) is not None,
+            "FINAL_TEST refused: --baseline-dir (the frozen unchanged-DEV run, Amendment 2 item 6) is required")
     folder = Path(arguments.inputs)
     check_preregistration((folder / "PREREGISTRATION.md").read_bytes(), PREREGISTRATION_SHA256)
     frozen = parse_frozen((folder / "ADAPTERS_FROZEN.md").read_text(encoding="utf-8"))
     require(ts.file_sha256(folder / "IMPLEMENTATION_MANIFEST.md") == frozen["implementation_manifest_sha256"],
             "FINAL_TEST refused: implementation manifest differs from the freeze")
-    authorized = gate(frozen, arguments.train_root)
+    authorized = gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir)
     if arguments.adapter_record is not None:
         record = adapter_record(ts.read_json(arguments.adapter_record))
         require(any(record == item and Path(arguments.adapter_dir).resolve() == path.resolve()
@@ -327,6 +403,58 @@ def sealed_status(run_dir, manifest, archive):
             "checksums_sha256": sha256((run_dir / "checksums.sha256").read_bytes())}
 
 
+def recover_stale_lock(run_dir):
+    """Amendment 2 item 5: remove a RUNNING.lock left by a killed runtime (the operator has confirmed that no other
+    session is running this evaluation) and append a timestamped record; stored outputs are kept and never
+    regenerated. Returns the record, or None when there is no lock."""
+    run_dir = Path(run_dir)
+    lock = run_dir / "RUNNING.lock"
+    if not lock.exists():
+        print(f"RECOVER_STALE_LOCK: {run_dir.name} has no RUNNING.lock; nothing to recover", flush=True)
+        return None
+    created = lock.read_text(encoding="utf-8", errors="replace")[:64]
+    kept = sorted(p.name for p in (run_dir / "journal").glob("*.json")) if (run_dir / "journal").is_dir() else []
+    recover_lock(run_dir, confirmed_no_active_writer=True)
+    record = {"event": "stale_lock_recovered", "at": utc(), "run": run_dir.name, "lock_created_at": created,
+              "operator_confirmed_no_active_writer": True, "journal_records_kept": len(kept),
+              "journal_sha256": sha256(json.dumps(kept).encode("utf-8")),
+              "rule": "PREREGISTRATION Amendment 2 item 5: the lock is removed; stored outputs are kept and never "
+                      "regenerated; generation resumes from the journal"}
+    path = run_dir.parent / f"{run_dir.name}_lock_recoveries.jsonl"
+    with path.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(record, sort_keys=True) + "\n")
+    print(f"RECOVER_STALE_LOCK: removed the stale RUNNING.lock of {run_dir.name} (recorded in {path.name}); "
+          f"{len(kept)} stored journal records kept, nothing regenerated", flush=True)
+    return record
+
+
+def bind_implementation(run_dir, manifest_path):
+    """Record (first session) or check (every later session) the implementation manifest a run is made under."""
+    run_dir = Path(run_dir)
+    actual = ts.file_sha256(manifest_path)
+    path = run_dir.parent / f"{run_dir.name}_implementation.json"
+    if path.is_file():
+        bound = read(path)["implementation_manifest_sha256"]
+        require(bound == actual, f"{run_dir.name} was started under implementation manifest {bound}, not {actual}: "
+                                 "refusing to mix implementations in one run")
+    else:
+        require(not (run_dir / "run_manifest.json").exists(),
+                f"{run_dir.name} was started without a recorded implementation manifest: use a new run directory")
+        write(path, {"run": run_dir.name, "implementation_manifest_sha256": actual, "bound_at": utc()})
+    return actual
+
+
+def baseline_record(run_dir, manifest, archive, implementation_sha256, config, dataset):
+    """Amendment 2 item 6: the record of a complete unchanged-model DEV run the trainer requires."""
+    return {"schema": tp.BASELINE_SCHEMA, "run": Path(run_dir).name, "split": "dev", "mode": manifest.get("mode"),
+            "adapter": config["adapter"], "model_id": config["model_id"], "model_revision": config["model_revision"],
+            "implementation_manifest_sha256": implementation_sha256, "run_id": manifest.get("run_id"),
+            "config_sha256": digest(config), "dataset_sha256": digest(dataset), "code_sha256": code_hash(),
+            "status": manifest.get("status"), "completed": manifest.get("completed"), "expected": manifest.get("expected"),
+            "unresolved": manifest.get("unresolved"), "results_zip": archive.name,
+            "results_zip_sha256": sha256(archive.read_bytes()), "recorded_at": utc()}
+
+
 def run_evaluate(arguments):
     split, run_dir = arguments.split, Path(arguments.run_dir)
     sealed = split == "final_test" or arguments.sealed  # FINAL_TEST can never be unsealed (Amendment 1 item 14)
@@ -338,6 +466,12 @@ def run_evaluate(arguments):
     if arguments.adapter_record:
         adapter = adapter_record(json.loads(Path(arguments.adapter_record).read_text(encoding="utf-8")))
     config = config_for(split, adapter)
+    if getattr(arguments, "recover_stale_lock", False):
+        recover_stale_lock(run_dir)
+    implementation = None
+    if getattr(arguments, "implementation_manifest", None) is not None:
+        implementation = bind_implementation(run_dir, arguments.implementation_manifest)
+    record_path = run_dir.parent / f"{run_dir.name}_baseline_record.json"
     manifest_path = run_dir / "run_manifest.json"
     if manifest_path.exists() and read(manifest_path).get("status") == "COMPLETE":
         manifest = read(manifest_path)
@@ -346,6 +480,14 @@ def run_evaluate(arguments):
             "split_sha256": digest(splits), "code_sha256": code_hash(),
         }.items()), "Completed run identity differs: data/config/code changed; refusing to relabel stored outputs")
         print(run_dir.name, "already COMPLETE; nothing regenerated", flush=True)
+        if record_path.is_file():  # the recorded baseline ZIP is never rewritten (its hash is in the attempt log)
+            record = read(record_path)
+            archive = run_dir.parent / record["results_zip"]
+            require(archive.is_file() and sha256(archive.read_bytes()) == record["results_zip_sha256"],
+                    f"{archive.name} differs from {record_path.name}")
+            require(implementation in (None, record["implementation_manifest_sha256"]), "Baseline record is for another implementation manifest")
+            print(f"Unchanged-DEV baseline record kept: {archive.name} SHA-256 {record['results_zip_sha256']}", flush=True)
+            return 0
     else:
         from hinglish_pilot.hf_backend import HFBackend
         backend = HFBackend(config, adapter_path=arguments.adapter_dir)
@@ -382,6 +524,11 @@ def run_evaluate(arguments):
             print(ceiling_line(flag), flush=True)
     with contextlib.redirect_stdout(quiet) if sealed else contextlib.nullcontext():
         archive = export(run_dir)
+    if split == "dev" and adapter is None and implementation is not None and metrics["status"] == "COMPLETE":
+        record = baseline_record(run_dir, read(manifest_path), archive, implementation, config, dataset)
+        write(record_path, record)
+        print(f"Unchanged-DEV baseline recorded (Amendment 2 item 6): {archive.name} SHA-256 {record['results_zip_sha256']}, "
+              f"implementation manifest {implementation}", flush=True)
     if sealed:
         status = sealed_status(run_dir, read(manifest_path), archive)
         write(run_dir.parent / f"{run_dir.name}_status.json", status)
@@ -394,13 +541,15 @@ def run_evaluate(arguments):
 def run_gate(arguments):
     frozen = json.loads(Path(arguments.frozen).read_text(encoding="utf-8"))
     parse_frozen("```json\n" + json.dumps(frozen) + "\n```")
-    for adapter, folder in gate(frozen, arguments.train_root):
+    for adapter, folder in gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir):
         print(run_name(adapter["arm"], adapter["seed"]), adapter["adapter_model_sha256"], folder)
     return 0
 
 
 def run_freeze_manifest(arguments):
-    print("```json\n" + json.dumps(freeze_manifest(arguments.train_root), indent=2) + "\n```")
+    frozen = freeze_manifest(arguments.train_root, manifest_path=arguments.manifest, root=arguments.root,
+                             baseline_dir=arguments.baseline_dir)
+    print("```json\n" + json.dumps(frozen, indent=2) + "\n```")
     return 0
 
 
@@ -415,10 +564,20 @@ def main(argv=None):
     evaluate.add_argument("--adapter-record", type=Path)
     evaluate.add_argument("--train-root", type=Path, help="Required for FINAL_TEST: recheck the complete adapter freeze")
     evaluate.add_argument("--sealed", action="store_true", help="Print only completion/checksum/infrastructure status")
+    evaluate.add_argument("--implementation-manifest", type=Path,
+                          help="IMPLEMENTATION_MANIFEST.md this run is made under (bound at the first session)")
+    evaluate.add_argument("--baseline-dir", type=Path, help="Required for FINAL_TEST: the frozen unchanged-DEV run")
+    evaluate.add_argument("--recover-stale-lock", action="store_true",
+                          help="Only after confirming no other session runs this evaluation (Amendment 2 item 5)")
     gate_command = commands.add_parser("gate")
     gate_command.add_argument("--frozen", type=Path, required=True)
     gate_command.add_argument("--train-root", type=Path, required=True)
-    commands.add_parser("freeze-manifest").add_argument("--train-root", type=Path, required=True)
+    gate_command.add_argument("--baseline-dir", type=Path)
+    freeze = commands.add_parser("freeze-manifest")
+    freeze.add_argument("--train-root", type=Path, required=True)
+    freeze.add_argument("--baseline-dir", type=Path, required=True)
+    freeze.add_argument("--manifest", type=Path, help="Default: phase2/IMPLEMENTATION_MANIFEST.md of this repository")
+    freeze.add_argument("--root", type=Path, help="Repository root the manifest is rechecked against")
     arguments = parser.parse_args(argv)
     if arguments.command == "evaluate":
         require((arguments.adapter_dir is None) == (arguments.adapter_record is None), "Give --adapter-dir with --adapter-record")

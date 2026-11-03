@@ -156,7 +156,11 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(self.result["status"], "COMPLETE")
         self.assertEqual(self.result["families"], 40)
         self.assertEqual({i["kind"] for i in self.result["inputs"]}, {"directory", "zip"})
-        self.assertTrue(any("DEV runs" in w for w in self.result["warnings"]))
+        self.assertIn(A.DEV_NOT_RESULTS, self.result["warnings"])
+        self.assertIn("not results", A.DEV_NOT_RESULTS)
+        self.assertFalse(self.result["results"])
+        self.assertIsNone(self.result["freeze"])
+        self.assertIn("NOT RESULTS", A.markdown(self.result))
 
     def test_estimates_match_direct_computation(self):
         for endpoint in A.ENDPOINTS:
@@ -204,7 +208,7 @@ class AnalysisTests(unittest.TestCase):
     def test_labels_come_from_strict_unrounded_bounds(self):
         strict = self.result["endpoints"]["strict"]
         primary = strict["estimands"]["delta_C"]
-        self.assertEqual(self.result["analysis_type"], "confirmatory (S = 3)")
+        self.assertTrue(self.result["analysis_type"].startswith("not results: DEV fixture route"))
         self.assertEqual(strict["decision_label"],
                          A.decision_label(primary["lower"], primary["upper"], primary["degenerate"]))
         self.assertIsNone(self.result["endpoints"]["numeric_literal_v1"]["decision_label"])
@@ -384,7 +388,7 @@ class AnalysisTests(unittest.TestCase):
             with self.subTest(seeds=seeds):
                 self.assertEqual(result["S"], S)
                 self.assertEqual(result["status"], "COMPLETE")
-                self.assertTrue(result["analysis_type"].startswith("descriptive reduced-S"))
+                self.assertTrue(result["analysis_type"].startswith("not results: DEV fixture route, reduced-S"))
                 self.assertTrue(any("reduced-S" in w for w in result["warnings"]))
                 strict = result["endpoints"]["strict"]
                 self.assertIsNone(strict["decision_label"])
@@ -465,7 +469,7 @@ class RefusalTests(unittest.TestCase):
             A.parse_checkpoints("u", ["XX:11=path"])
 
     def test_final_test_requires_pinned_revision(self):
-        config = engine.default_config("pilot_b")
+        config = engine.default_config(A.FINAL_TEST_MODE)
         config.update(model_revision="0" * 40, tokenizer_revision="0" * 40)
         A.check_config(config, "DEV")
         with self.assertRaisesRegex(A.AnalysisError, "pinned Qwen3-4B revision"):
@@ -474,6 +478,10 @@ class RefusalTests(unittest.TestCase):
         A.check_config(config, "FINAL_TEST")
         with self.assertRaisesRegex(A.AnalysisError, "max_new_tokens"):
             A.check_config(dict(config, max_new_tokens=512), "FINAL_TEST")
+        with self.assertRaisesRegex(A.AnalysisError, "mode"):
+            A.check_config(dict(config, mode="phase2_dev"), "FINAL_TEST")
+        with self.assertRaisesRegex(A.AnalysisError, "mode"):
+            A.check_config(dict(config, mode="pilot_b"), "FINAL_TEST")
 
     def test_incomplete_run_suppresses_headline(self):
         partial = make_run(self.tmp / "partial", (A.UNCHANGED, None), max_items=5)
