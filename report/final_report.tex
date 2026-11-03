@@ -8,7 +8,7 @@
 \usepackage{fontspec}
 \setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
 \setmonofont{lmmono10-regular}[Extension=.otf,Scale=0.95,BoldFont=lmmonolt10-bold,ItalicFont=lmmono10-italic,BoldItalicFont=lmmonolt10-boldoblique]
-\usepackage[a4paper,left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[a4paper,left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headheight=14pt]{geometry}
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{graphicx}
@@ -39,6 +39,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{seqsplit}
 \usepackage{makecell}
+\usepackage{float}
 % Allow line breaks after underscores and slashes in identifiers.
 \let\oldunderscore\_
 \renewcommand{\_}{\oldunderscore\allowbreak}
@@ -156,13 +157,13 @@ I/We thank the bilingual team members and volunteers who solved, reviewed and re
 \thispagestyle{plain}
 \markboth{Abstract}{}
 
-Many Indian users ask mathematical questions in Hinglish, a mix of Hindi and English usually written in Roman script. This project asks whether the language form of an otherwise identical word problem changes whether a small open large language model (LLM) solves it. Each problem is rendered in three matched forms: English (\form{E}), Romanized Hindi (\form{R}) and Roman-script Hinglish (\form{C}). Gold answers are computed in code, renderings are solved blind by two LLMs, and bilingual humans review the families. Models are evaluated unchanged (4-bit NF4 on a Colab T4) with one fixed English instruction, greedy decoding and a frozen strict scorer, under analysis plans written before any output on each cohort.
+Many Indian users ask mathematical questions in Hinglish, a mix of Hindi and English usually written in Roman script. This project asks whether the language form of an otherwise identical word problem changes whether a small open large language model (LLM) solves it. Each problem is rendered in three matched forms: English (\form{E}), Romanized Hindi (\form{R}) and Roman-script Hinglish (\form{C}). Gold answers are computed in code, the renderings of the newly drafted sets are solved blind by two LLMs, and bilingual humans review the families. Models are evaluated unchanged (4-bit NF4 on a Colab T4) with one fixed English instruction, greedy decoding and a frozen strict scorer, under analysis plans written before any output on each cohort.
 
 On 36 permanently excluded development fixtures, a plausible answer-format instruction made 10/36 Qwen3-4B outputs fail strict scoring and pushed 8/12 R explanations into Devanagari. After one disclosed prompt revision both counts were zero, and a seven-model screen showed that format compliance is strongly model-specific; three models passed a pre-declared inclusion rule.
 
 In two separately reviewed, pre-registered cohorts, which are never pooled, R is the lowest-scoring form for all three backbones. On the primary 70-family Pilot-B cohort, Qwen3-4B scores 94.3/85.7/94.3\% on E/R/C, Qwen3-8B 98.6/91.4/98.6\% and Llama-3.2-3B 94.3/57.1/70.0\%. A 24-family cohort from the original pilot shows the same direction, with Qwen near ceiling. Both Qwen models have equal observed aggregate accuracy on E and C in both cohorts, which is not an equivalence result. The R errors are not concentrated in items that contain Hindi operation words. An audit of the primary model's outputs places most substantive errors in R and shows English-explanation compliance falling from 70/70 (E) to 53/70 (R).
 
-The ordering R~$<$~C is not new: prior work reports it on translated GSM8K items. This project contributes newly drafted, human-reviewed triplets, a scoring-aware frozen protocol, two separately reviewed cohorts and a reproducible pipeline. It also prepares 300 frozen families for a planned E+E/E+R/E+C fine-tuning study, to be carried out by May 2027.
+The ordering R~$<$~C is not new: prior work reports it on translated GSM8K items. This project contributes newly drafted, human-reviewed triplets, a scoring-aware frozen protocol, two separately reviewed cohorts and a reproducible pipeline. It also prepares 300 frozen families for a planned E+E/E+R/E+C fine-tuning study, to be carried out by May 2027; a QLoRA smoke test on a free Colab T4 has passed its pre-set feasibility gate, and the training schedule has been fixed before any training outcome.
 
 \vspace{0.5cm}
 \noindent\textbf{Keywords:} Hinglish, Romanized Hindi, code-mixing, mathematical reasoning, LLM evaluation, answer extraction, pre-registration.
@@ -193,7 +194,7 @@ CC BY 4.0 & Creative Commons Attribution 4.0 licence\\
 CI & Confidence interval\\
 CMI & Code-Mixing Index\\
 CSV & Comma-separated values\\
-D001--D038 & Entries in the project decision log (\texttt{docs/DECISIONS.md})\\
+D001--D043 & Entries in the project decision log (\texttt{docs/DECISIONS.md})\\
 DEV & Phase-2 development split\\
 \form{E} & English rendering\\
 EACL & Conference of the European Chapter of the ACL\\
@@ -206,11 +207,12 @@ JSON / JSONL & JavaScript Object Notation / one JSON object per line\\
 LLM & Large language model\\
 LoRA / QLoRA & Low-rank adaptation / quantized LoRA\\
 MGSM & Multilingual Grade School Math\\
+MDE & Minimum detectable effect\\
 MIT & The MIT software licence\\
 NF4 & 4-bit NormalFloat quantization\\
 pp & Percentage points\\
 \form{R} & Romanized Hindi rendering\\
-R01, R02 & Pseudonyms of the two reviewers of the original pilot\\
+R01, R02 & Pseudonyms of the two independent solvers of the original pilot (R02 is also its human language reviewer; R01's AI-prefilled stage-2 judgments are excluded)\\
 RQ & Research question\\
 SDPA & Scaled dot-product attention\\
 SHA-256 & Secure Hash Algorithm, 256-bit digest\\
@@ -267,7 +269,7 @@ The ordering found here, with Romanized Hindi below Hinglish, is not a new disco
 
 \section{Report outline}
 
-Chapter~\ref{ch:lit} reviews related work. Chapter~\ref{ch:method} defines the forms, describes how the datasets were drafted, verified and reviewed, and lists the frozen datasets. Chapter~\ref{ch:system} describes the evaluation software and its testing. Chapter~\ref{ch:dev} reports the development findings on excluded fixtures that shaped the protocol. Chapter~\ref{ch:results} reports the results for both cohorts and the output audit. Chapter~\ref{ch:discussion} discusses them, Chapter~\ref{ch:limits} sets out limitations and ethics, and Chapter~\ref{ch:conclusion} concludes and describes the training study planned for the rest of the project. Appendices give the frozen prompt, dataset hashes, the decision log, the review forms and reproduction instructions.
+Chapter~\ref{ch:lit} reviews related work. Chapter~\ref{ch:method} defines the forms, describes how the datasets were drafted, verified and reviewed, and lists the frozen datasets. Chapter~\ref{ch:system} describes the evaluation software and its testing. Chapter~\ref{ch:dev} reports the development findings on excluded fixtures that shaped the protocol. Chapter~\ref{ch:results} reports the results for both cohorts and the output audit, followed by two clearly labelled post-hoc exploratory analyses. Chapter~\ref{ch:discussion} discusses them, Chapter~\ref{ch:limits} sets out limitations and ethics, and Chapter~\ref{ch:conclusion} concludes and describes the training study planned for the rest of the project. Appendices give the frozen prompt, dataset hashes, the decision log, the review forms and reproduction instructions.
 
 Throughout, every result carries an \emph{evidence label}: software verification, development evidence on excluded fixtures, or a cohort result. Cohorts are never pooled.
 
@@ -532,11 +534,11 @@ Research modes reject the fake backend, DRAFT status and the wrong split role. E
 
 \paragraph{\texttt{authoring/}.} \label{sec:authoring}The authoring kit has a family template, a guide and \texttt{check\_family.py}. The checker validates structure and the gold schema and evaluates the reference equation with a safe AST evaluator in exact fractions. It also finds duplicate texts and flags character 5-gram Jaccard similarity of 0.5 or more against the pilot drafts and the format fixtures, reporting IDs only and never printing pilot gold. The guide's independence rules forbid adapting public benchmarks, forbid derivatives of the pilot and fixtures, treat numeric siblings as the same family, require operation-word balancing for C, and forbid authors from reviewing their own families.
 
-\paragraph{Training preparation (\texttt{t4\_smoke/}).} Model-free code for the planned training smoke test builds completion-only labels. It masks the rendered generation prompt, including Qwen3's empty think block, and supervises the English solution plus the end token. It also asserts that the target token IDs are identical across E, R and C. No training has been run.
+\paragraph{Training preparation (\texttt{t4\_smoke/}).} The training code builds completion-only labels. It masks the rendered generation prompt, including Qwen3's empty think block, and supervises the English solution plus the end token. It also asserts that the target token IDs are identical across E, R and C. A smoke-test script (\texttt{t4\_smoke/train\_smoke.py}) and a self-contained Colab notebook (\texttt{colab\_notebooks/training\_smoke/}) were added on 27 October (D041) and run on a T4 on 28 October (D042; Section~\ref{sec:smoke}). The smoke adapters were discarded and never evaluated; no Phase-2 training run has taken place.
 
 \section{Testing}
 
-All suites were re-run for this report on 26 October 2026 with Python 3.12, without GPU dependencies. Table~\ref{tab:tests} lists the current counts; every test passed. On 15 October the corresponding counts were 22 pipeline, 38 secondary-analysis, 3 scorer and 4 training-protocol tests, and the suites have grown since.
+All suites were re-run for this report on 26 October 2026 with Python 3.12, without GPU dependencies. Table~\ref{tab:tests} lists the current counts; every test passed. On 15 October the corresponding counts were 22 pipeline, 38 secondary-analysis, 3 scorer and 4 training-protocol tests, and the suites have grown since. With the smoke-test code (D041, 27 October), the \texttt{t4\_smoke} suite grew to 50 tests, all passing; the table keeps the 26 October counts.
 
 \begin{table}[t]
 \centering\small
@@ -771,7 +773,7 @@ Llama-3.2-3B & 94.3 & 57.1 & 70.0 & 94.3 & 57.1 & 70.0\\
 
 \section{Pilot-B: resources}
 
-Table~\ref{tab:resources} gives the stored median token counts and latencies (pre-registered endpoint~6). R prompts are longer than E for every model (123 vs 109 input tokens for Qwen, 138 vs 124 for Llama). The input count covers the whole prompt, including the chat template and the fixed instruction. Llama's R outputs are also longer. These are correlates, not causes.
+Table~\ref{tab:resources} gives the stored median token counts and latencies (pre-registered endpoint~6). R prompts are longer than E for every model (123 vs 109 input tokens for Qwen, 138 vs 124 for Llama). The input count covers the whole prompt, including the chat template and the fixed instruction. Llama's R outputs are also longer. These are correlates, not causes. Section~\ref{sec:tokenization} examines question-level token counts in a post-hoc exploratory analysis.
 
 \begin{table}[t]
 \centering\small
@@ -818,6 +820,31 @@ English-compliant explanation & 70 & 53 & 59\\
 \paragraph{Findings.} Of Qwen3-4B's 18 strict failures, 6 are format-only. The substantive errors concentrate in R: 8, against 1 in E and 3 in C. English explanations fell from 70/70 on E to 53/70 on R and 59/70 on C (Table~\ref{tab:audit}). The \emph{language\_drift} rows are strict-correct outputs (with \emph{no\_error} they sum to the strict-correct counts 66/60/66) whose explanation drifted away from English, so instruction following erodes on R and C even when the answer is right.
 
 \paragraph{Exploratory (Llama; not pre-registered).} A heuristic count found that Llama explained 60/70 R and 27/70 C outputs in Romanized-Hindi prose (E: 0/70; no Devanagari). On C, Hindi-prose explanations were correct 13/27 (48\%) against 36/43 (84\%) for English explanations; on R, 35/60 against 5/10. This association is observational and confounded with item difficulty, since harder items may both trigger Hindi explanations and cause errors.
+
+\section{Post-hoc audit extension: Qwen3-8B and Llama-3.2-3B}
+\label{sec:auditext}
+
+\evid{post hoc, not pre-registered (28 October 2026). AI pre-tags by two Claude models only; the human check of this extension is pending, so no final labels are reported.}
+
+The pre-registered audit covered only the primary model. The same written audit instructions were then applied to all 210 Pilot-B outputs of each secondary backbone. Tagger A was Claude Opus and tagger B was Claude Sonnet, each blind to the other's tags. GPT was unavailable, so \emph{both taggers are Claude models}. Their agreement is therefore weaker evidence than the Claude/GPT agreement of the primary audit, because two taggers from one model family can share blind spots. Table~\ref{tab:auditext} gives the agreement.
+
+\begin{table}[t]
+\centering\small
+\caption{Agreement of the two Claude taggers in the post-hoc audit extension (210 Pilot-B outputs per backbone).}
+\label{tab:auditext}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Error category} & \multicolumn{2}{c}{English compliance}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Backbone & Agree & Cohen's $\kappa$ & Agree & Cohen's $\kappa$\\
+\midrule
+Qwen3-8B & 207/210 & 0.959 & 209/210 & 0.985\\
+Llama-3.2-3B & 205/210 & 0.965 & 210/210 & 1.000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A human-check sheet was built with all 8 category-disagreement rows (3 for Qwen3-8B, 5 for Llama) plus 30 seeded random agreed rows per backbone, 68 rows in all. This sample is larger than the 20 agreed rows used in the primary audit, to offset the use of same-family taggers. At the time of writing the human check has not been returned. Until it is, the per-category counts of this extension are unchecked AI pre-tags; they are not reported as audit results, and Table~\ref{tab:audit} remains the only audit table. The heuristic Llama language counts in the previous section are separate from this extension.
 
 \section{Original cohort results}
 
@@ -890,6 +917,58 @@ Backbone & Cohort & $N$ & E & R & C & E$-$R & E$-$C & R$-$C\\
 
 The direction replicates for every model: R is the lowest form in both cohorts. Qwen is near ceiling in the original cohort (E $=$ C $=$ 100\%). Llama's R deficit appears in both cohorts (E$-$R $+$37.1 and $+$25.0 points). C's position for Llama differs: well below E in Pilot-B, but at E's level in the original cohort. C's position relative to E is therefore model- and cohort-dependent.
 
+\section{Post-hoc exploratory analysis: tokenization and question length}
+\label{sec:tokenization}
+
+\evid{POST-HOC EXPLORATORY. Written on 27 October 2026, after every Pilot-B and original-cohort output had been seen, and not frozen before the outputs were seen. Descriptive only: the cohorts are small (70 and 24 families), there is no multiplicity correction and no causal claim is made. The two cohorts are reported separately and never pooled.}
+
+\paragraph{Method.} Question texts (the frozen renderings of every accepted family, without the chat template or instruction) were tokenized with the pinned Qwen3-4B tokenizer (\texttt{tokenizers} 0.23.3, no special tokens); Qwen3-8B uses the same tokenizer. As a check, for both Qwen models the stored whole-prompt R$-$E and C$-$E input-token differences equal the question-only differences in 70/70 and 24/24 families. The Llama tokenizer is gated and was not downloaded, so for Llama the Qwen3 counts serve as a model-independent length proxy, alongside the R$-$E differences of Llama's own stored whole-prompt counts. Operation words were matched whole-word against the lexicon of Section~\ref{sec:lexicon}, and ``pieces'' counts the tokens overlapping each word. Correctness is the strict endpoint. Among families with E correct, R-wrong and R-correct families were compared with an exact two-sided permutation test of the mean R$-$E token difference, and a one-predictor logistic regression was fitted only when both classes had at least 5 families and there was no separation. The analysis script is deterministic (\texttt{analysis/tokenization/}).
+
+\begin{table}[t]
+\centering\small
+\caption{Question-only tokenization per form with the Qwen3 tokenizer (post-hoc exploratory). Medians per family; the last column is the share of alphabetic words split into three or more pieces.}
+\label{tab:tokfert}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Cohort & Form & Tokens & Words & Tokens/word & Words $\ge$3 pieces\\
+\midrule
+\multirow{3}{*}{Pilot-B} & E & 35 & 24 & 1.45 & 1.4\%\\
+ & R & 49 & 24 & 2.00 & 16.5\%\\
+ & C & 45 & 24.5 & 1.78 & 9.4\%\\
+\midrule
+\multirow{3}{*}{Original} & E & 37.5 & 28.5 & 1.33 & 0.2\%\\
+ & R & 59.5 & 30 & 1.96 & 15.0\%\\
+ & C & 44 & 29.5 & 1.54 & 3.4\%\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Tokenization per form.} Table~\ref{tab:tokfert} shows that R questions are longer than E at about the same word count: the extra cost is in segmentation, not in more words. Per family, R$-$E is $+$15 tokens (median; IQR 10.25--18.75; ratio 1.42; R longer in 70/70) in Pilot-B and $+$22.5 (IQR 12.75--31.75; ratio 1.61; 24/24) in the original cohort, with R$-$E tokens per word $+$0.60 in both. C$-$E is $+$8 tokens in both cohorts (ratio 1.24 and 1.21; C longer in 67/70 and 20/24). Hindi operation words are only slightly more fragmented than other R words: 54 occurrences in 37 Pilot-B R renderings average 2.07 pieces (27.8\% with three or more) and 63 occurrences in 21 original R renderings average 2.21 (39.7\%), against 1.76 and 1.78 pieces for the average alphabetic R word.
+
+\begin{table}[t]
+\centering\small
+\caption{Families with E correct: R$-$E question tokens (Qwen3 counts; median [IQR]) for R-wrong vs R-correct families, exact two-sided permutation $p$, and logistic odds ratio for R correct per $+$10 tokens [Wald 95\%]. Post-hoc exploratory; no multiplicity correction.}
+\label{tab:tokcorr}
+\setlength{\tabcolsep}{3pt}\footnotesize
+\begin{tabular}{@{}llccll@{}}
+\toprule
+Cohort & Backbone & R wrong: $n$, R$-$E & R correct: $n$, R$-$E & $p$ & OR [95\%]\\
+\midrule
+\multirow{3}{*}{Pilot-B} & Qwen3-4B & 9, 15 [9, 16] & 57, 14 [10, 19] & 0.17 & 2.49 [0.67, 9.22]\\
+ & Qwen3-8B & 6, 13 [9.25, 19.75] & 63, 15 [11, 18.5] & 0.93 & 1.09 [0.31, 3.83]\\
+ & Llama-3.2-3B & 28, 16.5 [13.25, 21] & 38, 13.5 [10, 16.75] & 0.073 & 0.48 [0.21, 1.09]\\
+\midrule
+\multirow{3}{*}{Original} & Qwen3-4B & 2, 10.5 & 22, 25.5 & 0.14 & not fitted\\
+ & Qwen3-8B & 1, 30 & 23, 21 & 0.83 & not fitted\\
+ & Llama-3.2-3B & 7, 24 [12, 31] & 14, 19 [12.25, 27.75] & 0.85 & 0.93 [0.46, 1.85]\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Length and correctness.} For the Qwen models, R-wrong families were not longer (Table~\ref{tab:tokcorr}); an odds ratio above 1 means that a longer R$-$E difference went with R being correct more often, not less. For Llama in Pilot-B the R-wrong families had larger R$-$E differences (16.5 vs 13.5 tokens, $p = 0.073$), and the longest tercile of R questions (54--87 tokens) had the lowest R accuracy, 43.5\% against 60.9\% and 66.7\%, although Llama's E accuracy in that tercile was 95.7\%. Llama's own stored whole-prompt counts give the same picture (Pilot-B medians 16 vs 13, $p = 0.074$; original 24 vs 18.5, $p = 0.83$). Raw R length for Pilot-B Llama gives $p = 0.037$ (median 53 vs 47), the only nominal $p$ below 0.05 among the 14 post-hoc permutation tests (plus 6 logistic fits). Only Llama writes noticeably longer outputs on R (Table~\ref{tab:resources}).
+
+\paragraph{Limits.} The Qwen tests rest on 1--9 R-wrong families per cohort and have almost no power, so a null here is not evidence that length has no effect. Length is confounded with item content, the number of quantities and the number of Hindi words, and fragmentation with how rare the Romanized register is in pretraining. Llama piece counts are unavailable, the lexicon is an unconfirmed proposal matched by surface form only, and only the strict endpoint was used. The interpretation is given in Section~\ref{sec:disc_tok}.
+
 %======================================================================
 \chapter{Discussion}
 \label{ch:discussion}
@@ -918,6 +997,13 @@ This null result illustrates why the protocol separated development evidence fro
 \section{Instruction-following erosion}
 
 A second, quieter effect runs through the data: models increasingly ignore the instruction to explain in English as the input moves away from English. Under prompt v1, 8 of 12 R fixture explanations were in Devanagari. Under v2, in Pilot-B, Qwen3-4B's English compliance fell from 70/70 (E) to 53/70 (R) and 59/70 (C). Llama explained 60 of 70 R outputs in Romanized-Hindi prose. The model often reasons in the language it was addressed in, even when told otherwise. This matters for applications that need consistent output language, and it matters for evaluation, because a scorer or extractor tuned to English text can silently penalize such outputs.
+
+\section{Tokenization length: at most a minor correlate}
+\label{sec:disc_tok}
+
+\evid{this section interprets the POST-HOC EXPLORATORY analysis of Section~\ref{sec:tokenization}; it is not a pre-registered result.}
+
+In a post-hoc exploratory analysis with the pinned Qwen3 tokenizer, Romanized-Hindi (R) questions were consistently longer than their English (E) counterparts: a median of $+$15 tokens (ratio 1.42) in Pilot-B and $+$22.5 (ratio 1.61) in the original cohort, at nearly the same word count, because R words split into more pieces (2.0 vs 1.45 tokens per word). Hindi operation words were only slightly more fragmented than other R words. Length does not account for the R deficit in the Qwen models. Their R errors did not occur in longer or more fragmented items: the median R$-$E difference was 15 vs 14 tokens for Qwen3-4B and 13 vs 15 for Qwen3-8B. In addition, code-mixed (C) questions were also longer than E (median $+$8 tokens), yet Qwen's C accuracy equalled its E accuracy in both cohorts. For Llama-3.2-3B there was a weak association in Pilot-B: R-wrong families had larger R$-$E differences (16.5 vs 13.5 tokens; exact $p = 0.07$), and the longest tercile had the lowest R accuracy. This association did not appear in the original cohort and would not survive any correction for multiple testing. Given the small samples, the many post-hoc comparisons and the confounding of length with item content and register rarity, this report treats tokenization length as at most a minor correlate. The R gap is interpreted as a language-form effect, not a demonstrated tokenization effect. Interventions that hold the content fixed while changing the wording (lexical swaps, length padding) would be needed to test the mechanism.
 
 \section{Comparison with prior work}
 
@@ -961,9 +1047,11 @@ All exclusions were decided before any model output on the cohort, and the amend
 
 \paragraph{Residual format effects and thin development evidence.} Strict scoring still penalizes some correct answers (unlisted English unit phrases, the spelling \emph{rupye}), and the secondary endpoint has the trailing-\rs\ gap; both are reported, not corrected. The prompt was revised after seeing outputs on 12 unreviewed fixtures. This is disclosed, and no cohort item was used to design the prompt.
 
-\paragraph{Audit.} The output audit rests on two AI taggers with a human check of disagreements and a 20-row sample, not a full human audit, and it covers only the primary model on Pilot-B.
+\paragraph{Audit.} The pre-registered output audit rests on two AI taggers with a human check of disagreements and a 20-row sample, not a full human audit, and it covers only the primary model on Pilot-B. The post-hoc extension to Qwen3-8B and Llama-3.2-3B used two Claude models as taggers, whose agreement is weaker evidence than cross-family agreement, and its 68-row human check is still pending (Section~\ref{sec:auditext}).
 
-\paragraph{No training yet.} RQ2 and RQ3 are untested.
+\paragraph{Post-hoc analyses.} The tokenization analysis (Section~\ref{sec:tokenization}) and the audit extension were designed after all cohort outputs had been seen. They are labelled as such, uncorrected for multiple testing and not used for any confirmatory claim.
+
+\paragraph{No training yet.} RQ2 and RQ3 are untested. Only a feasibility smoke test has been run, on 16 TRAIN families whose adapters were discarded unevaluated. The planned Phase-2 design is also limited in advance: with 100 FINAL\_TEST families and three seeds it cannot reliably detect a $+$3-point gain, and unchanged Qwen3-4B is already near ceiling on C (Section~\ref{sec:phase2power}).
 
 \section{Ethics}
 
@@ -980,10 +1068,10 @@ AI assistants were used extensively, and this section states how.
 \begin{enumerate}[nosep]
 \item \textbf{AI-drafted items.} Renderings were drafted by an LLM: Claude for Pilot-B and TRAIN, and GPT for FINAL\_TEST and DEV. For the original pilot, the English statements were written by the author, and R and C were translated by an LLM (OpenAI GPT via Codex). All families were then checked against code-computed gold and reviewed by humans, and the AI-drafted sets were also verified blind by two LLM solvers.
 \item \textbf{AI-assisted human review.} Humans made every acceptance decision. Some lexicon entries and some text edits were drafted by AI before reviewers confirmed them. In the original cohort, one reviewer's AI-prefilled, unverified stage-2 judgments were excluded.
-\item \textbf{AI-assisted audit.} The output audit used two AI pre-taggers with a human check.
-\item \textbf{Writing, coding and decisions.} AI assistants helped write the evaluation and analysis code, the research notes, the paper draft and this report. Under the student's explicit delegation (D017), they also recorded protocol decisions in the decision log, where each one is labelled as an AI decision under delegation. The student reviewed this work and takes responsibility for it.
+\item \textbf{AI-assisted audit.} The output audit used two AI pre-taggers (Claude and GPT) with a human check. The post-hoc extension used two Claude models (Opus and Sonnet) as taggers; its human check is pending.
+\item \textbf{Writing, coding and decisions.} AI assistants helped write the evaluation and analysis code, the research notes, the paper draft and this report. Under the student's explicit delegation (D017), they also recorded protocol decisions in the decision log, where each one is labelled as an AI decision under delegation. The Phase-2 protocol draft and power simulation (D040) and the training smoke-test code (D041) were written by a Claude Opus subagent standing in for the GPT assistants, whose access had expired; the smoke-test code has no independent GPT cross-check yet. The student reviewed this work and takes responsibility for it.
 \end{enumerate}
-Systems used: Claude Opus 5.5 (Anthropic); GPT-6 Astra and GPT-6.1 Sol (OpenAI, via the Codex CLI).
+Systems used: Claude Opus 5.5 and Claude Sonnet (Anthropic); GPT-6 Astra and GPT-6.1 Sol (OpenAI, via the Codex CLI).
 
 %======================================================================
 \chapter{Conclusion and Future Work}
@@ -992,41 +1080,104 @@ Systems used: Claude Opus 5.5 (Anthropic); GPT-6 Astra and GPT-6.1 Sol (OpenAI, 
 
 \section{Conclusion}
 
-With the mathematics held fixed, three small open models were least accurate on Romanized Hindi in two separately reviewed, pre-registered cohorts, by a strongly model-specific amount (about 7--9 points for Qwen, 25--37 for Llama). Both Qwen models had equal observed aggregate accuracy on English and Hinglish. The R errors were not concentrated in items with Hindi operation words, and instruction following eroded on non-English input. On excluded data, a single phrase in the answer-format instruction produced form-dependent scoring failures, and format compliance varied sharply across models. The methodological lesson is that answer formats and scorers must be checked on excluded data before any language comparison is run. The phase also delivered a reproducible pipeline with 161 passing tests, and 300 frozen Phase-2 families ready for the training study.
+With the mathematics held fixed, three small open models were least accurate on Romanized Hindi in two separately reviewed, pre-registered cohorts, by a strongly model-specific amount (about 7--9 points for Qwen, 25--37 for Llama). Both Qwen models had equal observed aggregate accuracy on English and Hinglish. The R errors were not concentrated in items with Hindi operation words, and instruction following eroded on non-English input. On excluded data, a single phrase in the answer-format instruction produced form-dependent scoring failures, and format compliance varied sharply across models. The methodological lesson is that answer formats and scorers must be checked on excluded data before any language comparison is run. A post-hoc exploratory analysis found R questions 1.4--1.6 times longer than E in tokens, but length did not account for the Qwen R deficit, so tokenization is treated as at most a minor correlate. The phase also delivered a reproducible pipeline with 161 passing tests, 300 frozen Phase-2 families, a T4 training smoke test that passed its feasibility gate, and a training schedule fixed before any training outcome.
 
 \section{Phase 2: the training study}
 
 \paragraph{Design.} The essential comparison (D001) is three fine-tuning arms on matched mathematical content with identical English solution targets and matched exposure:
 \begin{itemize}[nosep]
-\item \textbf{E+E}: English questions only;
-\item \textbf{E+R}: English plus Romanized-Hindi questions;
-\item \textbf{E+C}: English plus Hinglish questions.
+\item \textbf{E+E}: each TRAIN family supervises the English solution twice, from the E question;
+\item \textbf{E+R}: once from the E question and once from the R question;
+\item \textbf{E+C}: once from the E question and once from the C question.
 \end{itemize}
-Training uses the frozen TRAIN split (160 families), with DEV (40 families) for development checks. A single confirmatory evaluation then runs on the untouched FINAL\_TEST (100 families), together with an English-retention check, to answer RQ2 and RQ3. Matching exposure does not necessarily match input tokens or runtime, so both will be measured per arm.
+Training uses the frozen TRAIN split (160 families), with DEV (40 families) for sanity checks only. A single confirmatory evaluation then runs on the untouched FINAL\_TEST (100 families) to answer RQ2 and RQ3. The primary estimand (D040) is $\Delta_C$: the E+C minus E+R difference in strict accuracy on C questions, averaged over the 100 FINAL\_TEST families and three paired seeds. English retention (E+C vs E+E on E), R transfer (E+R vs E+E on R) and specificity ($\Delta_C - \Delta_R$) are descriptive secondaries, and the unchanged Qwen3-4B on FINAL\_TEST is the baseline. Matching exposure does not match input tokens or runtime, so both will be measured per arm.
 
-\paragraph{Recipe (proposed, not yet approved).} The proposal is QLoRA on Qwen3-4B: LoRA rank 16 and alpha 32 on all seven linear projections (33,030,144 trainable parameters), microbatch 1 with 16-step accumulation, a 1,024-token sequence cap, completion-only loss, NF4 with double quantization, FP16 compute and gradient checkpointing. The illustrative budget is three arms $\times$ three seeds $\times$ 256 updates $=$ 2,304 updates. These values, together with the proposed $+$5-point useful-gain and $-$2-point English-retention margins, are discussion proposals that are not yet approved (D015). They must be fixed before any training outcome is seen. Desk estimates put peak memory at about 5.5--7.5~GB against about 14.5~GiB usable, and time at about 8--55~s per update, so 2,304 updates would take about 5--35 GPU-hours before overhead. Time is the main risk.
+\paragraph{Backbone.} Qwen3-4B stays the backbone: it follows prompt v2 cleanly, shows the R deficit the study targets, its stack is verified on the T4, and it is the backbone of the submitted paper. Llama-3.2-3B, which has more C headroom, is kept only as an optional second backbone if the ceiling flag below fires (D042).
 
-\paragraph{Feasibility gates (D021).} The smoke test will first try the stack already verified for inference: torch 2.11.0+cu130, transformers 4.51.3, bitsandbytes 0.50.2 and PEFT 0.15.2. It will use a project-owned training loop, not TRL, with self-built completion-only labels that mask the prompt, including the empty think block, and supervise the English solution plus \texttt{<|im\_end|>}. The target token IDs must be identical across E/R/C. The go/no-go thresholds were fixed before any measurement:
+\subsection{Training smoke test (D021 gate): GO}
+\label{sec:smoke}
+
+\evid{engineering test only (28 October 2026). 16 TRAIN families (D041); the adapters were discarded and never evaluated, and DEV and FINAL\_TEST were not accessed.}
+
+Decision D021 fixed the go/no-go thresholds before any measurement: median $\le$56~s per update stays on Colab; 56--150~s moves to Kaggle 2$\times$T4; $>$150~s falls back to a smaller model. The smoke test ran all three arms of Qwen3-4B QLoRA on a Colab T4 with a project-owned training loop and self-built completion-only labels, on exactly the D021 stack (torch 2.11.0+cu130, transformers 4.51.3, bitsandbytes 0.50.2, PEFT 0.15.2). The verdict was \textbf{GO: stay on the Colab T4}, with no failed checks (Table~\ref{tab:smoke}). All 20 included files of the results ZIP match its checksum list.
+
+\begin{table}[t]
+\centering\small
+\caption{D021 training smoke test on a Colab T4 (Qwen3-4B QLoRA; median over updates 3--6). Engineering evidence only.}
+\label{tab:smoke}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Arm & \makecell{Median\\s/update} & \makecell{Peak\\allocated} & \makecell{Min\\free} & \makecell{Scaler\\skips} & \makecell{Checkpoint\\reload}\\
+\midrule
+E+E & 19.8 & 5.02~GB & 10.1~GB & 0 & exact (probe diff 0.0)\\
+E+R & 20.4 & 5.03~GB & 10.1~GB & 0 & exact (probe diff 0.0)\\
+E+C & 20.6 & 5.03~GB & 10.1~GB & 0 & exact (probe diff 0.0)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A longer 32-update E+C probe ran at a median 19.8~s per update with no out-of-memory error, finite losses and no scaler skips. Every update supervised the same 732--814 English target tokens in all three arms, from inputs of 2.6--2.8k tokens per 16-example update. The timing is slightly pessimistic, because updates 5--6 run in a fresh process and include start-up cost, and it holds for examples of at most about 207 tokens.
+
+\paragraph{Memorisation finding.} Training loss fell from about 2.55 to 0.32--0.41 within six updates, and in the 32-update probe it reached about 0.00 by update 24. The 16 smoke families (32 examples, two updates per pass) were memorised within about 12 passes. The provisional 256 updates over 160 families (D015) would be about 13 passes, roughly 1.5~h per arm and seed at 20.6~s per update, and so would sit in the same memorisation regime. Decision D042 therefore kept training on the free Colab T4 with Qwen3-4B (so the $>$150~s fallback no longer applies), handled the C ceiling through the DEV ceiling flag rather than a backbone switch, and required the update count to be fixed before any training.
+
+\subsection{Training schedule (D043)}
+
+Decision D043 (3 November 2026) fixed the schedule before any Phase-2 training or FINAL\_TEST output:
 \begin{itemize}[nosep]
-\item median $\le$56~s per update: stay on Colab;
-\item 56--150~s: move to Kaggle 2$\times$T4;
-\item $>$150~s: fall back to Qwen3-1.7B.
+\item all 160 TRAIN families (\texttt{train\_A.v2} + \texttt{train\_B.v2}); 320 examples per arm; 16 examples per update, so 20 updates per pass;
+\item \textbf{3 passes $=$ 60 updates} per run, replacing the provisional 256;
+\item AdamW, learning rate $10^{-4}$, 6 linear warm-up updates, then cosine decay to 10\%; otherwise the D021 recipe is unchanged: LoRA rank 16 and alpha 32 on all seven linear projections (33,030,144 trainable parameters), microbatch 1 with 16-step accumulation, a 1,024-token sequence cap, completion-only loss, NF4 with double quantization, FP16 compute and gradient checkpointing;
+\item seeds 11, 22 and 33; within a seed, family order, example order and LoRA initialization are identical across the three arms (paired);
+\item the checkpoint after update 60 is evaluated; DEV is used only for an unchanged-model ceiling check and a post-training sanity report, never for selection.
 \end{itemize}
-The fallback stack is the older pinned stack in a fresh runtime, with inference re-run. Every arm and seed must use the same GPU model, software stack, recipe and update count.
+The expected cost is about 21 minutes per run for nine runs (three arms $\times$ three seeds). The confirmatory evaluation covers ten checkpoints (nine trained plus the unchanged model) $\times$ three forms $\times$ 100 families $=$ 3,000 generations, roughly 6--7 T4-hours at Pilot-B latency. FINAL\_TEST is evaluated once, only after all nine checkpoints are frozen and hashed.
+
+\subsection{Power, precision and decision rules (D040)}
+\label{sec:phase2power}
+
+\evid{planning evidence. A Monte Carlo simulation that reads only the stored Pilot-B outcomes of the unchanged models; no training, new inference or FINAL\_TEST inspection. Its effect model allows gains only, so it is optimistic. The direction was adopted (D040) and the full protocol was frozen as \texttt{phase2/PREREGISTRATION.md} (D044, 3 November 2026), committed before any Phase-2 training, DEV or FINAL\_TEST output.}
+
+The simulation models each family as solid, fragile or hard, calibrated so that the E+R arm's C accuracy is $p_0$ and the discordance between two seeds of one arm is $q_0$, and lets E+C raise accuracy by a mean of $\delta$. Each cell uses 4,000 simulated datasets, and the Wald decision interval used for speed agreed with a percentile family bootstrap (power 0.717 vs 0.710, decision agreement 98.7\%; and 0.967 vs 0.967, 100\%). Table~\ref{tab:power} gives selected cells for $N = 100$ families and three seeds.
+
+\begin{table}[t]
+\centering\small
+\caption{Simulated probability that the 95\% lower bound of $\Delta_C$ exceeds 0 ($N = 100$ FINAL\_TEST families, 3 seeds). Brackets: median 95\% half-width (pp) under no effect. Planning evidence from Pilot-B outcomes of unchanged models; gain-only effects, so optimistic.}
+\label{tab:power}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$p_0$ (E+R on C) & $q_0$ & \multicolumn{2}{c}{$\delta = 0$ (false support)} & $+3$~pp & $+5$~pp & $+10$~pp\\
+\midrule
+0.943 & 0.035 & 0.016 & [2.1] & 0.56 & 0.89 & impossible\\
+0.943 & 0.071 & 0.023 & [2.9] & 0.51 & 0.96 & impossible\\
+0.857 & 0.071 & 0.025 & [2.9] & 0.42 & 0.78 & 1.00\\
+0.857 & 0.114 & 0.027 & [3.8] & 0.31 & 0.67 & 1.00\\
+0.857 & 0.200 & 0.023 & [5.0] & 0.22 & 0.56 & 1.00\\
+0.70 & 0.071 & 0.020 & [3.0] & 0.41 & 0.74 & 0.995\\
+0.70 & 0.200 & 0.025 & [5.0] & 0.21 & 0.45 & 0.95\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What 100 families can support.} $\Delta_C$ can be estimated to about $\pm$2--5 points (95\% half-width; $\pm$3--4 in the central cases). A $+$3-point gain is detected with only about 21--58\% probability, and the approximate 80\%-power minimum detectable effect is 3--7 points. A ``useful gain'' claim (lower bound above $+$5 points) is essentially unreachable: its probability is at most 0.025 at a true $+$5 and 0.41--0.60 at a true $+$10. The ceiling is the main risk: unchanged Qwen3-4B already scores 94.3\% on Pilot-B C, so if the E+R arm stays there the largest possible gain is 5.7 points, and $+$10 is impossible. English non-inferiority within 2 points is shown with probability only 0.52 or 0.29 even when nothing is lost. More families would help (central case, $+$3 points: 0.31/0.55/0.73/0.96 at $N = 100/200/300/600$), but only 100 FINAL\_TEST families exist, and adding DEV would break the DEV firewall.
+
+\paragraph{Decision labels (primary $\Delta_C$ only).} \emph{Support}: 95\% lower bound $>0$. \emph{Useful support}: lower bound $>+5$ points. \emph{Informative null}: the interval contains 0 and its upper bound is $<+5$ points. \emph{Harm}: upper bound $<0$. Otherwise \emph{inconclusive}. The primary result is therefore framed as a pre-registered estimate with a precision target, not a significance hunt. English retention uses a $-$2-point margin and is reported as ``not established'' unless the lower bound exceeds $-$2 points.
+
+\paragraph{Other adopted elements (D040).} Strict scorer v1.0.0 stays primary. \texttt{numeric\_literal\_v2}, which also accepts \rs, Rs, INR or ``rupees'' when the gold unit is rupees, is pre-registered as a new secondary only; it closes the trailing-\rs\ gap of Table~\ref{tab:numeric} without changing the cohort results. The unchanged model is run on DEV before training, with a ceiling flag if its C accuracy is at least 95\%. A self-translate baseline is the optional control, and no Devanagari arm is planned (cost, new reviewed renderings and a new FINAL\_TEST version).
 
 \section{Timeline to May 2027}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering\small
-\caption{Plan for the remainder of the project.}
+\caption{Status and plan for the remainder of the project (as of 3 November 2026).}
 \label{tab:timeline}
 \begin{tabularx}{\linewidth}{@{}lL@{}}
 \toprule
 Period & Milestone\\
 \midrule
-Nov 2026 & Minor evaluation. Completed: original-cohort runs and analysis; output audit of Pilot-B (Qwen3-4B). EACL 2027 SRW mentorship draft (6 Nov).\\
-Dec 2026 -- Jan 2027 & Training feasibility smoke test on T4 (completion-only loss, memory, checkpoint reload) under the D021 gates; second-annotator sample on Pilot-B and FINAL\_TEST; SRW submission (15 Dec) and notification (5 Jan).\\
-Feb -- Mar 2027 & E+E / E+R / E+C fine-tuning with paired seeds on the frozen TRAIN/DEV; one confirmatory evaluation on the untouched FINAL\_TEST, plus English retention.\\
+Oct 2026 (done) & Original-cohort runs and analysis; SRW mentorship submission \#12 (26 Oct, D039); Pilot-B audit of Qwen3-4B; post-hoc tokenization analysis and audit-extension tagging; Phase-2 protocol draft and power simulation (D040); T4 smoke test, GO (28 Oct, D042).\\
+Nov 2026 & Schedule fixed (3 Nov, D043); minor evaluation; human check of the audit extension (pending); freeze the Phase-2 pre-registration; DEV ceiling check.\\
+Dec 2026 -- Jan 2027 & SRW mentor feedback (5 Dec), final submission (15 Dec), notification (5 Jan); second-annotator sample (Pilot-B, FINAL\_TEST).\\
+Feb -- Mar 2027 & Nine training runs (60 updates, about 21 min each); one confirmatory FINAL\_TEST evaluation (3,000 generations) with English retention.\\
 Apr 2027 & Analysis, thesis and training-paper draft.\\
 May 2027 & Final submission.\\
 \bottomrule
@@ -1035,17 +1186,17 @@ May 2027 & Final submission.\\
 
 \section{Publication plan}
 
-Under decision D023, the pilot findings target the EACL 2027 Student Research Workshop as a 4-page short paper. The optional mentorship draft is due on 6 November 2026 and direct submission on 15 December 2026; a draft exists in \texttt{paper/latex/main.tex}. The training study targets the ARR May 2027 cycle, whose date is unconfirmed. Co-authorship with the faculty guide is to be discussed with the guide.
+Under decision D023, the pilot findings target the EACL 2027 Student Research Workshop as a 4-page short paper. The paper was submitted to the SRW pre-submission mentorship on 26 October 2026 (OpenReview submission \#12, D039); mentor feedback is due on 5 December, and the final paper needs a new submission to the SRW track by 15 December 2026. The training study targets the ARR May 2027 cycle, whose date is unconfirmed. Co-authorship with the faculty guide is to be discussed with the guide.
 
 \section{Further future work}
 
 Beyond the planned study, the limitations point to clear extensions:
 \begin{itemize}[nosep]
-\item a reviewed Devanagari arm, to separate script from language;
-\item independently authored spelling variants of R;
+\item a reviewed Devanagari arm, to separate script from language, and independently authored spelling variants of R;
 \item a second independent language reviewer for every cohort;
 \item more model families at matched sizes;
-\item a full human audit of outputs.
+\item a full human audit of outputs;
+\item content-fixed interventions (lexical swaps, length padding) to test whether tokenization length plays any causal role.
 \end{itemize}
 
 %======================================================================
@@ -1139,7 +1290,7 @@ D002 & Pilot design: unchanged model, 30 families/90 renderings; human acceptanc
 D003--D008 & Early process: annotation budget open; review packets distributed; shared-folder coordination; frozen scorer v1 and packets kept unchanged; reviewers not yet done.\\
 D009--D011 & Secondary-endpoint specification proposed; currency-prefix and unit-alias handling left to human decision.\\
 D012--D014 & One writer at a time; each work cycle must change data/code/results or end with a concrete question; excluded format-test suite proposed.\\
-D015 & Training margins (+5pp gain, $-$2pp English), three seeds, 256 updates: discussion proposals, NOT APPROVED.\\
+D015 & Training margins (+5pp gain, $-$2pp English), three seeds, 256 updates: discussion proposals, NOT APPROVED (update count superseded by D043).\\
 D016--D017 & Minor evaluation November 2026, final May 2027; the student delegated spec-adoption and format-test decisions to Claude; goal is a publishable paper.\\
 D018 & Adopted \texttt{numeric\_literal\_v1} as secondary endpoint beside strict v1.0.0; audit taxonomy; CMI\_v1; consent note.\\
 D019--D020 & FMT2 format run on excluded fixtures; prompt replaced by \texttt{test1-english-final-v2} before any reviewed generation.\\
@@ -1156,6 +1307,11 @@ D035 & Pilot-B evaluated in \texttt{pilot\_b} mode under a plan committed before
 D036 & Original cohort = 24 families accepted without repair; excluded PIL010 and five repaired families.\\
 D037 & R01's AI-prefilled stage-2 judgments excluded; cohort relabelled (two human solvers; language review R02 + A01); plan amended before outputs.\\
 D038 & Provenance correction: original E statements author-written; R/C AI-translated, then human-reviewed.\\
+D039 & Pilot paper submitted to the EACL 2027 SRW pre-submission mentorship (\#12); final SRW submission due 15 Dec 2026.\\
+D040 & Phase-2 protocol direction adopted for the pre-registration draft: $\Delta_C$ as an estimate with a precision target; decision labels; $-$2pp retention margin; \texttt{numeric\_literal\_v2} as new secondary; DEV ceiling flag; self-translate control; no Devanagari arm.\\
+D041 & Training smoke-test code and notebook built; 16 TRAIN families fixed for the smoke test; adapters never evaluated.\\
+D042 & Smoke test passed on a Colab T4 (worst-arm median 20.6~s/update, exact reload); training stays on Colab with Qwen3-4B; memorisation within about 12 passes flags 256 updates as over-fitting risk.\\
+D043 & Training schedule fixed: 160 TRAIN families, 60 updates (3 passes), lr $10^{-4}$ with warm-up and cosine decay, seeds 11/22/33, checkpoint after update 60.\\
 \bottomrule
 \end{longtable}
 
