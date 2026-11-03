@@ -16,15 +16,17 @@ The real evaluation on the frozen, human-reviewed Pilot-B set (70 families × E/
 | `PilotB_Qwen3-8B.ipynb` | Qwen3-8B | Scaling comparison |
 | `PilotB_Llama-3.2-3B.ipynb` | Llama-3.2-3B | Cross-family; needs your HF token |
 
-## Phase 2 (`phase2/`), D043 and `phase2/PREREGISTRATION.md`
+## Phase 2 (`phase2/`), D043 and `phase2/PREREGISTRATION.md` with Amendment 1
 
-Run in this order, each on a fresh T4 runtime with **Run all**. Drive is on by default (`MyDrive/Hinglish_Phase2/`); the adapters stay there. Each notebook downloads a ZIP with `SHA256SUMS.txt`; send it unchanged.
+Before the first run, commit `phase2/EXPOSURE_ORDER.json` and `phase2/IMPLEMENTATION_MANIFEST.md` (Amendment 1 items 9 and 14). Both notebooks embed the manifest and refuse to run if any embedded code, data or pinned tokenizer/config file differs from it.
 
-1. **`Phase2_Baseline_DEV.ipynb`**, once, before any training: the unchanged Qwen3-4B on DEV (120 generations, about 15–20 min). It prints the D040 ceiling flag (fires at DEV C ≥ 38/40).
-2. **`Phase2_Train.ipynb`**, 9 times: set `ARM` (`EE`/`ER`/`EC`) and `SEED` (11/22/33) in the first code cell. Each run trains 60 updates on all 160 TRAIN families (about 25 min), saves the final adapter and its SHA-256s to Drive, then runs the DEV sanity evaluation (about 15 min). **Disconnects (§10):** re-running all starts a fresh attempt from scratch. After two failed attempts, switch that seed to reserve seed 44 (then 55) for all three arms. `RESUME_AFTER_DISCONNECT = True` exists for engineering use only; the FinalTest gate refuses resumed adapters.
-3. Commit `phase2/ADAPTERS_FROZEN.md` (§11). Its ```json block can be generated from the 9 `final_adapter.json` files with `python3 -B t4_smoke/phase2_eval.py freeze-manifest --train-root <folder>`. Then rebuild to create **`Phase2_FinalTest.ipynb`**, which runs the unchanged model plus all 9 adapters on FINAL_TEST (3,000 generations, about 6–7 h; resumes across sessions). It refuses to run unless the embedded pre-registration hash, the freeze manifest and all 9 adapters on Drive match.
+Run in this order, each on a fresh T4 runtime with **Run all**. Drive is on by default (`MyDrive/Hinglish_Phase2/`); the adapters and the attempt log stay there. Each notebook downloads a ZIP with `SHA256SUMS.txt`; send it unchanged.
 
-Rebuild with `python3 -B colab_notebooks/build_phase2_notebooks.py` (`--check` verifies them). Until `phase2/ADAPTERS_FROZEN.md` exists, the builder skips the FinalTest notebook and prints why.
+1. **`Phase2_Baseline_DEV.ipynb`**, once, before any training: the unchanged Qwen3-4B on DEV (120 generations, about 15–20 min). It prints "high unchanged-DEV accuracy (ceiling-risk proxy)" with k/40 and its Wilson 95% interval (fires at DEV C ≥ 38/40; item 7).
+2. **`Phase2_Train.ipynb`**, once per arm and seed slot: set `ARM` (`EE`/`ER`/`EC`) and `SLOT` (11/22/33) in the first code cell. The append-only `train/ATTEMPT_LOG.jsonl` decides the seed and attempt and is printed first (item 11): an infrastructure failure allows one fresh attempt from scratch; after a second one the whole slot moves to the next unused reserve seed (44, then 55) automatically; a numerical failure (scaler skip, non-finite loss/gradient/parameter) or a protocol failure halts the study and the notebook refuses all further training. Each valid run has exactly 60 successful optimizer steps (item 10), then the DEV sanity evaluation. `RESUME_AFTER_DISCONNECT = True` is engineering-only; a resumed run is never valid.
+3. When every slot is complete or exhausted, generate the ```json block of `phase2/ADAPTERS_FROZEN.md` with `python3 -B t4_smoke/phase2_eval.py freeze-manifest --train-root <MyDrive/Hinglish_Phase2/train copy>` (it records the retained seeds, S, the attempt-log hash and the implementation manifest; S = 1–2 is marked descriptive-only, S = 0 is refused; item 12) and commit it. Then rebuild to create **`Phase2_FinalTest.ipynb`**: the unchanged model plus the 3S retained adapters on FINAL_TEST, **sealed** (it prints only completion, checksum and infrastructure status; items 13–14).
+
+Rebuild with `python3 -B colab_notebooks/build_phase2_notebooks.py` (`--check` verifies them) after `python3 -B phase2/build_implementation_manifest.py` (`--check` verifies the manifest). Until `phase2/ADAPTERS_FROZEN.md` exists, the builder skips the FinalTest notebook and prints why. Handoff: `../handoffs/2026-11-03_amendment1_pipeline.md`.
 
 ## Training smoke test (`training_smoke/`), decision D021
 

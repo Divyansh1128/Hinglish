@@ -88,6 +88,21 @@ class BackwardCompatibilityTests(unittest.TestCase):
             with self.subTest(bad=bad), self.assertRaises(ValueError):
                 live_engine.validate_config(dict(phase2, adapter=bad))
 
+    def test_phase2_modes_are_qwen3_4b_only_and_v1_modes_keep_every_model(self):
+        """Amendment 1 item 15: no second backbone (Llama or other) in Phase-2 modes; v1 modes unchanged."""
+        for model in live_engine.MODELS:
+            v1 = live_engine.default_config('pilot_b', model)
+            v1.update(model_revision='0' * 40, tokenizer_revision='0' * 40)
+            live_engine.validate_config(v1)
+            for mode in ('phase2_dev', 'phase2_final_test'):
+                config = live_engine.default_config(mode, model)
+                config.update(model_revision='0' * 40, tokenizer_revision='0' * 40)
+                if model == 'Qwen/Qwen3-4B':
+                    live_engine.validate_config(config)
+                else:
+                    with self.subTest(model=model, mode=mode), self.assertRaisesRegex(ValueError, 'Amendment 1 item 15'):
+                        live_engine.validate_config(config)
+
     def test_validation_unchanged_for_v1_fixtures(self):
         dataset, splits = fixture()
         self.assertEqual(live_data.validate(dataset, splits, 'demo'), self.v1['data'].validate(dataset, splits, 'demo'))

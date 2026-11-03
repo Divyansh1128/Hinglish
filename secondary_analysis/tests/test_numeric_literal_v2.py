@@ -105,5 +105,110 @@ class NumericLiteralV2Tests(unittest.TestCase):
         self.assertEqual(tuple(table["v2"][f] for f in "ERC"), (69, 61, 67))
 
 
+class AmendmentOneFixtureTests(unittest.TestCase):
+    """Frozen fixtures for PREREGISTRATION.md Amendment 1 item 1 (Astra review 2026-11-03 section 1)."""
+
+    def assert_new_path(self, text, value="5", path=None):
+        self.assertEqual(v1.extract_numeric(text)["status"], "unsupported_answer", text)
+        result = v2.extract_numeric(text)
+        self.assertEqual((result["status"], result["value"]), ("extracted", value), text)
+        labels = result["extraction_path"].split("|")
+        self.assertTrue(v2.uses_new_path(result), text)
+        if path:
+            self.assertIn(path, labels, text)
+        self.assertEqual(v2.evaluate_numeric(text, gold(value, "rupees"))["status"], "match", text)
+
+    def assert_rejected(self, text):
+        result = v2.extract_numeric(text)
+        self.assertIsNone(result["value"], text)
+        self.assertEqual(result, dict(v1.extract_numeric(text), endpoint=v2.ENDPOINT_VERSION), text)
+        self.assertFalse(v2.numeric_correct(text, gold("5", "rupees")), text)
+
+    def test_adjacency(self):
+        for text in ("FINAL: rupees5", "FINAL: rupees 5", "FINAL: rupees \t 5", "FINAL: RuPeE5", "FINAL: rupees.5",
+                     "FINAL: rupees**5**", "FINAL: rupees$5$", r"FINAL: rupees\boxed{5}"):
+            self.assert_new_path(text, "1/2" if text.endswith(".5") else "5", "currency_prefix_word")
+        self.assert_new_path("FINAL: rupees-5", "-5", "currency_prefix_word")
+        self.assert_new_path("FINAL: rupees+5", "5", "currency_prefix_word")
+        for text in ("FINAL: 5₹", "FINAL: 5 ₹", "FINAL: 5\t₹", "FINAL: **5**₹", "FINAL: $5$ ₹", r"FINAL: \boxed{5}₹",
+                     "FINAL: 5/1 ₹", "FINAL: 500% ₹"):
+            self.assert_new_path(text, "5", "currency_suffix_symbol")
+        # Not followed by whitespace/digit/sign/decimal point/wrapper opener, or '₹' not directly after the scalar.
+        for text in ("FINAL: rupeesx 5", "FINAL: rupeess 5", "FINAL: rupees,5", "FINAL: rupees(5)", "FINAL: rupees:5",
+                     "FINAL: rupees/5", "FINAL: rupees#5", "FINAL: rupees*5", "FINAL: rupees", "FINAL: 5 only ₹",
+                     "FINAL: 5 kg ₹", "FINAL: 5/- ₹", "FINAL: rupees 5/-", "FINAL: 5 ₹ only", "FINAL: ₹",
+                     "FINAL: 5 (₹)", "FINAL: 5 ₹/-"):
+            self.assert_rejected(text)
+        self.assertEqual(v2._PREFIX_WORD.match("rupees,5"), None)  # the prefix itself is refused, not only the parse
+
+    def test_assignments(self):
+        self.assert_new_path("FINAL: x = rupees 5", path="currency_prefix_word")
+        self.assert_new_path("FINAL: x=5₹", path="currency_suffix_symbol")
+        self.assert_new_path("FINAL: X = **5** ₹", path="currency_suffix_symbol")
+        self.assertIn("assignment", v2.extract_numeric("FINAL: x = rupees 5")["extraction_path"].split("|"))
+        for text in ("FINAL: rupees x = 5", "FINAL: x = rupees y = 5", "FINAL: total = rupees 5", "FINAL: ₹ x = 5 ₹"):
+            self.assert_rejected(text)
+
+    def test_nested_wrappers(self):
+        for text in ("FINAL: **$5$** ₹", "FINAL: $**5**$₹", r"FINAL: \boxed{**5**} ₹", "FINAL: **5 ₹**",
+                     "FINAL: **$5$ ₹**"):
+            self.assert_new_path(text, path="currency_suffix_symbol")
+        for text in ("FINAL: rupees **$5$**", "FINAL: **rupees $5$**", r"FINAL: rupees \boxed{$5$}", "FINAL: $rupees 5$"):
+            self.assert_new_path(text, path="currency_prefix_word")
+        for text in ("FINAL: **5** **₹**", "FINAL: rupees **₹5**", "FINAL: **rupees 5 ₹**", "FINAL: **5**$₹$",
+                     "FINAL: rupees **5", r"FINAL: \boxed{5 ₹ ₹}"):
+            self.assert_rejected(text)
+
+    def test_punctuation(self):
+        for text in ("FINAL: rupees 5.", "FINAL: 5 ₹.", "FINAL: 5₹ .", "**FINAL:** 5 ₹", "**FINAL: rupees 5**"):
+            self.assert_new_path(text)
+        for text in ("FINAL: 5₹,", "FINAL: 5 ₹!", "FINAL: rupees. 5", "FINAL: rupees, 5", "FINAL: rupees - 5",
+                     "FINAL: 5 ₹ /-", "FINAL: 5 ₹;", "FINAL: `rupees 5`", "FINAL: rupees_5", "FINAL: 5 ₹.."):
+            self.assert_rejected(text)
+
+    def test_multiple_markers(self):
+        for text in ("FINAL: rupees 5 Indian rupees", "FINAL: rupees 5 Rs only", "FINAL: rupee 5 inr", "FINAL: rupees 5 RS",
+                     "FINAL: rupees 5 indian Rs", "FINAL: ₹ rupees 5", "FINAL: INR rupees 5", "FINAL: Rs. rupees 5",
+                     "FINAL: rupees rupee 5", "FINAL: 5₹₹", "FINAL: 5 ₹ ₹", "FINAL: rupees 5 ₹", "FINAL: Rs 5 ₹",
+                     "FINAL: rupees 5 Rs.", "FINAL: x = rupees 5 INR", "FINAL: rupees 5 rupees"):
+            self.assert_rejected(text)
+        # A non-currency suffix word is not a marker; a currency word inside a hyphenated token is not a token.
+        self.assert_new_path("FINAL: rupees 5 only")
+        self.assert_new_path("FINAL: rupees 5 rupees-only")
+        # Old v1 two-marker successes are kept, including for non-rupee gold.
+        for text in ("FINAL: Rs 5 rupees", "FINAL: ₹5 INR", "FINAL: 5 Rs INR", "FINAL: INR 5 Rs"):
+            for expected in (gold("5", "rupees"), gold("5", "apples", ())):
+                with self.subTest(text=text, unit=expected["unit"]):
+                    self.assertEqual(v2.evaluate_numeric(text, expected),
+                                     dict(v1.evaluate_numeric(text, expected), endpoint=v2.ENDPOINT_VERSION))
+                    self.assertTrue(v2.numeric_correct(text, expected))
+
+    def test_gold_unit_normalised_by_strip_and_casefold(self):
+        for unit in ("rupees", " Rupees ", "RUPEE", "\tINR\n", "Rs", "  RS. ", "₹", " ₹ "):
+            self.assertTrue(v2.gold_is_rupees(dict(unit=unit)), repr(unit))
+        for unit in ("rs .", "indian rupees", "rupiah", "paise", "rs-", "r s", "", None, "$", "INR​"):
+            self.assertFalse(v2.gold_is_rupees(dict(unit=unit)), repr(unit))
+
+    def test_non_rupee_gold_returns_v1(self):
+        for text in ("FINAL: rupees 5", "FINAL: 5 ₹", "FINAL: x = rupees **5**", "FINAL: 5 ₹."):
+            for unit in ("apples", "dollars", "", "rs .", "paise", "Indian rupees"):
+                expected = gold("5", unit, ())
+                with self.subTest(text=text, unit=unit):
+                    result = v2.evaluate_numeric(text, expected)
+                    self.assertEqual(result, dict(v1.evaluate_numeric(text, expected), endpoint=v2.ENDPOINT_VERSION))
+                    self.assertEqual((result["status"], result["correct"]), ("unsupported_answer", False))
+
+    def test_mismatches(self):
+        for text, unit in (("FINAL: rupees 6", "rupees"), ("FINAL: 6 ₹", " INR "), ("FINAL: rupees 5.01", "Rs."),
+                           ("FINAL: -5 ₹", "₹"), ("FINAL: rupees 1/2", "rupee"), ("FINAL: 5% ₹", "rs")):
+            with self.subTest(text=text):
+                result = v2.evaluate_numeric(text, gold("5", unit, ()))
+                self.assertEqual((result["status"], result["correct"]), ("mismatch", False))
+                self.assertTrue(v2.uses_new_path(result))
+        # Exact value comparison: equal fractions match.
+        self.assertTrue(v2.numeric_correct("FINAL: rupees 10/2", gold("5", "rupees", ())))
+        self.assertTrue(v2.numeric_correct("FINAL: 5.0 ₹", gold("5", "rupees", ())))
+
+
 if __name__ == "__main__":
     unittest.main()

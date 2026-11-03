@@ -1,0 +1,1385 @@
+{
+  "version": "phase2_calibration 1.0.0",
+  "analyze_sha256": "04263fef098802fd8d3bb9f37f93eefbbbe659aad1c7b5235e30d9303bdf00a4",
+  "settings": {
+    "N": 100,
+    "S": 3,
+    "datasets": 1000,
+    "resamples": 10000,
+    "base_seed": 20261103,
+    "bootstrap_seed": 101,
+    "python_version": "3.12.7",
+    "matrix_sha256_full": "33f4920eab5738cf29b346be8d63a15115f9fcbda58699ee9fc44b031e46e6a1"
+  },
+  "headline": {
+    "null_false_support_rate": {
+      "null_typical": 0.012,
+      "null_ceiling": 0.018,
+      "null_asymmetric_churn": 0.028,
+      "sparse_zero": 0.0
+    },
+    "max_null_false_support_rate": 0.028,
+    "primary_coverage": {
+      "null_typical": 0.965,
+      "null_ceiling": 0.965,
+      "null_asymmetric_churn": 0.949,
+      "plus3_with_losses": 0.936,
+      "minus3_losses_only": 0.939,
+      "sparse_zero": 1.0,
+      "sparse_one_family": 0.625,
+      "sparse_two_families": 0.863,
+      "boundary_plus5": 0.952,
+      "boundary_plus5_with_losses": 0.941,
+      "ceiling_plus3": 0.942,
+      "ceiling_plus5": 0.953,
+      "retention_boundary_minus2": 0.952,
+      "retention_boundary_minus2_sparse": 0.954,
+      "retention_zero_sparse": 0.942,
+      "retention_minus4": 0.961
+    },
+    "retention_coverage": {
+      "null_typical": 0.95,
+      "null_ceiling": 0.955,
+      "null_asymmetric_churn": 0.954,
+      "plus3_with_losses": 0.956,
+      "minus3_losses_only": 0.974,
+      "sparse_zero": 0.958,
+      "sparse_one_family": 0.956,
+      "sparse_two_families": 0.963,
+      "boundary_plus5": 0.96,
+      "boundary_plus5_with_losses": 0.964,
+      "ceiling_plus3": 0.959,
+      "ceiling_plus5": 0.97,
+      "retention_boundary_minus2": 0.931,
+      "retention_boundary_minus2_sparse": 0.848,
+      "retention_zero_sparse": 1.0,
+      "retention_minus4": 0.956
+    },
+    "coverage_range": [
+      0.625,
+      1.0
+    ],
+    "useful_support_at_plus5": {
+      "boundary_plus5": 0.009,
+      "boundary_plus5_with_losses": 0.032,
+      "ceiling_plus5": 0.013
+    },
+    "within_margin_at_minus2": {
+      "retention_boundary_minus2": 0.048,
+      "retention_boundary_minus2_sparse": 0.0
+    },
+    "degenerate": {
+      "sparse_zero": {
+        "primary_degenerate": 1.0,
+        "primary_coverage": 1.0,
+        "primary_labels": {
+          "Useful support": 0.0,
+          "Support": 0.0,
+          "Informative null": 0.0,
+          "Harm": 0.0,
+          "Inconclusive": 0.0,
+          "inconclusive—degenerate empirical interval": 1.0
+        },
+        "retention_degenerate": 0.0,
+        "retention_coverage": 0.958
+      },
+      "sparse_one_family": {
+        "primary_degenerate": 0.374,
+        "primary_coverage": 0.625,
+        "primary_labels": {
+          "Useful support": 0.0,
+          "Support": 0.022,
+          "Informative null": 0.366,
+          "Harm": 0.0,
+          "Inconclusive": 0.238,
+          "inconclusive—degenerate empirical interval": 0.374
+        },
+        "retention_degenerate": 0.0,
+        "retention_coverage": 0.956
+      },
+      "sparse_two_families": {
+        "primary_degenerate": 0.136,
+        "primary_coverage": 0.863,
+        "primary_labels": {
+          "Useful support": 0.0,
+          "Support": 0.152,
+          "Informative null": 0.285,
+          "Harm": 0.0,
+          "Inconclusive": 0.427,
+          "inconclusive—degenerate empirical interval": 0.136
+        },
+        "retention_degenerate": 0.0,
+        "retention_coverage": 0.963
+      },
+      "retention_boundary_minus2_sparse": {
+        "primary_degenerate": 0.0,
+        "primary_coverage": 0.954,
+        "primary_labels": {
+          "Useful support": 0.012,
+          "Support": 0.462,
+          "Informative null": 0.034,
+          "Harm": 0.0,
+          "Inconclusive": 0.492,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "retention_degenerate": 0.152,
+        "retention_coverage": 0.848
+      },
+      "retention_zero_sparse": {
+        "primary_degenerate": 0.0,
+        "primary_coverage": 0.942,
+        "primary_labels": {
+          "Useful support": 0.019,
+          "Support": 0.428,
+          "Informative null": 0.038,
+          "Harm": 0.001,
+          "Inconclusive": 0.514,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "retention_degenerate": 1.0,
+        "retention_coverage": 1.0
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "null_typical",
+      "group": "null",
+      "description": "Δ_C = 0; C baseline 0.60, seed discordance q 0.05",
+      "seed": 20261103,
+      "primary": {
+        "component": {
+          "p0": 0.6,
+          "q": 0.05,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.965,
+        "interval_below_target": 0.023,
+        "interval_above_target": 0.012,
+        "wald_coverage": 0.949,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 24.743,
+        "median_halfwidth_pp": 3.3333333333333335,
+        "halfwidth_pp_range": [
+          2.333333333333333,
+          4.8375
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.012,
+          "Informative null": 0.736,
+          "Harm": 0.023,
+          "Inconclusive": 0.229,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.012,
+          "Informative null": 0.736,
+          "Harm": 0.023,
+          "Inconclusive": 0.229
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.95,
+        "interval_below_target": 0.027,
+        "interval_above_target": 0.023,
+        "wald_coverage": 0.943,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.358,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.8333333333333333,
+          4.166666666666667
+        ],
+        "flags": {
+          "within-margin criterion met": 0.268,
+          "loss detected": 0.027,
+          "loss beyond margin": 0.001,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.705,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "null_ceiling",
+      "group": "null",
+      "description": "Δ_C = 0 at the ceiling (C baseline 0.943, q 0.035)",
+      "seed": 20261104,
+      "primary": {
+        "component": {
+          "p0": 0.943,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.965,
+        "interval_below_target": 0.017,
+        "interval_above_target": 0.018,
+        "wald_coverage": 0.956,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.148,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666667,
+          4.166666666666667
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.018,
+          "Informative null": 0.875,
+          "Harm": 0.017,
+          "Inconclusive": 0.09,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.018,
+          "Informative null": 0.875,
+          "Harm": 0.017,
+          "Inconclusive": 0.09
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.955,
+        "interval_below_target": 0.023,
+        "interval_above_target": 0.022,
+        "wald_coverage": 0.947,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.126,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.3333333333333335,
+          4.333333333333333
+        ],
+        "flags": {
+          "within-margin criterion met": 0.247,
+          "loss detected": 0.023,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.73,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "null_asymmetric_churn",
+      "group": "asymmetric",
+      "description": "Δ_C = 0 from offsetting sticky gains (0.15) and losses (0.10)",
+      "seed": 20261105,
+      "primary": {
+        "component": {
+          "p0": 0.6,
+          "q": 0.05,
+          "gain": 0.15,
+          "loss": 0.1
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.949,
+        "interval_below_target": 0.023,
+        "interval_above_target": 0.028,
+        "wald_coverage": 0.951,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 33.76,
+        "median_halfwidth_pp": 7.0,
+        "halfwidth_pp_range": [
+          3.6666666666666665,
+          9.333333333333334
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.028,
+          "Informative null": 0.275,
+          "Harm": 0.023,
+          "Inconclusive": 0.674,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.028,
+          "Informative null": 0.275,
+          "Harm": 0.023,
+          "Inconclusive": 0.674
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.954,
+        "interval_below_target": 0.023,
+        "interval_above_target": 0.023,
+        "wald_coverage": 0.94,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.291,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666665,
+          4.333333333333334
+        ],
+        "flags": {
+          "within-margin criterion met": 0.238,
+          "loss detected": 0.023,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.739,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "plus3_with_losses",
+      "group": "asymmetric",
+      "description": "Δ_C = +3 pp: sticky gains with 5% sticky losses (C baseline 0.70)",
+      "seed": 20261106,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.22777777777777772,
+          "loss": 0.05
+        },
+        "target_pp": 3.0,
+        "datasets": 1000,
+        "coverage": 0.936,
+        "interval_below_target": 0.031,
+        "interval_above_target": 0.033,
+        "wald_coverage": 0.934,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 32.674,
+        "median_halfwidth_pp": 6.666666666666666,
+        "halfwidth_pp_range": [
+          4.166666666666666,
+          9.0
+        ],
+        "labels": {
+          "Useful support": 0.004,
+          "Support": 0.13,
+          "Informative null": 0.095,
+          "Harm": 0.002,
+          "Inconclusive": 0.769,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.004,
+          "Support": 0.13,
+          "Informative null": 0.095,
+          "Harm": 0.002,
+          "Inconclusive": 0.769
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.956,
+        "interval_below_target": 0.024,
+        "interval_above_target": 0.02,
+        "wald_coverage": 0.95,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.344,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666665,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.236,
+          "loss detected": 0.024,
+          "loss beyond margin": 0.002,
+          "retention trade-off": 0.001,
+          "no retention criterion met": 0.74,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "minus3_losses_only",
+      "group": "asymmetric",
+      "description": "Δ_C = −3 pp from sticky losses only (C baseline 0.70)",
+      "seed": 20261107,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.0,
+          "loss": 0.04761904761904762
+        },
+        "target_pp": -3.0,
+        "datasets": 1000,
+        "coverage": 0.939,
+        "interval_below_target": 0.027,
+        "interval_above_target": 0.034,
+        "wald_coverage": 0.934,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 27.017,
+        "median_halfwidth_pp": 4.666666666666667,
+        "halfwidth_pp_range": [
+          2.6666666666666665,
+          6.5
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.001,
+          "Informative null": 0.713,
+          "Harm": 0.232,
+          "Inconclusive": 0.054,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.001,
+          "Informative null": 0.713,
+          "Harm": 0.232,
+          "Inconclusive": 0.054
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.974,
+        "interval_below_target": 0.011,
+        "interval_above_target": 0.015,
+        "wald_coverage": 0.972,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.375,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.8333333333333333,
+          4.166666666666666
+        ],
+        "flags": {
+          "within-margin criterion met": 0.262,
+          "loss detected": 0.011,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.727,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "sparse_zero",
+      "group": "sparse/degenerate",
+      "description": "Δ_C = 0 with no discordance at all (every family contrast 0)",
+      "seed": 20261108,
+      "primary": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.0,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 1.0,
+        "interval_below_target": 0.0,
+        "interval_above_target": 0.0,
+        "wald_coverage": 1.0,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 1.0,
+        "all_contrasts_identical_rate": 1.0,
+        "zero_width_rate": 1.0,
+        "mean_nonzero_family_contrasts": 0.0,
+        "median_halfwidth_pp": 0.0,
+        "halfwidth_pp_range": [
+          0.0,
+          0.0
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.0,
+          "Informative null": 0.0,
+          "Harm": 0.0,
+          "Inconclusive": 0.0,
+          "inconclusive—degenerate empirical interval": 1.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.0,
+          "Informative null": 1.0,
+          "Harm": 0.0,
+          "Inconclusive": 0.0
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.958,
+        "interval_below_target": 0.021,
+        "interval_above_target": 0.021,
+        "wald_coverage": 0.948,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.379,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.8333333333333333,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.267,
+          "loss detected": 0.021,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.712,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "sparse_one_family",
+      "group": "sparse/degenerate",
+      "description": "Δ_C = +1 pp: one expected discordant family (P(d_i = +1) = .01, q 0)",
+      "seed": 20261109,
+      "primary": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.0,
+          "gain": 0.1,
+          "loss": 0.0
+        },
+        "target_pp": 0.9999999999999999,
+        "datasets": 1000,
+        "coverage": 0.625,
+        "interval_below_target": 0.374,
+        "interval_above_target": 0.001,
+        "wald_coverage": 0.625,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.374,
+        "all_contrasts_identical_rate": 0.374,
+        "zero_width_rate": 0.374,
+        "mean_nonzero_family_contrasts": 0.997,
+        "median_halfwidth_pp": 1.5,
+        "halfwidth_pp_range": [
+          0.0,
+          4.5
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.022,
+          "Informative null": 0.366,
+          "Harm": 0.0,
+          "Inconclusive": 0.238,
+          "inconclusive—degenerate empirical interval": 0.374
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.022,
+          "Informative null": 0.74,
+          "Harm": 0.0,
+          "Inconclusive": 0.238
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.956,
+        "interval_below_target": 0.021,
+        "interval_above_target": 0.023,
+        "wald_coverage": 0.943,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 17.978,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666665,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.249,
+          "loss detected": 0.021,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.73,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "sparse_two_families",
+      "group": "sparse/degenerate",
+      "description": "Δ_C = +2 pp: two expected discordant families (P(d_i = +1) = .02, q 0)",
+      "seed": 20261110,
+      "primary": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.0,
+          "gain": 0.2,
+          "loss": 0.0
+        },
+        "target_pp": 1.9999999999999998,
+        "datasets": 1000,
+        "coverage": 0.863,
+        "interval_below_target": 0.136,
+        "interval_above_target": 0.001,
+        "wald_coverage": 0.864,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.136,
+        "all_contrasts_identical_rate": 0.136,
+        "zero_width_rate": 0.136,
+        "mean_nonzero_family_contrasts": 1.948,
+        "median_halfwidth_pp": 2.5,
+        "halfwidth_pp_range": [
+          0.0,
+          5.0
+        ],
+        "labels": {
+          "Useful support": 0.0,
+          "Support": 0.152,
+          "Informative null": 0.285,
+          "Harm": 0.0,
+          "Inconclusive": 0.427,
+          "inconclusive—degenerate empirical interval": 0.136
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.0,
+          "Support": 0.152,
+          "Informative null": 0.421,
+          "Harm": 0.0,
+          "Inconclusive": 0.427
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.963,
+        "interval_below_target": 0.019,
+        "interval_above_target": 0.018,
+        "wald_coverage": 0.955,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.24,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.8333333333333333,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.238,
+          "loss detected": 0.019,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.743,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "boundary_plus5",
+      "group": "margin boundary",
+      "description": "Δ_C = +5 pp exactly (useful-support boundary), gains only",
+      "seed": 20261111,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.18518518518518517,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.952,
+        "interval_below_target": 0.039,
+        "interval_above_target": 0.009,
+        "wald_coverage": 0.937,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 28.769,
+        "median_halfwidth_pp": 5.333333333333333,
+        "halfwidth_pp_range": [
+          3.0,
+          7.833333333333333
+        ],
+        "labels": {
+          "Useful support": 0.009,
+          "Support": 0.439,
+          "Informative null": 0.039,
+          "Harm": 0.0,
+          "Inconclusive": 0.513,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.009,
+          "Support": 0.439,
+          "Informative null": 0.039,
+          "Harm": 0.0,
+          "Inconclusive": 0.513
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.96,
+        "interval_below_target": 0.023,
+        "interval_above_target": 0.017,
+        "wald_coverage": 0.952,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.289,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.8333333333333333,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.254,
+          "loss detected": 0.023,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.723,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "boundary_plus5_with_losses",
+      "group": "margin boundary",
+      "description": "Δ_C = +5 pp exactly with 5% sticky losses",
+      "seed": 20261112,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.3018518518518518,
+          "loss": 0.05
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.941,
+        "interval_below_target": 0.027,
+        "interval_above_target": 0.032,
+        "wald_coverage": 0.936,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 34.215,
+        "median_halfwidth_pp": 7.0,
+        "halfwidth_pp_range": [
+          4.5,
+          10.333333333333334
+        ],
+        "labels": {
+          "Useful support": 0.032,
+          "Support": 0.245,
+          "Informative null": 0.027,
+          "Harm": 0.0,
+          "Inconclusive": 0.696,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.032,
+          "Support": 0.245,
+          "Informative null": 0.027,
+          "Harm": 0.0,
+          "Inconclusive": 0.696
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.964,
+        "interval_below_target": 0.019,
+        "interval_above_target": 0.017,
+        "wald_coverage": 0.956,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.134,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666665,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.247,
+          "loss detected": 0.019,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.734,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "ceiling_plus3",
+      "group": "ceiling",
+      "description": "Δ_C = +3 pp at C baseline 0.943 (q 0.035)",
+      "seed": 20261113,
+      "primary": {
+        "component": {
+          "p0": 0.943,
+          "q": 0.035,
+          "gain": 0.5659309564233158,
+          "loss": 0.0
+        },
+        "target_pp": 3.0,
+        "datasets": 1000,
+        "coverage": 0.942,
+        "interval_below_target": 0.048,
+        "interval_above_target": 0.01,
+        "wald_coverage": 0.931,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 20.987,
+        "median_halfwidth_pp": 4.333333333333333,
+        "halfwidth_pp_range": [
+          2.0,
+          6.166666666666667
+        ],
+        "labels": {
+          "Useful support": 0.001,
+          "Support": 0.229,
+          "Informative null": 0.164,
+          "Harm": 0.001,
+          "Inconclusive": 0.605,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.001,
+          "Support": 0.229,
+          "Informative null": 0.164,
+          "Harm": 0.001,
+          "Inconclusive": 0.605
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.959,
+        "interval_below_target": 0.019,
+        "interval_above_target": 0.022,
+        "wald_coverage": 0.948,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.186,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.3333333333333335,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.251,
+          "loss detected": 0.019,
+          "loss beyond margin": 0.001,
+          "retention trade-off": 0.001,
+          "no retention criterion met": 0.73,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "ceiling_plus5",
+      "group": "ceiling",
+      "description": "Δ_C = +5 pp at C baseline 0.943 (q 0.035)",
+      "seed": 20261114,
+      "primary": {
+        "component": {
+          "p0": 0.943,
+          "q": 0.035,
+          "gain": 0.9432182607055266,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.953,
+        "interval_below_target": 0.034,
+        "interval_above_target": 0.013,
+        "wald_coverage": 0.949,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 22.637,
+        "median_halfwidth_pp": 5.0,
+        "halfwidth_pp_range": [
+          2.6666666666666665,
+          7.000000000000001
+        ],
+        "labels": {
+          "Useful support": 0.013,
+          "Support": 0.486,
+          "Informative null": 0.034,
+          "Harm": 0.0,
+          "Inconclusive": 0.467,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.013,
+          "Support": 0.486,
+          "Informative null": 0.034,
+          "Harm": 0.0,
+          "Inconclusive": 0.467
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 0.97,
+        "interval_below_target": 0.013,
+        "interval_above_target": 0.017,
+        "wald_coverage": 0.962,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 18.2,
+        "median_halfwidth_pp": 3.0,
+        "halfwidth_pp_range": [
+          1.6666666666666667,
+          4.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.244,
+          "loss detected": 0.013,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.743,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "retention_boundary_minus2",
+      "group": "margin boundary",
+      "description": "Retention = −2 pp exactly (E baseline 0.90, q 0.035); Δ_C = +5",
+      "seed": 20261115,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.18518518518518517,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.952,
+        "interval_below_target": 0.037,
+        "interval_above_target": 0.011,
+        "wald_coverage": 0.946,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 28.956,
+        "median_halfwidth_pp": 5.333333333333333,
+        "halfwidth_pp_range": [
+          3.0,
+          7.666666666666668
+        ],
+        "labels": {
+          "Useful support": 0.011,
+          "Support": 0.433,
+          "Informative null": 0.037,
+          "Harm": 0.0,
+          "Inconclusive": 0.519,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.011,
+          "Support": 0.433,
+          "Informative null": 0.037,
+          "Harm": 0.0,
+          "Inconclusive": 0.519
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.023894862604540025
+        },
+        "target_pp": -2.0,
+        "datasets": 1000,
+        "coverage": 0.931,
+        "interval_below_target": 0.021,
+        "interval_above_target": 0.048,
+        "wald_coverage": 0.923,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 20.039,
+        "median_halfwidth_pp": 3.8333333333333335,
+        "halfwidth_pp_range": [
+          2.0,
+          5.666666666666667
+        ],
+        "flags": {
+          "within-margin criterion met": 0.048,
+          "loss detected": 0.143,
+          "loss beyond margin": 0.021,
+          "retention trade-off": 0.009,
+          "no retention criterion met": 0.809,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    },
+    {
+      "name": "retention_boundary_minus2_sparse",
+      "group": "sparse/degenerate",
+      "description": "Retention = −2 pp exactly from two expected lost families (P(d_i = −1) = .02, q 0); Δ_C = +5",
+      "seed": 20261116,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.18518518518518517,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.954,
+        "interval_below_target": 0.034,
+        "interval_above_target": 0.012,
+        "wald_coverage": 0.948,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 28.758,
+        "median_halfwidth_pp": 5.333333333333333,
+        "halfwidth_pp_range": [
+          3.1666666666666665,
+          7.5
+        ],
+        "labels": {
+          "Useful support": 0.012,
+          "Support": 0.462,
+          "Informative null": 0.034,
+          "Harm": 0.0,
+          "Inconclusive": 0.492,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.012,
+          "Support": 0.462,
+          "Informative null": 0.034,
+          "Harm": 0.0,
+          "Inconclusive": 0.492
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.0,
+          "gain": 0.0,
+          "loss": 0.022222222222222223
+        },
+        "target_pp": -2.0,
+        "datasets": 1000,
+        "coverage": 0.848,
+        "interval_below_target": 0.0,
+        "interval_above_target": 0.152,
+        "wald_coverage": 0.848,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.152,
+        "all_contrasts_identical_rate": 0.152,
+        "zero_width_rate": 0.152,
+        "mean_nonzero_family_contrasts": 1.916,
+        "median_halfwidth_pp": 2.5,
+        "halfwidth_pp_range": [
+          0.0,
+          4.5
+        ],
+        "flags": {
+          "within-margin criterion met": 0.0,
+          "loss detected": 0.131,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.717,
+          "inconclusive—degenerate empirical interval": 0.152
+        }
+      }
+    },
+    {
+      "name": "retention_zero_sparse",
+      "group": "sparse/degenerate",
+      "description": "Retention = 0 with no English discordance (always degenerate); Δ_C = +5",
+      "seed": 20261117,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.18518518518518517,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.942,
+        "interval_below_target": 0.039,
+        "interval_above_target": 0.019,
+        "wald_coverage": 0.934,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 28.817,
+        "median_halfwidth_pp": 5.166666666666667,
+        "halfwidth_pp_range": [
+          3.0,
+          7.333333333333332
+        ],
+        "labels": {
+          "Useful support": 0.019,
+          "Support": 0.428,
+          "Informative null": 0.038,
+          "Harm": 0.001,
+          "Inconclusive": 0.514,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.019,
+          "Support": 0.428,
+          "Informative null": 0.038,
+          "Harm": 0.001,
+          "Inconclusive": 0.514
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.0,
+          "gain": 0.0,
+          "loss": 0.0
+        },
+        "target_pp": 0.0,
+        "datasets": 1000,
+        "coverage": 1.0,
+        "interval_below_target": 0.0,
+        "interval_above_target": 0.0,
+        "wald_coverage": 1.0,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 1.0,
+        "all_contrasts_identical_rate": 1.0,
+        "zero_width_rate": 1.0,
+        "mean_nonzero_family_contrasts": 0.0,
+        "median_halfwidth_pp": 0.0,
+        "halfwidth_pp_range": [
+          0.0,
+          0.0
+        ],
+        "flags": {
+          "within-margin criterion met": 0.0,
+          "loss detected": 0.0,
+          "loss beyond margin": 0.0,
+          "retention trade-off": 0.0,
+          "no retention criterion met": 0.0,
+          "inconclusive—degenerate empirical interval": 1.0
+        }
+      }
+    },
+    {
+      "name": "retention_minus4",
+      "group": "asymmetric",
+      "description": "Retention = −4 pp (E baseline 0.90, q 0.035); Δ_C = +5 (trade-off case)",
+      "seed": 20261118,
+      "primary": {
+        "component": {
+          "p0": 0.7,
+          "q": 0.05,
+          "gain": 0.18518518518518517,
+          "loss": 0.0
+        },
+        "target_pp": 5.0,
+        "datasets": 1000,
+        "coverage": 0.961,
+        "interval_below_target": 0.027,
+        "interval_above_target": 0.012,
+        "wald_coverage": 0.956,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 28.999,
+        "median_halfwidth_pp": 5.333333333333333,
+        "halfwidth_pp_range": [
+          3.0,
+          7.5
+        ],
+        "labels": {
+          "Useful support": 0.012,
+          "Support": 0.453,
+          "Informative null": 0.027,
+          "Harm": 0.0,
+          "Inconclusive": 0.508,
+          "inconclusive—degenerate empirical interval": 0.0
+        },
+        "labels_without_degenerate_override": {
+          "Useful support": 0.012,
+          "Support": 0.453,
+          "Informative null": 0.027,
+          "Harm": 0.0,
+          "Inconclusive": 0.508
+        }
+      },
+      "retention": {
+        "component": {
+          "p0": 0.9,
+          "q": 0.035,
+          "gain": 0.0,
+          "loss": 0.04778972520908005
+        },
+        "target_pp": -4.0,
+        "datasets": 1000,
+        "coverage": 0.956,
+        "interval_below_target": 0.012,
+        "interval_above_target": 0.032,
+        "wald_coverage": 0.944,
+        "hoeffding_coverage": 1.0,
+        "degenerate_rate": 0.0,
+        "all_contrasts_identical_rate": 0.0,
+        "zero_width_rate": 0.0,
+        "mean_nonzero_family_contrasts": 21.749,
+        "median_halfwidth_pp": 4.666666666666667,
+        "halfwidth_pp_range": [
+          2.5,
+          6.666666666666668
+        ],
+        "flags": {
+          "within-margin criterion met": 0.004,
+          "loss detected": 0.379,
+          "loss beyond margin": 0.101,
+          "retention trade-off": 0.045,
+          "no retention criterion met": 0.617,
+          "inconclusive—degenerate empirical interval": 0.0
+        }
+      }
+    }
+  ],
+  "reading": [
+    "- Coverage below 93% (unfavourable; kept): sparse_one_family primary 62.5%; sparse_two_families primary 86.3%; retention_boundary_minus2_sparse retention 84.8%.",
+    "- sparse_one_family: the interval is degenerate in 37.4% of datasets and covers the positive target in 62.5%; with the override these become 'inconclusive—degenerate empirical interval' instead of 'Informative null' (Informative null 36.6% with override vs 74.0% without).",
+    "- sparse_two_families: the interval is degenerate in 13.6% of datasets and covers the positive target in 86.3%; with the override these become 'inconclusive—degenerate empirical interval' instead of 'Informative null' (Informative null 28.5% with override vs 42.1% without).",
+    "- retention_boundary_minus2_sparse: degenerate 15.2%; the override keeps the false 'within-margin criterion met' rate at 0.0%.",
+    "- 'Within-margin criterion met' is a descriptive interval criterion, not multiplicity-controlled non-inferiority; 'Informative null' rules out ≥ 5 pp gains under this sampling model only."
+  ]
+}

@@ -13,8 +13,8 @@ from t4_smoke import train_phase2 as tp
 from t4_smoke import train_smoke as ts
 from hinglish_pilot import hf_backend
 from hinglish_pilot.data import validate
-from hinglish_pilot.engine import FakeBackend, default_config, run
-from hinglish_pilot.report import analyze, export
+from hinglish_pilot.engine import FakeBackend, default_config, run, validate_config
+from hinglish_pilot.report import analyze, export, wilson
 
 ROOT = Path(__file__).resolve().parents[1]
 H = lambda text: hashlib.sha256(text.encode()).hexdigest()  # noqa: E731
@@ -97,6 +97,19 @@ class InputTests(unittest.TestCase):
         self.assertTrue(pe.ceiling_flag(metrics(40))["flag"])
         self.assertFalse(pe.ceiling_flag(metrics(37))["flag"])
 
+    def test_ceiling_risk_proxy_reports_k_of_40_with_wilson_interval(self):
+        """Amendment 1 item 7."""
+        flag = pe.ceiling_flag({"accuracy": {"C": {"correct": 38, "denominator": 40}}})
+        self.assertEqual(flag["name"], "high unchanged-DEV accuracy (ceiling-risk proxy)")
+        self.assertEqual((flag["k"], flag["n"], flag["flag"]), (38, 40, True))
+        self.assertEqual(flag["wilson95"], wilson(38, 40))
+        self.assertAlmostEqual(flag["wilson95"][0], 0.8350, places=3)
+        self.assertAlmostEqual(flag["observed_dev_headroom"], 0.05)
+        line = pe.ceiling_line(flag)
+        self.assertTrue(line.startswith("high unchanged-DEV accuracy (ceiling-risk proxy): FIRES — unchanged DEV C 38/40"))
+        self.assertIn("Wilson 95% 83.5–98.6%", line)
+        self.assertIn("does not fire — unchanged DEV C 37/40", pe.ceiling_line(pe.ceiling_flag({"accuracy": {"C": {"correct": 37, "denominator": 40}}})))
+
 
 class EngineTests(unittest.TestCase):
     def setUp(self):
@@ -147,77 +160,154 @@ class EngineTests(unittest.TestCase):
                                           "--run-dir", str(self.root / "runs" / "base")]), 0)
 
 
+MANIFEST_SHA = "e" * 64
+EXPOSURE_SHA = hashlib.sha256((ROOT / tp.EXPOSURE_ORDER_PATH).read_bytes()).hexdigest()
+SHARDS = {"model-00001-of-00003.safetensors": "5" * 64}
+DATA_SHA = "d"
+
+
+def make_run(train, arm, seed, slot, attempt=1, **changes):
+    """A valid training attempt folder (final_adapter.json + adapter files) as train_phase2 writes it."""
+    folder = pe.attempt_dir(train, arm, seed, attempt)
+    (folder / "final_adapter").mkdir(parents=True, exist_ok=True)
+    weights = f"weights {arm} {seed} {attempt}"
+    settings = json.dumps({"peft_type": "LORA", "r": 16})
+    (folder / "final_adapter" / "adapter_model.safetensors").write_text(weights)
+    (folder / "final_adapter" / "adapter_config.json").write_text(settings)
+    record = {"arm": arm, "seed": seed, "slot": slot, "attempt": attempt, "status": "COMPLETE", "updates": 60,
+              "steps": {"windows": 60, "attempted": 60, "successful": 60, "cursor": 960}, "scaler_skips": 0,
+              "saved_parameters_finite": True, "resumed": False, "valid_for_gate": True,
+              "recipe_sha256": ts.digest(tp.RECIPE), "base_revision": pe.MODEL_REVISION,
+              "adapter_model_sha256": H(weights), "adapter_config_sha256": H(settings),
+              "initial_adapter_sha256": f"init-{seed}", "order_sha256": f"order-{seed}", "data_sha256": DATA_SHA,
+              "implementation_manifest_sha256": MANIFEST_SHA, "exposure_order_file_sha256": EXPOSURE_SHA,
+              "base_weight_shards_sha256": SHARDS}
+    record.update(changes)
+    (folder / "final_adapter.json").write_text(json.dumps(record))
+    (folder / "train_report.json").write_text(json.dumps({"status": "COMPLETE"}))
+    return record
+
+
+def log_attempt(train, arm, seed, slot, outcome):
+    """Log one attempt the way the Train notebook does; a valid one also gets its run folder."""
+    log = Path(train) / tp.ATTEMPT_LOG
+    action = tp.next_action(tp.plan(tp.read_log(log)), arm, slot)
+    assert (action["kind"], action["seed"]) == ("train", seed), action
+    tp.log_event(log, "start", arm=arm, seed=seed, slot=slot, attempt=action["attempt"])
+    if outcome == "valid":
+        make_run(train, arm, seed, slot, action["attempt"])
+    tp.log_event(log, "finish", arm=arm, seed=seed, slot=slot, attempt=action["attempt"], outcome=outcome)
+    return action["attempt"]
+
+
+def complete_slots(train, slots=(11, 22, 33)):
+    for slot in slots:
+        for arm in sorted(tp.ARMS):
+            log_attempt(train, arm, slot, slot, "valid")
+
+
+def exhaust_slot(train, slot):
+    for seed in (slot, 44, 55):
+        for _ in range(2):
+            log_attempt(train, "EE", seed, slot, "infrastructure")
+
+
 class GateTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
         self.train = Path(self.folder.name) / "train"
-        self.entries = []
-        for seed in (11, 22, 33):
-            for arm in tp.ARMS:
-                self.entries.append(self.make(arm, seed))
-        self.frozen = {"schema": pe.FROZEN_SCHEMA, "base_model": pe.MODEL_ID, "base_revision": pe.MODEL_REVISION,
-                       "adapters": self.entries}
+        complete_slots(self.train)
+        self.frozen = pe.freeze_manifest(self.train)
 
     def tearDown(self):
         self.folder.cleanup()
 
-    def make(self, arm, seed, attempt=1, **changes):
-        folder = pe.attempt_dir(self.train, arm, seed, attempt)
-        (folder / "final_adapter").mkdir(parents=True, exist_ok=True)
-        weights = f"weights {arm} {seed} {attempt}"
-        settings = json.dumps({"peft_type": "LORA", "r": 16})
-        (folder / "final_adapter" / "adapter_model.safetensors").write_text(weights)
-        (folder / "final_adapter" / "adapter_config.json").write_text(settings)
-        record = {"arm": arm, "seed": seed, "attempt": attempt, "status": "COMPLETE", "updates": 60, "resumed": False,
-                  "recipe_sha256": ts.digest(tp.RECIPE), "base_revision": pe.MODEL_REVISION,
-                  "adapter_model_sha256": H(weights), "adapter_config_sha256": H(settings),
-                  "initial_adapter_sha256": f"init-{seed}", "order_sha256": f"order-{seed}", "data_sha256": "d"}
-        record.update(changes)
-        (folder / "final_adapter.json").write_text(json.dumps(record))
-        return pe.adapter_record(record)
-
-    def test_gate_passes_with_all_nine(self):
+    def test_freeze_manifest_and_gate_with_three_triplets(self):
+        self.assertEqual((self.frozen["S"], self.frozen["confirmatory"], self.frozen["descriptive_only"]), (3, True, False))
+        self.assertEqual(self.frozen["retained_seeds"], [{"slot": s, "seed": s} for s in (11, 22, 33)])
+        self.assertEqual((self.frozen["implementation_manifest_sha256"], self.frozen["exposure_order_file_sha256"]), (MANIFEST_SHA, EXPOSURE_SHA))
+        self.assertEqual(self.frozen["attempt_log_sha256"], ts.file_sha256(self.train / tp.ATTEMPT_LOG))
         result = pe.gate(self.frozen, self.train, expected_data_sha256="d")
         self.assertEqual(len(result), 9)
         self.assertEqual({(a["arm"], a["seed"]) for a, _ in result}, {(arm, s) for arm in tp.ARMS for s in (11, 22, 33)})
+        text = "# Frozen\n\n```json\n" + json.dumps(self.frozen) + "\n```\n"
+        self.assertEqual(pe.parse_frozen(text), self.frozen)
 
-    def refuses(self, pattern):
+    def refuses(self, pattern, frozen=None):
         with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*" + pattern):
-            pe.gate(self.frozen, self.train, expected_data_sha256="d")
+            pe.gate(frozen or self.frozen, self.train, expected_data_sha256="d")
 
-    def test_missing_adapter_is_refused(self):
+    def test_missing_changed_or_misrecorded_adapters_are_refused(self):
+        (pe.attempt_dir(self.train, "EC", 33, 1) / "final_adapter" / "adapter_model.safetensors").write_text("tampered")
+        self.refuses("EC-s33 attempt 1: files match the frozen hashes")
+        make_run(self.train, "EC", 33, 33)
+        (pe.attempt_dir(self.train, "EE", 11, 1) / "final_adapter" / "adapter_config.json").unlink()
+        self.refuses("EE-s11 attempt 1: files match the frozen hashes")
+        make_run(self.train, "EE", 11, 11)
+        frozen = copy.deepcopy(self.frozen)
+        frozen["adapters"][0]["adapter_model_sha256"] = "0" * 64
+        self.refuses("recorded hashes", frozen)
         (pe.attempt_dir(self.train, "ER", 22, 1) / "final_adapter.json").unlink()
         self.refuses("ER-s22 attempt 1: final_adapter.json not found")
 
-    def test_changed_weights_are_refused(self):
-        (pe.attempt_dir(self.train, "EC", 33, 1) / "final_adapter" / "adapter_model.safetensors").write_text("tampered")
-        self.refuses("EC-s33 attempt 1: files match the frozen hashes")
+    def test_invalid_runs_are_refused(self):
+        for changes, pattern in (({"resumed": True}, "valid run"), ({"valid_for_gate": False}, "valid run"),
+                                 ({"steps": {"windows": 60, "attempted": 61, "successful": 60, "cursor": 960}}, "valid run"),
+                                 ({"scaler_skips": 1}, "valid run"), ({"saved_parameters_finite": False}, "valid run"),
+                                 ({"recipe_sha256": "x"}, "recipe"), ({"implementation_manifest_sha256": "f" * 64}, "implementation manifest"),
+                                 ({"exposure_order_file_sha256": "0" * 64}, "exposure order file"),
+                                 ({"base_weight_shards_sha256": {}}, "base weight shards"), ({"data_sha256": "x"}, "TRAIN data"),
+                                 ({"initial_adapter_sha256": "other"}, "seed 11: arms differ in initial_adapter_sha256")):
+            with self.subTest(changes=changes):
+                make_run(self.train, "ER", 11, 11, **changes)
+                self.refuses(pattern)
+                make_run(self.train, "ER", 11, 11)
+        pe.gate(self.frozen, self.train, expected_data_sha256="d")
 
-    def test_missing_weights_are_refused(self):
-        (pe.attempt_dir(self.train, "EE", 11, 1) / "final_adapter" / "adapter_config.json").unlink()
-        self.refuses("EE-s11 attempt 1: files match the frozen hashes")
+    def test_attempt_log_changed_after_the_freeze_is_refused(self):
+        tp.log_event(self.train / tp.ATTEMPT_LOG, "start", arm="EE", seed=44, slot=11, attempt=1)
+        self.refuses("attempt log")
 
-    def test_manifest_hash_mismatch_is_refused(self):
-        self.frozen["adapters"][0] = dict(self.frozen["adapters"][0], adapter_model_sha256="0" * 64)
-        self.refuses("recorded hashes")
+    def test_reduced_s_is_descriptive_only(self):
+        folder = Path(self.folder.name) / "reduced"
+        complete_slots(folder, slots=(11, 22))
+        exhaust_slot(folder, 33)
+        frozen = pe.freeze_manifest(folder)
+        self.assertEqual((frozen["S"], frozen["confirmatory"], frozen["descriptive_only"]), (2, False, True))
+        self.assertEqual(len(pe.gate(frozen, folder)), 6)
+        for change, pattern in ((lambda f: f.update(descriptive_only=False), "descriptive_only"),
+                                (lambda f: f.update(confirmatory=True), "descriptive_only"),
+                                (lambda f: f.pop("descriptive_only"), "descriptive_only")):
+            broken = copy.deepcopy(frozen)
+            change(broken)
+            with self.subTest(pattern=pattern), self.assertRaisesRegex(ValueError, pattern):
+                pe.parse_frozen("```json\n" + json.dumps(broken) + "\n```")
 
-    def test_resumed_incomplete_or_unpaired_runs_are_refused(self):
-        self.make("ER", 11, resumed=True)
-        self.refuses("not resumed")
-        self.make("ER", 11)
-        self.make("EC", 11, updates=50, status="FAILED")
-        self.refuses("EC-s11 attempt 1: complete")
-        self.make("EC", 11, initial_adapter_sha256="other")
-        self.refuses("seed 11: arms differ in initial_adapter_sha256")
-        self.make("EC", 11, recipe_sha256="x")
-        self.refuses("recipe")
+    def test_s_zero_or_open_or_halted_study_never_freezes(self):
+        folder = Path(self.folder.name) / "zero"
+        for slot in (11, 22):
+            for seed in ((slot,) if slot == 22 else (11, 44, 55)):
+                for _ in range(2):
+                    log_attempt(folder, "EC", seed, slot, "infrastructure")
+        with self.assertRaisesRegex(ValueError, "still open"):
+            pe.freeze_manifest(folder)
+        zero = copy.deepcopy(self.frozen)
+        zero.update(S=0, retained_seeds=[], adapters=[], confirmatory=False, descriptive_only=True)
+        with self.assertRaisesRegex(ValueError, "S = 0"):
+            pe.parse_frozen("```json\n" + json.dumps(zero) + "\n```")
+        halted = Path(self.folder.name) / "halted"
+        complete_slots(halted, slots=(11, 22))
+        log_attempt(halted, "EE", 33, 33, "numerical")
+        with self.assertRaisesRegex(ValueError, "halted"):
+            pe.freeze_manifest(halted)
 
     def test_manifest_parsing(self):
-        text = "# Frozen\n\n```json\n" + json.dumps(self.frozen) + "\n```\n"
-        self.assertEqual(pe.parse_frozen(text), self.frozen)
         for change in (lambda f: f["adapters"].pop(), lambda f: f.update(base_revision="0" * 40),
                        lambda f: f["adapters"][0].update(arm="ER"), lambda f: f["adapters"][0].update(seed=12),
-                       lambda f: f.update(schema="other")):
+                       lambda f: f["adapters"][0].update(attempt=3), lambda f: f.update(schema="phase2-adapters-frozen-1"),
+                       lambda f: f.update(S=2), lambda f: f.update(descriptive_only=True),
+                       lambda f: f["retained_seeds"][0].update(seed=22), lambda f: f["retained_seeds"][0].update(seed=55),
+                       lambda f: f.update(implementation_manifest_sha256=None)):
             broken = copy.deepcopy(self.frozen)
             change(broken)
             with self.subTest(change=change), self.assertRaises(ValueError):
@@ -225,15 +315,18 @@ class GateTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             pe.parse_frozen("no block")
 
-    def test_freeze_manifest_from_records_and_reserve_seeds(self):
-        records = [json.loads(p.read_text()) for p in sorted(self.train.rglob("final_adapter.json"))]
-        self.assertEqual(pe.freeze_manifest(records)["adapters"], sorted(self.entries, key=lambda a: (a["seed"], a["arm"])))
-        for arm in tp.ARMS:
-            self.make(arm, 44, attempt=1)
-        records = [json.loads(p.read_text()) for p in sorted(self.train.rglob("final_adapter.json")) if "-s22" not in str(p)]
-        frozen = pe.freeze_manifest(records)
-        self.assertEqual(sorted({a["seed"] for a in frozen["adapters"]}), [11, 33, 44])
-        self.assertEqual(len(pe.gate(frozen, self.train)), 9)
+    def test_reserve_seed_triplet_replaces_a_slot(self):
+        folder = Path(self.folder.name) / "reserve"
+        log_attempt(folder, "EE", 11, 11, "valid")
+        log_attempt(folder, "ER", 11, 11, "infrastructure")
+        log_attempt(folder, "ER", 11, 11, "infrastructure")
+        complete_slots(folder, slots=(22, 33))
+        for arm in sorted(tp.ARMS):
+            log_attempt(folder, arm, 44, 11, "valid")
+        frozen = pe.freeze_manifest(folder)
+        self.assertEqual(frozen["retained_seeds"], [{"slot": 11, "seed": 44}, {"slot": 22, "seed": 22}, {"slot": 33, "seed": 33}])
+        self.assertEqual(sorted({a["seed"] for a in frozen["adapters"]}), [22, 33, 44])
+        self.assertEqual(len(pe.gate(frozen, folder)), 9)
 
     def test_preregistration_hash_check(self):
         text = (ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()
@@ -244,6 +337,82 @@ class GateTests(unittest.TestCase):
                 pe.check_preregistration(text, expected)
         with self.assertRaisesRegex(ValueError, "FINAL_TEST refused"):
             pe.check_preregistration(text + b"\nedit", digest)
+
+
+class SealedEvaluationTests(unittest.TestCase):
+    """Amendment 1 item 14: FINAL_TEST runs print only completion, checksum and infrastructure status."""
+
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.root = Path(self.folder.name)
+        self.inputs = self.root / "inputs"
+        self.inputs.mkdir()
+        self.dev = (ROOT / "phase2" / "dev.v2.json").read_bytes()
+        (self.inputs / "identities.json").write_text(json.dumps(pe.split_identities(ROOT)))
+
+    def tearDown(self):
+        self.folder.cleanup()
+
+    def assert_sealed(self, text):
+        for leak in ("accuracy", "Accuracy", "FINAL:", "correct", "%", "rendering", "DV0", "summary", "Wilson"):
+            self.assertNotIn(leak, text)
+        self.assertIn("SEALED", text)
+
+    def test_final_test_split_is_always_sealed_and_never_regenerated(self):
+        # Uses DEV bytes under the FINAL_TEST file name (no FINAL_TEST content is read in this test).
+        (self.inputs / "final_test.v3.json").write_bytes(self.dev)
+        original_inputs, original_config = pe.inputs, pe.config_for
+        run_dir = self.root / "runs" / "base"
+        with mock.patch.object(pe, "inputs", lambda raw, split, ids: original_inputs(raw, "dev", ids)), \
+                mock.patch.object(pe, "config_for", lambda split, adapter=None: original_config("dev", adapter)), \
+                mock.patch.object(hf_backend, "HFBackend", fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
+            self.assertEqual(pe.main(["evaluate", "--split", "final_test", "--inputs", str(self.inputs), "--run-dir", str(run_dir)]), 0)
+        self.assert_sealed(out.getvalue())
+        status = json.loads((self.root / "runs" / "base_status.json").read_text())
+        self.assertEqual((status["status"], status["completed"], status["expected"], status["unresolved"], status["infrastructure_failures"]),
+                         ("COMPLETE", 120, 120, 0, 0))
+        archive = self.root / "runs" / "base_results.zip"
+        self.assertEqual(status["results_zip_sha256"], hashlib.sha256(archive.read_bytes()).hexdigest())
+        self.assertFalse((self.root / "runs" / "base_ceiling_flag.json").exists())
+        journal = sorted(p.name for p in (run_dir / "journal").glob("*.json"))
+        with mock.patch.object(pe, "inputs", lambda raw, split, ids: original_inputs(raw, "dev", ids)), \
+                mock.patch.object(pe, "config_for", lambda split, adapter=None: original_config("dev", adapter)), \
+                mock.patch.object(hf_backend, "HFBackend", side_effect=AssertionError("regenerated")), mock.patch("sys.stdout", io.StringIO()) as out:
+            self.assertEqual(pe.main(["evaluate", "--split", "final_test", "--inputs", str(self.inputs), "--run-dir", str(run_dir)]), 0)
+        self.assert_sealed(out.getvalue())
+        self.assertEqual(sorted(p.name for p in (run_dir / "journal").glob("*.json")), journal)
+
+    def test_sealed_flag_and_unsealed_dev(self):
+        (self.inputs / "dev.v2.json").write_bytes(self.dev)
+        with mock.patch.object(hf_backend, "HFBackend", fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
+            pe.main(["evaluate", "--split", "dev", "--sealed", "--inputs", str(self.inputs), "--run-dir", str(self.root / "s" / "base")])
+        self.assert_sealed(out.getvalue())
+        with mock.patch.object(hf_backend, "HFBackend", fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
+            pe.main(["evaluate", "--split", "dev", "--inputs", str(self.inputs), "--run-dir", str(self.root / "u" / "base")])
+        self.assertIn("ceiling-risk proxy", out.getvalue())
+        self.assertIn("Accuracy", out.getvalue())
+
+    def test_engine_never_retries_a_generated_response(self):
+        dataset, splits = pe.inputs(self.dev, "dev", pe.split_identities(ROOT))
+        run_dir = self.root / "r"
+        run(run_dir, dataset, splits, pe.config_for("dev"), fake_backend(None)(), max_items=3)
+        first = sorted(p.name for p in (run_dir / "journal").glob("*.json"))
+        self.assertEqual(len(first), 3)
+        run(run_dir, dataset, splits, pe.config_for("dev"), fake_backend(None)())
+        attempts = [json.loads(p.read_text()) for p in (run_dir / "journal").glob("*.json")]
+        self.assertTrue(all(a["attempt_number"] == 1 and a["status"] == "generated" for a in attempts))
+        self.assertEqual(len(attempts), 120)
+
+
+class SecondBackboneTests(unittest.TestCase):
+    def test_phase2_modes_refuse_any_model_but_qwen3_4b(self):
+        for mode in ("phase2_dev", "phase2_final_test"):
+            config = default_config(mode, "meta-llama/Llama-3.2-3B-Instruct")
+            config.update(model_revision="0" * 40, tokenizer_revision="0" * 40)
+            with self.subTest(mode=mode), self.assertRaisesRegex(ValueError, "Amendment 1 item 15"):
+                validate_config(config)
+        self.assertEqual(pe.config_for("dev")["model_id"], "Qwen/Qwen3-4B")
+        self.assertNotIn("llama", (ROOT / "t4_smoke" / "phase2_eval.py").read_text().lower().replace("llama-3.2-3b", ""))
 
 
 if __name__ == "__main__":

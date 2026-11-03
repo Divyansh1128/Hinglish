@@ -43,6 +43,7 @@ MODELS = {
 PHASE2_LABELS = {'phase2_dev': 'PHASE-2 DEV — sanity only; never used for selection',
                  'phase2_final_test': 'PHASE-2 FINAL_TEST — confirmatory evaluation'}
 ADAPTER_FIELDS = {'arm', 'seed', 'attempt', 'adapter_model_sha256', 'adapter_config_sha256'}
+PHASE2_MODEL = 'Qwen/Qwen3-4B'
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
 
@@ -116,6 +117,8 @@ def validate_config(config):
     require(set(config) == set(default_config(config['mode'])), 'Unknown/missing config fields')
     if config['mode'] in PHASE2_MODES:
         validate_adapter(config['adapter'])
+        # Amendment 1 item 15: Phase 2 is registered for Qwen3-4B only; no second backbone (e.g. Llama) may run here.
+        require(config['model_id'] == PHASE2_MODEL, 'Phase-2 modes evaluate ' + PHASE2_MODEL + ' only (Amendment 1 item 15)')
     require(config['model_id'] in MODELS, 'Unsupported model: Test 1 supports ' + ', '.join(MODELS))
     for key in ('model_revision', 'tokenizer_revision'):
         require(isinstance(config[key], str) and re.fullmatch('[0-9a-f]{40}', config[key]), 'Resolve immutable model/tokenizer SHAs before running')

@@ -1,4 +1,9 @@
-"""Phase-2 pre-registered analysis: phase2/PREREGISTRATION.md sections 6-8, exactly.
+"""Phase-2 pre-registered analysis: phase2/PREREGISTRATION.md sections 6-8 as amended by Amendment 1.
+
+Amendment 1 (commit b4fb956, D045) governs where it differs from sections 6-8: degenerate
+intervals override every label (item 2); fixed bootstrap mechanics (item 4); no inferential
+secondaries and no Holm (item 5); independent English-retention flags (item 6); the DEV
+ceiling-risk proxy (item 7); attrition and unresolved items (item 12).
 
 Standard library only (plus this repository's own pure-Python modules: the frozen
 ``numeric_literal_v1``, ``numeric_literal_v2`` and the safe ZIP reader).
@@ -15,7 +20,11 @@ Usage (from the repository root):
 
     python3 -B -m phase2_analysis.analyze --dataset phase2/final_test.v3.json \
         --unchanged RUN --run EE:11=RUN --run ER:11=RUN --run EC:11=RUN ... \
-        --ceiling-flag not_fired --out NEW_DIR [--holm]
+        --ceiling-risk-proxy-k K --out NEW_DIR
+
+K is the unchanged model's DEV C strict count out of 40 (section 5 / Amendment 1 item 7).
+With S = 3 retained seeds the analysis is confirmatory; with S = 1 or 2 it is a descriptive
+reduced-S report without decision or retention labels (Amendment 1 item 12).
 
 Writes ``NEW_DIR/phase2_analysis.json`` and ``NEW_DIR/phase2_analysis.md``.
 """
@@ -24,6 +33,7 @@ import argparse
 import hashlib
 import json
 import math
+import platform
 import random
 import statistics
 import sys
@@ -39,7 +49,7 @@ from paper_analysis.safezip import read_zip, verify_checksums  # noqa: E402
 from secondary_analysis import numeric_endpoint as numeric_v1  # noqa: E402
 from secondary_analysis import numeric_literal_v2 as numeric_v2  # noqa: E402
 
-ANALYSIS_VERSION = "phase2_analysis 1.0.0"
+ANALYSIS_VERSION = "phase2_analysis 2.0.0 (Amendment 1)"
 DATASET_SHA256 = {
     "FINAL_TEST": "da89dd9a626e438dffca39e3a74c4c8abac6bb57501495723b87e6ee143f3d46",
     "DEV": "e741c1652f5b3dcaebc78d9dd9d7c31fdf4417306fbb2f0862149f27f858f28b",
@@ -60,9 +70,20 @@ RESERVE_SEEDS = (44, 55)
 ENDPOINTS = ("strict", "numeric_literal_v1", "numeric_literal_v2")
 BOOTSTRAP_SEED = 101
 RESAMPLES = 10000
-ALPHA = Fraction(5, 100)
+QUANTILES = (Fraction(25, 1000), Fraction(975, 1000))
+# SHA-256 of the 10,000 x 100 matrix for N = 100 (see matrix_sha256); checked whenever N = 100.
+FINAL_TEST_MATRIX_SHA256 = "33f4920eab5738cf29b346be8d63a15115f9fcbda58699ee9fc44b031e46e6a1"
 Z95 = 1.959963984540054
+HOEFFDING_LOG = math.log(40)  # log(2 / alpha), alpha = .05
 PP = Fraction(1, 100)  # one percentage point as a proportion
+DIFFERENCE_BOUNDS = (-1, 1)  # family contrasts of accuracies
+S3_BOUNDS = (-2, 2)  # family contrasts of differences (S3)
+CONFIRMATORY_S = 3
+RETENTION_MARGIN_PP = -2
+USEFUL_MARGIN_PP = 5
+DEV_FAMILIES = 40
+CEILING_PROXY_THRESHOLD = 38  # >= 38/40 unchanged DEV C strict
+CEILING_PROXY_NAME = "high unchanged-DEV accuracy (ceiling-risk proxy)"
 
 # (name, form, first, second, description). second may be UNCHANGED.
 DIFFERENCES = (
@@ -78,8 +99,8 @@ DIFFERENCES = (
 S3 = ("S3", "Δ_C − Δ_R per family (specificity)")
 ESTIMAND_ORDER = tuple(d[0] for d in DIFFERENCES) + ("S3",)
 RETENTION = ("ret_E_EC_EE", "ret_E_EC_unchanged", "ret_E_ER_EE", "ret_E_ER_unchanged", "ret_E_EE_unchanged")
+TRADE_OFF_CONTRASTS = ("ret_E_EC_EE", "ret_E_EC_unchanged")
 PER_SEED = ("delta_C", "ret_E_EC_EE", "T_R", "delta_R")
-HOLM_FAMILY = ("ret_E_EC_EE", "T_R", "S3")
 
 
 class AnalysisError(ValueError):
@@ -223,9 +244,12 @@ def load_run(path):
                     and type(row["truncated"]) is bool and row.get("scorer_version") == "1.0.0",
                     f"{path}: malformed stored strict score")
             selected[rid] = row
+    # A generated response is resolved whatever its answer (missing/invalid answers score 0).
+    # A rendering without a generated attempt (absent, or infrastructure retries exhausted) is unresolved.
     complete = manifest.get("status") == "COMPLETE" and len(selected) == len(order)
     return dict(path=str(path), kind=kind, manifest=manifest, config=config, dataset=dataset,
                 selected=selected, complete=complete, expected=len(order), completed=len(selected),
+                unresolved=len(order) - len(selected),
                 attempts=len(journal), archive_sha256=sha256(Path(path).read_bytes()) if kind == "zip" else None)
 
 
@@ -244,7 +268,8 @@ def assemble(dataset_path, checkpoints):
     keys = list(checkpoints)
     require(sum(k[0] == UNCHANGED for k in keys) == 1, "Exactly one unchanged-model run is required")
     seeds = sorted({k[1] for k in keys if k[0] != UNCHANGED})
-    require(1 <= len(seeds) <= 3 and all(s in SEEDS + RESERVE_SEEDS for s in seeds),
+    require(seeds, "Refused: S = 0 (no complete trained seed triplet); FINAL_TEST is not accessed (Amendment 1 item 12)")
+    require(len(seeds) <= 3 and all(s in SEEDS + RESERVE_SEEDS for s in seeds),
             f"Seeds must be 1-3 of {SEEDS + RESERVE_SEEDS}")
     require(set(keys) == {(a, s) for a in ARMS for s in seeds} | {(UNCHANGED, None)},
             "Every seed needs all three arms (paired triplets; section 10)")
@@ -262,6 +287,9 @@ def assemble(dataset_path, checkpoints):
     warnings = []
     if seeds != list(SEEDS):
         warnings.append(f"Seeds analysed: {seeds} (pre-registered 11/22/33; S = {len(seeds)}).")
+    if len(seeds) < CONFIRMATORY_S:
+        warnings.append(f"S = {len(seeds)} < 3: descriptive reduced-S report only (1/S averaging); no decision or "
+                        "retention label (Amendment 1 item 12).")
     model_id = next(iter(configs))[0]
     if role == "FINAL_TEST" and model_id != QWEN_ID:
         warnings.append(f"Backbone {model_id} is not the primary Qwen3-4B (secondary backbone, section 5).")
@@ -308,9 +336,22 @@ def family_numerators(y, family_ids, seeds):
 # ------------------------------------------------------------------ inference
 
 def bootstrap_indices(n, resamples=RESAMPLES, seed=BOOTSTRAP_SEED):
-    """One index sequence shared by every estimand: random.Random(seed), n draws per resample."""
+    """The shared resampling matrix (Amendment 1 item 4).
+
+    A fresh random.Random(seed) fills `resamples` rows of n draws rng.randrange(n) in row-major
+    order. With FINAL_TEST (N = 100) this is the pre-registered 10,000 x 100 matrix; it is
+    reused for every endpoint, contrast and per-seed interval. Row j of the matrix applies to
+    the records sorted by family ID."""
     rng = random.Random(seed)
     return [[rng.randrange(n) for _ in range(n)] for _ in range(resamples)]
+
+
+def matrix_sha256(indices):
+    """SHA-256 of the matrix as UTF-8 text: one line per row, decimal indices joined by ',', '\n' after every row."""
+    h = hashlib.sha256()
+    for row in indices:
+        h.update((",".join(map(str, row)) + "\n").encode())
+    return h.hexdigest()
 
 
 def resample_sums(numerators, indices):
@@ -319,7 +360,7 @@ def resample_sums(numerators, indices):
 
 
 def quantile(sorted_values, p):
-    """Linear-interpolation percentile (the engine's report.quantile), exact in Fractions."""
+    """Linear quantile: h = (R - 1) p (= 9999 p for R = 10,000), interpolating sorted entries floor(h) and ceil(h)."""
     position = (len(sorted_values) - 1) * p
     low, high = math.floor(position), math.ceil(position)
     return Fraction(sorted_values[low]) + (sorted_values[high] - sorted_values[low]) * (position - low)
@@ -332,9 +373,24 @@ def wilson(k, n):
     return [max(0.0, center - radius), min(1.0, center + radius)]
 
 
-def hoeffding_radius(n, width, alpha=0.05):
-    """Two-sided Hoeffding radius for a mean of n independent values bounded in an interval of the given width."""
-    return width * math.sqrt(math.log(2 / alpha) / (2 * n))
+def hoeffding_radius(n, width):
+    """Two-sided 95% Hoeffding radius (b - a) sqrt(log(40) / (2N)) for a mean of n values in [a, b]."""
+    return width * math.sqrt(HOEFFDING_LOG / (2 * n))
+
+
+def hoeffding_interval(point, n, bounds):
+    """Hoeffding interval intersected with [a, b] (Amendment 1 item 4)."""
+    a, b = bounds
+    radius = hoeffding_radius(n, b - a)
+    return [max(float(a), float(point) - radius), min(float(b), float(point) + radius)], radius
+
+
+def wald_interval(values):
+    """Wald 95% on the family values: sample SD (ddof 1), z = 1.959963984540054."""
+    n = len(values)
+    mean = statistics.fmean(values)
+    half = Z95 * statistics.stdev(values) / math.sqrt(n) if n > 1 else 0.0
+    return [mean - half, mean + half]
 
 
 def mcnemar_exact(first_only, second_only):
@@ -349,88 +405,91 @@ def _pp(value):
     return float(value * 100)
 
 
-def interval_summary(numerators, denominator, indices, width):
-    """Point, 95% percentile bootstrap, Wald and Hoeffding intervals for mean_i(n_i / denominator)."""
+def bootstrap_tails(sums, scale, reference_pp):
+    """Both bootstrap tails at a reference value (descriptive counts, never p-values)."""
+    threshold = Fraction(reference_pp) * PP * scale
+    return dict(reference_pp=reference_pp, resamples=len(sums), at_or_below=sum(1 for s in sums if s <= threshold),
+                at_or_above=sum(1 for s in sums if s >= threshold))
+
+
+def interval_summary(numerators, denominator, indices, bounds=DIFFERENCE_BOUNDS, references=(0,), sums=None):
+    """Point, 95% percentile bootstrap, Wald and clipped Hoeffding intervals for mean_i(n_i / denominator).
+
+    `sums` may be given precomputed (they must equal resample_sums(numerators, indices));
+    phase2_analysis/calibrate.py uses this to simulate the identical procedure faster."""
     n = len(numerators)
     scale = denominator * n
-    sums = resample_sums(numerators, indices)
+    if sums is None:
+        sums = resample_sums(numerators, indices)
     ordered = sorted(sums)
-    lower = quantile(ordered, Fraction(25, 1000)) / scale
-    upper = quantile(ordered, Fraction(975, 1000)) / scale
+    lower = quantile(ordered, QUANTILES[0]) / scale
+    upper = quantile(ordered, QUANTILES[1]) / scale
     point = Fraction(sum(numerators), scale)
-    d = [x / denominator for x in numerators]
-    sd = statistics.stdev(d) if n > 1 else 0.0
-    half = Z95 * sd / math.sqrt(n)
-    radius = hoeffding_radius(n, width)
+    hoeffding, radius = hoeffding_interval(point, n, bounds)
+    wald = wald_interval([x / denominator for x in numerators])
     distinct = len(set(numerators))
     return dict(
         estimate=point, lower=lower, upper=upper,
         estimate_pp=_pp(point), bootstrap_95_pp=[_pp(lower), _pp(upper)],
         exact=dict(estimate=str(point), lower=str(lower), upper=str(upper)),
-        wald_95_pp=[100 * (float(point) - half), 100 * (float(point) + half)],
-        hoeffding_95_pp=[100 * (float(point) - radius), 100 * (float(point) + radius)],
-        hoeffding_radius_pp=100 * radius,
-        distinct_family_values=distinct, degenerate=distinct == 1 or lower == upper,
+        wald_95_pp=[100 * wald[0], 100 * wald[1]],
+        hoeffding_95_pp=[100 * hoeffding[0], 100 * hoeffding[1]], hoeffding_radius_pp=100 * radius,
+        hoeffding_bounds=list(bounds),
+        distinct_family_values=distinct, nonzero_family_contrasts=sum(1 for x in numerators if x),
+        all_contrasts_identical=distinct == 1, zero_width=lower == upper,
+        degenerate=distinct == 1 or lower == upper,
+        bootstrap_tails=[bootstrap_tails(sums, scale, r) for r in references],
         families=n, _sums=sums, _scale=scale)
 
 
-def bootstrap_p_values(summary):
-    sums, scale, R = summary["_sums"], summary["_scale"], len(summary["_sums"])
-    below_margin = sum(1 for s in sums if Fraction(s, scale) <= -2 * PP)
-    at_or_below = sum(1 for s in sums if s <= 0)
-    at_or_above = sum(1 for s in sums if s >= 0)
-    return dict(one_sided_vs_minus2pp=Fraction(below_margin, R),
-                two_sided_vs_0=min(Fraction(1), Fraction(2 * min(at_or_below, at_or_above), R)))
-
-
-def holm(p_values, alpha=ALPHA):
-    """Holm step-down at alpha; returns {name: (adjusted p, rejected)}."""
-    names = sorted(p_values, key=lambda k: (p_values[k], k))
-    m, out, running, stopped = len(names), {}, Fraction(0), False
-    for rank, name in enumerate(names):
-        running = max(running, min(Fraction(1), (m - rank) * p_values[name]))
-        reject = not stopped and p_values[name] <= alpha / (m - rank)
-        stopped = stopped or not reject
-        out[name] = (running, reject)
-    return out
-
-
-# ------------------------------------------------------------------ labels (section 8)
+# ------------------------------------------------------------------ labels (section 8 + Amendment 1)
 
 USEFUL, SUPPORT, NULL, HARM, INCONCLUSIVE = ("Useful support", "Support", "Informative null", "Harm", "Inconclusive")
+DEGENERATE = "inconclusive—degenerate empirical interval"
+NULL_MEANING = ("'Informative null' rules out gains of 5 pp or more under the approximate sampling model; it does "
+                "not establish equality or exclude harm.")
+WITHIN, LOSS, BEYOND, TRADE_OFF = ("within-margin criterion met", "loss detected", "loss beyond margin",
+                                   "retention trade-off")
+NOT_ESTABLISHED = "no retention criterion met"
 
 
-def decision_label(lower, upper, ceiling=False):
-    """Section 8 label from the unrounded strict bootstrap bounds (proportions, not pp)."""
+def decision_label(lower, upper, degenerate=False):
+    """Section 8 label from the unrounded strict bootstrap bounds (proportions, not pp).
+
+    Amendment 1 item 2: a degenerate interval (all family contrasts identical, or zero width)
+    is labelled DEGENERATE before the table is consulted."""
+    if degenerate or lower == upper:
+        return DEGENERATE
     L, U = lower / PP, upper / PP  # exact pp
-    if L > 5:
-        label = USEFUL
-    elif 0 < L <= 5:
-        label = SUPPORT
-    elif U < 0:
-        label = HARM
-    elif L <= 0 and U >= 5:
-        label = INCONCLUSIVE
-    else:
-        require(L <= 0 <= U < 5, "label rules not exhaustive")  # unreachable
-        label = NULL
-    return label + (" (ceiling-limited)" if ceiling else "")
-
-
-def retention_label(lower, upper, primary_label):
-    """Section 8 English-retention label (margin −2 pp, never widened).
-
-    Precedence (the rules overlap): 'retained' (L > −2) first; then 'retention trade-off'
-    (Δ_C Support/Useful support and U < −2), which would otherwise be unreachable because
-    U < −2 implies the 'degraded' condition U < 0; then 'degraded'; else 'not established'."""
-    L, U = lower / PP, upper / PP
-    if L > -2:
-        return "retained"
-    if primary_label.split(" (")[0] in (SUPPORT, USEFUL) and U < -2:
-        return "retention trade-off"
+    if L > USEFUL_MARGIN_PP:
+        return USEFUL
+    if 0 < L <= USEFUL_MARGIN_PP:
+        return SUPPORT
     if U < 0:
-        return "degraded"
-    return "retention not established"
+        return HARM
+    if L <= 0 and U >= USEFUL_MARGIN_PP:
+        return INCONCLUSIVE
+    require(L <= 0 <= U < USEFUL_MARGIN_PP, "label rules not exhaustive")  # unreachable
+    return NULL
+
+
+def retention_flags(lower, upper, degenerate, primary_label, trade_off_eligible):
+    """Amendment 1 item 6: independent descriptive flags for one English contrast (margin −2 pp).
+
+    within-margin criterion met iff L > −2; loss detected iff U < 0; loss beyond margin iff
+    U < −2; retention trade-off (EC − EE and EC − unchanged only) iff the primary label is
+    Support or Useful support and U < −2. Equality never satisfies a strict inequality. The
+    degeneracy override (item 2) takes precedence and suppresses every flag."""
+    if degenerate or lower == upper:
+        return dict(override=DEGENERATE, within_margin_criterion_met=False, loss_detected=False,
+                    loss_beyond_margin=False, retention_trade_off=False if trade_off_eligible else None,
+                    flags=[DEGENERATE])
+    L, U = lower / PP, upper / PP
+    within, loss, beyond = L > RETENTION_MARGIN_PP, U < 0, U < RETENTION_MARGIN_PP
+    trade = (primary_label in (SUPPORT, USEFUL) and U < RETENTION_MARGIN_PP) if trade_off_eligible else None
+    flags = [name for name, on in ((WITHIN, within), (LOSS, loss), (BEYOND, beyond), (TRADE_OFF, trade)) if on]
+    return dict(override=None, within_margin_criterion_met=within, loss_detected=loss, loss_beyond_margin=beyond,
+                retention_trade_off=trade, flags=flags or [NOT_ESTABLISHED])
 
 
 # ------------------------------------------------------------------ descriptive
@@ -465,38 +524,71 @@ def checkpoint_name(key):
 
 # ------------------------------------------------------------------ analysis
 
-def analyze(study, ceiling_flag, holm_requested=False):
-    require(ceiling_flag in ("fired", "not_fired"), "ceiling flag must be 'fired' or 'not_fired'")
-    ceiling = ceiling_flag == "fired"
+def ceiling_risk_proxy(k):
+    """Amendment 1 item 7: unchanged-model DEV C strict count k/40, its Wilson interval and DEV headroom."""
+    require(type(k) is int and 0 <= k <= DEV_FAMILIES,
+            f"ceiling-risk proxy must be the unchanged DEV C strict count, an integer 0-{DEV_FAMILIES}")
+    return dict(name=CEILING_PROXY_NAME, correct=k, n=DEV_FAMILIES, accuracy=k / DEV_FAMILIES,
+                wilson_95=wilson(k, DEV_FAMILIES), dev_headroom=1 - k / DEV_FAMILIES,
+                threshold=f">= {CEILING_PROXY_THRESHOLD}/{DEV_FAMILIES}", fired=k >= CEILING_PROXY_THRESHOLD,
+                note="A proxy from the unchanged model on DEV; it does not establish a ceiling for the trained "
+                     "comparator. Δ_C stays first in the report and S2 stays descriptive.")
+
+
+def analyze(study, ceiling_proxy_k):
+    proxy = ceiling_risk_proxy(ceiling_proxy_k)
     runs, seeds = study["runs"], study["seeds"]
-    family_ids = [f["family_id"] for f in study["families"]]
+    family_ids = sorted(f["family_id"] for f in study["families"])  # records sorted by family ID (item 4)
     N, S = len(family_ids), len(seeds)
+    require(S >= 1, "S = 0: no analysis (Amendment 1 item 12)")
+    confirmatory = S == CONFIRMATORY_S
     result = dict(
-        analysis_version=ANALYSIS_VERSION, preregistration="phase2/PREREGISTRATION.md sections 6-8",
-        dataset_role=study["role"], dataset_sha256=study["dataset_sha256"], families=N, seeds=seeds,
-        model_id=study["model_id"], ceiling_flag=ceiling_flag, holm_requested=holm_requested,
+        analysis_version=ANALYSIS_VERSION,
+        preregistration="phase2/PREREGISTRATION.md sections 6-8 as amended by Amendment 1 (b4fb956, D045)",
+        dataset_role=study["role"], dataset_sha256=study["dataset_sha256"], families=N, seeds=seeds, S=S,
+        analysis_type="confirmatory (S = 3)" if confirmatory else f"descriptive reduced-S report (S = {S}); no labels",
+        model_id=study["model_id"], ceiling_risk_proxy=proxy,
         warnings=list(study["warnings"]),
+        python_version=platform.python_version(), python_implementation=platform.python_implementation(),
         code_sha256={"phase2_analysis/analyze.py": sha256(Path(__file__).read_bytes()),
                      "secondary_analysis/numeric_endpoint.py": sha256(Path(numeric_v1.__file__).read_bytes()),
                      "secondary_analysis/numeric_literal_v2.py": sha256(Path(numeric_v2.__file__).read_bytes())},
-        bootstrap=dict(seed=BOOTSTRAP_SEED, resamples=RESAMPLES, generator="random.Random(101).randrange(N), N per resample",
-                       shared_index_sequence=True, interval="95% percentile, linear interpolation",
-                       note="Approximate interval conditional on the trained checkpoints; does not cover training-seed variance."),
         inputs=[dict(checkpoint=checkpoint_name(k), path=r["path"], kind=r["kind"], run_id=r["manifest"]["run_id"],
                      archive_sha256=r["archive_sha256"], manifest_dataset_sha256=r["manifest"]["dataset_sha256"],
                      config_sha256=r["manifest"]["config_sha256"], model_revision=r["config"].get("model_revision"),
                      status="COMPLETE" if r["complete"] else "INCOMPLETE", completed=r["completed"],
-                     expected=r["expected"], attempts=r["attempts"]) for k, r in sorted(runs.items(), key=_order)])
+                     unresolved=r["unresolved"], expected=r["expected"], attempts=r["attempts"])
+                for k, r in sorted(runs.items(), key=_order)])
     require(sha256(Path(numeric_v1.__file__).read_bytes()) == NUMERIC_V1_SHA256,
             "numeric_literal_v1 source differs from the pre-registered SHA-256")
     if not all(r["complete"] for r in runs.values()):
         result["status"] = "INCOMPLETE"
-        result["note"] = ("At least one checkpoint run is incomplete: headline numbers are suppressed and the primary "
-                          "analysis is reported as incomplete (section 10). No complete-case removal.")
+        result["unresolved_items"] = sum(r["unresolved"] for r in runs.values())
+        result["note"] = ("At least one required evaluation item is unresolved (absent, or infrastructure retries "
+                          "exhausted): the primary analysis and its decision label are suppressed (section 10, "
+                          "Amendment 1 item 12). No complete-case analysis is made.")
         return result
     result["status"] = "COMPLETE"
     y = outcomes(study)
     indices = bootstrap_indices(N)
+    if N == 100:
+        require(matrix_sha256(indices) == FINAL_TEST_MATRIX_SHA256,
+                f"Bootstrap matrix differs from the pinned 10,000 x 100 matrix (Python {platform.python_version()})")
+    result["bootstrap"] = dict(
+        seed=BOOTSTRAP_SEED, resamples=RESAMPLES, families=N,
+        generator=f"fresh random.Random({BOOTSTRAP_SEED}); {RESAMPLES} rows x {N} draws of rng.randrange({N}), row-major",
+        matrix_sha256=matrix_sha256(indices),
+        matrix_hash_encoding="UTF-8 text, one line per row, indices joined by ',', newline after every row",
+        record_order="family ID, sorted lexicographically", shared_matrix=True,
+        interval="95% percentile, linear quantile h = (R - 1) p at p = .025/.975",
+        wald="sample SD (ddof 1), z = 1.959963984540054",
+        hoeffding="(b - a) sqrt(log(40)/(2N)) intersected with [a, b]: [-1, 1] for differences, [-2, 2] for S3",
+        crossed_family_seed_resampling="not run (Amendment 1 item 4)",
+        note=("Approximate interval conditional on the trained checkpoints; does not cover training-seed variance. "
+              "The 100-family mean is a finite-set descriptive quantity; intervals describe hypothetical independent "
+              "families from this fixed authoring and review process (template and author dependence is a "
+              "limitation). Δ_C is the effect of the complete training-rendering recipe, not an isolated effect of "
+              "code-switching (Amendment 1 item 3)."))
     by_family = {f["family_id"]: f for f in study["families"]}
     result["endpoints"] = {}
     for endpoint in ENDPOINTS:
@@ -504,10 +596,12 @@ def analyze(study, ceiling_flag, holm_requested=False):
         nums = family_numerators(yy, family_ids, seeds)
         estimands = {}
         for name, form, first, second, text in DIFFERENCES + ((S3[0], "", "", "", S3[1]),):
-            width = 4 if name == "S3" else 2
-            estimands[name] = dict(interval_summary(nums[name], S, indices, width), description=text)
+            bounds = S3_BOUNDS if name == "S3" else DIFFERENCE_BOUNDS
+            references = (0, USEFUL_MARGIN_PP) if name == "delta_C" else \
+                (0, RETENTION_MARGIN_PP) if name in RETENTION else (0,)
+            estimands[name] = dict(interval_summary(nums[name], S, indices, bounds, references), description=text)
         block = dict(estimands=estimands)
-        # Per seed (section 7): own paired bootstrap (same settings, same index sequence) + exact McNemar.
+        # Per seed (section 7): own paired bootstrap on the same matrix + exact McNemar (descriptive only).
         per_seed = {}
         for name in PER_SEED:
             _, form, first, second, text = next(d for d in DIFFERENCES if d[0] == name)
@@ -515,7 +609,7 @@ def analyze(study, ceiling_flag, holm_requested=False):
             for s in seeds:
                 a = [yy[(first, s)][fid][form] for fid in family_ids]
                 b = [yy[(second, s)][fid][form] for fid in family_ids]
-                summary = interval_summary([x - z for x, z in zip(a, b)], 1, indices, 2)
+                summary = interval_summary([x - z for x, z in zip(a, b)], 1, indices, DIFFERENCE_BOUNDS)
                 first_only = sum(1 for x, z in zip(a, b) if x and not z)
                 second_only = sum(1 for x, z in zip(a, b) if z and not x)
                 p = mcnemar_exact(first_only, second_only)
@@ -525,9 +619,9 @@ def analyze(study, ceiling_flag, holm_requested=False):
             per_seed[name] = dict(description=text, seeds=rows, range_pp=[_pp(min(points)), _pp(max(points))],
                                   signs=dict(positive=sum(p > 0 for p in points), zero=sum(p == 0 for p in points),
                                              negative=sum(p < 0 for p in points)),
-                                  note="Sign consistency is described, never used as a test.")
+                                  note="Descriptive: McNemar p-values and sign consistency are never used as tests.")
         block["per_seed"] = per_seed
-        # Absolute accuracy per checkpoint, Wilson 95%.
+        # Absolute accuracy per checkpoint, Wilson 95% over that checkpoint's N outcomes (never pooled seed rows).
         accuracy = {}
         for key in sorted(runs, key=_order):
             accuracy[checkpoint_name(key)] = {}
@@ -537,6 +631,7 @@ def analyze(study, ceiling_flag, holm_requested=False):
         block["accuracy"] = accuracy
         block["arm_mean_accuracy"] = {arm: {form: sum(yy[(arm, s)][fid][form] for s in seeds for fid in family_ids) / (N * S)
                                             for form in FORMS} for arm in ARMS}
+        block["ER_C_headroom"] = 1 - block["arm_mean_accuracy"]["ER"]["C"]
         # Operation-word strata (descriptive, counts and percentages only).
         strata = {}
         for fid, n_c in zip(family_ids, nums["delta_C"]):
@@ -554,24 +649,26 @@ def analyze(study, ceiling_flag, holm_requested=False):
             st["C_accuracy_pct"][UNCHANGED] = 100 * st["C_correct"][UNCHANGED] / n
             st["C_denominators"] = dict(arms=n * S, unchanged=n)
         block["strata"] = dict(sorted(strata.items()))
-        if endpoint == "strict":
+        block["decision_label"] = None
+        block["retention_flags"] = None
+        if endpoint != "strict":
+            block["note"] = "Secondary endpoint: same analysis, descriptive only; labels use strict only."
+        elif not confirmatory:
+            block["note"] = (f"Reduced-S report (S = {S}): descriptive only; no decision or retention label "
+                             "(Amendment 1 item 12).")
+        else:
             primary = estimands["delta_C"]
-            label = decision_label(primary["lower"], primary["upper"], ceiling)
+            label = decision_label(primary["lower"], primary["upper"], primary["degenerate"])
             block["decision_label"] = label
             block["decision_bounds_exact"] = dict(L=str(primary["lower"]), U=str(primary["upper"]))
-            block["retention_labels"] = {name: retention_label(estimands[name]["lower"], estimands[name]["upper"], label)
-                                         for name in RETENTION}
-            block["holm"] = None
-            if holm_requested:
-                ps = {"ret_E_EC_EE": bootstrap_p_values(estimands["ret_E_EC_EE"])["one_sided_vs_minus2pp"],
-                      "T_R": bootstrap_p_values(estimands["T_R"])["two_sided_vs_0"],
-                      "S3": bootstrap_p_values(estimands["S3"])["two_sided_vs_0"]}
-                block["holm"] = {name: dict(p=float(ps[name]), p_exact=str(ps[name]), holm_adjusted_p=float(adj),
-                                            rejected_at_05=rej) for name, (adj, rej) in holm(ps).items()}
-        else:
-            block["decision_label"] = None
-            block["note"] = "Secondary endpoint: same analysis; decision labels use strict only."
+            block["retention_flags"] = {
+                name: retention_flags(estimands[name]["lower"], estimands[name]["upper"], estimands[name]["degenerate"],
+                                      label, name in TRADE_OFF_CONTRASTS) for name in RETENTION}
+            if label == NULL:
+                block["null_meaning"] = NULL_MEANING
         result["endpoints"][endpoint] = block
+    result["secondaries"] = ("All secondary contrasts, numeric endpoints and per-seed McNemar p-values are descriptive; "
+                             "no Holm or other inferential secondary analysis (Amendment 1 item 5).")
     # Strict-invalid reasons, tokens and latency per checkpoint and form.
     diagnostics = {}
     for key in sorted(runs, key=_order):
@@ -616,64 +713,85 @@ def _interval(summary):
     return f"{_f(summary['estimate_pp'], 2)} pp [{_f(lo, 2)}, {_f(hi, 2)}]"
 
 
+def _tails(summary):
+    return "; ".join(f"≤ {t['reference_pp']:+g} pp: {t['at_or_below']}/{t['resamples']}, "
+                     f"≥ {t['reference_pp']:+g} pp: {t['at_or_above']}/{t['resamples']}" for t in summary["bootstrap_tails"])
+
+
 def markdown(result):
     role = result["dataset_role"]
+    proxy = result["ceiling_risk_proxy"]
     lines = [f"# Phase-2 pre-registered analysis — {role}", ""]
     if role == "DEV":
         lines += ["**DEV RUNS — software and sanity check only. Nothing here is a Phase-2 result; labels on DEV are "
                   "printed only to exercise the code (sections 5 and 11).**", ""]
     lines += [f"Analysis `{result['analysis_version']}`; plan `{result['preregistration']}`.",
               f"Dataset SHA-256 `{result['dataset_sha256']}` ({role}); {result['families']} families; seeds "
-              f"{', '.join(map(str, result['seeds']))}; base `{result['model_id']}`.",
-              f"Status: **{result['status']}**. Ceiling flag: **{result['ceiling_flag']}**.", ""]
+              f"{', '.join(map(str, result['seeds']))} (S = {result['S']}); base `{result['model_id']}`.",
+              f"Status: **{result['status']}**. Analysis type: **{result['analysis_type']}**. "
+              f"Python {result['python_version']}.", ""]
     lines += [f"- Warning: {w}" for w in result["warnings"]]
-    lines += ["", "## Inputs", "", "| Checkpoint | Run ID | Status | Completed | Attempts | Source |", "|---|---|---|---:|---:|---|"]
+    lines += ["", "## Inputs", "", "| Checkpoint | Run ID | Status | Completed | Unresolved | Attempts | Source |",
+              "|---|---|---|---:|---:|---:|---|"]
     for i in result["inputs"]:
         lines.append(f"| {i['checkpoint']} | `{i['run_id']}` | {i['status']} | {i['completed']}/{i['expected']} | "
-                     f"{i['attempts']} | {i['kind']} |")
+                     f"{i['unresolved']} | {i['attempts']} | {i['kind']} |")
     if result["status"] != "COMPLETE":
         lines += ["", result["note"], ""]
         return "\n".join(lines) + "\n"
     strict = result["endpoints"]["strict"]
     est = strict["estimands"]
     primary = est["delta_C"]
-    precision = (f"Precision: the 95% paired family bootstrap interval for Δ_C has half-width "
-                 f"{(primary['bootstrap_95_pp'][1] - primary['bootstrap_95_pp'][0]) / 2:.2f} pp.")
-    label_lines = ["## Primary: Δ_C (strict, E+C − E+R on C)", "",
-                   f"- Δ_C = {_interval(primary)} (95% paired family bootstrap, {RESAMPLES:,} resamples, seed {BOOTSTRAP_SEED}).",
-                   f"- **Decision label: {strict['decision_label']}** (from unrounded bounds L = {primary['exact']['lower']}, "
-                   f"U = {primary['exact']['upper']} as proportions).",
-                   f"- Wald 95%: [{_f(primary['wald_95_pp'][0], 2)}, {_f(primary['wald_95_pp'][1], 2)}] pp; Hoeffding 95%: "
-                   f"[{_f(primary['hoeffding_95_pp'][0], 2)}, {_f(primary['hoeffding_95_pp'][1], 2)}] pp "
-                   f"(radius {primary['hoeffding_radius_pp']:.1f} pp); distinct d_i values: {primary['distinct_family_values']}; "
-                   f"degenerate: {primary['degenerate']}.", ""]
-    s2_lines = ["## S2: R transfer (descriptive)", "",
-                f"- T_R (E+R − E+E on R) = {_interval(est['T_R'])}",
-                f"- Δ_R (E+C − E+R on R) = {_interval(est['delta_R'])}", ""]
-    if result["ceiling_flag"] == "fired":
-        lines += ["", "## Ceiling-limited", "", "The unchanged-model DEV ceiling flag fired (section 5): Δ_C is "
-                  "pre-declared ceiling-limited.", "", precision, ""] + s2_lines + label_lines
-    else:
-        lines += [""] + label_lines + [precision, ""] + s2_lines
-    lines += ["## S1: English retention (descriptive; margin −2 pp)", "",
-              "| Estimand | Estimate [95% bootstrap] | Retention label |", "|---|---|---|"]
+    boot = result["bootstrap"]
+    label = strict["decision_label"]
+    # Δ_C always comes first (Amendment 1 item 7).
+    lines += ["", "## Primary: Δ_C (strict, E+C − E+R on C)", "",
+              f"- Δ_C = {_interval(primary)} (95% paired family bootstrap, {boot['resamples']:,} resamples, seed "
+              f"{boot['seed']}; matrix SHA-256 `{boot['matrix_sha256']}`).",
+              f"- Precision: bootstrap half-width {(primary['bootstrap_95_pp'][1] - primary['bootstrap_95_pp'][0]) / 2:.2f} pp.",
+              f"- E+R C headroom (1 − mean y_ER,C): {100 * strict['ER_C_headroom']:.2f} pp.",
+              (f"- **Decision label: {label}** (from unrounded bounds L = {primary['exact']['lower']}, "
+               f"U = {primary['exact']['upper']} as proportions)." if label is not None else
+               f"- No decision label: {strict['note']}"),
+              f"- Wald 95%: [{_f(primary['wald_95_pp'][0], 2)}, {_f(primary['wald_95_pp'][1], 2)}] pp; Hoeffding 95% "
+              f"(clipped to [−1, 1]): [{_f(primary['hoeffding_95_pp'][0], 2)}, {_f(primary['hoeffding_95_pp'][1], 2)}] pp "
+              f"(radius {primary['hoeffding_radius_pp']:.1f} pp).",
+              f"- Non-zero family contrasts: {primary['nonzero_family_contrasts']}/{primary['families']}; distinct d_i "
+              f"values: {primary['distinct_family_values']}; degenerate: {primary['degenerate']}.",
+              f"- Bootstrap tails: {_tails(primary)}.", ""]
+    if strict.get("null_meaning"):
+        lines += [strict["null_meaning"], ""]
+    lines += [f"{proxy['name'][0].upper() + proxy['name'][1:]}: unchanged DEV C {proxy['correct']}/{proxy['n']} "
+              f"({100 * proxy['accuracy']:.1f}%; Wilson 95% {100 * proxy['wilson_95'][0]:.1f}–{100 * proxy['wilson_95'][1]:.1f}; "
+              f"DEV headroom {100 * proxy['dev_headroom']:.1f} pp); threshold {proxy['threshold']}: "
+              f"**{'fired' if proxy['fired'] else 'not fired'}**. {proxy['note']}", "",
+              boot["note"], ""]
+    lines += ["## S2: R transfer (descriptive)", "",
+              f"- T_R (E+R − E+E on R) = {_interval(est['T_R'])}",
+              f"- Δ_R (E+C − E+R on R) = {_interval(est['delta_R'])}", ""]
+    lines += ["## S1: English retention (descriptive flags; margin −2 pp)", "",
+              "| Estimand | Estimate [95% bootstrap] | Non-zero | Flags |", "|---|---|---:|---|"]
     for name in RETENTION:
-        lines.append(f"| {est[name]['description']} | {_interval(est[name])} | {strict['retention_labels'][name]} |")
-    lines += ["", "## S3: specificity (descriptive)", "", f"- Δ_C − Δ_R per family = {_interval(est['S3'])} "
-              f"(Hoeffding radius {est['S3']['hoeffding_radius_pp']:.1f} pp for values in [−2, 2])", ""]
-    if strict["holm"] is not None:
-        lines += ["## Holm (requested)", "", "| Secondary | Bootstrap p | Holm-adjusted p | Rejected at .05 |", "|---|---:|---:|---|"]
-        for name, h in strict["holm"].items():
-            lines.append(f"| {name} | {h['p']:.4f} | {h['holm_adjusted_p']:.4f} | {h['rejected_at_05']} |")
-        lines.append("")
-    else:
-        lines += ["Holm correction not requested: secondaries are descriptive with unadjusted 95% intervals.", ""]
+        flags = strict["retention_flags"][name]["flags"] if strict["retention_flags"] else ["(no flags: reduced S)"]
+        lines.append(f"| {est[name]['description']} | {_interval(est[name])} | {est[name]['nonzero_family_contrasts']} | "
+                     f"{'; '.join(flags)} |")
+    lines += ["", "Flags are independent descriptive criteria, not multiplicity-controlled non-inferiority.", "",
+              "## S3: specificity (descriptive)", "", f"- Δ_C − Δ_R per family = {_interval(est['S3'])} "
+              f"(Hoeffding radius {est['S3']['hoeffding_radius_pp']:.1f} pp for values in [−2, 2], clipped)", "",
+              result["secondaries"], ""]
     lines += ["## All estimands, all endpoints", "",
               "| Estimand | strict | numeric_literal_v1 | numeric_literal_v2 |", "|---|---|---|---|"]
     for name in ESTIMAND_ORDER:
         cells = [_interval(result["endpoints"][e]["estimands"][name]) for e in ENDPOINTS]
         lines.append(f"| {est[name]['description']} | " + " | ".join(cells) + " |")
-    lines += ["", "Decision and retention labels use strict only.", "", "## Per seed (strict)", "",
+    lines += ["", "| Estimand (strict) | Non-zero families | Degenerate | Wald 95% | Hoeffding 95% | Bootstrap tails |",
+              "|---|---:|---|---|---|---|"]
+    for name in ESTIMAND_ORDER:
+        e = est[name]
+        lines.append(f"| {e['description']} | {e['nonzero_family_contrasts']} | {e['degenerate']} | "
+                     f"[{_f(e['wald_95_pp'][0], 2)}, {_f(e['wald_95_pp'][1], 2)}] | "
+                     f"[{_f(e['hoeffding_95_pp'][0], 2)}, {_f(e['hoeffding_95_pp'][1], 2)}] | {_tails(e)} |")
+    lines += ["", "Decision and retention labels use strict only.", "", "## Per seed (strict, descriptive)", "",
               "| Estimand | Seed | Estimate [95% bootstrap] | First only | Second only | Exact McNemar p |",
               "|---|---:|---|---:|---:|---:|"]
     for name, block in strict["per_seed"].items():
@@ -684,10 +802,11 @@ def markdown(result):
     for name, block in strict["per_seed"].items():
         lines.append(f"- {block['description']}: range [{_f(block['range_pp'][0])}, {_f(block['range_pp'][1])}] pp; "
                      f"positive/zero/negative seeds {block['signs']['positive']}/{block['signs']['zero']}/{block['signs']['negative']}")
-    lines += ["", "Crossed family × seed resampling (optional labelled sensitivity analysis, section 7) is not run.", ""]
+    lines += ["", "Crossed family × seed resampling is not run (Amendment 1 item 4).", ""]
     for endpoint in ENDPOINTS:
         block = result["endpoints"][endpoint]
-        lines += [f"## Accuracy by checkpoint — {endpoint} (Wilson 95%)", "", "| Checkpoint | E | R | C |", "|---|---|---|---|"]
+        lines += [f"## Accuracy by checkpoint — {endpoint} (Wilson 95% over N per checkpoint)", "",
+                  "| Checkpoint | E | R | C |", "|---|---|---|---|"]
         for name, forms in block["accuracy"].items():
             lines.append(f"| {name} | " + " | ".join(
                 f"{a['correct']}/{a['n']} ({100 * a['accuracy']:.1f}%; {100 * a['wilson_95'][0]:.1f}–{100 * a['wilson_95'][1]:.1f})"
@@ -723,11 +842,11 @@ def parse_checkpoints(unchanged, runs):
     return checkpoints
 
 
-def run_analysis(dataset, checkpoints, ceiling_flag, out, holm_requested=False):
+def run_analysis(dataset, checkpoints, ceiling_proxy_k, out):
     out = Path(out)
     require(not out.exists() or not any(out.iterdir()), f"Output directory {out} must be new or empty")
     study = assemble(dataset, checkpoints)
-    result = analyze(study, ceiling_flag, holm_requested)
+    result = analyze(study, ceiling_proxy_k)
     out.mkdir(parents=True, exist_ok=True)
     (out / "phase2_analysis.json").write_text(to_json(result), encoding="utf-8")
     (out / "phase2_analysis.md").write_text(markdown(result), encoding="utf-8")
@@ -739,19 +858,19 @@ def main(argv=None):
     parser.add_argument("--dataset", required=True, help="frozen FINAL_TEST or DEV JSON file the runs were made from")
     parser.add_argument("--unchanged", required=True, help="unchanged-model run directory or results ZIP")
     parser.add_argument("--run", action="append", default=[], help="ARM:SEED=PATH for each adapter run (ARM in EE/ER/EC)")
-    parser.add_argument("--ceiling-flag", required=True, choices=("fired", "not_fired"),
-                        help="section 5 outcome of the unchanged-model DEV check (C strict >= 38/40)")
-    parser.add_argument("--holm", action="store_true", help="apply Holm to {S1, S2, S3} (only if claimed inferentially)")
+    parser.add_argument("--ceiling-risk-proxy-k", required=True, type=int, metavar="K",
+                        help=f"unchanged-model DEV C strict count out of {DEV_FAMILIES}; "
+                             f"'{CEILING_PROXY_NAME}' fires at >= {CEILING_PROXY_THRESHOLD}")
     parser.add_argument("--out", required=True, help="new output directory")
     args = parser.parse_args(argv)
     try:
-        result = run_analysis(args.dataset, parse_checkpoints(args.unchanged, args.run), args.ceiling_flag,
-                              args.out, args.holm)
+        result = run_analysis(args.dataset, parse_checkpoints(args.unchanged, args.run), args.ceiling_risk_proxy_k,
+                              args.out)
     except (AnalysisError, ValueError) as error:
         print(f"REFUSED: {error}", file=sys.stderr)
         return 2
-    print(f"{result['dataset_role']} {result['status']}" + (
-        f": {result['endpoints']['strict']['decision_label']}" if result["status"] == "COMPLETE" else ""))
+    label = result["endpoints"]["strict"]["decision_label"] if result["status"] == "COMPLETE" else None
+    print(f"{result['dataset_role']} {result['status']} {result['analysis_type']}" + (f": {label}" if label else ""))
     return 0 if result["status"] == "COMPLETE" else 3
 
 

@@ -5,19 +5,30 @@ rupee rule. Extraction stays gold-blind and additionally accepts
 
 * a trailing ``₹`` (optional whitespace) as the final token after the scalar or its
   wrapper, recorded as ``currency_suffix_symbol``; and
-* a leading ``rupees`` / ``rupee`` (case-insensitive, optional whitespace) in the position
+* a leading ``rupees`` / ``rupee`` (case-insensitive; exact conditions below) in the position
   where v1 accepts ``₹/INR/Rs./Rs``, recorded as ``currency_prefix_word``.
 
-At most one currency marker per answer; two give ``unsupported_answer`` as in v1. The
-marker is stripped before the numeric comparison. In evaluation an answer extracted only
-through one of the two new paths is correct only if gold is rupees (casefolded gold unit in
-``rupees, rupee, inr, rs, rs., ₹``) and the value matches; otherwise it scores exactly as v1
-(``unsupported_answer``, incorrect).
+Exact rule (PREREGISTRATION.md Amendment 1 item 1 = Astra review 2026-11-03 section 1):
 
-Wrapping guarantees: the new parser is consulted only when v1 itself returned
-``unsupported_answer``, and only its results that used a new path are kept. Every other
-result (and every result for non-rupee gold) is v1's own output with ``endpoint`` relabelled,
-so v2 can differ from v1 only on rupee-gold items. Never calls or changes scorer v1.0.0.
+* v1 runs first and its result is kept unless its status is ``unsupported_answer``; only
+  then is the extension tried, with v1's preprocessing, syntax checks, wrapper/assignment
+  order, scalar grammar and suffix grammar (v1's own private helpers are reused).
+* New prefix: case-insensitive ``rupees``/``rupee`` at v1's currency-prefix slot, followed by
+  whitespace, a digit, a sign, a decimal point or a wrapper opener (``**``, ``$``,
+  ``\\boxed{``); following whitespace is consumed.
+* New suffix: exactly ``₹`` (after stripping whitespace) immediately after the scalar or its
+  wrapper, with no intervening word suffix.
+* A new-path parse with any other currency marker is rejected: an old or new prefix, a
+  second ``₹``, or any whitespace-separated suffix word token casefolding to ``rupee``,
+  ``rupees``, ``inr``, ``rs`` or ``rs.``. The old ``/-`` exception stays restricted to old
+  prefixes. Old v1 two-marker successes (e.g. ``Rs 5 rupees``) are kept because v1 runs
+  first.
+* Only parses that use a new path are accepted; otherwise v1's result is returned.
+* Gold is rupees iff ``unit.strip().casefold()`` is in ``rupees, rupee, inr, rs, rs., ₹``.
+  For non-rupee gold the v1 evaluation is returned; for rupee gold a new-path parse is
+  ``match`` or ``mismatch`` by exact value.
+
+So v2 can differ from v1 only on rupee-gold items. Never calls or changes scorer v1.0.0.
 """
 
 import re
@@ -30,13 +41,14 @@ REASONS = _v1.REASONS
 NEW_PATHS = ("currency_suffix_symbol", "currency_prefix_word")
 RUPEE_UNITS = frozenset({"rupees", "rupee", "inr", "rs", "rs.", "₹"})
 
-_PREFIX_WORD = re.compile(r"^(?:rupees|rupee)(?![^\W\d_])\s*", re.IGNORECASE)
-# Currency words that, appearing as the retained suffix next to a new marker, make a second marker.
-_CURRENCY_WORDS = RUPEE_UNITS
+# Followed by whitespace, a digit, a sign, a decimal point or a wrapper opener (** $ \boxed{).
+_PREFIX_WORD = re.compile(r"^(?:rupees|rupee)(?=\s|[0-9+\-.]|\*\*|\$|\\boxed\{)\s*", re.IGNORECASE)
+# Suffix word tokens that count as a second currency marker next to a new marker.
+_CURRENCY_WORDS = frozenset({"rupee", "rupees", "inr", "rs", "rs."})
 
 
 def gold_is_rupees(gold):
-    return _v1._text(gold.get("unit") or "") in RUPEE_UNITS
+    return (gold.get("unit") or "").strip().casefold() in RUPEE_UNITS
 
 
 def _final_answer(response):
@@ -111,8 +123,8 @@ def _parse_answer_v2(answer, path):
         markers += 1
     if markers > 1:
         raise _v1._Fail("unsupported_answer")
-    if markers and "currency_prefix" not in path and _v1._text(suffix) in _CURRENCY_WORDS:
-        raise _v1._Fail("unsupported_answer")  # new marker plus a currency word suffix
+    if any(token.casefold() in _CURRENCY_WORDS for token in suffix.split()):
+        raise _v1._Fail("unsupported_answer")  # new marker plus a currency word token in the suffix
     if suffix and not _v1._SUFFIX.fullmatch(suffix):
         raise _v1._Fail("unsupported_answer")
     return value, suffix
