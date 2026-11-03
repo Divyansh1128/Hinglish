@@ -16,6 +16,16 @@ The real evaluation on the frozen, human-reviewed Pilot-B set (70 families × E/
 | `PilotB_Qwen3-8B.ipynb` | Qwen3-8B | Scaling comparison |
 | `PilotB_Llama-3.2-3B.ipynb` | Llama-3.2-3B | Cross-family; needs your HF token |
 
+## Phase 2 (`phase2/`), D043 and `phase2/PREREGISTRATION.md`
+
+Run in this order, each on a fresh T4 runtime with **Run all**. Drive is on by default (`MyDrive/Hinglish_Phase2/`); the adapters stay there. Each notebook downloads a ZIP with `SHA256SUMS.txt`; send it unchanged.
+
+1. **`Phase2_Baseline_DEV.ipynb`**, once, before any training: the unchanged Qwen3-4B on DEV (120 generations, about 15–20 min). It prints the D040 ceiling flag (fires at DEV C ≥ 38/40).
+2. **`Phase2_Train.ipynb`**, 9 times: set `ARM` (`EE`/`ER`/`EC`) and `SEED` (11/22/33) in the first code cell. Each run trains 60 updates on all 160 TRAIN families (about 25 min), saves the final adapter and its SHA-256s to Drive, then runs the DEV sanity evaluation (about 15 min). **Disconnects (§10):** re-running all starts a fresh attempt from scratch. After two failed attempts, switch that seed to reserve seed 44 (then 55) for all three arms. `RESUME_AFTER_DISCONNECT = True` exists for engineering use only; the FinalTest gate refuses resumed adapters.
+3. Commit `phase2/ADAPTERS_FROZEN.md` (§11). Its ```json block can be generated from the 9 `final_adapter.json` files with `python3 -B t4_smoke/phase2_eval.py freeze-manifest --train-root <folder>`. Then rebuild to create **`Phase2_FinalTest.ipynb`**, which runs the unchanged model plus all 9 adapters on FINAL_TEST (3,000 generations, about 6–7 h; resumes across sessions). It refuses to run unless the embedded pre-registration hash, the freeze manifest and all 9 adapters on Drive match.
+
+Rebuild with `python3 -B colab_notebooks/build_phase2_notebooks.py` (`--check` verifies them). Until `phase2/ADAPTERS_FROZEN.md` exists, the builder skips the FinalTest notebook and prints why.
+
 ## Training smoke test (`training_smoke/`), decision D021
 
 `TrainSmoke_Qwen3-4B.ipynb`: 6 QLoRA updates per arm (E+E, E+R, E+C) on 16 TRAIN families, checkpoint reload, a 32-update E+C stability probe, and the pre-declared go/no-go timing verdict. Never touches DEV or FINAL_TEST. About 40–120 minutes on a T4. Rebuild with `python3 -B colab_notebooks/build_training_smoke_notebook.py`.

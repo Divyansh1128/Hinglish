@@ -20,6 +20,14 @@ result is established. The governing decision is D021 in `../docs/DECISIONS.md`.
 The older `protocol.py` preflight below targets the 2.7.1/0.45.5 stack in
 `requirements.txt` (the D021 fallback stack) and remains unchanged.
 
+## Phase-2 training and evaluation (`train_phase2.py`, `phase2_eval.py`)
+
+`train_phase2.py` runs the D043 / `phase2/PREREGISTRATION.md` §3 study: all 160 TRAIN families and 60 updates, with
+the order, lr schedule and seeding exactly as pre-registered. It reuses the smoke code above unchanged.
+`phase2_eval.py` evaluates the unchanged model or one unmerged adapter through the engine (`phase2_dev` /
+`phase2_final_test` modes). It also holds the FINAL_TEST gate and the freeze-manifest helper. Notebooks:
+`../colab_notebooks/phase2/`. Handoff: `../handoffs/2026-11-03_phase2_pipeline.md`.
+
 ## Local checks
 
 Run from the project root with Python 3; these commands use the standard

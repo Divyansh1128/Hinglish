@@ -160,7 +160,9 @@ def analyze(root, audit_overlay=None):
         bad = sum(x['invalid_reason'] is not None for x in done)
         lines += ['', f'Automatic invalid/truncated outputs: {bad}/{len(done)}. Review-packet threshold: more than 3/90 requires protocol revision before scaling.',
                   'Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.']
-    lines += ['', 'Not evidence of E+C versus E+R training benefit; no training performed. No significance or internal-mechanism claim.',
+    lines += ['', ('Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here.'
+                   if manifest['mode'] in ('phase2_dev', 'phase2_final_test') else
+                   'Not evidence of E+C versus E+R training benefit; no training performed.') + ' No significance or internal-mechanism claim.',
               'For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.',
               'Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.']
     (dest / 'summary.md').write_text('\n'.join(lines)+'\n', encoding='utf-8')

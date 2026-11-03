@@ -10,6 +10,11 @@ TOPICS = ('comparison_remaining', 'two_step_money', 'fractions_percentages',
           'ratios', 'rates_units', 'elementary_algebra')
 DEMO_LABEL = 'DEMO — NOT RESEARCH EVIDENCE'
 ID = re.compile(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}\Z')
+PHASE2_MODES = ('phase2_dev', 'phase2_final_test')
+# Frozen Phase-2 evaluation sets (phase2/TRAIN_DEV_FROZEN.md, phase2/FINAL_TEST_FROZEN.md).
+PHASE2_SPLITS = {'phase2_dev': {'role': 'DEV', 'families': 40, 'label': 'PHASE-2 DEV: sample-based review (D027) — sanity only'},
+                 'phase2_final_test': {'role': 'FINAL_TEST', 'families': 100, 'label': 'PHASE-2 FINAL_TEST: single-reviewer ACCEPT'}}
+MODES = ('demo', 'reviewed', 'pilot_b', 'pilot_adjudicated', *PHASE2_MODES)
 ROLES = ('PILOT_EVAL', 'SMOKE_TRAIN', 'RETIRED_DRAFT', 'CONFIRM_TRAIN', 'FINAL_TEST')
 ADJUDICATED_LABEL = 'ORIGINAL PILOT — two independent human solvers; language review by one human reviewer + adjudicator (24 accepted families)'
 ADJUDICATED_FORM_FIELDS = {'judgment_source', 'text_sha256', 'raw_answer', 'raw_unit', 'answer_matches_gold', 'disposition', 'classification',
@@ -68,13 +73,14 @@ def validate(dataset, manifest, mode):
     # pilot_b (decision D035): frozen single-reviewer evaluation set (pilot_b/FROZEN.md); not the two-reviewer pilot.
     # pilot_adjudicated (decision D036): original-pilot cohort accepted by an adjudicator after two independent reviews;
     # raw reviewer judgments are kept as entered (they may disagree with gold) and the adjudication resolves them.
-    require(mode in ('demo', 'reviewed', 'pilot_b', 'pilot_adjudicated'), 'Mode must be demo, reviewed, pilot_b or pilot_adjudicated')
+    # phase2_dev / phase2_final_test: the frozen Phase-2 DEV and FINAL_TEST files, unchanged (phase2/PREREGISTRATION.md).
+    require(mode in MODES, 'Mode must be demo, reviewed, pilot_b, pilot_adjudicated, phase2_dev or phase2_final_test')
     require(isinstance(dataset, dict) and dataset.get('schema_version') == 'test1-1', 'Dataset schema_version must be test1-1')
     text(dataset.get('version'), 'dataset version')
     text(dataset.get('borrowing_policy'), 'borrowing policy')
     require(dataset.get('kind') == mode, 'Dataset kind does not match execution mode')
     families = dataset.get('families')
-    require(isinstance(families, list) and (len(families) == 30 if mode == 'reviewed' else 1 <= len(families) <= 200 if mode == 'pilot_b'
+    require(isinstance(families, list) and (len(families) == PHASE2_SPLITS[mode]['families'] if mode in PHASE2_MODES else len(families) == 30 if mode == 'reviewed' else 1 <= len(families) <= 200 if mode == 'pilot_b'
                                             else 1 <= len(families) <= 30 if mode == 'pilot_adjudicated' else 1 <= len(families) <= 6),
             'Reviewed pilot requires 30 families; demo requires 1–6')
     require(isinstance(manifest, dict) and manifest.get('schema_version') == 'test1-1', 'Split schema_version must be test1-1')
@@ -93,7 +99,8 @@ def validate(dataset, manifest, mode):
         require(not ids & seen_ids, 'Repeated underlying family/source/template IDs')
         seen_ids |= ids
         require(family['topic'] in TOPICS, 'Unrecognized topic')
-        require(family['split_role'] == {'reviewed': 'PILOT_EVAL', 'pilot_adjudicated': 'PILOT_EVAL', 'pilot_b': 'PILOT_B_EVAL', 'demo': 'DEMO'}[mode], 'Wrong split role')
+        require(family['split_role'] == {'reviewed': 'PILOT_EVAL', 'pilot_adjudicated': 'PILOT_EVAL', 'pilot_b': 'PILOT_B_EVAL', 'demo': 'DEMO',
+                                         **{m: v['role'] for m, v in PHASE2_SPLITS.items()}}[mode], 'Wrong split role')
         for field in ('version', 'authoring_origin', 'provenance', 'source_license', 'reference_equation', 'reference_solution_en'):
             text(family[field], field)
         require(family['status'] == ('DEMO' if mode == 'demo' else 'ACCEPT'), 'Human acceptance missing or demo status invalid')
@@ -113,7 +120,7 @@ def validate(dataset, manifest, mode):
             for field in ('creator_type', 'generation_or_edit_history'):
                 text(rendering[field], field)
             require(isinstance(rendering['switching_roles'], list), 'switching_roles must be a list')
-            if mode in ('reviewed', 'pilot_b', 'pilot_adjudicated') and form == 'C':
+            if mode in ('reviewed', 'pilot_b', 'pilot_adjudicated', *PHASE2_MODES) and form == 'C':
                 require(bool(rendering['switching_roles']), 'C needs documented productive switching roles')
         review = family['review']
         require(set(review) == {'reviewers', 'adjudication'}, 'Unexpected/missing review fields')
@@ -129,6 +136,13 @@ def validate(dataset, manifest, mode):
             continue
         if mode == 'pilot_adjudicated':
             validate_adjudicated_review(family, review)
+            continue
+        if mode in PHASE2_MODES:
+            # Sample-based (TRAIN/DEV) or single-reviewer (FINAL_TEST) review is documented in the FROZEN notes; per-family
+            # attestations, where present, use the Pilot-B fields.
+            require(review['adjudication'] is None, 'Phase-2 data carry no adjudication')
+            for reviewer in review['reviewers']:
+                require(isinstance(reviewer, dict) and set(reviewer) == {'reviewer_id', 'scope', 'reviewed_at'}, 'Phase-2 reviewer fields: reviewer_id/scope/reviewed_at')
             continue
         require(len(review['reviewers']) == 2, 'Two independent reviewers required')
         reviewers = set()
@@ -185,6 +199,15 @@ def validate(dataset, manifest, mode):
         text(audit['audited_at'], 'split audit timestamp')
     else:
         require(manifest['audit'] is None, 'Demo split audit must be null')
+    if mode == 'phase2_final_test':
+        # Evaluated FINAL_TEST families sit in their own role; DEV and other development IDs are the exclusions.
+        require(sorted(manifest['FINAL_TEST'], key=digest) == sorted(expected, key=digest), 'FINAL_TEST identities do not match data')
+        excluded = {ident(x, 'exclusion ID') for x in manifest['development_exclusion_ids']}
+        require(not excluded & (role_ids['CONFIRM_TRAIN'] | role_ids['FINAL_TEST']), 'Confirmatory contamination')
+        require(role_ids['PILOT_EVAL'] | role_ids['SMOKE_TRAIN'] | role_ids['RETIRED_DRAFT'] <= excluded, 'Permanent development exclusions missing')
+        return {'families': len(families), 'prompts': 3 * len(families),
+                'status': PHASE2_SPLITS[mode]['label'] + ' — human judgments not machine verified',
+                'dataset_sha256': digest(dataset), 'split_sha256': digest(manifest)}
     require(isinstance(manifest['development_exclusion_ids'], list), 'Exclusion IDs must be a list')
     excluded = {ident(x, 'exclusion ID') for x in manifest['development_exclusion_ids']}
     development = seen_ids | role_ids['PILOT_EVAL'] | role_ids['SMOKE_TRAIN'] | role_ids['RETIRED_DRAFT']
@@ -193,7 +216,7 @@ def validate(dataset, manifest, mode):
     require(not seen_ids & (role_ids['SMOKE_TRAIN'] | role_ids['RETIRED_DRAFT'] | role_ids['CONFIRM_TRAIN'] | role_ids['FINAL_TEST']),
             'Dataset overlaps nonpilot split')
     return {'families': len(families), 'prompts': 3 * len(families),
-            'status': DEMO_LABEL if mode == 'demo' else ADJUDICATED_LABEL + ' — human judgments not machine verified' if mode == 'pilot_adjudicated' else 'PILOT-B: SINGLE-REVIEWER DATA — human judgments not machine verified' if mode == 'pilot_b' else 'REVIEW METADATA PASSED — human judgments not machine verified',
+            'status': PHASE2_SPLITS[mode]['label'] + ' — human judgments not machine verified' if mode in PHASE2_MODES else DEMO_LABEL if mode == 'demo' else ADJUDICATED_LABEL + ' — human judgments not machine verified' if mode == 'pilot_adjudicated' else 'PILOT-B: SINGLE-REVIEWER DATA — human judgments not machine verified' if mode == 'pilot_b' else 'REVIEW METADATA PASSED — human judgments not machine verified',
             'dataset_sha256': digest(dataset), 'split_sha256': digest(manifest)}
 
 def validate_adjudicated_review(family, review):

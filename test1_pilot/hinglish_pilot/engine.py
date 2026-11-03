@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .data import ADJUDICATED_LABEL, DEMO_LABEL, digest, records, require, validate
+from .data import ADJUDICATED_LABEL, DEMO_LABEL, PHASE2_MODES, digest, records, require, validate
 from .scorer_v1 import SCORER_VERSION, score_response
 
 # v1 is retained for the record. v2 (decision D020, 14 October 2026) replaced it before any
@@ -39,6 +39,10 @@ MODELS = {
     'google/gemma-3-4b-it': {'model_type': 'gemma3', 'chat_template_kwargs': {}},
     'meta-llama/Llama-3.2-3B-Instruct': {'model_type': 'llama', 'chat_template_kwargs': {'date_string': '15 Oct 2026'}},
 }
+# Phase-2 (phase2/PREREGISTRATION.md): unchanged model or one unmerged LoRA adapter on the same NF4 base.
+PHASE2_LABELS = {'phase2_dev': 'PHASE-2 DEV — sanity only; never used for selection',
+                 'phase2_final_test': 'PHASE-2 FINAL_TEST — confirmatory evaluation'}
+ADAPTER_FIELDS = {'arm', 'seed', 'attempt', 'adapter_model_sha256', 'adapter_config_sha256'}
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
 
@@ -94,7 +98,7 @@ def environment():
 
 
 def default_config(mode='demo', model_id='Qwen/Qwen3-4B'):
-    return {'mode': mode, 'model_id': model_id, 'model_revision': None,
+    config = {'mode': mode, 'model_id': model_id, 'model_revision': None,
             'tokenizer_revision': None, 'seed': 11, 'bootstrap_seed': 101,
             'bootstrap_resamples': 10000, 'max_new_tokens': 1024, 'context_limit': 2048,
             'thinking': False, 'do_sample': False, 'num_beams': 1,
@@ -102,11 +106,16 @@ def default_config(mode='demo', model_id='Qwen/Qwen3-4B'):
             'attention_backend': 'sdpa_math', 'max_infrastructure_retries': 1,
             'prompt_version': PROMPT_VERSION, 'instruction': INSTRUCTION,
             'decode_policy_note': 'Greedy non-thinking fixed pilot policy; differs from model-card sampling recommendation.'}
+    if mode in PHASE2_MODES:  # other modes keep exactly the v1 fields, so their config hashes are unchanged
+        config['adapter'] = None
+    return config
 
 
 def validate_config(config):
-    require(set(config) == set(default_config()), 'Unknown/missing config fields')
-    require(config['mode'] in ('demo', 'reviewed', 'pilot_b', 'pilot_adjudicated'), 'Bad config mode')
+    require(isinstance(config, dict) and config.get('mode') in ('demo', 'reviewed', 'pilot_b', 'pilot_adjudicated', *PHASE2_MODES), 'Bad config mode')
+    require(set(config) == set(default_config(config['mode'])), 'Unknown/missing config fields')
+    if config['mode'] in PHASE2_MODES:
+        validate_adapter(config['adapter'])
     require(config['model_id'] in MODELS, 'Unsupported model: Test 1 supports ' + ', '.join(MODELS))
     for key in ('model_revision', 'tokenizer_revision'):
         require(isinstance(config[key], str) and re.fullmatch('[0-9a-f]{40}', config[key]), 'Resolve immutable model/tokenizer SHAs before running')
@@ -121,6 +130,17 @@ def validate_config(config):
     require(config['quantization'] == 'nf4' and config['double_quantization'] is True and
             config['compute_dtype'] == 'float16' and config['attention_backend'] == 'sdpa_math', 'Unsupported inference recipe')
     require(type(config['max_infrastructure_retries']) is int and config['max_infrastructure_retries'] in (0, 1), 'At most one infrastructure retry')
+
+
+def validate_adapter(adapter):
+    """None (unchanged model) or the recorded identity and SHA-256s of one trained LoRA adapter."""
+    if adapter is None:
+        return
+    require(isinstance(adapter, dict) and set(adapter) == ADAPTER_FIELDS, 'Adapter fields: ' + '/'.join(sorted(ADAPTER_FIELDS)))
+    require(adapter['arm'] in ('EE', 'ER', 'EC'), 'Adapter arm must be EE, ER or EC')
+    require(type(adapter['seed']) is int and type(adapter['attempt']) is int and adapter['attempt'] >= 1, 'Adapter seed/attempt must be integers')
+    for key in ('adapter_model_sha256', 'adapter_config_sha256'):
+        require(isinstance(adapter[key], str) and re.fullmatch('[0-9a-f]{64}', adapter[key]), f'{key} must be a SHA-256 hex digest')
 
 
 class FakeBackend:
@@ -196,6 +216,8 @@ def run(root, dataset, splits, config, backend, max_items=None, progress=None):
     validate(dataset, splits, config['mode'])
     validate_config(config)
     require(config['mode'] == 'demo' or backend.metadata['backend'] == 'huggingface', 'Reviewed research forbids fake backend')
+    if config['mode'] in PHASE2_MODES:
+        require(backend.metadata.get('adapter', 'missing') == config['adapter'], 'Backend did not load the adapter named in the config')
     for key in ('model_revision', 'tokenizer_revision'):
         require(backend.metadata[key] == config[key], 'Backend revision mismatch')
     root = Path(root)
@@ -220,12 +242,14 @@ def run(root, dataset, splits, config, backend, max_items=None, progress=None):
             random.Random(config['seed']).shuffle(order)
             manifest = dict(identity, run_id=config['mode'] + '-' + uuid.uuid4().hex,
                 mode=config['mode'], label={'demo': DEMO_LABEL, 'reviewed': 'REVIEWED PILOT — metadata attested', 'pilot_b': 'PILOT-B EVALUATION — single-reviewer frozen data',
-                       'pilot_adjudicated': ADJUDICATED_LABEL}[config['mode']],
+                       'pilot_adjudicated': ADJUDICATED_LABEL, **PHASE2_LABELS}[config['mode']],
                 created_at=utc(), status='INCOMPLETE', expected=len(order), evaluation_order=order,
                 backend=backend.metadata, scorer_version=SCORER_VERSION,
                 warnings=['Human review/semantic equivalence cannot be machine certified.',
                           'Greedy decoding is not a guarantee of identical outputs across hardware/software.',
-                          'Quantized, capped, non-thinking pilot; no training-effect evidence.'],
+                          'Quantized, capped, non-thinking pilot; no training-effect evidence.' if config['mode'] not in PHASE2_MODES else
+                          'Quantized, capped, non-thinking evaluation of ' + ('the unchanged model' if config['adapter'] is None else
+                          f"adapter {config['adapter']['arm']} seed {config['adapter']['seed']} (unmerged LoRA on the NF4 base)") + '.'],
                 deviations=[config['decode_policy_note']], sessions=[])
             write(root / 'experiment_config.json', config)
             write(root / 'environment.json', frozen_env)

@@ -81,9 +81,8 @@ def payload():
             zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as new:
         for name in old.namelist():
             put(new, name, old.read(name))
-        for path in sorted(HERE.glob('*.py')):
-            if path.name != Path(__file__).name:
-                put(new, 'secondary_analysis/' + path.name, path.read_bytes())
+        for name in ('__init__.py', 'cmi.py', 'numeric_endpoint.py', 'report_secondary.py'):  # the v1 modules these notebooks embed; later modules (e.g. numeric_literal_v2) would make them stale
+            put(new, 'secondary_analysis/' + name, (HERE / name).read_bytes())
         put(new, 'secondary_analysis/format_fixtures.json', FIXTURES.read_bytes())
         for name, dataset, splits in demo_parts():
             put(new, f'fmt2/{name}_dataset.json', json.dumps(dataset, indent=2, ensure_ascii=False) + '\n')

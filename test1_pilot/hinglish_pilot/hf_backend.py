@@ -1,12 +1,50 @@
 """Lazy GPU dependencies: model-free tools never import CUDA packages."""
 import copy
+import hashlib
+import json
 import os
 import time
+from pathlib import Path
 from .data import digest, require
 from .engine import MODELS, default_config, environment, read, utc, validate_config
 
 PINS = {'transformers': '4.51.3', 'bitsandbytes': '0.50.2', 'accelerate': '1.6.0',
         'huggingface-hub': '0.30.2', 'tokenizers': '0.21.1', 'safetensors': '0.5.3'}
+ADAPTER_PINS = {'peft': '0.15.2'}  # D021 training stack; needed only when an adapter is loaded
+ADAPTER_FILES = {'adapter_model_sha256': 'adapter_model.safetensors', 'adapter_config_sha256': 'adapter_config.json'}
+
+
+def file_sha256(path):
+    checksum = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1 << 20), b''):
+            checksum.update(block)
+    return checksum.hexdigest()
+
+
+def adapter_digests(path):
+    """SHA-256 of a saved PEFT adapter's two files (model-free)."""
+    path = Path(path)
+    require(path.is_dir(), f'Adapter folder not found: {path}')
+    return {key: file_sha256(path / name) for key, name in ADAPTER_FILES.items() if (path / name).is_file()}
+
+
+def verify_adapter(path, adapter):
+    """Refuse an adapter folder whose files differ from the hashes recorded in the config."""
+    found = adapter_digests(path)
+    for key in ADAPTER_FILES:
+        require(found.get(key) == adapter[key], f'Adapter {ADAPTER_FILES[key]} missing or its SHA-256 differs from the recorded value')
+    settings = json.loads((Path(path) / 'adapter_config.json').read_text(encoding='utf-8'))
+    require(settings.get('peft_type') == 'LORA', 'Adapter must be a LoRA adapter')
+    return found
+
+
+def weight_shard_hashes(model_id, revision, token=None):
+    """SHA-256 of each downloaded weight shard in the local Hub cache (recorded per Phase-2 run manifest)."""
+    from huggingface_hub import hf_hub_download
+    index = hf_hub_download(model_id, 'model.safetensors.index.json', revision=revision, token=token)
+    shards = sorted(set(json.loads(Path(index).read_text())['weight_map'].values()))
+    return {name: file_sha256(hf_hub_download(model_id, name, revision=revision, token=token)) for name in shards}
 
 
 def resolve_config(config, existing_run=None):
@@ -25,9 +63,21 @@ def resolve_config(config, existing_run=None):
     return config
 
 
+def environment_version(name):
+    import importlib.metadata
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
+
+
 class HFBackend:
-    def __init__(self, config):
+    def __init__(self, config, adapter_path=None):
+        """``adapter_path`` (Phase-2 modes only) loads one trained LoRA adapter, unmerged, on the same NF4 base.
+        Its files must match the SHA-256s recorded in ``config['adapter']``. Without it the behaviour is unchanged."""
         validate_config(config)
+        adapter = config.get('adapter')
+        require((adapter is None) == (adapter_path is None), 'Give an adapter folder exactly when the config records an adapter')
         import torch
         from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, GenerationConfig
         from torch.nn.attention import SDPBackend, sdpa_kernel
@@ -62,6 +112,16 @@ class HFBackend:
             parameter.requires_grad_(False)
         require(getattr(self.model, 'is_loaded_in_4bit', False), '4-bit loading not active')
         require(all(str(x) in ('0', 'cuda:0') for x in self.model.hf_device_map.values()), 'CPU/disk offload forbidden for this recipe')
+        quantization = self.model.config.quantization_config.to_dict()
+        if adapter is not None:
+            require(all(environment_version(k) == v for k, v in ADAPTER_PINS.items()), 'Adapter evaluation needs peft==0.15.2 (D021 stack)')
+            verify_adapter(adapter_path, adapter)
+            from peft import PeftModel
+            self.model = PeftModel.from_pretrained(self.model, str(adapter_path), is_trainable=False)  # unmerged LoRA
+            self.model.eval()
+            for parameter in self.model.parameters():
+                parameter.requires_grad_(False)
+            verify_adapter(adapter_path, adapter)  # unchanged while loading
         torch.cuda.synchronize()
         self.GenerationConfig = GenerationConfig
         prop = torch.cuda.get_device_properties(0)
@@ -69,10 +129,13 @@ class HFBackend:
         self.metadata = {'backend': 'huggingface', 'model_revision': config['model_revision'],
             'tokenizer_revision': config['tokenizer_revision'], 'hardware': prop.name,
             'gpu_total_bytes': prop.total_memory, 'capability': list(torch.cuda.get_device_capability()),
-            'torch_cuda': torch.version.cuda, 'quantization': self.model.config.quantization_config.to_dict(),
+            'torch_cuda': torch.version.cuda, 'quantization': quantization,
             'attention': 'sdpa with math kernel only', 'compute_dtype': 'float16',
             'chat_template_sha256': digest(self.tokenizer.chat_template),
             'gpu_verified': True, 'verification_scope': 'model loaded; pilot success not yet established'}
+        if 'adapter' in config:  # Phase-2 modes only; other modes keep the v1 metadata (and resume identity)
+            self.metadata['adapter'] = copy.deepcopy(adapter)
+            self.metadata['base_weight_shards_sha256'] = weight_shard_hashes(config['model_id'], config['model_revision'], token)
         self.load_report = {'loaded_at': utc(), 'load_seconds': time.monotonic() - start,
                             'memory': self.memory(), 'model_memory_bytes': self.model.get_memory_footprint()}
 

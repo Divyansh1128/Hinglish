@@ -10,6 +10,7 @@ import zipfile
 
 ROOT = Path(__file__).parent
 NAME = 'Hinglish_Math_Test1_Pilot_Colab.ipynb'
+ENGINE_V1 = ROOT / 'frozen_engine' / 'v1'  # engine as embedded in every pre-Phase-2 notebook
 
 def dump(path, value):
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
@@ -73,14 +74,17 @@ def fixtures():
 
 def payload():
     buf = io.BytesIO()
-    paths = sorted(ROOT.glob('hinglish_pilot/*.py')) + sorted(ROOT.glob('fixtures/*.json')) + sorted(ROOT.glob('templates/*.json'))
+    # Engine v1 is embedded from its frozen snapshot, so the notebooks built on this payload (Test 1, GPU smoke,
+    # Pilot-B, original pilot, model screening) stay byte-identical while the live engine gains Phase-2 modes.
+    paths = sorted(ENGINE_V1.glob('hinglish_pilot/*.py')) + sorted(ROOT.glob('fixtures/*.json')) + sorted(ROOT.glob('templates/*.json'))
     paths += [ROOT/'requirements-colab.txt']
     for extra in ('README.md', 'DATA_CONTRACT.md', 'VERIFICATION.md'):
         if (ROOT/extra).exists():
             paths.append(ROOT/extra)
     with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as archive:
         for path in paths:
-            info = zipfile.ZipInfo(str(path.relative_to(ROOT)), date_time=(2026,10,10,0,0,0))
+            base = ENGINE_V1 if path.is_relative_to(ENGINE_V1) else ROOT
+            info = zipfile.ZipInfo(str(path.relative_to(base)), date_time=(2026,10,10,0,0,0))
             info.compress_type = zipfile.ZIP_DEFLATED
             archive.writestr(info, path.read_bytes())
     return buf.getvalue()
