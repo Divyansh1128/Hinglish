@@ -824,27 +824,27 @@ English-compliant explanation & 70 & 53 & 59\\
 \section{Post-hoc audit extension: Qwen3-8B and Llama-3.2-3B}
 \label{sec:auditext}
 
-\evid{post hoc, not pre-registered (28 October 2026). AI pre-tags by two Claude models only; the human check of this extension is pending, so no final labels are reported.}
+\evid{post hoc, not pre-registered (28 October--3 November 2026). AI pre-tags by three taggers (Claude Opus, GPT, Claude Sonnet); the human check of this extension is pending, so no final labels are reported.}
 
-The pre-registered audit covered only the primary model. The same written audit instructions were then applied to all 210 Pilot-B outputs of each secondary backbone. Tagger A was Claude Opus and tagger B was Claude Sonnet, each blind to the other's tags. GPT was unavailable, so \emph{both taggers are Claude models}. Their agreement is therefore weaker evidence than the Claude/GPT agreement of the primary audit, because two taggers from one model family can share blind spots. Table~\ref{tab:auditext} gives the agreement.
+The pre-registered audit covered only the primary model. The same written audit instructions were then applied to all 210 Pilot-B outputs of each secondary backbone by three taggers, each blind to the others: A = Claude Opus, B = GPT and C = Claude Sonnet. C was added while GPT was unavailable; B was added once it was available again. The cross-family pair A--B is the headline, as in the primary audit. Table~\ref{tab:auditext} gives the agreement. The two Claude taggers agree with each other more than either agrees with GPT, which is the pattern expected if same-family taggers share blind spots, and is why the cross-family comparison is preferred.
 
 \begin{table}[t]
 \centering\small
-\caption{Agreement of the two Claude taggers in the post-hoc audit extension (210 Pilot-B outputs per backbone).}
+\caption{Pairwise tagger agreement in the post-hoc audit extension (210 Pilot-B outputs per backbone; agreements out of 210, Cohen's $\kappa$ in parentheses; A = Claude Opus, B = GPT, C = Claude Sonnet).}
 \label{tab:auditext}
-\begin{tabular}{@{}lcccc@{}}
+\begin{tabular}{@{}llccc@{}}
 \toprule
- & \multicolumn{2}{c}{Error category} & \multicolumn{2}{c}{English compliance}\\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Backbone & Agree & Cohen's $\kappa$ & Agree & Cohen's $\kappa$\\
+Backbone & Label & A--B & A--C & B--C\\
 \midrule
-Qwen3-8B & 207/210 & 0.959 & 209/210 & 0.985\\
-Llama-3.2-3B & 205/210 & 0.965 & 210/210 & 1.000\\
+Qwen3-8B & Error category & 200 (0.871) & 207 (0.959) & 197 (0.830)\\
+ & English compliance & 209 (0.985) & 209 (0.985) & 208 (0.971)\\
+Llama-3.2-3B & Error category & 187 (0.842) & 205 (0.965) & 190 (0.862)\\
+ & English compliance & 208 (0.981) & 210 (1.000) & 208 (0.981)\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A human-check sheet was built with all 8 category-disagreement rows (3 for Qwen3-8B, 5 for Llama) plus 30 seeded random agreed rows per backbone, 68 rows in all. This sample is larger than the 20 agreed rows used in the primary audit, to offset the use of same-family taggers. At the time of writing the human check has not been returned. Until it is, the per-category counts of this extension are unchecked AI pre-tags; they are not reported as audit results, and Table~\ref{tab:audit} remains the only audit table. The heuristic Llama language counts in the previous section are separate from this extension.
+A human-check sheet was built with every row on which any two taggers differ (13 for Qwen3-8B, 24 for Llama) plus 30 seeded random rows per backbone on which all three agree, 97 rows in all. At the time of writing the human check has not been returned. Until it is, the per-category counts of this extension are unchecked AI pre-tags; they are not reported as audit results, and Table~\ref{tab:audit} remains the only audit table. The heuristic Llama language counts in the previous section are separate from this extension.
 
 \section{Original cohort results}
 
@@ -1047,7 +1047,7 @@ All exclusions were decided before any model output on the cohort, and the amend
 
 \paragraph{Residual format effects and thin development evidence.} Strict scoring still penalizes some correct answers (unlisted English unit phrases, the spelling \emph{rupye}), and the secondary endpoint has the trailing-\rs\ gap; both are reported, not corrected. The prompt was revised after seeing outputs on 12 unreviewed fixtures. This is disclosed, and no cohort item was used to design the prompt.
 
-\paragraph{Audit.} The pre-registered output audit rests on two AI taggers with a human check of disagreements and a 20-row sample, not a full human audit, and it covers only the primary model on Pilot-B. The post-hoc extension to Qwen3-8B and Llama-3.2-3B used two Claude models as taggers, whose agreement is weaker evidence than cross-family agreement, and its 68-row human check is still pending (Section~\ref{sec:auditext}).
+\paragraph{Audit.} The pre-registered output audit rests on two AI taggers with a human check of disagreements and a 20-row sample, not a full human audit, and it covers only the primary model on Pilot-B. The post-hoc extension to Qwen3-8B and Llama-3.2-3B used three AI taggers (Claude Opus, GPT, Claude Sonnet), and its 97-row human check is still pending (Section~\ref{sec:auditext}).
 
 \paragraph{Post-hoc analyses.} The tokenization analysis (Section~\ref{sec:tokenization}) and the audit extension were designed after all cohort outputs had been seen. They are labelled as such, uncorrected for multiple testing and not used for any confirmatory claim.
 
@@ -1068,7 +1068,7 @@ AI assistants were used extensively, and this section states how.
 \begin{enumerate}[nosep]
 \item \textbf{AI-drafted items.} Renderings were drafted by an LLM: Claude for Pilot-B and TRAIN, and GPT for FINAL\_TEST and DEV. For the original pilot, the English statements were written by the author, and R and C were translated by an LLM (OpenAI GPT via Codex). All families were then checked against code-computed gold and reviewed by humans, and the AI-drafted sets were also verified blind by two LLM solvers.
 \item \textbf{AI-assisted human review.} Humans made every acceptance decision. Some lexicon entries and some text edits were drafted by AI before reviewers confirmed them. In the original cohort, one reviewer's AI-prefilled, unverified stage-2 judgments were excluded.
-\item \textbf{AI-assisted audit.} The output audit used two AI pre-taggers (Claude and GPT) with a human check. The post-hoc extension used two Claude models (Opus and Sonnet) as taggers; its human check is pending.
+\item \textbf{AI-assisted audit.} The output audit used two AI pre-taggers (Claude and GPT) with a human check. The post-hoc extension used Claude Opus, GPT and Claude Sonnet as taggers; its human check is pending.
 \item \textbf{Writing, coding and decisions.} AI assistants helped write the evaluation and analysis code, the research notes, the paper draft and this report. Under the student's explicit delegation (D017), they also recorded protocol decisions in the decision log, where each one is labelled as an AI decision under delegation. The Phase-2 protocol draft and power simulation (D040) and the training smoke-test code (D041) were written by a Claude Opus subagent standing in for the GPT assistants, whose access had expired; the smoke-test code has no independent GPT cross-check yet. The student reviewed this work and takes responsibility for it.
 \end{enumerate}
 Systems used: Claude Opus 5.5 and Claude Sonnet (Anthropic); GPT-6 Astra and GPT-6.1 Sol (OpenAI, via the Codex CLI).
