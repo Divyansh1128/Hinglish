@@ -111,3 +111,64 @@ The decision label and Δ_C with intervals; all secondary estimands; per-seed re
 ## 13. Deviations
 
 Any change to this plan is a dated amendment appended here and recorded in `docs/DECISIONS.md`, stating what changed, why, and whether any Phase-2 output (training logs, DEV, FINAL_TEST) existed at the time. Changes made after FINAL_TEST access are labelled post hoc, and the pre-registered analysis is still reported in full alongside them. Thresholds (+5 pp useful, −2 pp retention, 95% ceiling) are never changed after the corresponding output exists.
+
+## Amendment 1 (3 November 2026)
+
+**Exposure at adoption:** no Phase-2 training run, trained adapter, DEV generation or FINAL_TEST generation by an evaluation backbone exists. The only Phase-2-related outputs are the D041 smoke adapters on 16 TRAIN families (discarded) and synthetic/Pilot-B test fixtures. Basis: an adversarial methods review by Astra (GPT), `research/astra_prereg_review_2026-11-03.md` (SHA-256 `281035e990cedc57a70c5bab02bd1188362f96b3dc8f3d7947061076281a3de3`), whose numbered amendments are adopted as follows. Where this amendment and the sections above differ, this amendment governs.
+
+1. **numeric_literal_v2** (review §1, adopted in full): v1 runs first and its result is kept unless its status is `unsupported_answer`; only then are the two new gold-blind paths tried, with v1's grammar and preprocessing. Old v1 two-marker successes are kept; a new-path parse with any other currency marker is rejected. Non-rupee gold always returns v1. The implementation committed in 76f2f86 (`secondary_analysis/numeric_literal_v2.py`) is checked against this rule before the manifest in item 14.
+2. **Degenerate intervals** (§2, adopted): if all family contrasts are identical or the percentile interval has zero width, the label is `inconclusive—degenerate empirical interval` and no support, null or retention claim is made. The point estimate, raw interval, Hoeffding interval, count of non-zero family contrasts and both bootstrap tails are always reported. "Informative null" rules out gains of 5 pp or more under the approximate sampling model; it does not establish equality or exclude harm.
+3. **Population and assumptions** (§3, adopted verbatim): the 100-family mean is a finite-set descriptive quantity. Intervals are approximate uncertainty for hypothetical independent families from this fixed authoring and review process; template and author dependence is a limitation. Δ_C is the effect of the complete training-rendering recipe, not an isolated effect of code-switching.
+4. **Bootstrap mechanics** (§4, adopted in full):
+   - Records sorted by family ID. A fresh `random.Random(101)` draws a 10,000 × 100 matrix with `rng.randrange(100)` in row-major order, reused for every endpoint, contrast and per-seed interval.
+   - Linear quantiles with h = 9999·p. Record the Python version and the matrix hash.
+   - Wald: sample SD (ddof 1) and z = 1.959963984540054.
+   - Hoeffding: radius (b − a)·sqrt(log(40)/(2N)), intersected with [a, b]; [−1, 1] for accuracy differences and [−2, 2] for S3.
+   - Wilson intervals per checkpoint over N outcomes, never over pooled seed rows.
+   - The crossed family × seed sensitivity analysis is not run.
+5. **No inferential secondaries** (§5, adopted): Δ_C on strict accuracy is the only confirmatory estimand. All secondaries, numeric endpoints and per-seed McNemar p-values are descriptive. The Holm clause in §7 is deleted.
+6. **English retention flags** (§6, adopted in full): for each of the five §6 English contrasts, report independent flags:
+   - `within-margin criterion met` iff L > −2 pp;
+   - `loss detected` iff U < 0;
+   - `loss beyond margin` iff U < −2 pp;
+   - `retention trade-off`, only for EC − EE and EC − unchanged, when the primary label is Support or Useful support and U < −2.
+   Item 2 takes precedence.
+7. **Ceiling proxy** (§7, adopted): the DEV flag (≥ 38/40) is renamed `high unchanged-DEV accuracy (ceiling-risk proxy)`. Report k/40 with its Wilson interval. Δ_C stays first in the report whatever the flag; S2 stays descriptive. After FINAL_TEST, the E+R C headroom (1 − mean y_ER,C) is reported beside Δ_C. The planning rerun follows review §7.
+8. **Schedule status** (§8, adopted verbatim): 60 updates is a conservative, resource-feasible design choice made before any Phase-2 output, not a validated optimum. Neither loss curves nor DEV may change it.
+9. **Data-order encoding** (§9, adopted):
+   - The hash input is the UTF-8 bytes of `phase2-D043:{s}:{p}:{family_id}`, with s and p in decimal; ties are broken by family ID.
+   - The three per-seed exposure lists are frozen and hashed before training.
+   - The effective content batch is eight families.
+   - Pairing controls initial adapter tensors and exposure order, not dropout draws.
+10. **Optimizer steps** (§10, adopted): a valid run has exactly 60 accumulation windows and 60 successful optimizer steps over three passes. Set lr(u) before step u, and unscale before clipping. Any GradScaler skip, non-finite loss or gradient, or non-finite saved parameter is a **numerical failure** and is handled under item 11. GradScaler settings: init 65,536, growth 2.0, backoff 0.5, growth interval 2,000. Log attempted and successful steps and data cursors.
+11. **Failure handling** (§11, adopted; replaces §10's first two bullets):
+    - **Transient infrastructure failure** (runtime disconnect or crash, OOM, failed save or reload): at most one from-scratch retry with identical code, configuration and seed. A Colab resume from a checkpoint is not a valid run.
+    - **After a second infrastructure failure:** the whole seed triplet is replaced by the next unused reserve in the queue [44, 55], filling original slots in order [11, 22, 33]. Each reserve has the same two-attempt limit per arm and is never reused.
+    - **Numerical failure (item 10), or a hash or label-assertion failure:** the study halts for diagnosis, with no seed substitution. Any repair needs a dated amendment before further training.
+    - Every attempt is logged and nothing is overwritten.
+12. **Attrition and denominators** (§12, adopted in full):
+    - Confirmatory analysis requires three complete paired triplets. The retained seed IDs and S are frozen before FINAL_TEST access.
+    - S = 1 or 2: a descriptive reduced-S report only, using 1/S averaging, with no confirmatory label.
+    - S = 0: no FINAL_TEST access.
+    - A generated response with a missing or invalid answer scores 0. An absent generation, or one whose infrastructure retries are exhausted, is **unresolved**. Any unresolved required item suppresses the primary analysis and its label.
+13. **Exposure and access** (§13, adopted in full; corrects the opening paragraph):
+    - FINAL_TEST was exposed during construction to its documented authoring and verifier models (GPT drafting; Claude and GPT blind solving) and to its human reviewer. No evaluation-backbone FINAL_TEST output exists.
+    - From now until the freeze gate, no new semantic inspection of FINAL_TEST by any human or model is allowed; only isolated byte-level hash checks.
+    - The deferred second-reviewer sample and any other test-content audit take place only after all evaluations, and never change gold, inclusion or scoring.
+    - The FT057 verification exception (`phase2/FINAL_TEST_FROZEN.md`) is reported.
+14. **Implementation manifest** (§14, adopted in full):
+    - **Before the first Phase-2 DEV generation**, commit `phase2/IMPLEMENTATION_MANIFEST.md`. It hashes the trainer, label builder, prompt and chat template, tokenizer and config files, generation configuration, engine, both numeric scorers, the analysis code and the notebooks, and pins dependency versions, EOS and stopping behaviour, and dtype preparation.
+    - The manifest is rechecked at adapter freeze.
+    - FINAL_TEST scoring may run unattended, but operators see only completion, checksum and infrastructure status until every evaluation is complete. Previews are suppressed.
+    - Successfully generated responses are never retried.
+15. **Second backbone** (§15, adopted): Llama-3.2-3B is excluded from this registration. Including it would need a separate amendment before any Qwen Phase-2 training output and before any FINAL_TEST access.
+16. **Power wording** (§16, adopted):
+    - §9's half-width ranges are corrected to 1.97–5.64 pp (2.06–3.64 at p0 = 0.943). Precision depends on the scenario and is not promised.
+    - "Cannot establish" is read as "not reliably powered for".
+    - Before outputs, the implemented interval is calibrated by simulation under null, asymmetric, sparse/degenerate and margin-boundary cases and archived, keeping unfavourable cases.
+17. **Output audit** (§17, adopted):
+    - Rubric: `results/pilot_b/audit/AUDIT_INSTRUCTIONS.md` as frozen at this commit.
+    - Taggers: Claude Opus and GPT, independent, with arm labels hidden where feasible.
+    - A human checks every audited output, which covers every strict-incorrect C output of every retained E+R and E+C seed, and resolves disagreements; anything still unresolved is labelled unresolved.
+    - Counts are reported over all C generations; no mechanism claims are made.
+18. **Precedence evidence** (§18, adopted): the commit hash identifies content. Independent evidence of order is the GitHub server-side push record of the repository (github.com/Divyansh1128/Hinglish) and a read-only archive of the plan, code hashes and the first-run manifest. A local commit time alone is not claimed as proof.
