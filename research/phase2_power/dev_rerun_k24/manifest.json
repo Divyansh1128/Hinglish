@@ -1,0 +1,104 @@
+{
+  "label": "PLANNING ONLY - original Phase-2 power grid rerun at the observed unchanged-DEV C accuracy; design, labels and thresholds unchanged (PREREGISTRATION \u00a75, Amendment 1 item 7, Amendment 2 item 8)",
+  "version": "phase2_power_dev_rerun_v1",
+  "dev_k": 24,
+  "dev_n": 40,
+  "p0": 0.6,
+  "q0_grid": [
+    0.035,
+    0.071,
+    0.114,
+    0.2
+  ],
+  "delta_grid": [
+    0.0,
+    0.03,
+    0.05,
+    0.1
+  ],
+  "families": 100,
+  "seeds": 3,
+  "reps": 4000,
+  "base_seed": 20261027,
+  "python": "3.12.7",
+  "original_script": {
+    "path": "research/phase2_power/phase2_power.py",
+    "sha256": "7620f4dba1417c2b916567b6df96619df5f815624323b8ee31dce58844290803"
+  },
+  "script_sha256": "a633983927847f50e3ac2ee9acd63da8519d74bac9cfc1331ab2e7e68ba7ac2f",
+  "summary": {
+    "cells": 16,
+    "feasible": 16,
+    "degenerate": 0,
+    "infeasible": 0,
+    "feasible_cells": [
+      [
+        0.035,
+        0.0
+      ],
+      [
+        0.035,
+        3.0
+      ],
+      [
+        0.035,
+        5.0
+      ],
+      [
+        0.035,
+        10.0
+      ],
+      [
+        0.071,
+        0.0
+      ],
+      [
+        0.071,
+        3.0
+      ],
+      [
+        0.071,
+        5.0
+      ],
+      [
+        0.071,
+        10.0
+      ],
+      [
+        0.114,
+        0.0
+      ],
+      [
+        0.114,
+        3.0
+      ],
+      [
+        0.114,
+        5.0
+      ],
+      [
+        0.114,
+        10.0
+      ],
+      [
+        0.2,
+        0.0
+      ],
+      [
+        0.2,
+        3.0
+      ],
+      [
+        0.2,
+        5.0
+      ],
+      [
+        0.2,
+        10.0
+      ]
+    ]
+  },
+  "outputs_sha256": {
+    "power_grid_dev_k24.csv": "d55d61da84d11b455577a0df8950eb330fa2d3b7f5e05992f9fac1cc8ca7bee3"
+  }
+}
