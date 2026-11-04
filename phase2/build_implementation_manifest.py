@@ -1,4 +1,4 @@
-"""Build or check phase2/IMPLEMENTATION_MANIFEST.md (PREREGISTRATION Amendment 1 item 14, Amendment 2 items 2-7).
+"""Build or check phase2/IMPLEMENTATION_MANIFEST.md (PREREGISTRATION Amendment 1 item 14, Amendment 2 items 2-7, Amendment 3).
 
 The manifest hashes every executable choice of the Phase-2 study: trainer, label builder, prompt text, chat template
 and tokenizer/config files (by pinned revision), generation configuration, engine, scorer v1, numeric_literal_v1 and
@@ -26,7 +26,7 @@ for entry in (ROOT, ROOT / "test1_pilot"):
     if str(entry) not in sys.path:
         sys.path.insert(0, str(entry))
 
-from hinglish_pilot import engine, hf_backend  # noqa: E402
+from hinglish_pilot import data as engine_data, engine, hf_backend  # noqa: E402
 from t4_smoke import phase2_eval, protocol, train_phase2, train_smoke  # noqa: E402
 
 # Values fixed in PREREGISTRATION §1/§4; the manifest refuses to describe files that differ from them.
@@ -34,25 +34,10 @@ PREREGISTERED = {
     "test1_pilot/hinglish_pilot/scorer_v1.py": "c48f9d12e733eb1bfe5af5b1fece6e3ff69cb2342a97fe3ba8ac9f01f68dbbbc",
     "secondary_analysis/numeric_endpoint.py": "ce70aefd1f4c03ffe80bbd06d4df025abe92fc0865732b6d2e6db13504ed883f",
 }
-# Files of Qwen/Qwen3-4B at the pinned revision (SHA-256 of the bytes served by the Hub at that revision, measured
-# 3 Nov 2026; the four tokenizer files also match the local Hub cache). The notebooks re-download and verify them.
-HUB_FILES = {
-    "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
-    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
-    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
-    "model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
-    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
-    "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
-    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
-}
-CHAT_TEMPLATE = {  # tokenizer_config.json["chat_template"] at the pinned revision (4,168 characters)
-    "source": "tokenizer_config.json at the pinned revision (no chat_template.jinja exists there)",
-    "digest": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
-    "digest_definition": "train_smoke.digest(template) = SHA-256 of json.dumps(template) in UTF-8; recorded at run time "
-                         "as chat_template_sha256 by the trainer and by the engine backend",
-    "utf8_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
-    "kwargs": {"enable_thinking": False, "add_generation_prompt": True},
-}
+# Files of Qwen/Qwen3-4B at the pinned revision and its chat template: one source, t4_smoke/train_phase2.py, which
+# verifies them at its executable boundary (Sol re-review B2). The notebooks re-download and verify them too.
+HUB_FILES = train_phase2.HUB_FILES
+CHAT_TEMPLATE = train_phase2.CHAT_TEMPLATE
 EOS_STOPPING = {
     "training_target": "reference_solution_en + '<|im_end|>' (id 151645), encoded separately from the prompt; the "
                        "last supervised token is asserted to be <|im_end|>",
@@ -147,6 +132,11 @@ def build():
     if train_phase2.phase2_dataset(ROOT)["families_sha256"] != train_phase2.TRAIN_FAMILIES_SHA256:
         raise ValueError("TRAIN families differ from train_phase2.TRAIN_FAMILIES_SHA256")
     hub_cache_check()
+    dev_dataset, dev_splits = phase2_eval.inputs((ROOT / phase2_eval.FROZEN["dev"][0]).read_bytes(), "dev",
+                                                  phase2_eval.split_identities(ROOT))
+    if (engine_data.digest(dev_dataset), engine_data.digest(dev_splits)) != (train_phase2.DEV_DATASET_SHA256,
+                                                                             train_phase2.DEV_SPLIT_SHA256):
+        raise ValueError("Frozen DEV engine identities differ from train_phase2.DEV_DATASET_SHA256/DEV_SPLIT_SHA256")
     builder = load_notebook_builder()
     configs = {split: phase2_eval.config_for(split) for split in phase2_eval.FROZEN}
     decoding_keys = ("model_id", "seed", "max_new_tokens", "context_limit", "thinking", "do_sample", "num_beams",
@@ -155,7 +145,7 @@ def build():
     return {
         "schema": SCHEMA,
         "preregistration": {"path": "phase2/PREREGISTRATION.md", "sha256": sha256_file("phase2/PREREGISTRATION.md"),
-                            "includes": "Amendments 1 (D045) and 2 (D046)"},
+                            "includes": "Amendments 1 (D045), 2 (D046) and 3 (D047)"},
         "groups": files_by_group,
         "files": dict(sorted(files.items())),
         "preregistered_hashes_verified": PREREGISTERED,
@@ -180,6 +170,36 @@ def build():
             "engine_seed": phase2_eval.ENGINE_SEED, "retry_policy": "at most one unchanged-configuration "
             "infrastructure retry per prompt; a successfully generated response is never retried; OOM never retried",
             "final_test_output": "sealed: completion, checksum and infrastructure status only (Amendment 1 item 14)"},
+        "baseline_dev": {
+            "record": train_phase2.BASELINE_RECORD, "results_zip": f"{train_phase2.BASELINE_RUN}_results.zip",
+            "prompts": train_phase2.BASELINE_PROMPTS, "mode": train_phase2.BASELINE_MODE,
+            "dev_file": {"path": phase2_eval.FROZEN["dev"][0], "sha256": phase2_eval.FROZEN["dev"][1]},
+            "dataset_sha256": train_phase2.DEV_DATASET_SHA256, "split_sha256": train_phase2.DEV_SPLIT_SHA256,
+            "config_sha256": engine_data.digest(configs["dev"]), "engine_code_sha256": engine.code_hash(),
+            "digest_definition": "hinglish_pilot.data.digest (compact sorted JSON), as run_manifest.json records them",
+            "required_members": list(train_phase2.BASELINE_MEMBERS) + ["source/*.py (the engine group above)"],
+            "rule": "Amendment 3 item 3: the trainer's prerequisite, the freeze and the FinalTest gate validate the actual "
+                    "results ZIP: complete export with consistent checksums, engine source equal to the engine group, "
+                    "recomputed config/dataset/split/code digests equal to these, the registered execution and "
+                    "environment (archive_environment) and exactly 120 resolved generations; the evaluation driver "
+                    "authenticates its running code against this manifest before binding a run"},
+        "archive_environment": {
+            "rule": "Amendment 3 item 3: every Phase-2 engine archive records these; the trainer (baseline) and the "
+                    "analysis check them against this manifest and PREREGISTRATION §2/§4",
+            "fields": {"backend": "run_manifest.json['backend'] and every run_manifest.json['sessions'][i]['backend'] "
+                                  "(hinglish_pilot.hf_backend.HFBackend.metadata)",
+                       "hardware": "backend['hardware'] (CUDA device name; must contain 'T4')",
+                       "capability": "backend['capability'] (list, must be [7, 5])",
+                       "gpu_verified": "backend['gpu_verified'] (must be true)",
+                       "attention": "backend['attention']", "dtype": "backend['compute_dtype']",
+                       "quantization": "backend['quantization'] (BitsAndBytesConfig.to_dict())",
+                       "packages": "environment.json['packages'] and every sessions[i]['environment']['packages'] "
+                                   "(hinglish_pilot.engine.environment(PHASE2_PACKAGES), which includes peft)",
+                       "execution_digest": "run_manifest.json['execution_sha256'] = digest({'backend', 'environment'})"},
+            "hardware_contains": "T4", "capability": train_phase2.T4_CAPABILITY, "execution": train_phase2.EXECUTION,
+            "quantization": train_phase2.QUANTIZATION,
+            "packages": dict(hf_backend.PINS, **hf_backend.ADAPTER_PINS),
+            "recorded_packages": list(engine.PHASE2_PACKAGES)},
         "eos_stopping": EOS_STOPPING,
         "dtype_preparation": DTYPE_PREPARATION,
         "training": {"recipe_sha256": train_smoke.digest(train_phase2.RECIPE), "grad_scaler": train_phase2.SCALER,
@@ -201,7 +221,19 @@ def build():
                                                 "DEV run under this manifest; its results-ZIP SHA-256 is in every start "
                                                 "event and in ADAPTERS_FROZEN.md"},
                      "identical_across_attempts": "Amendment 2 item 7: configuration and implementation identity in "
-                                                  "every start event; a different one is refused"},
+                                                  "every start event; a different one is refused",
+                     "executable_boundary": "Sol re-review B2: inside every attempt the trainer re-verifies this manifest "
+                                            "against its code and registered values, re-downloads model.hub_files at the "
+                                            "pinned revision and compares their bytes, and compares the loaded chat "
+                                            "template with model.chat_template; a mismatch is a protocol failure",
+                     "writer_ownership": {"lock": train_phase2.WRITER_LOCK, "schema": train_phase2.WRITER_SCHEMA,
+                                          "heartbeat_seconds": train_phase2.HEARTBEAT_SECONDS,
+                                          "recoveries": train_phase2.WRITER_RECOVERIES,
+                                          "rule": "Amendment 3 item 2: one writer per training root, with a session ID "
+                                                  "and heartbeat; the STARTED report is written before model loading; an "
+                                                  "open attempt is never closed automatically; only RECOVER_STALE_WRITER "
+                                                  "= True (operator confirmed no other session) logs the recovery, closes "
+                                                  "the open attempt as infrastructure and releases the lock"}},
         "dependencies": {"python": "recorded per run (Colab default)",
                          "torch": train_smoke.TORCH_BUILD + " (Colab build; never installed; required exactly)",
                          "torch_build": train_smoke.TORCH_BUILD,
@@ -213,13 +245,14 @@ def build():
 
 def render(document):
     return (
-        "# Phase-2 implementation manifest (PREREGISTRATION Amendment 1 item 14, Amendment 2)\n\n"
+        "# Phase-2 implementation manifest (PREREGISTRATION Amendment 1 item 14, Amendments 2 and 3)\n\n"
         "Generated by `python3 -B phase2/build_implementation_manifest.py`; verify with `--check`. Do not edit by hand.\n\n"
         "- Commit this file **before the first Phase-2 DEV generation**. The DEV-baseline and Train notebooks embed it "
         "with its SHA-256 and refuse to run if any embedded code or data differs from it.\n"
         "- The trainer rechecks it against the running code and the frozen TRAIN/exposure files before every attempt, "
         "and refuses an attempt whose manifest differs from earlier attempts or from the unchanged-DEV baseline's.\n"
-        "- It is rechecked at adapter freeze against the real files and every start event: every retained run records "
+        "- It is rechecked at adapter freeze against the real files, the current builder (every non-file entry and the "
+        "required file set) and every start event: every retained run records "
         "this file's SHA-256, and `phase2/ADAPTERS_FROZEN.md` and the FinalTest gate require it.\n"
         "- Any change to a hashed file needs a regenerated manifest and rebuilt notebooks before use.\n\n"
         "```json\n" + json.dumps(document, indent=1, ensure_ascii=False) + "\n```\n"

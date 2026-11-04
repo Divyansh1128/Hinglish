@@ -1,4 +1,4 @@
-"""Phase-2 QLoRA training for Qwen3-4B (D043; binding plan phase2/PREREGISTRATION.md §3 with Amendments 1 and 2).
+"""Phase-2 QLoRA training for Qwen3-4B (D043; binding plan phase2/PREREGISTRATION.md §3 with Amendments 1-3).
 
 Reuses the GPU-verified D021 smoke code (train_smoke.py: labels, model load, digests, memory sampler) without
 modifying it. New here: the frozen exposure order (Amendment 1 item 9), the learning-rate schedule, the run seed,
@@ -9,6 +9,7 @@ with the seed/reserve plan (item 11; typed classes per Amendment 2 item 2), chec
   python3 t4_smoke/train_phase2.py train --train-root TRAIN_ROOT --inputs INPUTS_DIR --baseline-dir BASELINE_DIR \
       [--arm EC --seed 11 --slot 11 --attempt 1]   # the plan chooses the run; the optional four only assert it
   python3 t4_smoke/train_phase2.py train ... --resume      # engineering only: a resumed run is never valid (item 11)
+  python3 t4_smoke/train_phase2.py train ... --recover-stale-writer  # only after confirming no other session runs
   python3 t4_smoke/train_phase2.py plan --train-root TRAIN_ROOT       # attempt log, seed slots, reserves, next run
   python3 t4_smoke/train_phase2.py pairing --train-root TRAIN_ROOT
 
@@ -17,8 +18,12 @@ repository; inputs/ in the Train notebook). Before any attempt is opened the tra
 (Amendment 2 item 4), requires a complete unchanged-model DEV run under the same implementation manifest (item 6),
 refuses a configuration or implementation that differs from earlier attempts (item 7) and refuses any stack other
 than the exact §2 stack on a T4 (item 3). Inside the attempt it verifies the implementation manifest against the
-running code, the TRAIN bytes against their frozen hashes and the exposure order against its frozen hash; a
-mismatch is a protocol failure. Training never reads DEV or FINAL_TEST. Model-free parts use the standard library
+running code, the TRAIN bytes against their frozen hashes and the exposure order against its frozen hash, then the
+downloaded Hub tokenizer/config files and the loaded chat template against the manifest (Amendment 3 / B2); a
+mismatch is a protocol failure. The baseline prerequisite validates the actual results ZIP: frozen DEV, registered
+configuration, execution and environment, engine identity and exactly 120 resolved generations (Amendment 3 item 3).
+One session at a time writes a training root (WRITER.lock with session ID and heartbeat; Amendment 3 item 2): an
+attempt left open is never closed automatically, only by --recover-stale-writer after the operator's confirmation. Training never reads DEV or FINAL_TEST. Model-free parts use the standard library
 only; torch, transformers, bitsandbytes and PEFT are imported lazily inside the GPU commands.
 """
 import argparse
@@ -28,11 +33,16 @@ import json
 import math
 import os
 import random
+import re
 import shutil
+import socket
 import sys
+import threading
 import time
 import traceback
+import uuid
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 try:
@@ -73,6 +83,50 @@ BASELINE_RUN = "base"
 BASELINE_RECORD = f"{BASELINE_RUN}_baseline_record.json"
 BASELINE_SCHEMA = "phase2-baseline-dev-1"
 BASELINE_PROMPTS = 120
+BASELINE_MODE = "phase2_dev"
+# Amendment 3 item 3 (B3): the frozen DEV inputs of that run as the engine digests them (hinglish_pilot.data.digest of
+# the dataset and split manifest phase2_eval.inputs builds from the frozen DEV file). The trainer never reads DEV: it
+# only compares a baseline archive with these; the tests and the manifest builder recompute them from the file.
+DEV_DATASET_SHA256 = "83e83f67769fb122cf8b899d7e08a3b5a045695c6a6a806dd10f34b782e0be27"
+DEV_SPLIT_SHA256 = "ac3e4a4620da80da6f0d599bb684476ee765c2ec2063c6757368f08665416964"
+ENGINE_PREFIX = "test1_pilot/hinglish_pilot/"
+# Members of a complete engine export (hinglish_pilot.report.export) besides source/*.py; a baseline ZIP must hold all.
+BASELINE_MEMBERS = ("run_manifest.json", "environment.json", "experiment_config.json", "dataset_snapshot.jsonl",
+                    "dataset.json", "split_manifest.json", "generation_attempts.jsonl", "predictions.csv",
+                    "family_comparisons.csv", "metrics.json", "summary.md", "manual_audit.csv", "errors.jsonl",
+                    "evaluation_order.json", "checksums.sha256")
+# Files of Qwen/Qwen3-4B at the pinned revision (SHA-256 of the bytes served by the Hub at that revision, measured
+# 3 Nov 2026; the tokenizer files also match the local Hub cache). Amendment 3 / B2: the trainer re-downloads and
+# verifies them at its executable boundary, and compares the loaded chat template with CHAT_TEMPLATE.
+HUB_FILES = {
+    "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+}
+CHAT_TEMPLATE = {  # tokenizer_config.json["chat_template"] at the pinned revision (4,168 characters)
+    "source": "tokenizer_config.json at the pinned revision (no chat_template.jinja exists there)",
+    "digest": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+    "digest_definition": "train_smoke.digest(template) = SHA-256 of json.dumps(template) in UTF-8; recorded at run time "
+                         "as chat_template_sha256 by the trainer and by the engine backend",
+    "utf8_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "kwargs": {"enable_thinking": False, "add_generation_prompt": True},
+}
+# §2/§4 execution facts every Phase-2 engine archive records in run_manifest.json["backend"] and every session
+# (Amendment 3 item 3); hinglish_pilot.hf_backend.HFBackend.metadata writes exactly these keys.
+T4_CAPABILITY = [7, 5]
+EXECUTION = {"backend": "huggingface", "gpu_verified": True, "attention": "sdpa with math kernel only",
+             "compute_dtype": "float16"}
+QUANTIZATION = {"load_in_4bit": True, "bnb_4bit_quant_type": "nf4", "bnb_4bit_use_double_quant": True,
+                "bnb_4bit_compute_dtype": "float16"}
+# Amendment 3 item 2 (B4): one writer per training root.
+WRITER_LOCK = "WRITER.lock"
+WRITER_SCHEMA = "phase2-writer-lock-1"
+WRITER_RECOVERIES = "WRITER_RECOVERIES.jsonl"
+HEARTBEAT_SECONDS = 30
 FAILURE_CLASSES = ("infrastructure", "numerical", "protocol")
 OUTCOMES = ("valid", "resumed_invalid") + FAILURE_CLASSES
 EXIT_CODES = {"refused": 2, "infrastructure": 1, "numerical": 3, "protocol": 4}
@@ -300,11 +354,49 @@ def parse_manifest(text):
     return document
 
 
+def engine_digest(value):
+    """hinglish_pilot.data.digest (compact, sorted JSON): the engine's config/dataset/split/code/record identities."""
+    return ts.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, allow_nan=False,
+                                separators=(",", ":")).encode("utf-8"))
+
+
+def manifest_constant_problems(manifest):
+    """Registered entries of IMPLEMENTATION_MANIFEST.md that this module fixes itself (empty list: all agree)."""
+    files = manifest.get("files")
+    if not isinstance(files, dict):
+        return ["files (none listed)"]
+    problems = [f"Implementation manifest records another {name}" for name, expected in ts.TRAIN_FILES.items()
+                if files.get(name) != expected]
+    if files.get(EXPOSURE_ORDER_PATH) != EXPOSURE_ORDER_SHA256:
+        problems.append("Implementation manifest records another EXPOSURE_ORDER.json")
+    with protocol_assertions("IMPLEMENTATION_MANIFEST.md"):
+        model, training, dependencies = manifest["model"], manifest["training"], manifest["dependencies"]
+        checks = {
+            "exposure order": manifest["exposure_order"]["sha256"] == EXPOSURE_ORDER_SHA256,
+            "recipe": training["recipe_sha256"] == ts.digest(RECIPE),
+            "GradScaler": training["grad_scaler"] == SCALER,
+            "model": (model["id"], model["revision"]) == (ts.MODEL_ID, ts.MODEL_REVISION),
+            "tokenizer revision": model.get("tokenizer_revision") == ts.MODEL_REVISION,
+            "Hub files": model.get("hub_files") == HUB_FILES,  # B2: the loaded tokenizer/config files
+            "chat template": model.get("chat_template") == CHAT_TEMPLATE,
+            "training dependencies": dependencies["train"] == ts.PINS,
+            "torch build": dependencies["torch_build"] == ts.TORCH_BUILD,
+            "baseline DEV identities": (manifest.get("baseline_dev") or {}).get("dataset_sha256") == DEV_DATASET_SHA256
+                                       and manifest["baseline_dev"].get("split_sha256") == DEV_SPLIT_SHA256,
+        }
+    bad = [name for name, ok in checks.items() if not ok]
+    if bad:
+        problems.append("Implementation manifest differs from the trainer in: " + ", ".join(bad))
+    return problems
+
+
 def verify_implementation(inputs, code_dir=None):
     """Recheck IMPLEMENTATION_MANIFEST.md against what this process actually runs and reads (Amendment 2 item 7).
 
-    Checks the trainer's own source files, the frozen TRAIN and exposure-order hashes, the recipe, GradScaler, model
-    revision and the exact dependency stack. Returns (manifest document, manifest SHA-256)."""
+    Checks the trainer's own source files, the frozen TRAIN and exposure-order hashes, the recipe, GradScaler,
+    model and tokenizer revision, the Hub tokenizer/config hashes and chat template it registers (B2; the downloaded
+    bytes are verified by verify_hub_files and the loaded template by verify_chat_template inside the attempt), the
+    baseline DEV identities and the exact dependency stack. Returns (manifest document, manifest SHA-256)."""
     raw = (Path(inputs) / MANIFEST_NAME).read_bytes()
     with protocol_assertions("IMPLEMENTATION_MANIFEST.md"):
         text = raw.decode("utf-8")
@@ -316,35 +408,251 @@ def verify_implementation(inputs, code_dir=None):
         actual = file_sha256(code_dir / name)
         require(files.get(f"t4_smoke/{name}") == actual,
                 f"t4_smoke/{name} (SHA-256 {actual}) differs from the implementation manifest")
-    for name, expected in ts.TRAIN_FILES.items():
-        require(files.get(name) == expected, f"Implementation manifest records another {name}")
-    require(files.get(EXPOSURE_ORDER_PATH) == EXPOSURE_ORDER_SHA256, "Implementation manifest records another EXPOSURE_ORDER.json")
-    with protocol_assertions("IMPLEMENTATION_MANIFEST.md"):
-        checks = {
-            "exposure order": manifest["exposure_order"]["sha256"] == EXPOSURE_ORDER_SHA256,
-            "recipe": manifest["training"]["recipe_sha256"] == ts.digest(RECIPE),
-            "GradScaler": manifest["training"]["grad_scaler"] == SCALER,
-            "model": (manifest["model"]["id"], manifest["model"]["revision"]) == (ts.MODEL_ID, ts.MODEL_REVISION),
-            "training dependencies": manifest["dependencies"]["train"] == ts.PINS,
-            "torch build": manifest["dependencies"]["torch_build"] == ts.TORCH_BUILD,
-        }
-    bad = [name for name, ok in checks.items() if not ok]
-    require(not bad, "Implementation manifest differs from the trainer in: " + ", ".join(bad))
+    problems = manifest_constant_problems(manifest)
+    require(not problems, "; ".join(problems))
     return manifest, ts.sha256(raw)
 
 
-def verify_baseline(baseline_dir, manifest_sha256):
-    """Amendment 2 item 6: the complete unchanged-model DEV run under the same implementation manifest.
+def verify_hub_files(manifest):
+    """B2 (Amendment 2 item 7 at the executable boundary): download the tokenizer, config and generation files of the
+    pinned revision (the cache the tokenizer and model load from) and compare their bytes with the manifest, which
+    verify_implementation has already compared with HUB_FILES. A download error stays a network/Hub infrastructure
+    failure; a differing file is a ProtocolError. Returns {file: SHA-256}."""
+    hub_files = manifest["model"]["hub_files"]
+    require(hub_files == HUB_FILES, "Implementation manifest registers other Hub files than the trainer")
+    from huggingface_hub import hf_hub_download
+    found = {}
+    for name, expected in sorted(hub_files.items()):
+        path = hf_hub_download(ts.MODEL_ID, name, revision=ts.MODEL_REVISION, token=ts.hf_token())
+        actual = ts.file_sha256(path)
+        require(actual == expected, f"{name} at the pinned revision has SHA-256 {actual}, implementation manifest {expected}")
+        found[name] = actual
+    return found
 
-    Returns the SHA-256 of its results ZIP; raises Refused if the run is missing, incomplete, of another kind, made
-    under another implementation manifest, or its ZIP differs from the record."""
+
+def verify_chat_template(tokenizer, manifest):
+    """B2: the chat template of the tokenizer this process loaded must be the manifest's (digest and UTF-8 bytes)."""
+    template = getattr(tokenizer, "chat_template", None)
+    require(isinstance(template, str) and template, "The loaded tokenizer has no chat template")
+    registered = manifest["model"]["chat_template"]
+    require(registered == CHAT_TEMPLATE, "Implementation manifest registers another chat template than the trainer")
+    actual = ts.digest(template)
+    require(actual == registered["digest"] and ts.sha256(template.encode("utf-8")) == registered["utf8_sha256"],
+            f"Loaded chat template (digest {actual}) differs from the implementation manifest {registered['digest']}")
+    return actual
+
+
+# ---------------------------------------------------------------- the unchanged-model DEV baseline (Amendment 2 item 6, Amendment 3 item 3; B3)
+
+def execution_problems(run, environment, manifest, adapter=None):
+    """Why an engine run's recorded execution is not the registered one (empty list: it is). Amendment 3 item 3:
+
+    run_manifest.json["backend"] (and every entry of ["sessions"]) must record a Tesla T4 with capability [7, 5],
+    gpu_verified True, the registered attention/dtype/NF4 settings, the pinned model and tokenizer revision, the
+    manifest's chat template, the expected adapter and the base shard hashes; environment.json["packages"] must equal
+    the manifest's evaluation pins plus PEFT; the recorded execution digest must recompute."""
+    problems = []
+    backend = run.get("backend") if isinstance(run.get("backend"), dict) else {}
+    hardware = backend.get("hardware")
+    if not (isinstance(hardware, str) and "T4" in hardware):
+        problems.append(f"backend hardware {hardware!r} is not a Tesla T4")
+    if backend.get("capability") != T4_CAPABILITY:
+        problems.append(f"backend capability {backend.get('capability')!r}, registered {T4_CAPABILITY}")
+    for key, value in EXECUTION.items():
+        if backend.get(key) != value:
+            problems.append(f"backend {key} {backend.get(key)!r}, registered {value!r}")
+    quantization = backend.get("quantization") if isinstance(backend.get("quantization"), dict) else {}
+    for key, value in QUANTIZATION.items():
+        if quantization.get(key) != value:
+            problems.append(f"quantization {key} {quantization.get(key)!r}, registered {value!r}")
+    for key in ("model_revision", "tokenizer_revision"):
+        if backend.get(key) != ts.MODEL_REVISION:
+            problems.append(f"backend {key} {backend.get(key)!r} is not the pinned revision")
+    if backend.get("chat_template_sha256") != manifest["model"]["chat_template"]["digest"]:
+        problems.append("backend chat template differs from the implementation manifest")
+    if backend.get("adapter", "missing") != adapter:
+        problems.append(f"backend adapter {backend.get('adapter', 'missing')!r}, expected {adapter!r}")
+    shards = backend.get("base_weight_shards_sha256")
+    if not (isinstance(shards, dict) and shards and all(re.fullmatch("[0-9a-f]{64}", str(v)) for v in shards.values())):
+        problems.append("backend records no base weight shard hashes")
+    pins = dict(manifest["dependencies"]["evaluation"], **manifest["dependencies"]["adapter_evaluation"])
+    packages = (environment or {}).get("packages") if isinstance((environment or {}).get("packages"), dict) else {}
+    wrong = [f"{name} {packages.get(name)!r} (registered {pin})" for name, pin in sorted(pins.items()) if packages.get(name) != pin]
+    if wrong:
+        problems.append("environment packages differ from the registered stack: " + ", ".join(wrong))
+    sessions = run.get("sessions")
+    if not (isinstance(sessions, list) and sessions):
+        problems.append("no recorded session")
+    else:
+        for number, session in enumerate(sessions, 1):
+            if not isinstance(session, dict) or session.get("environment") != environment or session.get("backend") != backend:
+                problems.append(f"session {number} recorded another environment or backend")
+    if run.get("execution_sha256") != engine_digest({"backend": backend, "environment": environment}):
+        problems.append("execution digest does not recompute from the recorded backend and environment")
+    return problems
+
+
+def generation_problems(run, config, journal, errors, order):
+    """Why the journal of a complete engine run does not hold exactly one resolved generation per evaluated rendering
+    (empty list: it does). Every record's own digest must recompute, belong to this run and configuration, follow
+    the engine's attempt rules (consecutive attempts, at most the configured retries, a generated response is final
+    and never retried) and be a scored generation of the pinned model."""
+    problems, by_rendering = [], {}
+    for number, item in enumerate(journal, 1):
+        if not isinstance(item, dict) or item.get("record_sha256") != engine_digest({k: v for k, v in item.items() if k != "record_sha256"}):
+            problems.append(f"journal record {number} was edited (record digest does not recompute)")
+            continue
+        if item.get("run_id") != run.get("run_id") or item.get("config_sha256") != run.get("config_sha256"):
+            problems.append(f"journal record {number} belongs to another run or configuration")
+            continue
+        by_rendering.setdefault(item.get("rendering_id"), []).append(item)
+    unexpected = sorted(set(by_rendering) - set(order), key=str)
+    if unexpected:
+        problems.append(f"journal holds renderings outside the evaluation order: {unexpected[:3]}")
+    allowed = 1 + config.get("max_infrastructure_retries", 0)
+    resolved = 0
+    for rendering in order:
+        history = sorted(by_rendering.get(rendering, []), key=lambda item: item.get("attempt_number", 0))
+        numbers = [item.get("attempt_number") for item in history]
+        if numbers != list(range(1, len(history) + 1)) or len(history) > allowed:
+            problems.append(f"{rendering}: attempts {numbers} break the engine's attempt rules")
+            continue
+        if any(item.get("status") not in ("generated", "infrastructure_failure") for item in history):
+            problems.append(f"{rendering}: an attempt has an unfinished or unknown status")
+            continue
+        generated = [item for item in history if item["status"] == "generated"]
+        if not generated:
+            continue
+        final = generated[0]
+        if len(generated) > 1 or final is not history[-1]:
+            problems.append(f"{rendering}: a generated response was retried")
+        elif not (isinstance(final.get("raw_response"), str) and type(final.get("correct")) is bool
+                  and final.get("model_revision") == ts.MODEL_REVISION and final.get("mode") == config.get("mode")):
+            problems.append(f"{rendering}: the generated record is not a scored generation of the pinned model")
+        else:
+            resolved += 1
+    if resolved != len(order) or len(order) != BASELINE_PROMPTS:
+        problems.append(f"{resolved} resolved generations over {len(order)} renderings; exactly {BASELINE_PROMPTS} required")
+    if run.get("attempts") != len(journal):
+        problems.append("run_manifest.json attempts differ from the journal")
+    if errors != [item for item in journal if isinstance(item, dict) and item.get("status") != "generated"]:
+        problems.append("errors.jsonl differs from the journal")
+    return problems
+
+
+def baseline_archive_problems(archive, record, manifest):
+    """Why the baseline results ZIP is not the complete registered unchanged-model DEV run (empty list: it is).
+
+    Validates the actual archive, not its metadata: the complete engine export with consistent checksums; the
+    engine source snapshot against the manifest's engine files; the recomputed config, dataset, split and code
+    digests against the run manifest, the record, the frozen DEV identities and the registered DEV configuration;
+    the evaluation order; the registered execution settings and environment (execution_problems); and exactly 120
+    resolved generations in the journal (generation_problems)."""
+    with zipfile.ZipFile(archive) as z:
+        names = z.namelist()
+        if len(set(names)) != len(names) or any(name.startswith("/") or ".." in Path(name).parts for name in names):
+            return ["results ZIP has duplicate or unsafe member names"]
+        members = {name: z.read(name) for name in names}
+    missing = [name for name in BASELINE_MEMBERS if name not in members]
+    if missing:
+        return ["results ZIP is not a complete engine export; it lacks " + ", ".join(missing)]
+    problems = []
+    listed = {}
+    for line in members["checksums.sha256"].decode("utf-8").splitlines():
+        checksum, _, name = line.partition("  ")
+        listed[name] = checksum
+    if set(listed) != set(members) - {"checksums.sha256"}:
+        problems.append("checksums.sha256 does not list exactly the archive members")
+    changed = sorted(name for name, checksum in listed.items() if name in members and ts.sha256(members[name]) != checksum)
+    if changed:
+        problems.append("members differ from checksums.sha256: " + ", ".join(changed[:5]))
+    load = lambda name: json.loads(members[name])  # noqa: E731
+    rows = lambda name: [json.loads(line) for line in members[name].decode("utf-8").splitlines() if line.strip()]  # noqa: E731
+    run, config, dataset, splits, environment, order = (load(name) for name in (
+        "run_manifest.json", "experiment_config.json", "dataset.json", "split_manifest.json", "environment.json",
+        "evaluation_order.json"))
+    files, groups = manifest["files"], manifest.get("groups") or {}
+    # engine identity: the source snapshot the run executed equals the manifest's engine files
+    expected_sources = {path[len(ENGINE_PREFIX):]: files.get(path) for path in groups.get("engine", [])
+                        if path.startswith(ENGINE_PREFIX)}
+    sources = {name[len("source/"):]: ts.sha256(content) for name, content in members.items() if name.startswith("source/")}
+    if not expected_sources or sources != expected_sources:
+        problems.append("engine source snapshot differs from the implementation manifest's engine files")
+    code = engine_digest(sources)
+    if not (run.get("code_sha256") == code == record.get("code_sha256") == engine_digest(expected_sources)):
+        problems.append("engine code identity does not match the implementation manifest")
+    # configuration: recomputed digest, and the registered DEV configuration
+    generation = manifest["generation_config"]
+    if not (engine_digest(config) == run.get("config_sha256") == record.get("config_sha256")):
+        problems.append("config digest does not recompute from experiment_config.json")
+    if ts.digest(config) != generation["engine_config_sha256"]["dev"]:
+        problems.append("experiment_config.json is not the registered DEV configuration")
+    wrong = sorted(key for key, value in generation["decoding"].items() if config.get(key) != value)
+    if wrong:
+        problems.append("execution settings differ from the registered decoding: " + ", ".join(wrong))
+    if (config.get("mode"), config.get("adapter", "missing"), config.get("model_id"), config.get("model_revision"),
+            config.get("tokenizer_revision")) != (BASELINE_MODE, None, ts.MODEL_ID, ts.MODEL_REVISION, ts.MODEL_REVISION):
+        problems.append("not an unchanged-model DEV configuration of the pinned model")
+    if (ts.sha256(str(config.get("instruction")).encode("utf-8")), config.get("prompt_version")) != (
+            manifest["prompt"]["instruction_sha256"], manifest["prompt"]["version"]):
+        problems.append("prompt differs from the registered instruction")
+    # frozen DEV data and its source snapshot
+    baseline_dev = manifest.get("baseline_dev") or {}
+    if not (engine_digest(dataset) == run.get("dataset_sha256") == record.get("dataset_sha256") == DEV_DATASET_SHA256
+            == baseline_dev.get("dataset_sha256")):
+        problems.append("dataset is not the frozen DEV dataset")
+    if not (engine_digest(splits) == run.get("split_sha256") == DEV_SPLIT_SHA256 == baseline_dev.get("split_sha256")):
+        problems.append("split manifest is not the frozen DEV split")
+    families = dataset.get("families") if isinstance(dataset.get("families"), list) else []
+    snapshot = [dict(family, dataset_version=dataset.get("version"), schema_version=dataset.get("schema_version"),
+                     kind=dataset.get("kind"), borrowing_policy=dataset.get("borrowing_policy")) for family in families]
+    if rows("dataset_snapshot.jsonl") != snapshot:
+        problems.append("dataset_snapshot.jsonl differs from dataset.json")
+    renderings = sorted(family["forms"][form]["rendering_id"] for family in families for form in ("E", "R", "C"))
+    shuffled = list(renderings)
+    random.Random(config.get("seed")).shuffle(shuffled)
+    if not (order == run.get("evaluation_order") == shuffled):
+        problems.append("evaluation order is not the engine-seed order of the DEV renderings")
+    # completeness, execution and the generations themselves
+    if (run.get("status"), run.get("mode"), run.get("expected"), run.get("completed"), run.get("unresolved")) != (
+            "COMPLETE", BASELINE_MODE, BASELINE_PROMPTS, BASELINE_PROMPTS, 0):
+        problems.append("run_manifest.json is not a COMPLETE 120/120 unchanged-model DEV run")
+    if run.get("run_id") != record.get("run_id"):
+        problems.append("record and archive name different runs")
+    problems += execution_problems(run, environment, manifest)
+    problems += generation_problems(run, config, rows("generation_attempts.jsonl"), rows("errors.jsonl"), order)
+    return problems
+
+
+def read_manifest(manifest):
+    """(document, SHA-256) of the IMPLEMENTATION_MANIFEST.md file at ``manifest``. A bare SHA-256 is refused: a hash
+    alone cannot validate an archive (Sol re-review B3)."""
+    if isinstance(manifest, str) and re.fullmatch("[0-9a-f]{64}", manifest) and not Path(manifest).exists():
+        raise Refused("Validating the unchanged-model DEV baseline needs the implementation manifest file, not only its "
+                      "SHA-256 (Amendment 3 item 3); no attempt was opened.")
+    raw = Path(manifest).read_bytes()
+    try:
+        document = parse_manifest(raw.decode("utf-8"))
+    except (ValueError, UnicodeDecodeError) as error:
+        raise Refused(f"Unreadable implementation manifest {manifest}: {error}; no attempt was opened.") from None
+    return document, ts.sha256(raw)
+
+
+def verify_baseline(baseline_dir, manifest):
+    """Amendment 2 item 6 with Amendment 3 item 3 (B3): the validated complete unchanged-model DEV run under the
+    implementation manifest file ``manifest``.
+
+    The record must describe a complete run under that manifest and name the results ZIP by its SHA-256, and the ZIP
+    itself must be the complete registered 120-generation run (baseline_archive_problems). Returns the ZIP's SHA-256;
+    raises Refused otherwise (nothing is opened or logged)."""
     folder = Path(baseline_dir) if baseline_dir is not None else None
     if folder is None or not (folder / BASELINE_RECORD).is_file():
         raise Refused(f"No unchanged-model DEV run record ({BASELINE_RECORD}) in {folder}: run Phase2_Baseline_DEV to "
                       "completion first (PREREGISTRATION §5, Amendment 2 item 6). No attempt was opened.")
+    document, manifest_sha256 = read_manifest(manifest)
     try:
         record = json.loads((folder / BASELINE_RECORD).read_text(encoding="utf-8"))
-        expected = {"schema": BASELINE_SCHEMA, "run": BASELINE_RUN, "split": "dev", "mode": "phase2_dev", "adapter": None,
+        expected = {"schema": BASELINE_SCHEMA, "run": BASELINE_RUN, "split": "dev", "mode": BASELINE_MODE, "adapter": None,
                     "model_id": ts.MODEL_ID, "model_revision": ts.MODEL_REVISION, "status": "COMPLETE",
                     "completed": BASELINE_PROMPTS, "expected": BASELINE_PROMPTS, "unresolved": 0,
                     "results_zip": f"{BASELINE_RUN}_results.zip"}
@@ -358,15 +666,12 @@ def verify_baseline(baseline_dir, manifest_sha256):
         actual = file_sha256(archive) if archive.is_file() else None
         if actual is None or actual != record.get("results_zip_sha256"):
             raise Refused(f"{archive} is missing or differs from its recorded SHA-256; no attempt was opened.")
-        with zipfile.ZipFile(archive) as z:
-            run = json.loads(z.read("run_manifest.json"))
-            config = json.loads(z.read("experiment_config.json"))
-        if (run.get("status"), run.get("mode"), run.get("completed"), run.get("unresolved"), run.get("config_sha256"),
-                config.get("adapter", "missing"), config.get("model_id")) != (
-                "COMPLETE", "phase2_dev", BASELINE_PROMPTS, 0, record.get("config_sha256"), None, ts.MODEL_ID):
-            raise Refused("The baseline results ZIP is not a complete unchanged-model DEV run; no attempt was opened.")
-    except (KeyError, ValueError, zipfile.BadZipFile) as error:
+        problems = baseline_archive_problems(archive, record, document)
+    except (KeyError, IndexError, TypeError, AttributeError, ValueError, zipfile.BadZipFile) as error:
         raise Refused(f"Unreadable unchanged-model DEV baseline ({type(error).__name__}: {error}); no attempt was opened.") from None
+    if problems:
+        raise Refused("The baseline results ZIP is not a complete unchanged-model DEV run as registered (Amendment 3 "
+                      "item 3); no attempt was opened:\n- " + "\n- ".join(problems[:12]))
     return actual
 
 
@@ -952,7 +1257,7 @@ def next_run(current):
             if state["valid_attempt"] is not None:
                 continue
             if state["open"]:
-                raise Refused(f"{run_name(arm, seed)} has an attempt without a recorded outcome; run reconcile first.")
+                raise Refused(open_attempt_message(open_attempts(current)))
             number = len(state["attempts"]) + 1
             protocol(number <= MAX_ATTEMPTS, "Attempt limit reached without retirement (log inconsistent)")
             return {"kind": "train", "slot": slot, "seed": seed, "arm": arm, "attempt": number, "retry": number > 1,
@@ -974,23 +1279,216 @@ def resume_target(current, action, train_root):
     return last["attempt"]
 
 
-def reconcile(train_root):
-    """Close every started attempt that has no outcome yet (e.g. after a runtime disconnect), from its folder."""
-    log = Path(train_root) / ATTEMPT_LOG
-    closed = []
-    for name, history in plan(read_log(log))["attempts"].items():
+# ---------------------------------------------------------------- single writer per training root (Amendment 3 item 2; B4)
+
+def utc():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def read_writer_lock(train_root):
+    """The WRITER.lock content of ``train_root`` (dict), {"unreadable": ...} if it cannot be parsed, or None."""
+    path = Path(train_root) / WRITER_LOCK
+    try:
+        text = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return None
+    try:
+        content = json.loads(text)
+        return content if isinstance(content, dict) else {"unreadable": text[:200]}
+    except ValueError:
+        return {"unreadable": text[:200]}
+
+
+def heartbeat_age(holder):
+    """Seconds since the holder's last heartbeat, or None (informational only: a lock never expires by age)."""
+    try:
+        return max(0.0, (datetime.now(timezone.utc) - datetime.fromisoformat(holder["heartbeat_at"])).total_seconds())
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def describe_writer(train_root):
+    holder = read_writer_lock(train_root)
+    if holder is None:
+        return "Training-root writer lock: free (no session is writing this training root)."
+    age = heartbeat_age(holder)
+    return (f"Training-root writer lock HELD by session {holder.get('session_id')} (host {holder.get('host')}, pid "
+            f"{holder.get('pid')}) since {holder.get('acquired_at')}; last heartbeat {holder.get('heartbeat_at')}"
+            + (f" ({age:.0f} s ago)" if age is not None else "") + ".")
+
+
+def writer_held_message(train_root):
+    return (describe_writer(train_root) + " Only one session may write a training root (PREREGISTRATION Amendment 3 "
+            "item 2); no attempt was opened. If another Colab session is still loading or training, wait for it. A lock "
+            "never expires by itself, whatever its heartbeat age. Only after confirming that NO other session is running "
+            "the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run: the recovery is "
+            "logged, any open attempt is closed as an infrastructure failure and the lock is released.")
+
+
+class WriterLock:
+    """The single writer of a training root (Amendment 3 item 2). ``WRITER.lock`` is created exclusively and records
+    the session ID, host, pid and a heartbeat that a background thread refreshes every ``heartbeat_seconds`` while
+    the session runs. Another session's lock is never taken over or expired automatically: only
+    recover_stale_writer(), with the operator's confirmation, removes it. Limitation: the exclusive create is atomic
+    on one filesystem; across two Colab VMs sharing Drive it is cooperative (Drive sync is eventual), which is why
+    the heartbeat is shown to the operator and recovery needs an explicit confirmation."""
+
+    def __init__(self, train_root, session_id=None, heartbeat_seconds=HEARTBEAT_SECONDS):
+        self.root = Path(train_root)
+        self.path = self.root / WRITER_LOCK
+        self.session_id = session_id or uuid.uuid4().hex
+        self.heartbeat_seconds = heartbeat_seconds
+        self.heartbeat_error = None
+        self.content = None
+        self._stop = threading.Event()
+        self._thread = None
+
+    def acquire(self):
+        self.root.mkdir(parents=True, exist_ok=True)
+        now = utc()
+        content = {"schema": WRITER_SCHEMA, "session_id": self.session_id, "host": socket.gethostname(),
+                   "pid": os.getpid(), "acquired_at": now, "heartbeat_at": now, "heartbeats": 0,
+                   "rule": "PREREGISTRATION Amendment 3 item 2: one writer per training root"}
+        try:
+            fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
+        except FileExistsError:
+            raise Refused(writer_held_message(self.root)) from None
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            stream.write(json.dumps(content, sort_keys=True) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        self.content = content
+        if self.heartbeat_seconds:
+            self._thread = threading.Thread(target=self._beat_forever, name="writer-heartbeat", daemon=True)
+            self._thread.start()
+        return self
+
+    def owned(self):
+        holder = read_writer_lock(self.root)
+        return holder is not None and holder.get("session_id") == self.session_id
+
+    def beat(self):
+        """Refresh the heartbeat; False (and no write) once the lock is no longer this session's."""
+        if self.content is None or not self.owned():
+            return False
+        content = dict(self.content, heartbeat_at=utc(), heartbeats=self.content["heartbeats"] + 1)
+        temporary = self.path.with_name(f"{WRITER_LOCK}.{self.session_id}.tmp")
+        with temporary.open("w", encoding="utf-8") as stream:
+            stream.write(json.dumps(content, sort_keys=True) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, self.path)
+        self.content = content
+        return True
+
+    def _beat_forever(self):
+        while not self._stop.wait(self.heartbeat_seconds):
+            try:
+                if not self.beat():
+                    return
+            except OSError as error:  # a Drive hiccup: keep the lock, report it
+                self.heartbeat_error = f"{type(error).__name__}: {error}"
+
+    def release(self):
+        """Stop the heartbeat and remove the lock if (and only if) it is still this session's."""
+        self._stop.set()
+        if self._thread is not None:
+            self._thread.join(timeout=10)
+        if self.content is not None and self.owned():
+            self.path.unlink(missing_ok=True)
+            return True
+        return False
+
+    def __enter__(self):
+        return self.acquire()
+
+    def __exit__(self, *exc):
+        self.release()
+        return False
+
+
+def open_attempts(current):
+    """[(arm, seed, slot, attempt, closing event)] of every start/resume_start without a recorded outcome."""
+    pending = []
+    for name, history in current["attempts"].items():
+        arm, seed = name.split("-s")[0], int(name.split("-s")[1])
         for item in history:
-            arm, seed = name.split("-s")[0], int(name.split("-s")[1])
-            folder = attempt_dir(train_root, arm, seed, item["attempt"])
             if item["outcome"] is None:
-                outcome, detail = attempt_outcome(folder)
-                closed.append(log_event(log, "finish", arm=arm, seed=seed, slot=item["slot"], attempt=item["attempt"],
-                                        outcome=outcome, detail="reconciled: " + detail, report_sha256=report_sha(folder)))
+                pending.append((arm, seed, item["slot"], item["attempt"], "finish"))
             elif item["resumed"] and item.get("resume_outcome") is None:
-                outcome, detail = attempt_outcome(folder)
-                closed.append(log_event(log, "resume_finish", arm=arm, seed=seed, slot=item["slot"], attempt=item["attempt"],
-                                        outcome=outcome, detail="reconciled: " + detail, report_sha256=report_sha(folder)))
+                pending.append((arm, seed, item["slot"], item["attempt"], "resume_finish"))
+    return pending
+
+
+def open_attempt_message(pending):
+    names = ", ".join(f"{run_name(arm, seed)} attempt {attempt}" for arm, seed, _, attempt, _ in pending)
+    return (f"{names} has a start without a recorded outcome. Another session may still be loading or training it: an "
+            "open attempt is never treated as abandoned automatically (PREREGISTRATION Amendment 3 item 2). Only after "
+            "confirming that no other Colab session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: "
+            "--recover-stale-writer) and re-run; the attempt is then closed as an infrastructure failure.")
+
+
+def reconcile(train_root, *, confirmed_no_other_session=False, session_id=None, stale_session=None):
+    """Close the attempts left open (start without finish) — only with the operator's confirmation that no other
+    session is running (Amendment 3 item 2); without it, any open attempt is refused, never closed.
+
+    A confirmed open attempt is closed as an infrastructure failure (runtime disconnect or kill), unless its own
+    report already records a numerical or protocol failure: that class is kept, so a recovery can never turn a
+    halting failure into a retry. Returns the appended entries (empty when nothing is open)."""
+    log = Path(train_root) / ATTEMPT_LOG
+    pending = open_attempts(plan(read_log(log)))
+    if not pending:
+        return []
+    if confirmed_no_other_session is not True:
+        raise Refused(open_attempt_message(pending))
+    closed = []
+    for arm, seed, slot, attempt, event in pending:
+        folder = attempt_dir(train_root, arm, seed, attempt)
+        reported, detail = attempt_outcome(folder)
+        outcome = reported if reported in ("numerical", "protocol") else "infrastructure"
+        note = (f"the attempt's own report records a {reported} failure, which keeps its class ({detail})"
+                if outcome != "infrastructure" else f"runtime disconnect or kill; report on disk: {detail}")
+        closed.append(log_event(log, event, arm=arm, seed=seed, slot=slot, attempt=attempt, outcome=outcome,
+                                detail="stale-writer recovery confirmed by the operator (no other session running): " + note,
+                                report_sha256=report_sha(folder),
+                                recovery={"recovering_session": session_id, "stale_session": stale_session}))
     return closed
+
+
+def recover_stale_writer(train_root, *, confirmed_no_other_session=False, session_id=None):
+    """Amendment 3 item 2: after a killed runtime, with the operator's confirmation that no other session is running
+    (RECOVER_STALE_WRITER = True): log the recovery (WRITER_RECOVERIES.jsonl, timestamped), close every open attempt
+    (reconcile), then release the stale lock. Returns the record, or None when there is nothing to recover."""
+    if confirmed_no_other_session is not True:
+        raise Refused("Recovering a stale writer needs the operator's explicit confirmation that no other session is "
+                      "running (RECOVER_STALE_WRITER = True); nothing was changed.")
+    root = Path(train_root)
+    holder = read_writer_lock(root)
+    pending = open_attempts(plan(read_log(root / ATTEMPT_LOG)))
+    if holder is None and not pending:
+        print("RECOVER_STALE_WRITER: no writer lock and no open attempt; nothing to recover.", flush=True)
+        return None
+    session_id = session_id or uuid.uuid4().hex
+    record = {"event": "stale_writer_recovered", "at": utc(), "recovering_session": session_id,
+              "host": socket.gethostname(), "pid": os.getpid(), "operator_confirmed_no_other_session": True,
+              "stale_lock": holder, "stale_heartbeat_age_seconds": heartbeat_age(holder) if holder else None,
+              "open_attempts": [f"{run_name(arm, seed)} attempt {attempt}" for arm, seed, _, attempt, _ in pending],
+              "rule": "PREREGISTRATION Amendment 3 item 2: logged, the open attempt closed as an infrastructure "
+                      "failure, then the stale lock released; no retry or reserve rule changes"}
+    root.mkdir(parents=True, exist_ok=True)
+    with (root / WRITER_RECOVERIES).open("a", encoding="utf-8") as stream:  # logged first
+        stream.write(json.dumps(record, sort_keys=True, ensure_ascii=False) + "\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    closed = reconcile(root, confirmed_no_other_session=True, session_id=session_id,
+                       stale_session=(holder or {}).get("session_id"))
+    (root / WRITER_LOCK).unlink(missing_ok=True)  # released last
+    for entry in closed:
+        print(f"RECOVER_STALE_WRITER: closed {run_name(entry['arm'], entry['seed'])} attempt {entry['attempt']} -> "
+              f"{entry['outcome']}", flush=True)
+    print(f"RECOVER_STALE_WRITER: recovery logged in {WRITER_RECOVERIES}; stale lock "
+          f"{'of session ' + str(holder.get('session_id')) + ' ' if holder else ''}released.", flush=True)
+    return dict(record, closed=closed)
 
 
 def report_sha(folder):
@@ -1023,7 +1521,7 @@ def describe_plan(current):
             lines.append(f"Next run (Amendment 2 item 4): {action['arm']} seed {action['seed']} (slot {action['slot']}"
                          f"{', reserve' if action['reserve'] else ''}) attempt {action['attempt']}")
         except Refused as error:
-            lines.append(f"Next run: none until reconciled ({error})")
+            lines.append(f"Next run: none while an attempt is open ({error})")
     return "\n".join(lines)
 
 
@@ -1074,15 +1572,13 @@ def report_outcome(report):
 
 
 def preflight(arguments):
-    """Everything that must hold before an attempt opens (nothing is logged here except reconciling earlier attempts).
+    """Everything that must hold before an attempt opens; nothing is logged here. The caller holds the writer lock.
 
-    Returns (spec, out, identity, resume) or {"kind": "complete"}; raises StudyHalted, Refused, ProtocolError or
-    OSError."""
+    An attempt left open is never closed here (Amendment 3 item 2): next_run refuses until the operator confirmed a
+    stale-writer recovery. Returns (spec, out, identity, resume) or {"kind": "complete"}; raises StudyHalted,
+    Refused, ProtocolError or OSError."""
     train_root, inputs = Path(arguments.train_root), Path(arguments.inputs)
     log = train_root / ATTEMPT_LOG
-    for entry in reconcile(train_root):
-        print("Recorded an attempt left open earlier:", entry["arm"], "seed", entry["seed"], "attempt", entry["attempt"],
-              "->", entry["outcome"], flush=True)
     current = plan(read_log(log))
     print(describe_plan(current), flush=True)
     action = next_run(current)  # Amendment 2 item 4: the plan, never the operator, chooses the run
@@ -1103,7 +1599,7 @@ def preflight(arguments):
     out = attempt_dir(train_root, spec["arm"], spec["seed"], attempt)
     if not resume and any((out / name).exists() for name in ("train_report.json", "final_adapter.json", "final_adapter", "checkpoint")):
         raise Refused(f"{out} already holds attempt evidence: attempts are never overwritten.")
-    baseline = verify_baseline(arguments.baseline_dir, file_sha256(inputs / MANIFEST_NAME))  # Amendment 2 item 6
+    baseline = verify_baseline(arguments.baseline_dir, inputs / MANIFEST_NAME)  # Amendment 2 item 6, Amendment 3 item 3
     identity = attempt_identity(inputs, baseline)
     if current["identity"] is not None and current["identity"] != identity:  # Amendment 2 item 7
         changed = sorted(key for key in set(identity) | set(current["identity"]) if identity.get(key) != current["identity"].get(key))
@@ -1113,6 +1609,33 @@ def preflight(arguments):
 
 
 def run_train(arguments):
+    """One training session: the single writer of the training root (Amendment 3 item 2) from before the plan is
+    read until after the outcome is logged."""
+    writer = None
+    try:
+        if getattr(arguments, "recover_stale_writer", False):
+            print("RECOVER_STALE_WRITER: the operator confirmed that no other session is running the trainer.", flush=True)
+            recover_stale_writer(arguments.train_root, confirmed_no_other_session=True)
+        writer = WriterLock(arguments.train_root).acquire()
+        print(f"Training-root writer lock acquired: session {writer.session_id} (heartbeat every {HEARTBEAT_SECONDS} s)",
+              flush=True)
+        return _train_as_writer(arguments, writer)
+    except Refused as error:
+        print("REFUSED (no attempt was opened): " + str(error), file=sys.stderr, flush=True)
+        return EXIT_CODES["refused"]
+    except ProtocolError as error:  # e.g. an edited attempt log met during a recovery
+        print("PROTOCOL ERROR before any attempt was opened: " + str(error) + "\n" + HALT_MESSAGE, file=sys.stderr, flush=True)
+        return EXIT_CODES["protocol"]
+    except OSError as error:
+        print(f"Infrastructure error before any attempt was opened (writer lock or recovery; re-run): "
+              f"{type(error).__name__}: {error}", file=sys.stderr, flush=True)
+        return EXIT_CODES["infrastructure"]
+    finally:
+        if writer is not None:
+            writer.release()
+
+
+def _train_as_writer(arguments, writer):
     try:
         prepared = preflight(arguments)
     except StudyHalted as error:
@@ -1135,17 +1658,23 @@ def run_train(arguments):
     log = Path(arguments.train_root) / ATTEMPT_LOG
     keys = {key: spec[key] for key in ("arm", "seed", "slot", "attempt")}
     out.mkdir(parents=True, exist_ok=True)
-    log_event(log, "resume_start" if resume else "start", **keys, identity=identity)
-    report = train_attempt(spec, out, Path(arguments.inputs), identity, resume)
+    log_event(log, "resume_start" if resume else "start", **keys, identity=identity, writer_session=writer.session_id)
+    report = train_attempt(spec, out, Path(arguments.inputs), identity, resume, writer_session=writer.session_id)
     outcome, detail = report_outcome(report)
+    if not writer.owned():  # another session recovered this root meanwhile: never append a conflicting outcome
+        print(f"WRITER LOCK LOST: the training root no longer belongs to session {writer.session_id} (a stale-writer "
+              "recovery closed this attempt); its outcome is NOT logged again. Send the ZIP.", file=sys.stderr, flush=True)
+        return EXIT_CODES["infrastructure"]
     log_event(log, "resume_finish" if resume else "finish", **keys, outcome=outcome, detail=detail,
               report_sha256=report_sha(out))
     print(f"{run_name(spec['arm'], spec['seed'])} attempt {spec['attempt']} (slot {spec['slot']}): {outcome} — {detail}", flush=True)
     return 0 if report["status"] == "COMPLETE" else announce(report)
 
 
-def train_attempt(spec, out, inputs, identity, resume):
-    """One opened attempt. Never raises for a training failure: it returns the report with the failure class."""
+def train_attempt(spec, out, inputs, identity, resume, writer_session=None):
+    """One opened attempt. Never raises for a training failure: it returns the report with the failure class.
+
+    The STARTED report is persisted first, before any verification or model loading (Amendment 3 item 2)."""
     arm, seed, slot, attempt = spec["arm"], spec["seed"], spec["slot"], spec["attempt"]
     report_path = out / "train_report.json"
     previous = (ts.read_json(report_path) if report_path.is_file() else {}) if resume else None
@@ -1155,13 +1684,16 @@ def train_attempt(spec, out, inputs, identity, resume):
               "implementation_manifest_sha256": identity["implementation_manifest_sha256"],
               "baseline_dev_results_zip_sha256": identity["baseline_dev_results_zip_sha256"],
               "failure_class": None, "valid_for_gate": False, "updates": [], "checkpoints": [], "resumes": [],
-              "events": [], "steps": {"windows": RECIPE["updates"], "attempted": 0, "successful": 0, "cursor": 0}}
+              "events": [], "steps": {"windows": RECIPE["updates"], "attempted": 0, "successful": 0, "cursor": 0},
+              "writer_session": writer_session}
     if previous:  # --resume: keep the history, drop updates after the restored checkpoint later
         report.update({key: previous[key] for key in ("updates", "checkpoints", "resumes", "events") if key in previous})
         report["initial_adapter_sha256"] = previous.get("initial_adapter_sha256")
     report["events"].append({"event": "process_start", "resume": previous is not None, "at": time.time()})
-    stage = "verify"
+    stage = "start"
     try:
+        ts.write_json(report_path, report)  # Amendment 3 item 2: STARTED is on disk before anything is loaded
+        stage = "verify"
         manifest, manifest_sha = verify_implementation(inputs)  # Amendment 2 item 7, at the executable boundary
         require(manifest_sha == identity["implementation_manifest_sha256"], "Implementation manifest changed after the attempt opened")
         stage = "data"
@@ -1183,12 +1715,14 @@ def train_attempt(spec, out, inputs, identity, resume):
     report["nvml_sampler_error"] = sampler.error
     trainer = None
     try:
+        stage = "hub"
+        report["hub_files_sha256"] = verify_hub_files(manifest)  # B2: the downloaded tokenizer/config bytes
         stage = "tokenizer"
         tokenizer = ts.load_tokenizer()
+        report["chat_template_sha256"] = verify_chat_template(tokenizer, manifest)  # B2: the loaded template
         stage = "labels"
         examples, audit = prepare_examples(tokenizer, families)
         report["mask_audit"] = {key: audit[key] for key in ("passed", "arms", "max_input_tokens", "last_target_is_im_end")}
-        report["chat_template_sha256"] = ts.digest(tokenizer.chat_template)
         sequence = run_examples(examples, families, arm, seed)
         stage = "model"
         ts.seed_everything(torch, seed)
@@ -1317,6 +1851,9 @@ def main(argv=None):
     train.add_argument("--slot", type=int, choices=SLOTS)
     train.add_argument("--attempt", type=int)
     train.add_argument("--resume", action="store_true", help="Engineering only: continue from the checkpoint; never valid")
+    train.add_argument("--recover-stale-writer", action="store_true",
+                       help="Only after confirming that no other session runs the trainer (Amendment 3 item 2): log the "
+                            "recovery, close an open attempt as infrastructure and release the stale writer lock")
     commands.add_parser("pairing").add_argument("--train-root", type=Path, required=True)
     commands.add_parser("plan").add_argument("--train-root", type=Path, required=True)
     exposure = commands.add_parser("exposure-order")

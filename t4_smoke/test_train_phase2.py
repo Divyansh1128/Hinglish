@@ -1,13 +1,16 @@
 """Model-free tests of the Phase-2 training module (PREREGISTRATION §3 with Amendment 1 items 9-11 and Amendment 2
 items 2-7)."""
+import atexit
 import contextlib
 import copy
 import hashlib
+import importlib.util
 import io
 import json
 import math
 import shutil
 import tempfile
+import time
 import types
 import unittest
 from pathlib import Path
@@ -198,36 +201,181 @@ IDENTITY = {"implementation_manifest_sha256": "e" * 64, "baseline_dev_results_zi
             "exposure_order_file_sha256": tp.EXPOSURE_ORDER_SHA256, "recipe_sha256": ts.digest(tp.RECIPE)}
 
 
+def _manifest_builder():
+    if "builder" not in _CACHE:
+        spec = importlib.util.spec_from_file_location("build_implementation_manifest_fixture",
+                                                      ROOT / "phase2" / "build_implementation_manifest.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _CACHE["builder"] = module
+    return _CACHE["builder"]
+
+
+_CACHE = {}
+
+
+def live_manifest_text():
+    """IMPLEMENTATION_MANIFEST.md exactly as the current builder derives it from this repository (computed, so the
+    tests never depend on whether the committed file has been regenerated yet)."""
+    if "text" not in _CACHE:
+        _CACHE["text"] = _manifest_builder().current_text()
+    return _CACHE["text"]
+
+
+def live_manifest_document():
+    return copy.deepcopy(_manifest_builder().parse(live_manifest_text()))
+
+
 def fixture_manifest_text(code_dir=ROOT / "t4_smoke", **changes):
-    """A minimal implementation manifest that describes the real trainer code and frozen files (fixture)."""
-    files = {f"t4_smoke/{name}": hashlib.sha256((Path(code_dir) / name).read_bytes()).hexdigest() for name in tp.TRAINER_CODE}
-    files.update(ts.TRAIN_FILES)
-    files[tp.EXPOSURE_ORDER_PATH] = tp.EXPOSURE_ORDER_SHA256
-    document = {"schema": tp.MANIFEST_SCHEMA, "files": files, "exposure_order": {"sha256": tp.EXPOSURE_ORDER_SHA256},
-                "training": {"recipe_sha256": ts.digest(tp.RECIPE), "grad_scaler": tp.SCALER},
-                "model": {"id": ts.MODEL_ID, "revision": ts.MODEL_REVISION},
-                "dependencies": {"train": ts.PINS, "torch_build": ts.TORCH_BUILD}}
-    for key, value in changes.items():
-        document[key] = value
-    return "# Implementation manifest (TEST FIXTURE)\n\n```json\n" + json.dumps(document, indent=1) + "\n```\n"
+    """The live implementation manifest, describing the trainer code in ``code_dir`` and with top-level entries
+    replaced by ``changes`` (TEST FIXTURE; unchanged it equals live_manifest_text())."""
+    document = live_manifest_document()
+    for name in tp.TRAINER_CODE:
+        document["files"][f"t4_smoke/{name}"] = hashlib.sha256((Path(code_dir) / name).read_bytes()).hexdigest()
+    document.update(changes)
+    return _manifest_builder().render(document)
 
 
-def write_baseline(folder, manifest_sha256, run_changes=None, **changes):
-    """A complete unchanged-model DEV baseline as phase2_eval writes it (record + results ZIP); returns the ZIP SHA."""
+# ---- realistic unchanged-model DEV baselines (Amendment 3 item 3; Sol re-review B3)
+# The real engine runs on the frozen DEV file through the real evaluate command; only the model backend and the
+# package lookup are mocked. The backend's metadata simulates a COMPLIANT T4 run and says so in verification_scope;
+# no model is loaded and no response is model output. These archives are SYNTHETIC TEST FIXTURES, never evidence.
+SYNTHETIC_SCOPE = "SYNTHETIC CPU TEST FIXTURE: mocked backend on frozen DEV; no model was loaded or run"
+SYNTHETIC_SHARDS = {f"model-0000{i}-of-00003.safetensors": f"{i}" * 64 for i in (1, 2, 3)}
+
+
+def synthetic_t4_metadata(adapter=None):
+    """Backend metadata with the keys hf_backend.HFBackend writes, holding the registered §2/§4 values (FIXTURE)."""
+    return {"backend": "huggingface", "model_revision": ts.MODEL_REVISION, "tokenizer_revision": ts.MODEL_REVISION,
+            "hardware": "Tesla T4", "gpu_total_bytes": 15828320256, "capability": list(tp.T4_CAPABILITY),
+            "torch_cuda": "13.0", "quantization": dict(tp.QUANTIZATION, quant_method="bitsandbytes", load_in_8bit=False,
+                                                       bnb_4bit_quant_storage="uint8"),
+            "attention": tp.EXECUTION["attention"], "compute_dtype": tp.EXECUTION["compute_dtype"],
+            "chat_template_sha256": tp.CHAT_TEMPLATE["digest"], "gpu_verified": True,
+            "verification_scope": SYNTHETIC_SCOPE, "adapter": copy.deepcopy(adapter),
+            "base_weight_shards_sha256": dict(SYNTHETIC_SHARDS)}
+
+
+def synthetic_environment(names=None):
+    """engine.environment() of a compliant Colab T4 runtime (FIXTURE): the registered pins, PEFT included."""
+    from hinglish_pilot import engine, hf_backend
+    pins = dict(hf_backend.PINS, **hf_backend.ADAPTER_PINS)
+    return {"python": "3.12.12", "platform": "Linux", "machine": "x86_64",
+            "packages": {name: pins.get(name) for name in (names or engine.PHASE2_PACKAGES)}}
+
+
+def synthetic_t4_backend(adapter=None, **metadata_changes):
+    from hinglish_pilot.engine import FakeBackend
+
+    class SyntheticT4Backend(FakeBackend):  # FakeBackend.generate: fixed gold-blind strings, no inference
+        metadata = dict(synthetic_t4_metadata(adapter), **metadata_changes)
+        load_report = {"load_seconds": 0, "fixture": SYNTHETIC_SCOPE}
+
+        def __init__(self, config=None, adapter_path=None):
+            self.adapter_path = adapter_path
+    return SyntheticT4Backend
+
+
+@contextlib.contextmanager
+def synthetic_t4_runtime(**metadata_changes):
+    from hinglish_pilot import engine, hf_backend
+    with mock.patch.object(hf_backend, "HFBackend", synthetic_t4_backend(None, **metadata_changes)), \
+            mock.patch.object(engine, "environment", lambda names=None: synthetic_environment(names)):
+        yield
+
+
+def run_synthetic_baseline(store, manifest_text=None):
+    """Phase2_Baseline_DEV's evaluate command under ``manifest_text`` (default: live) on DEV; returns its folder."""
+    from t4_smoke import phase2_eval as pe
+    store = Path(store)
+    inputs = store / "inputs"
+    inputs.mkdir(parents=True, exist_ok=True)
+    (inputs / "dev.v2.json").write_bytes((ROOT / pe.FROZEN["dev"][0]).read_bytes())
+    (inputs / "identities.json").write_text(json.dumps(pe.split_identities(ROOT)))
+    (inputs / tp.MANIFEST_NAME).write_text(manifest_text or live_manifest_text())
+    with synthetic_t4_runtime(), mock.patch("sys.stdout", io.StringIO()):
+        code = pe.main(["evaluate", "--split", "dev", "--inputs", str(inputs), "--run-dir", str(store / "baseline_dev" / "base"),
+                        "--implementation-manifest", str(inputs / tp.MANIFEST_NAME)])
+    assert code == 0, "synthetic baseline fixture did not complete"
+    return store / "baseline_dev"
+
+
+def _baseline_template():
+    if "baseline" not in _CACHE:
+        folder = tempfile.mkdtemp(prefix="phase2_synthetic_baseline_")
+        atexit.register(shutil.rmtree, folder, True)
+        _CACHE["baseline"] = run_synthetic_baseline(folder)
+    return _CACHE["baseline"]
+
+
+def rewrite_archive(folder, change, fix_checksums=True):
+    """Apply ``change(members)`` to the baseline ZIP in ``folder`` (dict name -> bytes), optionally recompute
+    checksums.sha256, and re-record the new ZIP SHA-256 (a deliberately NONCOMPLIANT fixture)."""
+    folder = Path(folder)
+    archive = folder / "base_results.zip"
+    with zipfile.ZipFile(archive) as z:
+        members = {name: z.read(name) for name in z.namelist()}
+    change(members)
+    if fix_checksums:
+        members["checksums.sha256"] = "".join(f"{hashlib.sha256(content).hexdigest()}  {name}\n"
+                                              for name, content in members.items() if name != "checksums.sha256").encode()
+    with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, content in members.items():
+            z.writestr(name, content)
+    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    record = json.loads((folder / tp.BASELINE_RECORD).read_text())
+    record["results_zip_sha256"] = digest
+    (folder / tp.BASELINE_RECORD).write_text(json.dumps(record))
+    return digest
+
+
+def edit_json_member(name, edit):
+    def change(members):
+        value = json.loads(members[name])
+        edit(value)
+        members[name] = json.dumps(value).encode()
+    return change
+
+
+def write_baseline(folder, manifest_sha256=None, run_changes=None, **changes):
+    """A complete, validating unchanged-model DEV baseline (record + real engine results ZIP) in ``folder``; returns
+    the ZIP SHA-256. Built once under the live implementation manifest by run_synthetic_baseline (SYNTHETIC FIXTURE).
+    ``manifest_sha256`` relabels the record for another manifest (tests that tamper with the trainer's manifest),
+    ``run_changes`` edit the archive's run_manifest.json (checksums recomputed), ``changes`` the record."""
+    folder = Path(folder)
+    folder.mkdir(parents=True, exist_ok=True)
+    for path in _baseline_template().iterdir():
+        if path.is_file():
+            shutil.copyfile(path, folder / path.name)
+    record = json.loads((folder / tp.BASELINE_RECORD).read_text())
+    if manifest_sha256 is not None:
+        record["implementation_manifest_sha256"] = manifest_sha256
+    (folder / tp.BASELINE_RECORD).write_text(json.dumps(record))
+    digest = record["results_zip_sha256"]
+    if run_changes:
+        digest = rewrite_archive(folder, edit_json_member("run_manifest.json", lambda run: run.update(run_changes)))
+    if changes:
+        record = json.loads((folder / tp.BASELINE_RECORD).read_text())
+        record.update(changes)
+        (folder / tp.BASELINE_RECORD).write_text(json.dumps(record))
+    return digest
+
+
+def write_metadata_only_baseline(folder, manifest_sha256):
+    """The pre-Amendment-3 fixture Sol's B3 probe used: a record plus a ZIP of two metadata JSON files, without a
+    dataset, journal, source snapshot or a single generation (NONCOMPLIANT FIXTURE; must be refused)."""
     folder = Path(folder)
     folder.mkdir(parents=True, exist_ok=True)
     archive = folder / "base_results.zip"
-    run = {"status": "COMPLETE", "mode": "phase2_dev", "completed": 120, "unresolved": 0, "config_sha256": "c" * 64}
-    run.update(run_changes or {})
     with zipfile.ZipFile(archive, "w") as z:
-        z.writestr("run_manifest.json", json.dumps(run))
+        z.writestr("run_manifest.json", json.dumps({"status": "COMPLETE", "mode": "phase2_dev", "completed": 120,
+                                                    "unresolved": 0, "config_sha256": "c" * 64}))
         z.writestr("experiment_config.json", json.dumps({"adapter": None, "model_id": ts.MODEL_ID}))
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     record = {"schema": tp.BASELINE_SCHEMA, "run": "base", "split": "dev", "mode": "phase2_dev", "adapter": None,
               "model_id": ts.MODEL_ID, "model_revision": ts.MODEL_REVISION, "status": "COMPLETE", "completed": 120,
               "expected": 120, "unresolved": 0, "results_zip": "base_results.zip", "results_zip_sha256": digest,
               "implementation_manifest_sha256": manifest_sha256, "config_sha256": "c" * 64}
-    record.update(changes)
     (folder / tp.BASELINE_RECORD).write_text(json.dumps(record))
     return digest
 
@@ -245,7 +393,7 @@ class TrainerFixture:
         self.write_manifest(fixture_manifest_text())
         self.train_root = self.root / "train"
         self.baseline = self.root / "baseline_dev"
-        self.baseline_sha = write_baseline(self.baseline, self.manifest_sha)
+        self.baseline_sha = write_baseline(self.baseline, self.manifest_sha)  # realistic synthetic DEV run
         self.log = self.train_root / tp.ATTEMPT_LOG
 
     def write_manifest(self, text):
@@ -692,6 +840,9 @@ class TrainerEntryTests(unittest.TestCase):
             for patch in (stack_check, mock.patch.object(ts, "gpu_setup", return_value=(torch, [])),
                           mock.patch.object(ts, "environment", return_value={}), mock.patch.object(ts, "MemorySampler", sampler),
                           mock.patch.object(ts, "load_tokenizer", return_value=mock.MagicMock(chat_template="t")),
+                          # B2 boundary checks need the Hub; dedicated tests below run them for real
+                          mock.patch.object(tp, "verify_hub_files", return_value=dict(tp.HUB_FILES)),
+                          mock.patch.object(tp, "verify_chat_template", return_value=tp.CHAT_TEMPLATE["digest"]),
                           mock.patch.object(tp, "prepare_examples", return_value=({}, audit)),
                           mock.patch.object(tp, "run_examples", return_value=[{"family_id": "F", "form": "E"}] * 960),
                           mock.patch.object(tp, "load_model", return_value=("model", [], True, {})),
@@ -1118,21 +1269,357 @@ class AttemptLogTests(unittest.TestCase):
         with self.assertRaisesRegex(tp.ProtocolFailure, "next allowed|already valid|registered order"):
             tp.plan(tp.read_log(self.log) + [self.start("EC", 11, 11, 3)])
 
-    def test_reconcile_closes_attempts_left_open_by_a_disconnect(self):
+    def test_open_attempts_are_closed_only_by_a_confirmed_recovery(self):
+        """Amendment 3 item 2 (B4): reconcile never closes an open attempt without the operator's confirmation."""
         tp.log_event(self.log, "start", arm="EC", seed=11, slot=11, attempt=1, identity=IDENTITY)
-        with self.assertRaisesRegex(tp.Refused, "reconcile"):
+        with self.assertRaisesRegex(tp.Refused, "RECOVER_STALE_WRITER"):
             tp.next_run(self.plan())
-        self.assertIn("none until reconciled", tp.describe_plan(self.plan()))
+        self.assertIn("none while an attempt is open", tp.describe_plan(self.plan()))
         write_attempt(tp.attempt_dir(self.root, "EC", 11, 1), status="STARTED")
-        closed = tp.reconcile(self.root)
+        with self.assertRaisesRegex(tp.Refused, "never treated as abandoned automatically"):
+            tp.reconcile(self.root)
+        self.assertEqual(len(tp.read_log(self.log)), 1)  # nothing appended
+        closed = tp.reconcile(self.root, confirmed_no_other_session=True)
         self.assertEqual([(e["arm"], e["outcome"]) for e in closed], [("EC", "infrastructure")])
+        self.assertIn("stale-writer recovery confirmed by the operator", closed[0]["detail"])
         self.assertEqual(tp.reconcile(self.root), [])
         self.assertEqual(tp.next_run(self.plan())["attempt"], 2)
         self.attempt("EC", 11, 11, "valid")
         tp.log_event(self.log, "start", arm="ER", seed=11, slot=11, attempt=1, identity=IDENTITY)
-        write_attempt(tp.attempt_dir(self.root, "ER", 11, 1))  # finished training, disconnect during DEV sanity
-        self.assertEqual([(e["arm"], e["outcome"]) for e in tp.reconcile(self.root)], [("ER", "valid")])
-        self.assertEqual(tp.next_run(self.plan())["arm"], "EE")
+        write_attempt(tp.attempt_dir(self.root, "ER", 11, 1))  # killed after the report, before the finish
+        self.assertEqual([(e["arm"], e["outcome"]) for e in tp.reconcile(self.root, confirmed_no_other_session=True)],
+                         [("ER", "infrastructure")])
+        tp.log_event(self.log, "start", arm="ER", seed=11, slot=11, attempt=2, identity=IDENTITY)
+        write_attempt(tp.attempt_dir(self.root, "ER", 11, 2), status="FAILED", failure_class="protocol")
+        closed = tp.reconcile(self.root, confirmed_no_other_session=True)  # a recovery never turns a halt into a retry
+        self.assertEqual(closed[0]["outcome"], "protocol")
+        with self.assertRaises(tp.StudyHalted):
+            tp.next_run(self.plan())
+
+
+# ---------------------------------------------------------------- B2: Hub files and chat template at the executable boundary
+
+REAL_VERIFY_HUB_FILES, REAL_VERIFY_CHAT_TEMPLATE = tp.verify_hub_files, tp.verify_chat_template
+
+
+def fake_hub(folder, contents):
+    """A stand-in huggingface_hub module whose hf_hub_download serves ``contents`` {file: bytes} from ``folder``."""
+    folder = Path(folder)
+    folder.mkdir(parents=True, exist_ok=True)
+    calls = []
+
+    def hf_hub_download(repo, name, revision=None, token=None):
+        calls.append((repo, name, revision))
+        (folder / name).write_bytes(contents[name])
+        return str(folder / name)
+    return types.SimpleNamespace(hf_hub_download=hf_hub_download, calls=calls)
+
+
+class HubAndTemplateTests(unittest.TestCase):
+    """Sol re-review B2: the trainer verifies the downloaded Hub files and the loaded chat template itself."""
+
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.root = Path(self.folder.name)
+
+    def tearDown(self):
+        self.folder.cleanup()
+
+    def test_sol_probe_zeroed_hub_and_template_entries_are_refused(self):
+        fixture = TrainerFixture(self.root / "probe")
+        self.assertEqual(tp.verify_implementation(fixture.inputs)[1], fixture.manifest_sha)
+        document = live_manifest_document()
+        document["model"].update(hub_files={"tokenizer.json": "0" * 64}, chat_template={"digest": "0" * 64})
+        fixture.write_manifest("```json\n" + json.dumps(document) + "\n```\n")
+        with self.assertRaisesRegex(tp.ProtocolError, "Hub files, chat template"):
+            tp.verify_implementation(fixture.inputs)
+        self.assertEqual(live_manifest_document()["model"]["hub_files"], tp.HUB_FILES)
+        self.assertEqual(live_manifest_document()["model"]["chat_template"], tp.CHAT_TEMPLATE)
+
+    def test_downloaded_files_must_have_the_manifest_hashes(self):
+        contents = {name: f"fixture {name}".encode() for name in tp.HUB_FILES}
+        hashes = {name: hashlib.sha256(content).hexdigest() for name, content in contents.items()}
+        hub = fake_hub(self.root / "hub", contents)
+        with mock.patch.dict(tp.HUB_FILES, hashes), mock.patch.dict("sys.modules", {"huggingface_hub": hub}):
+            manifest = {"model": {"hub_files": dict(hashes)}}
+            self.assertEqual(tp.verify_hub_files(manifest), hashes)
+            self.assertEqual({(repo, revision) for repo, _, revision in hub.calls}, {(ts.MODEL_ID, ts.MODEL_REVISION)})
+            contents["tokenizer.json"] = b"other bytes"
+            with self.assertRaisesRegex(tp.ProtocolError, "tokenizer.json at the pinned revision"):
+                tp.verify_hub_files(manifest)
+            with self.assertRaisesRegex(tp.ProtocolError, "other Hub files"):
+                tp.verify_hub_files({"model": {"hub_files": {"tokenizer.json": hashes["tokenizer.json"]}}})
+
+    def test_loaded_chat_template_must_be_the_manifests(self):
+        template = "{{ fixture chat template }}"
+        registered = dict(tp.CHAT_TEMPLATE, digest=ts.digest(template), utf8_sha256=ts.sha256(template.encode()))
+        with mock.patch.dict(tp.CHAT_TEMPLATE, registered):
+            manifest = {"model": {"chat_template": dict(registered)}}
+            self.assertEqual(tp.verify_chat_template(types.SimpleNamespace(chat_template=template), manifest), registered["digest"])
+            for other in ("{{ other }}", None, ""):
+                with self.subTest(template=other), self.assertRaises(tp.ProtocolError):
+                    tp.verify_chat_template(types.SimpleNamespace(chat_template=other), manifest)
+
+    def test_direct_trainer_run_halts_on_wrong_hub_bytes_or_template(self):
+        """The check is in the executable itself (tp.main), not only in the notebook's GPU cell."""
+        entry = TrainerEntryTests()
+        entry.setUp()
+        self.addCleanup(entry.tearDown)
+        hub = fake_hub(self.root / "hub", {name: b"not the pinned bytes" for name in tp.HUB_FILES})
+        code, err, _ = entry.train(None, patches=[mock.patch.object(tp, "verify_hub_files", REAL_VERIFY_HUB_FILES),
+                                                  mock.patch.dict("sys.modules", {"huggingface_hub": hub})])
+        report = entry.report()
+        self.assertEqual((code, report["failure_class"], report["failure_stage"]), (tp.EXIT_CODES["protocol"], "protocol", "hub"))
+        self.assertNotIn("mask_audit", report)
+        entry.tearDown()
+        entry.setUp()
+        code, err, _ = entry.train(None, patches=[mock.patch.object(tp, "verify_chat_template", REAL_VERIFY_CHAT_TEMPLATE)])
+        report = entry.report()  # the harness tokenizer's template "t" is not the pinned one
+        self.assertEqual((code, report["failure_class"], report["failure_stage"]), (tp.EXIT_CODES["protocol"], "protocol", "tokenizer"))
+        self.assertIn("chat template", report["error"])
+
+
+# ---------------------------------------------------------------- B3: the baseline archive itself is validated
+
+def recompute(members, *names):
+    """Re-derive run_manifest.json digests after a deliberate edit, so a deeper check must catch it (FIXTURE)."""
+    run = json.loads(members["run_manifest.json"])
+    fields = {"experiment_config.json": "config_sha256", "dataset.json": "dataset_sha256", "split_manifest.json": "split_sha256"}
+    for name in names:
+        run[fields[name]] = tp.engine_digest(json.loads(members[name]))
+    members["run_manifest.json"] = json.dumps(run).encode()
+
+
+def edit_backend(change):
+    def apply(members):
+        run = json.loads(members["run_manifest.json"])
+        change(run["backend"])
+        for session in run["sessions"]:
+            session["backend"] = run["backend"]
+        run["execution_sha256"] = tp.engine_digest({"backend": run["backend"], "environment": json.loads(members["environment.json"])})
+        members["run_manifest.json"] = json.dumps(run).encode()
+    return apply
+
+
+def edit_environment(change):
+    def apply(members):
+        environment = json.loads(members["environment.json"])
+        change(environment)
+        members["environment.json"] = json.dumps(environment).encode()
+        run = json.loads(members["run_manifest.json"])
+        for session in run["sessions"]:
+            session["environment"] = environment
+        run["execution_sha256"] = tp.engine_digest({"backend": run["backend"], "environment": environment})
+        members["run_manifest.json"] = json.dumps(run).encode()
+    return apply
+
+
+def edit_lines(name, change):
+    def apply(members):
+        lines = members[name].decode().splitlines()
+        change(lines)
+        members[name] = ("\n".join(lines) + "\n").encode()
+    return apply
+
+
+class BaselineValidationTests(unittest.TestCase):
+    """Sol re-review B3: verify_baseline validates the actual ZIP: frozen DEV and source snapshot, a recomputed config
+    digest, the registered execution and environment, exactly 120 resolved generations and the engine identity."""
+
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.root = Path(self.folder.name)
+        self.manifest = self.root / tp.MANIFEST_NAME
+        self.manifest.write_text(live_manifest_text())
+        self.baseline = self.root / "baseline_dev"
+        self.digest = write_baseline(self.baseline)
+
+    def tearDown(self):
+        self.folder.cleanup()
+
+    def refused(self, pattern):
+        with self.assertRaisesRegex(tp.Refused, pattern):
+            tp.verify_baseline(self.baseline, self.manifest)
+
+    def test_realistic_synthetic_baseline_validates_and_is_labelled(self):
+        self.assertEqual(tp.verify_baseline(self.baseline, self.manifest), self.digest)
+        with zipfile.ZipFile(self.baseline / "base_results.zip") as z:
+            run = json.loads(z.read("run_manifest.json"))
+            journal = [json.loads(line) for line in z.read("generation_attempts.jsonl").decode().splitlines()]
+            self.assertIn("source/engine.py", z.namelist())
+        self.assertEqual(run["backend"]["verification_scope"], SYNTHETIC_SCOPE)  # clearly a fixture
+        self.assertEqual((run["completed"], len(journal)), (120, 120))
+        self.assertEqual(json.loads(z_read(self.baseline, "environment.json"))["packages"]["peft"], "0.15.2")
+
+    def test_sol_probe_metadata_only_zip_is_refused(self):
+        write_metadata_only_baseline(self.baseline, hashlib.sha256(self.manifest.read_bytes()).hexdigest())
+        self.refused("not a complete engine export")
+
+    def test_a_manifest_hash_alone_cannot_validate(self):
+        with self.assertRaisesRegex(tp.Refused, "not only its SHA-256"):
+            tp.verify_baseline(self.baseline, hashlib.sha256(self.manifest.read_bytes()).hexdigest())
+
+    def test_noncompliant_archives_are_refused(self):
+        def drop_generation(lines):
+            del lines[0]
+
+        def edit_response(lines):
+            record = json.loads(lines[0])
+            record["raw_response"] = "FINAL: 42"
+            lines[0] = json.dumps(record)
+
+        def change_dataset(members):
+            dataset = json.loads(members["dataset.json"])
+            dataset["families"][0]["forms"]["C"]["text"] += " changed"
+            members["dataset.json"] = json.dumps(dataset).encode()
+            recompute(members, "dataset.json")
+
+        def change_config(members):
+            config = json.loads(members["experiment_config.json"])
+            config["max_new_tokens"] = 512
+            members["experiment_config.json"] = json.dumps(config).encode()
+            recompute(members, "experiment_config.json")
+
+        def change_source(members):
+            members["source/engine.py"] += b"\n# edited\n"
+
+        def reverse_order(members):
+            members["evaluation_order.json"] = json.dumps(json.loads(members["evaluation_order.json"])[::-1]).encode()
+
+        cases = (
+            ("one generation missing", edit_lines("generation_attempts.jsonl", drop_generation), "resolved generations"),
+            ("journal edited", edit_lines("generation_attempts.jsonl", edit_response), "was edited"),
+            ("other DEV data", change_dataset, "frozen DEV dataset"),
+            ("other settings", change_config, "registered DEV configuration"),
+            ("engine source", change_source, "engine source snapshot"),
+            ("order", reverse_order, "evaluation order"),
+            ("torch 0.0.0", edit_environment(lambda env: env["packages"].update(torch="0.0.0")), "torch '0.0.0'"),
+            ("no PEFT recorded", edit_environment(lambda env: env["packages"].pop("peft")), "peft None"),
+            ("A100", edit_backend(lambda backend: backend.update(hardware="NVIDIA A100-SXM4-40GB", capability=[8, 0])), "not a Tesla T4"),
+            ("unverified GPU", edit_backend(lambda backend: backend.update(gpu_verified=False)), "gpu_verified"),
+            ("other attention", edit_backend(lambda backend: backend.update(attention="sdpa flash")), "attention"),
+            ("other quantization", edit_backend(lambda backend: backend["quantization"].update(bnb_4bit_quant_type="fp4")), "quant_type"),
+            ("missing journal", lambda members: members.pop("generation_attempts.jsonl"), "lacks generation_attempts.jsonl"),
+        )
+        for name, change, pattern in cases:
+            with self.subTest(name=name):
+                write_baseline(self.baseline)
+                rewrite_archive(self.baseline, change)
+                self.refused(pattern)
+        write_baseline(self.baseline)
+        rewrite_archive(self.baseline, lambda members: members.update({"summary.md": b"edited"}), fix_checksums=False)
+        self.refused("checksums.sha256")
+        write_baseline(self.baseline, config_sha256="0" * 64)
+        self.refused("config digest does not recompute")
+        write_baseline(self.baseline)
+        self.assertEqual(tp.verify_baseline(self.baseline, self.manifest), self.digest)
+
+
+def z_read(folder, name):
+    with zipfile.ZipFile(Path(folder) / "base_results.zip") as z:
+        return z.read(name)
+
+
+# ---------------------------------------------------------------- B4: one writer per training root
+
+class WriterOwnershipTests(unittest.TestCase):
+    """Amendment 3 item 2 (Sol re-review B4)."""
+
+    def setUp(self):
+        self.entry = TrainerEntryTests()
+        self.entry.setUp()
+        self.fixture = self.entry.fixture
+        self.root = self.fixture.train_root
+
+    def tearDown(self):
+        self.entry.tearDown()
+
+    def kill_after_start(self):
+        """A session that acquired the lock, logged its start and wrote STARTED, then was killed (FIXTURE)."""
+        tp.WriterLock(self.root, session_id="dead-session", heartbeat_seconds=0).acquire()
+        tp.log_event(self.fixture.log, "start", arm="EC", seed=11, slot=11, attempt=1,
+                     identity=tp.attempt_identity(self.fixture.inputs, self.fixture.baseline_sha))
+        write_attempt(tp.attempt_dir(self.root, "EC", 11, 1), status="STARTED")
+
+    def test_started_report_is_persisted_before_model_loading(self):
+        seen = []
+
+        def load_model(torch, seed):
+            seen.append(self.entry.report()["status"])
+            return "model", [], True, {}
+
+        code, err, _ = self.entry.train(None, patches=[mock.patch.object(tp, "load_model", side_effect=load_model)])
+        self.assertEqual((code, seen), (0, ["STARTED"]), err)
+        self.assertEqual(self.entry.report()["writer_session"], self.fixture.entries()[0]["writer_session"])
+        self.assertFalse((self.root / tp.WRITER_LOCK).exists())  # released after the outcome was logged
+
+    def test_a_second_concurrent_writer_is_refused(self):
+        other = tp.WriterLock(self.root, session_id="session-A", heartbeat_seconds=0).acquire()
+        code, err, _ = self.entry.train()
+        self.assertEqual(code, tp.EXIT_CODES["refused"])
+        self.assertIn("session-A", err)
+        self.assertIn("Only one session may write a training root", err)
+        self.assertFalse(self.fixture.log.exists())
+        self.assertTrue(other.owned())
+        with self.assertRaises(tp.Refused):
+            tp.WriterLock(self.root).acquire()
+        other.release()
+        self.assertEqual(self.entry.train()[0], 0)
+
+    def test_sol_probe_open_attempt_is_refused_without_confirmation(self):
+        tp.log_event(self.fixture.log, "start", arm="EC", seed=11, slot=11, attempt=1,
+                     identity=tp.attempt_identity(self.fixture.inputs, self.fixture.baseline_sha))
+        with self.assertRaisesRegex(tp.Refused, "never treated as abandoned"):
+            tp.reconcile(self.root)
+        code, err, _ = self.entry.train()  # no lock is held, but the attempt is open: still refused
+        self.assertEqual(code, tp.EXIT_CODES["refused"])
+        self.assertIn("RECOVER_STALE_WRITER", err)
+        self.assertEqual(len(self.fixture.entries()), 1)
+        with self.assertRaisesRegex(tp.Refused, "explicit confirmation"):
+            tp.recover_stale_writer(self.root)
+
+    def test_confirmed_recovery_is_logged_closes_as_infrastructure_and_releases(self):
+        self.kill_after_start()
+        code, err, _ = self.entry.train()
+        self.assertEqual(code, tp.EXIT_CODES["refused"])
+        self.assertIn("dead-session", err)
+        code, err, out = self.entry.train(None, "--recover-stale-writer")
+        self.assertEqual(code, 0, err)
+        records = [json.loads(line) for line in (self.root / tp.WRITER_RECOVERIES).read_text().splitlines()]
+        self.assertEqual(len(records), 1)
+        self.assertEqual((records[0]["event"], records[0]["stale_lock"]["session_id"], records[0]["operator_confirmed_no_other_session"],
+                          records[0]["open_attempts"]), ("stale_writer_recovered", "dead-session", True, ["EC-s11 attempt 1"]))
+        self.assertEqual(self.entry.outcomes(), [("start", "EC", 11, 1, None), ("finish", "EC", 11, 1, "infrastructure"),
+                                                 ("start", "EC", 11, 2, None), ("finish", "EC", 11, 2, "valid")])
+        self.assertEqual(self.fixture.entries()[1]["recovery"]["stale_session"], "dead-session")
+        self.assertFalse((self.root / tp.WRITER_LOCK).exists())
+
+    def test_heartbeat_and_a_lost_lock(self):
+        lock = tp.WriterLock(self.root, heartbeat_seconds=0.05).acquire()
+        for _ in range(100):
+            if (tp.read_writer_lock(self.root) or {}).get("heartbeats", 0) >= 2:
+                break
+            time.sleep(0.02)
+        holder = tp.read_writer_lock(self.root)
+        self.assertGreaterEqual(holder["heartbeats"], 2)
+        self.assertEqual(holder["session_id"], lock.session_id)
+        self.assertIn(lock.session_id, tp.describe_writer(self.root))
+        (self.root / tp.WRITER_LOCK).write_text(json.dumps(dict(holder, session_id="someone-else")))
+        self.assertFalse(lock.owned())
+        self.assertFalse(lock.beat())
+        self.assertFalse(lock.release())  # never removes another session's lock
+        self.assertEqual(tp.read_writer_lock(self.root)["session_id"], "someone-else")
+
+    def test_a_session_whose_attempt_was_recovered_never_appends_its_outcome(self):
+        def recovered_meanwhile(torch, seed):  # another session, after the operator's confirmation, recovers the root
+            tp.recover_stale_writer(self.root, confirmed_no_other_session=True)
+            return "model", [], True, {}
+
+        code, err, _ = self.entry.train(None, patches=[mock.patch.object(tp, "load_model", side_effect=recovered_meanwhile)])
+        self.assertEqual(code, tp.EXIT_CODES["infrastructure"])
+        self.assertIn("WRITER LOCK LOST", err)
+        self.assertEqual(self.entry.outcomes(), [("start", "EC", 11, 1, None), ("finish", "EC", 11, 1, "infrastructure")])
+        tp.plan(self.fixture.entries())  # the log stays consistent
 
 
 if __name__ == "__main__":

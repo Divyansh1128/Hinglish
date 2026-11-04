@@ -1,4 +1,4 @@
-"""Phase-2 pre-registered analysis: phase2/PREREGISTRATION.md sections 6-8 as amended by Amendments 1 and 2.
+"""Phase-2 pre-registered analysis: phase2/PREREGISTRATION.md sections 6-8 as amended by Amendments 1-3.
 
 Amendment 1 (commit b4fb956, D045) governs where it differs from sections 6-8: degenerate
 intervals override every label (item 2); fixed bootstrap mechanics (item 4); no inferential
@@ -7,6 +7,11 @@ ceiling-risk proxy (item 7); attrition and unresolved items (item 12). Amendment
 (commit 17986d4) binds the FINAL_TEST inputs: checkpoints, retained seeds, S and adapter hashes
 come from ``phase2/ADAPTERS_FROZEN.md``, never from operator-supplied labels, and every run must
 match the frozen backbone, mode, instruction, implementation manifest and attempt budget.
+Amendment 3 item 3 (commit 7e84654; Sol re-review B1 and B3) adds two bindings: every Phase-2
+archive must record, and is checked against the implementation manifest and section 2, a Tesla
+T4, ``gpu_verified``, the prescribed attention/dtype/quantization settings, the pinned package
+versions (PEFT included) in every session and a valid execution digest; and the ceiling-risk
+count k is derived from the frozen unchanged-model DEV baseline archive, never supplied.
 
 Standard library only (plus this repository's own pure-Python modules: the frozen
 ``numeric_literal_v1``, ``numeric_literal_v2`` and the safe ZIP reader).
@@ -25,22 +30,31 @@ Two separate routes:
 
     python3 -B -m phase2_analysis.analyze --dataset phase2/final_test.v3.json \
         --frozen phase2/ADAPTERS_FROZEN.md --implementation-manifest phase2/IMPLEMENTATION_MANIFEST.md \
-        --unchanged RUN --run EE:11=RUN --run ER:11=RUN --run EC:11=RUN ... \
-        --ceiling-risk-proxy-k K --out NEW_DIR
+        --baseline-dev-results BASELINE_RESULTS_ZIP \
+        --unchanged RUN --run EE:11=RUN --run ER:11=RUN --run EC:11=RUN ... --out NEW_DIR
 
-  ``--frozen`` and ``--implementation-manifest`` are required. The retained seeds, S, the
+  ``--frozen``, ``--implementation-manifest`` and ``--baseline-dev-results`` are required, and
+  ``--ceiling-risk-proxy-k`` is refused. The retained seeds, S, the
   confirmatory flag and each slot's adapter identity and hashes are read from the freeze; the
   supplied ``--run`` set must be exactly the frozen set, and each run's recorded adapter must
   equal its frozen slot (a swapped, missing, extra or substituted run, or a trained label
   without an adapter, is refused). Each run must use Qwen/Qwen3-4B at the pinned revision,
   mode ``phase2_final_test``, the frozen instruction, the engine sources, configuration and
   backend recorded in the implementation manifest, and at most the configured number of
-  attempts per prompt.
+  attempts per prompt. Every run, and every session of it, must also have run on a Tesla T4
+  (capability 7.5) with ``gpu_verified`` true, SDPA math attention, float16 compute, NF4
+  double-quantized weights and exactly the package versions pinned in the implementation
+  manifest, and its execution digest must equal the recorded backend and environment
+  (Amendment 3 item 3). The baseline results ZIP must have the SHA-256 recorded in the freeze
+  and be a complete, resolved 120-generation unchanged-model DEV run under the same
+  implementation and environment checks; k is its strict-correct C count out of 40.
 
 * DEV fixture / sanity route (``--dataset phase2/dev.v2.json``, no freeze): software check
-  only. Its output is labelled "not results" and is never a Phase-2 result.
+  only, with an operator-supplied fixture ``--ceiling-risk-proxy-k K``. Its output is labelled
+  "not results" and is never a Phase-2 result. It is not bound to the freeze, the
+  implementation manifest or the recorded environment.
 
-K is the unchanged model's DEV C strict count out of 40 (section 5 / Amendment 1 item 7).
+k is the unchanged model's DEV C strict count out of 40 (section 5 / Amendment 1 item 7).
 With S = 3 retained seeds in the freeze the analysis is confirmatory; with S = 1 or 2 it is a
 descriptive reduced-S report without decision or retention labels (Amendment 1 item 12).
 
@@ -68,7 +82,7 @@ from paper_analysis.safezip import read_zip, verify_checksums  # noqa: E402
 from secondary_analysis import numeric_endpoint as numeric_v1  # noqa: E402
 from secondary_analysis import numeric_literal_v2 as numeric_v2  # noqa: E402
 
-ANALYSIS_VERSION = "phase2_analysis 3.0.0 (Amendments 1 and 2)"
+ANALYSIS_VERSION = "phase2_analysis 3.1.0 (Amendments 1-3)"
 DATASET_SHA256 = {
     "FINAL_TEST": "da89dd9a626e438dffca39e3a74c4c8abac6bb57501495723b87e6ee143f3d46",
     "DEV": "e741c1652f5b3dcaebc78d9dd9d7c31fdf4417306fbb2f0862149f27f858f28b",
@@ -116,6 +130,42 @@ USEFUL_MARGIN_PP = 5
 DEV_FAMILIES = 40
 CEILING_PROXY_THRESHOLD = 38  # >= 38/40 unchanged DEV C strict
 CEILING_PROXY_NAME = "high unchanged-DEV accuracy (ceiling-risk proxy)"
+DEV_DATASET_PATH = ROOT / "phase2" / "dev.v2.json"
+DEV_MODE = "phase2_dev"
+BASELINE_GENERATIONS = DEV_FAMILIES * len(("E", "R", "C"))  # 120 (section 5)
+
+# ====================================================================================================
+# RECORDED EXECUTION ENVIRONMENT (Amendment 3 item 3; Sol re-review B1). Every field name the analysis
+# reads from an engine archive's environment record is in this block, so a renaming by the engine /
+# t4_smoke side changes only this block. Names as written on 4 November 2026 by
+# test1_pilot/hinglish_pilot/hf_backend.py (HFBackend.metadata -> run_manifest.json "backend" and every
+# "sessions"[i]["backend"]) and engine.py (environment() -> environment.json and every
+# "sessions"[i]["environment"]; execution_sha256 = digest({"backend": ..., "environment": ...})).
+# Prescribed values are section 2 / section 4 and the implementation manifest; none is chosen here.
+ENV_BACKEND = "backend"                  # run_manifest.json: backend metadata of the first session
+ENV_SESSIONS = "sessions"                # run_manifest.json: one entry per engine session (resumes included)
+ENV_SESSION_BACKEND = "backend"          # session: backend metadata of that session
+ENV_SESSION_ENVIRONMENT = "environment"  # session: engine.environment() of that session
+ENV_EXECUTION_DIGEST = "execution_sha256"  # run_manifest.json: digest({backend, environment})
+ENV_FILE = "environment.json"            # archive member: engine.environment() at run creation
+ENV_PACKAGES = "packages"                # environment: {distribution name: version or None}
+ENV_HARDWARE = "hardware"                # backend: torch.cuda.get_device_properties(0).name
+ENV_CAPABILITY = "capability"            # backend: list(torch.cuda.get_device_capability())
+ENV_GPU_VERIFIED = "gpu_verified"        # backend: True only when the HF backend loaded on a verified GPU
+ENV_ATTENTION = "attention"              # backend: attention kernel actually used
+ENV_COMPUTE_DTYPE = "compute_dtype"      # backend: compute dtype
+ENV_QUANTIZATION = "quantization"        # backend: model.config.quantization_config.to_dict()
+T4_NAME = "T4"                           # as hf_backend.T4: the device name must contain "T4" ...
+T4_CAPABILITY = [7, 5]                   # ... and the capability must be 7.5 (Tesla T4)
+PRESCRIBED_ATTENTION = "sdpa with math kernel only"   # section 4: SDPA math
+PRESCRIBED_COMPUTE_DTYPE = "float16"                  # section 4: NF4 + FP16
+PRESCRIBED_QUANTIZATION = {"load_in_4bit": True, "bnb_4bit_quant_type": "nf4", "bnb_4bit_use_double_quant": True,
+                           "bnb_4bit_compute_dtype": "float16"}  # section 3/4: NF4, double-quantized, FP16 compute
+# Section 2 stack; the implementation manifest's pins must contain exactly these values.
+STACK_PINS = {"torch": "2.11.0+cu130", "transformers": "4.51.3", "bitsandbytes": "0.50.2", "peft": "0.15.2",
+              "accelerate": "1.6.0"}
+MANIFEST_PIN_GROUPS = ("evaluation", "adapter_evaluation")  # IMPLEMENTATION_MANIFEST.md "dependencies" groups
+# ====================================================================================================
 
 # (name, form, first, second, description). second may be UNCHANGED.
 DIFFERENCES = (
@@ -206,7 +256,7 @@ def read_run_members(path):
     if path.is_dir():
         require(not (path / "RUNNING.lock").exists(), f"{path}: stop the run writer before analysis")
         members = {}
-        for name in ("run_manifest.json", "experiment_config.json", "dataset.json", "generation_attempts.jsonl"):
+        for name in ("run_manifest.json", "experiment_config.json", "dataset.json", "generation_attempts.jsonl", ENV_FILE):
             require((path / name).is_file(), f"{path}: missing {name}")
             members[name] = (path / name).read_bytes()
         for source in sorted((path / "source").glob("*.py")):
@@ -229,9 +279,10 @@ def read_run_members(path):
 def load_run(path):
     """Verify one engine run and return its identity, completeness and selected attempts."""
     members, kind = read_run_members(path)
-    for name in ("run_manifest.json", "experiment_config.json", "dataset.json", "generation_attempts.jsonl"):
+    for name in ("run_manifest.json", "experiment_config.json", "dataset.json", "generation_attempts.jsonl", ENV_FILE):
         require(name in members, f"{path}: missing {name}")
     manifest = _json(members["run_manifest.json"], "run_manifest.json")
+    environment = _json(members[ENV_FILE], ENV_FILE)
     config = _json(members["experiment_config.json"], "experiment_config.json")
     dataset = _json(members["dataset.json"], "dataset.json")
     require(digest(config) == manifest.get("config_sha256"), f"{path}: config snapshot does not match manifest")
@@ -285,7 +336,7 @@ def load_run(path):
     # A rendering without a generated attempt (absent, or infrastructure retries exhausted) is unresolved.
     complete = manifest.get("status") == "COMPLETE" and len(selected) == len(order)
     sources = {name[len("source/"):]: sha256(blob) for name, blob in members.items() if name.startswith("source/")}
-    return dict(path=str(path), kind=kind, manifest=manifest, config=config, dataset=dataset,
+    return dict(path=str(path), kind=kind, manifest=manifest, config=config, dataset=dataset, environment=environment,
                 selected=selected, complete=complete, expected=len(order), completed=len(selected),
                 unresolved=len(order) - len(selected), sources=sources, attempt_budget=budget,
                 attempts=len(journal), archive_sha256=sha256(Path(path).read_bytes()) if kind == "zip" else None)
@@ -411,10 +462,36 @@ def parse_implementation_manifest(text):
     generation = doc.get("generation_config") or {}
     config_sha = (generation.get("engine_config_sha256") or {}).get("final_test")
     require(_is_sha(config_sha), "Implementation manifest lacks the FINAL_TEST engine configuration hash")
+    dev_config_sha = (generation.get("engine_config_sha256") or {}).get("dev")
+    require(_is_sha(dev_config_sha), "Implementation manifest lacks the DEV engine configuration hash (baseline run)")
     retries = (generation.get("decoding") or {}).get("max_infrastructure_retries")
     require(type(retries) is int and retries in (0, 1), "Implementation manifest lacks max_infrastructure_retries")
     return dict(engine_sources=engine, engine_code_sha256=digest(engine), chat_template_sha256=template,
-                final_test_config_sha256=config_sha, max_infrastructure_retries=retries)
+                final_test_config_sha256=config_sha, dev_config_sha256=dev_config_sha,
+                max_infrastructure_retries=retries, package_pins=package_pins(doc))
+
+
+def package_pins(doc):
+    """The evaluation dependency pins of the implementation manifest (Amendment 3 item 3; Sol re-review B1).
+
+    The union of the manifest's ``dependencies`` groups in MANIFEST_PIN_GROUPS ({distribution: exact version}).
+    It must pin every section-2 package (PEFT included) at its section-2 version; a manifest that records
+    another stack is refused, so a run can never be accepted against a wrong pin."""
+    dependencies = doc.get("dependencies")
+    require(isinstance(dependencies, dict), "Implementation manifest lacks its dependency pins")
+    pins = {}
+    for group in MANIFEST_PIN_GROUPS:
+        entries = dependencies.get(group)
+        require(isinstance(entries, dict) and entries, f"Implementation manifest lacks the dependencies.{group} pins")
+        for name, version in entries.items():
+            require(isinstance(name, str) and isinstance(version, str) and version,
+                    f"Implementation manifest pin {group}.{name!r} malformed")
+            require(pins.get(name, version) == version, f"Implementation manifest pins {name} twice, differently")
+            pins[name] = version
+    wrong = sorted(name for name, version in STACK_PINS.items() if pins.get(name) != version)
+    require(not wrong, "Refused: the implementation manifest does not pin the section-2 stack: " + ", ".join(
+        f"{name} {pins.get(name)!r} (section 2: {STACK_PINS[name]!r})" for name in wrong))
+    return pins
 
 
 def load_implementation_manifest(path):
@@ -427,7 +504,8 @@ def load_implementation_manifest(path):
 
 
 def check_final_test_run(key, run, binding, implementation):
-    """Amendment 2 item 7: bind one FINAL_TEST run to its frozen slot and to the implementation manifest."""
+    """Amendment 2 item 7 and Amendment 3 item 3: bind one FINAL_TEST run to its frozen slot, to the
+    implementation manifest and to the recorded execution environment."""
     name = checkpoint_name(key)
     config, manifest = run["config"], run["manifest"]
     check_config(config, "FINAL_TEST")
@@ -447,6 +525,13 @@ def check_final_test_run(key, run, binding, implementation):
     # Execution configuration, engine sources and backend from the implementation manifest.
     require(digest(dict(config, adapter=None)) == implementation["final_test_config_sha256"],
             f"Refused: {name}: execution configuration differs from the implementation manifest")
+    check_implementation(name, run, binding, implementation)
+
+
+def check_implementation(name, run, binding, implementation):
+    """Attempt budget, engine sources and backend identity of one Phase-2 archive (FINAL_TEST run or DEV
+    baseline) against the implementation manifest and the freeze, then its recorded environment."""
+    config, manifest = run["config"], run["manifest"]
     require(config.get("max_infrastructure_retries") == implementation["max_infrastructure_retries"]
             and run["attempt_budget"] == 1 + implementation["max_infrastructure_retries"],
             f"Refused: {name}: attempt budget differs from the implementation manifest")
@@ -455,7 +540,7 @@ def check_final_test_run(key, run, binding, implementation):
     require(not differ, f"Refused: {name}: engine source snapshot differs from the implementation manifest: {', '.join(differ)}")
     require(manifest.get("code_sha256") == implementation["engine_code_sha256"],
             f"Refused: {name}: engine code hash differs from the implementation manifest")
-    backend = manifest.get("backend")
+    backend = manifest.get(ENV_BACKEND)
     require(isinstance(backend, dict) and backend.get("backend") == "huggingface",
             f"Refused: {name}: backend is not the Hugging Face backend")
     require(backend.get("model_revision") == QWEN_REVISION and backend.get("tokenizer_revision") == QWEN_REVISION,
@@ -465,9 +550,113 @@ def check_final_test_run(key, run, binding, implementation):
     require(backend.get("adapter", "missing") == config.get("adapter"), f"Refused: {name}: backend adapter differs from config")
     require(backend.get("base_weight_shards_sha256") == binding["unchanged"]["base_weight_shards_sha256"],
             f"Refused: {name}: base weight shards differ from the freeze")
-    sessions = manifest.get("sessions") or []
-    require(all(isinstance(s, dict) and s.get("backend") == backend for s in sessions),
-            f"Refused: {name}: a resumed session ran on a different backend")
+    check_environment(name, run, implementation)
+
+
+def check_backend_execution(name, backend):
+    """Section 2 / section 4 execution facts of one backend record (Amendment 3 item 3)."""
+    hardware = backend.get(ENV_HARDWARE)
+    require(isinstance(hardware, str) and T4_NAME in hardware,
+            f"Refused: {name}: recorded hardware {hardware!r} is not a Tesla T4 (section 2; Amendment 2 item 3)")
+    capability = backend.get(ENV_CAPABILITY)
+    require(isinstance(capability, list) and capability == T4_CAPABILITY
+            and all(type(c) is int for c in capability),
+            f"Refused: {name}: recorded GPU capability {capability!r} is not the T4's {T4_CAPABILITY}")
+    require(backend.get(ENV_GPU_VERIFIED) is True,
+            f"Refused: {name}: {ENV_GPU_VERIFIED} is {backend.get(ENV_GPU_VERIFIED, 'missing')!r}, not true: the "
+            "archive does not record a verified GPU execution")
+    require(backend.get(ENV_ATTENTION) == PRESCRIBED_ATTENTION,
+            f"Refused: {name}: recorded attention {backend.get(ENV_ATTENTION)!r}, prescribed {PRESCRIBED_ATTENTION!r}")
+    require(backend.get(ENV_COMPUTE_DTYPE) == PRESCRIBED_COMPUTE_DTYPE,
+            f"Refused: {name}: recorded compute dtype {backend.get(ENV_COMPUTE_DTYPE)!r}, prescribed "
+            f"{PRESCRIBED_COMPUTE_DTYPE!r}")
+    quantization = backend.get(ENV_QUANTIZATION)
+    require(isinstance(quantization, dict), f"Refused: {name}: no recorded quantization configuration")
+    wrong = sorted(k for k, v in PRESCRIBED_QUANTIZATION.items() if quantization.get(k, "missing") != v)
+    require(not wrong, f"Refused: {name}: recorded quantization differs from NF4 double-quantized FP16 compute: "
+                       + ", ".join(f"{k}={quantization.get(k, 'missing')!r}" for k in wrong))
+
+
+def check_packages(name, where, environment, pins):
+    packages = environment.get(ENV_PACKAGES) if isinstance(environment, dict) else None
+    require(isinstance(packages, dict), f"Refused: {name}: {where} records no package versions")
+    wrong = sorted(n for n, version in pins.items() if packages.get(n) != version)
+    require(not wrong, f"Refused: {name}: {where} package versions differ from the implementation manifest pins: "
+                       + ", ".join(f"{n} {packages.get(n, 'missing')!r} (pinned {pins[n]!r})" for n in wrong))
+
+
+def check_environment(name, run, implementation):
+    """Amendment 3 item 3 (Sol re-review B1): the recorded hardware, settings and package versions of the run
+    and of EVERY session, and the execution digest, against the implementation manifest and section 2."""
+    manifest, pins = run["manifest"], implementation["package_pins"]
+    backend = manifest.get(ENV_BACKEND)
+    check_backend_execution(name, backend)
+    sessions = manifest.get(ENV_SESSIONS)
+    require(isinstance(sessions, list) and sessions,
+            f"Refused: {name}: the archive records no engine session, so no execution can be validated")
+    execution = manifest.get(ENV_EXECUTION_DIGEST)
+    require(_is_sha(execution), f"Refused: {name}: the archive records no valid execution digest ({ENV_EXECUTION_DIGEST})")
+    for number, session in enumerate(sessions, 1):
+        where = f"session {number} of {len(sessions)}"
+        require(isinstance(session, dict) and isinstance(session.get(ENV_SESSION_BACKEND), dict)
+                and isinstance(session.get(ENV_SESSION_ENVIRONMENT), dict),
+                f"Refused: {name}: {where} lacks its backend or environment record")
+        require(session[ENV_SESSION_BACKEND] == backend, f"Refused: {name}: {where} ran on a different backend")
+        check_backend_execution(f"{name} {where}", session[ENV_SESSION_BACKEND])
+        check_packages(name, where, session[ENV_SESSION_ENVIRONMENT], pins)
+        require(digest({"backend": session[ENV_SESSION_BACKEND], "environment": session[ENV_SESSION_ENVIRONMENT]})
+                == execution, f"Refused: {name}: {where}: backend and environment do not match the execution digest")
+    check_packages(name, ENV_FILE, run["environment"], pins)
+    require(digest({"backend": backend, "environment": run["environment"]}) == execution,
+            f"Refused: {name}: {ENV_FILE} and the backend record do not match the execution digest")
+
+
+# ------------------------------------------------------------------ unchanged-model DEV baseline (B3)
+
+def load_dev_families():
+    """The frozen DEV file (section 1), hash-checked; the baseline snapshot is compared with it."""
+    raw = DEV_DATASET_PATH.read_bytes()
+    require(sha256(raw) == DATASET_SHA256["DEV"], f"{DEV_DATASET_PATH} differs from the pre-registered DEV SHA-256")
+    return json.loads(raw)
+
+
+def load_baseline(path, binding, implementation):
+    """Amendment 3 item 3 (Sol re-review B3): the frozen unchanged-model DEV baseline and the ceiling-risk count k.
+
+    The results ZIP must have the SHA-256 recorded in ADAPTERS_FROZEN.md and be a complete run of the unchanged
+    Qwen3-4B (no adapter) in mode phase2_dev on the frozen DEV families, under the implementation manifest's DEV
+    configuration, engine sources, backend and recorded environment, with exactly 120 resolved generations (40
+    families x E/R/C). k is its strict-correct C count out of 40, from the stored scorer v1.0.0 scores."""
+    require(path is not None, "Refused: FINAL_TEST analysis requires --baseline-dev-results, the unchanged-model DEV "
+                              "results ZIP recorded in phase2/ADAPTERS_FROZEN.md (Amendment 3 item 3)")
+    path = Path(path)
+    require(path.is_file(), f"Refused: baseline results ZIP not found (a results ZIP, not a run directory): {path}")
+    actual = sha256(path.read_bytes())
+    expected = binding["baseline_dev_results_zip_sha256"]
+    require(actual == expected, f"Refused: baseline results ZIP SHA-256 {actual} is not the frozen {expected}")
+    name = "unchanged-DEV baseline"
+    run = load_run(path)
+    config, manifest = run["config"], run["manifest"]
+    check_config(config, "DEV")
+    require(config.get("model_id") == QWEN_ID and config.get("model_revision") == QWEN_REVISION
+            and config.get("tokenizer_revision") == QWEN_REVISION,
+            f"Refused: {name}: not {QWEN_ID} at the pinned revision {QWEN_REVISION}")
+    require(config.get("mode") == DEV_MODE and manifest.get("mode") == DEV_MODE,
+            f"Refused: {name}: mode {config.get('mode')!r}/{manifest.get('mode')!r}, required {DEV_MODE!r}")
+    require(config.get("adapter", "missing") is None, f"Refused: {name}: not the unchanged model (an adapter is recorded)")
+    require(digest(config) == implementation["dev_config_sha256"],
+            f"Refused: {name}: execution configuration differs from the implementation manifest's DEV configuration")
+    check_snapshot(run["dataset"], load_dev_families(), "DEV")
+    check_implementation(name, run, binding, implementation)
+    cells = {(row["family_id"], row["form"]) for row in run["selected"].values()}
+    require(run["complete"] and run["expected"] == BASELINE_GENERATIONS and run["unresolved"] == 0
+            and len(run["selected"]) == BASELINE_GENERATIONS and len(cells) == BASELINE_GENERATIONS
+            and {form for _, form in cells} == set(FORMS),
+            f"Refused: {name}: {run['completed']}/{run['expected']} resolved generations; exactly "
+            f"{BASELINE_GENERATIONS} resolved DEV generations (40 families x E/R/C) are required")
+    k = sum(1 for row in run["selected"].values() if row["form"] == "C" and row["correct"] is True)
+    return dict(path=str(path), sha256=actual, run_id=manifest["run_id"], generations=len(run["selected"]),
+                k=k, n=DEV_FAMILIES)
 
 
 def _load_runs(checkpoints):
@@ -489,8 +678,9 @@ def _common_model(runs, families, role):
     return next(iter(configs))[0]
 
 
-def assemble_final_test(data_sha, families, checkpoints, frozen, implementation_manifest):
-    """FINAL_TEST route: denominators, seeds and checkpoint identities come from the freeze (Amendment 2 item 7)."""
+def assemble_final_test(data_sha, families, checkpoints, frozen, implementation_manifest, baseline_dev_results=None):
+    """FINAL_TEST route: denominators, seeds and checkpoint identities come from the freeze (Amendment 2 item 7);
+    the ceiling-risk count k from the frozen unchanged-model DEV baseline archive (Amendment 3 item 3)."""
     require(frozen is not None, "Refused: FINAL_TEST analysis requires --frozen phase2/ADAPTERS_FROZEN.md "
                                 "(Amendment 2 item 7)")
     require(implementation_manifest is not None, "Refused: FINAL_TEST analysis requires --implementation-manifest "
@@ -510,6 +700,7 @@ def assemble_final_test(data_sha, families, checkpoints, frozen, implementation_
     for key, run in runs.items():
         check_final_test_run(key, run, binding, implementation)
     model_id = _common_model(runs, families, "FINAL_TEST")
+    baseline = load_baseline(baseline_dev_results, binding, implementation)
     seeds, S = binding["seeds"], binding["S"]
     warnings = []
     if seeds != list(SEEDS):
@@ -523,10 +714,12 @@ def assemble_final_test(data_sha, families, checkpoints, frozen, implementation_
     freeze = dict(path=binding["path"], sha256=binding["sha256"], retained_seeds=[
         dict(slot=binding["slot_of"][s], seed=s) for s in seeds], S=S, confirmatory=binding["confirmatory"],
         baseline_dev_results_zip_sha256=binding["baseline_dev_results_zip_sha256"],
-        implementation_manifest=dict(path=implementation["path"], sha256=implementation["sha256"]))
+        baseline_dev_results=dict(path=baseline["path"], run_id=baseline["run_id"], generations=baseline["generations"]),
+        implementation_manifest=dict(path=implementation["path"], sha256=implementation["sha256"]),
+        package_pins=dict(sorted(implementation["package_pins"].items())))
     return dict(role="FINAL_TEST", dataset_sha256=data_sha, families=families, runs=runs, seeds=seeds,
                 model_id=model_id, warnings=warnings, labels=binding["confirmatory"], analysis_type=analysis_type,
-                freeze=freeze)
+                freeze=freeze, baseline=baseline)
 
 
 DEV_NOT_RESULTS = ("DEV fixture route: software and sanity check only; nothing from this route is a Phase-2 result, "
@@ -555,19 +748,22 @@ def assemble_dev(data_sha, families, checkpoints):
     analysis_type = (f"not results: DEV fixture route (S = {S}; label code exercised)" if S == CONFIRMATORY_S else
                      f"not results: DEV fixture route, reduced-S (S = {S}); no labels")
     return dict(role="DEV", dataset_sha256=data_sha, families=families, runs=runs, seeds=seeds, model_id=model_id,
-                warnings=warnings, labels=S == CONFIRMATORY_S, analysis_type=analysis_type, freeze=None)
+                warnings=warnings, labels=S == CONFIRMATORY_S, analysis_type=analysis_type, freeze=None, baseline=None)
 
 
-def assemble(dataset_path, checkpoints, frozen=None, implementation_manifest=None):
+def assemble(dataset_path, checkpoints, frozen=None, implementation_manifest=None, baseline_dev_results=None):
     """checkpoints: {(arm, seed) or (UNCHANGED, None): path}. Returns the verified study.
 
-    FINAL_TEST requires ``frozen`` (phase2/ADAPTERS_FROZEN.md) and ``implementation_manifest``;
-    DEV is the separate fixture route and refuses both."""
+    FINAL_TEST requires ``frozen`` (phase2/ADAPTERS_FROZEN.md), ``implementation_manifest`` and
+    ``baseline_dev_results`` (the frozen unchanged-model DEV results ZIP); DEV is the separate fixture
+    route and refuses all three."""
     role, data_sha, families = load_frozen_dataset(dataset_path)
     if role == "FINAL_TEST":
-        return assemble_final_test(data_sha, families, checkpoints, frozen, implementation_manifest)
-    require(frozen is None and implementation_manifest is None,
-            "Refused: --frozen/--implementation-manifest bind FINAL_TEST only; the DEV fixture route is separate")
+        return assemble_final_test(data_sha, families, checkpoints, frozen, implementation_manifest,
+                                   baseline_dev_results)
+    require(frozen is None and implementation_manifest is None and baseline_dev_results is None,
+            "Refused: --frozen/--implementation-manifest/--baseline-dev-results bind FINAL_TEST only; the DEV "
+            "fixture route is separate")
     return assemble_dev(data_sha, families, checkpoints)
 
 
@@ -796,19 +992,32 @@ def checkpoint_name(key):
 
 # ------------------------------------------------------------------ analysis
 
-def ceiling_risk_proxy(k):
+def ceiling_risk_proxy(k, source="operator-supplied DEV fixture value (not results)"):
     """Amendment 1 item 7: unchanged-model DEV C strict count k/40, its Wilson interval and DEV headroom."""
     require(type(k) is int and 0 <= k <= DEV_FAMILIES,
             f"ceiling-risk proxy must be the unchanged DEV C strict count, an integer 0-{DEV_FAMILIES}")
-    return dict(name=CEILING_PROXY_NAME, correct=k, n=DEV_FAMILIES, accuracy=k / DEV_FAMILIES,
+    return dict(name=CEILING_PROXY_NAME, correct=k, n=DEV_FAMILIES, accuracy=k / DEV_FAMILIES, source=source,
                 wilson_95=wilson(k, DEV_FAMILIES), dev_headroom=1 - k / DEV_FAMILIES,
                 threshold=f">= {CEILING_PROXY_THRESHOLD}/{DEV_FAMILIES}", fired=k >= CEILING_PROXY_THRESHOLD,
                 note="A proxy from the unchanged model on DEV; it does not establish a ceiling for the trained "
                      "comparator. Δ_C stays first in the report and S2 stays descriptive.")
 
 
-def analyze(study, ceiling_proxy_k):
-    proxy = ceiling_risk_proxy(ceiling_proxy_k)
+def analyze(study, ceiling_proxy_k=None):
+    """FINAL_TEST: k is derived from the frozen baseline archive and a caller-supplied k is refused
+    (Amendment 3 item 3). DEV fixture route: k is the operator's fixture value (not results)."""
+    if study["role"] == "FINAL_TEST":
+        require(ceiling_proxy_k is None,
+                "Refused: on the FINAL_TEST route the ceiling-risk count k is derived from the frozen unchanged-model "
+                "DEV baseline archive; a caller-supplied k (--ceiling-risk-proxy-k) is not accepted (Amendment 3 item 3)")
+        baseline = study["baseline"]
+        proxy = ceiling_risk_proxy(baseline["k"], source=(
+            f"derived: strict-correct C count of the frozen unchanged-model DEV baseline results ZIP "
+            f"(SHA-256 {baseline['sha256']}, run {baseline['run_id']}, {baseline['generations']} resolved generations)"))
+    else:
+        require(ceiling_proxy_k is not None, "DEV fixture route: supply the fixture ceiling-risk count "
+                                             "(--ceiling-risk-proxy-k); it is not a result")
+        proxy = ceiling_risk_proxy(ceiling_proxy_k)
     runs, seeds = study["runs"], study["seeds"]
     family_ids = sorted(f["family_id"] for f in study["families"])  # records sorted by family ID (item 4)
     N, S = len(family_ids), len(seeds)
@@ -817,8 +1026,8 @@ def analyze(study, ceiling_proxy_k):
     require(not labelled or S == CONFIRMATORY_S, "labels need S = 3")
     result = dict(
         analysis_version=ANALYSIS_VERSION,
-        preregistration="phase2/PREREGISTRATION.md sections 6-8 as amended by Amendment 1 (b4fb956, D045) and "
-                        "Amendment 2 (17986d4, D046)",
+        preregistration="phase2/PREREGISTRATION.md sections 6-8 as amended by Amendment 1 (b4fb956, D045), "
+                        "Amendment 2 (17986d4, D046) and Amendment 3 (7e84654, D047)",
         dataset_role=study["role"], dataset_sha256=study["dataset_sha256"], families=N, seeds=seeds, S=S,
         analysis_type=study["analysis_type"], results=study["role"] == "FINAL_TEST",
         freeze=study["freeze"], model_id=study["model_id"], ceiling_risk_proxy=proxy,
@@ -1012,9 +1221,12 @@ def markdown(result):
                   + ", ".join(f"{e['slot']}→{e['seed']}" for e in fz["retained_seeds"]) + f"; S = {fz['S']}; "
                   f"confirmatory {fz['confirmatory']}. Implementation manifest `{fz['implementation_manifest']['path']}` "
                   f"(SHA-256 `{fz['implementation_manifest']['sha256']}`); unchanged-DEV baseline results ZIP "
-                  f"`{fz['baseline_dev_results_zip_sha256']}`. Every run's adapter and hashes, model, mode, "
-                  "instruction, engine sources, configuration, backend and attempt budget were checked against them "
-                  "(Amendment 2 item 7).", ""]
+                  f"`{fz['baseline_dev_results_zip_sha256']}` (verified: {fz['baseline_dev_results']['generations']} "
+                  "resolved unchanged-model generations; the ceiling-risk count is derived from it). Every run's "
+                  "adapter and hashes, model, mode, instruction, engine sources, configuration, backend and attempt "
+                  "budget were checked against them (Amendment 2 item 7), and every run and session's T4 hardware, "
+                  "gpu_verified, attention/dtype/quantization, pinned package versions and execution digest "
+                  "(Amendment 3 item 3).", ""]
     lines += [f"- Warning: {w}" for w in result["warnings"]]
     lines += ["", "## Inputs", "", "| Checkpoint | Run ID | Status | Completed | Unresolved | Attempts | Source |",
               "|---|---|---|---:|---:|---:|---|"]
@@ -1049,7 +1261,7 @@ def markdown(result):
     lines += [f"{proxy['name'][0].upper() + proxy['name'][1:]}: unchanged DEV C {proxy['correct']}/{proxy['n']} "
               f"({100 * proxy['accuracy']:.1f}%; Wilson 95% {100 * proxy['wilson_95'][0]:.1f}–{100 * proxy['wilson_95'][1]:.1f}; "
               f"DEV headroom {100 * proxy['dev_headroom']:.1f} pp); threshold {proxy['threshold']}: "
-              f"**{'fired' if proxy['fired'] else 'not fired'}**. {proxy['note']}", "",
+              f"**{'fired' if proxy['fired'] else 'not fired'}**. Source of k: {proxy['source']}. {proxy['note']}", "",
               boot["note"], ""]
     lines += ["## S2: R transfer (descriptive)", "",
               f"- T_R (E+R − E+E on R) = {_interval(est['T_R'])}",
@@ -1127,10 +1339,12 @@ def parse_checkpoints(unchanged, runs):
     return checkpoints
 
 
-def run_analysis(dataset, checkpoints, ceiling_proxy_k, out, frozen=None, implementation_manifest=None):
+def run_analysis(dataset, checkpoints, ceiling_proxy_k, out, frozen=None, implementation_manifest=None,
+                 baseline_dev_results=None):
+    """``ceiling_proxy_k`` must be None on the FINAL_TEST route (k comes from ``baseline_dev_results``)."""
     out = Path(out)
     require(not out.exists() or not any(out.iterdir()), f"Output directory {out} must be new or empty")
-    study = assemble(dataset, checkpoints, frozen, implementation_manifest)
+    study = assemble(dataset, checkpoints, frozen, implementation_manifest, baseline_dev_results)
     result = analyze(study, ceiling_proxy_k)
     out.mkdir(parents=True, exist_ok=True)
     (out / "phase2_analysis.json").write_text(to_json(result), encoding="utf-8")
@@ -1143,9 +1357,12 @@ def main(argv=None):
     parser.add_argument("--dataset", required=True, help="frozen FINAL_TEST or DEV JSON file the runs were made from")
     parser.add_argument("--unchanged", required=True, help="unchanged-model run directory or results ZIP")
     parser.add_argument("--run", action="append", default=[], help="ARM:SEED=PATH for each adapter run (ARM in EE/ER/EC)")
-    parser.add_argument("--ceiling-risk-proxy-k", required=True, type=int, metavar="K",
-                        help=f"unchanged-model DEV C strict count out of {DEV_FAMILIES}; "
-                             f"'{CEILING_PROXY_NAME}' fires at >= {CEILING_PROXY_THRESHOLD}")
+    parser.add_argument("--ceiling-risk-proxy-k", type=int, metavar="K",
+                        help=f"DEV fixture route only (refused for FINAL_TEST): fixture unchanged-model DEV C strict "
+                             f"count out of {DEV_FAMILIES}; '{CEILING_PROXY_NAME}' fires at >= {CEILING_PROXY_THRESHOLD}")
+    parser.add_argument("--baseline-dev-results", help="FINAL_TEST (required): the unchanged-model DEV results ZIP "
+                                                       "whose SHA-256 is in the freeze; k is derived from it. Not "
+                                                       "accepted for DEV.")
     parser.add_argument("--frozen", help="FINAL_TEST (required): phase2/ADAPTERS_FROZEN.md; checkpoints, retained "
                                          "seeds, S and adapter hashes are taken from it. Not accepted for DEV.")
     parser.add_argument("--implementation-manifest", help="FINAL_TEST (required): phase2/IMPLEMENTATION_MANIFEST.md, "
@@ -1154,7 +1371,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         result = run_analysis(args.dataset, parse_checkpoints(args.unchanged, args.run), args.ceiling_risk_proxy_k,
-                              args.out, args.frozen, args.implementation_manifest)
+                              args.out, args.frozen, args.implementation_manifest, args.baseline_dev_results)
     except (AnalysisError, ValueError) as error:
         print(f"REFUSED: {error}", file=sys.stderr)
         return 2

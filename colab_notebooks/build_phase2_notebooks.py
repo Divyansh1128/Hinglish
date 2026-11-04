@@ -1,4 +1,4 @@
-"""Build the Phase-2 notebooks (D043; binding plan phase2/PREREGISTRATION.md with Amendments 1 and 2) into colab_notebooks/phase2/.
+"""Build the Phase-2 notebooks (D043; binding plan phase2/PREREGISTRATION.md with Amendments 1-3) into colab_notebooks/phase2/.
 
 - Phase2_Baseline_DEV.ipynb: unchanged Qwen3-4B on DEV; prints "high unchanged-DEV accuracy (ceiling-risk proxy)"
   with k/40 and its Wilson interval (Amendment 1 item 7) and records the run for the trainer (Amendment 2 item 6).
@@ -32,10 +32,10 @@ OUT_DIR = ROOT / 'colab_notebooks' / 'phase2'
 STAMP = (2026, 11, 3, 0, 0, 0)
 NAMES = {'baseline': 'Phase2_Baseline_DEV.ipynb', 'train': 'Phase2_Train.ipynb', 'final_test': 'Phase2_FinalTest.ipynb'}
 PREREGISTRATION = ROOT / 'phase2' / 'PREREGISTRATION.md'
-# SHA-256 of the committed pre-registration WITH Amendments 1 and 2 (commit 17986d4, D046). 37ef68bf... (Amendment 1
-# only, b4fb956) and the original 74be2328... (58d330d) are superseded. Any further edit needs an amendment and a new
-# constant (§13); the tests compare it with the file.
-PREREGISTRATION_SHA256 = 'b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396'
+# SHA-256 of the committed pre-registration WITH Amendments 1-3 (commit 7e84654, D047). b2e6df8f... (Amendment 2,
+# 17986d4), 37ef68bf... (Amendment 1 only, b4fb956) and the original 74be2328... (58d330d) are superseded. Any further
+# edit needs an amendment and a new constant (§13); the tests compare it with the file.
+PREREGISTRATION_SHA256 = 'a22c81fb33b4d3339770a2b28c51d8d3706af2b5dd038d46aa89fbb56139714d'
 ADAPTERS_FROZEN = ROOT / 'phase2' / 'ADAPTERS_FROZEN.md'
 MANIFEST_BUILDER = ROOT / 'phase2' / 'build_implementation_manifest.py'
 T4_CODE = ('train_smoke.py', 'labels.py', 'protocol.py', 'train_phase2.py', 'phase2_eval.py')
@@ -251,6 +251,18 @@ RECOVER_NOTE = ('**Stale lock (Amendment 2 item 5).** If a runtime was killed du
                 '"Run lock exists". First make sure no other Colab session is running this notebook, then set '
                 '`RECOVER_STALE_LOCK = True` and re-run all: the lock is removed, a timestamped record is written next to '
                 'the run, and generation resumes from the stored journal (nothing is regenerated). Set it back to False afterwards.')
+RECOVER_WRITER = ("RECOVER_STALE_WRITER = False  # Amendment 3 item 2: set True ONLY after confirming that no other Colab "
+                  "session is running the trainer (a killed runtime left WRITER.lock or an open attempt); the recovery is "
+                  "logged, the open attempt is closed as an infrastructure failure and the lock is released")
+RECOVER_WRITER_NOTE = ('**One writer per training root (Amendment 3 item 2).** The trainer holds `train/WRITER.lock` (session ID '
+                       'and a heartbeat every 30 s) while it runs and writes its STARTED report before loading the model. '
+                       'A second session is refused, and an attempt that was started but has no recorded outcome is never '
+                       'treated as abandoned automatically: the notebook stops and shows the lock holder and its last '
+                       'heartbeat. If a runtime was killed, first make sure that **no other Colab session** is running this '
+                       'notebook, then set `RECOVER_STALE_WRITER = True` and re-run all: the recovery is logged '
+                       '(`train/WRITER_RECOVERIES.jsonl`), the open attempt is closed as an infrastructure failure (the '
+                       'registered retry/reserve rules then apply unchanged) and the lock is released. Set it back to False '
+                       'afterwards.')
 PROTOCOL = ('Frozen protocol (PREREGISTRATION §4): prompt `test1-english-final-v2`, greedy non-thinking decoding, NF4 + FP16, '
             'SDPA math, output cap 1,024 tokens, scorer v1.0.0, engine seed 11. **Do not change any setting.**')
 
@@ -330,17 +342,19 @@ def render_train(manifest=None):
     blob = payload('train')
     # Amendment 2 item 4: no ARM or SEED setting; the attempt plan chooses the next pending run.
     settings = ('USE_DRIVE = True  # adapters, checkpoints, the attempt log and the unchanged-DEV baseline live on Drive; keep this on\n'
-                'RESUME_AFTER_DISCONNECT = False  # engineering only: a resumed run is NEVER valid for the FinalTest gate\n' + RECOVER)
+                'RESUME_AFTER_DISCONNECT = False  # engineering only: a resumed run is NEVER valid for the FinalTest gate\n'
+                + RECOVER_WRITER + '\n' + RECOVER)
 
     def body(setup):
         yield 'markdown', f'''
-            # Phase 2 — QLoRA training run (D043, Amendments 1–2) + DEV sanity check
+            # Phase 2 — QLoRA training run (D043, Amendments 1–3) + DEV sanity check
             One notebook for all runs, with **nothing to choose**: the append-only attempt plan picks the next pending run (Amendment 2 item 4) — seed slot 11, then 22, then 33; within a slot the arms EC, then ER, then EE; a slot is fully settled (all three arms valid, or replaced by a reserve that is itself settled) before the next slot starts; reserves come from the queue 44, then 55. Just run all, once per run. Each run: all 160 TRAIN families, 320 examples, **exactly 60 accumulation windows with 60 successful optimizer steps** of 16 examples (8 families) over 3 passes, AdamW lr 1e-4 with 6 warm-up updates then cosine decay to 1e-5 (lr set before each step, gradients unscaled before clipping), GradScaler init 65,536 / growth 2.0 / backoff 0.5 / interval 2,000, the D021 recipe otherwise (NF4 + FP16, LoRA r16/α32/dropout 0.05 on all 7 projections, fp32 adapter). The exposure order is the frozen `phase2/EXPOSURE_ORDER.json`; it and the LoRA initialisation are identical across arms within a seed. About 25 minutes of training plus about 15 minutes of DEV evaluation on a T4.
             **Before any attempt opens, the trainer refuses** (nothing is logged) unless: the complete unchanged-model DEV run from `Phase2_Baseline_DEV` is on Drive under the same implementation manifest (Amendment 2 item 6); the configuration and implementation equal those of every earlier attempt (item 7); and the stack is exactly the §2 stack, torch {train_smoke.TORCH_BUILD} included, on a T4 (item 3; there is no override). Inside the attempt it re-verifies `phase2/IMPLEMENTATION_MANIFEST.md` (SHA-256 `{manifest[1]}`) against its own code, and the TRAIN bytes and the exposure order against their frozen hashes. After update 60 the adapter is saved to Drive with its SHA-256s; then it is evaluated **on DEV as a sanity report only** (never used for selection). {PROTOCOL} No FINAL_TEST data is in this notebook.
             **Failures (Amendment 1 items 10–11, Amendment 2 item 2).** Every attempt is recorded in the append-only `MyDrive/{DRIVE}/train/ATTEMPT_LOG.jsonl` (hash-chained, never overwritten) and the plan is printed before training.
             - *Infrastructure* — only: runtime disconnect or kill, CUDA out-of-memory, a Drive/filesystem `OSError`, a network/Hub download error, a failed checkpoint write. Re-run all: one fresh attempt from scratch with the same seed. After a second infrastructure failure of any arm the whole seed triplet is replaced by the next unused reserve (44, then 55); the plan switches seed by itself. Reserves get the same two-attempt limit and are never reused.
             - *Numerical* (GradScaler skip, non-finite loss, gradient or saved parameter) or *protocol* (any hash, identity, label, data or step-count assertion, and **any other error**, e.g. a `TypeError`): the run is invalid and **the study halts** — no retry, no reserve. The notebook then refuses all further training. Send the ZIP.
             - A run continued with `RESUME_AFTER_DISCONNECT = True` is never valid for the FinalTest gate.
+            {RECOVER_WRITER_NOTE}
             {RECOVER_NOTE}
             **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. A ZIP (adapter hashes, training log, attempt log, DEV results; weights stay on Drive) downloads at the end; send it unchanged.'''
         yield 'code', setup
@@ -351,11 +365,14 @@ def render_train(manifest=None):
             TRAIN_ROOT = STORE / 'train'
             BASELINE_DIR = STORE / 'baseline_dev'  # Amendment 2 item 6: written by Phase2_Baseline_DEV
             LOG = TRAIN_ROOT / tp.ATTEMPT_LOG
-            for entry in tp.reconcile(TRAIN_ROOT):  # attempts left open by a disconnect are closed from their own reports
-                print('Recorded an attempt left open earlier:', entry['arm'], 'seed', entry['seed'], 'attempt', entry['attempt'], '->', entry['outcome'])
+            if RECOVER_STALE_WRITER:  # Amendment 3 item 2: only after the operator confirmed that no other session is running
+                print('RECOVER_STALE_WRITER = True: the operator confirmed that no other Colab session is running the trainer.')
+                tp.recover_stale_writer(TRAIN_ROOT, confirmed_no_other_session=True)
+            print(tp.describe_writer(TRAIN_ROOT))
+            assert tp.read_writer_lock(TRAIN_ROOT) is None, tp.writer_held_message(TRAIN_ROOT)
             PLAN = tp.plan(tp.read_log(LOG))
             print(tp.describe_plan(PLAN))
-            ACTION = tp.next_run(PLAN)  # Amendment 2 item 4: the plan chooses ARM and SEED; refuses after a numerical/protocol failure
+            ACTION = tp.next_run(PLAN)  # an open attempt is refused, never closed automatically (Amendment 3 item 2)  # Amendment 2 item 4: the plan chooses ARM and SEED; refuses after a numerical/protocol failure
             assert not STACK_MISMATCHES, 'D021 stack mismatch (no attempt was opened): ' + '; '.join(STACK_MISMATCHES)
             ATTEMPT_DIR, OUTCOME = None, None
             if ACTION['kind'] == 'complete':
@@ -381,7 +398,7 @@ def render_train(manifest=None):
                 opened = [e for e in ENTRIES if e['event'] == ('resume_start' if RESUME else 'start') and same(e)]
                 closed = [e for e in ENTRIES if e['event'] == ('resume_finish' if RESUME else 'finish') and same(e)]
                 assert opened, f'The trainer refused before opening an attempt (exit {returncode}; see its message above). Nothing was logged.'
-                assert closed, 'The attempt has no recorded outcome (runtime killed?): re-run all; it is reconciled from its report first.'
+                assert closed, 'The attempt has no recorded outcome (runtime killed?). Make sure no other session is running, then set RECOVER_STALE_WRITER = True and re-run all.'
                 OUTCOME, DETAIL = closed[-1]['outcome'], closed[-1].get('detail')
                 if OUTCOME in ('numerical', 'protocol'):
                     print('\\n' + '!' * 100 + f'\\n{OUTCOME.upper()} FAILURE — {DETAIL}\\n' + tp.HALT_MESSAGE + '\\n' + '!' * 100)
@@ -468,7 +485,8 @@ def render_final_test(prereg, frozen_text, prereg_sha256=PREREGISTRATION_SHA256,
             BASELINE_DIR = STORE / 'baseline_dev'  # Amendment 2 item 6: the frozen unchanged-DEV run
             CHECKPOINTS = [('base', None, None)] + [(phase2_eval.run_name(a['arm'], a['seed']), a, folder)
                                                      for a, folder in phase2_eval.gate(FROZEN, STORE / 'train', expected_data_sha256=TRAIN_DATA_SHA256,
-                                                                                       baseline_dir=BASELINE_DIR)]
+                                                                                       baseline_dir=BASELINE_DIR,
+                                                                                       manifest_path=INPUTS / 'IMPLEMENTATION_MANIFEST.md')]
             assert len(CHECKPOINTS) == 1 + 3 * S
             MODE = 'CONFIRMATORY (S = 3)' if FROZEN['confirmatory'] else f'DESCRIPTIVE-ONLY reduced-S report (S = {{S}}): no confirmatory label'
             GATE_PASSED = True

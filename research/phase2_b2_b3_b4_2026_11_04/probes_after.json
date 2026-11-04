@@ -1,0 +1,39 @@
+{
+  "root": "/Users/divyanshraj/Desktop/Major Project",
+  "data": "TRAIN/DEV and synthetic fixtures only",
+  "B2_trainer_zeroed_hub_and_template_entries": {
+    "accepted": false,
+    "exception": "ProtocolError",
+    "message": "Implementation manifest differs from the trainer in: Hub files, chat template"
+  },
+  "B3_metadata_only_baseline_zip": {
+    "accepted": false,
+    "exception": "Refused",
+    "message": "The baseline results ZIP is not a complete unchanged-model DEV run as registered (Amendment 3 item 3); no attempt was opened:\n- results ZIP is not a complete engine export; it lacks environment.json, dataset_snapshot.jsonl, dataset.json, split_manifest.json, generation_attempts.jsonl, predictions.csv, family_comparisons.csv, metrics.json, summary.md, manual_audit.csv, errors.jsonl, evaluation_orde"
+  },
+  "B4_reconcile_open_attempt_without_confirmation": {
+    "accepted": false,
+    "exception": "Refused",
+    "message": "EC-s11 attempt 1 has a start without a recorded outcome. Another session may still be loading or training it: an open attempt is never treated as abandoned automatically (PREREGISTRATION Amendment 3 item 2). Only after confirming that no other Colab session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run; the attempt is then closed as an infrastruct"
+  },
+  "B4_next_run_after_that": {
+    "accepted": false,
+    "exception": "Refused",
+    "message": "EC-s11 attempt 1 has a start without a recorded outcome. Another session may still be loading or training it: an open attempt is never treated as abandoned automatically (PREREGISTRATION Amendment 3 item 2). Only after confirming that no other Colab session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run; the attempt is then closed as an infrastruct"
+  },
+  "B4_second_concurrent_writer": {
+    "accepted": false,
+    "exception": "Refused",
+    "message": "Training-root writer lock HELD by session session-A (host Mac.lan, pid 57724) since 2026-11-04T08:54:27.704994+00:00; last heartbeat 2026-11-04T08:54:27.704994+00:00 (0 s ago). Only one session may write a training root (PREREGISTRATION Amendment 3 item 2); no attempt was opened. If another Colab session is still loading or training, wait for it. A lock never expires by itself, whatever its heartb"
+  },
+  "B3_bind_manifest_not_describing_running_engine": {
+    "accepted": false,
+    "exception": "ProtocolError",
+    "message": "Running code differs from the implementation manifest: test1_pilot/hinglish_pilot/engine.py"
+  },
+  "B2_freeze_wrong_non_file_stack_torch_0.0.0": {
+    "accepted": false,
+    "exception": "ProtocolError",
+    "message": "Implementation manifest is not current (recheck at adapter freeze failed): dependencies.evaluation.torch differs from the current builder"
+  }
+}

@@ -1,5 +1,6 @@
 """Model-free tests of Phase-2 evaluation inputs, the engine modes and the FINAL_TEST gate."""
 import atexit
+import contextlib
 import copy
 import hashlib
 import io
@@ -13,7 +14,8 @@ from unittest import mock
 from t4_smoke import phase2_eval as pe
 from t4_smoke import train_phase2 as tp
 from t4_smoke import train_smoke as ts
-from t4_smoke.test_train_phase2 import IDENTITY, write_baseline
+from t4_smoke.test_train_phase2 import (IDENTITY, live_manifest_document, live_manifest_text, synthetic_t4_runtime,
+                                        write_baseline)
 from hinglish_pilot import engine as live_engine
 from hinglish_pilot import hf_backend
 from hinglish_pilot.data import validate
@@ -202,13 +204,18 @@ class BaselineRecordAndLockTests(unittest.TestCase):
     def tearDown(self):
         self.folder.cleanup()
 
-    def evaluate(self, *extra, backend=None):
-        with mock.patch.object(hf_backend, "HFBackend", backend or fake_backend(None)), mock.patch("sys.stdout", io.StringIO()) as out:
+    def evaluate(self, *extra, backend=None, compliant=False):
+        """``compliant``: the clearly labelled synthetic T4 backend/environment (test_train_phase2.synthetic_t4_runtime)."""
+        runtime = synthetic_t4_runtime() if compliant and backend is None else contextlib.nullcontext()
+        with runtime, contextlib.ExitStack() as stack:
+            if backend is not None or not compliant:
+                stack.enter_context(mock.patch.object(hf_backend, "HFBackend", backend or fake_backend(None)))
+            out = stack.enter_context(mock.patch("sys.stdout", io.StringIO()))
             code = pe.main(["evaluate", "--split", "dev", "--inputs", str(self.inputs), "--run-dir", str(self.run_dir), *extra])
         return code, out.getvalue()
 
     def test_complete_baseline_is_recorded_once_and_accepted_by_the_trainer(self):
-        code, out = self.evaluate("--implementation-manifest", str(self.manifest))
+        code, out = self.evaluate("--implementation-manifest", str(self.manifest), compliant=True)
         self.assertEqual(code, 0)
         record = json.loads((self.run_dir.parent / tp.BASELINE_RECORD).read_text())
         archive = self.run_dir.parent / "base_results.zip"
@@ -217,9 +224,12 @@ class BaselineRecordAndLockTests(unittest.TestCase):
         self.assertEqual(record["results_zip_sha256"], hashlib.sha256(archive.read_bytes()).hexdigest())
         self.assertEqual(record["implementation_manifest_sha256"], MANIFEST_SHA)
         self.assertIn("Unchanged-DEV baseline recorded", out)
-        self.assertEqual(tp.verify_baseline(self.run_dir.parent, MANIFEST_SHA), record["results_zip_sha256"])
+        self.assertEqual(tp.verify_baseline(self.run_dir.parent, self.manifest), record["results_zip_sha256"])
+        other_manifest = self.root / "other" / tp.MANIFEST_NAME
+        other_manifest.parent.mkdir()
+        other_manifest.write_text(FIXTURE_MANIFEST_TEXT + "\n")
         with self.assertRaisesRegex(tp.Refused, "another implementation manifest|not"):
-            tp.verify_baseline(self.run_dir.parent, "0" * 64)
+            tp.verify_baseline(self.run_dir.parent, other_manifest)
         before = archive.read_bytes()
         code, out = self.evaluate("--implementation-manifest", str(self.manifest),
                                   backend=mock.MagicMock(side_effect=AssertionError("reloaded")))
@@ -231,12 +241,40 @@ class BaselineRecordAndLockTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "refusing to mix implementations"):
             self.evaluate("--implementation-manifest", str(other))
 
+    def test_binding_authenticates_the_running_code_not_just_a_hash(self):
+        """Sol re-review B3: bind_implementation verifies the running code and registered values first."""
+        for name, change, pattern in (
+                ("engine file", lambda d: d["files"].update({"test1_pilot/hinglish_pilot/engine.py": "0" * 64}), "engine.py"),
+                ("driver", lambda d: d["files"].update({"t4_smoke/phase2_eval.py": "0" * 64}), "phase2_eval.py"),
+                ("engine group", lambda d: d["groups"]["engine"].pop(), "engine group"),
+                ("torch pin", lambda d: d["dependencies"]["evaluation"].update(torch="0.0.0"), "evaluation dependencies"),
+                ("decoding", lambda d: d["generation_config"]["decoding"].update(max_new_tokens=512), "decoding"),
+                ("chat template", lambda d: d["model"]["chat_template"].update(digest="0" * 64), "chat template")):
+            document = live_manifest_document()
+            change(document)
+            path = self.root / f"{name}.md"
+            path.write_text("```json\n" + json.dumps(document) + "\n```\n")
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, pattern):
+                pe.bind_implementation(self.root / name / "base", path)
+            self.assertFalse((self.root / name / "base_implementation.json").exists())
+        self.assertEqual(pe.bind_implementation(self.run_dir, self.manifest), MANIFEST_SHA)
+        bound = json.loads((self.run_dir.parent / "base_implementation.json").read_text())
+        self.assertEqual(bound["running_code_verified_sha256"]["test1_pilot/hinglish_pilot/engine.py"],
+                         hashlib.sha256((ROOT / "test1_pilot/hinglish_pilot/engine.py").read_bytes()).hexdigest())
+
+    def test_a_noncompliant_completed_run_is_never_recorded_as_the_baseline(self):
+        """Amendment 3 item 3: the default fake backend records no T4 and no pinned stack."""
+        with self.assertRaisesRegex(ValueError, "does not validate as the registered baseline"):
+            self.evaluate("--implementation-manifest", str(self.manifest))
+        self.assertFalse((self.run_dir.parent / tp.BASELINE_RECORD).exists())
+        self.assertTrue((self.run_dir.parent / (tp.BASELINE_RECORD + ".INVALID")).exists())
+
     def test_no_baseline_record_without_a_manifest_or_for_an_incomplete_run(self):
         dataset, splits = pe.inputs((ROOT / "phase2" / "dev.v2.json").read_bytes(), "dev", pe.split_identities(ROOT))
         self.assertEqual(self.evaluate()[0], 0)
         self.assertFalse((self.run_dir.parent / tp.BASELINE_RECORD).exists())
         with self.assertRaisesRegex(tp.Refused, "Phase2_Baseline_DEV"):
-            tp.verify_baseline(self.run_dir.parent, MANIFEST_SHA)
+            tp.verify_baseline(self.run_dir.parent, self.manifest)
         unbound = self.root / "unbound" / "base"  # started without a manifest: cannot become a baseline later
         run(unbound, dataset, splits, pe.config_for("dev"), fake_backend(None)(), max_items=5)
         self.run_dir = unbound
@@ -280,10 +318,9 @@ class BaselineRecordAndLockTests(unittest.TestCase):
         self.assertTrue((self.root / "RUNNING.lock").exists())
 
 
-# A fixture implementation manifest that is true of this repository (one hashed file), so freeze_manifest's recheck
-# against the real implementation passes; the notebook tests swap in the real manifest.
-FIXTURE_MANIFEST_TEXT = ("# Implementation manifest (TEST FIXTURE)\n\n```json\n" + json.dumps(
-    {"schema": tp.MANIFEST_SCHEMA, "files": {tp.EXPOSURE_ORDER_PATH: tp.EXPOSURE_ORDER_SHA256}}) + "\n```\n")
+# The implementation manifest the current builder derives from this repository: true of the running code, so binding,
+# the freeze's complete currency recheck (Sol re-review B2) and baseline validation (B3) pass.
+FIXTURE_MANIFEST_TEXT = live_manifest_text()
 _FIXTURE_DIR = tempfile.mkdtemp()
 atexit.register(shutil.rmtree, _FIXTURE_DIR, True)
 MANIFEST_PATH = Path(_FIXTURE_DIR) / "IMPLEMENTATION_MANIFEST.md"
@@ -539,6 +576,25 @@ class GateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "differ in"):
             freeze(mixed)
 
+    def test_freeze_rederives_every_non_file_entry_and_the_file_set(self):
+        """Sol re-review B2: real file digests with wrong non-file settings (torch 0.0.0) must not freeze."""
+        for name, change, pattern in (
+                ("torch", lambda d: d["dependencies"]["evaluation"].update(torch="0.0.0"), "dependencies.evaluation.torch"),
+                ("recipe", lambda d: d["training"].update(recipe_sha256="0" * 64), "training.recipe_sha256"),
+                ("settings", lambda d: d["generation_config"]["decoding"].update(num_beams=4), "generation_config.decoding.num_beams"),
+                ("missing file", lambda d: d["files"].pop("t4_smoke/labels.py"), "file set differs"),
+                ("extra entry", lambda d: d.update(override={"allow": True}), "override")):
+            document = live_manifest_document()
+            change(document)
+            path = Path(self.folder.name) / f"{name}.md"
+            path.write_text("```json\n" + json.dumps(document) + "\n```\n")
+            train = Path(self.folder.name) / f"train-{name}"
+            with mock.patch(__name__ + ".MANIFEST_SHA", H(path.read_text())):
+                complete_slots(train)
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "not current(.|\n)*" + pattern):
+                pe.freeze_manifest(train, manifest_path=path, root=ROOT)
+        self.assertEqual(freeze(self.train)["S"], 3)
+
     def test_freeze_records_the_baseline_and_the_gate_requires_it(self):
         """Amendment 2 item 6 (Sol R8)."""
         self.assertEqual(self.frozen["baseline_dev_results_zip_sha256"], BASELINE_SHA)
@@ -551,10 +607,12 @@ class GateTests(unittest.TestCase):
             complete_slots(good)
             frozen = freeze(good, baseline_dir=baseline)
         self.assertEqual(frozen["baseline_dev_results_zip_sha256"], zip_sha)
-        self.assertEqual(len(pe.gate(frozen, good, baseline_dir=baseline)), 9)
+        self.assertEqual(len(pe.gate(frozen, good, baseline_dir=baseline, manifest_path=MANIFEST_PATH)), 9)
+        with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*manifest file is needed"):
+            pe.gate(frozen, good, baseline_dir=baseline)
         (baseline / "base_results.zip").write_bytes(b"rerun")
         with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*unchanged-DEV baseline"):
-            pe.gate(frozen, good, baseline_dir=baseline)
+            pe.gate(frozen, good, baseline_dir=baseline, manifest_path=MANIFEST_PATH)
         with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*without the frozen unchanged-DEV baseline"):
             pe.gate(dict(frozen, baseline_dev_results_zip_sha256="0" * 64), good)
         no_baseline = Path(self.folder.name) / "no_baseline"

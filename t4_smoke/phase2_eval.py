@@ -1,4 +1,4 @@
-"""Phase-2 evaluation through the frozen Test 1 engine (phase2/PREREGISTRATION.md §4, §5, §11 with Amendments 1-2).
+"""Phase-2 evaluation through the frozen Test 1 engine (phase2/PREREGISTRATION.md §4, §5, §11 with Amendments 1-3).
 
   python3 t4_smoke/phase2_eval.py evaluate --split dev --inputs INPUTS_DIR --run-dir RUN [--adapter-dir D --adapter-record R]
       [--implementation-manifest M] [--sealed] [--recover-stale-lock]
@@ -21,6 +21,7 @@ DEV / FINAL_TEST files, hash-checked. Model-free helpers (inputs, gate, manifest
 import argparse
 import contextlib
 import hashlib
+import importlib.util
 import io
 import json
 import re
@@ -33,6 +34,8 @@ for candidate in (HERE.parent, HERE.parent / "test1_pilot"):  # notebook payload
     if (candidate / "hinglish_pilot").is_dir() and str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
+import hinglish_pilot.engine as engine_module  # noqa: E402
+from hinglish_pilot import hf_backend as hf_backend_module  # noqa: E402
 from hinglish_pilot.data import digest, validate  # noqa: E402
 from hinglish_pilot.engine import code_hash, default_config, read, recover_lock, run, utc, write  # noqa: E402
 from hinglish_pilot.hf_backend import adapter_digests  # noqa: E402
@@ -64,8 +67,9 @@ BORROWING_POLICY = ("Phase-2 policy (D033): R = Hindi phrasing in Roman script w
 IDENTITY = ("family_id", "source_family_id", "template_group_id")
 FROZEN_SCHEMA = "phase2-adapters-frozen-3"  # 3: + baseline_dev_results_zip_sha256 (Amendment 2 item 6)
 ENGINE_SEED = 11
-# SHA-256 of phase2/PREREGISTRATION.md with Amendments 1 and 2 (commit 17986d4, D046); supersedes 37ef68bf... and 74be2328...
-PREREGISTRATION_SHA256 = "b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396"
+# SHA-256 of phase2/PREREGISTRATION.md with Amendments 1-3 (commit 7e84654, D047); supersedes b2e6df8f... (Amendment 2),
+# 37ef68bf... (Amendment 1) and 74be2328... (original)
+PREREGISTRATION_SHA256 = "a22c81fb33b4d3339770a2b28c51d8d3706af2b5dd038d46aa89fbb56139714d"
 SHA256 = re.compile("[0-9a-f]{64}")
 
 
@@ -216,21 +220,123 @@ def verify_manifest_against(manifest_path, root):
     return document, sha256(raw)
 
 
+def differences(found, expected, prefix=""):
+    """Dotted paths at which two JSON values differ (for refusal messages)."""
+    if isinstance(found, dict) and isinstance(expected, dict):
+        paths = []
+        for key in sorted(set(found) | set(expected), key=str):
+            if key not in found or key not in expected:
+                paths.append(f"{prefix}{key} ({'missing' if key not in found else 'unexpected'})")
+            else:
+                paths += differences(found[key], expected[key], f"{prefix}{key}.")
+        return paths
+    return [] if found == expected else [prefix.rstrip(".") or "(value)"]
+
+
+def current_manifest_document(root):
+    """The implementation manifest the current builder derives from the repository at ``root``."""
+    path = Path(root) / "phase2" / "build_implementation_manifest.py"
+    spec = importlib.util.spec_from_file_location("phase2_manifest_builder_for_freeze", path)
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+        return module.build()
+    except (OSError, ValueError, KeyError) as error:
+        raise tp.ProtocolError(f"Cannot re-derive the implementation manifest from {path}: {error}") from error
+
+
+def manifest_currency_problems(document, root):
+    """Sol re-review B2: every entry of ``document`` (non-file choices — dependency pins, recipe, settings — and the
+    required file set) must equal what the current builder derives; empty list if it does."""
+    expected = current_manifest_document(root)
+    problems = []
+    found_files, wanted_files = set(document.get("files") or {}), set(expected["files"])
+    if found_files != wanted_files:
+        problems.append(f"file set differs from the required one (missing {sorted(wanted_files - found_files)[:5]}, "
+                        f"unexpected {sorted(found_files - wanted_files)[:5]})")
+    for path in differences(document, expected):
+        if not path.startswith("files."):
+            problems.append(f"{path} differs from the current builder")
+    return problems
+
+
+def verify_manifest_current(manifest_path, root):
+    """Complete manifest-currency check at freeze: the hashed files (verify_manifest_against), the required file set
+    and every non-file entry re-derived by the current builder. Returns (document, manifest SHA-256)."""
+    document, manifest_sha = verify_manifest_against(manifest_path, root)
+    problems = manifest_currency_problems(document, root)
+    require(not problems, "Implementation manifest is not current (recheck at adapter freeze failed): " + "; ".join(problems[:10]))
+    return document, manifest_sha
+
+
+def running_code():
+    """{manifest path: local file} of every source file this evaluation process executes."""
+    files = {f"t4_smoke/{name}": HERE / name for name in ("phase2_eval.py",) + tp.TRAINER_CODE}
+    engine_dir = Path(engine_module.__file__).resolve().parent
+    files.update({tp.ENGINE_PREFIX + path.name: path for path in sorted(engine_dir.glob("*.py"))})
+    spec = importlib.util.find_spec("secondary_analysis")
+    if spec is not None and spec.submodule_search_locations:
+        folder = Path(list(spec.submodule_search_locations)[0])
+        files.update({f"secondary_analysis/{path.name}": path for path in sorted(folder.glob("*.py"))})
+    return files
+
+
+def verify_running_implementation(manifest_path):
+    """Sol re-review B3: authenticate the implementation an evaluation runs under, not just record a supplied hash.
+
+    Every source file this process executes (driver, trainer modules, every engine file, the secondary endpoints)
+    must have its manifest SHA-256, the engine file set must equal the manifest's, and the non-file entries the
+    evaluation depends on (prompt, model, DEV/FINAL_TEST configuration digests, decoding, evaluation pins, chat
+    template, frozen identities) must equal what this code derives. Returns (document, manifest SHA-256, files)."""
+    raw = Path(manifest_path).read_bytes()
+    document = tp.parse_manifest(raw.decode("utf-8"))
+    files, groups = document.get("files") or {}, document.get("groups") or {}
+    running = running_code()
+    engine_running = sorted(path for path in running if path.startswith(tp.ENGINE_PREFIX))
+    require(engine_running == sorted(groups.get("engine") or []),
+            "The running engine's files differ from the implementation manifest's engine group")
+    bad = sorted(path for path, local in running.items()
+                 if (path in files or not path.startswith("secondary_analysis/")) and file_sha(local) != files.get(path))
+    require(not bad, "Running code differs from the implementation manifest: " + ", ".join(bad))
+    problems = tp.manifest_constant_problems(document)
+    with tp.protocol_assertions("IMPLEMENTATION_MANIFEST.md"):
+        generation = document["generation_config"]
+        configs = {split: config_for(split) for split in FROZEN}
+        checks = {
+            "prompt": (document["prompt"]["version"], document["prompt"]["instruction_sha256"]) == (
+                engine_module.PROMPT_VERSION, sha256(engine_module.INSTRUCTION.encode("utf-8"))),
+            "engine configurations": generation["engine_config_sha256"] == {s: ts.digest(c) for s, c in configs.items()},
+            "decoding": all(configs["dev"][key] == value for key, value in generation["decoding"].items()),
+            "engine seed": generation["engine_seed"] == ENGINE_SEED,
+            "evaluation dependencies": document["dependencies"]["evaluation"] == hf_backend_module.PINS,
+            "adapter dependencies": document["dependencies"]["adapter_evaluation"] == hf_backend_module.ADAPTER_PINS,
+            "engine code": document["baseline_dev"]["engine_code_sha256"] == code_hash(),
+        }
+    problems += [f"non-file entry {name} differs from the running evaluation code" for name, ok in checks.items() if not ok]
+    require(not problems, "Implementation manifest does not describe this evaluation: " + "; ".join(problems))
+    return document, sha256(raw), {path: files[path] for path in sorted(running) if path in files}
+
+
+def file_sha(path):
+    return ts.file_sha256(path) if Path(path).is_file() else None
+
+
 def started_identities(entries):
     """The configuration identity of every start/resume_start event of the attempt log."""
     return [entry.get("identity") for entry in entries if entry.get("event") in ("start", "resume_start")]
 
 
-def baseline_problem(baseline_dir, manifest_sha256, expected_zip_sha256):
-    """None if the unchanged-model DEV run on disk is complete, made under the manifest and has the expected ZIP."""
+def baseline_problem(baseline_dir, manifest_path, expected_zip_sha256):
+    """None if the unchanged-model DEV run on disk validates (complete registered run under the manifest file at
+    ``manifest_path``; Amendment 3 item 3) and has the expected ZIP."""
     try:
-        actual = tp.verify_baseline(baseline_dir, manifest_sha256)
+        actual = tp.verify_baseline(baseline_dir, manifest_path)
     except tp.Refused as error:
         return str(error)
     return None if actual == expected_zip_sha256 else f"baseline results ZIP {actual} differs from the frozen {expected_zip_sha256}"
 
 
-def gate(frozen, train_root, *, expected_data_sha256=None, baseline_dir=None):
+def gate(frozen, train_root, *, expected_data_sha256=None, baseline_dir=None, manifest_path=None):
     """Refuse FINAL_TEST unless every frozen adapter is present, valid (60/60 steps, not resumed), hash-identical,
     built by the frozen implementation and exposure order after the frozen unchanged-DEV baseline, and the attempt
     log still yields the frozen seeds with one configuration identity throughout."""
@@ -249,10 +355,14 @@ def gate(frozen, train_root, *, expected_data_sha256=None, baseline_dir=None):
                 problems.append("an attempt was started under another implementation manifest")
             if identity.get("baseline_dev_results_zip_sha256") != frozen["baseline_dev_results_zip_sha256"]:
                 problems.append("an attempt was started without the frozen unchanged-DEV baseline (Amendment 2 item 6)")
-    if baseline_dir is not None:
-        problem = baseline_problem(baseline_dir, frozen["implementation_manifest_sha256"], frozen["baseline_dev_results_zip_sha256"])
-        if problem:
-            problems.append("unchanged-DEV baseline: " + problem)
+    if baseline_dir is not None:  # the archive is validated against the frozen implementation manifest file
+        if manifest_path is None or not Path(manifest_path).is_file() or \
+                ts.file_sha256(manifest_path) != frozen["implementation_manifest_sha256"]:
+            problems.append("unchanged-DEV baseline: the frozen implementation manifest file is needed to validate it")
+        else:
+            problem = baseline_problem(baseline_dir, manifest_path, frozen["baseline_dev_results_zip_sha256"])
+            if problem:
+                problems.append("unchanged-DEV baseline: " + problem)
     logs = frozen.get("training_logs_sha256", {})
     for name, checksum in logs.items():
         path = Path(train_root) / name
@@ -305,13 +415,15 @@ def gate(frozen, train_root, *, expected_data_sha256=None, baseline_dir=None):
 def freeze_manifest(train_root, *, manifest_path=None, root=None, baseline_dir=None):
     """JSON block for phase2/ADAPTERS_FROZEN.md from the attempt log and the retained valid runs (operator aid).
 
-    Rechecks the implementation manifest against the real files under ``root`` (default: this repository) and
+    Rechecks the implementation manifest against the real files under ``root`` (default: this repository), re-derives
+    every non-file entry and the required file set with the current builder (Sol re-review B2), and checks it
     against every start event of the attempt log (Amendment 2 item 7), records the unchanged-DEV baseline ZIP hash
     that every attempt was started with (item 6; checked on disk when ``baseline_dir`` is given), and refuses while
     the study is halted, while any slot is still open, and when S = 0 (Amendment 1 item 12)."""
     train_root = Path(train_root)
     root = Path(root) if root is not None else HERE.parent
-    _, manifest_sha = verify_manifest_against(Path(manifest_path) if manifest_path is not None else root / "phase2" / tp.MANIFEST_NAME, root)
+    manifest_path = Path(manifest_path) if manifest_path is not None else root / "phase2" / tp.MANIFEST_NAME
+    _, manifest_sha = verify_manifest_current(manifest_path, root)
     log_path = train_root / tp.ATTEMPT_LOG
     entries = tp.read_log(log_path)
     current = tp.plan(entries)
@@ -326,7 +438,7 @@ def freeze_manifest(train_root, *, manifest_path=None, root=None, baseline_dir=N
     baseline = identity.get("baseline_dev_results_zip_sha256")
     require(SHA256.fullmatch(str(baseline)), "Attempts carry no unchanged-DEV baseline ZIP hash (Amendment 2 item 6)")
     if baseline_dir is not None:
-        problem = baseline_problem(baseline_dir, manifest_sha, baseline)
+        problem = baseline_problem(baseline_dir, manifest_path, baseline)
         require(problem is None, f"Unchanged-DEV baseline: {problem}")
     records = []
     for slot, seed in current["retained"]:
@@ -384,7 +496,8 @@ def authorize_final_test(arguments):
     frozen = parse_frozen((folder / "ADAPTERS_FROZEN.md").read_text(encoding="utf-8"))
     require(ts.file_sha256(folder / "IMPLEMENTATION_MANIFEST.md") == frozen["implementation_manifest_sha256"],
             "FINAL_TEST refused: implementation manifest differs from the freeze")
-    authorized = gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir)
+    authorized = gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir,
+                      manifest_path=folder / "IMPLEMENTATION_MANIFEST.md")
     if arguments.adapter_record is not None:
         record = adapter_record(ts.read_json(arguments.adapter_record))
         require(any(record == item and Path(arguments.adapter_dir).resolve() == path.resolve()
@@ -429,9 +542,10 @@ def recover_stale_lock(run_dir):
 
 
 def bind_implementation(run_dir, manifest_path):
-    """Record (first session) or check (every later session) the implementation manifest a run is made under."""
+    """Authenticate the running implementation against the manifest (verify_running_implementation; Sol re-review
+    B3), then record it (first session) or check it (every later session) for the run."""
     run_dir = Path(run_dir)
-    actual = ts.file_sha256(manifest_path)
+    _, actual, verified = verify_running_implementation(manifest_path)
     path = run_dir.parent / f"{run_dir.name}_implementation.json"
     if path.is_file():
         bound = read(path)["implementation_manifest_sha256"]
@@ -440,7 +554,8 @@ def bind_implementation(run_dir, manifest_path):
     else:
         require(not (run_dir / "run_manifest.json").exists(),
                 f"{run_dir.name} was started without a recorded implementation manifest: use a new run directory")
-        write(path, {"run": run_dir.name, "implementation_manifest_sha256": actual, "bound_at": utc()})
+        write(path, {"run": run_dir.name, "implementation_manifest_sha256": actual, "bound_at": utc(),
+                     "running_code_verified_sha256": verified})
     return actual
 
 
@@ -450,6 +565,7 @@ def baseline_record(run_dir, manifest, archive, implementation_sha256, config, d
             "adapter": config["adapter"], "model_id": config["model_id"], "model_revision": config["model_revision"],
             "implementation_manifest_sha256": implementation_sha256, "run_id": manifest.get("run_id"),
             "config_sha256": digest(config), "dataset_sha256": digest(dataset), "code_sha256": code_hash(),
+            "split_sha256": manifest.get("split_sha256"), "dev_file_sha256": FROZEN["dev"][1],
             "status": manifest.get("status"), "completed": manifest.get("completed"), "expected": manifest.get("expected"),
             "unresolved": manifest.get("unresolved"), "results_zip": archive.name,
             "results_zip_sha256": sha256(archive.read_bytes()), "recorded_at": utc()}
@@ -527,6 +643,11 @@ def run_evaluate(arguments):
     if split == "dev" and adapter is None and implementation is not None and metrics["status"] == "COMPLETE":
         record = baseline_record(run_dir, read(manifest_path), archive, implementation, config, dataset)
         write(record_path, record)
+        try:  # Amendment 3 item 3: the recorded archive must itself validate as the registered baseline
+            tp.verify_baseline(record_path.parent, arguments.implementation_manifest)
+        except tp.Refused as error:
+            record_path.rename(record_path.with_name(record_path.name + ".INVALID"))
+            raise tp.ProtocolError(f"The completed unchanged-DEV run does not validate as the registered baseline: {error}")
         print(f"Unchanged-DEV baseline recorded (Amendment 2 item 6): {archive.name} SHA-256 {record['results_zip_sha256']}, "
               f"implementation manifest {implementation}", flush=True)
     if sealed:
@@ -541,7 +662,8 @@ def run_evaluate(arguments):
 def run_gate(arguments):
     frozen = json.loads(Path(arguments.frozen).read_text(encoding="utf-8"))
     parse_frozen("```json\n" + json.dumps(frozen) + "\n```")
-    for adapter, folder in gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir):
+    for adapter, folder in gate(frozen, arguments.train_root, baseline_dir=arguments.baseline_dir,
+                                manifest_path=arguments.manifest):
         print(run_name(adapter["arm"], adapter["seed"]), adapter["adapter_model_sha256"], folder)
     return 0
 
@@ -573,6 +695,7 @@ def main(argv=None):
     gate_command.add_argument("--frozen", type=Path, required=True)
     gate_command.add_argument("--train-root", type=Path, required=True)
     gate_command.add_argument("--baseline-dir", type=Path)
+    gate_command.add_argument("--manifest", type=Path, help="The frozen IMPLEMENTATION_MANIFEST.md (needed with --baseline-dir)")
     freeze = commands.add_parser("freeze-manifest")
     freeze.add_argument("--train-root", type=Path, required=True)
     freeze.add_argument("--baseline-dir", type=Path, required=True)

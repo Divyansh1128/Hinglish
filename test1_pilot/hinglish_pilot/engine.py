@@ -46,6 +46,9 @@ ADAPTER_FIELDS = {'arm', 'seed', 'attempt', 'adapter_model_sha256', 'adapter_con
 PHASE2_MODEL = 'Qwen/Qwen3-4B'
 PACKAGES = ('torch', 'transformers', 'accelerate', 'bitsandbytes', 'huggingface-hub',
             'tokenizers', 'safetensors', 'numpy', 'matplotlib', 'nbformat')
+# Phase-2 runs also record PEFT (the adapter stack, PREREGISTRATION Amendment 3 item 3); other modes keep PACKAGES,
+# so their environment records and resume identities are unchanged.
+PHASE2_PACKAGES = PACKAGES + ('peft',)
 
 
 def utc():
@@ -87,9 +90,9 @@ def code_hash():
     return digest({p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.glob('*.py'))})
 
 
-def environment():
+def environment(names=PACKAGES):
     packages = {}
-    for name in PACKAGES:
+    for name in names:
         try:
             packages[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
@@ -225,7 +228,7 @@ def run(root, dataset, splits, config, backend, max_items=None, progress=None):
         require(backend.metadata[key] == config[key], 'Backend revision mismatch')
     root = Path(root)
     root.mkdir(parents=True, exist_ok=True)
-    frozen_env = environment()
+    frozen_env = environment(PHASE2_PACKAGES if config['mode'] in PHASE2_MODES else PACKAGES)
     identity = {'config_sha256': digest(config), 'dataset_sha256': digest(dataset), 'split_sha256': digest(splits),
                 'code_sha256': code_hash(), 'execution_sha256': digest({'backend': backend.metadata, 'environment': frozen_env})}
     items = records(dataset)

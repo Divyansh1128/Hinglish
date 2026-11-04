@@ -1,0 +1,42 @@
+{
+  "root": "git archive of 7e84654 (reviewed HEAD) + regenerated manifest",
+  "data": "TRAIN/DEV and synthetic fixtures only",
+  "B2_trainer_zeroed_hub_and_template_entries": {
+    "accepted": true,
+    "value": "aa483736938a9a3af31712a4165b12edae0ce806bbcc48e176e0db6d3b7f24d6"
+  },
+  "B3_metadata_only_baseline_zip": {
+    "accepted": true,
+    "value": true
+  },
+  "B4_reconcile_open_attempt_without_confirmation": {
+    "accepted": true,
+    "value": [
+      "infrastructure"
+    ]
+  },
+  "B4_next_run_after_that": {
+    "accepted": true,
+    "value": {
+      "kind": "train",
+      "slot": 11,
+      "seed": 11,
+      "arm": "EC",
+      "attempt": 2,
+      "retry": true,
+      "reserve": false
+    }
+  },
+  "B4_second_concurrent_writer": {
+    "accepted": true,
+    "value": "no writer lock exists in this version"
+  },
+  "B3_bind_manifest_not_describing_running_engine": {
+    "accepted": true,
+    "value": "24387e006516624f7503b7b490f4fce1e0f2a0308921c3f8fa2c303d53c2a631"
+  },
+  "B2_freeze_wrong_non_file_stack_torch_0.0.0": {
+    "accepted": true,
+    "value": 3
+  }
+}

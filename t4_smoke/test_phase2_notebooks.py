@@ -29,6 +29,8 @@ import build_phase2_notebooks as builder  # noqa: E402
 
 OLD_PREREGISTRATION_SHA256 = "74be23282ce9e53e3a69456bebf89f9cd71d3859b80090692e4548ef34182840"
 AMENDMENT_1_PREREGISTRATION_SHA256 = "37ef68bfcb7cfa0bb530bfbecbf2082d18e916c0217370085d4180e8ea759ada"
+AMENDMENT_2_PREREGISTRATION_SHA256 = "b2e6df8f552dfe5756cfde9308880f06de0685d7d1d40de57c5e71cc41260396"
+SUPERSEDED = (OLD_PREREGISTRATION_SHA256, AMENDMENT_1_PREREGISTRATION_SHA256, AMENDMENT_2_PREREGISTRATION_SHA256)
 
 
 def code_cells(text):
@@ -169,12 +171,16 @@ class BuiltNotebookTests(unittest.TestCase):
         cells = code_cells(self.texts["train"])
         self.assertTrue(cells[0].startswith("import os"))
         settings = cells[0].split("os.environ")[0]
-        for needle in ("RESUME_AFTER_DISCONNECT = False", "USE_DRIVE = True", "RECOVER_STALE_LOCK = False"):
+        for needle in ("RESUME_AFTER_DISCONNECT = False", "USE_DRIVE = True", "RECOVER_STALE_LOCK = False",
+                       "RECOVER_STALE_WRITER = False"):  # Amendment 3 item 2
             self.assertIn(needle, settings)
         for forbidden in ("ARM =", "SEED =", "SLOT =", "ALLOW_STACK_MISMATCH"):
             self.assertNotIn(forbidden, settings)
         source = "\n".join(cells)
-        for needle in ("'train_phase2.py'", "'--resume'", "tp.next_run(PLAN)", "tp.reconcile", "tp.resume_target", "'--train-root'",
+        self.assertNotIn("tp.reconcile(", source)  # Amendment 3 item 2: never an automatic close
+        self.assertLess(source.index("tp.recover_stale_writer(TRAIN_ROOT, confirmed_no_other_session=True)"),
+                        source.index("PLAN = tp.plan("))
+        for needle in ("'train_phase2.py'", "'--resume'", "tp.next_run(PLAN)", "if RECOVER_STALE_WRITER:", "tp.resume_target", "'--train-root'",
                        "'--inputs'", "'--baseline-dir'", "tp.HALT_MESSAGE", "'dev_eval'", "never overwritten",
                        "'--implementation-manifest'", "ARM, SEED, SLOT, ATTEMPT, RESUME = ACTION['arm'], ACTION['seed'], ACTION['slot']"):
             self.assertIn(needle, source)
@@ -185,7 +191,8 @@ class BuiltNotebookTests(unittest.TestCase):
         markdown = json.loads(self.texts["train"])["cells"][0]["source"]
         for needle in ("the study halts", "60 successful optimizer steps", "44, then 55", "never valid", "ATTEMPT_LOG.jsonl",
                        "seed slot 11, then 22, then 33", "the arms EC, then ER, then EE", "fully settled",
-                       "Phase2_Baseline_DEV", "TypeError", "no override"):
+                       "Phase2_Baseline_DEV", "TypeError", "no override", "RECOVER_STALE_WRITER = True",
+                       "no other Colab session", "WRITER.lock"):
             self.assertIn(needle, markdown)
 
     def test_no_second_backbone_in_any_phase2_notebook(self):
@@ -195,19 +202,19 @@ class BuiltNotebookTests(unittest.TestCase):
             self.assertNotIn("MODEL_ID =", text, kind)
         self.assertNotIn("llama", (ROOT / "colab_notebooks" / "build_phase2_notebooks.py").read_text().lower())
 
-    def test_current_preregistration_hash_with_amendment_2(self):
+    def test_current_preregistration_hash_with_amendment_3(self):
         digest = hashlib.sha256((ROOT / "phase2" / "PREREGISTRATION.md").read_bytes()).hexdigest()
         self.assertEqual(builder.PREREGISTRATION_SHA256, digest)
         self.assertEqual(pe.PREREGISTRATION_SHA256, digest)
-        for old in (OLD_PREREGISTRATION_SHA256, AMENDMENT_1_PREREGISTRATION_SHA256):
+        for old in SUPERSEDED:
             self.assertNotEqual(builder.PREREGISTRATION_SHA256, old)
         text = (ROOT / "phase2" / "PREREGISTRATION.md").read_text()
-        self.assertIn("## Amendment 1", text)
-        self.assertIn("## Amendment 2", text)
+        for amendment in ("## Amendment 1", "## Amendment 2", "## Amendment 3"):
+            self.assertIn(amendment, text)
         self.assertEqual(builder.manifest_module().parse(builder.implementation_manifest()[0])["preregistration"]["sha256"], digest)
         for kind, text in self.texts.items():
             self.assertIn(digest, code_cells(text)[0], kind)
-            for old in (OLD_PREREGISTRATION_SHA256, AMENDMENT_1_PREREGISTRATION_SHA256):
+            for old in SUPERSEDED:
                 self.assertNotIn(old, text, kind)
 
     def test_final_test_is_skipped_until_the_freeze_manifest_exists(self):
@@ -321,11 +328,13 @@ class TrainNotebookFlowTests(unittest.TestCase):
     def setUpClass(cls):
         cls.text = builder.render_train()
 
-    def run_control(self, work, outcomes, resume=False):
+    def run_control(self, work, outcomes, resume=False, recover=False):
         cells = code_cells(self.text)
         settings = cells[0]
         if resume:
             settings = settings.replace("RESUME_AFTER_DISCONNECT = False", "RESUME_AFTER_DISCONNECT = True")
+        if recover:
+            settings = settings.replace("RECOVER_STALE_WRITER = False", "RECOVER_STALE_WRITER = True")
         stub = textwrap.dedent(f'''
             STACK_MISMATCHES = []
             OUTCOMES = {outcomes!r}
@@ -338,6 +347,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
                     return 2
                 arm, seed, slot, attempt, resume = get('--arm'), int(get('--seed')), int(get('--slot')), int(get('--attempt')), '--resume' in args
                 root = Path(get('--train-root'))
+                writer = tp.WriterLock(root, heartbeat_seconds=0).acquire()  # as the trainer: one writer per root
                 out = tp.attempt_dir(root, arm, seed, attempt)
                 out.mkdir(parents=True, exist_ok=True)
                 keys = dict(arm=arm, seed=seed, slot=slot, attempt=attempt)
@@ -348,7 +358,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
                                                                    'error': 'Traceback\\nX: ' + outcome}}))
                 if outcome == 'disconnect':
                     (out / 'checkpoint').mkdir(exist_ok=True)
-                    return None  # killed: no finish is logged
+                    return None  # killed: no finish is logged and WRITER.lock stays behind
                 if outcome == 'valid':
                     (out / 'final_adapter.json').write_text(json.dumps({{'status': 'COMPLETE', 'updates': 60, 'arm': arm, 'slot': slot,
                         'seed': seed, 'attempt': attempt, 'steps': {{'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}},
@@ -357,6 +367,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
                         'baseline_dev_results_zip_sha256': 'z'}}))
                 result, detail = tp.attempt_outcome(out)
                 tp.log_event(root / tp.ATTEMPT_LOG, 'resume_finish' if resume else 'finish', **keys, outcome=result, detail=detail)
+                writer.release()
                 return 0 if outcome == 'valid' else 1
         ''')
         return run_python(settings + "\n" + stub + "\n" + cells[2], work)
@@ -372,9 +383,15 @@ class TrainNotebookFlowTests(unittest.TestCase):
             result = self.run_control(work, ["disconnect"])  # second attempt: from scratch, then the runtime is killed
             self.assertIn("from-scratch retry", result.stdout)
             self.assertIn("no recorded outcome", result.stderr)
-            result = self.run_control(work, ["valid"])  # reconciled -> seed 11 retired -> reserve 44, arm EC first
+            result = self.run_control(work, ["valid"])  # Amendment 3 item 2: the open attempt is never closed by itself
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("RECOVER_STALE_WRITER = True", result.stderr)
+            self.assertIn("HELD by session", result.stdout)
+            self.assertEqual(len(tp.read_log(log)), 3)
+            result = self.run_control(work, ["valid"], recover=True)  # confirmed -> seed 11 retired -> reserve 44, EC first
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertIn("Recorded an attempt left open earlier: EC seed 11 attempt 2 -> infrastructure", result.stdout)
+            self.assertIn("RECOVER_STALE_WRITER: closed EC-s11 attempt 2 -> infrastructure", result.stdout)
+            self.assertTrue((log.parent / tp.WRITER_RECOVERIES).exists())
             self.assertIn("Next run from the plan: EC seed 44 (slot 11, reserve): attempt 1", result.stdout)
             self.assertEqual(tp.plan(tp.read_log(log))["slots"][11]["chain"], [11, 44])
             result = self.run_control(work, ["refused"])
@@ -412,7 +429,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
             work.mkdir()
             log = work / "hinglish_phase2" / "runs" / "train" / tp.ATTEMPT_LOG
             self.run_control(work, ["disconnect"])
-            result = self.run_control(work, ["valid"], resume=True)
+            result = self.run_control(work, ["valid"], resume=True, recover=True)
             self.assertIn("RESUMING attempt 1", result.stdout)
             self.assertIn("never valid", result.stderr)
             current = tp.plan(tp.read_log(log))
@@ -443,7 +460,7 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         cls.manifest = builder.implementation_manifest()
         cls.store = tempfile.TemporaryDirectory()
         cls.baseline = Path(cls.store.name) / "baseline_dev"
-        baseline_sha = write_baseline(cls.baseline, cls.manifest[1])  # the unchanged-DEV run on Drive (Amendment 2 item 6)
+        baseline_sha = write_baseline(cls.baseline, cls.manifest[1])  # realistic synthetic unchanged-DEV run (Amendment 3 item 3)
         cls.trees = {}
         with mock.patch.object(fixtures, "MANIFEST_SHA", cls.manifest[1]), \
                 mock.patch.object(fixtures, "MANIFEST_PATH", ROOT / "phase2" / "IMPLEMENTATION_MANIFEST.md"), \
@@ -556,7 +573,8 @@ class FinalTestGateNotebookTests(unittest.TestCase):
         self.assertIn("*(['--recover-stale-lock'] if RECOVER_STALE_LOCK else [])", evaluation)
         self.assertIn("RECOVER_STALE_LOCK = False", code_cells(self.text)[0])
         self.assertIn("assert not STACK_MISMATCHES", code_cells(self.text)[2])
-        self.assertNotIn(AMENDMENT_1_PREREGISTRATION_SHA256, self.text)
+        for old in SUPERSEDED:
+            self.assertNotIn(old, self.text)
         for leak in ("summary", "accuracy", "predictions", "metrics", "correct", "raw_response"):
             self.assertNotIn(leak, evaluation.lower())
         self.assertIn("Sealed", json.loads(self.text)["cells"][0]["source"])
