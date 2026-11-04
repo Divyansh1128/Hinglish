@@ -1541,6 +1541,24 @@ class WriterOwnershipTests(unittest.TestCase):
                      identity=tp.attempt_identity(self.fixture.inputs, self.fixture.baseline_sha))
         write_attempt(tp.attempt_dir(self.root, "EC", 11, 1), status="STARTED")
 
+    def test_confirmed_recovery_preserves_both_recorded_halting_failure_classes(self):
+        for failure in ("numerical", "protocol"):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                tp.WriterLock(root, heartbeat_seconds=0).acquire()
+                tp.log_event(root / tp.ATTEMPT_LOG, "start", arm="EC", seed=11, slot=11, attempt=1, identity=IDENTITY)
+                folder = tp.attempt_dir(root, "EC", 11, 1)
+                write_attempt(folder, status="FAILED", failure_class=failure)
+                before = (folder / "train_report.json").read_bytes()
+                with contextlib.redirect_stdout(io.StringIO()):
+                    recovered = tp.recover_stale_writer(root, confirmed_no_other_session=True)
+                self.assertEqual(recovered["closed"][0]["outcome"], failure)
+                self.assertEqual((folder / "train_report.json").read_bytes(), before)
+                self.assertIsNone(tp.read_writer_lock(root))
+                self.assertTrue((root / tp.WRITER_RECOVERIES).is_file())
+                with self.assertRaises(tp.StudyHalted):
+                    tp.next_run(tp.plan(tp.read_log(root / tp.ATTEMPT_LOG)))
+
     def test_started_report_is_persisted_before_model_loading(self):
         seen = []
 

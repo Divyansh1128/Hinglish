@@ -1,0 +1,16 @@
+{
+  "scope": "SYNTHETIC CPU DRY RUN: DEV substituted for FINAL_TEST; no GPU, Hub, model or study results",
+  "integration_breaks": [],
+  "checks": {
+    "B4_live_writer": {
+      "refused": true,
+      "error": "Training-root writer lock HELD by session a89867494989415eb80be4d3f0195049 (host Mac.lan, pid 62875) since 2026-11-04T10:45:38.820446+00:00; last heartbeat 2026-11-04T10:45:38.820446+00:00 (0 s ago). Only one session may write a training root (PREREGISTRATION Amendment 3 item 2); no attempt was opened. If another Colab session is still loading or training, wait for it. A lock never expires by itself, whatever its heartbeat age. Only after confirming that NO other session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run: the recovery is logged, any open attempt is closed as an infrastructure failure and the lock is released."
+    },
+    "B4_no_automatic_reconciliation": {
+      "refused": true,
+      "error": "ER-s11 attempt 1 has a start without a recorded outcome. Another session may still be loading or training it: an open attempt is never treated as abandoned automatically (PREREGISTRATION Amendment 3 item 2). Only after confirming that no other Colab session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run; the attempt is then closed as an infrastructure failure."
+    }
+  },
+  "status": "FAIL",
+  "error": "AnalysisError: Refused: unchanged: execution configuration differs from the implementation manifest"
+}

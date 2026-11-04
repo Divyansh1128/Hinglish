@@ -162,7 +162,7 @@ def build():
                   "tokenizer_revision": train_smoke.MODEL_REVISION, "hub_files": HUB_FILES, "chat_template": CHAT_TEMPLATE,
                   "trust_remote_code": False, "second_backbone": "none (Amendment 1 item 15: Llama-3.2-3B excluded)"},
         "generation_config": {
-            "engine_config_sha256": {split: train_smoke.digest(config) for split, config in configs.items()},
+            "engine_config_sha256": {split: engine_data.digest(config) for split, config in configs.items()},
             "decoding": {key: configs["dev"][key] for key in decoding_keys},
             "hf_generation_config": {"max_new_tokens": 1024, "do_sample": False, "num_beams": 1, "use_cache": True,
                                      "eos_token_id": "model.generation_config.eos_token_id", "pad_token_id": 151643,

@@ -1,0 +1,5097 @@
+{
+  "analysis_version": "phase2_analysis 3.1.0 (Amendments 1-3)",
+  "preregistration": "phase2/PREREGISTRATION.md sections 6-8 as amended by Amendment 1 (b4fb956, D045), Amendment 2 (17986d4, D046) and Amendment 3 (7e84654, D047)",
+  "dataset_role": "FINAL_TEST",
+  "dataset_sha256": "da89dd9a626e438dffca39e3a74c4c8abac6bb57501495723b87e6ee143f3d46",
+  "families": 100,
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "S": 3,
+  "analysis_type": "confirmatory (S = 3, retained seeds from the freeze)",
+  "results": true,
+  "freeze": {
+    "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/inputs/ADAPTERS_FROZEN.md",
+    "sha256": "5cdb1c0e1a5939a9e84288ffcf7cf03be44830a1ec588233e7226ac53a045620",
+    "retained_seeds": [
+      {
+        "slot": 11,
+        "seed": 11
+      },
+      {
+        "slot": 22,
+        "seed": 22
+      },
+      {
+        "slot": 33,
+        "seed": 33
+      }
+    ],
+    "S": 3,
+    "confirmatory": true,
+    "baseline_dev_results_zip_sha256": "1cb123fa33de62c2a918c3d445ffc5c98faa20f1208d669f2f6e1aab6b6b142b",
+    "baseline_dev_results": {
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/baseline_dev/base_results.zip",
+      "run_id": "phase2_dev-d45a34e380cd4ef482130ee70c3645fa",
+      "generations": 120
+    },
+    "implementation_manifest": {
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/inputs/IMPLEMENTATION_MANIFEST.md",
+      "sha256": "726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d"
+    },
+    "package_pins": {
+      "accelerate": "1.6.0",
+      "bitsandbytes": "0.50.2",
+      "huggingface-hub": "0.30.2",
+      "peft": "0.15.2",
+      "safetensors": "0.5.3",
+      "tokenizers": "0.21.1",
+      "torch": "2.11.0+cu130",
+      "transformers": "4.51.3"
+    }
+  },
+  "model_id": "Qwen/Qwen3-4B",
+  "ceiling_risk_proxy": {
+    "name": "high unchanged-DEV accuracy (ceiling-risk proxy)",
+    "correct": 0,
+    "n": 40,
+    "accuracy": 0.0,
+    "source": "derived: strict-correct C count of the frozen unchanged-model DEV baseline results ZIP (SHA-256 1cb123fa33de62c2a918c3d445ffc5c98faa20f1208d669f2f6e1aab6b6b142b, run phase2_dev-d45a34e380cd4ef482130ee70c3645fa, 120 resolved generations)",
+    "wilson_95": [
+      0.0,
+      0.08762160119728664
+    ],
+    "dev_headroom": 1.0,
+    "threshold": ">= 38/40",
+    "fired": false,
+    "note": "A proxy from the unchanged model on DEV; it does not establish a ceiling for the trained comparator. Δ_C stays first in the report and S2 stays descriptive."
+  },
+  "warnings": [],
+  "python_version": "3.14.5",
+  "python_implementation": "CPython",
+  "code_sha256": {
+    "phase2_analysis/analyze.py": "11d6f1c837ff05d8de7ef96732ddca023f1f4b8faa4762b25747f7a49749150f",
+    "secondary_analysis/numeric_endpoint.py": "ce70aefd1f4c03ffe80bbd06d4df025abe92fc0865732b6d2e6db13504ed883f",
+    "secondary_analysis/numeric_literal_v2.py": "80269ac62d09ce2bdee3271e9ed253ad4a52ec51de105c3ed7dc919d81a712b4"
+  },
+  "inputs": [
+    {
+      "checkpoint": "EE:11",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EE:11_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-0a2b7f2ba8024433badca60cb64a5c0a",
+      "archive_sha256": "507e664bb7844ba994623bd4d56ea9415a106187a3fbffce6625231eacc07740",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "aa7d28a0d76211d9bb54bf488efbb51e0fb500dbefecbf035999fd0431efe1d8",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1",
+        "arm": "EE",
+        "attempt": 1,
+        "seed": 11
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "EE:22",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EE:22_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-b81d842bba40424e9ddc13bba415bce4",
+      "archive_sha256": "6b71429c9060c7a2364098403b5a771c4d98f093b90c78a7f4a5284072fe98e9",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "5514ea7b5e3d0543fab66a41cb8de761e76b8fbcc72daa41ec9e8b7733777864",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d",
+        "arm": "EE",
+        "attempt": 1,
+        "seed": 22
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "EE:33",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EE:33_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-f284f87f0e3048919ebb140e84a081a2",
+      "archive_sha256": "b211bba13a14447afdea95c76f3141cd9611b933a0b1b2985d5012a7f61ee269",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "5a58d0ce507d02c36da8807c6fd2844505297e2c976efad2b71c7be25d56e6a1",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069",
+        "arm": "EE",
+        "attempt": 1,
+        "seed": 33
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "ER:11",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/ER:11_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-2270d7a7d8974446885f67fd56730147",
+      "archive_sha256": "2781849339a2938ad22a2b974322690cba1d2bcb25ec8a0ea7e9f67466e350a3",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "c3008d38711ae8c9f12f0225667f7bdd7baafdd58d9f1e68e51840a741251605",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1",
+        "arm": "ER",
+        "attempt": 2,
+        "seed": 11
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "ER:22",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/ER:22_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-418b37da54384a70a1a766047c193ce4",
+      "archive_sha256": "f6c59986a7048213d6f8bcd21015a808f9a78666433fe65d1a56d088bad592c7",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "cf6563405e27766a26b7bafe0c36657a3c9bb7b7651d51e6f3398d2264446a46",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d",
+        "arm": "ER",
+        "attempt": 1,
+        "seed": 22
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "ER:33",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/ER:33_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-35b7517484694314b1ad48273cc29294",
+      "archive_sha256": "665ab0d7aa31576676c92d2458ba91b71253003ffe9967facda1377a582e65f9",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "1ab69595dcd6c42919a97cba7c0732a07a177bb0c404a8e85ec4efd1f3a40f6f",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069",
+        "arm": "ER",
+        "attempt": 1,
+        "seed": 33
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "EC:11",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EC:11_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-e830b5ddd17b4565823f3845070bca0d",
+      "archive_sha256": "3a87e6c453d7028a1a8bb0545df492402673595d0538cdedd4a23a803698ad68",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "2f4b3cf67bcf36b65865a5c35a7fa089683c14bbaa804d786a9b115c286f4d96",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1",
+        "arm": "EC",
+        "attempt": 2,
+        "seed": 11
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "EC:22",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EC:22_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-918b7e6369b642ffb267f94986c655fd",
+      "archive_sha256": "80708a5ce2d59856d119cce707a18fd2d641ebd4fbf8e0c365e821352407bdc2",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "bebc559a1b351ae15d3b3e2fefee55d01f5945719a26ac20105f6f222a93103f",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d",
+        "arm": "EC",
+        "attempt": 1,
+        "seed": 22
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "EC:33",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/EC:33_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-c01f1b5ac930486ab03de137c86656b5",
+      "archive_sha256": "29a1157e34327d65c5ad6ff49307b3dec8a141183ad8d18b51ebc778f3e4f6bc",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "20637b120964abac7922e4e97c7e8098305f99514b83d4d0bafa2a76bad8acef",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": {
+        "adapter_config_sha256": "ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b",
+        "adapter_model_sha256": "2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069",
+        "arm": "EC",
+        "attempt": 1,
+        "seed": 33
+      },
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    },
+    {
+      "checkpoint": "unchanged",
+      "path": "/var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/final_eval/unchanged_results.zip",
+      "kind": "zip",
+      "run_id": "phase2_final_test-7c4f662c40c34a9ab484096e2deeaa60",
+      "archive_sha256": "55a4a9826924af942bf6f6998e02aecb4f3425b25ca8739322b69fcbbac22cd3",
+      "manifest_dataset_sha256": "72622c795cfaa182bd2318318fd0cbf866c633345bbd7318497a5fedf9977e43",
+      "config_sha256": "91a0cf80d989a9ff5cb1aec15207a4298c2b0c7422d9304b70a4b56dcab6c915",
+      "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "adapter": null,
+      "status": "COMPLETE",
+      "completed": 300,
+      "unresolved": 0,
+      "expected": 300,
+      "attempts": 300
+    }
+  ],
+  "status": "COMPLETE",
+  "bootstrap": {
+    "seed": 101,
+    "resamples": 10000,
+    "families": 100,
+    "generator": "fresh random.Random(101); 10000 rows x 100 draws of rng.randrange(100), row-major",
+    "matrix_sha256": "33f4920eab5738cf29b346be8d63a15115f9fcbda58699ee9fc44b031e46e6a1",
+    "matrix_hash_encoding": "UTF-8 text, one line per row, indices joined by ',', newline after every row",
+    "record_order": "family ID, sorted lexicographically",
+    "shared_matrix": true,
+    "interval": "95% percentile, linear quantile h = (R - 1) p at p = .025/.975",
+    "wald": "sample SD (ddof 1), z = 1.959963984540054",
+    "hoeffding": "(b - a) sqrt(log(40)/(2N)) intersected with [a, b]: [-1, 1] for differences, [-2, 2] for S3",
+    "crossed_family_seed_resampling": "not run (Amendment 1 item 4)",
+    "note": "Approximate interval conditional on the trained checkpoints; does not cover training-seed variance. The 100-family mean is a finite-set descriptive quantity; intervals describe hypothetical independent families from this fixed authoring and review process (template and author dependence is a limitation). Δ_C is the effect of the complete training-rendering recipe, not an isolated effect of code-switching (Amendment 1 item 3)."
+  },
+  "endpoints": {
+    "strict": {
+      "estimands": {
+        "delta_C": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": 5,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 0
+            }
+          ],
+          "families": 100,
+          "description": "Primary: E+C − E+R on C"
+        },
+        "ret_E_EC_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1 English retention: E+C − E+E on E"
+        },
+        "ret_E_EC_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+C − unchanged on E"
+        },
+        "ret_E_ER_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − E+E on E"
+        },
+        "ret_E_ER_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − unchanged on E"
+        },
+        "ret_E_EE_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+E − unchanged on E"
+        },
+        "T_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2 R transfer: E+R − E+E on R"
+        },
+        "delta_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2: E+C − E+R on R"
+        },
+        "S3": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -54.32406062962478,
+            54.32406062962478
+          ],
+          "hoeffding_radius_pp": 54.32406062962478,
+          "hoeffding_bounds": [
+            -2,
+            2
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "Δ_C − Δ_R per family (specificity)"
+        }
+      },
+      "per_seed": {
+        "delta_C": {
+          "description": "Primary: E+C − E+R on C",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "ret_E_EC_EE": {
+          "description": "S1 English retention: E+C − E+E on E",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "T_R": {
+          "description": "S2 R transfer: E+R − E+E on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "delta_R": {
+          "description": "S2: E+C − E+R on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        }
+      },
+      "accuracy": {
+        "EE:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "unchanged": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        }
+      },
+      "arm_mean_accuracy": {
+        "EE": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "ER": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "EC": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        }
+      },
+      "ER_C_headroom": 1.0,
+      "strata": {
+        "keep": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        },
+        "none": {
+          "families": 50,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 150,
+            "unchanged": 50
+          }
+        },
+        "switch": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        }
+      },
+      "decision_label": "inconclusive—degenerate empirical interval",
+      "retention_flags": {
+        "ret_E_EC_EE": {
+          "override": "inconclusive—degenerate empirical interval",
+          "within_margin_criterion_met": false,
+          "loss_detected": false,
+          "loss_beyond_margin": false,
+          "retention_trade_off": false,
+          "flags": [
+            "inconclusive—degenerate empirical interval"
+          ]
+        },
+        "ret_E_EC_unchanged": {
+          "override": "inconclusive—degenerate empirical interval",
+          "within_margin_criterion_met": false,
+          "loss_detected": false,
+          "loss_beyond_margin": false,
+          "retention_trade_off": false,
+          "flags": [
+            "inconclusive—degenerate empirical interval"
+          ]
+        },
+        "ret_E_ER_EE": {
+          "override": "inconclusive—degenerate empirical interval",
+          "within_margin_criterion_met": false,
+          "loss_detected": false,
+          "loss_beyond_margin": false,
+          "retention_trade_off": null,
+          "flags": [
+            "inconclusive—degenerate empirical interval"
+          ]
+        },
+        "ret_E_ER_unchanged": {
+          "override": "inconclusive—degenerate empirical interval",
+          "within_margin_criterion_met": false,
+          "loss_detected": false,
+          "loss_beyond_margin": false,
+          "retention_trade_off": null,
+          "flags": [
+            "inconclusive—degenerate empirical interval"
+          ]
+        },
+        "ret_E_EE_unchanged": {
+          "override": "inconclusive—degenerate empirical interval",
+          "within_margin_criterion_met": false,
+          "loss_detected": false,
+          "loss_beyond_margin": false,
+          "retention_trade_off": null,
+          "flags": [
+            "inconclusive—degenerate empirical interval"
+          ]
+        }
+      },
+      "decision_bounds_exact": {
+        "L": "0",
+        "U": "0"
+      }
+    },
+    "numeric_literal_v1": {
+      "estimands": {
+        "delta_C": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": 5,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 0
+            }
+          ],
+          "families": 100,
+          "description": "Primary: E+C − E+R on C"
+        },
+        "ret_E_EC_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1 English retention: E+C − E+E on E"
+        },
+        "ret_E_EC_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+C − unchanged on E"
+        },
+        "ret_E_ER_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − E+E on E"
+        },
+        "ret_E_ER_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − unchanged on E"
+        },
+        "ret_E_EE_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+E − unchanged on E"
+        },
+        "T_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2 R transfer: E+R − E+E on R"
+        },
+        "delta_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2: E+C − E+R on R"
+        },
+        "S3": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -54.32406062962478,
+            54.32406062962478
+          ],
+          "hoeffding_radius_pp": 54.32406062962478,
+          "hoeffding_bounds": [
+            -2,
+            2
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "Δ_C − Δ_R per family (specificity)"
+        }
+      },
+      "per_seed": {
+        "delta_C": {
+          "description": "Primary: E+C − E+R on C",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "ret_E_EC_EE": {
+          "description": "S1 English retention: E+C − E+E on E",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "T_R": {
+          "description": "S2 R transfer: E+R − E+E on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "delta_R": {
+          "description": "S2: E+C − E+R on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        }
+      },
+      "accuracy": {
+        "EE:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "unchanged": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        }
+      },
+      "arm_mean_accuracy": {
+        "EE": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "ER": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "EC": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        }
+      },
+      "ER_C_headroom": 1.0,
+      "strata": {
+        "keep": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        },
+        "none": {
+          "families": 50,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 150,
+            "unchanged": 50
+          }
+        },
+        "switch": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        }
+      },
+      "decision_label": null,
+      "retention_flags": null,
+      "note": "Secondary endpoint: same analysis, descriptive only; labels use strict only."
+    },
+    "numeric_literal_v2": {
+      "estimands": {
+        "delta_C": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": 5,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 0
+            }
+          ],
+          "families": 100,
+          "description": "Primary: E+C − E+R on C"
+        },
+        "ret_E_EC_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1 English retention: E+C − E+E on E"
+        },
+        "ret_E_EC_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+C − unchanged on E"
+        },
+        "ret_E_ER_EE": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − E+E on E"
+        },
+        "ret_E_ER_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+R − unchanged on E"
+        },
+        "ret_E_EE_unchanged": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            },
+            {
+              "reference_pp": -2,
+              "resamples": 10000,
+              "at_or_below": 0,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S1: E+E − unchanged on E"
+        },
+        "T_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2 R transfer: E+R − E+E on R"
+        },
+        "delta_R": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -27.16203031481239,
+            27.16203031481239
+          ],
+          "hoeffding_radius_pp": 27.16203031481239,
+          "hoeffding_bounds": [
+            -1,
+            1
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "S2: E+C − E+R on R"
+        },
+        "S3": {
+          "estimate_pp": 0.0,
+          "bootstrap_95_pp": [
+            0.0,
+            0.0
+          ],
+          "exact": {},
+          "wald_95_pp": [
+            0.0,
+            0.0
+          ],
+          "hoeffding_95_pp": [
+            -54.32406062962478,
+            54.32406062962478
+          ],
+          "hoeffding_radius_pp": 54.32406062962478,
+          "hoeffding_bounds": [
+            -2,
+            2
+          ],
+          "distinct_family_values": 1,
+          "nonzero_family_contrasts": 0,
+          "all_contrasts_identical": true,
+          "zero_width": true,
+          "degenerate": true,
+          "bootstrap_tails": [
+            {
+              "reference_pp": 0,
+              "resamples": 10000,
+              "at_or_below": 10000,
+              "at_or_above": 10000
+            }
+          ],
+          "families": 100,
+          "description": "Δ_C − Δ_R per family (specificity)"
+        }
+      },
+      "per_seed": {
+        "delta_C": {
+          "description": "Primary: E+C − E+R on C",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "ret_E_EC_EE": {
+          "description": "S1 English retention: E+C − E+E on E",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "T_R": {
+          "description": "S2 R transfer: E+R − E+E on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        },
+        "delta_R": {
+          "description": "S2: E+C − E+R on R",
+          "seeds": {
+            "11": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "22": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            },
+            "33": {
+              "estimate_pp": 0.0,
+              "bootstrap_95_pp": [
+                0.0,
+                0.0
+              ],
+              "exact": {},
+              "wald_95_pp": [
+                0.0,
+                0.0
+              ],
+              "hoeffding_95_pp": [
+                -27.16203031481239,
+                27.16203031481239
+              ],
+              "hoeffding_radius_pp": 27.16203031481239,
+              "hoeffding_bounds": [
+                -1,
+                1
+              ],
+              "distinct_family_values": 1,
+              "nonzero_family_contrasts": 0,
+              "all_contrasts_identical": true,
+              "zero_width": true,
+              "degenerate": true,
+              "bootstrap_tails": [
+                {
+                  "reference_pp": 0,
+                  "resamples": 10000,
+                  "at_or_below": 10000,
+                  "at_or_above": 10000
+                }
+              ],
+              "families": 100,
+              "first_only": 0,
+              "second_only": 0,
+              "mcnemar_exact_p": 1.0,
+              "mcnemar_exact_p_exact": "1"
+            }
+          },
+          "range_pp": [
+            0.0,
+            0.0
+          ],
+          "signs": {
+            "positive": 0,
+            "zero": 3,
+            "negative": 0
+          },
+          "note": "Descriptive: McNemar p-values and sign consistency are never used as tests."
+        }
+      },
+      "accuracy": {
+        "EE:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EE:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "ER:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:11": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:22": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "EC:33": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        },
+        "unchanged": {
+          "E": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "R": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          },
+          "C": {
+            "correct": 0,
+            "n": 100,
+            "accuracy": 0.0,
+            "wilson_95": [
+              3.469446951953614e-18,
+              0.03699349820698568
+            ]
+          }
+        }
+      },
+      "arm_mean_accuracy": {
+        "EE": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "ER": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        },
+        "EC": {
+          "E": 0.0,
+          "R": 0.0,
+          "C": 0.0
+        }
+      },
+      "ER_C_headroom": 1.0,
+      "strata": {
+        "keep": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        },
+        "none": {
+          "families": 50,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 150,
+            "unchanged": 50
+          }
+        },
+        "switch": {
+          "families": 25,
+          "C_correct": {
+            "EE": 0,
+            "ER": 0,
+            "EC": 0,
+            "unchanged": 0
+          },
+          "delta_C_pp": 0.0,
+          "C_accuracy_pct": {
+            "EE": 0.0,
+            "ER": 0.0,
+            "EC": 0.0,
+            "unchanged": 0.0
+          },
+          "C_denominators": {
+            "arms": 75,
+            "unchanged": 25
+          }
+        }
+      },
+      "decision_label": null,
+      "retention_flags": null,
+      "note": "Secondary endpoint: same analysis, descriptive only; labels use strict only."
+    }
+  },
+  "secondaries": "All secondary contrasts, numeric endpoints and per-seed McNemar p-values are descriptive; no Holm or other inferential secondary analysis (Amendment 1 item 5).",
+  "diagnostics": {
+    "EE:11": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "EE:22": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "EE:33": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "ER:11": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "ER:22": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "ER:33": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "EC:11": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "EC:22": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "EC:33": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    },
+    "unchanged": {
+      "E": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 81.04,
+          "median": 81.0,
+          "min": 71,
+          "max": 95,
+          "sum": 8104
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "R": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 83.84,
+          "median": 84.0,
+          "min": 72,
+          "max": 97,
+          "sum": 8384
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      },
+      "C": {
+        "invalid_reasons": {
+          "missing_final": 100
+        },
+        "truncated": 0,
+        "input_tokens": {
+          "n": 100,
+          "mean": 79.57,
+          "median": 79.0,
+          "min": 70,
+          "max": 93,
+          "sum": 7957
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 3.0,
+          "median": 3.0,
+          "min": 3,
+          "max": 3,
+          "sum": 300
+        },
+        "latency_seconds": {
+          "n": 100,
+          "mean": 0.001,
+          "median": 0.001,
+          "min": 0.001,
+          "max": 0.001,
+          "sum": 0.1
+        }
+      }
+    }
+  }
+}

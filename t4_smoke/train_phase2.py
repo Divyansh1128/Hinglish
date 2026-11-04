@@ -540,7 +540,7 @@ def generation_problems(run, config, journal, errors, order):
     return problems
 
 
-def baseline_archive_problems(archive, record, manifest):
+def baseline_archive_problems(archive, record, manifest, adapter=None):
     """Why the baseline results ZIP is not the complete registered unchanged-model DEV run (empty list: it is).
 
     Validates the actual archive, not its metadata: the complete engine export with consistent checksums; the
@@ -585,13 +585,13 @@ def baseline_archive_problems(archive, record, manifest):
     generation = manifest["generation_config"]
     if not (engine_digest(config) == run.get("config_sha256") == record.get("config_sha256")):
         problems.append("config digest does not recompute from experiment_config.json")
-    if ts.digest(config) != generation["engine_config_sha256"]["dev"]:
+    if engine_digest(dict(config, adapter=None)) != generation["engine_config_sha256"]["dev"]:
         problems.append("experiment_config.json is not the registered DEV configuration")
     wrong = sorted(key for key, value in generation["decoding"].items() if config.get(key) != value)
     if wrong:
         problems.append("execution settings differ from the registered decoding: " + ", ".join(wrong))
     if (config.get("mode"), config.get("adapter", "missing"), config.get("model_id"), config.get("model_revision"),
-            config.get("tokenizer_revision")) != (BASELINE_MODE, None, ts.MODEL_ID, ts.MODEL_REVISION, ts.MODEL_REVISION):
+            config.get("tokenizer_revision")) != (BASELINE_MODE, adapter, ts.MODEL_ID, ts.MODEL_REVISION, ts.MODEL_REVISION):
         problems.append("not an unchanged-model DEV configuration of the pinned model")
     if (ts.sha256(str(config.get("instruction")).encode("utf-8")), config.get("prompt_version")) != (
             manifest["prompt"]["instruction_sha256"], manifest["prompt"]["version"]):
@@ -619,7 +619,7 @@ def baseline_archive_problems(archive, record, manifest):
         problems.append("run_manifest.json is not a COMPLETE 120/120 unchanged-model DEV run")
     if run.get("run_id") != record.get("run_id"):
         problems.append("record and archive name different runs")
-    problems += execution_problems(run, environment, manifest)
+    problems += execution_problems(run, environment, manifest, adapter=adapter)
     problems += generation_problems(run, config, rows("generation_attempts.jsonl"), rows("errors.jsonl"), order)
     return problems
 

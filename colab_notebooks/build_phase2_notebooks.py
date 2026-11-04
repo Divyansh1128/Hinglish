@@ -354,6 +354,7 @@ def render_train(manifest=None):
             - *Infrastructure* — only: runtime disconnect or kill, CUDA out-of-memory, a Drive/filesystem `OSError`, a network/Hub download error, a failed checkpoint write. Re-run all: one fresh attempt from scratch with the same seed. After a second infrastructure failure of any arm the whole seed triplet is replaced by the next unused reserve (44, then 55); the plan switches seed by itself. Reserves get the same two-attempt limit and are never reused.
             - *Numerical* (GradScaler skip, non-finite loss, gradient or saved parameter) or *protocol* (any hash, identity, label, data or step-count assertion, and **any other error**, e.g. a `TypeError`): the run is invalid and **the study halts** — no retry, no reserve. The notebook then refuses all further training. Send the ZIP.
             - A run continued with `RESUME_AFTER_DISCONNECT = True` is never valid for the FinalTest gate.
+            **Interrupted DEV sanity:** re-run all to complete every unfinished DEV report before another adapter trains, including after adapter 9. Stored generations are resumed; the adapter is never retrained for a DEV result. The freeze refuses a missing or invalid DEV report.
             {RECOVER_WRITER_NOTE}
             {RECOVER_NOTE}
             **Runtime → Change runtime type → T4 GPU**, then **Runtime → Run all**. A ZIP (adapter hashes, training log, attempt log, DEV results; weights stay on Drive) downloads at the end; send it unchanged.'''
@@ -370,6 +371,11 @@ def render_train(manifest=None):
                 tp.recover_stale_writer(TRAIN_ROOT, confirmed_no_other_session=True)
             print(tp.describe_writer(TRAIN_ROOT))
             assert tp.read_writer_lock(TRAIN_ROOT) is None, tp.writer_held_message(TRAIN_ROOT)
+            import phase2_eval as pe
+            def dev_sanity_step(folder, args):
+                return step(folder, 'phase2_eval.py', *args)  # subprocess releases GPU memory before training
+            # §5/§12: finish interrupted DEV reports before the plan advances, even after the ninth adapter.
+            pe.run_dev_sanity(TRAIN_ROOT, INPUTS, recover=RECOVER_STALE_LOCK, evaluate=dev_sanity_step)
             PLAN = tp.plan(tp.read_log(LOG))
             print(tp.describe_plan(PLAN))
             ACTION = tp.next_run(PLAN)  # an open attempt is refused, never closed automatically (Amendment 3 item 2)  # Amendment 2 item 4: the plan chooses ARM and SEED; refuses after a numerical/protocol failure
@@ -413,13 +419,7 @@ def render_train(manifest=None):
                                                         'baseline_dev_results_zip_sha256')}, indent=1))'''
         yield 'code', f'''
             # DEV sanity report only (PREREGISTRATION §5): never selects checkpoints, arms or reruns.
-            if OUTCOME == 'valid':
-                DEV_RUN = ATTEMPT_DIR / 'dev_eval'
-                step(ATTEMPT_DIR, 'phase2_eval.py', 'evaluate', '--split', 'dev', '--inputs', INPUTS, '--run-dir', DEV_RUN,
-                     '--adapter-dir', ATTEMPT_DIR / 'final_adapter', '--adapter-record', FINAL,
-                     '--implementation-manifest', INPUTS / 'IMPLEMENTATION_MANIFEST.md', {RECOVER_ARGS})
-            else:
-                print('Nothing was trained in this session: no DEV sanity run.')'''
+            pe.run_dev_sanity(TRAIN_ROOT, INPUTS, recover=RECOVER_STALE_LOCK, evaluate=dev_sanity_step)'''
         yield 'markdown', '## Download\nRun this cell even after a failure or a refusal: the ZIP carries the error, the logs and a snapshot of the attempt log.'
         yield 'code', '''
             import shutil

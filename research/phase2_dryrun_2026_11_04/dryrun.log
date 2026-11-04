@@ -1,0 +1,2384 @@
+SYNTHETIC CPU DRY RUN: DEV substituted for FINAL_TEST; no GPU, Hub, model or study results
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+high unchanged-DEV accuracy (ceiling-risk proxy): does not fire — unchanged DEV C 0/40 = 0.0% (Wilson 95% 0.0–8.8%), threshold >= 38/40
+Unchanged-DEV baseline recorded (Amendment 2 item 6): base_results.zip SHA-256 1cb123fa33de62c2a918c3d445ffc5c98faa20f1208d669f2f6e1aab6b6b142b, implementation manifest 726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/baseline_dev/base_results.zip 1cb123fa33de62c2a918c3d445ffc5c98faa20f1208d669f2f6e1aab6b6b142b
+Training-root writer lock acquired: session 150a80980bcd40beb43facda09f33107 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  (no attempts yet)
+Seed slots:
+  slot 11: seeds [11] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 22: seeds [22] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EC seed 11 (slot 11) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8373 steps 1/1 cursor 16 min_free 0.00 GiB
+Traceback (most recent call last):
+  File "/Users/divyanshraj/Major Project/t4_smoke/train_phase2.py", line 1748, in train_attempt
+    record = trainer.update(number)
+  File "/Users/divyanshraj/Major Project/t4_smoke/train_phase2.py", line 802, in update
+    loss = self.loss(example)
+  File "/Users/divyanshraj/Major Project/research/phase2_dryrun_2026_11_04/dryrun.py", line 63, in loss
+    raise OSError("injected GPU/runtime I/O failure")
+OSError: injected GPU/runtime I/O failure
+
+EC seed 11 attempt 1: FAILED — steps {'windows': 60, 'attempted': 2, 'successful': 1, 'cursor': 16}
+EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+
+INFRASTRUCTURE FAILURE (Drive or filesystem OSError): at most one from-scratch retry with the same seed (Amendment 1 item 11).
+Training-root writer lock acquired: session 879096d8ca164a6390f71fafbd81f938 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+Seed slots:
+  slot 11: seeds [11] -> open (EC 1 failed, ER 0 failed, EE 0 failed)
+  slot 22: seeds [22] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EC seed 11 (slot 11) attempt 2
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8373 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8523 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8788 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8675 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8745 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8672 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8701 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8167 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8511 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8211 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8223 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8154 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8044 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8480 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8215 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8416 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8309 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8099 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8838 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8209 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8507 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8849 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8226 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8871 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8290 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8616 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8654 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8896 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8217 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8143 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8057 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8373 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8389 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8277 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8262 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8461 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8240 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8352 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8374 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8299 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8525 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8369 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8432 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8910 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8679 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8412 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8653 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8296 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8367 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8039 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8431 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8109 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8565 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8217 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8651 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8372 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8428 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8157 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8454 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8287 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EC seed 11 attempt 2: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s11/attempt-02
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s11/attempt-02/dev_eval_results.zip fcaa8a5728202f34ecbcf792ff84e899bbf0ff63a609472a5333a7e4ae65f038
+RECOVER_STALE_WRITER: closed ER-s11 attempt 1 -> infrastructure
+RECOVER_STALE_WRITER: recovery logged in WRITER_RECOVERIES.jsonl; stale lock of session 574158c0b4f947f5be1f0165b5df35cc released.
+Training-root writer lock acquired: session 85b87e877c994254970e1fb5c5c4c86f (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+Seed slots:
+  slot 11: seeds [11] -> open (EC valid #2, ER 1 failed, EE 0 failed)
+  slot 22: seeds [22] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): ER seed 11 (slot 11) attempt 2
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8463 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8527 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8847 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8681 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8780 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8668 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8741 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8178 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8522 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8229 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8283 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8232 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8144 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8592 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8232 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8500 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8363 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8126 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8907 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8253 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8533 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8858 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8294 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8896 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8317 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8670 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8668 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8968 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8230 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8159 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8091 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8426 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8418 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8333 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8342 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8541 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8303 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8449 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8450 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8322 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8604 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8445 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8452 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8978 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8734 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8460 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8747 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8253 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8469 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8080 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8478 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8103 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8577 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8279 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8737 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8407 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8462 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8149 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8534 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8320 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+ER seed 11 attempt 2: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s11/attempt-02
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s11/attempt-02/dev_eval_results.zip 2d0b41c5b1b73157d5b5c8b148893c64d4f6e196f51b64e55e9b0154592f2091
+Training-root writer lock acquired: session 70095e782474475a90048a234caeb318 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> open (EC valid #2, ER valid #2, EE 0 failed)
+  slot 22: seeds [22] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EE seed 11 (slot 11) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8350 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8490 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8836 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8614 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8754 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8644 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8662 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8096 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8536 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8170 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8202 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8120 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8058 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8504 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8156 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8384 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8344 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8112 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8754 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8164 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8464 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8802 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8194 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8890 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8224 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8598 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8606 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8870 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8200 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8218 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8048 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8346 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8358 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8222 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8266 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8444 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8276 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8390 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8294 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8240 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8546 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8324 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8430 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8890 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8676 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8496 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8580 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8232 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8302 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8058 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8442 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8048 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8522 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8198 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8670 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8242 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8428 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8136 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8450 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8280 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 841f5368cdbf7047d87d2551292284467040996bbadbeba5409fa7f46e7c2dd1 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EE seed 11 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s11/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s11/attempt-01/dev_eval_results.zip dbe5eb6d0386a473b14429d811062639389b5282981987fedc09c92afe869d83
+Training-root writer lock acquired: session 2a89d2188f7d4b1ab7c572e99162bc2a (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EC seed 22 (slot 22) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8807 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8214 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 7932 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8793 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8237 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8506 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8495 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8925 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8321 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8342 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8252 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8300 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8279 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8152 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8384 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8693 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8233 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8343 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8650 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8495 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8466 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8649 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8712 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8623 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8237 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8628 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8809 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8657 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8281 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8064 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8372 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8373 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8562 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8308 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 7791 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8093 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8200 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8246 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8864 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8418 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8498 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8641 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8096 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8321 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8154 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8561 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8762 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8500 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8683 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8859 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8057 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8012 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8279 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8704 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8147 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8240 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8282 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8556 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8267 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8734 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EC seed 22 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s22/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s22/attempt-01/dev_eval_results.zip ee75166f8cc6c22472fa9bee5cc967ade7af737b6e64176836734d71effe2bb3
+Training-root writer lock acquired: session b2daa4c2063644e4a0c6ca8a7dc69c95 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> open (EC valid #1, ER 0 failed, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): ER seed 22 (slot 22) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8877 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8248 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 7975 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8852 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8262 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8566 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8510 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8953 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8396 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8390 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8346 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8319 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8290 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8220 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8430 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8719 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8275 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8438 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8671 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8531 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8555 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8683 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8828 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8639 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8216 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8697 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8870 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8678 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8338 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8120 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8444 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8391 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8600 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8298 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 7859 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8137 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8224 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8284 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8930 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8477 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8572 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8728 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8101 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8356 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8200 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8607 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8743 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8539 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8745 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8882 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8096 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8058 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8329 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8754 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8209 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8260 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8303 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8638 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8333 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8815 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+ER seed 22 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+ER-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s22/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s22/attempt-01/dev_eval_results.zip 378fb957627893d3319b637345fc894f7e172dcf8d673f6af471ed8453ca18f9
+Training-root writer lock acquired: session 4042112840fa4aa3b15592c0743aef44 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> open (EC valid #1, ER valid #1, EE 0 failed)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EE seed 22 (slot 22) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8838 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8170 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 7926 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8804 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8226 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8500 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8416 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8866 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8260 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8310 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8222 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8290 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8200 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8164 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8396 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8624 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 8220 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8346 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8654 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8518 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8470 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8658 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8752 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 8568 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8216 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8542 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8706 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8636 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8288 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 7984 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8374 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8278 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8552 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8296 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 7814 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8078 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8186 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8202 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8856 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 8494 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8444 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8560 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8082 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8360 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8174 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8556 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8724 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8496 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8642 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8808 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8046 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 7952 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8232 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8712 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8116 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8242 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8280 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8586 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8270 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8668 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 c59125166d42acaae5279bb6109465f10802c07d8c0947ef0cdf1364360f158d (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EE seed 22 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EE-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s22/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s22/attempt-01/dev_eval_results.zip 3e3131b0faf3c2facee830363c5198a853991aa55bcb32fe546aea76453976cc
+Training-root writer lock acquired: session 2b66e258aeab4863974c68a1bf5bd8b9 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> complete (EC valid #1, ER valid #1, EE valid #1)
+  slot 33: seeds [33] -> open (EC 0 failed, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): EC seed 33 (slot 33) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8670 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8459 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8269 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8354 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8494 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8662 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8651 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8369 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8170 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8558 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8677 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8259 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8470 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8763 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8395 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8157 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 7947 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8233 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8408 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8388 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8390 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8551 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8504 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 9055 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8435 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8789 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8407 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8566 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8628 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8501 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8640 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8013 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8019 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8667 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8304 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8155 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8076 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8070 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8699 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 7884 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8743 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8232 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8514 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8785 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8678 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8544 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8273 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8171 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8308 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8519 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8624 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8059 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8457 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8562 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8530 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8062 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8582 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8238 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8221 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8251 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EC seed 33 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EC-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s33/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EC-s33/attempt-01/dev_eval_results.zip f49edc0aed025cc1152fd737c2d059302afab19cfdae2f3f21fc18e803cbe3e4
+Training-root writer lock acquired: session 447b8b17ec1f44cd922a4808fa1a5139 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> complete (EC valid #1, ER valid #1, EE valid #1)
+  slot 33: seeds [33] -> open (EC valid #1, ER 0 failed, EE 0 failed)
+Next run (Amendment 2 item 4): ER seed 33 (slot 33) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8750 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8507 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8324 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8400 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8508 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8699 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8711 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8406 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8210 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8571 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8751 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8336 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8529 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8833 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8520 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8211 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 7932 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8244 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8395 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8431 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8401 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8591 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8560 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 9053 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8509 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8811 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8417 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8665 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8633 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8552 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8718 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8096 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 8033 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8724 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8419 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8197 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8094 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8111 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8769 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 7915 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8815 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8236 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8572 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8866 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8762 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8581 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8319 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8193 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8319 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8512 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8696 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 8077 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8489 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8619 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8588 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8047 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8725 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8252 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8296 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8304 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+ER seed 33 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+ER-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s33/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/ER-s33/attempt-01/dev_eval_results.zip 00a6b61239adf3280fe4e0dd69fcab9f71f82284e244cbe79d3a6f44593ed798
+Training-root writer lock acquired: session ceb0245c37564eeaaf26d17a4f972423 (heartbeat every 30 s)
+Attempt log (Amendment 1 item 11):
+  EC-s11 attempt 1 (slot 11): infrastructure — OSError: injected GPU/runtime I/O failure
+  EC-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s11 attempt 1 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s11 attempt 1 (slot 11): infrastructure — stale-writer recovery confirmed by the operator (no other session running): runtime disconnect or kill; report on disk: run did not finish (status STARTED): runtime disconnect or crash
+  ER-s11 attempt 2 (slot 11): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EE-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s22 attempt 1 (slot 22): valid — COMPLETE: 60/60 successful steps, cursor 960
+  EC-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+  ER-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+Seed slots:
+  slot 11: seeds [11] -> complete (EC valid #2, ER valid #2, EE valid #1)
+  slot 22: seeds [22] -> complete (EC valid #1, ER valid #1, EE valid #1)
+  slot 33: seeds [33] -> open (EC valid #1, ER valid #1, EE 0 failed)
+Next run (Amendment 2 item 4): EE seed 33 (slot 33) attempt 1
+update 1: loss 1.0 grad_norm 0.5 lr 1.667e-05 scale 65536 0.0s tokens 8652 steps 1/1 cursor 16 min_free 0.00 GiB
+update 2: loss 1.0 grad_norm 0.5 lr 3.333e-05 scale 65536 0.0s tokens 8462 steps 2/2 cursor 32 min_free 0.00 GiB
+update 3: loss 1.0 grad_norm 0.5 lr 5.000e-05 scale 65536 0.0s tokens 8274 steps 3/3 cursor 48 min_free 0.00 GiB
+update 4: loss 1.0 grad_norm 0.5 lr 6.667e-05 scale 65536 0.0s tokens 8290 steps 4/4 cursor 64 min_free 0.00 GiB
+update 5: loss 1.0 grad_norm 0.5 lr 8.333e-05 scale 65536 0.0s tokens 8470 steps 5/5 cursor 80 min_free 0.00 GiB
+update 6: loss 1.0 grad_norm 0.5 lr 1.000e-04 scale 65536 0.0s tokens 8588 steps 6/6 cursor 96 min_free 0.00 GiB
+update 7: loss 1.0 grad_norm 0.5 lr 9.992e-05 scale 65536 0.0s tokens 8634 steps 7/7 cursor 112 min_free 0.00 GiB
+update 8: loss 1.0 grad_norm 0.5 lr 9.970e-05 scale 65536 0.0s tokens 8346 steps 8/8 cursor 128 min_free 0.00 GiB
+update 9: loss 1.0 grad_norm 0.5 lr 9.932e-05 scale 65536 0.0s tokens 8084 steps 9/9 cursor 144 min_free 0.00 GiB
+update 10: loss 1.0 grad_norm 0.5 lr 9.879e-05 scale 65536 0.0s tokens 8538 steps 10/10 cursor 160 min_free 0.00 GiB
+checkpoint after update 10 saved
+update 11: loss 1.0 grad_norm 0.5 lr 9.811e-05 scale 65536 0.0s tokens 8758 steps 11/11 cursor 176 min_free 0.00 GiB
+update 12: loss 1.0 grad_norm 0.5 lr 9.729e-05 scale 65536 0.0s tokens 8238 steps 12/12 cursor 192 min_free 0.00 GiB
+update 13: loss 1.0 grad_norm 0.5 lr 9.632e-05 scale 65536 0.0s tokens 8398 steps 13/13 cursor 208 min_free 0.00 GiB
+update 14: loss 1.0 grad_norm 0.5 lr 9.521e-05 scale 65536 0.0s tokens 8722 steps 14/14 cursor 224 min_free 0.00 GiB
+update 15: loss 1.0 grad_norm 0.5 lr 9.397e-05 scale 65536 0.0s tokens 8382 steps 15/15 cursor 240 min_free 0.00 GiB
+update 16: loss 1.0 grad_norm 0.5 lr 9.260e-05 scale 65536 0.0s tokens 8152 steps 16/16 cursor 256 min_free 0.00 GiB
+update 17: loss 1.0 grad_norm 0.5 lr 9.110e-05 scale 65536 0.0s tokens 7932 steps 17/17 cursor 272 min_free 0.00 GiB
+update 18: loss 1.0 grad_norm 0.5 lr 8.947e-05 scale 65536 0.0s tokens 8232 steps 18/18 cursor 288 min_free 0.00 GiB
+update 19: loss 1.0 grad_norm 0.5 lr 8.773e-05 scale 65536 0.0s tokens 8422 steps 19/19 cursor 304 min_free 0.00 GiB
+update 20: loss 1.0 grad_norm 0.5 lr 8.588e-05 scale 65536 0.0s tokens 8376 steps 20/20 cursor 320 min_free 0.00 GiB
+checkpoint after update 20 saved
+update 21: loss 1.0 grad_norm 0.5 lr 8.393e-05 scale 65536 0.0s tokens 8344 steps 21/21 cursor 336 min_free 0.00 GiB
+update 22: loss 1.0 grad_norm 0.5 lr 8.187e-05 scale 65536 0.0s tokens 8564 steps 22/22 cursor 352 min_free 0.00 GiB
+update 23: loss 1.0 grad_norm 0.5 lr 7.973e-05 scale 65536 0.0s tokens 8444 steps 23/23 cursor 368 min_free 0.00 GiB
+update 24: loss 1.0 grad_norm 0.5 lr 7.750e-05 scale 65536 0.0s tokens 9062 steps 24/24 cursor 384 min_free 0.00 GiB
+update 25: loss 1.0 grad_norm 0.5 lr 7.520e-05 scale 65536 0.0s tokens 8446 steps 25/25 cursor 400 min_free 0.00 GiB
+update 26: loss 1.0 grad_norm 0.5 lr 7.282e-05 scale 65536 0.0s tokens 8778 steps 26/26 cursor 416 min_free 0.00 GiB
+update 27: loss 1.0 grad_norm 0.5 lr 7.039e-05 scale 65536 0.0s tokens 8366 steps 27/27 cursor 432 min_free 0.00 GiB
+update 28: loss 1.0 grad_norm 0.5 lr 6.791e-05 scale 65536 0.0s tokens 8498 steps 28/28 cursor 448 min_free 0.00 GiB
+update 29: loss 1.0 grad_norm 0.5 lr 6.538e-05 scale 65536 0.0s tokens 8598 steps 29/29 cursor 464 min_free 0.00 GiB
+update 30: loss 1.0 grad_norm 0.5 lr 6.281e-05 scale 65536 0.0s tokens 8528 steps 30/30 cursor 480 min_free 0.00 GiB
+checkpoint after update 30 saved
+update 31: loss 1.0 grad_norm 0.5 lr 6.022e-05 scale 65536 0.0s tokens 8658 steps 31/31 cursor 496 min_free 0.00 GiB
+update 32: loss 1.0 grad_norm 0.5 lr 5.762e-05 scale 65536 0.0s tokens 8026 steps 32/32 cursor 512 min_free 0.00 GiB
+update 33: loss 1.0 grad_norm 0.5 lr 5.500e-05 scale 65536 0.0s tokens 7964 steps 33/33 cursor 528 min_free 0.00 GiB
+update 34: loss 1.0 grad_norm 0.5 lr 5.238e-05 scale 65536 0.0s tokens 8644 steps 34/34 cursor 544 min_free 0.00 GiB
+update 35: loss 1.0 grad_norm 0.5 lr 4.978e-05 scale 65536 0.0s tokens 8254 steps 35/35 cursor 560 min_free 0.00 GiB
+update 36: loss 1.0 grad_norm 0.5 lr 4.719e-05 scale 65536 0.0s tokens 8140 steps 36/36 cursor 576 min_free 0.00 GiB
+update 37: loss 1.0 grad_norm 0.5 lr 4.462e-05 scale 65536 0.0s tokens 8106 steps 37/37 cursor 592 min_free 0.00 GiB
+update 38: loss 1.0 grad_norm 0.5 lr 4.209e-05 scale 65536 0.0s tokens 8098 steps 38/38 cursor 608 min_free 0.00 GiB
+update 39: loss 1.0 grad_norm 0.5 lr 3.961e-05 scale 65536 0.0s tokens 8640 steps 39/39 cursor 624 min_free 0.00 GiB
+update 40: loss 1.0 grad_norm 0.5 lr 3.718e-05 scale 65536 0.0s tokens 7792 steps 40/40 cursor 640 min_free 0.00 GiB
+checkpoint after update 40 saved
+update 41: loss 1.0 grad_norm 0.5 lr 3.480e-05 scale 65536 0.0s tokens 8728 steps 41/41 cursor 656 min_free 0.00 GiB
+update 42: loss 1.0 grad_norm 0.5 lr 3.250e-05 scale 65536 0.0s tokens 8236 steps 42/42 cursor 672 min_free 0.00 GiB
+update 43: loss 1.0 grad_norm 0.5 lr 3.027e-05 scale 65536 0.0s tokens 8458 steps 43/43 cursor 688 min_free 0.00 GiB
+update 44: loss 1.0 grad_norm 0.5 lr 2.813e-05 scale 65536 0.0s tokens 8768 steps 44/44 cursor 704 min_free 0.00 GiB
+update 45: loss 1.0 grad_norm 0.5 lr 2.607e-05 scale 65536 0.0s tokens 8582 steps 45/45 cursor 720 min_free 0.00 GiB
+update 46: loss 1.0 grad_norm 0.5 lr 2.412e-05 scale 65536 0.0s tokens 8492 steps 46/46 cursor 736 min_free 0.00 GiB
+update 47: loss 1.0 grad_norm 0.5 lr 2.227e-05 scale 65536 0.0s tokens 8234 steps 47/47 cursor 752 min_free 0.00 GiB
+update 48: loss 1.0 grad_norm 0.5 lr 2.053e-05 scale 65536 0.0s tokens 8192 steps 48/48 cursor 768 min_free 0.00 GiB
+update 49: loss 1.0 grad_norm 0.5 lr 1.890e-05 scale 65536 0.0s tokens 8312 steps 49/49 cursor 784 min_free 0.00 GiB
+update 50: loss 1.0 grad_norm 0.5 lr 1.740e-05 scale 65536 0.0s tokens 8494 steps 50/50 cursor 800 min_free 0.00 GiB
+checkpoint after update 50 saved
+update 51: loss 1.0 grad_norm 0.5 lr 1.603e-05 scale 65536 0.0s tokens 8658 steps 51/51 cursor 816 min_free 0.00 GiB
+update 52: loss 1.0 grad_norm 0.5 lr 1.479e-05 scale 65536 0.0s tokens 7986 steps 52/52 cursor 832 min_free 0.00 GiB
+update 53: loss 1.0 grad_norm 0.5 lr 1.368e-05 scale 65536 0.0s tokens 8398 steps 53/53 cursor 848 min_free 0.00 GiB
+update 54: loss 1.0 grad_norm 0.5 lr 1.271e-05 scale 65536 0.0s tokens 8532 steps 54/54 cursor 864 min_free 0.00 GiB
+update 55: loss 1.0 grad_norm 0.5 lr 1.189e-05 scale 65536 0.0s tokens 8510 steps 55/55 cursor 880 min_free 0.00 GiB
+update 56: loss 1.0 grad_norm 0.5 lr 1.121e-05 scale 65536 0.0s tokens 8070 steps 56/56 cursor 896 min_free 0.00 GiB
+update 57: loss 1.0 grad_norm 0.5 lr 1.068e-05 scale 65536 0.0s tokens 8578 steps 57/57 cursor 912 min_free 0.00 GiB
+update 58: loss 1.0 grad_norm 0.5 lr 1.030e-05 scale 65536 0.0s tokens 8254 steps 58/58 cursor 928 min_free 0.00 GiB
+update 59: loss 1.0 grad_norm 0.5 lr 1.008e-05 scale 65536 0.0s tokens 8258 steps 59/59 cursor 944 min_free 0.00 GiB
+update 60: loss 1.0 grad_norm 0.5 lr 1.000e-05 scale 65536 0.0s tokens 8210 steps 60/60 cursor 960 min_free 0.00 GiB
+final adapter SHA-256 2cc7ed2054b7382087168794edb748db132ee991f28306039a6342addaa81069 (config ee32d39eaf63857346eaf9021a6545105ca5cdeafbab9b4f01f4f99f01b7888b)
+EE seed 33 attempt 1: COMPLETE — steps {'windows': 60, 'attempted': 60, 'successful': 60, 'cursor': 960}
+EE-s33 attempt 1 (slot 33): valid — COMPLETE: 60/60 successful steps, cursor 960
+Completing required DEV sanity: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s33/attempt-01
+1/120: DV006-C 0.0s
+2/120: DV030-R-v2 0.0s
+3/120: DV006-R 0.0s
+4/120: DV019-E 0.0s
+5/120: DV033-C 0.0s
+6/120: DV025-C 0.0s
+7/120: DV022-E 0.0s
+8/120: DV012-E 0.0s
+9/120: DV008-E 0.0s
+10/120: DV015-R 0.0s
+11/120: DV010-E 0.0s
+12/120: DV019-C 0.0s
+13/120: DV012-C 0.0s
+14/120: DV007-E 0.0s
+15/120: DV011-E 0.0s
+16/120: DV036-C-v2 0.0s
+17/120: DV025-E 0.0s
+18/120: DV036-R-v2 0.0s
+19/120: DV024-C 0.0s
+20/120: DV035-R 0.0s
+21/120: DV018-E 0.0s
+22/120: DV032-R 0.0s
+23/120: DV033-R 0.0s
+24/120: DV014-E 0.0s
+25/120: DV010-C 0.0s
+26/120: DV004-C 0.0s
+27/120: DV001-R-v2 0.0s
+28/120: DV036-E 0.0s
+29/120: DV032-C 0.0s
+30/120: DV008-C 0.0s
+31/120: DV021-E 0.0s
+32/120: DV034-E 0.0s
+33/120: DV015-C 0.0s
+34/120: DV021-R 0.0s
+35/120: DV016-E 0.0s
+36/120: DV015-E 0.0s
+37/120: DV026-R-v2 0.0s
+38/120: DV040-E 0.0s
+39/120: DV014-C 0.0s
+40/120: DV005-E 0.0s
+41/120: DV024-E 0.0s
+42/120: DV031-C 0.0s
+43/120: DV017-E 0.0s
+44/120: DV030-C-v2 0.0s
+45/120: DV018-C 0.0s
+46/120: DV016-R-v2 0.0s
+47/120: DV040-C-v2 0.0s
+48/120: DV003-C 0.0s
+49/120: DV013-C 0.0s
+50/120: DV029-C 0.0s
+51/120: DV029-R 0.0s
+52/120: DV033-E 0.0s
+53/120: DV011-R 0.0s
+54/120: DV005-R 0.0s
+55/120: DV017-C 0.0s
+56/120: DV029-E 0.0s
+57/120: DV006-E 0.0s
+58/120: DV016-C-v2 0.0s
+59/120: DV031-R 0.0s
+60/120: DV018-R-v2 0.0s
+61/120: DV025-R 0.0s
+62/120: DV028-E 0.0s
+63/120: DV009-R 0.0s
+64/120: DV012-R 0.0s
+65/120: DV020-E 0.0s
+66/120: DV004-E 0.0s
+67/120: DV001-C-v2 0.0s
+68/120: DV022-C-v2 0.0s
+69/120: DV013-E 0.0s
+70/120: DV010-R 0.0s
+71/120: DV023-C 0.0s
+72/120: DV009-E 0.0s
+73/120: DV019-R 0.0s
+74/120: DV014-R 0.0s
+75/120: DV039-C 0.0s
+76/120: DV002-C 0.0s
+77/120: DV031-E 0.0s
+78/120: DV011-C 0.0s
+79/120: DV038-C 0.0s
+80/120: DV002-E 0.0s
+81/120: DV003-E 0.0s
+82/120: DV003-R 0.0s
+83/120: DV023-E 0.0s
+84/120: DV001-E 0.0s
+85/120: DV027-E 0.0s
+86/120: DV007-R-v2 0.0s
+87/120: DV032-E 0.0s
+88/120: DV035-E 0.0s
+89/120: DV028-R 0.0s
+90/120: DV039-E 0.0s
+91/120: DV017-R 0.0s
+92/120: DV026-E 0.0s
+93/120: DV002-R 0.0s
+94/120: DV028-C 0.0s
+95/120: DV030-E 0.0s
+96/120: DV023-R 0.0s
+97/120: DV004-R 0.0s
+98/120: DV007-C-v2 0.0s
+99/120: DV013-R 0.0s
+100/120: DV038-R 0.0s
+101/120: DV005-C 0.0s
+102/120: DV037-C 0.0s
+103/120: DV034-R-v2 0.0s
+104/120: DV027-C 0.0s
+105/120: DV027-R 0.0s
+106/120: DV021-C 0.0s
+107/120: DV038-E 0.0s
+108/120: DV035-C 0.0s
+109/120: DV008-R 0.0s
+110/120: DV009-C 0.0s
+111/120: DV026-C-v2 0.0s
+112/120: DV039-R 0.0s
+113/120: DV022-R-v2 0.0s
+114/120: DV040-R-v2 0.0s
+115/120: DV020-R 0.0s
+116/120: DV034-C 0.0s
+117/120: DV037-E 0.0s
+118/120: DV024-R 0.0s
+119/120: DV037-R 0.0s
+120/120: DV020-C 0.0s
+Run status: COMPLETE 120 / 120
+# PHASE-2 DEV — sanity only; never used for selection
+
+Run status: **COMPLETE**; analysis: automatic.
+120/120 outputs completed; 0 unresolved.
+40 independent families, each with E/R/C renderings.
+
+Human review metadata are attestations, not automated proof of validity. All scored generations need independent manual audit.
+
+| Form | Correct / families | Accuracy | Wilson 95% interval |
+|---|---:|---:|---:|
+| E | 0/40 | 0.0% | [0.0%, 8.8%] |
+| R | 0/40 | 0.0% | [0.0%, 8.8%] |
+| C | 0/40 | 0.0% | [0.0%, 8.8%] |
+
+Paired differences (percentage points); descriptive family bootstrap:
+- E-C: 0.0 pp [0.0, 0.0]
+- E-R: 0.0 pp [0.0, 0.0]
+- R-C: 0.0 pp [0.0, 0.0]
+
+Automatic invalid/truncated outputs: 120/120. Review-packet threshold: more than 3/90 requires protocol revision before scaling.
+Inspect floor/ceiling effects, all format failures, language equivalence, and wrong-answer examples before choosing the next experiment.
+
+Single checkpoint only: E+C versus E+R is analysed across all 9 adapters by the pre-registered Phase-2 analysis, not here. No significance or internal-mechanism claim.
+For the executed notebook: Colab File > Download > Download .ipynb. Return it with the results ZIP.
+Resource telemetry excludes download/load time from generation latency. Device free is sampled at endpoints only.
+
+Export: /var/folders/35/ggw1lkts4vdd7t4wpyy9d8jm0000gn/T/phase2_round3_8smx8e_s/train/EE-s33/attempt-01/dev_eval_results.zip 13d6866493297693f0579852275ded166efb11ff36b12947d798789ecf853724
+unchanged: 25/300 generated
+unchanged: 50/300 generated
+unchanged: 75/300 generated
+unchanged: 100/300 generated
+unchanged: 125/300 generated
+unchanged: 150/300 generated
+unchanged: 175/300 generated
+unchanged: 200/300 generated
+unchanged: 225/300 generated
+unchanged: 250/300 generated
+unchanged: 275/300 generated
+unchanged: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "unchanged", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "unchanged_results.zip", "results_zip_sha256": "55a4a9826924af942bf6f6998e02aecb4f3425b25ca8739322b69fcbbac22cd3", "checksums_sha256": "91399cbb56e0d104da5d7f37b2b35e5cacfb0222fb54f114550b8ffa72388d90"}
+EC:11: 25/300 generated
+EC:11: 50/300 generated
+EC:11: 75/300 generated
+EC:11: 100/300 generated
+EC:11: 125/300 generated
+EC:11: 150/300 generated
+EC:11: 175/300 generated
+EC:11: 200/300 generated
+EC:11: 225/300 generated
+EC:11: 250/300 generated
+EC:11: 275/300 generated
+EC:11: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EC:11", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EC:11_results.zip", "results_zip_sha256": "3a87e6c453d7028a1a8bb0545df492402673595d0538cdedd4a23a803698ad68", "checksums_sha256": "139c610c62d1fe2501ff95f62131fedced02bc837f3e8bc6e8488825f90084e1"}
+EE:11: 25/300 generated
+EE:11: 50/300 generated
+EE:11: 75/300 generated
+EE:11: 100/300 generated
+EE:11: 125/300 generated
+EE:11: 150/300 generated
+EE:11: 175/300 generated
+EE:11: 200/300 generated
+EE:11: 225/300 generated
+EE:11: 250/300 generated
+EE:11: 275/300 generated
+EE:11: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EE:11", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EE:11_results.zip", "results_zip_sha256": "507e664bb7844ba994623bd4d56ea9415a106187a3fbffce6625231eacc07740", "checksums_sha256": "ef369ace8de0fdf5dfdad1ed45e0de7e603c42b50a51e65fdd4e73fc8223014c"}
+ER:11: 25/300 generated
+ER:11: 50/300 generated
+ER:11: 75/300 generated
+ER:11: 100/300 generated
+ER:11: 125/300 generated
+ER:11: 150/300 generated
+ER:11: 175/300 generated
+ER:11: 200/300 generated
+ER:11: 225/300 generated
+ER:11: 250/300 generated
+ER:11: 275/300 generated
+ER:11: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "ER:11", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "ER:11_results.zip", "results_zip_sha256": "2781849339a2938ad22a2b974322690cba1d2bcb25ec8a0ea7e9f67466e350a3", "checksums_sha256": "c28bcc867e23805187c1becca22c6f80f4d20529e97d31d4f1fd4f60150d709a"}
+EC:22: 25/300 generated
+EC:22: 50/300 generated
+EC:22: 75/300 generated
+EC:22: 100/300 generated
+EC:22: 125/300 generated
+EC:22: 150/300 generated
+EC:22: 175/300 generated
+EC:22: 200/300 generated
+EC:22: 225/300 generated
+EC:22: 250/300 generated
+EC:22: 275/300 generated
+EC:22: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EC:22", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EC:22_results.zip", "results_zip_sha256": "80708a5ce2d59856d119cce707a18fd2d641ebd4fbf8e0c365e821352407bdc2", "checksums_sha256": "529287325edf17f1b0835f7b64a475827161b57fd69c47fc88e2e517f6d32e21"}
+EE:22: 25/300 generated
+EE:22: 50/300 generated
+EE:22: 75/300 generated
+EE:22: 100/300 generated
+EE:22: 125/300 generated
+EE:22: 150/300 generated
+EE:22: 175/300 generated
+EE:22: 200/300 generated
+EE:22: 225/300 generated
+EE:22: 250/300 generated
+EE:22: 275/300 generated
+EE:22: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EE:22", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EE:22_results.zip", "results_zip_sha256": "6b71429c9060c7a2364098403b5a771c4d98f093b90c78a7f4a5284072fe98e9", "checksums_sha256": "966bd8f7fbcefbbc689068406ea73555591eb26974432efd73b4e21ed766c2ef"}
+ER:22: 25/300 generated
+ER:22: 50/300 generated
+ER:22: 75/300 generated
+ER:22: 100/300 generated
+ER:22: 125/300 generated
+ER:22: 150/300 generated
+ER:22: 175/300 generated
+ER:22: 200/300 generated
+ER:22: 225/300 generated
+ER:22: 250/300 generated
+ER:22: 275/300 generated
+ER:22: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "ER:22", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "ER:22_results.zip", "results_zip_sha256": "f6c59986a7048213d6f8bcd21015a808f9a78666433fe65d1a56d088bad592c7", "checksums_sha256": "191002b46f48ab1c59d19cd3ce59deb9276051384c2c26962f6b8442c4600f9a"}
+EC:33: 25/300 generated
+EC:33: 50/300 generated
+EC:33: 75/300 generated
+EC:33: 100/300 generated
+EC:33: 125/300 generated
+EC:33: 150/300 generated
+EC:33: 175/300 generated
+EC:33: 200/300 generated
+EC:33: 225/300 generated
+EC:33: 250/300 generated
+EC:33: 275/300 generated
+EC:33: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EC:33", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EC:33_results.zip", "results_zip_sha256": "29a1157e34327d65c5ad6ff49307b3dec8a141183ad8d18b51ebc778f3e4f6bc", "checksums_sha256": "cc8aac762608d765c6bc3c3ff6a26fa356e5e60722bc76603f7ea491f90a3080"}
+EE:33: 25/300 generated
+EE:33: 50/300 generated
+EE:33: 75/300 generated
+EE:33: 100/300 generated
+EE:33: 125/300 generated
+EE:33: 150/300 generated
+EE:33: 175/300 generated
+EE:33: 200/300 generated
+EE:33: 225/300 generated
+EE:33: 250/300 generated
+EE:33: 275/300 generated
+EE:33: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "EE:33", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "EE:33_results.zip", "results_zip_sha256": "b211bba13a14447afdea95c76f3141cd9611b933a0b1b2985d5012a7f61ee269", "checksums_sha256": "1198cde6b404b10ae34954657ace656e6dd1c56b8f29b1d4be0c343a85ab61bf"}
+ER:33: 25/300 generated
+ER:33: 50/300 generated
+ER:33: 75/300 generated
+ER:33: 100/300 generated
+ER:33: 125/300 generated
+ER:33: 150/300 generated
+ER:33: 175/300 generated
+ER:33: 200/300 generated
+ER:33: 225/300 generated
+ER:33: 250/300 generated
+ER:33: 275/300 generated
+ER:33: 300/300 generated
+Run status: COMPLETE 300 / 300
+SEALED (Amendment 1 item 14) — completion/checksum/infrastructure only: {"run": "ER:33", "status": "COMPLETE", "completed": 300, "expected": 300, "unresolved": 0, "attempts": 300, "infrastructure_failures": 0, "results_zip": "ER:33_results.zip", "results_zip_sha256": "665ab0d7aa31576676c92d2458ba91b71253003ffe9967facda1377a582e65f9", "checksums_sha256": "1c75d3ef0229f9bcab473f70866ee43683ef5c46370ebb59da60b4737fa59e0d"}

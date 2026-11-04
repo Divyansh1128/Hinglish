@@ -27,6 +27,7 @@ import json
 import re
 import sys
 import traceback
+import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -153,6 +154,62 @@ def ceiling_line(flag):
 
 
 # ---------------------------------------------------------------- freeze manifest and FinalTest gate (model-free)
+
+def valid_attempt_folders(train_root):
+    """All successfully trained adapters, including those in subsequently replaced triplets (§5/§12)."""
+    entries = tp.read_log(Path(train_root) / tp.ATTEMPT_LOG)
+    tp.plan(entries)  # authenticate/replay the log before using its outcomes
+    return [attempt_dir(train_root, e["arm"], e["seed"], e["attempt"]) for e in entries
+            if e["event"] == "finish" and e["outcome"] == "valid"]
+
+
+def dev_sanity_problem(folder, manifest_path):
+    """A DEV report is done only when its full export validates against this adapter and implementation."""
+    folder = Path(folder)
+    try:
+        manifest, manifest_sha = tp.read_manifest(manifest_path)
+        final = ts.read_json(folder / "final_adapter.json")
+        binding = read(folder / "dev_eval_implementation.json")
+        require(binding["implementation_manifest_sha256"] == manifest_sha == final["implementation_manifest_sha256"],
+                "DEV sanity implementation differs from training")
+        archive = folder / "dev_eval_results.zip"
+        with zipfile.ZipFile(archive) as z:
+            run_manifest = json.loads(z.read("run_manifest.json"))
+        problems = tp.baseline_archive_problems(archive, run_manifest, manifest, adapter=adapter_record(final))
+        return "; ".join(problems) if problems else None
+    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as error:
+        return f"{type(error).__name__}: {error}"
+
+
+def run_dev_sanity(train_root, inputs_dir, *, recover=False, evaluate=None):
+    """Drain unfinished DEV reports before more training and after a valid run; never retrain/select an adapter.
+
+    The engine resumes its existing journal. A stale evaluation lock still needs explicit operator confirmation.
+    Keep the training-root writer lock throughout so two notebook sessions cannot evaluate the same adapter.
+    The notebook supplies a subprocess evaluator so GPU memory is released before the next training process.
+    """
+    with tp.WriterLock(train_root):
+        for folder in valid_attempt_folders(train_root):
+            manifest_path = Path(inputs_dir) / tp.MANIFEST_NAME
+            if dev_sanity_problem(folder, manifest_path) is None:
+                continue
+            print(f"Completing required DEV sanity: {folder}", flush=True)
+            args = ["evaluate", "--split", "dev", "--inputs", str(inputs_dir), "--run-dir", str(folder / "dev_eval"),
+                    "--adapter-dir", str(folder / "final_adapter"), "--adapter-record", str(folder / "final_adapter.json"),
+                    "--implementation-manifest", str(manifest_path)]
+            args += ["--recover-stale-lock"] if recover else []
+            code = evaluate(folder, args) if evaluate is not None else main(args)
+            require(code == 0, f"DEV sanity remains incomplete for {folder}; resume it before more training")
+            problem = dev_sanity_problem(folder, manifest_path)
+            require(problem is None, f"DEV sanity does not validate for {folder}: {problem}")
+
+
+def require_dev_sanity(train_root, manifest_path):
+    folders = valid_attempt_folders(train_root)
+    for folder in folders:
+        problem = dev_sanity_problem(folder, manifest_path)
+        require(problem is None, f"Required DEV sanity missing or invalid for {folder}: {problem}")
+    return folders
 
 def parse_frozen(text):
     """The first ```json block of phase2/ADAPTERS_FROZEN.md, validated (Amendment 1 item 12)."""
@@ -305,7 +362,7 @@ def verify_running_implementation(manifest_path):
         checks = {
             "prompt": (document["prompt"]["version"], document["prompt"]["instruction_sha256"]) == (
                 engine_module.PROMPT_VERSION, sha256(engine_module.INSTRUCTION.encode("utf-8"))),
-            "engine configurations": generation["engine_config_sha256"] == {s: ts.digest(c) for s, c in configs.items()},
+            "engine configurations": generation["engine_config_sha256"] == {s: digest(c) for s, c in configs.items()},
             "decoding": all(configs["dev"][key] == value for key, value in generation["decoding"].items()),
             "engine seed": generation["engine_seed"] == ENGINE_SEED,
             "evaluation dependencies": document["dependencies"]["evaluation"] == hf_backend_module.PINS,
@@ -458,8 +515,13 @@ def freeze_manifest(train_root, *, manifest_path=None, root=None, baseline_dir=N
     require(shared["implementation_manifest_sha256"] == manifest_sha, "Retained runs were trained under another implementation manifest")
     require(shared["exposure_order_file_sha256"] == identity.get("exposure_order_file_sha256"), "Retained runs differ from the logged exposure order")
     require(shared["baseline_dev_results_zip_sha256"] == baseline, "Retained runs differ from the logged unchanged-DEV baseline")
+    sanity_folders = require_dev_sanity(train_root, manifest_path)
     S = current["S"]
     logs = {}
+    for folder in sanity_folders:
+        for name in ("dev_eval_results.zip", "dev_eval_implementation.json"):
+            path = folder / name
+            logs[str(path.relative_to(train_root))] = ts.file_sha256(path)
     for record in records:
         folder = attempt_dir(train_root, record["arm"], record["seed"], record["attempt"])
         require((folder / "train_report.json").is_file(), f"{folder}: training report missing")
@@ -571,13 +633,19 @@ def baseline_record(run_dir, manifest, archive, implementation_sha256, config, d
             "results_zip_sha256": sha256(archive.read_bytes()), "recorded_at": utc()}
 
 
+def load_evaluation_inputs(folder, split):
+    """Dataset loading boundary; tests substitute DEV-derived fixtures here for FINAL_TEST."""
+    folder = Path(folder)
+    return inputs((folder / Path(FROZEN[split][0]).name).read_bytes(), split,
+                  json.loads((folder / "identities.json").read_text(encoding="utf-8")))
+
+
 def run_evaluate(arguments):
     split, run_dir = arguments.split, Path(arguments.run_dir)
     sealed = split == "final_test" or arguments.sealed  # FINAL_TEST can never be unsealed (Amendment 1 item 14)
     frozen = authorize_final_test(arguments) if split == "final_test" else None
     folder = Path(arguments.inputs)
-    dataset, splits = inputs((folder / Path(FROZEN[split][0]).name).read_bytes(), split,
-                             json.loads((folder / "identities.json").read_text(encoding="utf-8")))
+    dataset, splits = load_evaluation_inputs(folder, split)
     adapter = None
     if arguments.adapter_record:
         adapter = adapter_record(json.loads(Path(arguments.adapter_record).read_text(encoding="utf-8")))

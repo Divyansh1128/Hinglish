@@ -81,7 +81,7 @@
 | "Configuration or implementation differs from earlier attempts (Amendment 2 item 7): …" or "… already holds attempt evidence: attempts are never overwritten." | The notebook was rebuilt mid-study, or the Drive folder is unexpected | Stop and send the output to Claude |
 | "WRITER LOCK LOST: … its outcome is NOT logged again. Send the ZIP." | Another session recovered the training root while this one ran; rule 1 or 3 was broken | Stop all sessions, send the ZIP, tell Claude |
 | "Resumed run finished but is never valid. …" | `RESUME_AFTER_DISCONNECT` was True | Set it to False and Run all; tell Claude |
-| The runtime dies **during the DEV sanity step**, after the "valid" line was printed | The adapter is valid and logged. The next Train run moves on and does **not** resume this DEV check | Tell Claude before you start the next run |
+| The runtime dies **during the DEV sanity step**, after the "valid" line was printed | The adapter is valid and logged. The next Train run completes unfinished DEV reports before training anything else, including after adapter 9 | Confirm no other session is running; set `RECOVER_STALE_LOCK = True` if the engine reports a stale evaluation lock, then re-run all. Stored generations are kept |
 
 ## 5. After the 9 runs, before FinalTest (done by Claude)
 

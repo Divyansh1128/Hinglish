@@ -1,0 +1,65 @@
+{
+  "scope": "SYNTHETIC CPU DRY RUN: DEV substituted for FINAL_TEST; no GPU, Hub, model or study results",
+  "integration_breaks": [
+    {
+      "problem": "builder used spaced JSON for generation_config.engine_config_sha256; analysis uses compact engine JSON",
+      "evidence": "before_config_digest_fix.json",
+      "resolution": "builder and runtime validators now use the engine canonical digest"
+    }
+  ],
+  "checks": {
+    "B4_live_writer": {
+      "refused": true,
+      "error": "Training-root writer lock HELD by session 574158c0b4f947f5be1f0165b5df35cc (host Mac.lan, pid 63138) since 2026-11-04T10:50:16.324487+00:00; last heartbeat 2026-11-04T10:50:16.324487+00:00 (0 s ago). Only one session may write a training root (PREREGISTRATION Amendment 3 item 2); no attempt was opened. If another Colab session is still loading or training, wait for it. A lock never expires by itself, whatever its heartbeat age. Only after confirming that NO other session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run: the recovery is logged, any open attempt is closed as an infrastructure failure and the lock is released."
+    },
+    "B4_no_automatic_reconciliation": {
+      "refused": true,
+      "error": "ER-s11 attempt 1 has a start without a recorded outcome. Another session may still be loading or training it: an open attempt is never treated as abandoned automatically (PREREGISTRATION Amendment 3 item 2). Only after confirming that no other Colab session is running the trainer, set RECOVER_STALE_WRITER = True (CLI: --recover-stale-writer) and re-run; the attempt is then closed as an infrastructure failure."
+    },
+    "B3_caller_k_refused": {
+      "refused": true,
+      "error": "Refused: on the FINAL_TEST route the ceiling-risk count k is derived from the frozen unchanged-model DEV baseline archive; a caller-supplied k (--ceiling-risk-proxy-k) is not accepted (Amendment 3 item 3)"
+    },
+    "B1_wrong_hardware_and_environment": {
+      "refused": true,
+      "error": "Refused: probe: recorded hardware 'NVIDIA A100' is not a Tesla T4 (section 2; Amendment 2 item 3)"
+    },
+    "B1_unverified_GPU": {
+      "refused": true,
+      "error": "Refused: probe: gpu_verified is False, not true: the archive does not record a verified GPU execution"
+    },
+    "B1_wrong_torch": {
+      "refused": true,
+      "error": "Refused: probe: session 1 of 1 package versions differ from the implementation manifest pins: torch '0.0.0' (pinned '2.11.0+cu130')"
+    }
+  },
+  "status": "PASS",
+  "valid_adapters": 9,
+  "infrastructure_failures": 2,
+  "training_starts": 11,
+  "dev_generations": 1200,
+  "final_fixture_generations": 3000,
+  "schema": "phase2-adapters-frozen-3",
+  "retained": [
+    {
+      "slot": 11,
+      "seed": 11
+    },
+    {
+      "slot": 22,
+      "seed": 22
+    },
+    {
+      "slot": 33,
+      "seed": 33
+    }
+  ],
+  "baseline_derived_k": 0,
+  "hashes": {
+    "implementation": "726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d",
+    "baseline_zip": "1cb123fa33de62c2a918c3d445ffc5c98faa20f1208d669f2f6e1aab6b6b142b",
+    "freeze": "5cdb1c0e1a5939a9e84288ffcf7cf03be44830a1ec588233e7226ac53a045620",
+    "attempt_log": "c1b3cfae91eb83dab3bc56c1ec996200df81505f9e4360541322364c6907000d"
+  },
+  "frozen_log_files": 27
+}

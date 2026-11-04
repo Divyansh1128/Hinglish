@@ -105,8 +105,9 @@ class BuiltNotebookTests(unittest.TestCase):
             source = "\n".join(code_cells(text))
             for needle in ("'T4' in gpu", "requirements-phase2.txt", "USE_DRIVE = True", "SHA256SUMS.txt", "files.download",
                            "process.kill()", "attempts.jsonl", "HUB_CHECK", "STACK_MISMATCHES",
-                           "assert not STACK_MISMATCHES", "RECOVER_STALE_LOCK = False", "'--recover-stale-lock'"):
+                           "assert not STACK_MISMATCHES", "RECOVER_STALE_LOCK = False"):
                 self.assertIn(needle, source, kind)
+            self.assertIn("recover=RECOVER_STALE_LOCK" if kind == "train" else "'--recover-stale-lock'", source, kind)
             self.assertNotIn("ALLOW_STACK_MISMATCH", text, kind)  # Amendment 2 item 3: no override on any study path
             self.assertNotIn("allow-stack-mismatch", text, kind)
             self.assertEqual(json.loads(text)["metadata"]["accelerator"], "GPU")
@@ -181,9 +182,12 @@ class BuiltNotebookTests(unittest.TestCase):
         self.assertLess(source.index("tp.recover_stale_writer(TRAIN_ROOT, confirmed_no_other_session=True)"),
                         source.index("PLAN = tp.plan("))
         for needle in ("'train_phase2.py'", "'--resume'", "tp.next_run(PLAN)", "if RECOVER_STALE_WRITER:", "tp.resume_target", "'--train-root'",
-                       "'--inputs'", "'--baseline-dir'", "tp.HALT_MESSAGE", "'dev_eval'", "never overwritten",
-                       "'--implementation-manifest'", "ARM, SEED, SLOT, ATTEMPT, RESUME = ACTION['arm'], ACTION['seed'], ACTION['slot']"):
+                       "'--inputs'", "'--baseline-dir'", "tp.HALT_MESSAGE", "pe.run_dev_sanity", "never overwritten",
+                       "ARM, SEED, SLOT, ATTEMPT, RESUME = ACTION['arm'], ACTION['seed'], ACTION['slot']"):
             self.assertIn(needle, source)
+        self.assertLess(source.index("pe.run_dev_sanity("), source.index("ACTION = tp.next_run(PLAN)"))
+        self.assertIn("pe.run_dev_sanity(TRAIN_ROOT, INPUTS, recover=RECOVER_STALE_LOCK, evaluate=dev_sanity_step)", cells[3])
+        self.assertIn("return step(folder, 'phase2_eval.py', *args)", cells[2])
         for gone in ("tp.next_action", "tp.log_event", "'--exposure-order'", "'--implementation-manifest-sha256'", "'--data'"):
             self.assertNotIn(gone, source)  # the trainer itself logs, verifies and consults the plan
         self.assertLess(source.index("assert not STACK_MISMATCHES, 'D021 stack mismatch (no attempt was opened)"),
@@ -328,7 +332,7 @@ class TrainNotebookFlowTests(unittest.TestCase):
     def setUpClass(cls):
         cls.text = builder.render_train()
 
-    def run_control(self, work, outcomes, resume=False, recover=False):
+    def run_control(self, work, outcomes, resume=False, recover=False, sanity_failure=False):
         cells = code_cells(self.text)
         settings = cells[0]
         if resume:
@@ -339,6 +343,12 @@ class TrainNotebookFlowTests(unittest.TestCase):
             STACK_MISMATCHES = []
             OUTCOMES = {outcomes!r}
             CALLS = []
+            sys.path.insert(0, str(PACKAGE / 't4_smoke'))
+            import phase2_eval as pe
+            def sanity(*args, **kwargs):
+                if {sanity_failure!r}:
+                    raise RuntimeError('DEV sanity interrupted: resume required')
+            pe.run_dev_sanity = sanity  # real journal recovery covered in test_phase2_eval
             def step(log_dir, script, *args):
                 outcome = OUTCOMES.pop(0)
                 CALLS.append(args)
@@ -422,6 +432,17 @@ class TrainNotebookFlowTests(unittest.TestCase):
         cell = code_cells(self.text)[2]
         self.assertIn("BASELINE_DIR = STORE / 'baseline_dev'", cell)
         self.assertIn("'--arm', ARM, '--seed', SEED, '--slot', SLOT, '--attempt', ATTEMPT", cell)
+
+    def test_pending_dev_failure_blocks_the_next_training_attempt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            work = Path(folder)
+            self.assertEqual(self.run_control(work, ["valid"]).returncode, 0)
+            log = work / "hinglish_phase2" / "runs" / "train" / tp.ATTEMPT_LOG
+            before = log.read_bytes()
+            result = self.run_control(work, ["valid"], sanity_failure=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("DEV sanity interrupted", result.stderr)
+            self.assertEqual(log.read_bytes(), before)
 
     def test_resume_is_logged_and_never_valid(self):
         with tempfile.TemporaryDirectory() as folder:

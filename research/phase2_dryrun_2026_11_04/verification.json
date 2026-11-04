@@ -1,0 +1,20 @@
+{
+  "t4_smoke": {
+    "passed": 196,
+    "seconds": 72.657
+  },
+  "test1_pilot": {
+    "passed": 32,
+    "seconds": 1.384
+  },
+  "secondary_analysis": {
+    "passed": 81,
+    "seconds": 5.439
+  },
+  "phase2_analysis": {
+    "passed": 88,
+    "seconds": 83.816
+  },
+  "total_passed": 397,
+  "artifact_hashes_consistent": true
+}

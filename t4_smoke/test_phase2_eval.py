@@ -15,7 +15,7 @@ from t4_smoke import phase2_eval as pe
 from t4_smoke import train_phase2 as tp
 from t4_smoke import train_smoke as ts
 from t4_smoke.test_train_phase2 import (IDENTITY, live_manifest_document, live_manifest_text, synthetic_t4_runtime,
-                                        write_baseline)
+                                        synthetic_t4_backend, synthetic_environment, write_baseline)
 from hinglish_pilot import engine as live_engine
 from hinglish_pilot import hf_backend
 from hinglish_pilot.data import validate
@@ -116,6 +116,16 @@ class InputTests(unittest.TestCase):
         self.assertTrue(pe.ceiling_flag(metrics(38))["flag"])
         self.assertTrue(pe.ceiling_flag(metrics(40))["flag"])
         self.assertFalse(pe.ceiling_flag(metrics(37))["flag"])
+
+    def test_builder_evaluation_and_analysis_share_engine_configuration_digests(self):
+        from phase2_analysis import analyze as analysis
+        document = live_manifest_document()
+        implementation = analysis.parse_implementation_manifest(live_manifest_text())
+        for split in ("dev", "final_test"):
+            config = pe.config_for(split)
+            self.assertEqual(document["generation_config"]["engine_config_sha256"][split], live_engine.digest(config))
+            self.assertEqual(implementation[f"{split}_config_sha256"], analysis.digest(config))
+        self.assertEqual(document["baseline_dev"]["config_sha256"], implementation["dev_config_sha256"])
 
     def test_ceiling_risk_proxy_reports_k_of_40_with_wilson_interval(self):
         """Amendment 1 item 7."""
@@ -361,7 +371,29 @@ def make_run(train, arm, seed, slot, attempt=1, **changes):
     record.update(changes)
     (folder / "final_adapter.json").write_text(json.dumps(record))
     (folder / "train_report.json").write_text(json.dumps({"status": "COMPLETE"}))
+    write_sanity(folder, record)
     return record
+
+
+SANITY_CACHE = {}
+
+
+def write_sanity(folder, record):
+    """Real engine export on DEV with a simulated T4 backend; cached by adapter for the gate fixtures."""
+    adapter = pe.adapter_record(record)
+    key = json.dumps(adapter, sort_keys=True)
+    if key not in SANITY_CACHE:
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp) / "dev_eval"
+            data, splits = pe.inputs((ROOT / pe.FROZEN["dev"][0]).read_bytes(), "dev", pe.split_identities(ROOT))
+            with mock.patch.object(live_engine, "environment", synthetic_environment):
+                run(run_dir, data, splits, pe.config_for("dev", adapter), synthetic_t4_backend(adapter)())
+            with contextlib.redirect_stdout(io.StringIO()):
+                analyze(run_dir)
+                archive = export(run_dir)
+            SANITY_CACHE[key] = archive.read_bytes()
+    (folder / "dev_eval_results.zip").write_bytes(SANITY_CACHE[key])
+    (folder / "dev_eval_implementation.json").write_text(json.dumps({"implementation_manifest_sha256": MANIFEST_SHA}))
 
 
 def log_attempt(train, arm, seed, slot, outcome):
@@ -408,6 +440,64 @@ class GateTests(unittest.TestCase):
         self.assertEqual({(a["arm"], a["seed"]) for a, _ in result}, {(arm, s) for arm in tp.ARMS for s in (11, 22, 33)})
         text = "# Frozen\n\n```json\n" + json.dumps(self.frozen) + "\n```\n"
         self.assertEqual(pe.parse_frozen(text), self.frozen)
+
+    def test_freeze_requires_ninth_dev_report_and_binds_all_report_hashes(self):
+        folder = pe.attempt_dir(self.train, "EE", 33, 1)
+        archive = folder / "dev_eval_results.zip"
+        content = archive.read_bytes()
+        archive.unlink()
+        with self.assertRaisesRegex(tp.ProtocolError, "Required DEV sanity missing or invalid"):
+            freeze(self.train)
+        archive.write_bytes(content)
+        frozen = freeze(self.train)
+        sanity = {name: sha for name, sha in frozen["training_logs_sha256"].items() if name.endswith("dev_eval_results.zip")}
+        self.assertEqual(len(sanity), 9)
+        for name, sha in sanity.items():
+            self.assertEqual(sha, ts.file_sha256(self.train / name))
+        archive.write_bytes(content + b"changed")
+        self.refuses("training log .*dev_eval_results.zip missing or changed", frozen)
+
+    def test_interrupted_dev_sanity_resumes_without_training_or_repeating_generations(self):
+        folder = pe.attempt_dir(self.train, "EC", 11, 1)
+        (folder / "dev_eval_results.zip").unlink()
+        (folder / "dev_eval_implementation.json").unlink()
+        inputs_dir = self.train.parent / "inputs"
+        inputs_dir.mkdir()
+        (inputs_dir / tp.MANIFEST_NAME).write_text(FIXTURE_MANIFEST_TEXT)
+        (inputs_dir / "dev.v2.json").write_bytes((ROOT / pe.FROZEN["dev"][0]).read_bytes())
+        (inputs_dir / "identities.json").write_text(json.dumps(pe.split_identities(ROOT)))
+        adapter = pe.adapter_record(ts.read_json(folder / "final_adapter.json"))
+        data, splits = pe.load_evaluation_inputs(inputs_dir, "dev")
+        run_dir = folder / "dev_eval"
+        pe.bind_implementation(run_dir, inputs_dir / tp.MANIFEST_NAME)
+        with mock.patch.object(live_engine, "environment", synthetic_environment):
+            run(run_dir, data, splits, pe.config_for("dev", adapter), synthetic_t4_backend(adapter)(), max_items=7)
+        kept = {p.name: p.read_bytes() for p in (run_dir / "journal").glob("*.json")}
+        self.assertEqual(len(kept), 7)
+        (run_dir / "RUNNING.lock").write_text("killed DEV session")
+        before = (self.train / tp.ATTEMPT_LOG).read_bytes()
+        evaluations = []
+
+        def evaluate(folder, args):
+            evaluations.append(folder)
+            return pe.main(args)
+
+        with mock.patch.object(hf_backend, "HFBackend", synthetic_t4_backend(adapter)), \
+                mock.patch.object(live_engine, "environment", synthetic_environment), \
+                contextlib.redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(ValueError, "lock"):
+                pe.run_dev_sanity(self.train, inputs_dir)
+            pe.run_dev_sanity(self.train, inputs_dir, recover=True, evaluate=evaluate)
+        self.assertEqual(evaluations, [folder])
+        self.assertEqual((self.train / tp.ATTEMPT_LOG).read_bytes(), before)
+        self.assertEqual(len(list((run_dir / "journal").glob("*.json"))), 120)
+        for name, content in kept.items():
+            self.assertEqual((run_dir / "journal" / name).read_bytes(), content)
+        self.assertIsNone(pe.dev_sanity_problem(folder, inputs_dir / tp.MANIFEST_NAME))
+        archive_before = (folder / "dev_eval_results.zip").read_bytes()
+        with mock.patch.object(hf_backend, "HFBackend", side_effect=AssertionError("must not reload")):
+            pe.run_dev_sanity(self.train, inputs_dir)
+        self.assertEqual((folder / "dev_eval_results.zip").read_bytes(), archive_before)
 
     def refuses(self, pattern, frozen=None):
         with self.assertRaisesRegex(ValueError, "REFUSED(.|\n)*" + pattern):
