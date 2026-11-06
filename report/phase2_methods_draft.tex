@@ -1,0 +1,73 @@
+% New, standalone section fragment; not yet included in final_report.tex.
+% Uses that report's \form, \hash, \placeholder, booktabs and tabularx.
+% Binding sources: phase2/PREREGISTRATION.md (P), Amendments 1--3 (A1--A3);
+% phase2/IMPLEMENTATION_MANIFEST.md (M); docs/DECISIONS.md D040--D050;
+% results/phase2/{baseline_dev,train}/README.md (B,T).
+% P SHA-256: a22c81fb33b4d3339770a2b28c51d8d3706af2b5dd038d46aa89fbb56139714d
+% M SHA-256: 726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d
+% All data hashes below are transcribed from P section 1, not recomputed.
+% No FINAL_TEST data or final_test* file was opened for this draft.
+% TODO (integration only): reconcile the host report's older Phase-2 text
+% (optional Llama, self-translation, retention labels, and "no training yet")
+% with this amended protocol when integration is separately authorized.
+
+\section{Phase 2: pre-registered training methods}
+\label{sec:phase2-methods-draft}
+
+% P sections 1,3,6; A1 items 3,5,15; D044--D047.
+\noindent\textbf{Question and estimand.} Does Hinglish rather than Romanized Hindi training improve Hinglish accuracy? \form{E}/\form{R}/\form{C} denote English, Romanized Hindi with frozen borrowings, and insertional Roman-script Hinglish. Each TRAIN family supplies two examples: E+E repeats E; E+R pairs E/R; E+C pairs E/C, all supervising identical English solutions. For binary correctness $y(i,s,a,l)$ (family, seed, arm, form), the sole confirmatory estimand is
+\[
+ d_i=\frac{1}{3}\sum_{s\in\{11,22,33\}}
+ [y(i,s,EC,C)-y(i,s,ER,C)],\qquad
+ \Delta_C=\frac{1}{100}\sum_{i=1}^{100}d_i .
+\]
+Families/seeds are equally weighted; reserves replace seed slots if needed. This estimates the complete training-rendering recipe. Amendments~1--3 govern; Qwen3-4B is the sole backbone. No held-out result is reported.
+
+% P section 1; A1 items 13,14; M frozen_data; D048.
+\noindent\textbf{Frozen data and implementation.} TRAIN contains 160 Claude-drafted families; GPT-drafted DEV contains 40 sanity-only families and FINAL\_TEST contains 100. There is one rendering per form. Single-reviewer test acceptance, sample-based TRAIN/DEV review and author/style shift limit generalization. Pilot, Pilot-B and FMT2 families are excluded; smoke adapters were discarded. Registered hashes are:
+\begin{center}
+\begingroup\small\singlespacing
+\begin{tabularx}{\linewidth}{@{}l r X@{}}
+\toprule
+File (under \texttt{phase2/}) & Families & SHA-256\\
+\midrule
+\texttt{train\_A.v2.json} & 80 & \hash{b9656a8c41af2a795bce9c131efc6a5efc652df78368d14fb7720fd985883666}\\
+\texttt{train\_B.v2.json} & 80 & \hash{c975fe12459df6160effc5aeb0087f94666ba0b49778c3d827a67bb923ff35bd}\\
+\texttt{dev.v2.json} & 40 & \hash{e741c1652f5b3dcaebc78d9dd9d7c31fdf4417306fbb2f0862149f27f858f28b}\\
+\texttt{final\_test.v3.json} & 100 & \hash{da89dd9a626e438dffca39e3a74c4c8abac6bb57501495723b87e6ee143f3d46}\\
+\bottomrule
+\end{tabularx}
+\endgroup
+\end{center}
+The pre-DEV implementation manifest binds code, scorers, tokenizer, template, configuration and exposure hashes; freeze rechecks it. Mismatches halt execution; data changes require versioning and amendment.
+
+% P sections 2,3; A1 items 8--10; M model, dtype_preparation, dependencies.
+% Full model/tokenizer revision: 1cfa9a7208912126459214e8b04321603b3df60c
+% Stack: torch 2.11.0+cu130; transformers 4.51.3; bitsandbytes 0.50.2;
+% PEFT 0.15.2; accelerate 1.6.0; auxiliary dependencies in M.
+% AdamW betas (0.9,0.999), eps 1e-8; GradScaler init 65536, growth 2.0,
+% backoff 0.5, growth interval 2000 (P section 3, A1 item 10).
+\noindent\textbf{QLoRA recipe and pairing.} Qwen3-4B and its tokenizer use revision \texttt{1cfa9a72\ldots}, with the exact manifest-pinned stack on a Colab T4. LoRA uses rank 16, alpha 32 and dropout 0.05 on q/k/v/o/gate/up/down projections, FP32 adapters, double-quantized NF4 weights and FP16 compute. SDPA math attention, non-reentrant checkpointing, upcast norms/embeddings and no cache are used in training. Completion-only labels mask prompt/empty think block; English targets plus \texttt{<|im\_end|>} must match across forms. Sequences must fit 1,024 tokens without packing/truncation.
+
+Each arm has 320 examples, microbatch 1 and accumulation 16 (eight families per update). AdamW uses zero weight decay and gradient clipping at 1.0; losses average supervised tokens within equally weighted examples. Three passes give exactly 60 successful updates. Learning rate rises linearly to $10^{-4}$ over six updates, then follows cosine decay to $10^{-5}$ at update 60. Only that checkpoint is evaluated; the schedule is a resource choice, not a validated optimum. Seeds 11, 22 and 33 pair initialization and exposure order, but not dropout draws. For each seed and pass, families are sorted by the SHA-256 of UTF-8 \texttt{phase2-D043:\{s\}:\{p\}:\{family\_id\}}, with decimal seed/pass and family-ID tie-breaking; E precedes the arm-specific example. Exposure lists are frozen and hashed.
+
+% P sections 4,5; A1 items 1,7; M generation_config and eos_stopping; B,T,D050.
+\noindent\textbf{Evaluation and DEV firewall.} Evaluation freezes prompt \texttt{test1-english-final-v2}, strict scorer v1.0.0, non-thinking greedy decoding, fresh contexts, batch 1, engine seed 11 and context/output caps of 2,048/1,024 tokens. Adapters remain unmerged on the NF4 base with FP16 norms/embeddings; EOS or the cap stops generation. Invalid, missing-answer, refused, ambiguous and truncated responses score zero; absent generations are unresolved. Descriptive numeric-literal v2 tries rupee extensions only after v1 is unsupported; non-rupee gold retains v1. Training requires a validated unchanged-model DEV archive. The high unchanged-DEV accuracy proxy fires at C $\geq38/40$, with a Wilson interval; design stays fixed. Adapter DEV checks never select checkpoints, settings, arms or retries. D050 and the returned seed-11 runs document shorter, less accurate DEV answers than the unchanged model, consistent with the shared terse English targets. This descriptive design limitation triggers no tuning; retention flags capture losses against the unchanged model.
+
+% P section 10 as replaced by A1 items 10--12 and A2 items 2--7; A3 item 2; M.
+\noindent\textbf{Failures and completeness.} Training runs in seed-slot order 11, 22, 33, with EC, ER, EE within each slot. Only typed infrastructure failures (disconnect/kill, CUDA OOM, filesystem/Drive \texttt{OSError}, network/Hub error or failed checkpoint write) permit one identical from-scratch retry. A second failure replaces the entire triplet, including successful arms, using reserves 44 then 55; each reserve has the same attempt limit and is never reused. Scaler skips or non-finite loss, gradients or saved parameters are numerical failures; hash, identity, label/data assertions and every other exception are protocol failures. Both halt the study pending diagnosis and an amendment before repair. Attempts are retained; stale-writer recovery requires explicit, logged confirmation. Evaluation permits at most one unchanged-configuration infrastructure retry, never for OOM or a generated answer. Interrupted evaluations resume stored attempts without regeneration. Three complete triplets are required for confirmation; one or two permit descriptive analysis only, and zero prohibit test access. Any unresolved required generation suppresses the primary analysis and label.
+
+% P sections 6--9; A1 items 2--7,16 override original Holm/crossed-bootstrap rules.
+\noindent\textbf{Inference and decision rules.} Intervals approximate uncertainty over independent families from the fixed authoring/review process, conditional on checkpoints, excluding training-seed uncertainty; the finite-set mean is descriptive. Records are sorted by family ID. A fresh Python \texttt{random.Random(101)} draws a $10{,}000\times100$ matrix using \texttt{randrange(100)} in row-major order; each sampled family retains all arms, forms and seeds. The same matrix serves every endpoint, contrast and per-seed interval. Percentile 95\% bounds use linear quantiles $h=9999p$; Python version and matrix hash are recorded. Companion intervals use sample-SD Wald ($z=1.959963984540054$) and Hoeffding radius $(b-a)\sqrt{\log(40)/(2N)}$, clipped to $[a,b]$; bounds are $[-1,1]$ for accuracy differences and $[-2,2]$ for specificity. Checkpoint accuracies receive Wilson 95\% intervals over families, never pooled seed rows. Per-seed contrasts, exact McNemar discordances and two-sided exact $p$-values are descriptive; crossed family--seed resampling is excluded.
+
+For unrounded strict-accuracy bounds $[L,U]$ in percentage points: \emph{useful support} requires $L>5$; \emph{support}, $0<L\leq5$; \emph{informative null}, $L\leq0\leq U<5$; \emph{harm}, $U<0$; and \emph{inconclusive}, $L\leq0$, $U\geq5$. Identical family contrasts or a zero-width interval override these with \emph{inconclusive---degenerate empirical interval}, allowing no support, null or retention claim. Report the estimate, raw and Hoeffding intervals, distinct/nonzero contrast counts and both bootstrap tails. An informative null does not establish equality or exclude harm.
+
+% P section 6; A1 items 5--7,17.
+\noindent\textbf{Descriptive retention and audits.} Secondary contrasts are English EC--EE retention, R transfer ER--EE, $\Delta_R$ (EC--ER on R) and specificity $\Delta_C-\Delta_R$. Five English contrasts (EC--EE, EC--unchanged, ER--EE, ER--unchanged, EE--unchanged) receive independent flags: \emph{within-margin criterion met} if $L>-2$ pp, \emph{loss detected} if $U<0$, and \emph{loss beyond margin} if $U<-2$. For EC--EE and EC--unchanged only, primary support/useful support plus $U<-2$ yields \emph{retention trade-off}; the degeneracy override takes precedence. Secondaries remain descriptive, without Holm testing. Report E+R C headroom, checkpoint accuracies, operation-word strata, invalid reasons, tokens/latency and training logs. Independent Claude/GPT tagging and human checking audit all retained ER/EC strict-incorrect C outputs without changing scores.
+
+% P section 11; A1 items 13,14,18; A2 item 1; A3 items 1,3.
+\noindent\textbf{Sealing and disclosure.} Commit \texttt{ADAPTERS\_FROZEN.md} (retained seeds, adapter, config, base-shard and log hashes, base revision and validated baseline identity), analysis and numeric-v2 code before test access. Nine adapters and the unchanged model each evaluate all forms once (3,000 generations). Only completion, checksum and infrastructure status is visible until all runs finish; analysis runs unchanged, with no subsequent tuning/re-evaluation. Historical exposure includes drafting, verification, human review and disclosed unattended CPU tests that parsed/extracted test bytes. No evaluation-backbone generation occurred; non-viewing claims are attestations. New semantic inspection is barred before freeze; deferred audits follow evaluation without changing scoring. \placeholder{TODO: add FT057 verification-exception details from authorized non-sealed provenance; the binding sources only name it.}
+
+\begingroup\small\singlespacing
+\noindent\textbf{Sources:} \nolinkurl{phase2/PREREGISTRATION.md} (Amendments~1--3); \nolinkurl{phase2/IMPLEMENTATION_MANIFEST.md}; \nolinkurl{docs/DECISIONS.md}, D040--D050; \nolinkurl{results/phase2/baseline_dev/README.md}; \nolinkurl{results/phase2/train/README.md}.\par
+\endgroup
