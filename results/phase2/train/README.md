@@ -10,6 +10,7 @@ The adapter weights stay on Drive; their hashes are recorded below. **DEV number
 | EC-s22 | 1 | *no ZIP; Drive record* | yes | 60/60, 0 | ≈19.9 | `c598ed47…bafe` | 22 / 9 / 18 | 25/120 | n/a |
 | ER-s22 | 1 | `c31d261f…0168` | yes | 60/60, 0 | 19.79 | `1732ccf3…0bf5` | 24 / 11 / 21 | 28/120 | 45 |
 | EE-s22 | 1 | `3d879b6b…1bb3` | yes | 60/60, 0 | 19.79 | `034df066…018c` | 24 / 15 / 20 | 23/120 | 46 |
+| EC-s33 | 1 | `3ff0d09d…cc0e` | yes | 60/60, 0 | 20.64 | `050a5c65…a7c3` | 25 / 13 / 19 | 22/120 | 44 |
 | *Unchanged baseline* | – | `1c0d2609…ffef` | – | – | – | – | 33 / 19 / 24 | 12/120 | 121 |
 
 ## Observation after the first adapter (DEV sanity, descriptive)
