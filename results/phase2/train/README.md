@@ -7,6 +7,8 @@ The adapter weights stay on Drive; their hashes are recorded below. **DEV number
 | EC-s11 | 1 | `c1b5b252…7c99` | yes | 60/60, 0 | 20.66 | `fd29387d…46e4` | 24 / 13 / 19 | 23/120 | 43 |
 | ER-s11 | 1 | `ec51cd46…4189` | yes | 60/60, 0 | 19.18 | `58c0b7ec…b722` | 23 / 12 / 17 | 25/120 | 44 |
 | EE-s11 | 1 | `207c3dde…93d8` | yes | 60/60, 0 | 20.59 | `05da095e…bb74` | 25 / 15 / 17 | 23/120 | 46 |
+| EC-s22 | 1 | *ZIP pending* | yes (attempt log) | – | – | – | – | – | – |
+| ER-s22 | 1 | `c31d261f…0168` | yes | 60/60, 0 | 19.79 | `1732ccf3…0bf5` | 24 / 11 / 21 | 28/120 | 45 |
 | *Unchanged baseline* | – | `1c0d2609…ffef` | – | – | – | – | 33 / 19 / 24 | 12/120 | 121 |
 
 ## Observation after the first adapter (DEV sanity, descriptive)
@@ -16,3 +18,5 @@ The E+C seed-11 adapter writes much shorter answers than the unchanged model: a 
 This follows from the pre-registered design: all three arms train on the identical English targets. It is not an implementation fault: the run is valid, with 60/60 steps, no scaler skips, exact hashes and the registered recipe. Under §5 and §13 nothing changes. The primary contrast Δ_C (E+C vs E+R) compares arms trained on the same targets. A loss against the unchanged model is reported through the pre-registered English-retention flags (EC − unchanged) and as a limitation of the training targets. See D050.
 
 - **Pairing check (seed 11):** EC, ER and EE share data order `be9aa90b…` and initial adapter `0bbfaad4…`, as §3 requires.
+- **Stack change (7 Nov 2026):** Colab's default image moved to torch 2.14.1+cu130. The notebook refused before opening any attempt (D021 / Amendment 2 item 3), so nothing was logged. Runs from seed 22 use an older Colab runtime version with the registered torch 2.11.0+cu130 (recorded in each ZIP's environment). No code, plan or data changed.
+- **EC-s22:** the attempt log in the ER-s22 ZIP records EC-s22 attempt 1 as `valid`. Its ZIP was not downloaded from the runtime; its contents remain on Drive under `train/EC-s22/attempt-01/` and are captured in the Drive copy taken before the freeze. The seed-22 pairing check (order `f9cc0eb7…`, initial adapter `f7d105a8…`) is completed once that copy is in.
