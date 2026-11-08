@@ -11,6 +11,8 @@ The adapter weights stay on Drive; their hashes are recorded below. **DEV number
 | ER-s22 | 1 | `c31d261f…0168` | yes | 60/60, 0 | 19.79 | `1732ccf3…0bf5` | 24 / 11 / 21 | 28/120 | 45 |
 | EE-s22 | 1 | `3d879b6b…1bb3` | yes | 60/60, 0 | 19.79 | `034df066…018c` | 24 / 15 / 20 | 23/120 | 46 |
 | EC-s33 | 1 | `3ff0d09d…cc0e` | yes | 60/60, 0 | 20.64 | `050a5c65…a7c3` | 25 / 13 / 19 | 22/120 | 44 |
+| ER-s33 | 1 | *in logs ZIP* `808b0841…` | yes | 60/60, 0 | 19.95 | `6f490750…2939` | 23 / 13 / 17 | 27/120 | 54 |
+| EE-s33 | 1 | *in logs ZIP* `808b0841…` | yes | 60/60, 0 | 19.55 | `cd7b8f01…b749` | 25 / 15 / 20 | 22/120 | 47 |
 | *Unchanged baseline* | – | `1c0d2609…ffef` | – | – | – | – | 33 / 19 / 24 | 12/120 | 121 |
 
 ## Observation after the first adapter (DEV sanity, descriptive)
@@ -23,3 +25,4 @@ This follows from the pre-registered design: all three arms train on the identic
 - **Stack change (7 Nov 2026):** Colab's default image moved to torch 2.14.1+cu130. The notebook refused before opening any attempt (D021 / Amendment 2 item 3), so nothing was logged. Runs from seed 22 use an older Colab runtime version with the registered torch 2.11.0+cu130 (recorded in each ZIP's environment). No code, plan or data changed.
 - **EC-s22:** its results ZIP was not downloaded from the runtime. Its record was read directly from Drive on 7 Nov 2026 (`train/EC-s22/attempt-01/final_adapter.json` and `log.txt`): COMPLETE, valid_for_gate true, not resumed, 60/60 steps, 0 scaler skips, manifest `726241c5…`, baseline `a8194ac2…`, recipe `b73849fe…`, adapter `c598ed47…bafe`; the DEV export `dev_eval_results.zip` has SHA-256 `1a44056e…d705`. The s/update value is approximate (from the per-update log). The mean output length is not shown because it was not recomputed.
 - **Pairing check (seed 22):** EC, ER and EE share data order `f9cc0eb7…` and initial adapter `f7d105a8…`, as §3 requires.
+- **Seed 33 and the freeze (8 Nov 2026):** the ER-s33 and EE-s33 records came in the Train notebook's final `Phase2_Train_logs.zip` ("Every seed slot is settled"). This ZIP holds the whole training root without weights, and all its checksums verify. **Pairing check (seed 33):** EC, ER and EE share data order `9ecf2dc1…` and initial adapter `997ff788…`. All nine runs are attempt 1 and valid, with S = 3. `phase2/ADAPTERS_FROZEN.md` was generated from this ZIP by `freeze-manifest`.
