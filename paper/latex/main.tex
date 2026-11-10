@@ -256,6 +256,6 @@ E+C$-$E+R on R & $+$3.3 [$-$2.0, $+$8.7] \\
 \bottomrule
 \end{tabular}
 \end{center}
-Per-seed E+C$-$E+R on C: $-$3, $-$1, $-$9 points. The secondary numeric endpoint gives $-$5.7 [$-$11.0, $-$0.7]. Rows other than the first are descriptive. Median output length is about 42 tokens for trained arms against 111 for the unchanged model; trained arms' strict failures are mostly \texttt{invalid\_unit}. On these test items the unchanged model again scores lowest on R (63\%), but C (66\%) lies far below E (85\%), unlike Pilot-B; this set was GPT-drafted and its R needed heavy repair (\S\ref{sec:data}).
+Per-seed E+C$-$E+R on C: $-$3, $-$1, $-$9 points. The secondary numeric endpoint gives $-$5.7 [$-$11.0, $-$0.7]. Rows other than the first are descriptive. Median output length is about 42 tokens for trained arms against 111 for the unchanged model; in an exploratory decomposition, numerically wrong answers account for most of the trained arms' deficit against the unchanged model (13--22 points per form), and rejected units for the rest (3--11 points). On these test items the unchanged model again scores lowest on R (63\%), but C (66\%) lies far below E (85\%), unlike Pilot-B; this set was GPT-drafted and its R needed heavy repair (\S\ref{sec:data}).
 
 \end{document}
