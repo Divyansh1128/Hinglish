@@ -30,5 +30,7 @@ For transparency: AI assistants (Claude and GPT) helped with drafting problem it
 Thank you for your time.
 
 With regards,
-____
-____ (Roll No. ____)
+Divyansh Raj (23/MC/195)
+Ayush Kumar Singh (23/MC/194)
+Divyanshu Mishra (23/MC/196)
+B.Tech. Mathematics and Computing, Department of Applied Mathematics, DTU

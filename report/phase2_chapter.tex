@@ -297,11 +297,70 @@ D050 identified the target-design concern from DEV before final-test evaluation.
 
 The DEV observation did not authorize repair within the registered study. Continuing the unchanged recipe preserves the meaning of its confirmatory comparison while exposing a substantive design limitation. A future test of richer targets or another schedule would be a new study, not a correction to these scores.
 
-\subsection{Exploratory error analysis}
-\label{sec:phase2-exploratory}
-\placeholder{TODO: integrate the separately produced analysis in \nolinkurl{analysis/phase2_exploratory/}. Label new analyses as post hoc and descriptive; identify their inputs, methods and verification status. Do not alter the frozen scores, inclusion rules or confirmatory label.}
+\section{Post-hoc exploratory analysis and failure audit}
+\label{sec:phase2-posthoc}
 
-The planned audit in Amendment~1 covers every strict-incorrect C output from every retained E+R and E+C seed, with independent Claude Opus and GPT tagging and human checking of every audited output. The exploratory directory must not be presented as completion of that audit unless it documents these requirements. Any pending human check or unresolved annotation must remain explicit; output categories alone do not establish a mechanism.
+\evid{post hoc, descriptive, not pre-registered analyses. The frozen scores, inclusion rules and confirmatory label \emph{Harm} are unchanged. The failure audit was required by Amendment~1, but the realised human check covers a subset of the failures; the final descriptive labels must not be read as human verification of every output.}
+
+\subsection{Error decomposition}
+% analysis/phase2_exploratory/{README.md,error_analysis.md,error_analysis.json}.
+The exploratory analysis reads the ten retained checkpoint archives, checks their inner checksums, identities and paired coverage, and reproduces all 60 published strict/numeric checkpoint--form counts. It retains the stored strict scores. Table~\ref{tab:phase2-error-decomposition} transcribes counts and medians from \nolinkurl{analysis/phase2_exploratory/error_analysis.json}; the accompanying README and \nolinkurl{error_analysis.md} document the checks and interpretation limits. Trained rows pool E+E, E+R and E+C across the retained seeds. Repeated family/seed observations are descriptive counts, not independent observations for inference.
+
+The disjoint partition is $S+F+M+U=N$: $S$ is strict-correct; $F$ is numeric-correct but strict-wrong; $M$ is a numeric-literal mismatch among strict-wrong outputs; and $U$ is numerically unscored and strict-wrong. Thus the strict deficit against unchanged decomposes into the trained-minus-unchanged rates of $F$, $M$ and $U$, separately for each form. Numeric matching ignores units and conversions. A mismatch identifies a wrong declared literal, not its mathematical cause; an unscored answer is not evidence of a reasoning error.
+
+\begin{table}[H]
+\centering\footnotesize\singlespacing
+\caption{Post-hoc error decomposition by form. Numeric is the numeric-literal correct count; $S$, $F$, $M$ and $U$ form the disjoint strict-outcome partition. Tokens are median output lengths. All counts and medians are copied from the exploratory JSON.}
+\label{tab:phase2-error-decomposition}
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Group & Form & $N$ & Numeric & $S$ & $F$ & $M$ & $U$ & Tokens\\
+\midrule
+Trained & E & 900 & 686 & 538 & 171 & 184 & 7 & 43.0\\
+Trained & R & 900 & 468 & 359 & 125 & 402 & 14 & 42.0\\
+Trained & C & 900 & 497 & 398 & 114 & 353 & 35 & 42.0\\
+Unchanged & E & 100 & 90 & 85 & 8 & 7 & 0 & 115.0\\
+Unchanged & R & 100 & 73 & 63 & 11 & 23 & 3 & 105.5\\
+Unchanged & C & 100 & 71 & 66 & 8 & 23 & 3 & 111.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All $F$ outputs in both groups have strict reason \texttt{invalid\_unit}: 410 trained and 27 unchanged. These are demonstrably number-correct rejected-unit answers, not necessarily semantically correct units or sound reasoning. Across trained outputs, 658 have \texttt{invalid\_unit}: 410 numeric matches, 245 mismatches and three unscored answers; 487 occur where the canonical unit is empty. Rejected count nouns therefore contribute to the strict deficit, but wrong literals also remain. Numeric accuracy is not a simple superset of strict accuracy: the numeric parser rejects some suffixes accepted by the strict scorer, leaving 54 trained and seven unchanged strict-only successes. Consequently, subtracting numeric from strict accuracy does not by itself count rejected-unit failures.
+
+Across all forms, median output length is 42.0 tokens for trained checkpoints versus 113.0 for unchanged. The per-form medians are in Table~\ref{tab:phase2-error-decomposition}. Shorter outputs and compressed equations are consistent with a changed response style, but this observational comparison does not establish that omitted reasoning caused the accuracy loss.
+
+\subsection{Failure audit of all E+R and E+C failures on C}
+% results/phase2/audit/{README.md,agreement.json,final_audit_summary.json}.
+The failure packet covers every strict-incorrect C output from every retained E+R and E+C seed: 159 E+R failures and 172 E+C failures, or 331 in total. GPT and Claude were the two AI taggers, blind to each other's labels. The agreement file records primary-category agreement on 301/331 rows, with Cohen's κ of 0.869, and format-only versus substantive agreement on 326/331, with κ of 0.96. English-status agreement was only 96/331, with near-zero κ of $-0.027$. The disagreement was systematic: Claude treated terse English labels attached to equations as compliant, whereas GPT generally required an English explanatory proposition and otherwise used \texttt{no\_explanation}. This is an ambiguity in the minimal-English rule, not simply item-level annotation noise.
+
+A human checker returned labels and notes for 65 rows: all 30 category disagreements, 20 sampled agreed rows and 15 sampled English-only disagreements. On category disagreements, a human checker sided with Claude on 28/30 and GPT on 1/30; the category matched both taggers on all 20 agreed rows. On the English-only sample, a human checker supported the stricter English rule on 13/15 rows. Labelled equations alone therefore count as \texttt{no\_explanation} under the rule used for finalisation.
+
+Finalisation follows human $>$ agreed $>$ \texttt{rule\_adjudicated}: a checked row takes the labels from a human checker; otherwise an agreed label is retained; unchecked English-only disagreements use the stricter adjudicated rule. Categories agree on every unchecked row. The final summary records 65 rows with source \texttt{human}, 67 with \texttt{ai\_agreed} and 199 with \texttt{rule\_adjudicated}. This completes a descriptive classification of all failures, but the 65-row human check does not fulfil Amendment~1's requirement for human checking of every audited output.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Final descriptive C-failure audit, transcribed from \nolinkurl{results/phase2/audit/final_audit_summary.json}. Substantive is the subtotal of the four mathematical-error categories shown below format-only; subtotals are not additional failures.}
+\label{tab:phase2-final-audit}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Classification & E+R & E+C & Total\\
+\midrule
+Format-only & 46 & 40 & 86\\
+Misread quantity & 32 & 35 & 67\\
+Wrong relation/operation & 66 & 78 & 144\\
+Arithmetic slip & 7 & 11 & 18\\
+Unit error & 8 & 8 & 16\\
+\midrule
+Substantive subtotal & 113 & 132 & 245\\
+All failures & 159 & 172 & 331\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Final English status is \texttt{no\_explanation} for 232/331 failed outputs: 112 E+R and 120 E+C. The other final statuses are 95 compliant and four non-English outputs. These are failure-only counts; strict-correct outputs were not audited for English status, so they do not estimate compliance across the whole evaluation. The audit README, \nolinkurl{results/phase2/audit/agreement.json} and \nolinkurl{results/phase2/audit/final_audit_summary.json} preserve the annotation process, agreement and final counts.
+
+E+R's 159 failures comprise 46 format-only and 113 substantive failures; E+C's 172 comprise 40 and 132. E+C has fewer format-only failures but more substantive failures. The E+C deficit is therefore substantive, not a formatting artifact, under this descriptive audit. These labels do not identify a causal training mechanism or replace the frozen confirmatory endpoint.
 
 \section{Limitations}
 \label{sec:phase2-limitations}
@@ -311,7 +370,7 @@ The test set contains 100 families with one rendering per form. TRAIN was drafte
 
 Only three seed triplets were retained. Their signs and ranges describe these checkpoints; the family-bootstrap interval does not quantify uncertainty from retraining. The wide Hoeffding interval illustrates the limits of a distribution-free bounded comparison at this sample size. The planning analysis did not reliably power small gains or English retention within the narrow registered margin. Failure to meet a retention criterion against E+E is therefore not proof of equivalence or of no loss.
 
-Strict correctness combines answer accuracy with output-format and unit requirements. Numeric-literal scoring helps describe that sensitivity, but is not a complete adjudication of reasoning quality. All retention flags, numeric endpoints, per-seed tests and operation-word strata remain descriptive. The pending exploratory analysis and any human audit cannot retroactively change the confirmatory result.
+Strict correctness combines answer accuracy with output-format and unit requirements. Numeric-literal scoring helps describe that sensitivity, but is not a complete adjudication of reasoning quality. All retention flags, numeric endpoints, per-seed tests and operation-word strata remain descriptive. The post-hoc analysis and failure audit in Section~\ref{sec:phase2-posthoc} cannot retroactively change the confirmatory result; human checking covered only 65 of the 331 audited failures.
 
 \begingroup\small\singlespacing
 \noindent\textbf{Sources:} \nolinkurl{phase2/PREREGISTRATION.md}, including Amendments~1--3 (methods, access and decision rules); \nolinkurl{phase2/ADAPTERS_FROZEN.md} (retained checkpoints and identities); \nolinkurl{phase2/FINAL_TEST_FROZEN.md} (test provenance and FT057 exception); \nolinkurl{docs/DECISIONS.md}, D040--D052 (adoption and execution history); \nolinkurl{results/phase2/train/README.md} (training table and DEV observations); \nolinkurl{results/phase2/final_test/README.md} (completion and infrastructure events); and \nolinkurl{results/phase2/final_test/phase2_analysis.md} (all final-test estimates, intervals, flags, counts and diagnostics).\par

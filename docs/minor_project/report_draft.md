@@ -3,7 +3,7 @@
 
 **Bachelor of Technology, Final Year · Delhi Technological University**
 
-Student name: ____________ Roll number: ____________ Department: ____________ Faculty in charge: ____________
+Team: Divyansh Raj (23/MC/195), Ayush Kumar Singh (23/MC/194), Divyanshu Mishra (23/MC/196). Department: Applied Mathematics (B.Tech. Mathematics and Computing). Faculty in charge: ____________
 
 Draft updated 26 October 2026 for the November 2026 minor-project evaluation. Every result below is labelled by evidence type: *software verification*, *development run on excluded fixtures*, or *Pilot-B result*. The Pilot-B results (Section 7) come from three complete, checksum-verified runs on a frozen, human-reviewed 70-family set, analysed under a plan pre-registered before any output (`pilot_b/PREREGISTRATION.md`). The original 30-family pilot, now reduced to a 24-family cohort under two-reviewer adjudication, is being run; its results are **pending** and are never pooled with Pilot-B.
 
