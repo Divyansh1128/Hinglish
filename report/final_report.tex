@@ -824,7 +824,7 @@ English-compliant explanation & 70 & 53 & 59\\
 \section{Post-hoc audit extension: Qwen3-8B and Llama-3.2-3B}
 \label{sec:auditext}
 
-\evid{post hoc, not pre-registered (28 October--3 November 2026). AI pre-tags by three taggers (Claude Opus, GPT, Claude Sonnet); the human check of this extension is pending, so no final labels are reported.}
+\evid{post hoc, not pre-registered (28 October--3 November 2026). AI pre-tags by three taggers (Claude Opus, GPT, Claude Sonnet), human-checked on every disagreement and a seeded random sample (returned 10 November 2026).}
 
 The pre-registered audit covered only the primary model. The same written audit instructions were then applied to all 210 Pilot-B outputs of each secondary backbone by three taggers, each blind to the others: A = Claude Opus, B = GPT and C = Claude Sonnet. C was added while GPT was unavailable; B was added once it was available again. The cross-family pair A--B is the headline, as in the primary audit. Table~\ref{tab:auditext} gives the agreement. The two Claude taggers agree with each other more than either agrees with GPT, which is the pattern expected if same-family taggers share blind spots, and is why the cross-family comparison is preferred.
 
@@ -844,7 +844,33 @@ Llama-3.2-3B & Error category & 187 (0.842) & 205 (0.965) & 190 (0.862)\\
 \end{tabular}
 \end{table}
 
-A human-check sheet was built with every row on which any two taggers differ (13 for Qwen3-8B, 24 for Llama) plus 30 seeded random rows per backbone on which all three agree, 97 rows in all. At the time of writing the human check has not been returned. Until it is, the per-category counts of this extension are unchecked AI pre-tags; they are not reported as audit results, and Table~\ref{tab:audit} remains the only audit table. The heuristic Llama language counts in the previous section are separate from this extension.
+A human-check sheet was built with every row on which any two taggers differ (13 for Qwen3-8B, 24 for Llama) plus 30 seeded random rows per backbone on which all three agree, 97 rows in all. It was completed by a bilingual human checker \placeholder{checker's role: team member or external volunteer; credit preference}. All 97 rows were labelled with a note. The checker agreed with all 60 unanimous sample rows. On the 37 disagreement rows the checker's category matched tagger A (Claude Opus) on 32, tagger B (GPT) on 5 and tagger C (Claude Sonnet) on 30. Over all checked rows, category agreement with the human was A 92/97, B 65/97 and C 90/97; English-status agreement was 94, 95 and 95 of 97. Final labels are the human label where checked and the unanimous AI label otherwise (\texttt{results/pilot\_b/audit/final\_audit\_<model>.csv}). Table~\ref{tab:auditextfinal} gives them.
+
+\begin{table}[t]
+\centering\small
+\caption{Final audit labels for the secondary backbones on Pilot-B (70 outputs per form; human label on 97 checked rows, otherwise the unanimous AI label). Descriptive and post hoc; strict scores are unchanged.}
+\label{tab:auditextfinal}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{Qwen3-8B} & \multicolumn{3}{c}{Llama-3.2-3B}\\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Category & E & R & C & E & R & C\\
+\midrule
+no\_error & 69 & 37 & 61 & 66 & 0 & 33\\
+format\_only & 1 & 0 & 0 & 1 & 0 & 2\\
+language\_drift & 0 & 27 & 8 & 0 & 40 & 16\\
+wrong\_relation\_operation & 0 & 2 & 1 & 2 & 12 & 9\\
+misread\_quantity & 0 & 4 & 0 & 0 & 10 & 7\\
+arithmetic\_slip & 0 & 0 & 0 & 0 & 3 & 1\\
+unit\_error & 0 & 0 & 0 & 1 & 0 & 0\\
+truncated & 0 & 0 & 0 & 0 & 5 & 2\\
+\midrule
+English-compliant explanation & 70 & 37 & 62 & 70 & 0 & 36\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two patterns stand out. First, for both backbones the strict failures on R are substantive, not format-only: there are no format-only R failures, while Qwen3-8B has 6 substantive R errors and Llama 25 substantive R errors plus 5 truncations. Second, language drift is large: Llama wrote no R explanation in English (0/70), and Qwen3-8B only 37/70. Language drift is assigned only when no earlier category applies, so it often co-occurs with correct answers. The heuristic Llama language counts in the previous section are separate from this extension.
 
 \section{Original cohort results}
 

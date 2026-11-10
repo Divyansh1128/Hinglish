@@ -1,0 +1,117 @@
+{
+ "agreement": {
+  "llama-3.2-3b": {
+   "A_cat": 52,
+   "A_eng": 53,
+   "B_cat": 33,
+   "B_eng": 53,
+   "C_cat": 49,
+   "C_eng": 53,
+   "checked": 54,
+   "disagree_rows": 24
+  },
+  "qwen3-8b": {
+   "A_cat": 40,
+   "A_eng": 41,
+   "B_cat": 32,
+   "B_eng": 42,
+   "C_cat": 41,
+   "C_eng": 42,
+   "checked": 43,
+   "disagree_rows": 13
+  }
+ },
+ "summary": {
+  "llama-3.2-3b": {
+   "C": {
+    "category": {
+     "arithmetic_slip": 1,
+     "format_only": 2,
+     "language_drift": 16,
+     "misread_quantity": 7,
+     "no_error": 33,
+     "truncated": 2,
+     "wrong_relation_operation": 9
+    },
+    "english": {
+     "compliant": 36,
+     "non_english": 34
+    },
+    "format_only_failures": 2,
+    "strict_failures": 21
+   },
+   "E": {
+    "category": {
+     "format_only": 1,
+     "no_error": 66,
+     "unit_error": 1,
+     "wrong_relation_operation": 2
+    },
+    "english": {
+     "compliant": 70
+    },
+    "format_only_failures": 1,
+    "strict_failures": 4
+   },
+   "R": {
+    "category": {
+     "arithmetic_slip": 3,
+     "language_drift": 40,
+     "misread_quantity": 10,
+     "truncated": 5,
+     "wrong_relation_operation": 12
+    },
+    "english": {
+     "non_english": 70
+    },
+    "format_only_failures": 0,
+    "strict_failures": 30
+   },
+   "human_checked": 54,
+   "rows": 210
+  },
+  "qwen3-8b": {
+   "C": {
+    "category": {
+     "language_drift": 8,
+     "no_error": 61,
+     "wrong_relation_operation": 1
+    },
+    "english": {
+     "compliant": 62,
+     "non_english": 8
+    },
+    "format_only_failures": 0,
+    "strict_failures": 1
+   },
+   "E": {
+    "category": {
+     "format_only": 1,
+     "no_error": 69
+    },
+    "english": {
+     "compliant": 70
+    },
+    "format_only_failures": 1,
+    "strict_failures": 1
+   },
+   "R": {
+    "category": {
+     "language_drift": 27,
+     "misread_quantity": 4,
+     "no_error": 37,
+     "wrong_relation_operation": 2
+    },
+    "english": {
+     "compliant": 37,
+     "no_explanation": 2,
+     "non_english": 31
+    },
+    "format_only_failures": 0,
+    "strict_failures": 6
+   },
+   "human_checked": 43,
+   "rows": 210
+  }
+ }
+}
