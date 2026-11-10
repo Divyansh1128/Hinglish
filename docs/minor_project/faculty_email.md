@@ -1,6 +1,6 @@
 Subject: Major Project update: Hinglish maths reasoning in LLMs (results, and a request for co-authorship before 6 Nov)
 
-Dear Prof. ____,
+Dear Dr. Udar,
 
 I am writing with an update on my Major Project, "Hinglish Mathematical Reasoning in Large Language Models", and to request your guidance and support on a paper submission.
 

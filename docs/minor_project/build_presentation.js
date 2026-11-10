@@ -100,7 +100,7 @@ pres.addSection({ title: "Introduction" });
   s.addText("Romanized Hindi Is Harder Than Hinglish: A Scoring-Aware Audit of Small LLMs", { placeholder: "title" });
   s.addText("Hinglish mathematical reasoning in LLMs: does the language form of a maths problem change the answer?", { x: M, y: 3.7, w: 10.5, h: 0.9, fontSize: 22, italic: true, color: "CADCFC", margin: 0, isTextBox: true });
   s.addText("Minor project evaluation, November 2026", { x: M, y: 4.7, w: 10, h: 0.5, fontSize: 20, color: K.white, margin: 0, isTextBox: true });
-  const lines = ["Divyansh Raj (23/MC/195)  \u00b7  Ayush Kumar Singh (23/MC/194)  \u00b7  Divyanshu Mishra (23/MC/196)", "B.Tech. Mathematics and Computing, Department of Applied Mathematics, DTU", "Supervisor:  ____________________"];
+  const lines = ["Divyansh Raj (23/MC/195)  \u00b7  Ayush Kumar Singh (23/MC/194)  \u00b7  Divyanshu Mishra (23/MC/196)", "B.Tech. Mathematics and Computing, Department of Applied Mathematics, DTU", "Supervisor:  Dr. Dinesh Udar, Assistant Professor, Department of Applied Mathematics"];
   s.addText(lines.map((l, i) => ({ text: l, options: { breakLine: i < 2 } })), { x: M, y: 5.35, w: 9.4, h: 1.4, fontSize: 16, color: K.white, margin: 0, valign: "top", paraSpaceAfter: 4, isTextBox: true });
   ["E", "R", "C"].forEach((f, i) => badge(s, W - M - 2.3 + i * 0.85, 5.75, f, K[f], 0.65));
   s.addNotes("About 20 seconds. One sentence on the question: the same maths in three language forms (English, Romanized Hindi, Hinglish) - does the answer change? Headline we will defend: holding the maths fixed, small models lose accuracy on Romanized Hindi rather than on code-mixing, by a strongly model-specific amount, and answer formats must be checked on excluded data first.");

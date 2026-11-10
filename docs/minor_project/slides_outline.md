@@ -6,7 +6,7 @@ Updated 26 October 2026 with the verified Pilot-B results. Every number is trace
 
 **1. Title**
 - Hinglish Mathematical Reasoning in LLMs: does the language form of a maths problem change the answer?
-- Team: Divyansh Raj (23/MC/195), Ayush Kumar Singh (23/MC/194), Divyanshu Mishra (23/MC/196); B.Tech. Mathematics and Computing, Department of Applied Mathematics; faculty in charge: ____________
+- Team: Divyansh Raj (23/MC/195), Ayush Kumar Singh (23/MC/194), Divyanshu Mishra (23/MC/196); B.Tech. Mathematics and Computing, Department of Applied Mathematics; faculty in charge: Dr. Dinesh Udar, Assistant Professor, Department of Applied Mathematics
 - *Speaker note (20 s):* one sentence on the question: same maths, three language forms, does the answer change?
 
 **2. Motivation**
