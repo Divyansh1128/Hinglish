@@ -17,3 +17,9 @@ Descriptive: every fine-tuned arm is far below the unchanged model in every form
 | EE-s33 | Stale RUNNING.lock recovered on 10 Nov 03:28 UTC (6 records kept) and 05:41 UTC (297 records kept) | 301 attempts / 300 completed, 1 infrastructure failure |
 
 The stale locks came from Colab runtimes that disconnected; no response was regenerated. The results-ZIP and checksum hashes printed in different sessions differ only because each session re-exports the derived summaries; each secondary-diagnostic folder gets a random name. The generated responses are fixed by the journal.
+
+**Process launches (from Sol's verification):** the top-level `attempts.jsonl` records seven evaluation-process launches with exit code 1 (two for EC-s22, five for EE-s33). Six were refusals because a stale lock existed (`ValueError` in `log.txt`), raised before any generation. The seventh has no recorded cause, most likely a runtime that disconnected. These were process launches, not generations: the journals hold exactly the two infrastructure-failure records above and one committed response per rendering.
+
+## Independent verification
+
+Sol recomputed the result with an independent stdlib-only script: `handoffs/2026-11-10_sol_verify_final_test.md`. All 30 strict accuracies and Wilson intervals, Δ_C = −13/300, the bootstrap bounds [−2/25, −1/150], the tails, the matrix hash and the label Harm match exactly. There are no duplicate renderings.
