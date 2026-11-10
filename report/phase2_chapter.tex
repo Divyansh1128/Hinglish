@@ -1,0 +1,318 @@
+% Phase-2 chapter fragment for integration by Claude; uses final_report.tex's preamble.
+% Only this new file is authored here; final_report.tex is not modified.
+% Binding sources: phase2/PREREGISTRATION.md (P), Amendments 1--3 (A1--A3);
+% phase2/ADAPTERS_FROZEN.md (F); phase2/FINAL_TEST_FROZEN.md (V);
+% docs/DECISIONS.md D040--D052 (D); results/phase2/train/README.md (T);
+% results/phase2/final_test/README.md (R) and phase2_analysis.md (A).
+% Numerical results and table cells are transcribed from these sources, not re-analysed.
+% Integration note: replace superseded prospective Phase-2 prose elsewhere in the
+% host report (including optional backbones/controls and old retention wording).
+
+\chapter{Phase 2: Training Methods and Confirmatory Results}
+\label{ch:phase2}
+
+\evid{completed pre-registered training study. Strict-accuracy $\Delta_C$ is the sole confirmatory estimand. The registered decision is \emph{Harm}: $-4.33$ percentage points (pp), with a 95\% paired family-bootstrap interval of $[-8.00,-0.67]$. All secondary endpoints, retention flags, per-seed comparisons and strata are descriptive. The protocol includes Amendments~1--3; the access deviation and execution incidents are disclosed below.}
+
+\section{Methods}
+\label{sec:phase2-methods}
+
+% P sections 1--3,6; A1 items 3,8--10,13--15; D040--D048.
+\paragraph{Question, data and arms.}
+The study asks whether training on Hinglish rather than Romanized Hindi improves accuracy on Hinglish mathematical word problems. \form{E}, \form{R} and \form{C} denote English, Romanized Hindi with frozen borrowings, and insertional Roman-script Hinglish. TRAIN contains 160 Claude-drafted families; DEV contains 40 GPT-drafted families used only for sanity checks; FINAL\_TEST contains 100 GPT-drafted families. Each family has one frozen rendering per form. Pilot, Pilot-B and FMT2 families are excluded. The earlier smoke-test adapters were discarded.
+
+Each TRAIN family supplies two examples, giving 320 examples per arm: E+E repeats E; E+R pairs E with R; E+C pairs E with C. Every form supervises the identical English \texttt{reference\_solution\_en} target plus \texttt{<|im\_end|>}. Thus the arms match mathematical content, example exposure and targets. The labels mask the prompt and empty think block; target-token equality across forms is asserted before training. No packing or truncation is allowed, and sequences must fit 1,024 tokens. Data hashes are checked before use; a mismatch halts execution. The evaluated test file is \nolinkurl{phase2/final_test.v3.json}, SHA-256 \hash{da89dd9a626e438dffca39e3a74c4c8abac6bb57501495723b87e6ee143f3d46}.
+
+\paragraph{Backbone and training recipe.}
+Qwen3-4B is the sole registered backbone, with model and tokenizer revision \texttt{1cfa9a7208912126459214e8b04321603b3df60c}. Training uses a Colab T4 and the pinned stack: torch 2.11.0+cu130, transformers 4.51.3, bitsandbytes 0.50.2, PEFT 0.15.2 and accelerate 1.6.0. QLoRA uses double-quantized NF4 base weights, FP16 compute, FP32 adapters, rank 16, alpha 32 and dropout 0.05 on q/k/v/o/gate/up/down projections. Attention uses SDPA math; gradient checkpointing is non-reentrant and caching is disabled.
+
+Microbatch size is 1 with accumulation over 16 examples, or eight families per update. Loss averages supervised tokens within equally weighted examples. AdamW uses zero weight decay and gradient clipping at 1.0. Three passes produce exactly 60 successful updates. The learning rate rises linearly to $10^{-4}$ over six updates, then decays by a cosine schedule to $10^{-5}$ at update 60. Only that final checkpoint is evaluated. This schedule was a resource-feasible choice made before Phase-2 outputs, not a validated optimum.
+
+Seeds 11, 22 and 33 pair initial adapter tensors and family exposure order across arms, but do not pair dropout draws. Within each seed and pass, families are sorted by the SHA-256 of UTF-8 \texttt{phase2-D043:\{s\}:\{p\}:\{family\_id\}}, using decimal seed/pass and family-ID tie-breaking; E precedes the arm-specific second example. Exposure lists were frozen and hashed. Training follows seed-slot order, with EC, ER and EE within each slot.
+
+% P sections 4--5; A1 items 1,7,14; A2 item 6; A3 item 3.
+\paragraph{Evaluation and DEV firewall.}
+The unchanged model and each adapter use the frozen \texttt{test1-english-final-v2} prompt, strict scorer v1.0.0, non-thinking greedy decoding, fresh contexts, batch size 1 and evaluation-engine seed 11. Context and output caps are 2,048 and 1,024 tokens. Adapters are evaluated unmerged on the same NF4 base with FP16 compute. Invalid, missing-answer, refused, ambiguous and truncated responses score zero; an absent generation remains unresolved. Numeric-literal v1 and v2 are descriptive endpoints. Under Amendment~1, v2 keeps v1 unless v1 returns \texttt{unsupported\_answer}; only then does it try the registered rupee-specific extensions. Non-rupee gold retains v1.
+
+A validated unchanged-model DEV archive was required before training. Neither adapter DEV accuracy nor loss curves could select a checkpoint, alter the recipe or trigger a retry. The high unchanged-DEV accuracy flag was a ceiling-risk proxy, with threshold C $\geq38/40$; it did not change the primary estimand or turn S2 into a confirmatory endpoint. No self-translation control or second backbone belongs to this registration.
+
+% P sections 6--8; A1 items 2--7,12.
+\paragraph{Estimand and inference.}
+Let $y(i,s,a,l)$ be binary strict correctness for family $i$, seed $s$, training arm $a$ and evaluation form $l$. The sole confirmatory contrast is
+\[
+ d_i=\frac{1}{3}\sum_{s\in\{11,22,33\}}
+ \bigl[y(i,s,EC,C)-y(i,s,ER,C)\bigr],
+ \qquad \Delta_C=\frac{1}{100}\sum_{i=1}^{100}d_i.
+\]
+Families and seeds receive equal weight. This is the effect of the complete training-rendering recipe, not an isolated effect of code-switching. The observed mean describes the finite test set; uncertainty intervals approximate sampling of independent families from the fixed authoring and review process, conditional on the trained checkpoints. They do not cover training-seed variance.
+
+The paired family bootstrap draws 10,000 resamples of 100 families, retaining each family's full arm/form/seed record. Sorted family IDs and a fresh Python \texttt{random.Random(101)} determine a shared index matrix, reused across endpoints, contrasts and per-seed intervals. Percentile bounds use linear quantiles. Companion Wald and bounded Hoeffding intervals are reported for the primary contrast. Checkpoint accuracies receive Wilson 95\% intervals over families, never over pooled seed rows. Crossed family--seed resampling is excluded by Amendment~1.
+
+For unrounded strict-accuracy bounds $[L,U]$ in pp, \emph{Useful support} requires $L>5$; \emph{Support}, $0<L\leq5$; \emph{Informative null}, $L\leq0\leq U<5$; \emph{Harm}, $U<0$; and \emph{Inconclusive}, $L\leq0$ and $U\geq5$. Identical family contrasts or a zero-width interval override these with \emph{inconclusive---degenerate empirical interval}. All secondaries and per-seed exact McNemar tests are descriptive, without Holm testing.
+
+\section{Execution and integrity}
+\label{sec:phase2-integrity}
+
+% T; F; D049--D051.
+\subsection{Completed training and adapter freeze}
+All nine training runs were valid on attempt 1: each completed 60/60 successful updates, had zero scaler skips, and was not resumed. There were no training infrastructure retries and no reserve seeds. Initial adapter and data-order pairing checks passed for each seed. Table~\ref{tab:phase2-training} reproduces the training log; its DEV scores were sanity checks only.
+
+\begin{table}[H]
+\centering\footnotesize\singlespacing
+\caption{Retained training runs, in execution order. DEV counts are out of 40 per form; invalid counts cover all DEV forms. Tokens are mean output lengths. Every row is valid for the gate.}
+\label{tab:phase2-training}
+\begin{tabular}{@{}lccrccc@{}}
+\toprule
+Run & Attempt & Steps; skips & s/update & DEV E/R/C & Invalid & Tokens\\
+\midrule
+EC-s11 & 1 & 60/60; 0 & 20.66 & 24 / 13 / 19 & 23/120 & 43\\
+ER-s11 & 1 & 60/60; 0 & 19.18 & 23 / 12 / 17 & 25/120 & 44\\
+EE-s11 & 1 & 60/60; 0 & 20.59 & 25 / 15 / 17 & 23/120 & 46\\
+EC-s22 & 1 & 60/60; 0 & $\approx$19.9 & 22 / 9 / 18 & 25/120 & n/a\\
+ER-s22 & 1 & 60/60; 0 & 19.79 & 24 / 11 / 21 & 28/120 & 45\\
+EE-s22 & 1 & 60/60; 0 & 19.79 & 24 / 15 / 20 & 23/120 & 46\\
+EC-s33 & 1 & 60/60; 0 & 20.64 & 25 / 13 / 19 & 22/120 & 44\\
+ER-s33 & 1 & 60/60; 0 & 19.95 & 23 / 13 / 17 & 27/120 & 54\\
+EE-s33 & 1 & 60/60; 0 & 19.55 & 25 / 15 / 20 & 22/120 & 47\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+EC-s22's individual results ZIP was not downloaded. Its complete, valid record was read directly from Drive; its $\approx19.9$ seconds/update is approximate, and its mean output-token count is unavailable rather than imputed. ER-s33 and EE-s33 arrived in the final \texttt{Phase2\_Train\_logs.zip}. That archive contains the whole training root without weights and passed its checksum checks. The unchanged DEV baseline scored E/R/C $33/19/24$ out of 40, with $12/120$ strict-invalid outputs and mean output length 121 tokens.
+
+The adapter freeze was produced on 8 November 2026 by \texttt{freeze-manifest} from the training-log archive and validated baseline archive (D051). \nolinkurl{phase2/ADAPTERS_FROZEN.md} records retained seeds 11, 22 and 33, adapter/configuration hashes, base revision and shard hashes, exposure-order identity, and training-log and baseline identities. Its SHA-256 is \hash{1bebf10d708620b2b8f5c11aac340ca76b12e4c990dbfff9dcc82a8f9f20929f}. The implementation manifest has SHA-256 \hash{726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d}. The final-test gate binds the evaluated checkpoints to this freeze and rechecks the weights. All three complete paired triplets were retained, so $S=3$ and confirmatory analysis was permitted.
+
+\subsection{Environment pinning and interruption recovery}
+% T; R infrastructure-events table; F; D051--D052; A2 items 2--5; A3.
+On 7 November 2026, Colab's default image changed to torch 2.14.1+cu130. The notebook rejected that environment before opening an attempt, so it generated no training-attempt record. From seed 22 onward, the operator selected an older runtime image with the registered torch 2.11.0+cu130. Every retained run used the pinned stack on a T4; no code, plan or data changed. A second Google account accessed the same shared training folder for later runs; the single-writer rule applied across accounts.
+
+The amended protocol distinguished typed infrastructure failures from numerical or protocol failures. Only the former allowed an identical from-scratch training retry; a second failure would replace the entire seed triplet using the registered reserve queue. Numerical failures, including scaler skips, and protocol failures required a halt and diagnosis. None of those training replacement rules was invoked. During evaluation, interrupted runs resumed their stored journals without regenerating successful responses. Explicit confirmation that no other session was running was required before stale-lock recovery.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Recorded evaluation-lock recoveries on 10 November 2026. Times are UTC. The final column is per run, not per recovery event.}
+\label{tab:phase2-recoveries}
+\begin{tabularx}{\linewidth}{@{}llrL@{}}
+\toprule
+Run & Recovery time & Records kept & Final outcome\\
+\midrule
+EC-s22 & 03:21 & 278 & 301 attempts, 300 completed; one infrastructure failure.\\
+EE-s33 & 03:28; 05:41 & 6; 297 & 301 attempts, 300 completed; one infrastructure failure.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The locks followed disconnected Colab runtimes. No response was regenerated. The two affected runs each had 301 attempts for 300 completed generations; every other checkpoint had 300 attempts for 300 completed generations. Across all ten checkpoints, all 3,000 required generations resolved, with zero unresolved items. Session exports can have different ZIP/checksum hashes because derived summaries are re-exported into randomly named secondary-diagnostic folders; the journal fixes the generated responses.
+
+Only completeness, checksums and infrastructure status were visible until all evaluations completed. The unchanged registered analysis, version \texttt{phase2\_analysis 3.1.0 (Amendments 1--3)}, ran once on 10 November 2026 (D052). It checked every run's identities, configuration, attempt budget and every run/session's T4, package and execution records. No outcome-dependent tuning or re-evaluation followed.
+
+\subsection{Test provenance and access disclosure}
+% V; A1 items 13,18; A2 item 1; A3 item 1; D046--D047.
+FINAL\_TEST had necessarily been exposed to its drafting and verifier models and human reviewer during construction. Its provenance records single-reviewer acceptance after repairs, rather than independent human verification of every final rendering. The FT057 exception is specific: in FT057-C v4, Claude restored an omitted distractor, 12 marigolds, under delegated authority. The gold answer, 30, was checked by hand, but this revision was \emph{not blind re-solved}. The provenance document records this rendering-level exception for the frozen \texttt{final\_test.v3.json}; it must not be described as universal blind verification of the final texts.
+
+Amendments~2--3 disclose a separate access deviation before the adapter freeze: unattended CPU tests on 3 November 2026 parsed FINAL\_TEST into schema validation and scoring, embedded its bytes in synthetic notebooks, and extracted them into temporary test workspaces. These actions exceeded the byte-hash-only access rule. The affected suites were run by the Claude implementers and by Sol during review, then replaced with DEV-derived fixtures. The code shows pass/fail output and no evaluation-backbone generation. Claims that nobody viewed item content and that no information informed an analysis choice are participant attestations, not facts independently proved by the repository. Data, design and decision thresholds remained unchanged. A local commit timestamp alone is not treated as proof of precedence.
+
+\section{Confirmatory result}
+\label{sec:phase2-confirmatory}
+% A primary section; R; D052. All displayed values copied from A.
+The registered strict-accuracy contrast on C was
+\[
+ \Delta_C=-4.33\ \mathrm{pp},\qquad
+ 95\%\ \mathrm{CI}=[-8.00,-0.67]\ \mathrm{pp}.
+\]
+The label is \textbf{Harm}: the unrounded interval bounds, expressed as proportions, are $L=-2/25$ and $U=-1/150$, so $U<0$. The empirical interval is not degenerate: 24/100 families have non-zero contrasts and there are five distinct $d_i$ values. Its bootstrap half-width is 3.67 pp. This result applies to E+C relative to E+R under the frozen recipe; it does not establish that Hinglish training is harmful under other recipes.
+
+The Wald 95\% interval is $[-8.01,-0.66]$ pp. The clipped Hoeffding 95\% interval is much wider, $[-31.50,+22.83]$ pp, with radius 27.2 pp. Thus the registered approximate bootstrap label should be read alongside its conditional sampling assumptions and the conservative bounded interval. The shared bootstrap matrix was generated with Python 3.12.7 and has SHA-256 \hash{33f4920eab5738cf29b346be8d63a15115f9fcbda58699ee9fc44b031e46e6a1}.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Registered primary bootstrap tail counts. Tails include equality and can overlap; they are not additional decision tests.}
+\label{tab:phase2-tails}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Threshold & At or below & At or above\\
+\midrule
+$0$ pp & 9921/10000 & 120/10000\\
+$+5$ pp & 10000/10000 & 0/10000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+E+R's C headroom was 53.00 pp, so the observed comparator did not sit near perfect accuracy. The unchanged-DEV ceiling-risk proxy was $24/40$ (60.0\%; Wilson 95\% interval 44.6--73.7\%), with 40.0 pp DEV headroom. It did not reach the registered $38/40$ threshold. This proxy concerns the unchanged model on DEV, not the trained comparator on FINAL\_TEST.
+
+\section{Descriptive secondaries}
+\label{sec:phase2-secondaries}
+All intervals in this section are descriptive. They neither add confirmatory claims nor change the strict-primary decision. Numeric-literal v1 and v2 give identical reported results here. Their C contrast is $-5.67$ pp $[-11.00,-0.67]$, agreeing in direction with strict accuracy.
+
+\subsection{S1: English retention}
+% A S1 and all-endpoints tables; A1 item 6.
+The five English contrasts and their strict-score flags appear in Table~\ref{tab:phase2-retention}. Flags are independent: the within-margin criterion requires $L>-2$ pp, loss detected requires $U<0$, and loss beyond margin requires $U<-2$ pp. They are not multiplicity-controlled non-inferiority conclusions. None meets the within-margin criterion. Every trained arm shows loss beyond the margin against the unchanged model. The registered \emph{retention trade-off} flag additionally requires primary Support or Useful support, so it does not apply to this Harm result.
+
+\begin{table}[H]
+\centering\scriptsize\singlespacing
+\caption{English retention: estimates and 95\% family-bootstrap intervals (pp). Non-zero is the strict non-zero family count. ``None means no retention criterion met; ``Loss; beyond means loss detected and loss beyond margin. Flags use strict only.}
+\label{tab:phase2-retention}
+\begin{tabular}{@{}lccrc@{}}
+\toprule
+Contrast on E & Strict & Numeric v2 & Non-zero & Flags\\
+\midrule
+E+C $-$ E+E & $-2.67\ [-7.00,+1.33]$ & $-1.67\ [-6.33,+2.67]$ & 22 & None\\
+E+C $-$ unchanged & $-26.33\ [-34.33,-19.00]$ & $-13.67\ [-20.33,-7.00]$ & 37 & Loss; beyond\\
+E+R $-$ E+E & $-2.00\ [-6.33,+2.33]$ & $-3.67\ [-8.00,+0.67]$ & 26 & None\\
+E+R $-$ unchanged & $-25.67\ [-33.67,-18.00]$ & $-15.67\ [-23.00,-8.67]$ & 38 & Loss; beyond\\
+E+E $-$ unchanged & $-23.67\ [-31.67,-16.33]$ & $-12.00\ [-18.67,-6.00]$ & 38 & Loss; beyond\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{S2: R transfer and S3: specificity}
+% A S2, S3 and all-endpoints tables.
+R transfer, $T_R$, compares E+R with E+E on R; $\Delta_R$ compares E+C with E+R on R. Specificity is $\Delta_C-\Delta_R$, calculated within family before averaging. The strict intervals for both R contrasts include zero. Specificity is negative, but remains a descriptive contrast, not evidence establishing a language-specific mechanism. Its bounded Hoeffding radius is 54.3 pp, with interval $[-61.99,+46.66]$ pp.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{R transfer and specificity: descriptive estimates and 95\% family-bootstrap intervals (pp). Numeric v1 equals v2.}
+\label{tab:phase2-transfer}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Contrast & Strict & Numeric v2\\
+\midrule
+$T_R$: E+R $-$ E+E on R & $-2.33\ [-9.33,+4.33]$ & $-0.33\ [-7.67,+7.00]$\\
+$\Delta_R$: E+C $-$ E+R on R & $+3.33\ [-2.00,+8.67]$ & $+1.67\ [-4.67,+8.00]$\\
+$\Delta_C-\Delta_R$ & $-7.67\ [-14.67,-1.33]$ & $-7.33\ [-14.67,-0.33]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Per-seed contrasts}
+% A per-seed table and ranges. No inference across seeds.
+All three primary seed estimates are negative: $-3.00$, $-1.00$ and $-9.00$ pp, a range of $[-9.0,-1.0]$ pp. This sign consistency is descriptive, not a test over training seeds. English retention relative to E+E ranges from $-5.0$ to $+2.0$ pp, and R transfer from $-6.0$ to $+1.0$ pp; each has one positive and two negative seed estimates. All $\Delta_R$ seed estimates are positive, ranging from $+1.0$ to $+6.0$ pp. Table~\ref{tab:phase2-seeds} retains the per-seed discordances and exact McNemar values without promoting them to separate confirmatory tests.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Strict per-seed estimates and descriptive 95\% family-bootstrap intervals (pp). First/second only count families correct only for the first/second arm in the contrast; $\mathrm{Ret}_E$ is E+C minus E+E on E.}
+\label{tab:phase2-seeds}
+\begin{tabular}{@{}lccrrr@{}}
+\toprule
+Contrast & Seed & Estimate [interval] & First only & Second only & Exact $p$\\
+\midrule
+$\Delta_C$ & 11 & $-3.00\ [-9.00, +3.00]$ & 3 & 6 & 0.5078\\
+$\Delta_C$ & 22 & $-1.00\ [-8.00, +6.00]$ & 6 & 7 & 1\\
+$\Delta_C$ & 33 & $-9.00\ [-17.00, -2.00]$ & 3 & 12 & 0.03516\\
+$\mathrm{Ret}_E$ & 11 & $+2.00\ [-6.00, +10.00]$ & 10 & 8 & 0.8145\\
+$\mathrm{Ret}_E$ & 22 & $-5.00\ [-11.00, +1.00]$ & 2 & 7 & 0.1797\\
+$\mathrm{Ret}_E$ & 33 & $-5.00\ [-12.00, +2.00]$ & 4 & 9 & 0.2668\\
+$T_R$ & 11 & $+1.00\ [-7.00, +9.00]$ & 9 & 8 & 1\\
+$T_R$ & 22 & $-6.00\ [-15.00, +3.00]$ & 8 & 14 & 0.2863\\
+$T_R$ & 33 & $-2.00\ [-10.00, +6.00]$ & 8 & 10 & 0.8145\\
+$\Delta_R$ & 11 & $+1.00\ [-5.00, +7.00]$ & 5 & 4 & 1\\
+$\Delta_R$ & 22 & $+6.00\ [-1.00, +13.00]$ & 10 & 4 & 0.1796\\
+$\Delta_R$ & 33 & $+3.00\ [-5.00, +11.00]$ & 10 & 7 & 0.6291\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Accuracy by checkpoint}
+% A strict and numeric_literal_v2 checkpoint tables, transcribed below.
+Tables~\ref{tab:phase2-strict-accuracy} and \ref{tab:phase2-numeric-accuracy} show every checkpoint's accuracy. Each cell uses 100 families and its own Wilson interval; seeds are not pooled for these intervals. Every trained checkpoint is below the unchanged model in every form under both endpoints. Strict English accuracy is 54--64\% for trained checkpoints versus 85\% unchanged. Numeric scoring recovers some strict errors, but the corresponding English losses against unchanged remain negative (Table~\ref{tab:phase2-retention}); the degradation cannot be attributed wholly to strict-format scoring.
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Strict accuracy: correct counts, percentages and Wilson 95\% intervals (\%). Each interval is over families within a checkpoint.}
+\label{tab:phase2-strict-accuracy}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Checkpoint & E & R & C\\
+\midrule
+EE:11 & \makecell{62/100 (62.0\%)\\52.2--70.9} & \makecell{41/100 (41.0\%)\\31.9--50.8} & \makecell{44/100 (44.0\%)\\34.7--53.8}\\
+EE:22 & \makecell{63/100 (63.0\%)\\53.2--71.8} & \makecell{41/100 (41.0\%)\\31.9--50.8} & \makecell{41/100 (41.0\%)\\31.9--50.8}\\
+EE:33 & \makecell{59/100 (59.0\%)\\49.2--68.1} & \makecell{39/100 (39.0\%)\\30.0--48.8} & \makecell{44/100 (44.0\%)\\34.7--53.8}\\
+ER:11 & \makecell{61/100 (61.0\%)\\51.2--70.0} & \makecell{42/100 (42.0\%)\\32.8--51.8} & \makecell{44/100 (44.0\%)\\34.7--53.8}\\
+ER:22 & \makecell{56/100 (56.0\%)\\46.2--65.3} & \makecell{35/100 (35.0\%)\\26.4--44.7} & \makecell{47/100 (47.0\%)\\37.5--56.7}\\
+ER:33 & \makecell{61/100 (61.0\%)\\51.2--70.0} & \makecell{37/100 (37.0\%)\\28.2--46.8} & \makecell{50/100 (50.0\%)\\40.4--59.6}\\
+EC:11 & \makecell{64/100 (64.0\%)\\54.2--72.7} & \makecell{43/100 (43.0\%)\\33.7--52.8} & \makecell{41/100 (41.0\%)\\31.9--50.8}\\
+EC:22 & \makecell{58/100 (58.0\%)\\48.2--67.2} & \makecell{41/100 (41.0\%)\\31.9--50.8} & \makecell{46/100 (46.0\%)\\36.6--55.7}\\
+EC:33 & \makecell{54/100 (54.0\%)\\44.3--63.4} & \makecell{40/100 (40.0\%)\\30.9--49.8} & \makecell{41/100 (41.0\%)\\31.9--50.8}\\
+unchanged & \makecell{85/100 (85.0\%)\\76.7--90.7} & \makecell{63/100 (63.0\%)\\53.2--71.8} & \makecell{66/100 (66.0\%)\\56.3--74.5}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small\singlespacing
+\caption{Numeric-literal v2 accuracy: correct counts, percentages and Wilson 95\% intervals (\%). Each interval is over families within a checkpoint.}
+\label{tab:phase2-numeric-accuracy}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Checkpoint & E & R & C\\
+\midrule
+EE:11 & \makecell{76/100 (76.0\%)\\66.8--83.3} & \makecell{52/100 (52.0\%)\\42.3--61.5} & \makecell{58/100 (58.0\%)\\48.2--67.2}\\
+EE:22 & \makecell{81/100 (81.0\%)\\72.2--87.5} & \makecell{49/100 (49.0\%)\\39.4--58.7} & \makecell{53/100 (53.0\%)\\43.3--62.5}\\
+EE:33 & \makecell{77/100 (77.0\%)\\67.8--84.2} & \makecell{54/100 (54.0\%)\\44.3--63.4} & \makecell{57/100 (57.0\%)\\47.2--66.3}\\
+ER:11 & \makecell{78/100 (78.0\%)\\68.9--85.0} & \makecell{55/100 (55.0\%)\\45.2--64.4} & \makecell{54/100 (54.0\%)\\44.3--63.4}\\
+ER:22 & \makecell{72/100 (72.0\%)\\62.5--79.9} & \makecell{48/100 (48.0\%)\\38.5--57.7} & \makecell{58/100 (58.0\%)\\48.2--67.2}\\
+ER:33 & \makecell{73/100 (73.0\%)\\63.6--80.7} & \makecell{51/100 (51.0\%)\\41.3--60.6} & \makecell{61/100 (61.0\%)\\51.2--70.0}\\
+EC:11 & \makecell{78/100 (78.0\%)\\68.9--85.0} & \makecell{55/100 (55.0\%)\\45.2--64.4} & \makecell{49/100 (49.0\%)\\39.4--58.7}\\
+EC:22 & \makecell{76/100 (76.0\%)\\66.8--83.3} & \makecell{52/100 (52.0\%)\\42.3--61.5} & \makecell{56/100 (56.0\%)\\46.2--65.3}\\
+EC:33 & \makecell{75/100 (75.0\%)\\65.7--82.5} & \makecell{52/100 (52.0\%)\\42.3--61.5} & \makecell{51/100 (51.0\%)\\41.3--60.6}\\
+unchanged & \makecell{90/100 (90.0\%)\\82.6--94.5} & \makecell{73/100 (73.0\%)\\63.6--80.7} & \makecell{71/100 (71.0\%)\\61.5--79.0}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Operation-word strata and output diagnostics}
+% P section 6; A operation-word and diagnostics tables; R descriptive paragraph.
+The frozen operation-word tags distinguish families in which R uses a Hindi operation word and C keeps it (\emph{keep}), C switches it to English (\emph{switch}), or there is no operation word (\emph{none}). All stratum estimates of $\Delta_C$ are negative (Table~\ref{tab:phase2-strata}). These descriptive counts do not test an interaction or isolate the effect of an operation-word substitution.
+
+\begin{table}[H]
+\centering\footnotesize\singlespacing
+\caption{Operation-word strata on C (strict). Trained-arm counts pool generations across the three retained seeds, with percentages over those generations; unchanged counts use one generation per family. These pooled counts are descriptive, not independent observations for inference.}
+\label{tab:phase2-strata}
+\begin{tabular}{@{}lrccccc@{}}
+\toprule
+Stratum & Families & $\Delta_C$ (pp) & E+E & E+R & E+C & Unchanged\\
+\midrule
+keep & 25 & $-1.3$ & 43 (57.3\%) & 43 (57.3\%) & 42 (56.0\%) & 19 (76.0\%)\\
+none & 50 & $-6.7$ & 50 (33.3\%) & 55 (36.7\%) & 45 (30.0\%) & 32 (64.0\%)\\
+switch & 25 & $-2.7$ & 36 (48.0\%) & 43 (57.3\%) & 41 (54.7\%) & 15 (60.0\%)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+The execution report describes trained outputs as about 42 tokens versus about 110 for the unchanged model. For example, median C output lengths are 42.0 tokens for EC:11 and 111.0 for unchanged. Every checkpoint/form row reports zero truncated outputs. Strict-invalid reasons are led by \texttt{invalid\_unit}; EC:11 on C has 24 such outputs, three \texttt{invalid\_answer} outputs and four \texttt{percent\_requires\_dimensionless} outputs. The unchanged model on C has 11 \texttt{invalid\_unit}, two \texttt{invalid\_answer}, one \texttt{invalid\_number} and four \texttt{percent\_requires\_dimensionless} outputs. These are automatic scorer categories, not adjudicated explanations of mathematical errors. The source analysis preserves the full per-checkpoint/form invalid-reason, token and latency table.
+
+\section{Interpretation}
+\label{sec:phase2-interpretation}
+% A; T; R; D050--D052. Interpretations deliberately do not identify a mechanism.
+The result does not support the proposed benefit of E+C over E+R for C accuracy under this recipe. The primary estimate is negative, its registered bootstrap interval excludes zero, and all retained seed estimates have the same negative sign. The Harm label is therefore the pre-registered reading of the observed comparison, not a revised criterion introduced after seeing the outputs.
+
+The larger practical finding is that all trained arms degraded relative to the unchanged model. This includes E+E, so replacing English with Hinglish in the second example is not necessary for the loss. On English, strict losses against unchanged are $-26.33$ pp for E+C, $-25.67$ pp for E+R and $-23.67$ pp for E+E, each flagged as loss beyond margin. The unchanged model is an essential reference: comparing trained arms alone would obscure the shared deterioration.
+
+D050 identified the target-design concern from DEV before final-test evaluation. The first EC adapter produced shorter answers (mean 43 versus 121 tokens) and more unit-related strict-invalid outputs (18 versus 8). The frozen English reference solutions were terse and shared by every training arm. The final-test pattern of short outputs, strict unit errors and lower numeric accuracy is consistent with a limitation of that shared training recipe. It does not prove that answer shortening caused the accuracy loss, nor separate target style from the other consequences of fine-tuning. No alternative target style, training schedule or controlled mediation intervention was evaluated. The defensible conclusion concerns the complete recipe; attributing the negative arm contrast to code-switching itself, or the shared loss solely to terse targets, would exceed the design.
+
+The DEV observation did not authorize repair within the registered study. Continuing the unchanged recipe preserves the meaning of its confirmatory comparison while exposing a substantive design limitation. A future test of richer targets or another schedule would be a new study, not a correction to these scores.
+
+\subsection{Exploratory error analysis}
+\label{sec:phase2-exploratory}
+\placeholder{TODO: integrate the separately produced analysis in \nolinkurl{analysis/phase2_exploratory/}. Label new analyses as post hoc and descriptive; identify their inputs, methods and verification status. Do not alter the frozen scores, inclusion rules or confirmatory label.}
+
+The planned audit in Amendment~1 covers every strict-incorrect C output from every retained E+R and E+C seed, with independent Claude Opus and GPT tagging and human checking of every audited output. The exploratory directory must not be presented as completion of that audit unless it documents these requirements. Any pending human check or unresolved annotation must remain explicit; output categories alone do not establish a mechanism.
+
+\section{Limitations}
+\label{sec:phase2-limitations}
+The study is limited to Qwen3-4B, the frozen QLoRA recipe, English supervision and the registered decoding/scoring setup. The schedule was not optimized, and the shared terse targets constrain what the between-arm comparison can say about other approaches to language adaptation. There is no second backbone or pre-registered self-translation comparison.
+
+The test set contains 100 families with one rendering per form. TRAIN was drafted by Claude and DEV/FINAL\_TEST by GPT, so author/style shift accompanies the split. Single-reviewer test acceptance, sample-based TRAIN/DEV review and the FT057 exception limit claims about linguistic validity and independent verification. Shared templates and authors may violate the bootstrap's independent-family approximation. The recorded construction exposure and unattended-test access deviation also preclude describing the test as never previously accessed.
+
+Only three seed triplets were retained. Their signs and ranges describe these checkpoints; the family-bootstrap interval does not quantify uncertainty from retraining. The wide Hoeffding interval illustrates the limits of a distribution-free bounded comparison at this sample size. The planning analysis did not reliably power small gains or English retention within the narrow registered margin. Failure to meet a retention criterion against E+E is therefore not proof of equivalence or of no loss.
+
+Strict correctness combines answer accuracy with output-format and unit requirements. Numeric-literal scoring helps describe that sensitivity, but is not a complete adjudication of reasoning quality. All retention flags, numeric endpoints, per-seed tests and operation-word strata remain descriptive. The pending exploratory analysis and any human audit cannot retroactively change the confirmatory result.
+
+\begingroup\small\singlespacing
+\noindent\textbf{Sources:} \nolinkurl{phase2/PREREGISTRATION.md}, including Amendments~1--3 (methods, access and decision rules); \nolinkurl{phase2/ADAPTERS_FROZEN.md} (retained checkpoints and identities); \nolinkurl{phase2/FINAL_TEST_FROZEN.md} (test provenance and FT057 exception); \nolinkurl{docs/DECISIONS.md}, D040--D052 (adoption and execution history); \nolinkurl{results/phase2/train/README.md} (training table and DEV observations); \nolinkurl{results/phase2/final_test/README.md} (completion and infrastructure events); and \nolinkurl{results/phase2/final_test/phase2_analysis.md} (all final-test estimates, intervals, flags, counts and diagnostics).\par
+\endgroup
