@@ -6,7 +6,7 @@
 - **GPT tags complete:** `gpt_tags.jsonl`, 331/331 rows, using the seven-field Pilot-B tag schema. GPT read every output individually in a shuffled, numbered review view with arm/seed labels hidden; no other tagger's labels were consulted. Repeated outputs were each reviewed, with shared reason wording for the same visible issue. A temporary serialization helper recorded the chosen labels; no heuristic classifier assigned them.
 - **Claude Opus tags pending:** an independent pass over all 331 rows, blind to GPT's tags, is still required. Agreement has not been calculated.
 - **Human check done:** a 65-row human check (see "Final audit" below) by team members Ayush Kumar Singh and Divyanshu Mishra (project authors); the original AI tags are retained alongside the final labels.
-- **Deviation, being closed:** Amendment 1 item 17 requires a human check of **all 331** audited outputs. 266 remain. `build_remaining_sheet.py` writes them as `human_check_remaining_part1.csv` and `human_check_remaining_part2.csv` (133 rows each, interleaved so each checker sees both arms). When they return, `finalize.py` must take the human label for every row.
+- **Deviation closed (10 Nov 2026):** Amendment 1 item 17 requires a human check of **all 331** audited outputs. The remaining 266 were returned as `human_check_remaining_part1_returned.csv` and `human_check_remaining_part2_returned.csv` (133 each, interleaved by `build_remaining_sheet.py`); all 331 final labels are now human.
 
 Build the packet from any working directory by running `python3 -B /absolute/path/to/results/phase2/audit/build_packet.py`. From the repository root, run `python3 -B results/phase2/audit/build_packet.py`. The stdlib-only builder reads `results/phase2/final_test/Phase2_FinalTest_results.zip` and writes only the packet. It requires complete 300-generation coverage per run, unique IDs, exact input/journal joins, numeric-diagnostic journal hashes and agreement across duplicate diagnostic exports, and the expected failure counts. It never rescores an output. Rebuilding the packet does not regenerate GPT tags.
 
@@ -74,3 +74,12 @@ Tagger A = Claude (`claude_tags.jsonl`, an Opus subagent blind to GPT's tags). T
 
   The confirmatory deficit of E+C is therefore substantive, not a formatting artifact (descriptive).
 - **English status:** 232/331 failed outputs have no English explanatory sentence, only labelled equations.
+
+## Full human check (10 November 2026)
+
+Both remaining sheets: 133/133 rows each, every row labelled with a note, valid labels, no fixed column changed. `finalize.py` now reads all three returned files and asserts that every one of the 331 rows has a human label (`label_source = human` for all 331). The interim 65-row finalisation is in git `94de9de`.
+
+- **Human vs taggers on the 266 new rows:** category matched both taggers on 264/266. English status matched B (GPT, stricter) on 230 and A (Claude) on 77; on the 67 rows where A and B agreed, the human kept their label on 54.
+- **Final split of C failures (unchanged from interim):** E+R 46 format-only + 113 substantive (159); E+C 40 format-only + 132 substantive (172).
+- **Categories:** E+R misread_quantity 33, wrong_relation_operation 65, arithmetic_slip 7, unit_error 8; E+C 36, 77, 11, 8.
+- **English status:** no_explanation 244/331 (E+R 113, E+C 131), compliant 83, non_english 4. The interim 232 used a rule for unchecked rows; 244 is the human count.

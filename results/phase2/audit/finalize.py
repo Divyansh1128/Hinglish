@@ -1,4 +1,7 @@
-"""Phase-2 failure audit: final labels from the returned human check (descriptive; strict scores unchanged).
+"""Phase-2 failure audit: final labels from the returned human checks (descriptive; strict scores unchanged).
+
+All 331 rows are now human-checked, so every final label is the human label. The fallback rules below
+(kept from the 65-row interim finalisation, git 94de9de) no longer fire.
 
 Category: human label where checked (65 rows), otherwise the agreed A/B category (all unchecked rows agree).
 English status: human label where checked; otherwise the agreed A/B label; for the unchecked English-only
@@ -12,7 +15,13 @@ def jl(p): return [json.loads(l) for l in open(p, encoding="utf-8") if l.strip()
 rows = jl(HERE / "phase2_outputs_for_audit.jsonl")
 A = {r["rendering_id"]: r for r in jl(HERE / "claude_tags.jsonl")}
 B = {r["rendering_id"]: r for r in jl(HERE / "gpt_tags.jsonl")}
-H = {r["rendering_id"]: r for r in csv.DictReader(open(HERE / "human_check_returned.csv", encoding="utf-8-sig"))}
+H = {}
+for name in ("human_check_returned.csv", "human_check_remaining_part1_returned.csv", "human_check_remaining_part2_returned.csv"):
+    for r in csv.DictReader(open(HERE / name, encoding="utf-8-sig")):
+        assert r["rendering_id"] not in H, r["rendering_id"]
+        H[r["rendering_id"]] = r
+# Amendment 1 item 17: every audited output is human-checked (65 + 133 + 133 = 331).
+assert set(H) == {r["rendering_id"] for r in rows}, len(H)
 final = []
 for r in rows:
     i = r["rendering_id"]

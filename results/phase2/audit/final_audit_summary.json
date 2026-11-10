@@ -3,13 +3,13 @@
   "category": {
    "arithmetic_slip": 11,
    "format_only": 40,
-   "misread_quantity": 35,
+   "misread_quantity": 36,
    "unit_error": 8,
-   "wrong_relation_operation": 78
+   "wrong_relation_operation": 77
   },
   "english": {
-   "compliant": 49,
-   "no_explanation": 120,
+   "compliant": 38,
+   "no_explanation": 131,
    "non_english": 3
   },
   "failures": 172,
@@ -20,13 +20,13 @@
   "category": {
    "arithmetic_slip": 7,
    "format_only": 46,
-   "misread_quantity": 32,
+   "misread_quantity": 33,
    "unit_error": 8,
-   "wrong_relation_operation": 66
+   "wrong_relation_operation": 65
   },
   "english": {
-   "compliant": 46,
-   "no_explanation": 112,
+   "compliant": 45,
+   "no_explanation": 113,
    "non_english": 1
   },
   "failures": 159,
@@ -37,13 +37,13 @@
   "category": {
    "arithmetic_slip": 18,
    "format_only": 86,
-   "misread_quantity": 67,
+   "misread_quantity": 69,
    "unit_error": 16,
-   "wrong_relation_operation": 144
+   "wrong_relation_operation": 142
   },
   "english": {
-   "compliant": 95,
-   "no_explanation": 232,
+   "compliant": 83,
+   "no_explanation": 244,
    "non_english": 4
   },
   "failures": 331,
@@ -51,6 +51,13 @@
   "substantive": 245
  },
  "human_vs_taggers": {
+  "ENGLISH STATUS DISAGREE": {
+   "A_category": 197,
+   "A_english": 23,
+   "B_category": 197,
+   "B_english": 176,
+   "rows": 199
+  },
   "ENGLISH STATUS DISAGREE (sample)": {
    "A_category": 13,
    "A_english": 2,
@@ -65,6 +72,13 @@
    "B_english": 19,
    "rows": 20
   },
+  "TAGGERS AGREE": {
+   "A_category": 67,
+   "A_english": 54,
+   "B_category": 67,
+   "B_english": 54,
+   "rows": 67
+  },
   "TAGGERS DISAGREE (category)": {
    "A_category": 28,
    "A_english": 7,
@@ -74,9 +88,7 @@
   }
  },
  "label_source": {
-  "ai_agreed": 67,
-  "human": 65,
-  "rule_adjudicated": 199
+  "human": 331
  },
  "rows": 331
 }

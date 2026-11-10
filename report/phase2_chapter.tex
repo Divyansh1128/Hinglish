@@ -336,7 +336,7 @@ The failure packet covers every strict-incorrect C output from every retained E+
 
 The human check, by two bilingual team members (Ayush Kumar Singh and Divyanshu Mishra), returned labels and notes for 65 rows: all 30 category disagreements, 20 sampled agreed rows and 15 sampled English-only disagreements. On category disagreements, a human checker sided with Claude on 28/30 and GPT on 1/30; the category matched both taggers on all 20 agreed rows. On the English-only sample, a human checker supported the stricter English rule on 13/15 rows. Labelled equations alone therefore count as \texttt{no\_explanation} under the rule used for finalisation.
 
-\textbf{Deviation:} Amendment~1 item~17 pre-registered a human check of every audited output; only 65 of the 331 have been checked so far, and the remaining 266 are with the same two checkers (\nolinkurl{results/phase2/audit/human_check_remaining_part*.csv}). Until they return, the final labels below mix human, agreed and rule-adjudicated labels. Finalisation follows human $>$ agreed $>$ \texttt{rule\_adjudicated}: a checked row takes the labels from a human checker; otherwise an agreed label is retained; unchecked English-only disagreements use the stricter adjudicated rule. Categories agree on every unchecked row. The final summary records 65 rows with source \texttt{human}, 67 with \texttt{ai\_agreed} and 199 with \texttt{rule\_adjudicated}. This completes a descriptive classification of all failures, but the 65-row human check does not fulfil Amendment~1's requirement for human checking of every audited output.
+Amendment~1 item~17 requires a human check of every audited output. The same two checkers then labelled the remaining 266 rows (two interleaved sheets of 133, each mixing both arms), so all 331 final labels are human labels, and the requirement is met. An interim finalisation from the first 65 rows, which used agreed AI labels and a rule fitted to the English sample for the rest, gave the same format-only/substantive split. On the 266 later rows, the human category matched both taggers on 264; on English status it matched the stricter tagger (GPT) on 230 and Claude on 77, and on the 67 rows where both taggers gave the same English status it kept that label on 54.
 
 \begin{table}[H]
 \centering\small\singlespacing
@@ -347,8 +347,8 @@ The human check, by two bilingual team members (Ayush Kumar Singh and Divyanshu 
 Classification & E+R & E+C & Total\\
 \midrule
 Format-only & 46 & 40 & 86\\
-Misread quantity & 32 & 35 & 67\\
-Wrong relation/operation & 66 & 78 & 144\\
+Misread quantity & 33 & 36 & 69\\
+Wrong relation/operation & 65 & 77 & 142\\
 Arithmetic slip & 7 & 11 & 18\\
 Unit error & 8 & 8 & 16\\
 \midrule
@@ -358,7 +358,7 @@ All failures & 159 & 172 & 331\\
 \end{tabular}
 \end{table}
 
-Final English status is \texttt{no\_explanation} for 232/331 failed outputs: 112 E+R and 120 E+C. The other final statuses are 95 compliant and four non-English outputs. These are failure-only counts; strict-correct outputs were not audited for English status, so they do not estimate compliance across the whole evaluation. The audit README, \nolinkurl{results/phase2/audit/agreement.json} and \nolinkurl{results/phase2/audit/final_audit_summary.json} preserve the annotation process, agreement and final counts.
+Final English status is \texttt{no\_explanation} for 244/331 failed outputs: 113 E+R and 131 E+C. The other final statuses are 83 compliant and four non-English outputs. These are failure-only counts; strict-correct outputs were not audited for English status, so they do not estimate compliance across the whole evaluation. The audit README, \nolinkurl{results/phase2/audit/agreement.json} and \nolinkurl{results/phase2/audit/final_audit_summary.json} preserve the annotation process, agreement and final counts.
 
 E+R's 159 failures comprise 46 format-only and 113 substantive failures; E+C's 172 comprise 40 and 132. E+C has fewer format-only failures but more substantive failures. The E+C deficit is therefore substantive, not a formatting artifact, under this descriptive audit. These labels do not identify a causal training mechanism or replace the frozen confirmatory endpoint.
 
