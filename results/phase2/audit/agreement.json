@@ -1,0 +1,30 @@
+{
+ "A_category": {
+  "arithmetic_slip": 18,
+  "format_only": 86,
+  "misread_quantity": 65,
+  "unit_error": 16,
+  "wrong_relation_operation": 146
+ },
+ "B_category": {
+  "arithmetic_slip": 18,
+  "format_only": 81,
+  "misread_quantity": 56,
+  "unit_error": 20,
+  "unresolved": 2,
+  "wrong_relation_operation": 154
+ },
+ "category_agree": 301,
+ "category_kappa": 0.869,
+ "category_only_disagreements": 30,
+ "disagreement_rows": 30,
+ "english_agree": 96,
+ "english_kappa": -0.027,
+ "english_only_disagreements": 214,
+ "english_sample_rows": 15,
+ "format_only_kappa": 0.96,
+ "format_only_vs_substantive_agree": 326,
+ "rows": 331,
+ "sample_rows": 20,
+ "sheet_rows": 65
+}
