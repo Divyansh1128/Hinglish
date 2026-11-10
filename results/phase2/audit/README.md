@@ -62,3 +62,14 @@ Tagger A = Claude (`claude_tags.jsonl`, an Opus subagent blind to GPT's tags). T
   - a "Final:" step label read as a second FINAL line.
 
   Tagger A also flags one possibly ambiguous "range" wording for the human to check.
+
+## Final audit (10 November 2026)
+`human_check_returned.csv`: 65/65 rows labelled, all with a note; no fixed column changed. The human's category matched A on 28/30 category disagreements and B on 1/30; on the 20 agreed rows it matched both taggers 20/20.
+- **English status:** the human chose B's reading. Terse "label = equation" output counts as `no_explanation` on 13/15 sampled English disagreements and 28/30 overall. That reading is applied to the 199 unchecked English-only disagreements, marked `rule_adjudicated`.
+- **Outputs:** `finalize.py` writes `final_audit.csv` and `final_audit_summary.json`.
+- **Final split of C failures:**
+  - E+R: 46 format-only and 113 substantive (159 failures);
+  - E+C: 40 format-only and 132 substantive (172 failures).
+
+  The confirmatory deficit of E+C is therefore substantive, not a formatting artifact (descriptive).
+- **English status:** 232/331 failed outputs have no English explanatory sentence, only labelled equations.

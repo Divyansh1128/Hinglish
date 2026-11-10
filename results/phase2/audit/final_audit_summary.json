@@ -1,0 +1,82 @@
+{
+ "EC": {
+  "category": {
+   "arithmetic_slip": 11,
+   "format_only": 40,
+   "misread_quantity": 35,
+   "unit_error": 8,
+   "wrong_relation_operation": 78
+  },
+  "english": {
+   "compliant": 49,
+   "no_explanation": 120,
+   "non_english": 3
+  },
+  "failures": 172,
+  "format_only": 40,
+  "substantive": 132
+ },
+ "ER": {
+  "category": {
+   "arithmetic_slip": 7,
+   "format_only": 46,
+   "misread_quantity": 32,
+   "unit_error": 8,
+   "wrong_relation_operation": 66
+  },
+  "english": {
+   "compliant": 46,
+   "no_explanation": 112,
+   "non_english": 1
+  },
+  "failures": 159,
+  "format_only": 46,
+  "substantive": 113
+ },
+ "all": {
+  "category": {
+   "arithmetic_slip": 18,
+   "format_only": 86,
+   "misread_quantity": 67,
+   "unit_error": 16,
+   "wrong_relation_operation": 144
+  },
+  "english": {
+   "compliant": 95,
+   "no_explanation": 232,
+   "non_english": 4
+  },
+  "failures": 331,
+  "format_only": 86,
+  "substantive": 245
+ },
+ "human_vs_taggers": {
+  "ENGLISH STATUS DISAGREE (sample)": {
+   "A_category": 13,
+   "A_english": 2,
+   "B_category": 13,
+   "B_english": 13,
+   "rows": 15
+  },
+  "RANDOM AGREED SAMPLE": {
+   "A_category": 20,
+   "A_english": 19,
+   "B_category": 20,
+   "B_english": 19,
+   "rows": 20
+  },
+  "TAGGERS DISAGREE (category)": {
+   "A_category": 28,
+   "A_english": 7,
+   "B_category": 1,
+   "B_english": 28,
+   "rows": 30
+  }
+ },
+ "label_source": {
+  "ai_agreed": 67,
+  "human": 65,
+  "rule_adjudicated": 199
+ },
+ "rows": 331
+}
