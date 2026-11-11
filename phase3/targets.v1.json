@@ -1,0 +1,2221 @@
+{
+  "schema": "phase3-targets-1",
+  "Q": 158,
+  "source": "unchanged-Qwen3-4B-E-self-distillation",
+  "terminal_marker": "<|im_end|>",
+  "terminal_id": 151645,
+  "families": [
+    {
+      "family_id": "TRA002",
+      "candidate_output": "To find the number of runs the Green team scored, we add 38 to the Blue team's score of 176:\n\n$$\n176 + 38 = 214\n$$\n\nFINAL: 214 runs",
+      "text_sha256": "0710edd31103fd2c74946a4540f8b13bb5bf985e4927b00af6529126e2e6e328",
+      "target_token_ids_sha256": "7f327fbef9de246e8d26cb02c9dbb0d6dac8a770d410c152cd3138a3204762e0",
+      "target_tokens": 53,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 165,
+        "R": 173,
+        "C": 165
+      }
+    },
+    {
+      "family_id": "TRA003",
+      "candidate_output": "Meena initially had 3 kg of flour. She used 1.25 kg on Monday and 0.75 kg on Tuesday. The total flour used is:\n\n$$\n1.25 + 0.75 = 2 \\text{ kg}\n$$\n\nSo, the remaining flour is:\n\n$$\n3 - 2 = 1 \\text{ kg}\n$$\n\nFINAL: 1 kg",
+      "text_sha256": "87a499da82e09c334f25a829fa4fe89f0d0aaf0b428b1df6fb745076cccbc7b0",
+      "target_token_ids_sha256": "63469d3cdfa5eb37ff6b1dd19ce4f3270e57a78583fd45a2daf9d78de6740da2",
+      "target_tokens": 87,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 228,
+        "C": 217
+      }
+    },
+    {
+      "family_id": "TRA004",
+      "candidate_output": "To find the number of passengers seated on Saturday morning, we first determine how many passengers were seated on Friday morning. Since there are 52 seats and 9 were empty, the number of passengers on Friday morning is:\n\n$$\n52 - 9 = 43\n$$\n\nOn Saturday morning, there were 5 fewer passengers seated than on Friday morning:\n\n$$\n43 - 5 = 38\n$$\n\nFINAL: 38 passengers.",
+      "text_sha256": "663919caffad1a29f819c5836396c54394b01404146603ff498f1cbb8fa1fbb8",
+      "target_token_ids_sha256": "857714c87eba69da7226e36061be24ed27598ef1351fbb6b5a0b12e093921425",
+      "target_tokens": 97,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 213,
+        "R": 237,
+        "C": 224
+      }
+    },
+    {
+      "family_id": "TRA005",
+      "candidate_output": "To find out how many kilograms of wheat Farmer Harpal stored last year, we first need to determine how much wheat he harvested last year. \n\nThis year's harvest is 1240 kg, which is 185 kg more than last year. So, last year's harvest was:\n\n$$\n1240 \\, \\text{kg} - 185 \\, \\text{kg} = 1055 \\, \\text{kg}\n$$\n\nLast year, he sold 600 kg of his harvest, so the amount stored is:\n\n$$\n1055 \\, \\text{kg} - 600 \\, \\text{kg} = 455 \\, \\text{kg}\n$$\n\nFINAL: 455 kg",
+      "text_sha256": "90bc4442e4175b4293063a3c6e47be11c7fe03c703d6d458d7d54d9882e5c588",
+      "target_token_ids_sha256": "253a153bad914acf66e329526c5e022ab5666bbcd16e4615129f538cf288d5c8",
+      "target_tokens": 168,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 302,
+        "R": 334,
+        "C": 321
+      }
+    },
+    {
+      "family_id": "TRA006",
+      "candidate_output": "Kavya made 150 clay lamps. She gave 4 dozen (which is 4 × 12 = 48) lamps to her neighbours and lit 64 lamps at home. The total number of lamps used is 48 + 64 = 112. Therefore, the number of lamps not used is 150 - 112 = 38.\n\nFINAL: 38",
+      "text_sha256": "94ba9d9e25b5ed3e432fe6a37658204e975dbffc3e8c150fbbd3056d6247792e",
+      "target_token_ids_sha256": "106aa5b0d67808d8481282bd02d92493fe08b9f8dcdb4309073ca3b8b261f5f5",
+      "target_tokens": 92,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 228,
+        "C": 218
+      }
+    },
+    {
+      "family_id": "TRA007",
+      "candidate_output": "To find how many points Kabir scored, we start by determining Ananya's score. Ananya scored 4 more points than Rohan, who scored 13 points:\n\n$$\n\\text{Ananya's score} = 13 + 4 = 17\n$$\n\nNext, we calculate Kabir's score, who scored 6 fewer points than Ananya:\n\n$$\n\\text{Kabir's score} = 17 - 6 = 11\n$$\n\nFINAL: 11 points",
+      "text_sha256": "2ee3dbd7ac6c7eec5c3d5af6ebf9c0c5f300a5e3bd10ea7af3161fcc26b9ed30",
+      "target_token_ids_sha256": "814442129e1b15aa7b98d348660c3dc5cfd6d04cd2423447be07a3ee286727ae",
+      "target_tokens": 111,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 229,
+        "R": 241,
+        "C": 228
+      }
+    },
+    {
+      "family_id": "TRA008",
+      "candidate_output": "To find out how many more runs the team needs to win, we add the runs scored by the two openers and the middle-order batters, then subtract this total from the required 260 runs.\n\nRuns scored so far = 94 + 117 = 211\n\nRuns needed = 260 - 211 = 49\n\nFINAL: 49 runs",
+      "text_sha256": "2027ed276c2a345ae0381ae3bd07d50fd97fcda24111b540fea389c3d43290cc",
+      "target_token_ids_sha256": "aef0b0c1d4ac69bca42414dd8455e9c1e062ec2dcd9696d8a33bcab8045bd417",
+      "target_tokens": 86,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 220,
+        "C": 213
+      }
+    },
+    {
+      "family_id": "TRA009",
+      "candidate_output": "To find how many kilograms of kheer were left, we subtract the total amount sold from the initial amount prepared:\n\nInitial amount = 18 kg  \nAmount sold in the morning = 11.5 kg  \nAmount sold in the evening = 4.25 kg  \n\nTotal sold = 11.5 + 4.25 = 15.75 kg  \n\nAmount left = 18 - 15.75 = 2.25 kg  \n\nFINAL: 2.25 kg",
+      "text_sha256": "37786f6676bc4b3a5c11e6dbe52a9b0f8c996f05c9c7e9d3f1ca422f6f4fd777",
+      "target_token_ids_sha256": "01a9e1822d0576f405a8e1358ede89a68603dc468e0734b2fd8ef8f24c8d7777",
+      "target_tokens": 111,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 230,
+        "R": 240,
+        "C": 233
+      }
+    },
+    {
+      "family_id": "TRA010",
+      "candidate_output": "To find how many kilometres of the journey are still to be covered, we subtract the distance already covered from the total distance:\n\nTotal distance = 505 km  \nDistance covered = 178 km + 142 km = 320 km  \nRemaining distance = 505 km - 320 km = 185 km  \n\nFINAL: 185 km",
+      "text_sha256": "56d642b89a421608c59dfe9caf6c09fa5d2b23549ddea8963d1b22f5bc05096c",
+      "target_token_ids_sha256": "5821a6f024c15678f6c124612374c226bb3b481b295ef6f029898d6d9994a8f1",
+      "target_tokens": 84,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 208,
+        "R": 229,
+        "C": 216
+      }
+    },
+    {
+      "family_id": "TRA011",
+      "candidate_output": "Field A produced 860 kg of paddy.  \nField B produced 860 kg - 135 kg = 725 kg of paddy.  \n\nTotal paddy produced by both fields:  \n860 kg + 725 kg = 1585 kg  \n\nFINAL: 1585 kg",
+      "text_sha256": "29b3ee56770a86b30087d3b5f5d739ec6ada47bbf454d04cf96e1a325c32807a",
+      "target_token_ids_sha256": "e588dea7cddbc147c722a3f5574d8a2b9cb6b84eddb5e68b4ca06016c07001ab",
+      "target_tokens": 74,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 188,
+        "R": 200,
+        "C": 191
+      }
+    },
+    {
+      "family_id": "TRA012",
+      "candidate_output": "To find the amount of yellow powder Arjun bought, we start by determining the amounts of pink and yellow powder:\n\n1. Green powder = 750 g  \n2. Pink powder = 750 g + 250 g = 1000 g  \n3. Yellow powder = Pink powder - 400 g = 1000 g - 400 g = 600 g  \n\nFINAL: 600 g",
+      "text_sha256": "b3f8ca36524ed21b8b34c767bcde24dcdcfdee3365159892a0072f86cbd0c1a2",
+      "target_token_ids_sha256": "6deb16247385a3ce86bc7d68649817b189d6fa91351f3f16af8e2cd7669ebab3",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 227,
+        "R": 254,
+        "C": 248
+      }
+    },
+    {
+      "family_id": "TRA013",
+      "candidate_output": "To find out how many metres the last runner must cover, we subtract the total distance covered by the first three runners from the total length of the relay race.\n\nTotal distance of the race = 4000 metres  \nDistance covered by first three runners = 950 m + 1020 m + 980 m = 2950 m  \n\nDistance remaining for the last runner = 4000 m - 2950 m = 1050 m  \n\nFINAL: 1050 metres",
+      "text_sha256": "27888d2ec3fcf0eb0e1cbf3d80d73f510741a124eac13a46a2936223211a898f",
+      "target_token_ids_sha256": "670c2d65c04bf02d2ec5786dfb488578b3471dafd62c2b9ff0068d3b56e770ee",
+      "target_tokens": 115,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 241,
+        "R": 270,
+        "C": 257
+      }
+    },
+    {
+      "family_id": "TRA014",
+      "candidate_output": "To find the number of notebooks not yet given to any class, we subtract the total number of notebooks given to the three classes from the total ordered:\n\nTotal ordered: 500  \nTotal given: 135 (Class 6) + 142 (Class 7) + 158 (Class 8) = 435  \n\nNot yet given: 500 - 435 = 65  \n\nFINAL: 65 notebooks.",
+      "text_sha256": "4fc34bcc7da2eddbc5389fcf6b5f68833bd153ce397e4c98bd22ec564874ad62",
+      "target_token_ids_sha256": "23764892b27edb561939f5490cb2d79e0b60f0aef92d5d91f3b63304763b6549",
+      "target_tokens": 102,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 229,
+        "R": 258,
+        "C": 238
+      }
+    },
+    {
+      "family_id": "TRA015",
+      "candidate_output": "To find the total amount Pooja spent, we calculate the cost of paneer and milk separately and then add them together.\n\nCost of paneer = 2 kg × ₹380/kg = ₹760  \nCost of milk = 3 litres × ₹62/litre = ₹186  \n\nTotal cost = ₹760 + ₹186 = ₹946  \n\nFINAL: 946 ₹",
+      "text_sha256": "7fd5b414e659801ec4b1200f793005a051f94d8434ebe08c113fc2ca10d4fe20",
+      "target_token_ids_sha256": "65b88c940fda640c313aab0508adf767f8a34a12e48ede9b51000ae502139332",
+      "target_tokens": 91,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 201,
+        "R": 222,
+        "C": 209
+      }
+    },
+    {
+      "family_id": "TRA016",
+      "candidate_output": "To find the change, we first calculate the total cost of the tickets for the family of 5:\n\nTotal cost = 5 × ₹345 = ₹1725\n\nThey paid with four ₹500 notes:\n\nTotal payment = 4 × ₹500 = ₹2000\n\nChange received = Total payment - Total cost = ₹2000 - ₹1725 = ₹275\n\nFINAL: 275 ₹",
+      "text_sha256": "050674ed00944ec984f6e7de071ecdb25a5689dba32e95886080e98f65eae7c5",
+      "target_token_ids_sha256": "fb347ecfc239abf26f8341f5cfe261f5c31f818f74a34feb1254db67447aae1c",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 206,
+        "R": 232,
+        "C": 226
+      }
+    },
+    {
+      "family_id": "TRA017",
+      "candidate_output": "The farmer sold 12 quintals of mustard at ₹5600 per quintal, so the total money received is:\n\n12 × 5600 = ₹67200\n\nHe paid ₹1800 for transport, so the money left is:\n\n67200 - 1800 = ₹65400\n\nFINAL: 65400 ₹",
+      "text_sha256": "f236abbf2caee91b6e1527e8256d6adff56a54df252237f63d8f151196770138",
+      "target_token_ids_sha256": "99eaae81fc4dabad952f5ddfa7b91a0edfa246ae536dfeb9d11b89eb3928df78",
+      "target_tokens": 88,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 208,
+        "R": 237,
+        "C": 219
+      }
+    },
+    {
+      "family_id": "TRA018",
+      "candidate_output": "To find the change Neha received, we calculate the total cost and subtract it from ₹1000.\n\nTotal cost = (6 × ₹45) + ₹320 = ₹270 + ₹320 = ₹590\n\nChange received = ₹1000 - ₹590 = ₹410\n\nFINAL: 410 ₹",
+      "text_sha256": "aa27d8a406c1c2c86ef24178aead980a9223204415c9f257f4621c75f0cb9f7d",
+      "target_token_ids_sha256": "2ee9c73665919eca9072de1020f85ec3d37e6fd47a9accf6c025ecb81c28ae9b",
+      "target_tokens": 81,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 203,
+        "R": 238,
+        "C": 216
+      }
+    },
+    {
+      "family_id": "TRA019",
+      "candidate_output": "To find the total cost, we calculate the cost of the chairs and the tables separately and then add them together:\n\n- Cost of chairs: $ 24 \\times 850 = 20,400 $\n- Cost of tables: $ 6 \\times 2400 = 14,400 $\n\nTotal cost: $ 20,400 + 14,400 = 34,800 $\n\nFINAL: ₹34800",
+      "text_sha256": "e7484382871851cdde12add7907540ff085bb133f0c87722aeadc552a2315674",
+      "target_token_ids_sha256": "620bc95c67a400126011dea273ddb8553e1a895cd70e0cc4414f4fe715e68fd5",
+      "target_tokens": 108,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 213,
+        "R": 233,
+        "C": 223
+      }
+    },
+    {
+      "family_id": "TRA020",
+      "candidate_output": "To find the total amount Raghav spent, we need to calculate the total fee paid for 5 months and add the cost of the bat.\n\n1. Fee for 5 months: $ 1200 \\times 5 = 6000 $ rupees.\n2. Cost of the bat: ₹2750.\n\nTotal amount spent: $ 6000 + 2750 = 8750 $.\n\nFINAL: 8750 rupees",
+      "text_sha256": "1ad4b9756c18bdd67912f7b7f2ce881f31786eac8f3c75758032aa6114cd4f6e",
+      "target_token_ids_sha256": "b3be10799473e2ea69329ddbfb2f12d340a8bf30a08803e4af67fe4f1da1badd",
+      "target_tokens": 105,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 219,
+        "R": 249,
+        "C": 240
+      }
+    },
+    {
+      "family_id": "TRA021",
+      "candidate_output": "To find the total cost, we calculate the cost for adults and children separately and then add them together:\n\n- Cost for 2 adults: $2 \\times 160 = 320$ rupees\n- Cost for 3 children: $3 \\times 90 = 270$ rupees\n\nTotal cost = $320 + 270 = 590$ rupees.\n\nFINAL: 590 rupees",
+      "text_sha256": "7bee96d1928ecc017ab18eb561dd5ace843e7a036f5e2d8e9533d7f3bb9f778b",
+      "target_token_ids_sha256": "77d3d0cdfe249cb9aeb353743bbb83d1cde7662701ec087a29165f92725709b8",
+      "target_tokens": 98,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 216,
+        "R": 248,
+        "C": 233
+      }
+    },
+    {
+      "family_id": "TRA022",
+      "candidate_output": "Imran spent ₹72 × 4 = ₹288 on rice and ₹165 × 2 = ₹330 on cooking oil. Total spent = ₹288 + ₹330 = ₹618. Money left = ₹1500 - ₹618 = ₹882.\n\nFINAL: 882 ₹",
+      "text_sha256": "90e8c5edf5a0e9c6c60c426341b22d59c8ec1cebf50d95f76105e22753de4e04",
+      "target_token_ids_sha256": "f693fa2eef65ea4999840edcc1775b03caa397020c760585575f47ec6ee07e32",
+      "target_tokens": 78,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 197,
+        "R": 222,
+        "C": 202
+      }
+    },
+    {
+      "family_id": "TRA023",
+      "candidate_output": "To find out how much of the ₹10000 is unspent, we calculate the total cost and subtract it from ₹10000.\n\n- Cost for 3 workers for 2 days: $3 \\times 2 \\times 450 = 2700$\n- Cost of seeds: ₹4200\n- Total cost: $2700 + 4200 = 6900$\n- Unspent amount: $10000 - 6900 = 3100$\n\nFINAL: 3100 ₹",
+      "text_sha256": "f097ed546e580206f32d6d0d22f6a21ffc9f2f25e92e1f6ee0fbe9260ab285ab",
+      "target_token_ids_sha256": "25ccf2347e559fdf3faa72fc2877d092f3cecbd2b9a052fdb579667e409fde76",
+      "target_tokens": 129,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 259,
+        "R": 301,
+        "C": 276
+      }
+    },
+    {
+      "family_id": "TRA024",
+      "candidate_output": "To find the total amount spent, we calculate the cost of the marigold garlands and add the cost of the lighting.\n\nCost of marigold garlands = 15 × ₹120 = ₹1800  \nCost of lighting = ₹2500  \n\nTotal cost = ₹1800 + ₹2500 = ₹4300  \n\nFINAL: 4300 ₹",
+      "text_sha256": "4aaa2aafa8c946dba56109f1785b77533d8080f49396bb22003df39083b3d57c",
+      "target_token_ids_sha256": "7d05b230e5c434951a24a436c3ba6b65b7eab6de6a261731d163ce7fb3437177",
+      "target_tokens": 89,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 205,
+        "R": 237,
+        "C": 217
+      }
+    },
+    {
+      "family_id": "TRA025",
+      "candidate_output": "To find out how much more money the class needs to collect, we first calculate the total cost for all 38 students:\n\nTotal cost = 38 × ₹650 = ₹24,700\n\nThe class has already collected ₹22,000. So, the additional amount needed is:\n\n₹24,700 - ₹22,000 = ₹2,700\n\nFINAL: 2700 ₹",
+      "text_sha256": "d8e892c2dbd8a7f73e9b4813bdd586caa0ff0ad1dc3a32b1aee38be16c7e273c",
+      "target_token_ids_sha256": "b2418fd777bf52570c71e21da3da58055af05e99b89412785c851797846d0719",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 211,
+        "R": 223,
+        "C": 224
+      }
+    },
+    {
+      "family_id": "TRA026",
+      "candidate_output": "To find the total amount the club pays, we calculate the cost of the balls and the gloves separately and then add them together.\n\nCost of 8 balls = 8 × ₹275 = ₹2200  \nCost of 2 pairs of gloves = 2 × ₹1150 = ₹2300  \n\nTotal cost = ₹2200 + ₹2300 = ₹4500  \n\nFINAL: 4500 ₹",
+      "text_sha256": "3fd0d6bf7f47b022b571118ed1d7d00af1e8d2773a2f3feec81d950daafb8ba5",
+      "target_token_ids_sha256": "3ebc835a2da12a10a8593ff38e5b6e3e09c005d9c6ee2a92f7ed9173003c2651",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 219,
+        "R": 260,
+        "C": 228
+      }
+    },
+    {
+      "family_id": "TRA027",
+      "candidate_output": "We are given that a first-class ticket costs ₹540 more than a second-class ticket, and a second-class ticket costs ₹385.\n\nFirst, calculate the cost of a first-class ticket:\n$$\n\\text{First-class ticket cost} = \\text{Second-class ticket cost} + ₹540 = ₹385 + ₹540 = ₹925\n$$\n\nNow, calculate the cost of 2 first-class tickets:\n$$\n2 \\times ₹925 = ₹1850\n$$\n\nFINAL: 1850",
+      "text_sha256": "9636c9bcaa63c64863d65ff9f854db2e796e77684f92e188d34992e223105a1f",
+      "target_token_ids_sha256": "fa612759eade3f979e5a7a1ef5aae551373fa6cdc38527f2bafd108551442587",
+      "target_tokens": 122,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 233,
+        "R": 268,
+        "C": 247
+      }
+    },
+    {
+      "family_id": "TRA028",
+      "candidate_output": "To find out how much each friend paid, we first calculate the total cost of the meal and delivery:\n\nTotal cost = (Cost of thalis) + (Delivery charge)  \nTotal cost = (3 × ₹299) + ₹103 = ₹897 + ₹103 = ₹1000\n\nSince they split the bill equally among 4 friends:\n\nAmount each friend paid = ₹1000 ÷ 4 = ₹250\n\nFINAL: 250 ₹",
+      "text_sha256": "ba9bd170444bd1979b3fb28f003d3b4436fee2112974fa94900102498d2004c7",
+      "target_token_ids_sha256": "72c557de391411ccaec229027c95cdbf352d90d7d8c5893e6c4f8d4b379dd1b5",
+      "target_tokens": 108,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 218,
+        "R": 247,
+        "C": 228
+      }
+    },
+    {
+      "family_id": "TRA029",
+      "candidate_output": "To find the number of students who do not come by the school bus, we first calculate the number of students who do come by the school bus:\n\n$$\n35\\% \\text{ of } 640 = 0.35 \\times 640 = 224\n$$\n\nThen, subtract this from the total number of students:\n\n$$\n640 - 224 = 416\n$$\n\nFINAL: 416",
+      "text_sha256": "bf259e33435bb4d57c71fef7b70047821ed933a7b3b6be0b461de1edb83d739e",
+      "target_token_ids_sha256": "4e6ce2857c79bb4dcf05c8e73571cf3769d2f0eb4659b690984e17a2e1fdb31a",
+      "target_tokens": 101,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 210,
+        "R": 226,
+        "C": 210
+      }
+    },
+    {
+      "family_id": "TRA030",
+      "candidate_output": "To find how many of the batter's runs did not come from fours and sixes, we first calculate the percentage of runs that came from fours and sixes, which is 45%. Therefore, the percentage of runs that did not come from fours and sixes is:\n\n$$\n100\\% - 45\\% = 55\\%\n$$\n\nNow, we calculate 55% of 80 runs:\n\n$$\n\\frac{55}{100} \\times 80 = 44\n$$\n\nFINAL: 44 runs",
+      "text_sha256": "ce6ed246996da3c4389e9e775df695090c0831f5866a5e4ddb3ea76beb704131",
+      "target_token_ids_sha256": "4017d4df859414e5282778868882fdfe3cc527e86543e49dab000ca19b276781",
+      "target_tokens": 122,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 238,
+        "R": 254,
+        "C": 249
+      }
+    },
+    {
+      "family_id": "TRA031",
+      "candidate_output": "To find how many grams of gram flour are used, we first calculate the amount of wheat flour and then subtract it from the total flour.\n\n- Total flour = 900 g\n- Two-thirds of the flour is wheat flour:  \n  $$\n  \\frac{2}{3} \\times 900 = 600 \\text{ g}\n  $$\n- The rest is gram flour:  \n  $$\n  900 - 600 = 300 \\text{ g}\n  $$\n\nFINAL: 300 g",
+      "text_sha256": "6b4dfee4ab64df5e1570e73037f7a95ad82b72a4e25b3b2a4d8f533567d42806",
+      "target_token_ids_sha256": "37848e621a9e35e795ce81bbd8c1516c989e98ccdc74eaf2ef7259c25a9b587e",
+      "target_tokens": 121,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 232,
+        "R": 247,
+        "C": 235
+      }
+    },
+    {
+      "family_id": "TRA032",
+      "candidate_output": "To find the number of seats that remained empty, we first calculate the total number of reserved seats:\n\n- 3/5 of 1200 seats = (3/5) × 1200 = 720 seats\n- Another 150 seats were reserved on the day of travel\n\nTotal reserved seats = 720 + 150 = 870 seats\n\nNumber of empty seats = Total seats - Reserved seats = 1200 - 870 = 330\n\nFINAL: 330 seats",
+      "text_sha256": "1db2434091dd03e806d0165e4cfae390e1dd2f99657e777b586482c8a1344117",
+      "target_token_ids_sha256": "952be980b9dabd71b511f015dff7ec01901fe12d8c3bd0934d97e54fcadd521c",
+      "target_tokens": 121,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 240,
+        "R": 267,
+        "C": 243
+      }
+    },
+    {
+      "family_id": "TRA033",
+      "candidate_output": "First, calculate the amount of good potatoes:  \n2500 kg × (100% - 12%) = 2500 kg × 88% = 2200 kg.\n\nThen, calculate the money received:  \n2200 kg × ₹15 per kg = ₹33,000.\n\nFINAL: 33000 ₹",
+      "text_sha256": "2b2d27f1b2d9e1d0807a85bbb90e73374db3a9d24ab33c846696a843001a79cc",
+      "target_token_ids_sha256": "6dc888dd3525f2dada5df1e192c5837ae49d99482d72e1f85a4e4068c4acea59",
+      "target_tokens": 84,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 201,
+        "R": 228,
+        "C": 218
+      }
+    },
+    {
+      "family_id": "TRA034",
+      "candidate_output": "To find the total amount Seema pays, we first calculate the discount and then the final price for 3 lanterns.\n\n1. The marked price of one lantern is ₹450.\n2. The discount is 20%, so the discount amount is:\n   $$\n   20\\% \\text{ of } ₹450 = 0.20 \\times 450 = ₹90\n   $$\n3. The discounted price of one lantern is:\n   $$\n   ₹450 - ₹90 = ₹360\n   $$\n4. For 3 lanterns, the total amount Seema pays is:\n   $$\n   3 \\times ₹360 = ₹1080\n   $$\n\nFINAL: 1080 ₹",
+      "text_sha256": "edc4a1e960a8dc6c2084ee21ab3ff83a120680ba65dee3dd6bfcee22b71d8bba",
+      "target_token_ids_sha256": "f0c5b60d714a0a0bc92ec4d6c1f5e1b61fb1182a60cede7313c8797f0177a2d3",
+      "target_tokens": 170,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 280,
+        "R": 295,
+        "C": 285
+      }
+    },
+    {
+      "family_id": "TRA035",
+      "candidate_output": "First, calculate the number of students who chose dance:  \n$ \\frac{3}{8} \\times 480 = 180 $ students.  \n\nNext, calculate the number of students who chose music:  \n$ \\frac{1}{4} \\times 480 = 120 $ students.  \n\nNow, subtract the number of students who chose dance and music from the total number of students to find the number of students who chose art:  \n$ 480 - 180 - 120 = 180 $.  \n\nFINAL: 180 students",
+      "text_sha256": "aa75e41d20ee15880cf9f26b17ea8f97d8d42afc36a68bda5bcbad29c1166f84",
+      "target_token_ids_sha256": "388757858b020889208508c12aa647718d0bc118a1c85f58728549c4c204e7c0",
+      "target_tokens": 129,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 248,
+        "R": 282,
+        "C": 257
+      }
+    },
+    {
+      "family_id": "TRA036",
+      "candidate_output": "We start with 1.5 litres of mango juice. \n\n- 2/5 of the juice is served at lunch:  \n  $ \\frac{2}{5} \\times 1.5 = 0.6 $ litres.\n\n- 0.4 litres are served at dinner.\n\nTotal amount served:  \n$ 0.6 + 0.4 = 1.0 $ litres.\n\nAmount remaining in the bottle:  \n$ 1.5 - 1.0 = 0.5 $ litres.\n\nFINAL: 0.5 litres",
+      "text_sha256": "af93c2d0d5bcc9c39fae8e35624300e7366800a956080c0479d2d1eac7bbca24",
+      "target_token_ids_sha256": "db0aaebb4f2c5e5896e6eeeb944b8502430c0b41cf3e42f9c6f59bc7d2fd956b",
+      "target_tokens": 117,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 236,
+        "R": 254,
+        "C": 249
+      }
+    },
+    {
+      "family_id": "TRA037",
+      "candidate_output": "To find the new fare after a 15% increase, we first calculate the increase:\n\n$$\n15\\% \\text{ of } ₹240 = 0.15 \\times 240 = ₹36\n$$\n\nThen, we add this to the original fare:\n\n$$\n₹240 + ₹36 = ₹276\n$$\n\nFor 2 passengers, the new fare is:\n\n$$\n₹276 \\times 2 = ₹552\n$$\n\nFINAL: 552 ₹",
+      "text_sha256": "4a1b0ba0e56fa6aeeaafaafd96ebdf85cdd8ccae4fcb4e152ab4f9e3662e29be",
+      "target_token_ids_sha256": "2529c704c6aae33e81be3d75d215997c848ba6ef383ca3008ee27b313fd55451",
+      "target_tokens": 117,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 216,
+        "R": 244,
+        "C": 230
+      }
+    },
+    {
+      "family_id": "TRA038",
+      "candidate_output": "To find the number of acres on which neither crop is grown, we first calculate the acres used for wheat and sugarcane.\n\n- Wheat: $ 45\\% \\times 60 = 0.45 \\times 60 = 27 $ acres\n- Sugarcane: $ \\frac{1}{3} \\times 60 = 20 $ acres\n\nTotal acres used for both crops: $ 27 + 20 = 47 $ acres\n\nAcres where neither crop is grown: $ 60 - 47 = 13 $ acres\n\nFINAL: 13 acres",
+      "text_sha256": "1a6a7fd1d48a9de861b2da857635803637b98bb0713718fe918042e9fd109bd9",
+      "target_token_ids_sha256": "c051fbb7aa158ea2b81352ef9a4a328dbe4490c2d50ea60eb64d3984f0c57e83",
+      "target_tokens": 135,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 250,
+        "R": 274,
+        "C": 261
+      }
+    },
+    {
+      "family_id": "TRA039",
+      "candidate_output": "To find how many kilograms of gujiya were left, we first calculate the amount given to the neighbours and the amount eaten at the party.\n\n- One-sixth of 2.4 kg is:  \n  $ \\frac{1}{6} \\times 2.4 = 0.4 $ kg\n\n- Three-eighths of 2.4 kg is:  \n  $ \\frac{3}{8} \\times 2.4 = 0.9 $ kg\n\nTotal amount given away:  \n$ 0.4 + 0.9 = 1.3 $ kg\n\nAmount left:  \n$ 2.4 - 1.3 = 1.1 $ kg\n\nFINAL: 1.1 kg",
+      "text_sha256": "ae50ef391318683914e824b855aaa7a7e36028be2fadc2d71f352099db6be66d",
+      "target_token_ids_sha256": "190c49d938527a8f4d5c10715a418cba899e520eeb51cb900c1db5fdf0ccf12b",
+      "target_tokens": 156,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 281,
+        "R": 299,
+        "C": 290
+      }
+    },
+    {
+      "family_id": "TRA040",
+      "candidate_output": "To find the number of tied matches, we start by calculating the number of matches the team won and the number of matches it lost.\n\n- The team played 16 matches and won 75% of them:\n  $$\n  0.75 \\times 16 = 12 \\text{ matches won}\n  $$\n\n- The team lost half of the matches it did not win. The number of matches it did not win is:\n  $$\n  16 - 12 = 4 \\text{ matches}\n  $$\n\n- Half of these 4 matches were lost:\n  $$\n  \\frac{1}{2} \\times 4 = 2 \\text{ matches lost}\n  $$\n\n- The remaining matches were tied:\n  $$\n  4 - 2 = 2 \\text{ matches tied}\n  $$\n\nFINAL: 2 matches",
+      "text_sha256": "285330916a9fad23c75d9e33e853c91caf77448604712c07d7e4ac80eee50cc1",
+      "target_token_ids_sha256": "6b1b5140507c796201547a6b264f52c34d2d3953b1ffaeea0162c6d270fcaafc",
+      "target_tokens": 187,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 308,
+        "R": 341,
+        "C": 325
+      }
+    },
+    {
+      "family_id": "TRA041",
+      "candidate_output": "To find the fraction of questions Tanya answered correctly, we take the number of correct answers (27) and divide it by the total number of questions (36):\n\n$$\n\\frac{27}{36}\n$$\n\nSimplify the fraction by dividing both the numerator and the denominator by their greatest common divisor, which is 9:\n\n$$\n\\frac{27 \\div 9}{36 \\div 9} = \\frac{3}{4}\n$$\n\nFINAL: 3/4",
+      "text_sha256": "4c706e348314413f56625262cbb8aec3e41546217733da02ba9f1e0f4643f7ec",
+      "target_token_ids_sha256": "c0f34ea06312dad5f09483b442cd38fcac1e1f8afc9c3cdffbaf9f0c08165fc8",
+      "target_tokens": 107,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 216,
+        "R": 234,
+        "C": 215
+      }
+    },
+    {
+      "family_id": "TRA042",
+      "candidate_output": "The ratio of sugar syrup to lemon juice is 5:2. If 350 ml of sugar syrup is used, we can set up a proportion:\n\n$$\n\\frac{5}{2} = \\frac{350}{x}\n$$\n\nCross-multiplying:\n\n$$\n5x = 2 \\times 350\n$$\n$$\n5x = 700\n$$\n$$\nx = \\frac{700}{5} = 140\n$$\n\nSo, 140 ml of lemon juice are needed.\n\nFINAL: 140 ml",
+      "text_sha256": "b4a41df228256ca48137f314f62a5b6f55b5e42aa4abb309b66ed4a2e66add83",
+      "target_token_ids_sha256": "a8a9ca92f25a40be5efca0c17136b759c9e4643630588f46886b2baab16e53c7",
+      "target_tokens": 129,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 247,
+        "R": 265,
+        "C": 258
+      }
+    },
+    {
+      "family_id": "TRA043",
+      "candidate_output": "The ratio of runs scored by Arjun and Vikram is 3:4. If Arjun scored 57 runs, we can set up a proportion to find out how many runs Vikram scored:\n\n$$\n\\frac{3}{4} = \\frac{57}{x}\n$$\n\nCross-multiplying:\n\n$$\n3x = 4 \\times 57\n$$\n$$\n3x = 228\n$$\n$$\nx = \\frac{228}{3} = 76\n$$\n\nSo, Vikram scored 76 runs.\n\nFINAL: 76",
+      "text_sha256": "1089cc64ae1b64ca4e6a602faad157d27fe6eda802cf1a251b9ff20f20c91c7e",
+      "target_token_ids_sha256": "c88c443cfb7507634c3464696adc87fe45841cbd2ab0196b85a60685ed03147b",
+      "target_tokens": 130,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 242,
+        "R": 245,
+        "C": 238
+      }
+    },
+    {
+      "family_id": "TRA044",
+      "candidate_output": "The ratio of boys to girls is 5:7, and there are 20 boys. This means that 5 parts correspond to 20 boys, so 1 part corresponds to $ \\frac{20}{5} = 4 $ students. The total number of parts in the ratio is $ 5 + 7 = 12 $. Therefore, the total number of students is $ 12 \\times 4 = 48 $.\n\nFINAL: 48 students",
+      "text_sha256": "4aa74fddccad9a354976b401b25a7d999af31cc8f2440bd525209838e2d7e41e",
+      "target_token_ids_sha256": "846bfd5925e1cbd8dbe65a08e7126aee3144271c66350464e5f5c68cdf9e2174",
+      "target_tokens": 103,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 206,
+        "R": 219,
+        "C": 217
+      }
+    },
+    {
+      "family_id": "TRA045",
+      "candidate_output": "The total ratio is 4 + 3 = 7 parts. The elder brother gets 4 parts, and the younger brother gets 3 parts. The difference in their shares is 4 - 3 = 1 part.\n\nTo find the weight of 1 part:  \n$$ \\frac{84}{7} = 12 \\, \\text{kg} $$\n\nSo, the elder brother gets 12 kg more than the younger brother.\n\nFINAL: 12 kg",
+      "text_sha256": "c744b01d01344fab049ac6a4de5c7c1e95079402e5eb9e0b32d505a4ddffa755",
+      "target_token_ids_sha256": "59161e6bd6a7f6691f549f2615d43ca07b4f3f2c58b0a31c418be4d35d9eea78",
+      "target_tokens": 102,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 218,
+        "R": 238,
+        "C": 222
+      }
+    },
+    {
+      "family_id": "TRA046",
+      "candidate_output": "We are given that the ratio of passengers in sleeper class to general class is 7:9, and there are 288 passengers in general class. Let the number of passengers in sleeper class be $ 7x $ and in general class be $ 9x $. Since $ 9x = 288 $, we solve for $ x $:\n\n$$\nx = \\frac{288}{9} = 32\n$$\n\nSo, the number of passengers in sleeper class is:\n\n$$\n7x = 7 \\times 32 = 224\n$$\n\nFINAL: 224 passengers",
+      "text_sha256": "6a3b08acff63150daf2fc72435ddccf33f20b68f5d2160cc1b7f253f3b0f1709",
+      "target_token_ids_sha256": "a7e31c03008f4e94ab52f48c3a22fcf114b10f7ec3478071c449a820fa6ebe7d",
+      "target_tokens": 134,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 250,
+        "R": 269,
+        "C": 250
+      }
+    },
+    {
+      "family_id": "TRA047",
+      "candidate_output": "Riya and her brother share 45 laddoos in the ratio 2:3. The total parts are 2 + 3 = 5. Each part is 45 ÷ 5 = 9 laddoos.\n\nRiya's share is 2 parts: 2 × 9 = 18 laddoos.\n\nShe gives 4 laddoos to a friend, so she has 18 - 4 = 14 laddoos now.\n\nFINAL: 14",
+      "text_sha256": "f6dbb337bb747003b927cef88ef25afe1a2f82c823efb6c4bbc76fbea972dc75",
+      "target_token_ids_sha256": "cd4d6e26f13bc0b55152d4c3b5646ae4abe629cb0826f9bd5dd63f903fc7ca5f",
+      "target_tokens": 112,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 240,
+        "R": 259,
+        "C": 249
+      }
+    },
+    {
+      "family_id": "TRA048",
+      "candidate_output": "To find how many grams of rice are needed to make 2 kg of the mixture, we start by noting that the ratio of rice to lentils is 3:1 by weight. This means for every 3 parts of rice, there is 1 part of lentils, making a total of 4 parts.\n\nSince the total mixture is 2 kg (or 2000 grams), each part is:\n\n$$\n\\frac{2000 \\text{ g}}{4} = 500 \\text{ g}\n$$\n\nRice makes up 3 parts of the mixture, so:\n\n$$\n3 \\times 500 = 1500 \\text{ g}\n$$\n\nFINAL: 1500 grams",
+      "text_sha256": "e9b19bf43dd0261a04e6229f22d4a6d51224f57588ff0c53d97c5c9a7f23850a",
+      "target_token_ids_sha256": "562f3a6be1af26dd32ef042a96813483cea2df4b38bcdf5229d6335b485e0012",
+      "target_tokens": 159,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 271,
+        "R": 287,
+        "C": 284
+      }
+    },
+    {
+      "family_id": "TRA049",
+      "candidate_output": "We are given that the ratio of wins to losses is 5:2, and the team lost 6 matches. This means the number of losses corresponds to the 2 parts of the ratio.\n\nIf 2 parts = 6 matches, then 1 part = 6 ÷ 2 = 3 matches.\n\nThe total number of matches played is the sum of wins and losses. The ratio is 5:2, so:\n\n- Wins = 5 parts = 5 × 3 = 15 matches\n- Losses = 2 parts = 6 matches\n\nTotal matches played = 15 + 6 = 21 matches.\n\nFINAL: 21 matches",
+      "text_sha256": "f05de4b9d4b8b7078c4ba80269394aa244189fd9eecdbdf82a504ce62dc4d114",
+      "target_token_ids_sha256": "e9788926953af33e2cdb220705726ccd0c1e106cf411e1d8a3590f21254518d9",
+      "target_tokens": 142,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 255,
+        "R": 271,
+        "C": 264
+      }
+    },
+    {
+      "family_id": "TRA050",
+      "candidate_output": "We are given the ratio of Hindi books to English books is 5:3. If there are 120 Hindi books, we can set up a proportion:\n\n$$\n\\frac{5}{3} = \\frac{120}{x}\n$$\n\nCross-multiplying:\n\n$$\n5x = 3 \\times 120\n$$\n$$\n5x = 360\n$$\n$$\nx = \\frac{360}{5} = 72\n$$\n\nSo, there are 72 English books.\n\nFINAL: 72",
+      "text_sha256": "e381fe9e106706a4d1eaf84ae65dba1c8ad0c5ba007fe486101b833c1a9ffff8",
+      "target_token_ids_sha256": "73aa4e891d70606145c81c040bc4f39a3f15b5436f6d232af6a6af885919c778",
+      "target_tokens": 124,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 233,
+        "R": 253,
+        "C": 239
+      }
+    },
+    {
+      "family_id": "TRA051",
+      "candidate_output": "The ratio of urea to potash is 5:3. Since the farmer has 24 kg of potash, we can determine how much of the mix can be made by considering the total parts of the mix.\n\nThe total parts of the mix are 5 (urea) + 3 (potash) = 8 parts.\n\nSince potash is 3 parts and the farmer has 24 kg of it, each part is 24 kg / 3 = 8 kg.\n\nTherefore, the total mix is 8 parts × 8 kg/part = 64 kg.\n\nFINAL: 64 kg",
+      "text_sha256": "fa967adb32fc850ab98cb0024854d94dd11d5f22b0080dace75817f91f43d453",
+      "target_token_ids_sha256": "611c72ca8bba783be49d055a1fd4521df028d3307f7ce6bc6aff0d4080544c7d",
+      "target_tokens": 131,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 253,
+        "R": 281,
+        "C": 266
+      }
+    },
+    {
+      "family_id": "TRA052",
+      "candidate_output": "We are given that the fare for a fast train is 3 times the bus fare. Two fast-train tickets cost ₹540. Let the bus fare be $ x $.\n\nSince the fast train fare is 3 times the bus fare, the fast train fare is $ 3x $.\n\nTwo fast-train tickets cost:\n$$\n2 \\times 3x = 6x\n$$\nWe are told that this equals ₹540:\n$$\n6x = 540\n$$\nSolving for $ x $:\n$$\nx = \\frac{540}{6} = 90\n$$\n\nThus, the fare for one bus ticket is ₹90.\n\nFINAL: 90 ₹",
+      "text_sha256": "27766b8fa6bc6af95ec415892c9f584e1d0874d7bd688c96fe7368ff6e0091f2",
+      "target_token_ids_sha256": "162e6924dc62f6a02bacd58f382d9f627ce03d6b3eb001a75643e10fbb40c9bb",
+      "target_tokens": 154,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 267,
+        "R": 288,
+        "C": 277
+      }
+    },
+    {
+      "family_id": "TRA053",
+      "candidate_output": "The ratio of rice to jaggery is 4:3. If 3 parts of jaggery correspond to 1.2 kg, then 1 part corresponds to $ \\frac{1.2}{3} = 0.4 $ kg. Therefore, 4 parts of rice correspond to $ 4 \\times 0.4 = 1.6 $ kg.\n\nFINAL: 1.6 kg",
+      "text_sha256": "a5dc01f77965df8b245cad1c62ccf3fc134a9688f85184981e71f97ad332c99b",
+      "target_token_ids_sha256": "57f9131ccb4a500004679ec43fb7f4188401a4995bc1f62f7c169172227f21ef",
+      "target_tokens": 88,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 208,
+        "R": 217,
+        "C": 213
+      }
+    },
+    {
+      "family_id": "TRA054",
+      "candidate_output": "The total ratio parts are 3 + 2 = 5. The time spent on bowling is 2/5 of the total practice time. \n\n$$\n\\text{Time on bowling} = \\frac{2}{5} \\times 90 = 36 \\text{ minutes}\n$$\n\nFINAL: 36 minutes",
+      "text_sha256": "6ed4707d0f801d607fdd434821f8c88e3854af47c7db2870aab26fe074dc551c",
+      "target_token_ids_sha256": "954f8b65f2a860e7513bb1470a48adce54ea3c23d6c68e6a76b9e61940f8b07d",
+      "target_tokens": 71,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 179,
+        "R": 203,
+        "C": 184
+      }
+    },
+    {
+      "family_id": "TRA055",
+      "candidate_output": "To find how many minutes it takes for the train to cover 54 km at a speed of 72 km/h:\n\n1. Convert the speed to km per minute:  \n   $ 72 \\, \\text{km/h} = \\frac{72}{60} = 1.2 \\, \\text{km/min} $\n\n2. Use the formula:  \n   $ \\text{Time} = \\frac{\\text{Distance}}{\\text{Speed}} = \\frac{54}{1.2} = 45 \\, \\text{minutes} $\n\nFINAL: 45 minutes",
+      "text_sha256": "dffc241d5998ab04778bee85330c98fb1e04460fe11c467b02f84c221ef24233",
+      "target_token_ids_sha256": "c09b71dade3d994f19a21c0992f41605bb49959ea7fbec58d007d4d06e11a4a9",
+      "target_tokens": 131,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 229,
+        "R": 245,
+        "C": 237
+      }
+    },
+    {
+      "family_id": "TRA056",
+      "candidate_output": "To find out how many litres of milk are needed for 75 cups of tea, we start by calculating the total volume in milliliters and then convert it to litres.\n\n1. Total milk in milliliters:  \n   $ 120 \\, \\text{ml/cup} \\times 75 \\, \\text{cups} = 9000 \\, \\text{ml} $\n\n2. Convert milliliters to litres:  \n   $ 9000 \\, \\text{ml} = 9 \\, \\text{litres} $\n\nFINAL: 9 litres",
+      "text_sha256": "7792c565194c8ba71d9f769b61e029089c2d89a091dc9e88174159cb0fbdbfa0",
+      "target_token_ids_sha256": "4512d0abe1c4da54db5992165c2e0414f0d58d45dac35021c3809e56465f3e3a",
+      "target_tokens": 130,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 234,
+        "R": 250,
+        "C": 236
+      }
+    },
+    {
+      "family_id": "TRA057",
+      "candidate_output": "To find how many minutes it takes to fill the tank, we divide the total volume of the tank by the rate at which it is filled:\n\n$$\n\\text{Time} = \\frac{\\text{Total Volume}}{\\text{Filling Rate}} = \\frac{27000 \\text{ litres}}{450 \\text{ litres per minute}} = 60 \\text{ minutes}\n$$\n\nFINAL: 60 minutes",
+      "text_sha256": "3002c1ff7258cc5983b53b99b9af317ee1ab35438b5fcc599ce19f28bd95c1c6",
+      "target_token_ids_sha256": "40f509d12d9f00bcb1863cdf0db722265705e448e0ceafd6b5b45d4cf16f82e2",
+      "target_tokens": 95,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 209,
+        "R": 224,
+        "C": 219
+      }
+    },
+    {
+      "family_id": "TRA058",
+      "candidate_output": "To find the total distance the cyclist rides, we calculate the distance for each part of the trip and then add them together.\n\nFor the first part:\nDistance = speed × time = 18 km/h × 2.5 h = 45 km\n\nFor the second part:\nDistance = speed × time = 12 km/h × 1.5 h = 18 km\n\nTotal distance = 45 km + 18 km = 63 km\n\nFINAL: 63 kilometres",
+      "text_sha256": "9f06c88d6881a884d6cd412a72463a237ee2d6d8271525ea848686ac6e71df31",
+      "target_token_ids_sha256": "1eece05d9254a8bfb08106b5086116fc23e1ceeb3058b0aa5a5ca568ab16efed",
+      "target_tokens": 106,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 217,
+        "R": 233,
+        "C": 226
+      }
+    },
+    {
+      "family_id": "TRA059",
+      "candidate_output": "To find how many minutes it will take to print 30 copies of a 16-page question paper, we first calculate the total number of pages to be printed:\n\n$$\n30 \\text{ copies} \\times 16 \\text{ pages per copy} = 480 \\text{ pages}\n$$\n\nThe printer prints 24 pages per minute, so the time required is:\n\n$$\n\\frac{480 \\text{ pages}}{24 \\text{ pages per minute}} = 20 \\text{ minutes}\n$$\n\nFINAL: 20 minutes",
+      "text_sha256": "3b8502b2fcb864c1f355677263010532e2390d9bc39b6c3912050a956d1f1156",
+      "target_token_ids_sha256": "ec9c24ed64682f0f308f741c7a53a844bed034bfd288610022da5d74abffec70",
+      "target_tokens": 125,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 232,
+        "R": 254,
+        "C": 238
+      }
+    },
+    {
+      "family_id": "TRA060",
+      "candidate_output": "To find the total number of modaks made, we multiply the number of modaks made per hour by the number of hours worked per day, and then by the number of days:\n\n$$\n36 \\text{ modaks/hour} \\times 7 \\text{ hours/day} \\times 3 \\text{ days} = 756 \\text{ modaks}\n$$\n\nFINAL: 756 modaks",
+      "text_sha256": "bd8f81532cf11ea0f10bef5d1407186eabc0e6fb126ad32f16f0ec9fe88fc164",
+      "target_token_ids_sha256": "b2e9851b69e45d9b9aac44357485bd6b5ab84c935d7ba91c351e6edc41ce1d6d",
+      "target_tokens": 90,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 204,
+        "R": 221,
+        "C": 217
+      }
+    },
+    {
+      "family_id": "TRA061",
+      "candidate_output": "To find the average speed, we use the formula:\n\n$$\n\\text{Average speed} = \\frac{\\text{Total distance}}{\\text{Total time}}\n$$\n\nThe total distance is 95 km. The total time is from 6:40 a.m. to 9:10 a.m.:\n\n- From 6:40 a.m. to 9:10 a.m. is 2 hours and 30 minutes, which is 2.5 hours.\n\n$$\n\\text{Average speed} = \\frac{95}{2.5} = 38\n$$\n\nThe average speed is 38 km per hour.\n\nFINAL: 38 km/h",
+      "text_sha256": "8835dc4ab09305357f5608967d0389b2a945f1310d2e0632853b3d43fecc3202",
+      "target_token_ids_sha256": "c62b526364893035a175710a42f45c05ad5513f39338f19dcd4709584d290464",
+      "target_tokens": 150,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 270,
+        "R": 283,
+        "C": 275
+      }
+    },
+    {
+      "family_id": "TRA062",
+      "candidate_output": "To find how many kilograms of flour are needed for 340 rotis, we start by noting that 4 rotis are made from 100 g of flour. \n\nFirst, determine how many sets of 4 rotis are in 340 rotis:\n$$\n\\frac{340}{4} = 85\n$$\n\nEach set of 4 rotis requires 100 g of flour, so:\n$$\n85 \\times 100 = 8500 \\text{ g}\n$$\n\nConvert grams to kilograms:\n$$\n8500 \\text{ g} = 8.5 \\text{ kg}\n$$\n\nFINAL: 8.5 kilograms",
+      "text_sha256": "5b5d358c122fed6b77740dbd3592fec83e0e323fed507ed01a48e8065613231a",
+      "target_token_ids_sha256": "c622d1583f8bdcac4954d7e5b36e77f99e0884b6ab80fee92ad7ffbb430bd903",
+      "target_tokens": 153,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 261,
+        "R": 273,
+        "C": 268
+      }
+    },
+    {
+      "family_id": "TRA063",
+      "candidate_output": "To find out how many hours it will take for the oxen to plough a 3-acre field, we can use the rate given:\n\n- The oxen plough 0.25 acre in 1 hour.\n- Therefore, the rate is $ \\frac{0.25 \\text{ acre}}{1 \\text{ hour}} $.\n\nTo find the time to plough 3 acres, we set up the proportion:\n\n$$\n\\frac{0.25 \\text{ acre}}{1 \\text{ hour}} = \\frac{3 \\text{ acre}}{x \\text{ hour}}\n$$\n\nSolving for $ x $:\n\n$$\nx = \\frac{3}{0.25} = 12 \\text{ hours}\n$$\n\nFINAL: 12 hours",
+      "text_sha256": "c0cf2a4e66ad56a5bfdd19f73c64305311f3637786533960af670b92f91b757d",
+      "target_token_ids_sha256": "fb97f8b10e24dbf21e0830f4c9af71150ecf922cc75c83234600ea92174e14a2",
+      "target_tokens": 170,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 280,
+        "R": 287,
+        "C": 282
+      }
+    },
+    {
+      "family_id": "TRA064",
+      "candidate_output": "To find the total time, multiply the time per kilometre by the number of kilometres:\n\nTime = 5 minutes/km × 8.4 km = 42 minutes.\n\nFINAL: 42 minutes",
+      "text_sha256": "46eb6fd73ddc8cd02d7fb56622bdc32abc8d2135cb26b16a3b4dd1eab57d81c2",
+      "target_token_ids_sha256": "1d33c98fe235bc4775023dbe0275b81063be40c712c6cdfc5acb7ad46d946532",
+      "target_tokens": 44,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 146,
+        "R": 158,
+        "C": 151
+      }
+    },
+    {
+      "family_id": "TRA066",
+      "candidate_output": "To find the total time of the journey, we need to add the time spent stopping and the time spent moving.\n\n- Time spent stopping: $9 \\text{ halts} \\times 2 \\text{ minutes/halt} = 18 \\text{ minutes}$\n- Time spent moving: $72 \\text{ minutes}$\n\nTotal time in minutes: $18 + 72 = 90 \\text{ minutes}$\n\nConvert minutes to hours: $\\frac{90}{60} = 1.5 \\text{ hours}$\n\nFINAL: 1.5 hours",
+      "text_sha256": "2699a822210b75c396cb433c18559db9eb0f90270ced8505e94cab3b743bb674",
+      "target_token_ids_sha256": "c5e05bd54dbb0ea85ac0e54b43e9c08affdb22fec75475087162747a65f10b02",
+      "target_tokens": 126,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 236,
+        "R": 243,
+        "C": 235
+      }
+    },
+    {
+      "family_id": "TRA067",
+      "candidate_output": "To find the total number of puris fried, we multiply the number of puris one cook can fry in one hour by the number of cooks and the number of hours:\n\n$$\n3 \\text{ cooks} \\times 120 \\text{ puris/hour} \\times 2.5 \\text{ hours} = 900 \\text{ puris}\n$$\n\nFINAL: 900 puris",
+      "text_sha256": "192ef70e7e6edb4b14e93ecbbc877832f5f0ef00d13582b49ff2fdceb91b0a47",
+      "target_token_ids_sha256": "c85539392861f6fd6d2e8e24d729b5d33aae951ef7d74a305a00a38dd9695917",
+      "target_tokens": 90,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 203,
+        "R": 220,
+        "C": 213
+      }
+    },
+    {
+      "family_id": "TRA068",
+      "candidate_output": "Let the number be $ x $. According to the problem:\n\n$$\n4x + 9 = 61\n$$\n\nSubtract 9 from both sides:\n\n$$\n4x = 52\n$$\n\nDivide both sides by 4:\n\n$$\nx = 13\n$$\n\nFINAL: 13",
+      "text_sha256": "7f0be4e1ca346bd62d489654113daa38fb989ddda7ed1a7c974aaa013a05e86b",
+      "target_token_ids_sha256": "90cffc20de2795a0ec24dc03b3c9ceaea5d61b5a580296cc10b1d015477aa96b",
+      "target_tokens": 69,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 171,
+        "R": 187,
+        "C": 185
+      }
+    },
+    {
+      "family_id": "TRA069",
+      "candidate_output": "Let's denote the number of runs Sana scored in the first innings as $ x $. According to the problem, she scored $ 2x + 5 $ runs in the second innings. The total runs scored in the two innings is given as 77.\n\nSo, we can write the equation:\n$$\nx + (2x + 5) = 77\n$$\n\nSimplify the equation:\n$$\n3x + 5 = 77\n$$\n\nSubtract 5 from both sides:\n$$\n3x = 72\n$$\n\nDivide both sides by 3:\n$$\nx = 24\n$$\n\nNow, substitute $ x = 24 $ into the expression for the second innings:\n$$\n2x + 5 = 2(24) + 5 = 48 + 5 = 53\n$$\n\nSo, Sana scored 53 runs in the second innings.\n\nFINAL: 53 runs",
+      "text_sha256": "db65bdf2dc29e4c2026b8e912825356557022953959bee51bab05335b13c799f",
+      "target_token_ids_sha256": "43ff6707a545ee631bb339e12fdc2ff66030863077e92ed5ce0461954413aa71",
+      "target_tokens": 206,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 321,
+        "R": 333,
+        "C": 323
+      }
+    },
+    {
+      "family_id": "TRA070",
+      "candidate_output": "Let the number of potatoes the cook has be $ x $.\n\nAccording to the problem, if she had 3 times as many potatoes and then 8 more, she would have 50 potatoes. This can be written as:\n\n$$\n3x + 8 = 50\n$$\n\nSubtract 8 from both sides:\n\n$$\n3x = 42\n$$\n\nDivide both sides by 3:\n\n$$\nx = 14\n$$\n\nSo, the cook has 14 potatoes.\n\nFINAL: 14",
+      "text_sha256": "7f506e68730931b1ecc092f183607b1132f383ffd3ce25219f6acb70a2863dc6",
+      "target_token_ids_sha256": "9bf2bb59bffed03e0090bbd78ad9395ddb3be60719da6ff180aa0419df8c4cc1",
+      "target_tokens": 114,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 223,
+        "R": 245,
+        "C": 233
+      }
+    },
+    {
+      "family_id": "TRA071",
+      "candidate_output": "Let $ x $ be the number of buses with 40 seats and $ y $ be the number of buses with 52 seats. We know that:\n\n$$\nx + y = 9 \\quad \\text{(total number of buses)}\n$$\n$$\n40x + 52y = 396 \\quad \\text{(total number of seats)}\n$$\n\nFrom the first equation, $ x = 9 - y $. Substituting into the second equation:\n\n$$\n40(9 - y) + 52y = 396\n$$\n$$\n360 - 40y + 52y = 396\n$$\n$$\n360 + 12y = 396\n$$\n$$\n12y = 36\n$$\n$$\ny = 3\n$$\n\nSo, there are 3 buses with 52 seats.\n\nFINAL: 3",
+      "text_sha256": "d37f702a6d863aa32fc0cb18fc6fad2b4566178e053c2aa25d93e6e356650a60",
+      "target_token_ids_sha256": "afb037216d460224cbfc6c900107c3369d20219e49d264fa4986e3105bf033bd",
+      "target_tokens": 203,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 320,
+        "R": 340,
+        "C": 326
+      }
+    },
+    {
+      "family_id": "TRA072",
+      "candidate_output": "Let the number of hens be $ h $ and the number of goats be $ g $. According to the problem:\n\n1. $ g = h - 12 $ (the farmer has 12 fewer goats than hens)\n2. The total number of legs is 120. Hens have 2 legs each and goats have 4 legs each, so:\n   $$\n   2h + 4g = 120\n   $$\n\nSubstitute $ g = h - 12 $ into the second equation:\n\n$$\n2h + 4(h - 12) = 120\n$$\n$$\n2h + 4h - 48 = 120\n$$\n$$\n6h - 48 = 120\n$$\n$$\n6h = 168\n$$\n$$\nh = 28\n$$\n\nThen, $ g = h - 12 = 28 - 12 = 16 $.\n\nFINAL: 16",
+      "text_sha256": "9372f40686447beba8769d97f1ef3b1a4898de0d1b5eab67497f7d8f63c2949e",
+      "target_token_ids_sha256": "182c6b928e23c952f47d315c008d7eeebdebcd90e9424a1c5b73364c2e144406",
+      "target_tokens": 223,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 333,
+        "R": 366,
+        "C": 356
+      }
+    },
+    {
+      "family_id": "TRA073",
+      "candidate_output": "Anil bought 25 clay lamps at ₹d each, so the total cost for the lamps is $25d$. He also bought a matchbox for ₹15. The total amount spent is ₹190. Therefore:\n\n$$\n25d + 15 = 190\n$$\n\nSubtract 15 from both sides:\n\n$$\n25d = 175\n$$\n\nDivide both sides by 25:\n\n$$\nd = \\frac{175}{25} = 7\n$$\n\nFINAL: 7 ₹",
+      "text_sha256": "66f4eae3d1eb3d1952309cfc69ee9e197f5da5441a1d739939958366dca844be",
+      "target_token_ids_sha256": "b3452378fe01e65f333501e1c9151e279634d43c12d52e7ab7ede39aeb74f829",
+      "target_tokens": 123,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 240,
+        "R": 261,
+        "C": 249
+      }
+    },
+    {
+      "family_id": "TRA074",
+      "candidate_output": "Let the number of students in each class be $ x $.\n\nAfter 6 students move from Class A to Class B:\n- Class A has $ x - 6 $ students.\n- Class B has $ x + 6 $ students.\n\nAccording to the problem, Class B will have twice as many students as Class A:\n$$\nx + 6 = 2(x - 6)\n$$\n\nSolving the equation:\n$$\nx + 6 = 2x - 12 \\\\\n6 + 12 = 2x - x \\\\\n18 = x\n$$\n\nSo, each class originally has 18 students.\n\nFINAL: 18 students",
+      "text_sha256": "8fcbb82ad27ac0f3823ca1686961e488997557497292d909df16dc4c4a1cd1d5",
+      "target_token_ids_sha256": "c1b33c2f6d69ce78e4275bae888a1bf58e86e1aa8df568ce0703b6a1321a30b3",
+      "target_tokens": 139,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 255,
+        "R": 265,
+        "C": 262
+      }
+    },
+    {
+      "family_id": "TRA075",
+      "candidate_output": "Let's solve the equation step by step:\n\nThe total number of goals scored in 6 matches is 23. The team scored $ x $ goals in each of the first 5 matches and 3 goals in the sixth match. So, the equation is:\n\n$$\n5x + 3 = 23\n$$\n\nSubtract 3 from both sides:\n\n$$\n5x = 20\n$$\n\nDivide both sides by 5:\n\n$$\nx = 4\n$$\n\nFINAL: 4",
+      "text_sha256": "3555be419b8b35e3bc3e97d027677989d803dc0c2f973849f4048ec9cfc9a09f",
+      "target_token_ids_sha256": "e519af86fed8a1852cb392c5b996201b33c478511bdc35600203a41445723b18",
+      "target_tokens": 109,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 222,
+        "R": 240,
+        "C": 234
+      }
+    },
+    {
+      "family_id": "TRA076",
+      "candidate_output": "Let the price of one samosa be $ x $.\n\nWe are given:\n- Price of one cup of tea = ₹10\n- Price of three samosas and two cups of tea = ₹80\n\nSo, the equation is:\n$$ 3x + 2 \\times 10 = 80 $$\n$$ 3x + 20 = 80 $$\n$$ 3x = 60 $$\n$$ x = 20 $$\n\nTherefore, the price of one samosa is ₹20.\n\nFINAL: 20 ₹",
+      "text_sha256": "d1cc60ad0b908304cc1a8b693e18261772d64a53e6e1a5f1854b52e49258cbcc",
+      "target_token_ids_sha256": "142ef0fa593fd063f1c7bcc30149a35a1b5acecb27dfe94b7c4d52efa270581b",
+      "target_tokens": 120,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 225,
+        "R": 242,
+        "C": 231
+      }
+    },
+    {
+      "family_id": "TRA077",
+      "candidate_output": "Let the distance from the city to village P be $ x $ km. Then the distance from the city to village Q is $ x + 35 $ km. According to the problem, the sum of the two distances is 145 km:\n\n$$\nx + (x + 35) = 145\n$$\n\nSimplify and solve:\n\n$$\n2x + 35 = 145 \\\\\n2x = 110 \\\\\nx = 55\n$$\n\nSo, village P is 55 km from the city by bus.\n\nFINAL: 55 km",
+      "text_sha256": "8d976b6f5e96c6fb44a2f015d015f7f21abdf21044fe2a5de95f3d37f3849e54",
+      "target_token_ids_sha256": "d7994d4b1e64ded14062e7d531cd7e228b6fcda1926c7fee6e522405a0339992",
+      "target_tokens": 128,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 244,
+        "R": 267,
+        "C": 260
+      }
+    },
+    {
+      "family_id": "TRA078",
+      "candidate_output": "Let the number of mango trees be $ x $. Then the number of lemon trees is $ 4x $. The total number of trees is:\n\n$$\nx + 4x = 85\n$$\n$$\n5x = 85\n$$\n$$\nx = 17\n$$\n\nSo, the number of lemon trees is $ 4x = 4 \\times 17 = 68 $.\n\nFINAL: 68 trees",
+      "text_sha256": "003731c524387196c8769b31abf05d3d84daab076b048537a7ca23dbcdcfd6bd",
+      "target_token_ids_sha256": "be75d9c5b8337380b389d414164f6f647021b0a09ccc3a27472f8e5baf12f1a7",
+      "target_tokens": 97,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 209,
+        "R": 231,
+        "C": 222
+      }
+    },
+    {
+      "family_id": "TRA079",
+      "candidate_output": "To find the total number of peanuts, we can use the formula:\n\nTotal peanuts = (Number of children × Peanuts per child) + Leftover peanuts\n\nSubstituting the given values:\n\nTotal peanuts = (8 × 15) + 6 = 120 + 6 = 126\n\nFINAL: 126",
+      "text_sha256": "ceb229709751645f9904dd5d7c9883a6f55a8b3654ebd948d21a6567da353d24",
+      "target_token_ids_sha256": "86c0008a2e2a8767902364f48af4fa73fefd63ec9a106bc344f2531ead78afb2",
+      "target_tokens": 73,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 186,
+        "R": 209,
+        "C": 192
+      }
+    },
+    {
+      "family_id": "TRA080",
+      "candidate_output": "Let the number of footballs be $ x $ and the number of cricket bats be $ y $.  \nWe are given:\n- $ x + y = 10 $ (total items)\n- $ 350x + 600y = 4750 $ (total cost)\n\nFrom the first equation: $ y = 10 - x $.  \nSubstitute into the second equation:\n$$\n350x + 600(10 - x) = 4750\n$$\n$$\n350x + 6000 - 600x = 4750\n$$\n$$\n-250x + 6000 = 4750\n$$\n$$\n-250x = -1250\n$$\n$$\nx = 5\n$$\n\nFINAL: 5 footballs",
+      "text_sha256": "db2fa9f3c32d4e55aaa2985f742ff8e06e23fc40e14063f50c51a1e8bf7ffdba",
+      "target_token_ids_sha256": "29a37f75f9c36ec13b82340f4df5dc2949f5adef3cf88c4ed7bc9982917712f8",
+      "target_tokens": 192,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 311,
+        "R": 313,
+        "C": 309
+      }
+    },
+    {
+      "family_id": "TRB001",
+      "candidate_output": "To find the combined weight of the two sacks, we first determine the weight of the sack of potatoes. Since it weighs 2.75 kg less than the sack of onions, we subtract 2.75 kg from the weight of the onions:\n\n$$\n\\text{Weight of potatoes} = 7.5 \\, \\text{kg} - 2.75 \\, \\text{kg} = 4.75 \\, \\text{kg}\n$$\n\nNow, we add the weights of the two sacks:\n\n$$\n\\text{Combined weight} = 7.5 \\, \\text{kg} + 4.75 \\, \\text{kg} = 12.25 \\, \\text{kg}\n$$\n\nFINAL: 12.25 kg",
+      "text_sha256": "33be5f7e44162f81a2d1876db9c9261d9bd1c133eab739563886d55dfa9dc752",
+      "target_token_ids_sha256": "55513ff039d5ea02c3d176de8bae845f504dc1aa23949d31878a67f372ab6ed9",
+      "target_tokens": 171,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 289,
+        "R": 306,
+        "C": 300
+      }
+    },
+    {
+      "family_id": "TRB002",
+      "candidate_output": "The mason laid 340 bricks on Monday. On Tuesday, he laid 85 more bricks than on Monday. To find the number of bricks laid on Tuesday, we add 85 to the number of bricks laid on Monday:\n\n$$\n340 + 85 = 425\n$$\n\nFINAL: 425 bricks",
+      "text_sha256": "238c4b63523921540066314f96cd054f706140a7b720331e5fff888f37d75151",
+      "target_token_ids_sha256": "9d16c31e3fc49212ce98e8fd58c3ecd28f7f2b71f0fc7c1f0f3071ad8ac1f364",
+      "target_tokens": 75,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 183,
+        "R": 213,
+        "C": 201
+      }
+    },
+    {
+      "family_id": "TRB003",
+      "candidate_output": "Priya's car tank holds 45 litres. She filled it to the top, so the tank had 45 litres. Then she used 28 litres on a trip. To find out how much fuel is left, subtract the amount used from the full tank:\n\n$$\n45 - 28 = 17\n$$\n\nFINAL: 17 litres",
+      "text_sha256": "efe8d5d7869ef67e8a9dfb3cc15f3430db9c9b0766b9911f793c40b0431f7b7c",
+      "target_token_ids_sha256": "961a0332e3ddbc179c19e94cfd7c59051e117d0c523abed5a7e107e756eb18c3",
+      "target_tokens": 78,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 198,
+        "R": 210,
+        "C": 198
+      }
+    },
+    {
+      "family_id": "TRB004",
+      "candidate_output": "Anil initially had 5,200 rupees. He withdrew 1,750 rupees, leaving him with 5,200 - 1,750 = 3,450 rupees. Then he deposited 900 rupees, so the total amount in the account is 3,450 + 900 = 4,350 rupees.\n\nFINAL: 4350 rupees",
+      "text_sha256": "df71061418ed522d1a36cf78e000ccde7b4131dbe4af05124ed032dbcf08f7d2",
+      "target_token_ids_sha256": "1fd40be1414e77d46cd3f66e769d9887116927f8ac02c9f8dc4681abaf8c6b51",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 222,
+        "R": 243,
+        "C": 236
+      }
+    },
+    {
+      "family_id": "TRB005",
+      "candidate_output": "To find the difference between the number of rose plants and marigold plants, we subtract the number of marigold plants from the number of rose plants:\n\n$$\n48 - 29 = 19\n$$\n\nFINAL: 19 plants",
+      "text_sha256": "1b12961a1a0c6096f6b66fd331c41b2dbddf410d530c4d39840c21f478e66e0b",
+      "target_token_ids_sha256": "b68e8182fc2e15e03603a349edb59ad807fcb3957e145875169f3023dff85149",
+      "target_tokens": 54,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 164,
+        "R": 175,
+        "C": 171
+      }
+    },
+    {
+      "family_id": "TRB006",
+      "candidate_output": "To find out how much cloth is left, we first calculate the total amount of cloth used for the 6 kurtas:\n\n$$\n6 \\text{ kurtas} \\times 3.5 \\text{ metres per kurta} = 21 \\text{ metres}\n$$\n\nThen, subtract this from the original 25-metre roll:\n\n$$\n25 \\text{ metres} - 21 \\text{ metres} = 4 \\text{ metres}\n$$\n\nFINAL: 4 metres",
+      "text_sha256": "be6464fbfa7888a62e1ddecde22aeefcf9f3aa848054377663239d220cae163c",
+      "target_token_ids_sha256": "8a409512a70fa0f8afb3006fa10b07043c3b4320c68aa0ca807b0417aa2fcd27",
+      "target_tokens": 109,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 225,
+        "R": 232,
+        "C": 232
+      }
+    },
+    {
+      "family_id": "TRB007",
+      "candidate_output": "To find the time it takes to go from Agra to Jaipur by train, we add the extra time to the bus journey time:\n\nTrain time = Bus time + Extra time  \nTrain time = 4.5 hours + 1.25 hours = 5.75 hours\n\nFINAL: 5.75 hours",
+      "text_sha256": "b9e19e9132a41a26db050e8c3a133131f6385c083544628b507df233ab65ca89",
+      "target_token_ids_sha256": "13ab8e3f3fc26f0778eeb6a4ec0a2cfba4b28c25c5ddb1a417c696a854fb5744",
+      "target_tokens": 69,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 184,
+        "R": 205,
+        "C": 198
+      }
+    },
+    {
+      "family_id": "TRB008",
+      "candidate_output": "The shopkeeper started with 120 notebooks. He sold 47 in the morning and 38 in the evening. The total number of notebooks sold is $47 + 38 = 85$. Therefore, the number of notebooks he has now is $120 - 85 = 35$.\n\nFINAL: 35 notebooks",
+      "text_sha256": "16c35ef812b2b96c82efa72806207e684be597ebef0558fba0c84afb0fbede87",
+      "target_token_ids_sha256": "d2b93b65339b08d563c4f6576e2e79bf27389ce84c94e048e71c4c57e303d743",
+      "target_tokens": 77,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 186,
+        "R": 204,
+        "C": 198
+      }
+    },
+    {
+      "family_id": "TRB009",
+      "candidate_output": "The cost of painting the bedroom is 3,600 - 1,150 = 2,450 rupees. The total cost of painting both rooms is 3,600 + 2,450 = 6,050 rupees.\n\nFINAL: 6050 rupees",
+      "text_sha256": "a4522ab425c07572d1897151e704fee0123d61ddc03baf21f277c4b76589c052",
+      "target_token_ids_sha256": "857fa7e8bc25f570c1ded50289d27e820548447acce0fbf70bc34ee7a64b311e",
+      "target_tokens": 71,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 189,
+        "R": 211,
+        "C": 201
+      }
+    },
+    {
+      "family_id": "TRB010",
+      "candidate_output": "To find how many pots remain to be watered, subtract the number of pots already watered from the total number of pots:\n\n$$\n64 - 27 = 37\n$$\n\nFINAL: 37 pots",
+      "text_sha256": "ab9ea7f6331ba3c46d6fe993de45cb7d24dd0e69d4adfe70a5635726daa1e729",
+      "target_token_ids_sha256": "bae08c7d72182e50f3414824e55a71af3c3b7eecadbb16e37a8964304db96370",
+      "target_tokens": 48,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 155,
+        "R": 165,
+        "C": 159
+      }
+    },
+    {
+      "family_id": "TRB011",
+      "candidate_output": "To find the difference between Ritu's savings in the two months, we subtract the smaller amount from the larger amount:\n\n$1,240 - 850 = 390$\n\nFINAL: 390 rupees",
+      "text_sha256": "12e0adc9b87bd217bf9775b303886e4a7d4388bce845ec41b2cfa40e4e05a045",
+      "target_token_ids_sha256": "af296a3c79ce2dd99c30c160713f33b80760d8cbfa6739964f85789e70add933",
+      "target_tokens": 50,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 159,
+        "R": 178,
+        "C": 170
+      }
+    },
+    {
+      "family_id": "TRB012",
+      "candidate_output": "Kavya started with 500 rupees. She spent 275 rupees on a bag and 95 rupees on a pencil box. The total amount spent is 275 + 95 = 370 rupees. \n\nSo, the remaining money Kavya has is 500 - 370 = 130 rupees.\n\nFINAL: 130 rupees",
+      "text_sha256": "04f4f1b94d4e7a22044ae583882fcf857b560766d65046468c088bf11b70e0bd",
+      "target_token_ids_sha256": "6e78721a4fe288d9daaed394548b34e9210b5036d2185dffa9980d1adc02045f",
+      "target_tokens": 92,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 226,
+        "C": 216
+      }
+    },
+    {
+      "family_id": "TRB013",
+      "candidate_output": "To find the total time needed to stitch one shirt and one pair of pyjamas, we first determine the time it takes to stitch a pair of pyjamas. \n\n- Time to stitch a shirt: 75 minutes\n- Time to stitch a pair of pyjamas: $75 - 20 = 55$ minutes\n\nTotal time = Time for shirt + Time for pyjamas = $75 + 55 = 130$ minutes.\n\nFINAL: 130 minutes",
+      "text_sha256": "0a32d82f4c184a6fd00a9de5137a8fb780f0b7175e976ee31c8eea2aceefe689",
+      "target_token_ids_sha256": "6fbf6323f0bc5dd77c0b845788cd4e02f82945da9b2261f9730fce37e7b1a54f",
+      "target_tokens": 108,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 231,
+        "R": 242,
+        "C": 237
+      }
+    },
+    {
+      "family_id": "TRB014",
+      "candidate_output": "Arjun has to drive the remaining distance, which is the total journey minus the distance already driven. \n\nRemaining distance = Total journey - Distance driven  \nRemaining distance = 260 km - 185 km  \nRemaining distance = 75 km  \n\nFINAL: 75 km",
+      "text_sha256": "60777cfe4a8bfa8d3bbdf1bbd2c32114d814b4d0456d781f4332058b18fb7bb2",
+      "target_token_ids_sha256": "2217d60651554a45290fac63a35d19d324cd717e380264c4f6cdf3c8893d7a05",
+      "target_tokens": 60,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 166,
+        "R": 178,
+        "C": 168
+      }
+    },
+    {
+      "family_id": "TRB015",
+      "candidate_output": "To find the change Seema received, we first calculate the total cost of the mangoes:\n\nCost of mangoes = 3 kg × 60 rupees/kg = 180 rupees.\n\nShe gave the shopkeeper 200 rupees, so the change she received is:\n\nChange = 200 rupees - 180 rupees = 20 rupees.\n\nFINAL: 20 rupees",
+      "text_sha256": "fe3467e481c33981352f565dfd7cfd5d8d28c49a50de528cc6c4e013d26bb455",
+      "target_token_ids_sha256": "883e58ec4746fd31ccf4299c4433bae0f6697a5af0c505dd35b581ff311d2012",
+      "target_tokens": 91,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 203,
+        "R": 220,
+        "C": 215
+      }
+    },
+    {
+      "family_id": "TRB016",
+      "candidate_output": "To calculate the total amount to be paid, we need to consider both the cost of the taps and the visiting charge.\n\n- Cost of 4 taps: $ 4 \\times 350 = 1400 $ rupees\n- Visiting charge: 200 rupees\n\nTotal amount to be paid: $ 1400 + 200 = 1600 $ rupees\n\nFINAL: 1600 rupees",
+      "text_sha256": "9ec46811df792cca80c20e54fe2f46d59b6b1d9bf832a4207834f735d1b583ea",
+      "target_token_ids_sha256": "a47e3a9adbf9b2fd7bdb29b8f2c96bb4a390976de3f1d387c15e092e65a1aefd",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 219,
+        "R": 238,
+        "C": 230
+      }
+    },
+    {
+      "family_id": "TRB017",
+      "candidate_output": "Rohan paid for 12 litres of fuel at 104 rupees per litre, which is $12 \\times 104 = 1248$ rupees. He also paid 50 rupees for the car wash. Therefore, the total cost is $1248 + 50 = 1298$ rupees.\n\nFINAL: 1298 rupees",
+      "text_sha256": "c18559e3b2c15e0acb1b2cd839da4ca471948d712b83f05a258c27f33d83b1c6",
+      "target_token_ids_sha256": "4eb5633bd7e00fbabccb0cc8c9705d25a9a9ac837d7f787fb7b2396ab04c5564",
+      "target_tokens": 89,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 225,
+        "C": 218
+      }
+    },
+    {
+      "family_id": "TRB018",
+      "candidate_output": "To find the total amount Sunita had at the end of the year, we calculate the interest earned and add it to the principal amount.\n\n1. **Principal amount**: 8,000 rupees  \n2. **Interest rate**: 6 rupees per 100 rupees deposited  \n   - For 8,000 rupees, the interest is:  \n     $$\n     \\frac{6}{100} \\times 8000 = 480 \\text{ rupees}\n     $$\n3. **Total amount at the end of the year**:  \n   $$\n   8000 + 480 = 8480 \\text{ rupees}\n   $$\n\nFINAL: 8480 rupees",
+      "text_sha256": "7f76ce48c6d42f34c4cd9ba70d883de6d6eb0a8aad4d5c00272b8174712fa77b",
+      "target_token_ids_sha256": "1cda910da4ecb85684db97202dc9087f513853b24046aeeebd258c9e1376f5e1",
+      "target_tokens": 166,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 293,
+        "R": 310,
+        "C": 307
+      }
+    },
+    {
+      "family_id": "TRB019",
+      "candidate_output": "To find the total amount Lalit spent, we calculate the cost of the clay pots and add the cost of the sack of manure:\n\n- Cost of clay pots: $15 \\text{ pots} \\times 40 \\text{ rupees/pot} = 600 \\text{ rupees}$\n- Cost of manure: $260 \\text{ rupees}$\n\nTotal cost: $600 + 260 = 860 \\text{ rupees}$\n\nFINAL: 860 rupees",
+      "text_sha256": "1e7b279b806a397b4b88e6f15e471577789d3aed86de128a9c32b8c8482d0150",
+      "target_token_ids_sha256": "ab37d23095ea9bbf7378ff5a76f474d871d98b3679e4f18c696ccdc0654e73af",
+      "target_tokens": 117,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 234,
+        "R": 253,
+        "C": 246
+      }
+    },
+    {
+      "family_id": "TRB020",
+      "candidate_output": "The total cost is the sum of the cloth cost and the stitching cost: 1,350 + 750 = 2,100 rupees. Each friend paid an equal share, so 2,100 ÷ 3 = 700 rupees.\n\nFINAL: 700 rupees",
+      "text_sha256": "05691e0ffa839e724bf7aae4ebe670a26cc49e2e088cad0ae89eb8992bbc31dc",
+      "target_token_ids_sha256": "3df48d52a85d4c8c02d13f2fae7e2ce0b9f41c8271209d09f399ca131cfe5d44",
+      "target_tokens": 71,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 193,
+        "R": 214,
+        "C": 200
+      }
+    },
+    {
+      "family_id": "TRB021",
+      "candidate_output": "To find the total cost, we first calculate the cost of 4 boxes of pencils:\n\n- Cost of 1 box = 54 rupees\n- Cost of 4 boxes = 4 × 54 = 216 rupees\n\nThen, we add the cost of the eraser:\n\n- Cost of eraser = 8 rupees\n- Total cost = 216 + 8 = 224 rupees\n\nFINAL: 224 rupees",
+      "text_sha256": "57ece2822543b7e16b415e9451f3aefbd3403e0956f42c87bfc8e6a0a60f8b07",
+      "target_token_ids_sha256": "b9b13b6f6ba8b5cbaf2b8eb265fbfea29770ba0b251c7def03dec59932248f7b",
+      "target_tokens": 102,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 212,
+        "R": 227,
+        "C": 222
+      }
+    },
+    {
+      "family_id": "TRB022",
+      "candidate_output": "The labourer was originally supposed to be paid 650 rupees for 6 days, which is $650 \\times 6 = 3900$ rupees. However, because the labourer came late one day, 150 rupees were deducted. Therefore, the labourer was paid:\n\n$$\n3900 - 150 = 3750 \\text{ rupees}\n$$\n\nFINAL: 3750 rupees",
+      "text_sha256": "8812ae49a0b3fa06b7b7b1c98d2bdaa510257d9aadee18b7fe28a969a3107020",
+      "target_token_ids_sha256": "3ff01b599425e8cf78e3955513f3ecb7af71890ecdde73cf23d975866f901bb9",
+      "target_tokens": 103,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 227,
+        "R": 249,
+        "C": 245
+      }
+    },
+    {
+      "family_id": "TRB023",
+      "candidate_output": "To find the total cost of the tickets for the family, we calculate the cost for the adults and the children separately and then add them together.\n\n- Cost for 2 adults: $2 \\times 85 = 170$ rupees\n- Cost for 3 children: $3 \\times 45 = 135$ rupees\n\nTotal cost: $170 + 135 = 305$ rupees\n\nFINAL: 305 rupees",
+      "text_sha256": "2c6531af7e5b9215a0018b1630a364ac4c5aeec24e190fe7d487ac7b6f732985",
+      "target_token_ids_sha256": "9be93a1ba990cfcc846ae7560e15e21625e5c8de167dd0927d7bb63bb5411472",
+      "target_tokens": 105,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 225,
+        "R": 251,
+        "C": 240
+      }
+    },
+    {
+      "family_id": "TRB024",
+      "candidate_output": "Deepak's monthly savings is the difference between his salary and his household expenses:  \n18,000 - 11,500 = 6,500 rupees.  \n\nFor 4 months, he deposits:  \n6,500 × 4 = 26,000 rupees.  \n\nFINAL: 26000 rupees",
+      "text_sha256": "97df9bcd002c6555994ae0ba0982ba07c442a5cf4eac9bc0bfe7d48dc8597306",
+      "target_token_ids_sha256": "f6d94dbba2fb0969513aef511a2ed507f7277654d6969e65da9d2c65388a14ba",
+      "target_tokens": 82,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 207,
+        "R": 240,
+        "C": 230
+      }
+    },
+    {
+      "family_id": "TRB025",
+      "candidate_output": "To find the total cost, we calculate the cost of tulsi and neem saplings separately and then add them together.\n\nCost of 10 tulsi saplings = 10 × 30 = 300 rupees  \nCost of 6 neem saplings = 6 × 55 = 330 rupees  \n\nTotal cost = 300 + 330 = 630 rupees  \n\nFINAL: 630 rupees",
+      "text_sha256": "ae03d4087487cfdd7f23898ee2d8fde2f7a95f62c564de53e11f556bade87932",
+      "target_token_ids_sha256": "1695d40bc2469e127b5a7327cf6b7fec9db1819bcd7c101bf9ab7c76fc92bf36",
+      "target_tokens": 102,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 230,
+        "R": 251,
+        "C": 244
+      }
+    },
+    {
+      "family_id": "TRB026",
+      "candidate_output": "To calculate the profit, we first find the profit per bag and then multiply by the number of bags sold.\n\nProfit per bag = Selling price per bag - Cost price per bag  \n= 80 rupees - 35 rupees  \n= 45 rupees\n\nProfit for 25 bags = 45 rupees/bag × 25 bags  \n= 1125 rupees\n\nFINAL: 1125 rupees",
+      "text_sha256": "1066a75e2e45395a4a7f5d2f70aaa95ac48d318244e5d335e2f2bce98e828f13",
+      "target_token_ids_sha256": "97e8a7360f46589a88cd51748573586501f1adfedacbb8dae6b0b38b64bee9f6",
+      "target_tokens": 95,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 212,
+        "R": 240,
+        "C": 227
+      }
+    },
+    {
+      "family_id": "TRB027",
+      "candidate_output": "The doll costs 45 rupees more than the toy car, so the doll costs $120 + 45 = 165$ rupees. Neha buys one toy car and one doll, so she spends $120 + 165 = 285$ rupees.\n\nFINAL: 285 rupees",
+      "text_sha256": "3cb3c1002900b976a4f0f914bf69a53788a2b0649fa5c3f89fa13d616a7bc3f3",
+      "target_token_ids_sha256": "b8d9585a36849a03e344d2cd56b3c1e3a92aba6b1a9a22e5beee7c26bdd20ee2",
+      "target_tokens": 75,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 194,
+        "R": 222,
+        "C": 215
+      }
+    },
+    {
+      "family_id": "TRB028",
+      "candidate_output": "To find the total cost, we calculate the cost of the bricks and add the labour charge.\n\nCost of bricks = 150 bricks × 9 rupees/brick = 1350 rupees  \nLabour charge = 600 rupees  \n\nTotal cost = 1350 + 600 = 1950 rupees  \n\nFINAL: 1950 rupees",
+      "text_sha256": "7a27075dda9365e866f4fe6b7518fd169dffb707f645636ff16dd63b6d5b6efa",
+      "target_token_ids_sha256": "78ba4c65d41d6ae761dfd98ad445eba306588fd215eed0f09de088245283dd4b",
+      "target_tokens": 86,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 201,
+        "R": 223,
+        "C": 219
+      }
+    },
+    {
+      "family_id": "TRB029",
+      "candidate_output": "To find the selling price of the saree after a 15% discount, we first calculate the discount amount and then subtract it from the original price.\n\nOriginal price = 2,400 rupees  \nDiscount percentage = 15%  \nDiscount amount = 15% of 2,400 = 0.15 × 2,400 = 360 rupees  \nSelling price = Original price - Discount amount = 2,400 - 360 = 2,040 rupees\n\nFINAL: 2040 rupees",
+      "text_sha256": "5c29473102b80ef73156b2e5e4f821b3134d373ed55119df0a197612ef192a4b",
+      "target_token_ids_sha256": "5682f0396be0186674f41b8da210de318b559cf39f81c1096ad24e22d54179a4",
+      "target_tokens": 128,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 242,
+        "R": 248,
+        "C": 247
+      }
+    },
+    {
+      "family_id": "TRB030",
+      "candidate_output": "Kiran sowed three-fifths of 600 grams of seeds, which is $ \\frac{3}{5} \\times 600 = 360 $ grams. The remaining seeds are $ 600 - 360 = 240 $ grams.\n\nFINAL: 240 grams",
+      "text_sha256": "86da12162066c4086a8a88a95062563890e94a9eb8fb8dad259ee9deed5db493",
+      "target_token_ids_sha256": "507b8cb8061103b95110f167b9b0bc17b724418ddb9c7c341727d222c8cf88e1",
+      "target_tokens": 71,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 178,
+        "R": 190,
+        "C": 181
+      }
+    },
+    {
+      "family_id": "TRB031",
+      "candidate_output": "Pooja saves 1/6 of her monthly income. Her monthly income is 24,000 rupees, so her monthly savings are:\n\n$$\n\\frac{1}{6} \\times 24,000 = 4,000 \\text{ rupees}\n$$\n\nIn one year, she saves:\n\n$$\n4,000 \\times 12 = 48,000 \\text{ rupees}\n$$\n\nFINAL: 48000 rupees",
+      "text_sha256": "d3fa3d3756249a67e8dd1472c95991ddcc11b89d624e5c3bc14e07156a33f61a",
+      "target_token_ids_sha256": "32c98c0b8ba9284c50acf3b6a216e900c005084ef3b5b594e329afcdab2660e0",
+      "target_tokens": 112,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 224,
+        "R": 245,
+        "C": 236
+      }
+    },
+    {
+      "family_id": "TRB032",
+      "candidate_output": "To find the distance driven on village roads, we first calculate 35% of 320 km (the distance on the highway):\n\n$$\n0.35 \\times 320 = 112 \\text{ km}\n$$\n\nThe remaining distance was on village roads:\n\n$$\n320 - 112 = 208 \\text{ km}\n$$\n\nFINAL: 208 km",
+      "text_sha256": "640575d4d90517c91e0ab4fcba1356a6f0e3c0e372628993cf28b484ffa3a421",
+      "target_token_ids_sha256": "284af3d7d68a510ec345d38e5121a5f5fda1729716ed28b3095e5cc3b9b65fab",
+      "target_tokens": 91,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 202,
+        "R": 220,
+        "C": 211
+      }
+    },
+    {
+      "family_id": "TRB033",
+      "candidate_output": "The tank currently holds two-thirds of its capacity, which is $ \\frac{2}{3} \\times 1200 = 800 $ litres. To fill it up, we need $ 1200 - 800 = 400 $ litres.\n\nFINAL: 400 litres",
+      "text_sha256": "ea5b0639a9293224e206bebe3281e0f458919cecef15dfc7943c3a5f309c695c",
+      "target_token_ids_sha256": "1c26479e74e9c72599babac557667cfda18ceea56db655c6350c0399a1540d0d",
+      "target_tokens": 69,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 176,
+        "R": 196,
+        "C": 183
+      }
+    },
+    {
+      "family_id": "TRB034",
+      "candidate_output": "The original charge is 400 rupees. A 12% increase means the additional charge is $ 400 \\times 0.12 = 48 $ rupees. The new charge is $ 400 + 48 = 448 $ rupees.\n\nFINAL: 448 rupees",
+      "text_sha256": "337e0f2844cfd5d591b28b1bf5b92a284ab9486223b8ce5b93fff91a6dace814",
+      "target_token_ids_sha256": "fb05f9cea8fef8b341edc6ede71ddc33ff689d845fa2e97f317be5d9fe702da0",
+      "target_tokens": 73,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 185,
+        "R": 198,
+        "C": 192
+      }
+    },
+    {
+      "family_id": "TRB035",
+      "candidate_output": "To find out how many kilograms of rice were sold on Monday, we calculate 3/8 of 80 kg:\n\n$$\n\\frac{3}{8} \\times 80 = 30 \\text{ kg}\n$$\n\nFINAL: 30 kg",
+      "text_sha256": "d81372340e324035b7dd7f52ab038d9554e1e0aa31f33a9e1d598fc234bdfeaa",
+      "target_token_ids_sha256": "5ab57d8d6a3f518f345c0f2d8194a46fa3def0e82f10d8861a82dca95c7bad86",
+      "target_tokens": 57,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 164,
+        "R": 178,
+        "C": 172
+      }
+    },
+    {
+      "family_id": "TRB036",
+      "candidate_output": "Mohan received 9,000 rupees. He put two-fifths of it in a fixed deposit, which is $\\frac{2}{5} \\times 9000 = 3600$ rupees. The remaining amount is $9000 - 3600 = 5400$ rupees. He gave one-third of this to his sister, which is $\\frac{1}{3} \\times 5400 = 1800$ rupees.\n\nFINAL: 1800 rupees",
+      "text_sha256": "c24ed91a52713ae15ad02aa92605629af88a459fdc22ca34d0dae61cce4b1607",
+      "target_token_ids_sha256": "f0ca9c1a1d01c6540e7ee63564c0d86eb3192914dc028809c52756f5a781e2af",
+      "target_tokens": 122,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 242,
+        "R": 265,
+        "C": 260
+      }
+    },
+    {
+      "family_id": "TRB037",
+      "candidate_output": "To find the number of seeds that did not sprout, we first calculate the number of seeds that sprouted and then subtract that from the total number of seeds.\n\nTotal seeds = 250  \nPercentage that sprouted = 84%  \nNumber of seeds that sprouted = 250 × 0.84 = 210  \nNumber of seeds that did not sprout = 250 - 210 = 40\n\nFINAL: 40",
+      "text_sha256": "c7a9d9158b61ffa8742d6ffd1ad16551b65b799175f826b395e5f93bcba74bbb",
+      "target_token_ids_sha256": "02bb381826b9585c24748f9f1cd006defe4321b16d4da9a7a1c101d338073cfa",
+      "target_tokens": 103,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 206,
+        "R": 221,
+        "C": 211
+      }
+    },
+    {
+      "family_id": "TRB038",
+      "candidate_output": "To find out how many kilometers the family covered on the first day, we calculate 5/9 of 360 km:\n\n$$\n\\frac{5}{9} \\times 360 = \\frac{5 \\times 360}{9} = \\frac{1800}{9} = 200\n$$\n\nFINAL: 200 kilometres",
+      "text_sha256": "eb00c1f121f0515a3765fb68f4e40c2c3537b5431afc4cdccbc100d4bb13c538",
+      "target_token_ids_sha256": "b5b262ca6ebe772b74db4e32dcce59f91b4c1a71edb04992d4283c3650ccd16f",
+      "target_tokens": 83,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 194,
+        "R": 208,
+        "C": 203
+      }
+    },
+    {
+      "family_id": "TRB039",
+      "candidate_output": "To find the number of shirts stitched this month, we calculate 25% more than 60 shirts:\n\n25% of 60 = 0.25 × 60 = 15  \nSo, this month's shirts = 60 + 15 = 75\n\nFINAL: 75 shirts",
+      "text_sha256": "379a938a8cc23697a69f2b95bd8d39e141cc2a340bc1c3b476eace96831ae5bd",
+      "target_token_ids_sha256": "16f0f99300f3390e0a3f78913db8cce3c91520c0c043b81c95c5854e58b22b7d",
+      "target_tokens": 71,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 179,
+        "R": 219,
+        "C": 211
+      }
+    },
+    {
+      "family_id": "TRB040",
+      "candidate_output": "The total length of the wall is 12 metres. The painter has painted 0.4 of this length, which is:\n\n$$\n0.4 \\times 12 = 4.8 \\text{ metres}\n$$\n\nThe unpainted portion of the wall is:\n\n$$\n12 - 4.8 = 7.2 \\text{ metres}\n$$\n\nFINAL: 7.2 metres",
+      "text_sha256": "ac627a64bf97c21f7a44ec88b983047b5a54a488c5e73cba3c3999e792bc16ee",
+      "target_token_ids_sha256": "083fe22af5a57a78a96423a922422a5bc4a1590b124b9d1c2a8793138411813a",
+      "target_tokens": 87,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 195,
+        "R": 213,
+        "C": 205
+      }
+    },
+    {
+      "family_id": "TRB041",
+      "candidate_output": "Rakesh's monthly income is 20,000 rupees. He saves 15% of it, so he spends 100% - 15% = 85% of his income.\n\nTo find out how much he spends:\n$$ 20,000 \\times 0.85 = 17,000 $$\n\nFINAL: 17000 rupees",
+      "text_sha256": "ba2f5e988fb11d5a96e32fb430b78e82e5abd8d27a49f9cb6d9dd205ef7df3d1",
+      "target_token_ids_sha256": "d75900f75f2b41484e012680da3c8bcd86118e89773fb361cc3161cfc0788bab",
+      "target_tokens": 92,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 203,
+        "R": 218,
+        "C": 214
+      }
+    },
+    {
+      "family_id": "TRB042",
+      "candidate_output": "The ratio of the first kind of tea to the second kind is 3:2. The total parts of the mixture are 3 + 2 = 5 parts. Out of these 5 parts, the first kind makes up 3 parts.\n\nSo, the amount of the first kind in 15 kg of the mixture is:\n\n$$\n\\frac{3}{5} \\times 15 = 9 \\text{ kg}\n$$\n\nFINAL: 9 kg",
+      "text_sha256": "4a894c5b7c96b143a90dd2c037a34413ca29d6db2f176ff2cdc420b224b9ebe2",
+      "target_token_ids_sha256": "9c2da76e1c79bd3c148bb3ac5588bd4fec009ebeaf62bfac01c571875d2a1320",
+      "target_tokens": 99,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 210,
+        "R": 232,
+        "C": 226
+      }
+    },
+    {
+      "family_id": "TRB043",
+      "candidate_output": "The ratio of sand to cement is 4:1, meaning for every 1 part of cement, 4 parts of sand are needed. If the mason uses 6 bags of cement, then he needs $4 \\times 6 = 24$ bags of sand.\n\nFINAL: 24 bags",
+      "text_sha256": "7a3b4cdc7b42dbcb00bfaa402b3fceabc58ebc3322146b8b5b51ee196d3889b9",
+      "target_token_ids_sha256": "ce266df989d997e301ecefd69c181317bc39d5ce150c8c58c81bf127f6ea7dba",
+      "target_tokens": 65,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 172,
+        "R": 189,
+        "C": 180
+      }
+    },
+    {
+      "family_id": "TRB044",
+      "candidate_output": "To find out how much Aman paid, we first determine the total distance driven by both Aman and Vikas:\n\nTotal distance = 120 km + 80 km = 200 km\n\nThe fuel cost is split in the ratio of the distances they drove, which is 120:80, or simplified to 3:2.\n\nThe total parts of the ratio are 3 + 2 = 5 parts.\n\nAman's share is 3/5 of the total fuel cost:\n\nAman's payment = (3/5) × 1,500 rupees = 900 rupees.\n\nFINAL: 900 rupees",
+      "text_sha256": "63a39fb4cb146119ac2c1264bb27606cbe6613784a340442b847fbf5ff828e02",
+      "target_token_ids_sha256": "1c82b08ef9a1daa4c813ba2fb480563aa9743b7d1b660e5f4b0f318c58268a63",
+      "target_tokens": 144,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 270,
+        "R": 292,
+        "C": 279
+      }
+    },
+    {
+      "family_id": "TRB045",
+      "candidate_output": "To find how much more the second grandson got than the first, we start by dividing the total amount of 12,000 rupees in the ratio 5:7.\n\nThe total parts = 5 + 7 = 12 parts.\n\nEach part = 12,000 / 12 = 1,000 rupees.\n\nThe first grandson gets 5 parts: 5 × 1,000 = 5,000 rupees.\n\nThe second grandson gets 7 parts: 7 × 1,000 = 7,000 rupees.\n\nThe difference is 7,000 - 5,000 = 2,000 rupees.\n\nFINAL: 2000 rupees",
+      "text_sha256": "fa3a1f835f652fa394d1f55ac760312b1dd8a7d8a76cb4da5ab98dae01364948",
+      "target_token_ids_sha256": "8c9d9012dc377c1118ebf3f16236093df3ef19ab0619921d200f5b409faa3ed1",
+      "target_tokens": 167,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 287,
+        "R": 310,
+        "C": 301
+      }
+    },
+    {
+      "family_id": "TRB046",
+      "candidate_output": "We are given that the ratio of marigold plants to rose plants is 7 : 4, and there are 28 rose plants.\n\nFirst, find the value of one part of the ratio for rose plants:\n$$\n\\frac{28}{4} = 7\n$$\n\nNow, multiply this value by 7 to find the number of marigold plants:\n$$\n7 \\times 7 = 49\n$$\n\nFINAL: 49 plants",
+      "text_sha256": "421960a0adba72dbb4a019782602b2dab6ca05f2d2c3bcd0e9229f47652aff23",
+      "target_token_ids_sha256": "08a71bd2a88e29bf989d5ccfd3c976c55d3d7e9f33179b783d128e224d36b0c0",
+      "target_tokens": 100,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 212,
+        "R": 225,
+        "C": 222
+      }
+    },
+    {
+      "family_id": "TRB047",
+      "candidate_output": "The ratio of red to blue patches is 2:3, which means for every 2 red patches, there are 3 blue patches. The total number of patches is 2 + 3 = 5 parts.\n\nSince 5 parts equal 45 patches, each part equals $ \\frac{45}{5} = 9 $.\n\nThe number of blue patches is 3 parts, so $ 3 \\times 9 = 27 $.\n\nFINAL: 27",
+      "text_sha256": "f79c3b1e6e26a669fa3fcc80a112a0c28174ae23c3ba0a97333eb6dc69394795",
+      "target_token_ids_sha256": "3dbe25b47f3cf1bee9f5054012cd23881ce6ccc1f02e4307cf859d5391549ae2",
+      "target_tokens": 102,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 210,
+        "R": 237,
+        "C": 214
+      }
+    },
+    {
+      "family_id": "TRB048",
+      "candidate_output": "The ratio of mango juice to orange juice cartons is 5:3. Since 40 cartons of mango juice were sold, we can find the number of orange juice cartons by setting up a proportion:\n\n$$\n\\frac{5}{3} = \\frac{40}{x}\n$$\n\nCross-multiplying:\n\n$$\n5x = 120 \\Rightarrow x = 24\n$$\n\nSo, the shop sold 24 cartons of orange juice.\n\nFINAL: 24",
+      "text_sha256": "9b1b7df44510a8371fa62e59e2dbf728f83382214a248f4029ca0ee79e3b5d99",
+      "target_token_ids_sha256": "3085503b0f0c9141fc81b5d904c148171a27365e66270952b8c8ddd238a46cbe",
+      "target_tokens": 108,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 224,
+        "R": 231,
+        "C": 230
+      }
+    },
+    {
+      "family_id": "TRB049",
+      "candidate_output": "The length and width of the room are in the ratio 3:2. Given that the width is 4 metres, we can find the length by using the ratio. Since the width corresponds to 2 parts, each part is $ \\frac{4}{2} = 2 $ metres. Therefore, the length, which is 3 parts, is $ 3 \\times 2 = 6 $ metres.\n\nThe perimeter of a rectangle is calculated as $ 2 \\times (\\text{length} + \\text{width}) $. Substituting the values, we get:\n\n$$\n2 \\times (6 + 4) = 2 \\times 10 = 20 \\text{ metres}\n$$\n\nFINAL: 20 metres",
+      "text_sha256": "a464983e92dfcd27fd859dd7a3c1ae633caf3de99e79d68058b58ba8904601e5",
+      "target_token_ids_sha256": "37d19d55f639e4f2e54ca04d33157d8b86d454936446aa4e2b3598bb02783385",
+      "target_tokens": 157,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 267,
+        "R": 281,
+        "C": 278
+      }
+    },
+    {
+      "family_id": "TRB050",
+      "candidate_output": "The ratio of Neha's savings to Ravi's savings is 3 : 5. Since Ravi saved 3,000 rupees, we can find the value of one part of the ratio:\n\n$$\n\\text{5 parts} = 3000 \\text{ rupees} \\\\\n\\text{1 part} = \\frac{3000}{5} = 600 \\text{ rupees}\n$$\n\nNeha's savings are 3 parts:\n\n$$\n3 \\times 600 = 1800 \\text{ rupees}\n$$\n\nFINAL: 1800 rupees",
+      "text_sha256": "48dadf4d3f06db624ab02ea575a2e796e0b8487aa6bb59417a9ebe8945441eab",
+      "target_token_ids_sha256": "d00faa9710a9e3347d6f25d339a28c34e286a05c1f1a48cfe8f69a80d682d792",
+      "target_tokens": 138,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 249,
+        "R": 256,
+        "C": 257
+      }
+    },
+    {
+      "family_id": "TRB051",
+      "candidate_output": "We are given that the ratio of distances driven on the first and second days is 4 : 3, and the distance driven on the second day is 210 km.\n\nLet the distance driven on the first day be $ 4x $ and on the second day be $ 3x $. Since the second day's distance is 210 km, we have:\n$$\n3x = 210 \\Rightarrow x = 70\n$$\n\nNow, the distance driven on the first day is $ 4x = 4 \\times 70 = 280 $ km.\n\nTotal distance over the two days is:\n$$\n280 + 210 = 490 \\text{ km}\n$$\n\nFINAL: 490 km",
+      "text_sha256": "5901ba90eb09771469bf85e3ed6048143dd373a1b40e7366cc0eb7eaa63ad320",
+      "target_token_ids_sha256": "510cf111876afda7757789931188824b1db6b8dd82cd5159f605e35b17de164c",
+      "target_tokens": 165,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 289,
+        "R": 309,
+        "C": 284
+      }
+    },
+    {
+      "family_id": "TRB052",
+      "candidate_output": "The ratio of soil to compost is 5:2. This means for every 2 kg of compost, 5 kg of soil should be mixed.\n\nGiven that the gardener has 14 kg of compost, we can set up a proportion:\n\n$$\n\\frac{5}{2} = \\frac{x}{14}\n$$\n\nSolving for $ x $:\n\n$$\nx = \\frac{5}{2} \\times 14 = 35\n$$\n\nSo, the gardener should mix 35 kg of soil.\n\nFINAL: 35 kg",
+      "text_sha256": "19155fcb6887ef7e6b5ec0e326054728c98dd63fd78b10a3600eea957249180d",
+      "target_token_ids_sha256": "06d48d0f29d5f7e8225715705488ed4caaadeda73eb0605e749d1f58ff601c6a",
+      "target_tokens": 121,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 234,
+        "R": 249,
+        "C": 241
+      }
+    },
+    {
+      "family_id": "TRB053",
+      "candidate_output": "The ratio of red, white, and green beads is 4 : 3 : 1, which adds up to 4 + 3 + 1 = 8 parts. Since the total number of beads is 96, each part represents 96 ÷ 8 = 12 beads. The number of white beads is 3 parts, so 3 × 12 = 36.\n\nFINAL: 36",
+      "text_sha256": "2eb75215e974fd4b199afb40a3c3909ad3a65c5d77b22a373181d3281386414f",
+      "target_token_ids_sha256": "26161f8a5a95bb8484d3e0c53ddabf587f639a01f889f4b95e54c4cbd3bbbf0f",
+      "target_tokens": 92,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 209,
+        "R": 229,
+        "C": 213
+      }
+    },
+    {
+      "family_id": "TRB054",
+      "candidate_output": "The cost price (CP) is given as 1,500 rupees. The ratio of CP to selling price (SP) is 5 : 6. \n\nFirst, find the value of 5 parts (CP):\n5 parts = 1,500 rupees  \n1 part = 1,500 / 5 = 300 rupees  \n\nNow, find the selling price (SP):\n6 parts = 6 × 300 = 1,800 rupees  \n\nProfit = SP - CP = 1,800 - 1,500 = 300 rupees  \n\nFINAL: 300 rupees",
+      "text_sha256": "ab1e3c2b099875ec4a1dcd6a6a47125c9b0df0263a6de3781379a12b1bddb359",
+      "target_token_ids_sha256": "9f0e531b05e53af5913cbbbd8144d7a5ec08d7bab20d877ccf3d74d7270dbe04",
+      "target_tokens": 145,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 269,
+        "R": 275,
+        "C": 259
+      }
+    },
+    {
+      "family_id": "TRB055",
+      "candidate_output": "To find out how many litres of fuel the car will need for a 440 km trip, we can use the formula:\n\n$$\n\\text{Fuel needed} = \\frac{\\text{Distance}}{\\text{Fuel efficiency}}\n$$\n\nGiven:\n- Distance = 440 km\n- Fuel efficiency = 16 km per litre\n\n$$\n\\text{Fuel needed} = \\frac{440}{16} = 27.5 \\text{ litres}\n$$\n\nFINAL: 27.5 litres",
+      "text_sha256": "54403ed3db8c73740c1609f034ccd1f6f376d372be2257b3e17912c9e247cd1e",
+      "target_token_ids_sha256": "4445a85e0cca7232c5b9370a757f55603b426b8f02240384db0e8c11ecf647e7",
+      "target_tokens": 114,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 217,
+        "R": 222,
+        "C": 220
+      }
+    },
+    {
+      "family_id": "TRB056",
+      "candidate_output": "To find the number of hours the worker takes to paint 78 square metres, we divide the total area by the rate of painting:\n\n$$\n\\text{Time} = \\frac{\\text{Total Area}}{\\text{Rate}} = \\frac{78}{12} = 6.5 \\text{ hours}\n$$\n\nFINAL: 6.5 hours",
+      "text_sha256": "b2617580e0936c9f3cb77bc816294e3d6528d8be090e5373eea6f705029c68fa",
+      "target_token_ids_sha256": "b0fb18f93c0d0538224e0f34a50a0d1d44aa08570c20eef52656cb312040f207",
+      "target_tokens": 79,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 180,
+        "R": 193,
+        "C": 186
+      }
+    },
+    {
+      "family_id": "TRB057",
+      "candidate_output": "To find the cost of 2.4 kg of rice, we multiply the cost per kilogram by the number of kilograms:\n\n$$\n\\text{Cost} = 45 \\, \\text{rupees/kg} \\times 2.4 \\, \\text{kg} = 108 \\, \\text{rupees}\n$$\n\nFINAL: 108 rupees",
+      "text_sha256": "bfc63b24c0e42d90483414f76bf3c0deeee476ff6977cc9c927220f693a66391",
+      "target_token_ids_sha256": "38166944f010d80c9b9a640b75b679e6b7ea474e7f045f85a042c5071d4a1796",
+      "target_tokens": 83,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 181,
+        "R": 190,
+        "C": 187
+      }
+    },
+    {
+      "family_id": "TRB058",
+      "candidate_output": "Sanjay's speed is 15 km/h. To find the time taken to ride 9 km, we use the formula:\n\n$$\n\\text{Time} = \\frac{\\text{Distance}}{\\text{Speed}} = \\frac{9}{15} \\text{ hours}\n$$\n\nConvert hours to minutes:\n\n$$\n\\frac{9}{15} \\times 60 = 36 \\text{ minutes}\n$$\n\nFINAL: 36 minutes",
+      "text_sha256": "8ce67f448307aeb100d538576833da2441839b876f3b131da783e0714ccdb716",
+      "target_token_ids_sha256": "11a5b6763c29c985a4c4a9eabdc79e0168184ad44d12c76fcc19e3fed5c62498",
+      "target_tokens": 101,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 206,
+        "R": 220,
+        "C": 215
+      }
+    },
+    {
+      "family_id": "TRB059",
+      "candidate_output": "To solve this problem, we consider the rates at which the taps fill the tank.\n\n- The first tap fills the tank in 6 hours, so its rate is $ \\frac{1}{6} $ of the tank per hour.\n- The second tap fills the tank in 3 hours, so its rate is $ \\frac{1}{3} $ of the tank per hour.\n\nWhen both taps are open, their combined rate is:\n$$\n\\frac{1}{6} + \\frac{1}{3} = \\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}\n$$\n\nThis means the two taps together fill $ \\frac{1}{2} $ of the tank per hour. To fill the entire tank, it will take:\n$$\n\\frac{1}{\\frac{1}{2}} = 2 \\text{ hours}\n$$\n\nFINAL: 2 hours",
+      "text_sha256": "0d066aa0b3b3c23d9081fb6fb2ab9c2598e7053e839a7a03442846e344fecf02",
+      "target_token_ids_sha256": "2d5761bec2fda4578569126a580eefead799ce1e3a1670b9d42442d6a84dbc40",
+      "target_tokens": 203,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 315,
+        "R": 326,
+        "C": 318
+      }
+    },
+    {
+      "family_id": "TRB060",
+      "candidate_output": "To find out how many shirts the tailor can stitch in 10 hours, we first determine the rate of stitching:\n\n- The tailor stitches 3 shirts in 2 hours, so the rate is $ \\frac{3}{2} $ shirts per hour.\n\nNow, we multiply this rate by 10 hours:\n\n$$\n\\frac{3}{2} \\times 10 = 15\n$$\n\nSo, the tailor will stitch 15 shirts in 10 hours.\n\nFINAL: 15 shirts",
+      "text_sha256": "973b84b0a378d0c94b4c19da71a139bb9bacbc886384baeb1498cd06b2305e27",
+      "target_token_ids_sha256": "3730f2a412544c3b7e313e47f1cc640aed648d74336f8ad786044a7187858060",
+      "target_tokens": 109,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 206,
+        "R": 221,
+        "C": 214
+      }
+    },
+    {
+      "family_id": "TRB061",
+      "candidate_output": "To calculate the total amount deposited in 2 years, we multiply the monthly deposit by the number of months in 2 years:\n\n$$\n\\text{Total deposit} = 750 \\, \\text{rupees/month} \\times 24 \\, \\text{months} = 18000 \\, \\text{rupees}\n$$\n\nFINAL: 18000 rupees",
+      "text_sha256": "05d829e3ebd713965e4b2b8ee179ea98f465a6cbf9d597067837ae4ddccce533",
+      "target_token_ids_sha256": "a3a2a921f2b9d5740e692626d8959e51e5cc60318b2b19a7e160090a148d2d1e",
+      "target_tokens": 88,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 191,
+        "R": 206,
+        "C": 199
+      }
+    },
+    {
+      "family_id": "TRB062",
+      "candidate_output": "To find how many 30 cm long pieces can be made from a 2.4 metre long plank, we first convert the length of the plank to centimeters:\n\n$$\n2.4 \\, \\text{metres} = 2.4 \\times 100 = 240 \\, \\text{cm}\n$$\n\nNow, divide the total length of the plank by the length of each piece:\n\n$$\n\\frac{240 \\, \\text{cm}}{30 \\, \\text{cm}} = 8\n$$\n\nSo, the carpenter will get 8 pieces.\n\nFINAL: 8",
+      "text_sha256": "ce64f5ea31e86915e69614b827954656e7461051ea37b04b9fd04f4fba20ef1e",
+      "target_token_ids_sha256": "4779814b3155debde8736af350477e658409f766f7181ae89a4879d1a3f0f770",
+      "target_tokens": 136,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 239,
+        "R": 246,
+        "C": 241
+      }
+    },
+    {
+      "family_id": "TRB063",
+      "candidate_output": "To find the total distance the bus travels in 5 days, we first calculate the daily distance:\n\n- One-way trip: 38 km\n- 4 one-way trips per day: $ 38 \\times 4 = 152 $ km/day\n\nFor 5 days: $ 152 \\times 5 = 760 $ km\n\nFINAL: 760 kilometres",
+      "text_sha256": "1fa0b1b17321a0eb9d255e358fbd224700d7e772055f2061ec5e606f9c896948",
+      "target_token_ids_sha256": "ca845db7227f1094b66e330126a20b4ff5362613d5b1a7aee1762c9835e43965",
+      "target_tokens": 86,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 196,
+        "R": 210,
+        "C": 200
+      }
+    },
+    {
+      "family_id": "TRB064",
+      "candidate_output": "To find the cost of 750 mL of cooking oil, we note that 1 litre is 1000 mL. So, 750 mL is $\\frac{750}{1000} = \\frac{3}{4}$ of a litre.\n\nThe cost of 1 litre is 160 rupees, so the cost of $\\frac{3}{4}$ litre is:\n$$\n\\frac{3}{4} \\times 160 = 120 \\text{ rupees}\n$$\n\nFINAL: 120 rupees",
+      "text_sha256": "d41c1ad8b7bf5b4732e69c3dc09bc1896ffd42db8918e8389d5bea9b4782a876",
+      "target_token_ids_sha256": "db97521d68c65a365cf07b77a93369e9e9828c470207a80c69c35c9df5a8953a",
+      "target_tokens": 125,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 226,
+        "R": 231,
+        "C": 229
+      }
+    },
+    {
+      "family_id": "TRB065",
+      "candidate_output": "To find the total amount of water used in a day, we calculate the water usage in the morning and in the evening, then add them together.\n\nWater used in the morning:  \n$ 18 \\, \\text{litres/minute} \\times 25 \\, \\text{minutes} = 450 \\, \\text{litres} $\n\nWater used in the evening:  \n$ 18 \\, \\text{litres/minute} \\times 15 \\, \\text{minutes} = 270 \\, \\text{litres} $\n\nTotal water used in a day:  \n$ 450 \\, \\text{litres} + 270 \\, \\text{litres} = 720 \\, \\text{litres} $\n\nFINAL: 720 litres",
+      "text_sha256": "c2bc4aaf3552ba6e7933b1a1b9d6f9581fb5e74b5953452f1d8d7073afb3a25a",
+      "target_token_ids_sha256": "f0dc69d31bab1b205751d0b7801dff0a9070862f294f6b955ac3a8eb91572e27",
+      "target_tokens": 180,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 299,
+        "R": 317,
+        "C": 311
+      }
+    },
+    {
+      "family_id": "TRB066",
+      "candidate_output": "To find out how many months it will take to earn 1,080 rupees of interest, we divide the total interest by the monthly interest:\n\n$$\n\\frac{1080 \\text{ rupees}}{45 \\text{ rupees/month}} = 24 \\text{ months}\n$$\n\nFINAL: 24 months",
+      "text_sha256": "080e8cebc9d0dc4dc4672d38aeb761caf04d4f44d27e1b036ce5fe01d2e39918",
+      "target_token_ids_sha256": "7ebcbd643c2c6a1bd344ba5dc3976feedfc4fc402680caf88c2af011d44a8dae",
+      "target_tokens": 75,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 183,
+        "R": 196,
+        "C": 191
+      }
+    },
+    {
+      "family_id": "TRB067",
+      "candidate_output": "To find the cost of lace for 4 dupattas, we first convert the length of lace needed for one dupatta into metres:\n\n350 cm = 3.5 metres\n\nFor 4 dupattas, the total length of lace needed is:\n3.5 metres/dupatta × 4 dupattas = 14 metres\n\nThe cost of 14 metres of lace at 24 rupees per metre is:\n14 × 24 = 336 rupees\n\nFINAL: 336 rupees",
+      "text_sha256": "b65bf773734f4f4f192123942c0d9dba366cbcb266abe64960b747f72e2166c4",
+      "target_token_ids_sha256": "bf771887ac0e24b43b995af81da62cd5fcbf51223cab1ffdb4980022cb2a72cd",
+      "target_tokens": 115,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 229,
+        "R": 245,
+        "C": 237
+      }
+    },
+    {
+      "family_id": "TRB068",
+      "candidate_output": "Let $ x $ be the number of kilograms of potatoes Kamla bought.\n\nThe cost of potatoes is $ 25x $ rupees, and the cost of coriander is 30 rupees. The total cost is 205 rupees. So, we have the equation:\n\n$$\n25x + 30 = 205\n$$\n\nSubtract 30 from both sides:\n\n$$\n25x = 175\n$$\n\nDivide both sides by 25:\n\n$$\nx = 7\n$$\n\nKamla bought 7 kilograms of potatoes.\n\nFINAL: 7 kg",
+      "text_sha256": "5a00c11dd9027bf9d65d0c86d06e96254d002eef42b2ea2231f5a5d860d043f7",
+      "target_token_ids_sha256": "561aadf321d24fa39b13eba7c81719221461deccd6fe90b194ad1e1cdf4a2b81",
+      "target_tokens": 134,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 256,
+        "R": 280,
+        "C": 280
+      }
+    },
+    {
+      "family_id": "TRB069",
+      "candidate_output": "Let's break down the charges:\n\n- Fixed visit charge: 300 rupees\n- Remaining charge for work: 1,100 - 300 = 800 rupees\n- Charge per hour: 200 rupees\n\nNumber of hours worked = 800 / 200 = 4 hours.\n\nFINAL: 4 hours",
+      "text_sha256": "766e0fe2794b00e4b5b4472806df502f950d91b42a5013c61a07db3bb2dff0a5",
+      "target_token_ids_sha256": "116b663fe0d5c728db9cbf176bae5c7f8ef6ffd3b058d3a74a2aefe42aba423f",
+      "target_tokens": 81,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 208,
+        "R": 226,
+        "C": 219
+      }
+    },
+    {
+      "family_id": "TRB070",
+      "candidate_output": "Let the initial amount of fuel in the tank be $ x $ litres.\n\nAfter adding 18 litres, the total fuel became $ x + 18 $ litres. According to the problem, this is three times the initial amount:\n\n$$\nx + 18 = 3x\n$$\n\nSolving for $ x $:\n\n$$\n18 = 3x - x \\\\\n18 = 2x \\\\\nx = 9\n$$\n\nSo, the initial amount of fuel in the tank was 9 litres.\n\nFINAL: 9 litres",
+      "text_sha256": "d2652f50a79a397436825e0537b98c8b5e89d360c235004d98c4bf5d815a8ad1",
+      "target_token_ids_sha256": "a0bb10f72584671800002f3f3efd223ce8e88ea35f72039525039edc6c6eac23",
+      "target_tokens": 115,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 231,
+        "R": 243,
+        "C": 235
+      }
+    },
+    {
+      "family_id": "TRB071",
+      "candidate_output": "To find out how many weeks it will take for Sneha's piggy bank to reach 4,000 rupees, we start with the initial amount of 1,500 rupees and add 250 rupees each week.\n\nThe amount added after $ w $ weeks is $ 250w $, so the total amount in the piggy bank is:\n\n$$\n1500 + 250w = 4000\n$$\n\nSolving for $ w $:\n\n$$\n250w = 4000 - 1500 = 2500\n$$\n$$\nw = \\frac{2500}{250} = 10\n$$\n\nSo, it will take 10 weeks for the piggy bank to have 4,000 rupees.\n\nFINAL: 10 weeks",
+      "text_sha256": "3e21aa2d34a0b1a596da54cdea277cc3f96e7cb86903e2e3744bd7a8139a18f5",
+      "target_token_ids_sha256": "75a3c07435e4ef728cff53e9987e0802c2c1ddb56b5a2ecf48a3a0922a95633f",
+      "target_tokens": 191,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 314,
+        "R": 330,
+        "C": 322
+      }
+    },
+    {
+      "family_id": "TRB072",
+      "candidate_output": "Let the number of plants in the second bed be $ x $. Then the number of plants in the first bed is $ x + 8 $. According to the problem, the total number of plants is 52:\n\n$$\nx + (x + 8) = 52\n$$\n\nSimplify and solve:\n\n$$\n2x + 8 = 52 \\\\\n2x = 44 \\\\\nx = 22\n$$\n\nSo, the second bed has 22 plants.\n\nFINAL: 22 plants",
+      "text_sha256": "6ed805ee6dce36eae07db9c95a560c082b9ad7c1c5ab6f5d6fa37fcf9443e734",
+      "target_token_ids_sha256": "1712e91db6f818d6799020b32b1945957a3ca39837ca434663078725122ae688",
+      "target_tokens": 111,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 217,
+        "R": 241,
+        "C": 236
+      }
+    },
+    {
+      "family_id": "TRB073",
+      "candidate_output": "Let the fixed price for stitching one shirt be $ x $ rupees.\n\nThe tailor stitched 5 shirts, so the total stitching charge is $ 5x $ rupees.\n\nHe also charged 120 rupees for mending old clothes.\n\nThe total amount received is:\n$$\n5x + 120 = 1620\n$$\n\nSolving for $ x $:\n$$\n5x = 1620 - 120 = 1500 \\\\\nx = \\frac{1500}{5} = 300\n$$\n\nSo, the stitching charge for one shirt is 300 rupees.\n\nFINAL: 300 rupees",
+      "text_sha256": "11e5d05dbd07265b800c686f0c097f9f6384f54967ff5a0a87a5e33c1bf46a61",
+      "target_token_ids_sha256": "cdc80292abce163ff10d7e8a9113b895d79dc543c2bf272c64622f3017ca4340",
+      "target_tokens": 149,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 277,
+        "R": 305,
+        "C": 295
+      }
+    },
+    {
+      "family_id": "TRB074",
+      "candidate_output": "To find the price of one steel bowl, we first calculate the total amount Lata spent. She paid with a 500-rupee note and received 140 rupees in change, so:\n\n$$\n\\text{Total spent} = 500 - 140 = 360 \\text{ rupees}\n$$\n\nSince she bought 4 bowls, the price of one bowl is:\n\n$$\n\\frac{360}{4} = 90 \\text{ rupees}\n$$\n\nFINAL: 90 rupees",
+      "text_sha256": "b9b020a316a50d325390daafea9c5f5687f23b62201d31334cd53dab06150edf",
+      "target_token_ids_sha256": "1874f3b7ccfc8acac092e7f4c7f9182586b8164515f2cf4bddc2262122bf0d42",
+      "target_tokens": 120,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 239,
+        "R": 260,
+        "C": 251
+      }
+    },
+    {
+      "family_id": "TRB075",
+      "candidate_output": "Let's break down the problem:\n\nThe driver drove for 3 hours at a steady speed, then drove another 40 km. The total distance covered was 250 km.\n\nLet the speed during the first 3 hours be $ v $ km/h.\n\nDistance covered in the first 3 hours: $ 3v $ km.\n\nTotal distance: $ 3v + 40 = 250 $\n\nSolving for $ v $:\n\n$$\n3v = 250 - 40 = 210 \\\\\nv = \\frac{210}{3} = 70\n$$\n\nSo, the speed during the first 3 hours was 70 km/h.\n\nFINAL: 70 km/h",
+      "text_sha256": "6e10c6262828bbced6b60c047b722b92013547506eaa150c90002e8697701402",
+      "target_token_ids_sha256": "85bd4a9b36dbbb2713c3de99e6c1408466ed0f5ab80ca6174ab5e10e5f7f8253",
+      "target_tokens": 156,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 275,
+        "R": 299,
+        "C": 288
+      }
+    },
+    {
+      "family_id": "TRB076",
+      "candidate_output": "Let the width of the floor be $ w $ metres. Then, the length is $ w + 3 $ metres.\n\nThe perimeter of a rectangle is given by:\n$$\n2(\\text{length} + \\text{width}) = 26\n$$\nSubstituting the values:\n$$\n2(w + (w + 3)) = 26\n$$\n$$\n2(2w + 3) = 26\n$$\n$$\n4w + 6 = 26\n$$\n$$\n4w = 20\n$$\n$$\nw = 5\n$$\n\nFINAL: 5 metres",
+      "text_sha256": "1d6288a7fe71a3220047c5baa185b3ef0f9866d92c9e6eeb91f4d5af95870244",
+      "target_token_ids_sha256": "5e0ec7fa90af68016d9dcf8e1058095f99f76298a73f13fa0ae064ebc959dbd1",
+      "target_tokens": 136,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 248,
+        "R": 262,
+        "C": 261
+      }
+    },
+    {
+      "family_id": "TRB077",
+      "candidate_output": "Let the total amount of money Arun had at first be $ x $ rupees.\n\nHe spent one-fourth of his savings on a watch repair, which is $ \\frac{1}{4}x $.\n\nThen he spent 600 rupees on books, and had 1,500 rupees left.\n\nSo, the equation is:\n$$\nx - \\frac{1}{4}x - 600 = 1500\n$$\n\nSimplify:\n$$\n\\frac{3}{4}x - 600 = 1500\n$$\n\nAdd 600 to both sides:\n$$\n\\frac{3}{4}x = 2100\n$$\n\nMultiply both sides by $ \\frac{4}{3} $:\n$$\nx = 2100 \\times \\frac{4}{3} = 2800\n$$\n\nFINAL: 2800 rupees",
+      "text_sha256": "4abf3acaa31c3b1a40a32a32d02024a7f686752ee35f9b4dd286eb92929fd091",
+      "target_token_ids_sha256": "a986c3dcc4afaf5b4ba98311aafa5fd99889dc61a093a5086071d4f06d359b64",
+      "target_tokens": 206,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 325,
+        "R": 354,
+        "C": 337
+      }
+    },
+    {
+      "family_id": "TRB078",
+      "candidate_output": "To find the number of rows, we first subtract the saplings planted along the fence from the total saplings:\n\n$$\n105 - 9 = 96\n$$\n\nEach row has 12 saplings, so the number of rows is:\n\n$$\n\\frac{96}{12} = 8\n$$\n\nFINAL: 8 rows",
+      "text_sha256": "38205ba51d5df5f288465cdb35dc8e1d0a1bc7db04537c3897be47910f023579",
+      "target_token_ids_sha256": "0472e6d2f36f09a6c21ecb08c6fda6a2352feb345f77f2fa24ec5beab299b2f3",
+      "target_tokens": 77,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 198,
+        "R": 231,
+        "C": 213
+      }
+    },
+    {
+      "family_id": "TRB079",
+      "candidate_output": "Let $ x $ be the number of bundles of coloured paper bought.\n\nThe cost of the bundles of coloured paper is $ 35x $ rupees.\n\nThe cost of the 4 bottles of glue is $ 4 \\times 20 = 80 $ rupees.\n\nThe total cost is $ 35x + 80 = 395 $.\n\nSolving for $ x $:\n\n$$\n35x + 80 = 395 \\\\\n35x = 395 - 80 \\\\\n35x = 315 \\\\\nx = \\frac{315}{35} = 9\n$$\n\nFINAL: 9 bundles",
+      "text_sha256": "912e23e47785a3df7660b01a352cf3a3511deca8c62c0481054ef9d186d5530e",
+      "target_token_ids_sha256": "d1d98dc1a355007308aaccf6441ca42795216d755289639eedd12df3a788a019",
+      "target_tokens": 146,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "explanatory proposition",
+      "lengths": {
+        "E": 270,
+        "R": 310,
+        "C": 294
+      }
+    },
+    {
+      "family_id": "TRB080",
+      "candidate_output": "Let the number of oranges he had at the start be $ x $.\n\nIn the morning, he sold 40 oranges, so he had $ x - 40 $ oranges left.\n\nIn the evening, he sold half of the remaining oranges, so he had $ \\frac{1}{2}(x - 40) $ left.\n\nAccording to the problem, at the end he had 35 oranges:\n\n$$\n\\frac{1}{2}(x - 40) = 35\n$$\n\nMultiply both sides by 2:\n\n$$\nx - 40 = 70\n$$\n\nAdd 40 to both sides:\n\n$$\nx = 110\n$$\n\nFINAL: 110 oranges",
+      "text_sha256": "45fd0f996398ea838c9aa2e42d7a8460b98765a339092015d42b6306ea1849dc",
+      "target_token_ids_sha256": "0dd2a90ca1e74caad5d4dacc38413b876fa51d3cec23dd6e249a2e306c9a3de4",
+      "target_tokens": 156,
+      "source": "unchanged-Qwen3-4B-E-self-distillation",
+      "explanation_status": "labelled equations only",
+      "lengths": {
+        "E": 280,
+        "R": 310,
+        "C": 305
+      }
+    }
+  ]
+}
