@@ -1,32 +1,27 @@
-# Responsible NLP checklist: draft answers
+# Responsible NLP checklist — evidence-based draft, 11 November 2026
 
-Copy these into the submission form. Section numbers refer to the PDF. Items marked **CONFIRM** need a fact only you have; answer them truthfully, since wrong answers can lead to desk rejection.
+AUTHOR-ONLY. Adapt to the exact current OpenReview questions. Source: https://aclrollingreview.org/responsibleNLPresearch/ (checked 11 November). A candid No/Partial with an explanation is preferable to an unsupported Yes. This is a form aid, not an ethics approval.
 
-**A. For every submission**
-- A1 Limitations discussed? **Yes**: the Limitations section (after the Conclusion).
-- A2 Potential risks discussed? **Yes**: the Ethics Statement (misreading results as general claims about Hindi speakers; the small samples; the AI-drafted items).
-- A3 Do the abstract and introduction summarise the claims? **Yes**: Abstract and §1.
+| Item | Answer supported by the package | Evidence / qualification |
+| --- | --- | --- |
+| A1 Limitations | Yes | Limitations: sample size, review depth, AI drafting, C definitions, format-based selection, script control, seed uncertainty and training recipe |
+| A2 Risks | Yes | Ethics: avoid generalizing model behaviour to Hindi speakers; research-only artifacts; reviewer identity protection |
+| A3 Summary of claims, if asked | Yes | Abstract and §1, including the negative training follow-up |
+| B1 Creators cited | Yes for principal artifacts | §2, §4, references: benchmarks, Qwen3, QLoRA, Meta Llama 3.2 model card. Stack versions in Appendix D |
+| B2 Licenses | Yes | Ethics and supplement: authored code MIT/data CC BY 4.0; Qwen Apache 2.0; Llama 3.2 Community License; weights not redistributed |
+| B3 Intended use | Yes | Ethics: research evaluation, not deployment |
+| B4 Privacy checks | Yes, bounded | Invented names in questions; automated identifier/credential scan of release files and PDF; no personal returned reviewer files. No claim that a regex proves absence of all sensitive content |
+| B5 Documentation | Yes | §3 and supplement: E/R/C, topics, borrowing policy and differing cohort definitions |
+| B6 Data statistics | Yes | §3, §6, Appendix C: 70/24-family pilots, TRAIN 160, DEV 40, FINAL_TEST 100 |
+| C1 Compute/infrastructure | Partial | T4 and model sizes §4; Appendix D and supplement report ~3 training-update GPU-hours and 8.291 measured final-generation GPU-hours. Loading, DEV, screening and engineering costs are excluded; no complete project-wide total available |
+| C2 Setup/hyperparameters | Yes | §4, §7, Appendices A/C/D; frozen plan included. DEV never selected checkpoints or changed the recipe |
+| C3 Statistics | Yes | §6, §7, Appendix C: family intervals, three paired seeds, exact decision rule. Interval conditional on trained checkpoints; no claim to cover seed variance |
+| C4 Software/model versions | Yes | Appendix D and supplement execution metadata with immutable model/tokenizer revisions; frozen source hashes |
+| D1 Full instructions | Yes for included original reviewer/audit workflows; partial across all later workflows | Supplement original stage1/stage2 interfaces and audit instructions. Do not claim the full history of every later review interaction is included |
+| D2 Recruitment/payment | Partial; PAYMENT UNCONFIRMED | User states reviewers were teammates. No payment answer was supplied. Do not label them unpaid without confirmation; fill the actual payment arrangement before submission |
+| D3 Consent | Yes, author-attested | User confirmed all gave consent on 11 November; existing manuscript records consent covering data release. Personal consent records are not distributed |
+| D4 Ethics-board approval/exemption | UNCONFIRMED | No institutional determination was supplied in this packaging session. Obtain/report the actual status; do not claim approval, exemption, or “not required” on the basis of teammate consent |
+| D5 Demographics | Partial | Hindi–English bilingual teammates; no further demographics reported. Do not infer age, gender or proficiency certifications |
+| E1 AI assistance | Yes | Ethics separates AI drafting, AI-assisted human review, pre-tagging, writing/coding; unverified original judgments excluded. Human acceptance/label provenance is reported |
 
-**B. Scientific artifacts used or created**
-- B1 Cite the creators of the artifacts used? **Yes**: §2 and §4 (Qwen3, Llama 3.2 and the related benchmarks are cited).
-- B2 Licence or terms discussed? **Yes**: Ethics Statement. Data CC BY 4.0, code MIT; models used under their licences (Llama 3.2 Community Licence, accepted via Hugging Face).
-- B3 Use consistent with intended use? **Yes**: models used for research evaluation only.
-- B4 Steps to check for personal information or offensive content? **Yes**: Ethics Statement (invented first names; automated scan for contact details).
-- B5 Documentation of artifacts (languages, domains)? **Yes**: §3 (English, Romanized Hindi, Hinglish; six school maths topics).
-- B6 Statistics of the data (splits, sizes)? **Yes**: §3 and §6 (Pilot-B 70 families / 210 prompts; original cohort 24 / 72).
-
-**C. Computational experiments**
-- C1 Number of parameters, total compute, infrastructure? **Yes**: §4 (Qwen3-4B, Qwen3-8B and Llama-3.2-3B in 4-bit NF4 on one Colab T4; inference only, about 25–35 minutes per 210-prompt run).
-- C2 Experimental set-up and hyperparameters? **Yes**: §4 and Appendix A (greedy, non-thinking, 1,024-token cap, frozen prompt).
-- C3 Descriptive statistics (variance, intervals; single runs)? **Yes**: §6 (Wilson 95% intervals, 10,000-resample family bootstrap; each backbone run once per cohort under greedy decoding).
-- C4 Packages used (versions)? **Yes**: §4 and the supplement (transformers 4.51.3, bitsandbytes 0.50.2, torch 2.11.0+cu130, scorer v1.0.0).
-
-**D. Human annotators**
-- D1 Full instruction text given to annotators? **Yes**: in the supplement (review form README and audit instructions).
-- D2 Recruitment and payment? **CONFIRM**: reviewers were team members or acquaintances; state whether anyone was paid. If unpaid, say "volunteers, unpaid".
-- D3 Consent and data use explained? **Yes**: all reviewers consented to release under CC BY 4.0 (Ethics Statement).
-- D4 Approved by an ethics review board? **CONFIRM**: probably "No; the review involved no personal data and only rating maths word problems". Ask your faculty whether DTU requires an IRB for this.
-- D5 Annotator demographics reported? **CONFIRM**: probably "Partially: bilingual Hindi–English speakers; no further demographics collected."
-
-**E. AI assistants**
-- E1 Did you use AI assistants (writing, coding)? **Yes**, disclosed in the Ethics Statement: Claude Opus 5.5 (Anthropic) and GPT-6 Astra and GPT-6.1 Sol (OpenAI, via Codex) for coding, analysis, drafting problem items and translations, AI pre-tagging, and writing assistance. The authors reviewed all outputs.
+Before sending: resolve payment and institutional-status answers; enter truthful form explanations. Confirm final author approval, student-first-author eligibility and required OpenReview profile fields. These facts cannot be supplied by a software check. Do not upload this author-only checklist as the anonymous supplement.

@@ -28,3 +28,6 @@ synopsis/Hinglish_Math_Synopsis_Sample_Format.docx
 synopsis/build_sample_format.py
 synopsis/assets/
 output/pdf/Hinglish_Math_Synopsis_Sample_Format.pdf
+
+# Node build dependencies
+node_modules/
