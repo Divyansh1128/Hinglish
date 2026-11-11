@@ -1,0 +1,93 @@
+"""Build/check Phase-3 step-1 identities without semantic held-out access.
+
+Equivalent Phase-2 verification: hash every file in its adopted implementation
+manifest, plus its preregistration. The original builder re-derives DEV objects;
+that is deliberately avoided during the Phase-3 access embargo. The frozen
+builder itself is among the byte-verified files. No claim of runtime execution,
+server-side archival evidence, human review or target freeze is made here.
+"""
+import importlib.util
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from t4_smoke import phase3_targets as pt
+
+MANIFEST = ROOT / 'phase3/TARGET_GEN_MANIFEST.md'
+STEP1 = ['t4_smoke/phase3_targets.py', 't4_smoke/test_phase3_targets.py',
+         'colab_notebooks/build_phase3_notebooks.py', 'colab_notebooks/phase3/Phase3_Targets.ipynb',
+         'phase3/build_target_gen_manifest.py', 'phase3/runtime_contract.json']
+
+
+def builder():
+    spec = importlib.util.spec_from_file_location('phase3_notebooks', ROOT / 'colab_notebooks/build_phase3_notebooks.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def verify_phase2():
+    raw = (ROOT / 'phase2/IMPLEMENTATION_MANIFEST.md').read_bytes()
+    old = pt.parse_manifest(raw)
+    files = dict(old['files'])
+    prereg = old['preregistration']
+    files[prereg['path']] = prereg['sha256']
+    problems = [path for path, expected in files.items() if pt.sha((ROOT / path).read_bytes()) != expected]
+    if problems:
+        raise ValueError('Frozen Phase-2 manifest no longer verifies: ' + ', '.join(problems))
+    return dict(verified=True, method='Byte-for-byte SHA-256 of every listed file and preregistration; no held-out parsing',
+                files_checked=len(files), implementation_manifest_sha256=pt.sha(raw))
+
+
+def build():
+    nb = builder()
+    if not nb.build(check=True):
+        raise ValueError('Rebuild Phase-3 notebook and runtime contract first')
+    contract = nb.contract()
+    files = set(STEP1) | set(nb.sources()) | {'phase2/ADAPTERS_FROZEN.md', 'secondary_analysis/numeric_endpoint.py',
+                                              'secondary_analysis/numeric_literal_v2.py'}
+    return dict(schema='phase3-target-generation-manifest-1', phase2_verification=verify_phase2(),
+                files={p: pt.sha((ROOT / p).read_bytes()) for p in sorted(files)},
+                self_hash_note='This manifest cannot include its own SHA-256; reported externally by builder --check.',
+                notebook_payload_sha256=pt.sha(nb.payload()),
+                word_list=list(pt.HINDI_WORDS), word_list_sha256=pt.sha(('\n'.join(pt.HINDI_WORDS) + '\n').encode()),
+                word_list_serialization='UTF-8, prereg order, one word per line, trailing LF', flag_rule=pt.FLAG_RULE,
+                explanation_rule=pt.EXPLANATION_RULE, length_rule=contract['length_rule'],
+                authorized_e_inputs_sha256=pt.eng.digest(contract['authorized_e_inputs']),
+                evaluation_order_sha256=pt.eng.digest(contract['evaluation_order']),
+                runtime_contract_sha256=pt.sha(nb.contract_bytes()),
+                backend_config=pt.backend_config(), model=contract['model'],
+                base_weight_shards_sha256=contract['base_weight_shards_sha256'],
+                eos_stopping=contract['eos_stopping'], dependencies=contract['dependencies'],
+                decisions=[
+                    'Adopted PREREGISTRATION D053 supersedes stale fallback wording in DESIGN §5.',
+                    'Frozen engine HFBackend handles inference; new TRAIN driver uses engine journal/lock primitives, not engine.run or patched validators. Its backend transport mode is phase2_dev; study/run mode is phase3_targets. All decoding fields are identical.',
+                    'Q before human review is a provisional lower bound; unresolved flagged rows are ineligible pending return; freeze recomputes all gates from authenticated journal and exact review rows.',
+                    'All Roman-word flagged non-Devanagari candidates appear in the sheet, including those failing other gates, per §3.3.',
+                    'Terminal validity uses scorer v1.0.0 grammar without truncation; strict correctness separately uses the actual truncation flag.',
+                    'Exact decoded text is stored without the marker; append marker once through frozen labels.build_example. Text hash excludes marker; token hash includes marker.',
+                    'Typed infrastructure exceptions receive at most one retry; unknown/programming exceptions halt and cannot resume without amendment. OOM never retries.',
+                    'No GPU execution or targets produced during implementation. Server-side archive/timestamp evidence and independent review remain execution prerequisites under §11.'
+                ])
+
+
+def render():
+    return '# Phase-3 target-generation implementation manifest\n\nGenerated by `python3 -B phase3/build_target_gen_manifest.py`; verify with `--check`.\n\n```json\n' + json.dumps(build(), indent=2, ensure_ascii=False) + '\n```\n'
+
+
+def main():
+    raw = render().encode()
+    if '--check' in sys.argv:
+        if not MANIFEST.is_file() or MANIFEST.read_bytes() != raw:
+            print('Phase-3 target-generation manifest is STALE')
+            return 1
+    else:
+        MANIFEST.write_bytes(raw)
+    print('Phase-3 target-generation manifest verified:', pt.sha(raw))
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,1267 @@
+{
+  "schema": "phase3-target-runtime-1",
+  "files": {
+    "phase2/IMPLEMENTATION_MANIFEST.md": "726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d",
+    "phase2/train_A.v2.json": "b9656a8c41af2a795bce9c131efc6a5efc652df78368d14fb7720fd985883666",
+    "phase2/train_B.v2.json": "c975fe12459df6160effc5aeb0087f94666ba0b49778c3d827a67bb923ff35bd",
+    "phase3/DESIGN.md": "24a30cba9521e2430445abb179f470d42d43f64f6ad788f710836f5548d12e20",
+    "phase3/PREREGISTRATION.md": "e5e33700683915c8efb0935f0d344bd447cfcc8c19b4cf73cb2505b032baaf0f",
+    "t4_smoke/labels.py": "236bb3a70f5e74deb2cc06770823d909c0df18db2e9bb9f3eaf05f51bda69a37",
+    "t4_smoke/phase3_targets.py": "dc717b6f868289c61cdbc51d9645d70ec7199ba5a9b319efab9be8d6bbc027d2",
+    "t4_smoke/protocol.py": "e6838416a5a6c399f19ebdd0a760c7fd0a10140dd6de04aa30926093cc537f16",
+    "t4_smoke/train_smoke.py": "05fa94fddda12b9f99c050cb3eb02562875ea0f3fd31204191364367dd415f47",
+    "test1_pilot/hinglish_pilot/__init__.py": "f8306002f5bda1d27535e1e6a4c4255e22b045489fb807b0a7460e5e308036cf",
+    "test1_pilot/hinglish_pilot/data.py": "519f8995a60cd193375eaecee2f89801a2eea8d06474209eab405749886a162c",
+    "test1_pilot/hinglish_pilot/engine.py": "0404e12a2c9e402e8afedfb0794ac0c474455600771cec42993cdff6a4b83095",
+    "test1_pilot/hinglish_pilot/hf_backend.py": "2e9fb4b0c1f68f30e8f0fc84f1927165eab6bd9694b945079d603e57eba78afc",
+    "test1_pilot/hinglish_pilot/report.py": "02ddc51550eaf58cbc45150d8de383374c6fb9c4ace6d915a133eeced94e68c4",
+    "test1_pilot/hinglish_pilot/scorer_v1.py": "c48f9d12e733eb1bfe5af5b1fece6e3ff69cb2342a97fe3ba8ac9f01f68dbbbc"
+  },
+  "backend_config": {
+    "mode": "phase2_dev",
+    "model_id": "Qwen/Qwen3-4B",
+    "model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "seed": 11,
+    "bootstrap_seed": 101,
+    "bootstrap_resamples": 10000,
+    "max_new_tokens": 1024,
+    "context_limit": 2048,
+    "thinking": false,
+    "do_sample": false,
+    "num_beams": 1,
+    "quantization": "nf4",
+    "double_quantization": true,
+    "compute_dtype": "float16",
+    "attention_backend": "sdpa_math",
+    "max_infrastructure_retries": 1,
+    "prompt_version": "test1-english-final-v2",
+    "instruction": "Solve the problem. Give a short explanation in English, even if the question is not in English. End with exactly one line: FINAL: <number or fraction>, followed by its unit in English only if the answer has a unit; write nothing after a pure number or fraction.",
+    "decode_policy_note": "Greedy non-thinking fixed pilot policy; differs from model-card sampling recommendation.",
+    "adapter": null
+  },
+  "phase2_manifest_sha256": "726241c5726aaba2c51fc027866dd572abfc13d02ef9235d1901af87a9f5b43d",
+  "base_shard_source": {
+    "path": "phase2/ADAPTERS_FROZEN.md",
+    "sha256": "1bebf10d708620b2b8f5c11aac340ca76b12e4c990dbfff9dcc82a8f9f20929f"
+  },
+  "base_weight_shards_sha256": {
+    "model-00001-of-00003.safetensors": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223",
+    "model-00002-of-00003.safetensors": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5",
+    "model-00003-of-00003.safetensors": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1"
+  },
+  "word_list": [
+    "hai",
+    "hain",
+    "ka",
+    "ki",
+    "ke",
+    "ko",
+    "mein",
+    "aur",
+    "se",
+    "kitne",
+    "kitna",
+    "kitni",
+    "bacha",
+    "bache",
+    "liye",
+    "paas",
+    "waala",
+    "waali",
+    "wale",
+    "nahi",
+    "kya",
+    "toh",
+    "yeh",
+    "woh",
+    "usne",
+    "uske",
+    "unke",
+    "isliye",
+    "kul",
+    "rupaye",
+    "rupye"
+  ],
+  "flag_rule": "lowercase; split on [^a-z]+; intersect HINDI_WORDS; sorted unique hits",
+  "explanation_rule": "Non-FINAL lines: empty => answer only; >=3 ASCII words plus is/are/was/were/has/have/gives/leaves/remains/need/needs/get/gets => explanatory proposition; otherwise labelled equations only. Descriptive, never a gate.",
+  "length_rule": "Frozen labels.build_example; no truncation; all E/R/C <=1024; last supervised ID 151645; identical E/R/C/EE IDs",
+  "authorized_e_inputs": [
+    {
+      "family_id": "TRA001",
+      "rendering_id": "TRA001-E-v1",
+      "form": "E",
+      "input_text": "A school library had 245 storybooks. During reading week, 87 books were issued to students and 19 books were sent away for repair. How many storybooks are still on the library shelves?"
+    },
+    {
+      "family_id": "TRA002",
+      "rendering_id": "TRA002-E-v1",
+      "form": "E",
+      "input_text": "In a cricket match, the Blue team scored 176 runs. The Green team scored 38 more runs than the Blue team. How many runs did the Green team score?"
+    },
+    {
+      "family_id": "TRA003",
+      "rendering_id": "TRA003-E-v1",
+      "form": "E",
+      "input_text": "Meena bought 3 kg of flour. She used 1.25 kg for rotis on Monday and 0.75 kg for parathas on Tuesday. How many kilograms of flour does she have now?"
+    },
+    {
+      "family_id": "TRA004",
+      "rendering_id": "TRA004-E-v1",
+      "form": "E",
+      "input_text": "A bus has 52 seats. On Friday morning, 9 seats were empty. On Saturday morning, 5 fewer passengers were seated than on Friday morning. How many passengers were seated on Saturday morning?"
+    },
+    {
+      "family_id": "TRA005",
+      "rendering_id": "TRA005-E-v1",
+      "form": "E",
+      "input_text": "Farmer Harpal harvested 1240 kg of wheat this year, which is 185 kg more than last year. Last year he sold 600 kg of his harvest and stored the rest in a godown. How many kilograms of wheat did he store last year?"
+    },
+    {
+      "family_id": "TRA006",
+      "rendering_id": "TRA006-E-v1",
+      "form": "E",
+      "input_text": "For Diwali, Kavya made 150 clay lamps. She gave 4 dozen lamps to her neighbours and lit 64 lamps at home. How many lamps were not used?"
+    },
+    {
+      "family_id": "TRA007",
+      "rendering_id": "TRA007-E-v1",
+      "form": "E",
+      "input_text": "In a school quiz, Rohan scored 13 points. Ananya scored 4 more points than Rohan, and Kabir scored 6 fewer points than Ananya. How many points did Kabir score?"
+    },
+    {
+      "family_id": "TRA008",
+      "rendering_id": "TRA008-E-v1",
+      "form": "E",
+      "input_text": "A cricket team needs 260 runs to win. The two openers scored 94 runs, and the middle-order batters added 117 more runs. How many more runs does the team need to win?"
+    },
+    {
+      "family_id": "TRA009",
+      "rendering_id": "TRA009-E-v1",
+      "form": "E",
+      "input_text": "A sweet shop prepared 18 kg of kheer. It sold 11.5 kg in the morning and 4.25 kg in the evening. How many kilograms of kheer were left?"
+    },
+    {
+      "family_id": "TRA010",
+      "rendering_id": "TRA010-E-v1",
+      "form": "E",
+      "input_text": "The rail route from Agra to Bhopal is 505 km long. A train has covered 178 km before lunch and 142 km after lunch. How many kilometres of the journey are still to be covered?"
+    },
+    {
+      "family_id": "TRA011",
+      "rendering_id": "TRA011-E-v1",
+      "form": "E",
+      "input_text": "Field A produced 860 kg of paddy. Field B produced 135 kg less paddy than Field A. How many kilograms of paddy did the two fields produce altogether?"
+    },
+    {
+      "family_id": "TRA012",
+      "rendering_id": "TRA012-E-v1",
+      "form": "E",
+      "input_text": "For Holi, Arjun bought 750 g of green colour powder. He bought 250 g more pink powder than green powder, and 400 g less yellow powder than pink powder. How many grams of yellow powder did he buy?"
+    },
+    {
+      "family_id": "TRA013",
+      "rendering_id": "TRA013-E-v1",
+      "form": "E",
+      "input_text": "A relay race is 4000 metres long and four runners run one after another. The first three runners covered 950 m, 1020 m and 980 m. How many metres must the last runner cover?"
+    },
+    {
+      "family_id": "TRA014",
+      "rendering_id": "TRA014-E-v1",
+      "form": "E",
+      "input_text": "A school ordered 500 notebooks for its annual exams. Class 6 received 135 notebooks, Class 7 received 142 and Class 8 received 158. How many notebooks have not yet been given to any class?"
+    },
+    {
+      "family_id": "TRA015",
+      "rendering_id": "TRA015-E-v1",
+      "form": "E",
+      "input_text": "Pooja bought 2 kg of paneer at ₹380 per kg and 3 litres of milk at ₹62 per litre. How much did she spend?"
+    },
+    {
+      "family_id": "TRA016",
+      "rendering_id": "TRA016-E-v1",
+      "form": "E",
+      "input_text": "A family of 5 bought train tickets costing ₹345 each. They paid with four ₹500 notes. How much change did they get back?"
+    },
+    {
+      "family_id": "TRA017",
+      "rendering_id": "TRA017-E-v1",
+      "form": "E",
+      "input_text": "A farmer sold 12 quintals of mustard at ₹5600 per quintal. He paid ₹1800 to transport it to the market. How much money did he have left after paying for transport?"
+    },
+    {
+      "family_id": "TRA018",
+      "rendering_id": "TRA018-E-v1",
+      "form": "E",
+      "input_text": "For Raksha Bandhan, Neha bought 6 rakhis at ₹45 each and a box of sweets for ₹320. She paid with a ₹1000 note. How much change did she receive?"
+    },
+    {
+      "family_id": "TRA019",
+      "rendering_id": "TRA019-E-v1",
+      "form": "E",
+      "input_text": "A school bought 24 chairs at ₹850 each and 6 tables at ₹2400 each. What was the total cost?"
+    },
+    {
+      "family_id": "TRA020",
+      "rendering_id": "TRA020-E-v1",
+      "form": "E",
+      "input_text": "A cricket academy charges ₹1200 every month. Raghav paid the fee for 5 months and also bought a bat for ₹2750. How much did he spend?"
+    },
+    {
+      "family_id": "TRA021",
+      "rendering_id": "TRA021-E-v1",
+      "form": "E",
+      "input_text": "A bus ticket from Jaipur to Ajmer costs ₹160 for an adult and ₹90 for a child. Mr Sharma buys tickets for 2 adults and 3 children. How much does he pay?"
+    },
+    {
+      "family_id": "TRA022",
+      "rendering_id": "TRA022-E-v1",
+      "form": "E",
+      "input_text": "Imran had ₹1500. He bought 4 kg of rice at ₹72 per kg and 2 litres of cooking oil at ₹165 per litre. How much money did he have left?"
+    },
+    {
+      "family_id": "TRA023",
+      "rendering_id": "TRA023-E-v1",
+      "form": "E",
+      "input_text": "Ramesh hired 3 farm workers for 2 days, paying each worker ₹450 a day, and bought seeds worth ₹4200. He had set aside ₹10000 for these costs. How much of that amount is unspent?"
+    },
+    {
+      "family_id": "TRA024",
+      "rendering_id": "TRA024-E-v1",
+      "form": "E",
+      "input_text": "For a Navratri event, the organisers ordered 15 marigold garlands at ₹120 each and paid ₹2500 for lighting. How much did they spend in total?"
+    },
+    {
+      "family_id": "TRA025",
+      "rendering_id": "TRA025-E-v1",
+      "form": "E",
+      "input_text": "A school trip costs ₹650 per student. A class of 38 students has collected ₹22000 so far. How much more money must the class collect?"
+    },
+    {
+      "family_id": "TRA026",
+      "rendering_id": "TRA026-E-v1",
+      "form": "E",
+      "input_text": "A sports shop sells a cricket ball for ₹275 and a pair of batting gloves for ₹1150. A sports club buys 8 balls and 2 pairs of gloves. How much does the club pay?"
+    },
+    {
+      "family_id": "TRA027",
+      "rendering_id": "TRA027-E-v1",
+      "form": "E",
+      "input_text": "A first-class train ticket costs ₹540 more than a second-class ticket. A second-class ticket costs ₹385. How much do 2 first-class tickets cost?"
+    },
+    {
+      "family_id": "TRA028",
+      "rendering_id": "TRA028-E-v1",
+      "form": "E",
+      "input_text": "Four friends ordered 3 thalis at ₹299 each and paid a ₹103 delivery charge. They split the bill equally. How much did each friend pay?"
+    },
+    {
+      "family_id": "TRA029",
+      "rendering_id": "TRA029-E-v1",
+      "form": "E",
+      "input_text": "There are 640 students in a school, and 35% of them come by the school bus. How many students do not come by the school bus?"
+    },
+    {
+      "family_id": "TRA030",
+      "rendering_id": "TRA030-E-v1",
+      "form": "E",
+      "input_text": "A batter scored 80 runs in an innings, and 45% of those runs came from fours and sixes. How many of the batter's runs did not come from fours and sixes?"
+    },
+    {
+      "family_id": "TRA031",
+      "rendering_id": "TRA031-E-v1",
+      "form": "E",
+      "input_text": "A recipe uses 900 g of flour. Two-thirds of the flour is wheat flour and the rest is gram flour. How many grams of gram flour does the recipe use?"
+    },
+    {
+      "family_id": "TRA032",
+      "rendering_id": "TRA032-E-v1",
+      "form": "E",
+      "input_text": "A train has 1200 seats. On Monday, 3/5 of the seats were reserved in advance and another 150 seats were reserved on the day of travel. How many seats remained empty?"
+    },
+    {
+      "family_id": "TRA033",
+      "rendering_id": "TRA033-E-v1",
+      "form": "E",
+      "input_text": "A farmer grew 2500 kg of potatoes. 12% of them were damaged and thrown away. He sold the good potatoes at ₹15 per kg. How much money did he receive?"
+    },
+    {
+      "family_id": "TRA034",
+      "rendering_id": "TRA034-E-v1",
+      "form": "E",
+      "input_text": "A shop gives a 20% discount on a Diwali lantern marked at ₹450. Seema buys 3 lanterns. How much does she pay?"
+    },
+    {
+      "family_id": "TRA035",
+      "rendering_id": "TRA035-E-v1",
+      "form": "E",
+      "input_text": "A school has 480 students, and each student chose exactly one hobby club. 3/8 of them chose dance, 1/4 chose music and the rest chose art. How many students chose art?"
+    },
+    {
+      "family_id": "TRA036",
+      "rendering_id": "TRA036-E-v1",
+      "form": "E",
+      "input_text": "A 1.5-litre bottle of mango juice is opened. 2/5 of the juice is served at lunch and 0.4 litres at dinner. How many litres of juice are still in the bottle?"
+    },
+    {
+      "family_id": "TRA037",
+      "rendering_id": "TRA037-E-v1",
+      "form": "E",
+      "input_text": "A bus fare of ₹240 is increased by 15%. What is the new fare for 2 passengers?"
+    },
+    {
+      "family_id": "TRA038",
+      "rendering_id": "TRA038-E-v1",
+      "form": "E",
+      "input_text": "A farmer owns 60 acres of land. Wheat is grown on 45% of it and sugarcane on 1/3 of it. On how many acres is neither crop grown?"
+    },
+    {
+      "family_id": "TRA039",
+      "rendering_id": "TRA039-E-v1",
+      "form": "E",
+      "input_text": "For a Holi party, 2.4 kg of gujiya were made. One-sixth of them were given to the neighbours and three-eighths of them were eaten at the party. How many kilograms of gujiya were left?"
+    },
+    {
+      "family_id": "TRA040",
+      "rendering_id": "TRA040-E-v1",
+      "form": "E",
+      "input_text": "In a kabaddi tournament, a team played 16 matches and won 75% of them. It lost half of the matches it did not win, and the remaining matches were tied. How many matches were tied?"
+    },
+    {
+      "family_id": "TRA041",
+      "rendering_id": "TRA041-E-v1",
+      "form": "E",
+      "input_text": "Out of 36 questions in a test, Tanya answered 27 correctly. What fraction of the questions did she answer correctly? Give the answer in simplest form."
+    },
+    {
+      "family_id": "TRA042",
+      "rendering_id": "TRA042-E-v1",
+      "form": "E",
+      "input_text": "In a lemonade recipe, sugar syrup and lemon juice are mixed in the ratio 5:2. If 350 ml of sugar syrup is used, how many millilitres of lemon juice are needed?"
+    },
+    {
+      "family_id": "TRA043",
+      "rendering_id": "TRA043-E-v1",
+      "form": "E",
+      "input_text": "In a match, the runs scored by Arjun and Vikram were in the ratio 3:4. Arjun scored 57 runs. How many runs did Vikram score?"
+    },
+    {
+      "family_id": "TRA044",
+      "rendering_id": "TRA044-E-v1",
+      "form": "E",
+      "input_text": "A class has boys and girls in the ratio 5:7. There are 20 boys. How many students are in the class?"
+    },
+    {
+      "family_id": "TRA045",
+      "rendering_id": "TRA045-E-v1",
+      "form": "E",
+      "input_text": "Two brothers share 84 kg of chickpeas in the ratio 4:3, and the elder brother gets the larger share. How many more kilograms does the elder brother get than the younger brother?"
+    },
+    {
+      "family_id": "TRA046",
+      "rendering_id": "TRA046-E-v1",
+      "form": "E",
+      "input_text": "On a train, the numbers of passengers in sleeper class and general class are in the ratio 7:9. There are 288 passengers in general class. How many passengers are in sleeper class?"
+    },
+    {
+      "family_id": "TRA047",
+      "rendering_id": "TRA047-E-v1",
+      "form": "E",
+      "input_text": "On Diwali, Riya and her brother share 45 laddoos in the ratio 2:3. Riya then gives 4 of her laddoos to a friend. How many laddoos does Riya have now?"
+    },
+    {
+      "family_id": "TRA048",
+      "rendering_id": "TRA048-E-v1",
+      "form": "E",
+      "input_text": "A cook mixes rice and lentils in the ratio 3:1 by weight to make khichdi. How many grams of rice are needed to make 2 kg of the mixture?"
+    },
+    {
+      "family_id": "TRA049",
+      "rendering_id": "TRA049-E-v1",
+      "form": "E",
+      "input_text": "In a football season, a team's wins and losses were in the ratio 5:2, and it lost 6 matches. No match was drawn. How many matches did it play?"
+    },
+    {
+      "family_id": "TRA050",
+      "rendering_id": "TRA050-E-v1",
+      "form": "E",
+      "input_text": "In a school library, there are 5 Hindi books for every 3 English books. If there are 120 Hindi books, how many English books are there?"
+    },
+    {
+      "family_id": "TRA051",
+      "rendering_id": "TRA051-E-v1",
+      "form": "E",
+      "input_text": "A fertiliser mix contains urea and potash in the ratio 5:3 by weight. A farmer has 24 kg of potash and wants to use all of it. How many kilograms of the mix can he make?"
+    },
+    {
+      "family_id": "TRA052",
+      "rendering_id": "TRA052-E-v1",
+      "form": "E",
+      "input_text": "On the same route, the fare for a fast train is 3 times the bus fare. Two fast-train tickets cost ₹540. What is the fare for one bus ticket?"
+    },
+    {
+      "family_id": "TRA053",
+      "rendering_id": "TRA053-E-v1",
+      "form": "E",
+      "input_text": "For Pongal, a family makes sweet pongal using rice and jaggery in the ratio 4:3. They use 1.2 kg of jaggery. How many kilograms of rice do they use?"
+    },
+    {
+      "family_id": "TRA054",
+      "rendering_id": "TRA054-E-v1",
+      "form": "E",
+      "input_text": "A sports teacher splits cricket practice time between batting and bowling in the ratio 3:2. Practice lasts 90 minutes. How many minutes are spent on bowling?"
+    },
+    {
+      "family_id": "TRA055",
+      "rendering_id": "TRA055-E-v1",
+      "form": "E",
+      "input_text": "A train travels at 72 km per hour. How many minutes does it take to cover 54 km?"
+    },
+    {
+      "family_id": "TRA056",
+      "rendering_id": "TRA056-E-v1",
+      "form": "E",
+      "input_text": "A tea stall uses 120 ml of milk for one cup of tea. How many litres of milk are needed for 75 cups?"
+    },
+    {
+      "family_id": "TRA057",
+      "rendering_id": "TRA057-E-v1",
+      "form": "E",
+      "input_text": "A tubewell fills a field tank at 450 litres per minute. The tank holds 27000 litres. How many minutes does it take to fill the empty tank?"
+    },
+    {
+      "family_id": "TRA058",
+      "rendering_id": "TRA058-E-v1",
+      "form": "E",
+      "input_text": "A cyclist rides at 18 km/h for 2.5 hours and then at 12 km/h for 1.5 hours. How many kilometres does she ride?"
+    },
+    {
+      "family_id": "TRA059",
+      "rendering_id": "TRA059-E-v1",
+      "form": "E",
+      "input_text": "A school printer prints 24 pages in a minute. How many minutes will it take to print 30 copies of a 16-page question paper?"
+    },
+    {
+      "family_id": "TRA060",
+      "rendering_id": "TRA060-E-v1",
+      "form": "E",
+      "input_text": "During Ganesh Chaturthi, a sweet maker makes 36 modaks every hour. He works 7 hours a day for 3 days. How many modaks does he make?"
+    },
+    {
+      "family_id": "TRA061",
+      "rendering_id": "TRA061-E-v1",
+      "form": "E",
+      "input_text": "A bus leaves its stand at 6:40 a.m. and reaches the city at 9:10 a.m. The route is 95 km long. What is its average speed in km per hour?"
+    },
+    {
+      "family_id": "TRA062",
+      "rendering_id": "TRA062-E-v1",
+      "form": "E",
+      "input_text": "A canteen makes 4 rotis from every 100 g of flour. How many kilograms of flour are needed for 340 rotis?"
+    },
+    {
+      "family_id": "TRA063",
+      "rendering_id": "TRA063-E-v1",
+      "form": "E",
+      "input_text": "A pair of oxen ploughs 0.25 acre of a field in an hour. How many hours will they take to plough a 3-acre field?"
+    },
+    {
+      "family_id": "TRA064",
+      "rendering_id": "TRA064-E-v1",
+      "form": "E",
+      "input_text": "A runner keeps a steady pace of 5 minutes per kilometre. How many minutes does she take to run 8.4 km?"
+    },
+    {
+      "family_id": "TRA065",
+      "rendering_id": "TRA065-E-v1",
+      "form": "E",
+      "input_text": "A school water tank holds 80 litres when full. Students drink 5 litres of water from it during one class period. After how many class periods will a full tank become empty?"
+    },
+    {
+      "family_id": "TRA066",
+      "rendering_id": "TRA066-E-v1",
+      "form": "E",
+      "input_text": "A passenger train stops for 2 minutes at each of 9 halts on its route and is moving for 72 minutes. How many hours does the whole journey take?"
+    },
+    {
+      "family_id": "TRA067",
+      "rendering_id": "TRA067-E-v1",
+      "form": "E",
+      "input_text": "At a Diwali feast, each of 3 cooks fries 120 puris an hour. How many puris do the 3 cooks fry in 2.5 hours?"
+    },
+    {
+      "family_id": "TRA068",
+      "rendering_id": "TRA068-E-v1",
+      "form": "E",
+      "input_text": "A student thought of a number, multiplied it by 4 and then added 9, getting 61. What was the number?"
+    },
+    {
+      "family_id": "TRA069",
+      "rendering_id": "TRA069-E-v1",
+      "form": "E",
+      "input_text": "In two innings, Sana scored x runs and then 2x + 5 runs. She scored 77 runs in the two innings. How many runs did she score in the second innings?"
+    },
+    {
+      "family_id": "TRA070",
+      "rendering_id": "TRA070-E-v1",
+      "form": "E",
+      "input_text": "A cook has some potatoes. If she had 3 times as many and then 8 more, she would have 50 potatoes. How many potatoes does she have?"
+    },
+    {
+      "family_id": "TRA071",
+      "rendering_id": "TRA071-E-v1",
+      "form": "E",
+      "input_text": "A transport company has 9 buses. Some have 40 seats and the others have 52 seats. The 9 buses have 396 seats. How many buses have 52 seats?"
+    },
+    {
+      "family_id": "TRA072",
+      "rendering_id": "TRA072-E-v1",
+      "form": "E",
+      "input_text": "A farmer has goats and hens. He has 12 fewer goats than hens. The animals have 120 legs altogether. How many goats does he have?"
+    },
+    {
+      "family_id": "TRA073",
+      "rendering_id": "TRA073-E-v1",
+      "form": "E",
+      "input_text": "On Diwali, Anil bought 25 clay lamps at ₹d each and a matchbox with wicks for ₹15. He spent ₹190. What is the value of d?"
+    },
+    {
+      "family_id": "TRA074",
+      "rendering_id": "TRA074-E-v1",
+      "form": "E",
+      "input_text": "Two classes have the same number of students. If 6 students move from Class A to Class B, Class B will have twice as many students as Class A. How many students are in each class now?"
+    },
+    {
+      "family_id": "TRA075",
+      "rendering_id": "TRA075-E-v1",
+      "form": "E",
+      "input_text": "A hockey team scored x goals in each of its first 5 matches and 3 goals in its sixth match. It scored 23 goals in the 6 matches. What is x?"
+    },
+    {
+      "family_id": "TRA076",
+      "rendering_id": "TRA076-E-v1",
+      "form": "E",
+      "input_text": "A cup of tea costs ₹10. Three samosas and two cups of tea cost ₹80. What is the price of one samosa?"
+    },
+    {
+      "family_id": "TRA077",
+      "rendering_id": "TRA077-E-v1",
+      "form": "E",
+      "input_text": "By bus, village Q is 35 km farther from the city than village P. The two bus distances add up to 145 km. How far is village P from the city by bus?"
+    },
+    {
+      "family_id": "TRA078",
+      "rendering_id": "TRA078-E-v1",
+      "form": "E",
+      "input_text": "A farmer planted mango trees and lemon trees. He planted 4 times as many lemon trees as mango trees, and 85 trees in all. How many lemon trees did he plant?"
+    },
+    {
+      "family_id": "TRA079",
+      "rendering_id": "TRA079-E-v1",
+      "form": "E",
+      "input_text": "At a Lohri gathering, some peanuts were shared equally among 8 children. Each child got 15 peanuts, and 6 peanuts were left over. How many peanuts were there?"
+    },
+    {
+      "family_id": "TRA080",
+      "rendering_id": "TRA080-E-v1",
+      "form": "E",
+      "input_text": "A school bought footballs at ₹350 each and cricket bats at ₹600 each. It bought 10 items in all and paid ₹4750. How many footballs did it buy?"
+    },
+    {
+      "family_id": "TRB001",
+      "rendering_id": "TRB001-E-v1",
+      "form": "E",
+      "input_text": "At a vegetable stall, a sack of onions weighs 7.5 kg. A sack of potatoes weighs 2.75 kg less than the sack of onions. What is the combined weight of the two sacks?"
+    },
+    {
+      "family_id": "TRB002",
+      "rendering_id": "TRB002-E-v1",
+      "form": "E",
+      "input_text": "A mason laid 340 bricks on Monday. On Tuesday he laid 85 more bricks than on Monday. How many bricks did he lay on Tuesday?"
+    },
+    {
+      "family_id": "TRB003",
+      "rendering_id": "TRB003-E-v1",
+      "form": "E",
+      "input_text": "Priya's car has a fuel tank that holds 45 litres. She filled the tank to the top and then used 28 litres of fuel on a trip. How many litres of fuel are in the tank now?"
+    },
+    {
+      "family_id": "TRB004",
+      "rendering_id": "TRB004-E-v1",
+      "form": "E",
+      "input_text": "Anil had 5,200 rupees in his savings account. He withdrew 1,750 rupees for his study expenses and then deposited 900 rupees. How much money is in the account now?"
+    },
+    {
+      "family_id": "TRB005",
+      "rendering_id": "TRB005-E-v1",
+      "form": "E",
+      "input_text": "Meena planted 48 rose plants and 29 marigold plants. What is the difference between the number of rose plants and the number of marigold plants?"
+    },
+    {
+      "family_id": "TRB006",
+      "rendering_id": "TRB006-E-v1",
+      "form": "E",
+      "input_text": "A tailor had a 25-metre roll of cloth. He made 6 kurtas, using 3.5 metres of cloth for each kurta. How many metres of cloth were left?"
+    },
+    {
+      "family_id": "TRB007",
+      "rendering_id": "TRB007-E-v1",
+      "form": "E",
+      "input_text": "Going from Agra to Jaipur by bus takes 4.5 hours. Going by train takes 1.25 hours more than going by bus. How many hours does the train journey take?"
+    },
+    {
+      "family_id": "TRB008",
+      "rendering_id": "TRB008-E-v1",
+      "form": "E",
+      "input_text": "A shopkeeper had 120 notebooks. He sold 47 notebooks in the morning and 38 in the evening. How many notebooks does he have now?"
+    },
+    {
+      "family_id": "TRB009",
+      "rendering_id": "TRB009-E-v1",
+      "form": "E",
+      "input_text": "Painting the living room costs 3,600 rupees. Painting the bedroom costs 1,150 rupees less than painting the living room. What is the total cost of painting both rooms?"
+    },
+    {
+      "family_id": "TRB010",
+      "rendering_id": "TRB010-E-v1",
+      "form": "E",
+      "input_text": "A gardener has to water 64 flower pots. He has watered 27 pots so far. How many pots still remain to be watered?"
+    },
+    {
+      "family_id": "TRB011",
+      "rendering_id": "TRB011-E-v1",
+      "form": "E",
+      "input_text": "Ritu saved 850 rupees last month and 1,240 rupees this month. What is the difference between her savings in the two months?"
+    },
+    {
+      "family_id": "TRB012",
+      "rendering_id": "TRB012-E-v1",
+      "form": "E",
+      "input_text": "Kavya had 500 rupees. She bought a bag for 275 rupees and a pencil box for 95 rupees. How much money does she have now?"
+    },
+    {
+      "family_id": "TRB013",
+      "rendering_id": "TRB013-E-v1",
+      "form": "E",
+      "input_text": "A tailor takes 75 minutes to stitch a shirt. Stitching a pair of pyjamas takes 20 minutes less than stitching a shirt. How many minutes does he need to stitch one shirt and one pair of pyjamas?"
+    },
+    {
+      "family_id": "TRB014",
+      "rendering_id": "TRB014-E-v1",
+      "form": "E",
+      "input_text": "Arjun's journey is 260 km long. He has already driven 185 km. How many more kilometres does he have to drive?"
+    },
+    {
+      "family_id": "TRB015",
+      "rendering_id": "TRB015-E-v1",
+      "form": "E",
+      "input_text": "Seema bought 3 kg of mangoes at 60 rupees per kg. She gave the shopkeeper 200 rupees. How much change did she get back?"
+    },
+    {
+      "family_id": "TRB016",
+      "rendering_id": "TRB016-E-v1",
+      "form": "E",
+      "input_text": "A plumber charges 350 rupees for each tap he fits, plus a separate visiting charge of 200 rupees. He fits 4 taps in a house. What is the total amount to be paid?"
+    },
+    {
+      "family_id": "TRB017",
+      "rendering_id": "TRB017-E-v1",
+      "form": "E",
+      "input_text": "Rohan put 12 litres of fuel in his car. One litre cost 104 rupees. He also paid 50 rupees to get the car washed. How much did he pay altogether?"
+    },
+    {
+      "family_id": "TRB018",
+      "rendering_id": "TRB018-E-v1",
+      "form": "E",
+      "input_text": "Sunita deposited 8,000 rupees in a post office savings scheme. After one year she received 6 rupees of interest for every 100 rupees deposited. How much money did she have at the end of the year?"
+    },
+    {
+      "family_id": "TRB019",
+      "rendering_id": "TRB019-E-v1",
+      "form": "E",
+      "input_text": "Lalit bought 15 clay pots. One pot cost 40 rupees. He also bought a sack of manure for 260 rupees. How much did he spend in all?"
+    },
+    {
+      "family_id": "TRB020",
+      "rendering_id": "TRB020-E-v1",
+      "form": "E",
+      "input_text": "Three friends had matching kurtas stitched by a tailor. The cloth cost 1,350 rupees and the stitching cost 750 rupees. They split the total cost equally. How much did each friend pay?"
+    },
+    {
+      "family_id": "TRB021",
+      "rendering_id": "TRB021-E-v1",
+      "form": "E",
+      "input_text": "A box of 6 pencils costs 54 rupees. Asha buys 4 boxes and one eraser that costs 8 rupees. How much does she pay?"
+    },
+    {
+      "family_id": "TRB022",
+      "rendering_id": "TRB022-E-v1",
+      "form": "E",
+      "input_text": "A contractor agreed to pay a labourer 650 rupees a day for 6 days. Because the labourer came late one day, 150 rupees were deducted from his wages. How much was the labourer paid?"
+    },
+    {
+      "family_id": "TRB023",
+      "rendering_id": "TRB023-E-v1",
+      "form": "E",
+      "input_text": "On a bus, an adult ticket costs 85 rupees and a child ticket costs 45 rupees. A family of 2 adults and 3 children travels by this bus. How much do their tickets cost?"
+    },
+    {
+      "family_id": "TRB024",
+      "rendering_id": "TRB024-E-v1",
+      "form": "E",
+      "input_text": "Deepak's monthly salary is 18,000 rupees. He spends 11,500 rupees on household expenses and deposits the rest into his savings account every month. How much does he deposit in 4 months?"
+    },
+    {
+      "family_id": "TRB025",
+      "rendering_id": "TRB025-E-v1",
+      "form": "E",
+      "input_text": "At a plant nursery, a tulsi sapling costs 30 rupees and a neem sapling costs 55 rupees. A school bought 10 tulsi saplings and 6 neem saplings. How much did the school pay?"
+    },
+    {
+      "family_id": "TRB026",
+      "rendering_id": "TRB026-E-v1",
+      "form": "E",
+      "input_text": "A craftswoman makes cloth bags. The material for one bag costs 35 rupees, and she sells each bag for 80 rupees. What is her profit on selling 25 bags?"
+    },
+    {
+      "family_id": "TRB027",
+      "rendering_id": "TRB027-E-v1",
+      "form": "E",
+      "input_text": "At a fair, a toy car costs 120 rupees and a doll costs 45 rupees more than the toy car. Neha buys one toy car and one doll. How much does she spend?"
+    },
+    {
+      "family_id": "TRB028",
+      "rendering_id": "TRB028-E-v1",
+      "form": "E",
+      "input_text": "Ramesh needs 150 bricks for a wall. One brick costs 9 rupees, and the labour charge is 600 rupees. How much will he spend in all?"
+    },
+    {
+      "family_id": "TRB029",
+      "rendering_id": "TRB029-E-v1",
+      "form": "E",
+      "input_text": "A saree is priced at 2,400 rupees. The shopkeeper gives a 15 percent discount on it. For how many rupees will the saree be sold?"
+    },
+    {
+      "family_id": "TRB030",
+      "rendering_id": "TRB030-E-v1",
+      "form": "E",
+      "input_text": "Kiran had 600 grams of seeds. She sowed three-fifths of them in her vegetable bed. How many grams of seeds were left?"
+    },
+    {
+      "family_id": "TRB031",
+      "rendering_id": "TRB031-E-v1",
+      "form": "E",
+      "input_text": "Pooja's monthly income is 24,000 rupees. She saves 1/6 of her income every month. How much does she save in one year?"
+    },
+    {
+      "family_id": "TRB032",
+      "rendering_id": "TRB032-E-v1",
+      "form": "E",
+      "input_text": "A car travelled 320 km. 35 percent of the distance was on the highway and the rest was on village roads. How many kilometres were driven on village roads?"
+    },
+    {
+      "family_id": "TRB033",
+      "rendering_id": "TRB033-E-v1",
+      "form": "E",
+      "input_text": "A water tank holds 1,200 litres. Right now it is two-thirds full. How many more litres of water are needed to fill it up?"
+    },
+    {
+      "family_id": "TRB034",
+      "rendering_id": "TRB034-E-v1",
+      "form": "E",
+      "input_text": "A tailor used to charge 400 rupees to stitch a salwar-kameez. He increased his stitching charge by 12 percent. How much does he charge now?"
+    },
+    {
+      "family_id": "TRB035",
+      "rendering_id": "TRB035-E-v1",
+      "form": "E",
+      "input_text": "A shop had 80 kg of rice. On Monday the shop sold 3/8 of the rice. How many kilograms of rice were sold on Monday?"
+    },
+    {
+      "family_id": "TRB036",
+      "rendering_id": "TRB036-E-v1",
+      "form": "E",
+      "input_text": "Mohan received a reward of 9,000 rupees. He put two-fifths of it in a fixed deposit and gave one-third of the remaining amount to his sister. How much did his sister get?"
+    },
+    {
+      "family_id": "TRB037",
+      "rendering_id": "TRB037-E-v1",
+      "form": "E",
+      "input_text": "250 seeds were sown in a garden. 84 percent of the seeds sprouted. How many seeds did not sprout?"
+    },
+    {
+      "family_id": "TRB038",
+      "rendering_id": "TRB038-E-v1",
+      "form": "E",
+      "input_text": "A family is making a 360 km trip. On the first day they covered 5/9 of the distance. How many kilometres did they cover on the first day?"
+    },
+    {
+      "family_id": "TRB039",
+      "rendering_id": "TRB039-E-v1",
+      "form": "E",
+      "input_text": "A tailoring shop stitched 60 shirts last month. This month it stitched 25 percent more shirts than last month. How many shirts were stitched this month?"
+    },
+    {
+      "family_id": "TRB040",
+      "rendering_id": "TRB040-E-v1",
+      "form": "E",
+      "input_text": "A wall is 12 metres long. A painter has painted 0.4 of its length. How many metres of the wall's length are still unpainted?"
+    },
+    {
+      "family_id": "TRB041",
+      "rendering_id": "TRB041-E-v1",
+      "form": "E",
+      "input_text": "Rakesh's monthly income is 20,000 rupees. He saves 15% of it. How many rupees does he spend in a month?"
+    },
+    {
+      "family_id": "TRB042",
+      "rendering_id": "TRB042-E-v1",
+      "form": "E",
+      "input_text": "A shopkeeper mixes two kinds of tea leaves in the ratio 3 : 2 by weight. How many kilograms of the first kind are in 15 kg of the mixture?"
+    },
+    {
+      "family_id": "TRB043",
+      "rendering_id": "TRB043-E-v1",
+      "form": "E",
+      "input_text": "Sand and cement are mixed in the ratio 4 : 1. A mason uses 6 bags of cement. How many bags of sand does he need?"
+    },
+    {
+      "family_id": "TRB044",
+      "rendering_id": "TRB044-E-v1",
+      "form": "E",
+      "input_text": "On a trip, Aman drove 120 km and Vikas drove 80 km. They split the fuel cost of 1,500 rupees in proportion to the distance each of them drove. How much did Aman pay?"
+    },
+    {
+      "family_id": "TRB045",
+      "rendering_id": "TRB045-E-v1",
+      "form": "E",
+      "input_text": "Grandfather had saved 12,000 rupees for his two grandsons. He divided the money between them in the ratio 5 : 7. How much more did the second grandson get than the first?"
+    },
+    {
+      "family_id": "TRB046",
+      "rendering_id": "TRB046-E-v1",
+      "form": "E",
+      "input_text": "In a garden, the ratio of marigold plants to rose plants is 7 : 4. There are 28 rose plants. How many marigold plants are there?"
+    },
+    {
+      "family_id": "TRB047",
+      "rendering_id": "TRB047-E-v1",
+      "form": "E",
+      "input_text": "A quilt maker uses red and blue patches in the ratio 2 : 3. She uses 45 patches in all. How many blue patches does she use?"
+    },
+    {
+      "family_id": "TRB048",
+      "rendering_id": "TRB048-E-v1",
+      "form": "E",
+      "input_text": "A shop sold cartons of mango juice and orange juice in the ratio 5 : 3. It sold 40 cartons of mango juice. How many cartons of orange juice did it sell?"
+    },
+    {
+      "family_id": "TRB049",
+      "rendering_id": "TRB049-E-v1",
+      "form": "E",
+      "input_text": "The length and width of a rectangular room are in the ratio 3 : 2. The width of the room is 4 metres. What is the perimeter of the room?"
+    },
+    {
+      "family_id": "TRB050",
+      "rendering_id": "TRB050-E-v1",
+      "form": "E",
+      "input_text": "The savings of Neha and Ravi are in the ratio 3 : 5. Ravi saved 3,000 rupees. How much did Neha save?"
+    },
+    {
+      "family_id": "TRB051",
+      "rendering_id": "TRB051-E-v1",
+      "form": "E",
+      "input_text": "On a road trip, the distances driven on the first and second days were in the ratio 4 : 3. On the second day the family drove 210 km. How many kilometres did they drive in total over the two days?"
+    },
+    {
+      "family_id": "TRB052",
+      "rendering_id": "TRB052-E-v1",
+      "form": "E",
+      "input_text": "For potting, a gardener mixes soil and compost in the ratio 5 : 2. He has 14 kg of compost. How many kilograms of soil should he mix in?"
+    },
+    {
+      "family_id": "TRB053",
+      "rendering_id": "TRB053-E-v1",
+      "form": "E",
+      "input_text": "A craftsman makes a necklace using red, white and green beads in the ratio 4 : 3 : 1. The necklace has 96 beads in total. How many white beads are in it?"
+    },
+    {
+      "family_id": "TRB054",
+      "rendering_id": "TRB054-E-v1",
+      "form": "E",
+      "input_text": "For a shopkeeper, the cost price and selling price of an iron wok are in the ratio 5 : 6. The cost price is 1,500 rupees. How much profit does he make on one wok?"
+    },
+    {
+      "family_id": "TRB055",
+      "rendering_id": "TRB055-E-v1",
+      "form": "E",
+      "input_text": "A car runs 16 km per litre of fuel. How many litres of fuel will it need for a 440 km trip?"
+    },
+    {
+      "family_id": "TRB056",
+      "rendering_id": "TRB056-E-v1",
+      "form": "E",
+      "input_text": "A worker paints 12 square metres of wall every hour. How many hours will he take to paint 78 square metres?"
+    },
+    {
+      "family_id": "TRB057",
+      "rendering_id": "TRB057-E-v1",
+      "form": "E",
+      "input_text": "One kilogram of rice costs 45 rupees. How much do 2.4 kg of rice cost?"
+    },
+    {
+      "family_id": "TRB058",
+      "rendering_id": "TRB058-E-v1",
+      "form": "E",
+      "input_text": "Sanjay rides his cycle at a steady speed and covers 15 km in one hour. How many minutes will he take to ride 9 km?"
+    },
+    {
+      "family_id": "TRB059",
+      "rendering_id": "TRB059-E-v1",
+      "form": "E",
+      "input_text": "One tap fills the garden water tank in 6 hours and another tap fills it in 3 hours. If both taps are opened together, in how many hours will they fill the tank?"
+    },
+    {
+      "family_id": "TRB060",
+      "rendering_id": "TRB060-E-v1",
+      "form": "E",
+      "input_text": "A tailor stitches 3 shirts in 2 hours. How many shirts will he stitch in 10 hours?"
+    },
+    {
+      "family_id": "TRB061",
+      "rendering_id": "TRB061-E-v1",
+      "form": "E",
+      "input_text": "In a recurring deposit scheme, you have to deposit 750 rupees per month. How much will be deposited in 2 years?"
+    },
+    {
+      "family_id": "TRB062",
+      "rendering_id": "TRB062-E-v1",
+      "form": "E",
+      "input_text": "A carpenter makes pieces 30 cm long from a plank that is 2.4 metres long. How many pieces will he get?"
+    },
+    {
+      "family_id": "TRB063",
+      "rendering_id": "TRB063-E-v1",
+      "form": "E",
+      "input_text": "A bus makes 4 one-way trips a day between two towns. Each one-way trip is 38 km. How many kilometres does the bus travel in 5 days?"
+    },
+    {
+      "family_id": "TRB064",
+      "rendering_id": "TRB064-E-v1",
+      "form": "E",
+      "input_text": "One litre of cooking oil costs 160 rupees. What is the cost of 750 mL of the oil?"
+    },
+    {
+      "family_id": "TRB065",
+      "rendering_id": "TRB065-E-v1",
+      "form": "E",
+      "input_text": "A garden sprinkler uses 18 litres of water per minute. It runs for 25 minutes in the morning and 15 minutes in the evening. How many litres of water does it use in a day?"
+    },
+    {
+      "family_id": "TRB066",
+      "rendering_id": "TRB066-E-v1",
+      "form": "E",
+      "input_text": "A savings scheme gives 45 rupees of interest in one month. How many months will it take to earn 1,080 rupees of interest?"
+    },
+    {
+      "family_id": "TRB067",
+      "rendering_id": "TRB067-E-v1",
+      "form": "E",
+      "input_text": "Lace is sold at 24 rupees per metre. A tailor needs 350 cm of lace for each dupatta. What will the lace for 4 dupattas cost?"
+    },
+    {
+      "family_id": "TRB068",
+      "rendering_id": "TRB068-E-v1",
+      "form": "E",
+      "input_text": "Kamla buys some potatoes at 25 rupees per kg and one bunch of coriander for 30 rupees. She pays 205 rupees in total. How many kilograms of potatoes did she buy?"
+    },
+    {
+      "family_id": "TRB069",
+      "rendering_id": "TRB069-E-v1",
+      "form": "E",
+      "input_text": "An electrician charged 1,100 rupees for a repair job. This included a fixed visit charge of 300 rupees, and the rest was charged at 200 rupees per hour. How many hours did he work?"
+    },
+    {
+      "family_id": "TRB070",
+      "rendering_id": "TRB070-E-v1",
+      "form": "E",
+      "input_text": "Ajay's car tank had some fuel in it. After he added 18 litres, the tank had three times as much fuel as before. How many litres of fuel were in the tank at first?"
+    },
+    {
+      "family_id": "TRB071",
+      "rendering_id": "TRB071-E-v1",
+      "form": "E",
+      "input_text": "Sneha's piggy bank has 1,500 rupees. She puts in 250 rupees once a week. After how many weeks will her piggy bank have 4,000 rupees?"
+    },
+    {
+      "family_id": "TRB072",
+      "rendering_id": "TRB072-E-v1",
+      "form": "E",
+      "input_text": "Two flower beds have 52 plants altogether. The first bed has 8 more plants than the second. How many plants are there in the second bed?"
+    },
+    {
+      "family_id": "TRB073",
+      "rendering_id": "TRB073-E-v1",
+      "form": "E",
+      "input_text": "A tailor charges one fixed price to stitch a shirt. He stitched 5 shirts and also charged 120 rupees for mending old clothes. He received 1,620 rupees for this work. What is the stitching charge for one shirt?"
+    },
+    {
+      "family_id": "TRB074",
+      "rendering_id": "TRB074-E-v1",
+      "form": "E",
+      "input_text": "Lata bought 4 steel bowls that all had the same price. She paid with a 500-rupee note and got 140 rupees in change. What was the price of one bowl?"
+    },
+    {
+      "family_id": "TRB075",
+      "rendering_id": "TRB075-E-v1",
+      "form": "E",
+      "input_text": "A driver drove at a steady speed for 3 hours and then drove another 40 km. In this way he covered 250 km. What was his speed in km/h during the first 3 hours?"
+    },
+    {
+      "family_id": "TRB076",
+      "rendering_id": "TRB076-E-v1",
+      "form": "E",
+      "input_text": "If the width of a rectangular floor is increased by 3 metres, you get its length. The perimeter of the floor is 26 metres. What is the width of the floor?"
+    },
+    {
+      "family_id": "TRB077",
+      "rendering_id": "TRB077-E-v1",
+      "form": "E",
+      "input_text": "Arun spent one-fourth of his savings on a watch repair and then 600 rupees on books. He had 1,500 rupees left. How much money did he have at first?"
+    },
+    {
+      "family_id": "TRB078",
+      "rendering_id": "TRB078-E-v1",
+      "form": "E",
+      "input_text": "A gardener planted some rows of saplings, with 12 saplings in each row. He also planted 9 saplings along the fence. He planted 105 saplings. How many rows did he plant?"
+    },
+    {
+      "family_id": "TRB079",
+      "rendering_id": "TRB079-E-v1",
+      "form": "E",
+      "input_text": "A craft teacher bought some bundles of coloured paper at 35 rupees a bundle and 4 bottles of glue at 20 rupees a bottle. She spent 395 rupees. How many bundles of paper did she buy?"
+    },
+    {
+      "family_id": "TRB080",
+      "rendering_id": "TRB080-E-v1",
+      "form": "E",
+      "input_text": "A fruit seller had some oranges. He sold 40 oranges in the morning. In the evening he sold half of the oranges he then had. At the end he had 35 oranges. How many oranges did he have at the start?"
+    }
+  ],
+  "evaluation_order": [
+    "TRB027-E-v1",
+    "TRB065-E-v1",
+    "TRB047-E-v1",
+    "TRB014-E-v1",
+    "TRA080-E-v1",
+    "TRB009-E-v1",
+    "TRA006-E-v1",
+    "TRB076-E-v1",
+    "TRB025-E-v1",
+    "TRB003-E-v1",
+    "TRA031-E-v1",
+    "TRB049-E-v1",
+    "TRB012-E-v1",
+    "TRA075-E-v1",
+    "TRB030-E-v1",
+    "TRA068-E-v1",
+    "TRA074-E-v1",
+    "TRA005-E-v1",
+    "TRA015-E-v1",
+    "TRA056-E-v1",
+    "TRA045-E-v1",
+    "TRB070-E-v1",
+    "TRA034-E-v1",
+    "TRA055-E-v1",
+    "TRA021-E-v1",
+    "TRA072-E-v1",
+    "TRB067-E-v1",
+    "TRB037-E-v1",
+    "TRB034-E-v1",
+    "TRA077-E-v1",
+    "TRB053-E-v1",
+    "TRA019-E-v1",
+    "TRA022-E-v1",
+    "TRB007-E-v1",
+    "TRB057-E-v1",
+    "TRA029-E-v1",
+    "TRA046-E-v1",
+    "TRB041-E-v1",
+    "TRB015-E-v1",
+    "TRB010-E-v1",
+    "TRB026-E-v1",
+    "TRA057-E-v1",
+    "TRA039-E-v1",
+    "TRB006-E-v1",
+    "TRA079-E-v1",
+    "TRB020-E-v1",
+    "TRA070-E-v1",
+    "TRA020-E-v1",
+    "TRB029-E-v1",
+    "TRB038-E-v1",
+    "TRB013-E-v1",
+    "TRB062-E-v1",
+    "TRB043-E-v1",
+    "TRB045-E-v1",
+    "TRA069-E-v1",
+    "TRA065-E-v1",
+    "TRA042-E-v1",
+    "TRB032-E-v1",
+    "TRB016-E-v1",
+    "TRB017-E-v1",
+    "TRA047-E-v1",
+    "TRB068-E-v1",
+    "TRB031-E-v1",
+    "TRA058-E-v1",
+    "TRB069-E-v1",
+    "TRA023-E-v1",
+    "TRA063-E-v1",
+    "TRA060-E-v1",
+    "TRB072-E-v1",
+    "TRA076-E-v1",
+    "TRA013-E-v1",
+    "TRA032-E-v1",
+    "TRA018-E-v1",
+    "TRB079-E-v1",
+    "TRB061-E-v1",
+    "TRA002-E-v1",
+    "TRA043-E-v1",
+    "TRA040-E-v1",
+    "TRA012-E-v1",
+    "TRA044-E-v1",
+    "TRA035-E-v1",
+    "TRA026-E-v1",
+    "TRB001-E-v1",
+    "TRB023-E-v1",
+    "TRB055-E-v1",
+    "TRA054-E-v1",
+    "TRB048-E-v1",
+    "TRB054-E-v1",
+    "TRA061-E-v1",
+    "TRA007-E-v1",
+    "TRA027-E-v1",
+    "TRA028-E-v1",
+    "TRB075-E-v1",
+    "TRB008-E-v1",
+    "TRA003-E-v1",
+    "TRB024-E-v1",
+    "TRA050-E-v1",
+    "TRB044-E-v1",
+    "TRB021-E-v1",
+    "TRA052-E-v1",
+    "TRA014-E-v1",
+    "TRB019-E-v1",
+    "TRA073-E-v1",
+    "TRA009-E-v1",
+    "TRB059-E-v1",
+    "TRB066-E-v1",
+    "TRA066-E-v1",
+    "TRB046-E-v1",
+    "TRB018-E-v1",
+    "TRB060-E-v1",
+    "TRA033-E-v1",
+    "TRB011-E-v1",
+    "TRB078-E-v1",
+    "TRB028-E-v1",
+    "TRA071-E-v1",
+    "TRA053-E-v1",
+    "TRA036-E-v1",
+    "TRB050-E-v1",
+    "TRA059-E-v1",
+    "TRB063-E-v1",
+    "TRB005-E-v1",
+    "TRA001-E-v1",
+    "TRA064-E-v1",
+    "TRA038-E-v1",
+    "TRB002-E-v1",
+    "TRA030-E-v1",
+    "TRA067-E-v1",
+    "TRA051-E-v1",
+    "TRB033-E-v1",
+    "TRB004-E-v1",
+    "TRB039-E-v1",
+    "TRA008-E-v1",
+    "TRA062-E-v1",
+    "TRB074-E-v1",
+    "TRA010-E-v1",
+    "TRA016-E-v1",
+    "TRA017-E-v1",
+    "TRB056-E-v1",
+    "TRA004-E-v1",
+    "TRA041-E-v1",
+    "TRB077-E-v1",
+    "TRB022-E-v1",
+    "TRA011-E-v1",
+    "TRB058-E-v1",
+    "TRA024-E-v1",
+    "TRA037-E-v1",
+    "TRA078-E-v1",
+    "TRB035-E-v1",
+    "TRA025-E-v1",
+    "TRB073-E-v1",
+    "TRB042-E-v1",
+    "TRB052-E-v1",
+    "TRA048-E-v1",
+    "TRA049-E-v1",
+    "TRB071-E-v1",
+    "TRB051-E-v1",
+    "TRB080-E-v1",
+    "TRB040-E-v1",
+    "TRB064-E-v1",
+    "TRB036-E-v1"
+  ],
+  "dependencies": {
+    "transformers": "4.51.3",
+    "bitsandbytes": "0.50.2",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0",
+    "huggingface-hub": "0.30.2",
+    "tokenizers": "0.21.1",
+    "safetensors": "0.5.3",
+    "nvidia-ml-py": "12.570.86",
+    "torch": "2.11.0+cu130"
+  },
+  "model": {
+    "id": "Qwen/Qwen3-4B",
+    "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "hub_files": {
+      "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "chat_template": {
+      "source": "tokenizer_config.json at the pinned revision (no chat_template.jinja exists there)",
+      "digest": "41d5929bf73796beb66809ac700b2cf3ff81694f933e5c14d52b7fd6963c947d",
+      "digest_definition": "train_smoke.digest(template) = SHA-256 of json.dumps(template) in UTF-8; recorded at run time as chat_template_sha256 by the trainer and by the engine backend",
+      "utf8_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+      "kwargs": {
+        "enable_thinking": false,
+        "add_generation_prompt": true
+      }
+    },
+    "trust_remote_code": false,
+    "second_backbone": "none (Amendment 1 item 15: Llama-3.2-3B excluded)"
+  },
+  "eos_stopping": {
+    "training_target": "reference_solution_en + '<|im_end|>' (id 151645), encoded separately from the prompt; the last supervised token is asserted to be <|im_end|>",
+    "generation_eos_token_id": [
+      151645,
+      151643
+    ],
+    "generation_eos_source": "model.generation_config.eos_token_id from generation_config.json at the pinned revision (<|im_end|> 151645, <|endoftext|> 151643); pad_token_id = tokenizer pad <|endoftext|> 151643",
+    "stopping": "greedy decoding stops at the first generated EOS id or after max_new_tokens = 1024 new tokens",
+    "truncated": "no EOS among the generated ids and 1024 tokens generated; scored 0 by scorer v1",
+    "decoding_of_response": "tokenizer.decode(ids, skip_special_tokens=True); the raw form with special tokens is also stored",
+    "prompt": "chat template with system = frozen instruction, user = rendering, add_generation_prompt=True, enable_thinking=False (empty <think></think> block); identical at training and evaluation"
+  },
+  "dtype_preparation": [
+    "AutoModelForCausalLM.from_pretrained(torch_dtype=float16, BitsAndBytesConfig nf4, double quant, compute float16), sdpa attention, model.eval(), no prepare_model_for_kbit_training (norms and embeddings stay float16)",
+    "PeftModel.from_pretrained(base, adapter, is_trainable=False): the float32 LoRA weights are loaded unmerged (no merge, no re-quantization); no autocast",
+    "inference_mode, SDPA math kernel only, use_cache True, batch 1, deterministic algorithms"
+  ]
+}
