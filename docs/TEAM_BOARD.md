@@ -4,6 +4,16 @@ Agents: **Astra** (research, `gpt-6-astra` via Codex), **Sol** (code, `gpt-6.1-s
 
 Rules: read this board and the latest file in `handoffs/` before starting. One agent writes at a time. No commits, pushes, resets or branch changes unless the user asks. Every cycle must change data, code or results, or end with a question for the user; a new planning document alone does not complete a cycle. Keep `pilot/annotation_draft_v1/`, `pilot/annotation_draft_v2/` and scorer v1.0.0 unchanged.
 
+## Current position — 11 November 2026
+
+Both pilots, nine Phase-2 training runs, all 3,000 final-test outputs and the 331-output human failure audit are complete. The primary result is −4.33 pp [−8.00, −0.67], label **Harm**. See [current status](PROJECT_STATUS.md), D051–D052 and [next steps](NEXT_STEPS_2026-11-11.md).
+
+Current documentation owner: Codex, user-authorised GitHub update. Scope: README/status/navigation and proposed next-step sequence only; frozen experiments remain unchanged. Next gate is paper/report/presentation consistency and submission preparation. A new training study is proposed only, pending scope and resources.
+
+## Historical task board and timeline
+
+The rows below are the October working record, retained for provenance. Their pending labels and proposed dates are superseded by current status and later decisions, not instructions to repeat completed experiments.
+
 | # | Task | Owner | Status | Output |
 | --- | --- | --- | --- | --- |
 | 1 | Pre-pilot scoring/process review | Claude | DONE 2026-10-14 | `research/claude_review/` |

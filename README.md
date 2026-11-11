@@ -1,80 +1,55 @@
 # Hinglish Mathematical Reasoning in LLMs
 
-A Delhi Technological University BTech research project investigating how language form affects mathematical reasoning, and whether code-mixed training offers benefits beyond Romanized-Hindi exposure.
+A Delhi Technological University BTech research project on mathematical reasoning across English (E), Hindi written in Roman script (R), and Roman-script Hindi–English code mixing (C).
 
-**Current status, 10 October 2026:** pilot software implemented; fake-backend software checks and a short real-Qwen T4 inference smoke completed; 30 AI-authored draft families prepared for human review. **No reviewed research pilot, fine-tuning, confirmatory experiment, or demonstrated training benefit has been completed.**
+**Current status: 11 November 2026.** Both unchanged-model pilot cohorts, T4 training feasibility, nine controlled QLoRA training runs and the final evaluation are complete. The final training result is negative: **E+C minus E+R accuracy on C = −4.33 percentage points [−8.00, −0.67]**, under the frozen strict endpoint. The pre-registered label is **Harm**, specific to this recipe and dataset; it is not a universal claim about Hinglish training.
 
-Start with the [teammate guide PDF](output/pdf/Hinglish_Math_Teammate_Guide.pdf), then [current progress and next steps](docs/PROJECT_STATUS.md). Older planning documents are retained as dated proposals; their pending/completed statements must be read with this current status.
+Start with [current project status](docs/PROJECT_STATUS.md) and the [next-step plan](docs/NEXT_STEPS_2026-11-11.md). The [decision log](docs/DECISIONS.md) records adopted decisions. Older dated documents and introductory guides describe earlier stages and are not the current status.
 
-For continuing research in a new assistant session, use the [Astra research master prompt](docs/ASTRA_RESEARCH_MASTER_PROMPT.md), which includes verified achievements, open questions and bounded subagent tasks.
+## Completed experiments
 
-## What E, R and C mean
+| Study | Scope | Outcome |
+| --- | --- | --- |
+| Excluded format/model screening | Seven candidate models; fixed inclusion rule | Qwen3-4B, Qwen3-8B and Llama-3.2-3B qualified |
+| Pilot-B | 70 matched E/R/C families; three models | R lowest for all three; Qwen E/C aggregate strict accuracy equal |
+| Original pilot | 24 accepted families from 30 candidates; three models | Same R-lowest direction; Qwen near ceiling |
+| T4 training smoke | Three arms, checkpoint reload and longer engineering probe | Passed; memorisation warning informed the later schedule before main training |
+| Phase-2 training | 160 TRAIN families; E+E/E+R/E+C × seeds 11/22/33 | Nine valid runs, 60 updates each; adapters frozen |
+| Phase-2 FINAL_TEST | 100 families × E/R/C × ten checkpoints | All 3,000 outputs complete; E+C below E+R on C; all trained arms below unchanged model |
+| Phase-2 failure audit | All 331 incorrect C outputs from E+R/E+C | Human labels recorded for all rows; the E+C deficit is not explained away by format-only errors |
 
-| Form | Input language |
-| --- | --- |
-| E | English |
-| R | Hindi phrasing written in Roman script, under a borrowing policy |
-| C | Roman-script Hindi-English code mixing, with productive English clauses or relations |
+The pilots are reported separately because their review procedures and C definitions differ. Equal observed accuracy is not evidence of equivalence. The Phase-2 bootstrap resamples families, retaining seed pairing; its interval is conditional on the trained checkpoints and does not cover training-seed variance. No training, prompt or scorer changes were made in response to final-test outcomes.
 
-Test 1 evaluates mathematically equivalent E/R/C questions using one unchanged checkpoint, one fixed English instruction and one scorer. A fresh context is used for every question. The intended reviewed pilot has 30 independent mathematical families, each with three renderings: **90 prompts represent 30 families, not 90 independent problems.**
+## Evidence and report navigation
 
-The later training comparison is **E+E versus E+R versus E+C**, matching mathematical content, English solution supervision and example exposure. It remains a proposed experiment. Matching exposure and updates does not necessarily match input tokens or runtime; those must be measured. Existing bilingual/code-mixed mathematics studies mean publication novelty cannot be assumed; see the [updated closest-work matrix](research/astra_closest_work_update_2026-10-10.md).
+- [Pilot-B results](results/pilot_b/SUMMARY.md) and [original-pilot results](results/pilot_original/SUMMARY.md).
+- [Training smoke](results/training_smoke/README.md), [training records](results/phase2/train/README.md), and [final analysis](results/phase2/final_test/phase2_analysis.md).
+- [Independent final-result verification](handoffs/2026-11-10_sol_verify_final_test.md) and [human failure-audit summary](results/phase2/audit/final_audit_summary.json).
+- [Pre-registration](phase2/PREREGISTRATION.md), [implementation freeze](phase2/IMPLEMENTATION_MANIFEST.md), and [adapter freeze](phase2/ADAPTERS_FROZEN.md).
+- [Paper source](paper/latex/main.tex), [paper PDF](paper/latex/main.pdf), [report source](report/final_report.tex), and [report PDF](report/final_report.pdf). Check generated PDFs against the latest sources before sharing.
+- [Novelty refresh](research/novelty_refresh_2026-10-27.md): prior work already reports R below C; position this work as a scoring-aware audit and controlled training follow-up, not discovery of that ordering.
 
-## Run the notebooks
+The decision log records an EACL 2027 SRW **pre-submission mentorship** submission on 26 October (OpenReview #12), not acceptance or final-track submission. Publication dates remain recorded planning dates until checked against the current call.
 
-- [Main Test 1 Colab notebook](test1_pilot/Hinglish_Math_Test1_Pilot_Colab.ipynb): self-contained; upload this .ipynb to Colab. Default fake-backend demo needs no GPU. Reviewed mode requires genuinely accepted data and a split audit; it rejects drafts.
-- [Qwen GPU smoke notebook](test1_pilot/Hinglish_Math_Qwen_GPU_Smoke_Colab.ipynb): short technical inference check on excluded synthetic fixtures. It does not measure research performance or train the model.
-- [Portable software bundle](test1_pilot/Hinglish_Test1_Portable.zip): editable code, tests and notebook. It is optional when running the self-contained notebook.
-- [Exact Colab instructions](test1_pilot/README.md), [input contract](test1_pilot/DATA_CONTRACT.md), and [verification record](test1_pilot/VERIFICATION.md).
+## Data and review provenance
 
-Primary inference condition: Qwen/Qwen3-4B, NF4 with double quantization, FP16 computation, SDPA math backend, non-thinking greedy decoding, batch 1 and 1,024 output tokens. Every run records immutable model/tokenizer revisions, configuration, environment, hardware, outputs and failures. The real T4 smoke establishes short-input inference feasibility only. Full-pilot and training feasibility are still pending.
+Pilot-B has full-family review by one bilingual reviewer. The original cohort has two independent human mathematical solves, language review by one human plus adjudicator, and excludes unverified AI-prefilled judgments from human-review claims. Phase-2 FINAL_TEST received full-family review; TRAIN/DEV received flagged and sample-based review. AI drafting and solver checks do not replace human validation. See the freeze documents and D033–D038 for details.
 
-## Human review comes next
+## Software and reproducibility
 
-The [annotation package](pilot/annotation_draft_v2/README.md) has five draft families in each of six topics. All texts remain AI_DRAFT and all acceptance decisions are pending.
+- `test1_pilot/`: original self-contained Colab evaluation notebook, helpers, fixtures and portable bundle.
+- `colab_notebooks/`: model screening, pilot evaluation and Phase-2 notebooks. Completed experiments should not be casually rerun or tuned on FINAL_TEST.
+- `t4_smoke/`, `phase2/`, `phase2_analysis/`: training engineering, frozen study records and registered analysis.
+- `secondary_analysis/`: separately versioned diagnostic endpoints; strict scorer v1.0.0 stays primary.
+- `analysis/`: explicitly exploratory post-hoc analyses, which do not replace the registered result.
+- `pilot/`, `pilot_b/`, `authoring/`, `autoverify/`: historical review packets and dataset preparation.
 
-1. Assign two independent Hindi-English bilingual reviewers to R01 and R02, and a separate adjudicator to A01. These labels are pseudonyms, not completed reviews.
-2. Give each reviewer only their own [R01 ZIP](pilot/annotation_draft_v2/R01_review_packet.zip) or [R02 ZIP](pilot/annotation_draft_v2/R02_review_packet.zip). They solve randomized stage1 questions before consulting reference answers, save the JSON, and import it into stage2 to compare the triplets and rate language quality.
-3. The coordinator collects both independent submissions before revealing the [A01 key and decision packet](pilot/annotation_draft_v2/A01_adjudication_packet.zip). Record repairs, disagreements, exact gold/unit decisions, family relationships and split exclusions; repaired texts require new versions and independent re-review.
-4. Freeze accepted data, review hashes, borrowing policy and splits; then run the unchanged-model pilot and inspect all raw outputs.
-
-**Reviewers:** the coordinator folder, A01 key and historical illustrative problems contain proposed answers. Avoid reading those before your independent solves. If you have already seen a proposed answer, report that exposure to the coordinator; do not attest otherwise. GitHub access is not a blind-review firewall. Automated checks cannot certify mathematical equivalence, naturalness or family independence.
-
-## Repository map
-
-| Location | Contents and status |
-| --- | --- |
-| `research/` | Literature comparison, design decisions, returned-demo audits and annotation handoff |
-| `pilot_review_packet.md` | Historical governing pilot/review protocol; proposed training-smoke section remains unexecuted |
-| `pilot/annotation_draft_v1/` | Thirty draft families, reviewer forms, key, proposed split manifest and verification |
-| `pilot/scripts/` | Original exact numeric scorer and tests |
-| `test1_pilot/` | Runnable Test 1 notebook, helper modules, fixtures, templates, tests and versioned archives |
-| `t4_smoke/` | Preparatory training-smoke validation/protocol code; no training run claimed |
-| `synopsis/faculty_synopsis.md` | Faculty-facing proposal; not an experimental report |
-| `docs/` | Teammate guide source and current status |
-| `output/pdf/` | Shareable teammate guide |
-
-Machine caches, Colab runtime directories, credentials, raw conversation transcripts, returned personal reviews and older personalized submission documents are excluded from version control. Code is released under the MIT licence (`LICENSE`); data under CC BY 4.0 (`DATA_LICENSE.md`), decision D034.
-
-## Local software checks
-
-From the repository root, without CUDA dependencies:
+A read-only consistency check validates the final archives and published strict/numeric counts without modifying results:
 
 ```sh
-python3 -B -m unittest discover -s pilot/scripts -p 'test_*.py' -v
-python3 -B -m unittest discover -s t4_smoke -p 'test_*.py' -v
-PYTHONPATH=test1_pilot python3 -B -m unittest discover -s test1_pilot/tests -p 'test_*.py' -v
-python3 -B pilot/annotation_draft_v1/verify_packet.py
+python3 -B analysis/phase2_exploratory/error_analysis.py --check
 ```
 
-The annotation verifier also uses Node.js for JavaScript syntax and simulated import/export checks. See each package README for builders and dependencies. These are software checks; they do not establish human approval or full GPU feasibility. Do not rebuild draft distributions over returned human edits. For actual research runs, return one results ZIP plus the executed notebook, preserving all original automatic scores and any separately versioned manual audit overlays.
+It passed on 11 November: ten complete runs, 3,000 outputs and all 60 checkpoint-by-form endpoint counts. This is a software consistency check, not a new experiment or independent human review.
 
-## Current research decisions
-
-The [consolidated experiment specification](research/astra_experiment_spec_v1.md) preserves the three-arm comparison and separates requirements from unapproved recommendations. Read the [statistical planning analysis](research/astra_validity_and_power_v1.md) and [review-readiness audit](research/astra_review_readiness_v1.md) before preparing accepted inputs. Planning calculations are synthetic assumptions, not model results. Reviewer exposure remains unconfirmed; PIL026-C wording and candidate family relationships require human resolution. The next gate remains human acceptance followed by the unchanged-model pilot.
-
-A [three-agent AI pre-review](research/ai_prereview_v1/README.md) covers all 30 candidates with mathematics, language and family-structure findings. It is coordinator material containing proposed answers, not human validation or a completed review submission. Original draft inputs remain unchanged.
-
-Current review distribution: [draft v2](pilot/annotation_draft_v2/README.md), with eight AI wording repairs across six families. v1 remains archived unchanged. [Today’s progress and next steps](docs/PROGRESS_2026-10-10.md) distinguishes delivered software/AI review from pending human acceptance and experiments.
-
-Research update, 11 October: [conditional inference contract](research/conditional_inference_2026-10-11.md), [synthetic interval stress tests](research/conditional_calibration/README.md), and [sampling/annotation options](research/sampling_and_annotation_plan_2026-10-11.md). These are design work, not model results or human acceptance.
+Code: MIT ([LICENSE](LICENSE)). Data: CC BY 4.0 ([DATA_LICENSE.md](DATA_LICENSE.md)). Preserve frozen packets, original generations, scores, reviewer provenance and exclusions. Do not commit credentials or new personal reviewer material.
