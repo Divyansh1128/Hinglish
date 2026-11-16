@@ -142,8 +142,9 @@ function table(s,rows,x,y,widths,rowH=0.52,size=18,header=true) {
 
 function slide01() {
   const s=base('Language and maths in small LLMs','',true);
-  text(s,'Language and maths in small LLMs',.75,.75,11.8,.7,28,{fontFace:'Georgia'});
-  text(s,'Hinglish, Romanized Hindi and English',.75,1.65,11.8,.6,24);
+  text(s,'Language and maths in small LLMs',.75,.75,9.6,.7,28,{fontFace:'Georgia'});
+  text(s,'Hinglish, Romanized Hindi and English',.75,1.65,9.6,.6,24);
+  s.addImage({path:path.join(__dirname,'assets/dtu_logo.png'),x:10.95,y:.45,w:1.6,h:1.6*299/300});
   line(s,.75,2.65,12.55,2.65);
   text(s,'Divyansh Raj (23/MC/195)\nAyush Kumar Singh (23/MC/194)\nDivyanshu Mishra (23/MC/196)',.75,3.25,6.1,1.3,22);
   text(s,'B.Tech. Mathematics and Computing\nDepartment of Applied Mathematics\nDelhi Technological University',7.1,3.25,5.4,1.4,20);
@@ -332,6 +333,7 @@ function slide13() {
 }
 function slide14() {
   const s=base('Findings and Phase 3');
+  s.addImage({path:path.join(__dirname,'assets/dtu_logo.png'),x:11.55,y:.32,w:1.0,h:1.0*299/300});
   text(s,'Romanized Hindi was least accurate across the three tested models.',.75,2.12,11.8,.9,24,{bold:true});
   text(s,'Qwen3-4B, this recipe: E+C scored below E+R on Hinglish.',.75,3.55,11.8,.95,24,{bold:true});
   text(s,'Phase 3 (under way) trains on the model’s own correct solutions.',.75,5.15,11.8,.9,23);
