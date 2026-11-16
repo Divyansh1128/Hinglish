@@ -112,7 +112,7 @@ function rect(s,x,y,w,h,fill,stroke=fill) {
   s.addShape(pptx.ShapeType.rect,{x,y,w,h,fill:{color:fill},line:{color:stroke,width:0.7}});
 }
 function base(title,source='',cover=false) {
-  const s=pptx.addSlide(); s.background={color:'FFFFFF'}; titles.push(title);
+  const s=pptx.addSlide(); s.background={path:path.join(__dirname,'assets/slide_background.png')}; titles.push(title);
   assert.equal(wrap(title,12.03,28,'Georgia').length,title.split('\n').length, `Title needs an intentional break: ${title}`);
   assert(!/(?:results|report|docs)\//.test(source), `Keep repository paths in notes: ${source}`);
   if (!cover) {
@@ -142,10 +142,11 @@ function table(s,rows,x,y,widths,rowH=0.52,size=18,header=true) {
 
 function slide01() {
   const s=base('Language and maths in small LLMs','',true);
-  text(s,'Language and maths in small LLMs',.75,.75,9.6,.7,28,{fontFace:'Georgia'});
-  text(s,'Hinglish, Romanized Hindi and English',.75,1.65,9.6,.6,24);
+  rect(s,.75,.50,.67,.055,C.E);
+  text(s,'Does the language of a maths problem\nchange the answer?',.75,.72,10.0,1.3,34,{fontFace:'Georgia'});
+  text(s,'Hinglish, Romanized Hindi and small LLMs on maths word problems',.75,2.08,10.0,.45,20,{color:C.E});
   s.addImage({path:path.join(__dirname,'assets/dtu_logo.png'),x:10.95,y:.45,w:1.6,h:1.6*299/300});
-  line(s,.75,2.65,12.55,2.65);
+  line(s,.75,2.75,12.55,2.75);
   text(s,'Divyansh Raj (23/MC/195)\nAyush Kumar Singh (23/MC/194)\nDivyanshu Mishra (23/MC/196)',.75,3.25,6.1,1.3,22);
   text(s,'B.Tech. Mathematics and Computing\nDepartment of Applied Mathematics\nDelhi Technological University',7.1,3.25,5.4,1.4,20);
   text(s,'Supervisor: Dr. Dinesh Udar',.75,5.45,11.8,.5,22);
@@ -331,6 +332,27 @@ function slide13() {
   text(s,'SRW mentor feedback\n5 Dec 2026\n\nFinal SRW submission\n15 Dec 2026\n\nPhase 3 runs\n\nThesis, ARR submission\nand final evaluation\nMay 2027',xs[2],2.68,width,3.95,19,{valign:'top'});
   notes(s,'Divyanshu','Phases 1 and 2 are complete. Completed work includes 370 plus 24 data families, the pipeline, evaluations, analysis, full human failure audit and an SRW draft submitted for mentorship on 26 October. Phase 3 is underway: the pre-registration, the 158 self-generated training solutions and the code are frozen, and training is next. There are no Phase-3 results yet. It will train on the model’s own step-by-step solutions to test whether Hinglish helps after the short-target damage is removed. Upcoming dates are mentor feedback on 5 December 2026, final SRW submission on 15 December 2026, Phase-3 runs, and thesis, ARR submission and final evaluation in May 2027.','report/final_report.tex, project status; user-provided Phase-3 status and dates');
 }
+function slideUses() {
+  const s=base('Where this matters in everyday use','Implications of our results; we did not test deployed apps');
+  const rows=[
+    ['Homework help on phones','Students type maths doubts in Romanized Hindi, where small models did worst.'],
+    ['Tutoring apps and chatbots for India','Evaluate on Romanized Hindi and Hinglish, not only English or Devanagari.'],
+    ['Everyday sums: bills, change, EMIs, discounts','Shop, bank and helpline assistants get these questions in mixed language.'],
+    ['A lesson for builders','Check answer formats first; Hinglish fine-tuning is not an automatic fix.']
+  ];
+  rows.forEach(([a,b],i)=>{const y=1.90+i*1.1;text(s,a,.75,y,11.8,.4,22,{bold:true});text(s,b,.75,y+.46,11.8,.4,20);});
+  notes(s,'Divyanshu','Most Indian users type Hindi in English letters, so Romanized Hindi is the realistic input for homework helpers, tutoring apps and customer-service bots, and it is exactly where small models were weakest. Likely questions. Q: Who would use this work? A: Anyone building or evaluating maths or customer-facing assistants for Indian users; our benchmark and checks show where they fail. Q: Does this mean apps should avoid Hinglish? A: No. It means they should be tested on it, and that simply adding Hinglish to a short-target fine-tune did not help. Q: Is this tested in real apps? A: No, these are implications of a controlled benchmark, which is why the slide says so.','report/final_report.tex, conclusion and future work');
+}
+function slideFuture() {
+  const s=base('Phase 3 and future work','Plan and dates as of November 2026');
+  text(s,'Phase 3, next 6–8 weeks',.75,1.80,11.8,.45,22,{bold:true});
+  text(s,'Train on the model’s own correct solutions (158 frozen)\n9 training runs, then one test on the same 100 families\nAnswers: was the Phase 2 harm caused by short targets?',.75,2.30,11.8,1.1,20);
+  text(s,'Further work',.75,3.62,11.8,.45,22,{bold:true});
+  text(s,'A fresh, never-used test set\nA Devanagari arm, to separate script from language\nMore model families and sizes; a second independent reviewer',.75,4.12,11.8,1.1,20);
+  text(s,'Deliverables',.75,5.44,11.8,.45,22,{bold:true});
+  text(s,'EACL SRW paper (15 Dec 2026) · training paper (ARR 2027) · thesis (May 2027)',.75,5.94,11.8,.45,20);
+  notes(s,'Divyanshu','Phase 3 keeps everything from Phase 2 except the training answers, which are now the unchanged model’s own correct English solutions. Likely questions. Q: What if Phase 3 also shows harm? A: Then Hinglish exposure does not help even when the model keeps its own style, which is a clear, publishable negative result. Q: What if it now helps? A: Then the Phase 2 harm was tied to the short-target recipe. Q: Why reuse the test set? A: Writing and reviewing 100 new families would take weeks; we disclose the reuse, and a fresh test set is listed as future work. Q: Why not use a big model like GPT-4? A: We study small open models that run on free hardware and that we can fine-tune and audit; closed models cannot be trained this way.','phase3/PREREGISTRATION.md; docs/DECISIONS.md D053–D056');
+}
 function slide14() {
   const s=base('Findings and Phase 3');
   s.addImage({path:path.join(__dirname,'assets/dtu_logo.png'),x:11.55,y:.32,w:1.0,h:1.0*299/300});
@@ -380,7 +402,7 @@ function backup04() {
 }
 async function main() {
   verifySources();
-  [slide01,slide02,slide03,slide04,slide05,slide06,slide06b,slide07,slide08,slide09,slide10,slide11,slide12,slide13,slide14,backup01,backup02,backup03,backup04].forEach(build=>build());
+  [slide01,slide02,slide03,slide04,slide05,slide06,slide06b,slide07,slide08,slide09,slide10,slide11,slide12,slideUses,slide13,slideFuture,slide14,backup01,backup02,backup03,backup04].forEach(build=>build());
   const output=path.join(__dirname,'minor_evaluation_v2.pptx');
   await pptx.writeFile({fileName:output,compression:true});
   // PptxGenJS 3.12 declares a slideMaster override per slide although it writes
@@ -390,7 +412,7 @@ async function main() {
   zip.file('[Content_Types].xml',contentTypes.replace(/<Override\b[^>]*PartName="([^"]+)"[^>]*\/>/g,
     (entry,part)=>zip.file(part.replace(/^\//,''))?entry:''));
   fs.writeFileSync(output,await zip.generateAsync({type:'nodebuffer',compression:'DEFLATE'}));
-  console.log(`Built 15 main slides + 4 backups. Checked ${layout.length} text boxes for conservative fit.\n${output}`);
+  console.log(`Built 17 main slides + 4 backups. Checked ${layout.length} text boxes for conservative fit.\n${output}`);
   titles.forEach((title,i)=>console.log(`${i+1}. ${title.replace(/\n/g,' ')}`));
 }
 main().catch(err=>{ console.error(err.stack); process.exitCode=1; });
