@@ -1,0 +1,370 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\setmainfont{Palatino}
+\setsansfont{Helvetica Neue}
+\setmonofont{Menlo}[Scale=0.9]
+\newfontfamily\devafont{Kohinoor Devanagari}[Renderer=HarfBuzz]
+\newcommand{\rs}{{\devafont ₹}}
+\definecolor{ink}{HTML}{222222}
+\definecolor{E}{HTML}{3B4A5A}
+\definecolor{R}{HTML}{B5532F}
+\definecolor{C}{HTML}{2E7D74}
+\definecolor{soft}{HTML}{F3F4F6}
+\titleformat{\section}{\sffamily\Large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\sffamily\large\bfseries}{\thesubsection}{0.5em}{}
+\setlist{nosep,leftmargin=1.4em}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\newtcolorbox{oneline}{colback=soft,colframe=soft,boxrule=0pt,arc=0pt,left=6pt,right=6pt,top=4pt,bottom=4pt,fontupper=\sffamily\small}
+\newtcolorbox{ifasked}{colback=white,colframe=C,boxrule=0.6pt,arc=0pt,left=6pt,right=6pt,top=4pt,bottom=4pt,fontupper=\small,title={\sffamily\small\bfseries If they ask},coltitle=white,colbacktitle=C}
+\newcommand{\Ef}{\textcolor{E}{\textbf{E}}}
+\newcommand{\Rf}{\textcolor{R}{\textbf{R}}}
+\newcommand{\Cf}{\textcolor{C}{\textbf{C}}}
+
+\title{\sffamily\bfseries Study Guide for the Minor Project Evaluation\\[4pt]\large Hinglish, Romanized Hindi and Small LLMs on Maths Word Problems}
+\author{For Divyansh Raj, Ayush Kumar Singh and Divyanshu Mishra\\ \small Department of Applied Mathematics, DTU \quad Supervisor: Dr.\ Dinesh Udar}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{oneline}
+How to use this guide. Read Section 1 first: it is the whole project on one page. Sections 2--9 teach every idea we use, starting from zero, in the order an examiner is likely to probe it. Each topic ends with a short ``If they ask'' box: a sentence you can say aloud. Section 12 is a bank of likely questions with model answers. All numbers here are copied from our report and results files.
+\end{oneline}
+
+\tableofcontents
+\newpage
+
+%==================================================================
+\section{The whole project on one page}
+
+\textbf{The question.} Many Indians type maths questions in a mix of Hindi and English, written in English letters. If we take one maths word problem and only change its \emph{language}, does a small AI model's answer change?
+
+\textbf{Three forms of the same problem.}
+\begin{itemize}
+\item \Ef\ \textbf{English}: ``Imran had \rs{}1200. He bought 3 shirts at \rs{}265 each. How much money did he have left?''
+\item \Rf\ \textbf{Romanized Hindi}: Hindi written in English letters. ``Imran ke paas \rs{}1200 the. Usne \rs{}265 waali 3 kameezein khareedin. Uske paas kitne rupaye bache?''
+\item \Cf\ \textbf{Hinglish} (code-mixed): Hindi grammar with English words mixed in. ``\ldots How much money did he have left?''
+\end{itemize}
+The answer is the same in all three: $1200 - 3\times 265 = 405$.
+
+\textbf{Phase 1 (finished): test unchanged models.} We built 394 human-reviewed problem ``families'' (each family = one problem in all three forms) and tested three small open models. \emph{Result:} Romanized Hindi was the hardest form for every model. Hinglish was as easy as English for both Qwen models. On the main 70-family set, Qwen3-4B scored 94.3 / 85.7 / 94.3\% on E / R / C, Qwen3-8B 98.6 / 91.4 / 98.6\%, and Llama-3.2-3B 94.3 / 57.1 / 70.0\%.
+
+\textbf{A lesson on measurement.} Before the real test, we found that a small wording choice in the instruction (how to write the final answer) made correct answers get marked wrong, and pushed Hindi answers into Devanagari script. Fixing one phrase took format failures from 10/36 to 0/36. So: check your scoring on practice data before comparing languages.
+
+\textbf{Phase 2 (finished): does training on Hinglish help?} We fine-tuned Qwen3-4B three ways, with identical English solutions as the training answers:
+E+E (English question twice), E+R (English + Romanized Hindi), E+C (English + Hinglish). Three random seeds each, nine training runs, then one test on 100 untouched families. \emph{Result:} E+C was \textbf{4.33 points worse} than E+R on Hinglish questions, 95\% interval $[-8.00, -0.67]$. Our pre-registered rule calls this \textbf{Harm}. Also, every trained model got about 24--26 points worse than the untrained model, because our short training answers taught it to write very short answers.
+
+\textbf{Phase 3 (in progress).} Same experiment, but the training answers are the model's own correct answers (``self-distillation''), so it keeps its own style. Plan, data and code are frozen; 158 of 160 training problems qualified. Training is next.
+
+\begin{ifasked}
+``We hold the maths fixed and change only the language. Small models struggle most with Romanized Hindi, not with Hinglish. And adding Hinglish to a fine-tune with short targets did not help Hinglish questions; it made them slightly worse.''
+\end{ifasked}
+
+%==================================================================
+\section{Language basics}
+
+\subsection{Hindi, Devanagari and Romanized Hindi}
+Hindi is normally written in the \textbf{Devanagari} script ({\devafont हिन्दी}). On phones and keyboards most people instead type Hindi in English (Latin) letters: ``kitne rupaye bache''. That is \textbf{Romanized Hindi}. There is no single standard spelling: ``rupaye'', ``rupaiye'' and ``rupye'' all appear.
+
+\subsection{Code-mixing and Hinglish}
+\textbf{Code-mixing} means using two languages in one sentence. \textbf{Hinglish} is Hindi--English code-mixing. Two kinds:
+\begin{itemize}
+\item \emph{Insertional}: Hindi grammar with English words dropped in (``23 add karta hai'', ``apples aur bananas ka ratio 3:7 hai''). This is how most people actually talk.
+\item \emph{Alternational}: whole English clauses next to Hindi clauses.
+\end{itemize}
+Our main data uses insertional Hinglish (decision D033), because our reviewer found full English clauses inside Hindi sentences unnatural.
+
+\subsection{Borrowing}
+Some English words are simply part of Hindi now (``bus'', ``ticket'', ``kg''). So our Romanized-Hindi form is allowed a fixed \emph{borrowing list} of such words, digits, units and names. Hinglish must contain English material \emph{beyond} that list.
+
+\begin{ifasked}
+``Romanized Hindi is Hindi written in English letters. Hinglish is Hindi grammar with English words mixed in. They look similar on screen but they are different language forms, and models treat them differently.''
+\end{ifasked}
+
+%==================================================================
+\section{What a language model is}
+
+\subsection{Next-word prediction}
+A \textbf{large language model (LLM)} is a program that, given some text, predicts what comes next. It is trained on huge amounts of text to make good guesses. To answer a question, it predicts one piece of text at a time and appends it, again and again, until it decides to stop.
+
+\subsection{Tokens and the tokenizer}
+Models do not read letters or whole words. They read \textbf{tokens}: chunks of text from a fixed vocabulary (Qwen3 has about 151{,}000 tokens). A \textbf{tokenizer} splits text into tokens. Common English words are often one token; rare words are split into several pieces. Romanized Hindi words are rarer in training data, so they split into more pieces: in our data an R word took about 2.0 tokens against 1.45 for English, and R questions were about 1.4--1.6 times longer in tokens than E.
+
+\begin{ifasked}
+``Is the R gap just because R uses more tokens?'' --- ``We checked. R questions are longer in tokens, but for the Qwen models the R mistakes did not happen on the longer questions, and Hinglish is also longer than English yet just as easy. So length is at most a minor factor; we did not find evidence that it explains the gap.''
+\end{ifasked}
+
+\subsection{Parameters and model size}
+Inside the model are numbers called \textbf{parameters} (weights). ``Qwen3-4B'' has about 4 billion of them. More parameters usually means a more capable model, but needs more memory. We used small models (3--8 billion) because they run on a free Google Colab GPU.
+
+\subsection{The transformer, in one paragraph}
+All modern LLMs use the \textbf{transformer} design. Its key step is \textbf{attention}: for each token, the model looks at all earlier tokens and decides how much each one matters for predicting the next. Stacking many such layers lets the model link a number at the start of a problem to a question at the end.
+
+\subsection{Chat models, prompts and instructions}
+An \textbf{instruction-tuned} (chat) model has been further trained to follow instructions. We send it a \textbf{prompt}: our fixed English instruction plus the question. The instruction asks for a short English explanation and a final line ``\texttt{FINAL: <answer>}''. The \textbf{chat template} is the exact formatting the model expects around the prompt. Qwen3 also has a ``thinking mode'' that writes long hidden reasoning; we turned it off for every run.
+
+\subsection{Decoding: greedy}
+At each step the model gives a probability to every possible next token. \textbf{Greedy decoding} always takes the most likely one. It is deterministic (same input, same output), which makes our experiments repeatable. We cap answers at 1{,}024 tokens; the answer ends at a special end token (\texttt{<|im\_end|>}).
+
+\begin{ifasked}
+``Why greedy?'' --- ``It removes randomness, so every difference we see comes from the input, not from luck in sampling. It is the standard choice for maths benchmarks.''
+\end{ifasked}
+
+\subsection{The models we used}
+Qwen3-4B (main model), Qwen3-8B (bigger version of the same family) and Llama-3.2-3B-Instruct (a different family, from Meta). Seven models were screened; only these three followed the answer format reliably (see Section 7.3).
+
+%==================================================================
+\section{Running models on a free GPU}
+
+\subsection{GPU memory}
+A \textbf{GPU} does the many multiplications a model needs. We used an NVIDIA \textbf{T4} (16 GB memory) on Google Colab, which is free. In normal 16-bit numbers (FP16), each parameter takes 2 bytes, so a 4B model needs about 8 GB just for weights.
+
+\subsection{Quantization (4-bit, NF4)}
+\textbf{Quantization} stores each weight with fewer bits. We store weights in \textbf{4 bits} using \textbf{NF4} (``NormalFloat-4''), a 4-bit code designed for weights that are roughly normally distributed. This cuts weight memory about four times. \emph{Double quantization} also compresses the small scaling constants. Calculations still happen in 16-bit (FP16). Quantization changes answers very slightly, which is why we kept it identical for every run and every form: the comparison between E, R and C stays fair.
+
+\begin{ifasked}
+``Doesn't 4-bit hurt accuracy?'' --- ``Slightly, but it is the same for all three forms and all arms, so it does not bias the comparison. Our numbers describe the 4-bit models we ran, which is how most people would run them on free hardware.''
+\end{ifasked}
+
+%==================================================================
+\section{How fine-tuning works}
+
+\subsection{Training as minimising a loss}
+To \textbf{fine-tune} is to continue training an existing model on new examples. For each example (question $\to$ correct solution), the model predicts the solution token by token. The \textbf{loss} measures how surprised it was: the \emph{cross-entropy}, $-\log p(\text{correct token})$, averaged over tokens. Training nudges the parameters to reduce this loss, using \textbf{gradients} (the direction of steepest increase of the loss, so we step the opposite way). This is gradient descent, which you know from optimisation.
+
+\subsection{Completion-only loss}
+We only count the loss on the \emph{solution} tokens, not on the question. The question tokens are ``masked''. So the model learns to answer, not to repeat questions. Because every arm's solution is the \emph{identical English text}, the three arms are trained on exactly the same answer tokens; only the question language differs.
+
+\subsection{LoRA: training a small add-on}
+Updating all 4 billion parameters is too expensive. \textbf{LoRA} (Low-Rank Adaptation) freezes the original weights and learns a small correction. For a weight matrix $W$ of size $d\times k$, LoRA learns two thin matrices $B$ ($d\times r$) and $A$ ($r\times k$) with small rank $r$, and uses
+\[ W' = W + \tfrac{\alpha}{r}\,BA. \]
+We used $r=16$, $\alpha=32$, on the seven linear layers of every block. That is 33{,}030{,}144 trainable numbers, under 1\% of the model. The idea (linear algebra!): the useful change to $W$ during fine-tuning tends to be low-rank, so a rank-16 product captures most of it.
+
+\subsection{QLoRA}
+\textbf{QLoRA} = LoRA on top of a 4-bit quantized base model. The base stays frozen in 4 bits; only the small LoRA matrices are trained in higher precision. This is what makes training a 4B model possible on a free 16 GB T4 (our peak memory was about 5 GB).
+
+\begin{ifasked}
+``What is LoRA?'' --- ``Instead of changing the whole weight matrix, we learn a low-rank correction $BA$ with rank 16 and add it. It trains under 1\% of the parameters, which fits on a free GPU.''
+\end{ifasked}
+
+\subsection{The training settings, explained}
+\begin{itemize}
+\item \textbf{Optimizer AdamW}: gradient descent that adapts the step size per parameter, using running averages of past gradients.
+\item \textbf{Learning rate} $10^{-4}$: the step size. \textbf{Warm-up}: start small and grow over the first 6 updates (avoids early instability). \textbf{Cosine decay}: then shrink smoothly to 10\% of the peak by the end.
+\item \textbf{Batch and accumulation}: we process 1 example at a time but add up gradients over 16 examples before one update. So 1 update = 16 examples.
+\item \textbf{Updates and passes}: 160 families $\times$ 2 examples = 320 examples per arm; 320/16 = 20 updates per pass over the data; 3 passes = 60 updates.
+\item \textbf{Gradient clipping} at 1.0: if a gradient is huge, scale it down, to avoid wild jumps.
+\item \textbf{Mixed precision and GradScaler}: 16-bit numbers can underflow to zero; the scaler multiplies the loss up before computing gradients and divides back after. A skipped step means overflow; we treated any skip as a failed run.
+\item \textbf{Seeds} 11, 22, 33: the random number seed fixes the starting LoRA values and the data order. Within one seed, all three arms start identical and see families in the same order (``paired seeds''), so differences come from the language, not luck.
+\end{itemize}
+
+\subsection{Overfitting and memorisation}
+If you train too long on few examples the model \textbf{memorises} them instead of learning general skill. Our smoke test showed loss near 0 after about 12 passes over 16 families, so we chose only 3 passes (60 updates) for the real runs.
+
+\subsection{Forgetting and style copying}
+Fine-tuning can damage what the model already did well (``catastrophic forgetting''). In Phase 2, our training solutions were short reference answers. The models copied that style: median answer length fell from 113 to 42 tokens, and accuracy fell by about 24--26 points on English. That is the main reason for Phase 3.
+
+\subsection{Self-distillation (Phase 3)}
+\textbf{Distillation} = training a model on answers produced by a model. \textbf{Self-distillation} = the teacher is the model itself. We ran the unchanged Qwen3-4B on each English training question, kept only its \emph{correct} answers (158 of 160), and use those as training targets. The model then trains on text in its own natural style.
+
+%==================================================================
+\section{How we built the data}
+
+\subsection{Families}
+A \textbf{family} is one maths problem written in E, R and C. Every comparison is made within families (``paired''), so the maths is held fixed.
+
+\subsection{Gold answers in code}
+The correct (``gold'') answer for each family was computed by a small program from a reference equation (for example \texttt{x = 1200 - 3*265}), stored as an exact fraction, with its unit and accepted unit spellings. So a typo in the answer key is very unlikely.
+
+\subsection{Blind solving by two AIs}
+Each rendering was solved independently by two different AI systems (Claude and GPT), which did not see the gold answer. If either disagreed with gold, the item was checked. For the 300 Phase-2 families (900 renderings), Claude matched 900/900 and GPT 897/900; the three misses were one family and were GPT's error.
+
+\subsection{Human review}
+Bilingual team members reviewed every evaluated family for correctness, equivalence (same maths in all three forms) and naturalness, and decided ACCEPT / REVISE / REJECT. Pilot-B: 57 accept, 13 revise, 0 reject.
+
+\subsection{Freezing and hashes}
+After review each data file was \textbf{frozen}: we record its \textbf{SHA-256 hash}, a 64-character fingerprint that changes completely if even one character of the file changes. Any later edit needs a new version and a new hash. This proves the data used in the test is exactly the reviewed data.
+
+\subsection{Train, development and test splits}
+\textbf{TRAIN} (160 families) is for training. \textbf{DEV} (40) is for sanity checks only. \textbf{FINAL\_TEST} (100) was kept untouched until a single final evaluation, so we could not (even accidentally) tune our method to it. Using test data to make choices would make results look better than they really are.
+
+\begin{ifasked}
+``How do you know your data is correct?'' --- ``Gold answers are computed by code, every rendering was solved blind by two AI solvers, and bilingual humans reviewed every evaluated family. Files are frozen with SHA-256 hashes so nobody could change them later.''
+\end{ifasked}
+
+%==================================================================
+\section{How we scored answers}
+
+\subsection{The strict scorer}
+Our main measure (``primary endpoint'') is a frozen \textbf{strict scorer}. An answer is correct only if the output ends with exactly one line ``\texttt{FINAL: <number> <unit if needed>}'', the number equals the gold exactly (fractions allowed), and the unit is one of the accepted spellings. Missing, refused, ambiguous or cut-off answers count as wrong.
+
+\subsection{The numeric (secondary) endpoint}
+A second, looser scorer only checks the number on the FINAL line. Comparing the two tells us whether a failure is about \emph{maths} or about \emph{format}.
+
+\subsection{The format confound and model screening}
+A \textbf{confound} is a hidden factor that can fake an effect. On 36 practice prompts (never used in results), the first instruction made 10/36 of Qwen3-4B's answers fail because of format, for example ``\texttt{FINAL: 8 unitless}'' (right number, rejected suffix), and pushed 8/12 Romanized-Hindi explanations into Devanagari. After one disclosed change to the instruction, both dropped to zero. We then screened seven models with a rule set in advance (at most 3/36 format failures). Only Qwen3-4B (0), Qwen3-8B (0) and Llama-3.2-3B (2) passed. Without this step, a language comparison would partly measure formatting.
+
+\begin{ifasked}
+``Why strict scoring?'' --- ``It is fixed in advance and fully automatic, so nobody can be lenient with one language. We also report a looser numeric scorer and a human audit, so we know which failures are maths and which are format.''
+\end{ifasked}
+
+%==================================================================
+\section{The statistics, step by step}
+
+This is the part an applied-maths panel is most likely to probe.
+
+\subsection{Accuracy is a proportion}
+Accuracy $\hat p = k/n$: $k$ correct out of $n$ questions. With only 70 or 100 questions, $\hat p$ would change if we had a different set of questions from the same source. A \textbf{confidence interval (CI)} gives a range of plausible values for the true accuracy $p$. A 95\% CI is built by a method that captures the true value in 95\% of repeated samples.
+
+\subsection{Wilson interval (for one accuracy)}
+The simple ``Wald'' interval $\hat p \pm z\sqrt{\hat p(1-\hat p)/n}$ behaves badly near 0\% or 100\% (it can even go past 100\%). The \textbf{Wilson score interval} fixes this:
+\[ \frac{\hat p + \frac{z^2}{2n}}{1+\frac{z^2}{n}} \;\pm\; \frac{z}{1+\frac{z^2}{n}}\sqrt{\frac{\hat p(1-\hat p)}{n} + \frac{z^2}{4n^2}}, \qquad z = 1.96. \]
+Example: Qwen3-4B on R, 60/70 = 85.7\%, Wilson 95\% CI $[75.7, 92.1]$.
+
+\subsection{Why pairing helps}
+We compare forms \emph{on the same families}. For a paired difference $D = X - Y$,
+\[ \operatorname{Var}(X - Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) - 2\operatorname{Cov}(X,Y). \]
+Hard problems tend to be hard in every form, so $X$ and $Y$ are positively correlated and the covariance term makes the variance of the difference much smaller. Paired designs therefore detect differences with far fewer items. This is also why overlapping individual Wilson intervals do \emph{not} mean ``no difference'': the right interval is the one for the paired difference.
+
+\subsection{The bootstrap}
+The \textbf{bootstrap} estimates uncertainty by simulation. From our 100 families we draw 100 families \emph{with replacement} (some appear twice, some not at all), recompute the statistic, and repeat 10{,}000 times. The spread of the 10{,}000 results shows how much the statistic would vary. The \textbf{percentile 95\% interval} is the 2.5th and 97.5th percentiles of those 10{,}000 values.
+
+\textbf{Why resample families, not individual answers?} The three seeds and the forms of one family are not independent: they share the same problem. The independent unit is the family, so we resample whole families and keep all their seeds and arms together. Resampling 300 seed-rows as if independent would make the interval falsely narrow.
+
+\textbf{Our exact recipe} (fixed before the data existed): families sorted by ID; random generator \texttt{Random(101)}; a 10{,}000 $\times$ 100 table of draws, reused for every contrast; linear interpolation for percentiles. Anyone can recompute it exactly; our second AI agent did and matched to every digit.
+
+\subsection{The primary estimate in Phase 2}
+For family $i$, average over the three seeds the difference ``E+C correct minus E+R correct'' on the Hinglish question; then average over the 100 families:
+\[ \Delta_C = \frac{1}{100}\sum_{i=1}^{100} \frac{1}{3}\sum_{s} \big[y_{i,s,\text{EC}} - y_{i,s,\text{ER}}\big]. \]
+Result: E+C got 128 of 300 Hinglish questions right (42.7\%), E+R 141 (47.0\%); $\Delta_C = (128-141)/300 = -4.33$ points, bootstrap 95\% CI $[-8.00, -0.67]$. Only 24 of the 100 families had a non-zero difference; the rest were right (or wrong) in both arms.
+
+\subsection{Two other intervals we report}
+\begin{itemize}
+\item \textbf{Wald interval} (normal approximation): $[-8.01, -0.66]$, almost the same as the bootstrap.
+\item \textbf{Hoeffding interval}: Hoeffding's inequality gives a guaranteed bound for any bounded variable, $P(|\bar X - \mu| \ge t) \le 2e^{-2nt^2/(b-a)^2}$. With range $b-a = 2$, $n = 100$, 95\% gives radius $2\sqrt{\ln 40/200} \approx 27.2$ points: interval $[-31.50, +22.83]$. It makes no distributional assumptions, so it is very wide. We report it to be honest that the bootstrap label relies on approximation.
+\end{itemize}
+
+\begin{ifasked}
+``Is $-4.33$ significant?'' --- ``Under our pre-registered rule the 95\% bootstrap interval is entirely below zero, which we label Harm. It is a modest effect: all three seeds point the same way ($-3$, $-1$, $-9$), but the assumption-free Hoeffding interval is much wider, so we present it as a careful, pre-specified estimate, not a dramatic finding.''
+\end{ifasked}
+
+\subsection{McNemar's test (paired yes/no)}
+For two paired yes/no outcomes, only the \textbf{discordant} pairs matter: families right in one condition and wrong in the other. If there were no difference, each discordant pair would go either way with probability $1/2$, so their split follows a Binomial($m$, $1/2$). Example: Qwen3-4B, R vs C on Pilot-B: C better in 7 families, R better in 1. We report such counts descriptively.
+
+\subsection{Pre-registration}
+A \textbf{pre-registration} is a written plan, frozen (and pushed to GitHub, which timestamps it) \emph{before} seeing results: which data, which measure, which test, and what each result will be called. It prevents the ``garden of forking paths'': trying many analyses and reporting the one that looks best. Our Phase-2 plan had three amendments, all made before any output existed.
+
+\subsection{Decision labels}
+Fixed in advance, using the 95\% interval $[L, U]$ for $\Delta_C$ in points:
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}\toprule
+Label & Rule\\\midrule
+Useful support & $L > +5$\\
+Support & $0 < L \le +5$\\
+Informative null & $L \le 0 \le U$ and $U < +5$\\
+Harm & $U < 0$\\
+Inconclusive & $L \le 0$ and $U \ge +5$\\\bottomrule
+\end{tabular}
+\end{center}
+Our $U = -0.67 < 0$, so the label is \textbf{Harm}. The labels mean we never have to argue afterwards about what counts as a ``win''.
+
+\subsection{Multiple testing}
+If you run 20 tests at the 5\% level, about one will look ``significant'' by chance. That is why we chose \emph{one} primary measure ($\Delta_C$) and treat everything else as descriptive. Corrections such as Bonferroni (divide the 5\% by the number of tests) or Holm exist; we avoid needing them by having a single confirmatory test.
+
+\subsection{Power and precision}
+\textbf{Power} = the chance a study detects an effect that really exists. Before training we simulated our design from real Pilot-B outcomes: with 100 families and 3 seeds, $\Delta_C$ can be estimated to about $\pm 3$--4 points, and a true $+3$-point gain would be detected only about 21--58\% of the time. We stated this limitation in advance. The realised half-width was 3.67 points, as planned.
+
+\subsection{Agreement between taggers: Cohen's kappa}
+When two taggers label the same items, raw agreement can be high by chance. \textbf{Cohen's kappa} corrects for that:
+$\kappa = (p_o - p_e)/(1 - p_e)$, where $p_o$ is observed agreement and $p_e$ is agreement expected by chance. In the Phase-2 audit, the two AI taggers agreed on error category for 301/331 failures, $\kappa = 0.869$ (very good).
+
+%==================================================================
+\section{Results to remember}
+
+\subsection{Phase 1}
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}\toprule
+Pilot-B, 70 families (strict \%) & E & R & C\\\midrule
+Qwen3-4B & 94.3 & 85.7 & 94.3\\
+Qwen3-8B & 98.6 & 91.4 & 98.6\\
+Llama-3.2-3B & 94.3 & 57.1 & 70.0\\\bottomrule
+\end{tabular}
+\end{center}
+Paired differences (points, 95\% bootstrap): Qwen3-4B R$-$C $= -8.6\ [-15.7, -1.4]$; Llama E$-$R $= +37.1\ [+24.3, +50.0]$. The separate 24-family original cohort shows R lowest again (Qwen3-4B 100 / 91.7 / 100; Llama 87.5 / 62.5 / 91.7).
+
+\textbf{Operation words.} We suspected Hindi maths words (\emph{bhaag} = divide, \emph{bhinn} = fraction) cause R errors. A balanced design tested this: R errors were \emph{not} concentrated in such items. A useful null result.
+
+\textbf{Output audit (Qwen3-4B).} English explanations fell from 70/70 on E to 53/70 on R: instruction following erodes on non-English input.
+
+\subsection{Phase 2}
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}\toprule
+FINAL\_TEST, 100 families (strict \%, mean of 3 seeds) & E & R & C\\\midrule
+Unchanged Qwen3-4B & 85.0 & 63.0 & 66.0\\
+E+E & 61.3 & 40.3 & 43.0\\
+E+R & 59.3 & 38.0 & 47.0\\
+E+C & 58.7 & 41.3 & 42.7\\\bottomrule
+\end{tabular}
+\end{center}
+$\Delta_C = -4.33\ [-8.00, -0.67]$, Harm; seeds $-3$, $-1$, $-9$. Checks: an independent re-computation matched exactly; a human-checked audit of all 331 E+R / E+C failures on C found 132 real errors for E+C vs 113 for E+R, and fewer format-only failures (40 vs 46), so the harm is not a scoring artefact.
+
+\subsection{Phase 3 status}
+Pre-registration frozen (D053); 158/160 self-generated targets qualified (median 106 tokens); code reviewed and frozen (D056). No results yet.
+
+%==================================================================
+\section{Limitations (say these before they ask)}
+\begin{itemize}
+\item \textbf{Small samples}: 70 and 100 families; intervals are wide.
+\item \textbf{Mostly one bilingual reviewer} for the main sets.
+\item \textbf{AI-drafted items}, then checked by code, two AI solvers and humans.
+\item \textbf{No Devanagari arm}: we cannot separate the effect of script from language.
+\item \textbf{One model and one recipe in Phase 2}; results say nothing about all Hinglish training.
+\item \textbf{Reused test set in Phase 3}, disclosed.
+\item \textbf{Contamination}: we cannot check what the models saw during their original training (our problems are new, which helps).
+\end{itemize}
+
+%==================================================================
+\section{Glossary}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{3.4cm}X@{}}
+Arm & One training condition (E+E, E+R or E+C).\\
+Bootstrap & Estimating uncertainty by resampling the data many times.\\
+Checkpoint & The saved model after training (here, after update 60).\\
+Code-mixing & Using two languages in one sentence.\\
+Confound & A hidden factor that can fake or hide an effect.\\
+DEV / FINAL\_TEST / TRAIN & Sanity-check, final-test and training splits.\\
+Endpoint & A pre-defined outcome measure (strict = primary).\\
+Family & One problem written in E, R and C.\\
+Fine-tuning & Further training a trained model on new examples.\\
+Gold & The correct answer, computed by code.\\
+Greedy decoding & Always picking the most likely next token.\\
+Hash (SHA-256) & A fingerprint of a file; any change alters it.\\
+LoRA / QLoRA & Training a small low-rank add-on / the same on a 4-bit base.\\
+NF4 & A 4-bit number format for model weights.\\
+pp (points) & Percentage points: 47.0\% $\to$ 42.7\% is $-4.3$ points.\\
+Pre-registration & Analysis plan frozen before seeing results.\\
+Seed & Number that fixes randomness, so runs are repeatable.\\
+Self-distillation & Training a model on its own (correct) answers.\\
+Token & A chunk of text the model reads or writes.\\
+$\Delta_C$ & E+C minus E+R accuracy on Hinglish, averaged over seeds and families.\\
+\end{tabularx}
+\normalsize
+
+%==================================================================
+\section{Who presents what}
+Slides 1--4: Divyansh (question, forms, data). Slides 5--9: Ayush (format confound, Phase-1 results, operation words, Phase-2 design). Slides 10--15: Divyanshu (Phase-2 result, why training hurt, checks, limitations, status). Each slide's speaker notes in the deck say exactly what to say. Anyone may answer statistics questions using Section 8.
+
+\newpage
+\input{qa_bank.tex}
+
+\end{document}

@@ -1,0 +1,389 @@
+\section{Likely questions and model answers}
+These 88 questions were drafted from our report, paper and decision log; every number was checked against the source files. Read the answer aloud once: each is 2--5 sentences. When a question asks something we do not know, the honest answer is given, with how we would find out.
+
+\subsection*{A. Motivation and novelty}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}1.~What is your project about in one minute?}\par\nopagebreak
+
+We ask whether changing the language of the same maths problem changes a small language model's answer. We compare English, Romanized Hindi and Hinglish while keeping the quantities and correct answer fixed. We then test whether training on Hinglish helps more than matched training on Romanized Hindi. Under our Phase-2 recipe, it did not: the Hinglish difference was −4.33 percentage points.
+
+\medskip\noindent{\sffamily\bfseries\color{C}2.~Why is this a Mathematics and Computing project?}\par\nopagebreak
+
+The task uses arithmetic word problems, but the research also depends on probability, statistical estimation and controlled comparisons. We represent correctness as a binary variable and estimate paired differences with uncertainty intervals. On the computing side, we build the evaluation, scoring and controlled training pipeline.
+
+\medskip\noindent{\sffamily\bfseries\color{C}3.~What is new if earlier work already found Romanized Hindi difficult?}\par\nopagebreak
+
+We do not claim to have discovered that ordering. Our paper identifies CodeMixTax as prior evidence for Romanized Hindi performing below Hinglish. Our contribution is newly drafted and reviewed matched problems, careful checks of scoring effects, and a controlled E+E/E+R/E+C training comparison. Repeating an observation under a different documented setup is useful even when the direction is already known.
+
+\medskip\noindent{\sffamily\bfseries\color{C}4.~Why use simple word problems rather than advanced mathematics?}\par\nopagebreak
+
+Simple problems make it easier to hold the mathematics fixed and verify the intended answer. Our six topic groups cover comparisons, money, fractions and percentages, ratios, rates and units, and elementary algebra. If we used much harder mathematics, failure to solve the mathematics could hide a language effect. Our results therefore do not establish performance on university mathematics.
+
+\medskip\noindent{\sffamily\bfseries\color{C}5.~Can you give one concrete example of the matched design?}\par\nopagebreak
+
+In PB017, Imran has 1200 rupees and buys 3 shirts costing 265 rupees each. The answer is 1200 − 3 × 265 = 405 rupees in every language version. Llama answered 435 on the R version. This illustrates a failure on matched content, but one example alone cannot establish the general pattern.
+
+\subsection*{B. Data and human review}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}6.~What exactly counts as R and C?}\par\nopagebreak
+
+R uses Hindi phrasing in Roman script, with a fixed list of allowed borrowings such as established loanwords. C adds English words or relations beyond that list, often within Hindi grammar. For Pilot-B and Phase 2, C need not contain a full English clause. The original cohort used an earlier clause-based definition, so we report it separately.
+
+\medskip\noindent{\sffamily\bfseries\color{C}7.~How much data do you actually have?}\par\nopagebreak
+
+There are 370 frozen families in the expanded collection: 70 in Pilot-B and 300 in Phase 2. Phase 2 contains 160 TRAIN, 40 DEV and 100 FINAL\_TEST families. There is also a separate original cohort of 24 accepted families from 30 candidates. These are family counts, not counts of independent language versions.
+
+\medskip\noindent{\sffamily\bfseries\color{C}8.~How were the questions and correct answers produced?}\par\nopagebreak
+
+Claude drafted Pilot-B and TRAIN, while GPT drafted DEV and FINAL\_TEST. In the original pilot, the author wrote the English questions and AI translated R and C. Code computed the reference answers using exact rational arithmetic, and blind solver checks and human review followed. “Gold” means the reference answer used for scoring, not an assumption that every wording is perfect.
+
+\medskip\noindent{\sffamily\bfseries\color{C}9.~What does blind verification mean, and how well did it work?}\par\nopagebreak
+
+Each solver received the question without the reference answer or solution, in a fresh context. On the 900 Phase-2 renderings checked at that stage, Claude matched gold on 900 and GPT on 897. The three GPT misses belonged to one family, TRA072. Agreement is useful evidence, but two AI solvers can share mistakes and do not certify natural language quality.
+
+\medskip\noindent{\sffamily\bfseries\color{C}10.~Did humans check every family equally carefully?}\par\nopagebreak
+
+No: one bilingual reviewer checked all 70 Pilot-B families and all 100 FINAL\_TEST families. TRAIN and DEV received flagged and sample-based review covering 45 families, not complete human review of all 200. The original cohort had two independent human mathematical solves, but language review rested on one human plus an adjudicator. We keep these different levels of review explicit.
+
+\medskip\noindent{\sffamily\bfseries\color{C}11.~Why were only 24 of the original 30 families used?}\par\nopagebreak
+
+One family was excluded as a near-duplicate, and five repaired families lacked valid independent re-review. The two returned re-review files were byte-identical, so they could not establish independence. We retained the 24 accepted without repair. We also excluded unverified AI-prefilled language judgments from claims about human review.
+
+\medskip\noindent{\sffamily\bfseries\color{C}12.~Can you claim that every final test wording was independently verified?}\par\nopagebreak
+
+No, there is a disclosed exception for FT057-C. A missing distractor of 12 marigolds was restored under delegated authority; the gold answer of 30 was checked by hand, but that revised wording was not blind re-solved. This prevents a blanket claim that every final rendering passed the same independent verification. A new independent review would be needed to close that gap.
+
+\medskip\noindent{\sffamily\bfseries\color{C}13.~Does the higher repair rate prove GPT drafts worse Hindi than Claude?}\par\nopagebreak
+
+No: 68/100 FINAL\_TEST families needed revision compared with 13/70 Pilot-B families, but the drafter also changed with split, prompt and review timing. That makes the difference descriptive rather than a controlled model comparison. Of the 68 test revisions, 62 targeted R, showing a real construction challenge. To compare drafters fairly, we would assign matched drafting tasks under the same protocol and use blinded reviewers.
+
+\subsection*{C. LLM basics as used here}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}14.~What is an LLM, and why can it get arithmetic wrong?}\par\nopagebreak
+
+A large language model predicts the next piece of text from the preceding text using learned numerical parameters. It can learn useful patterns for solving maths, but generating a plausible solution does not guarantee exact calculation. Our scorer checks the declared final answer against a reference computed in code. We do not treat the model as an exact calculator.
+
+\medskip\noindent{\sffamily\bfseries\color{C}15.~What is a token?}\par\nopagebreak
+
+A token is a piece of text represented by an integer for the model; it can be a word, part of a word or a symbol. One written word can therefore require several tokens. In Pilot-B, median question-only token counts with the Qwen tokenizer were 35 for E, 49 for R and 45 for C. These counts exclude the fixed instruction and chat wrapper.
+
+\medskip\noindent{\sffamily\bfseries\color{C}16.~What does greedy decoding mean?}\par\nopagebreak
+
+Greedy decoding selects the highest-probability next token at each step rather than sampling a random alternative. We used one beam, fresh contexts and non-thinking generation under a fixed setup. This reduces one source of variation in evaluation. It does not guarantee identical output across different hardware or software versions.
+
+\medskip\noindent{\sffamily\bfseries\color{C}17.~What prompt did every model receive?}\par\nopagebreak
+
+The fixed instruction asks for a short explanation in English and exactly one final answer line beginning with \texttt{FINAL:}. A unit should be included in English only when the answer has a unit, with no suffix after a pure number or fraction. The question alone is the user message. Keeping this instruction fixed makes the language-form comparison easier to interpret.
+
+\medskip\noindent{\sffamily\bfseries\color{C}18.~Does “non-thinking” mean the model performs no reasoning?}\par\nopagebreak
+
+No: it means the special thinking mode was disabled, not that all internal computation stopped. The model could still write a short visible explanation. We observe the generated text and answer, not its private internal reasoning. Phase-3 “own style” likewise refers to visible outputs, not access to hidden reasoning.
+
+\medskip\noindent{\sffamily\bfseries\color{C}19.~What is quantization, and why did you use it?}\par\nopagebreak
+
+Quantization stores model weights using fewer bits to reduce memory use. We used 4-bit NF4 base weights with double quantization, which also compresses the quantization constants, and 16-bit floating-point computation. This made the experiments feasible on a Colab T4. We did not compare against full-precision runs, so our conclusions are conditional on this setup.
+
+\medskip\noindent{\sffamily\bfseries\color{C}20.~Explain LoRA and QLoRA mathematically.}\par\nopagebreak
+
+LoRA learns a low-rank weight change, written as ΔW = BA, while keeping the original weight matrix fixed. Instead of changing every entry of W, we learn the two smaller factor matrices. QLoRA applies this idea to a quantized base model. Our recipe used rank 16, scaling parameter alpha 32 and dropout 0.05, which randomly disables some adapter activations during training.
+
+\medskip\noindent{\sffamily\bfseries\color{C}21.~What was trained, and what does completion-only loss mean?}\par\nopagebreak
+
+We trained the adapter parameters and kept the quantized base fixed. Completion-only loss means the prediction error is calculated on the English solution tokens, while the question and prompt are masked out of the training loss. A microbatch held 1 example, and gradients accumulated over 16 examples before an update. All forms of a family had identical target token sequences.
+
+\medskip\noindent{\sffamily\bfseries\color{C}22.~Are the 1,024-token training cap and output cap the same limit?}\par\nopagebreak
+
+No: the training cap covers the full input sequence, including the wrapped question, answer target and terminal marker. The generation output cap allows up to 1,024 new tokens, alongside a separate context cap of 2,048. A Phase-3 target must fit the training cap for every E/R/C form. Overlength targets are excluded across all arms rather than shortened for one arm.
+
+\subsection*{D. Evaluation and scoring}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}23.~What does the strict scorer accept?}\par\nopagebreak
+
+Strict scorer v1.0.0 requires exactly one \texttt{FINAL:} line as the last nonblank line. It checks an exact rational answer and a unit against the family's declared aliases and conversions. Dimensionless answers must have no suffix. Missing, malformed, refused or truncated answers score zero.
+
+\medskip\noindent{\sffamily\bfseries\color{C}24.~Why use exact rational arithmetic?}\par\nopagebreak
+
+Fractions such as 1/3 do not have an exact finite decimal representation, so ordinary floating-point comparison can introduce avoidable errors. Exact rational arithmetic represents a number as a ratio of integers. It lets the gold checker and strict scorer compare supported values without a numerical tolerance. This checks arithmetic consistency, not whether the wording expresses the right problem.
+
+\medskip\noindent{\sffamily\bfseries\color{C}25.~What does the numeric endpoint measure?}\par\nopagebreak
+
+It checks whether the extracted number on the declared FINAL line equals gold, without converting units. It does not search the explanation for a convenient correct number. This gives a second view of answer quality when strict formatting or units fail. A matching number alone does not prove a correct unit or valid reasoning.
+
+\medskip\noindent{\sffamily\bfseries\color{C}26.~Is numeric accuracy always at least as high as strict accuracy?}\par\nopagebreak
+
+No, because the parsers accept different forms of text. In Pilot-B, numeric v1 rejected a trailing rupee symbol that strict scoring accepted, producing 30 strict-correct/numeric-fail cases for Qwen3-4B and 36 for Qwen3-8B. Phase 2 registered a rupee-specific v2 extension in advance. Under its amended rule, v2 tries that extension only when v1 returns \texttt{unsupported\_answer}.
+
+\medskip\noindent{\sffamily\bfseries\color{C}27.~What is the format confound in your project?}\par\nopagebreak
+
+A format confound occurs when an apparent performance difference partly measures answer formatting instead of mathematical accuracy. On 36 excluded development prompts, Qwen3-4B had 10 strict-invalid outputs under prompt v1 and 0 under v2. R explanations containing Devanagari fell from 8/12 to 0/12. One wording and one alias also changed, so this was not a clean experiment isolating the prompt alone.
+
+\medskip\noindent{\sffamily\bfseries\color{C}28.~Why not repair the scorer after seeing failures?}\par\nopagebreak
+
+Changing acceptance rules after inspecting test answers could make the reported result depend on our preferred outcome. We therefore kept strict scorer v1.0.0 as the primary endpoint. Versioned secondary scoring and human audits describe its limitations without replacing the original result. A future study can adopt a better scorer before generating its test outputs.
+
+\medskip\noindent{\sffamily\bfseries\color{C}29.~How do you distinguish a bad answer from an interrupted computation?}\par\nopagebreak
+
+A completed but wrong, malformed or truncated response is a scored failure. An absent generation caused by an unresolved infrastructure failure is not automatically a wrong answer. The journal preserves completed responses and resumes missing work without regenerating successful outputs. Phase 2 completed all 3,000 required outputs, with two interrupted runs recovered and no completed answer regenerated.
+
+\medskip\noindent{\sffamily\bfseries\color{C}30.~Does a correct final answer prove correct reasoning or English compliance?}\par\nopagebreak
+
+No: the strict scorer checks the declared answer and format, not every reasoning step or the explanation language. In Pilot-B, Qwen3-4B's English-compliant explanations were 70/70 on E, 53/70 on R and 59/70 on C. Correct answers can therefore coexist with instruction-following failures. Conversely, Phase 2's 244/331 “no explanation” audit count applies only to audited failures, not all generated outputs.
+
+\subsection*{E. Statistics}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}31.~What is the primary quantity you estimate?}\par\nopagebreak
+
+It is Δ\_C, the accuracy of E+C training minus E+R training on C questions. For each family we first average the correctness difference across seeds 11, 22 and 33, then average over the 100 families. In symbols, d\_i = (1/3)Σ\_s(y\_EC − y\_ER), and Δ\_C = (1/100)Σ\_i d\_i. Each y is either 0 or 1, and multiplying the final difference by 100 gives percentage points.
+
+\medskip\noindent{\sffamily\bfseries\color{C}32.~Why use a Wilson interval for accuracy?}\par\nopagebreak
+
+Accuracy is a proportion of binary successes, and the usual symmetric normal interval behaves poorly near zero or one. The Wilson interval keeps the candidate success probabilities whose binomial score tests would not reject them, and stays within the possible proportion range. For Qwen3-4B's Pilot-B E accuracy, 66/70 gives 94.3\% with a 95\% Wilson interval of [86.2, 97.8]\%. This is an interval for one accuracy, not directly for a paired difference.
+
+\medskip\noindent{\sffamily\bfseries\color{C}33.~What does a 95\% confidence interval mean?}\par\nopagebreak
+
+Under the method's assumptions, repeating the sampling process would produce intervals covering the fixed target quantity about 95\% of the time. It does not mean there is a 95\% probability that this already fixed quantity lies in this particular frequentist interval. Our bootstrap coverage is approximate. It also depends on treating families as independent draws from the relevant authoring and review process.
+
+\medskip\noindent{\sffamily\bfseries\color{C}34.~How does your paired bootstrap work?}\par\nopagebreak
+
+We sample families with replacement, making 10,000 resamples, each containing 100 family draws for Phase 2. Whenever a family is drawn, its complete arm, form and seed record stays together. We recompute the mean contrast in each resample. The fixed random seed is 101, so the sampling calculation can be reproduced.
+
+\medskip\noindent{\sffamily\bfseries\color{C}35.~Why resample whole families rather than individual answers?}\par\nopagebreak
+
+Answers from the same family share the same mathematical content and are dependent. Treating every language version or seed output as independent would exaggerate the amount of information. Keeping the full family record preserves the paired comparison and the dependence within a problem. We still assume different families are sufficiently independent, which shared templates may weaken.
+
+\medskip\noindent{\sffamily\bfseries\color{C}36.~How do you obtain a percentile bootstrap interval?}\par\nopagebreak
+
+We order the 10,000 resampled estimates and take the 2.5th and 97.5th percentiles. The registered implementation uses linear interpolation, with position h = 9999p for percentile fraction p. Phase 2 produced [−8.00, −0.67] percentage points for Δ\_C. These are approximate uncertainty bounds, not the smallest and largest seed effects.
+
+\medskip\noindent{\sffamily\bfseries\color{C}37.~Why does your interval not include training-seed uncertainty?}\par\nopagebreak
+
+We resample families while retaining the three trained seed records, so the interval is conditional on those checkpoints. It asks how the estimate varies with the sampled problems, not with new training runs. The three seed effects, −3, −1 and −9 points, are reported separately. More independent training seeds and a prospectively specified analysis would be needed to quantify retraining uncertainty well.
+
+\medskip\noindent{\sffamily\bfseries\color{C}38.~What does Hoeffding's inequality add?}\par\nopagebreak
+
+Hoeffding gives a conservative probability bound for the mean of independent bounded variables without assuming a normal distribution. Here d\_i lies in [−1, 1], and the 95\% radius is 2√(log(40)/(2 × 100)), about 27.2 percentage points. The clipped interval is [−31.50, +22.83], much wider than the bootstrap interval. It shows how weak the bound is at this sample size when we rely only on independence and boundedness.
+
+\medskip\noindent{\sffamily\bfseries\color{C}39.~What would McNemar's test tell you?}\par\nopagebreak
+
+McNemar's test compares two paired binary outcomes using only disagreements: cases where one method succeeds and the other fails. For seed 33 on C, E+C alone was correct on 3 families and E+R alone on 12, giving an exact two-sided p-value of 0.03516. Under the equal-performance null, either direction of a disagreement is equally likely. These per-seed tests are descriptive and do not replace the registered primary interval.
+
+\medskip\noindent{\sffamily\bfseries\color{C}40.~What is pre-registration, and what did you freeze?}\par\nopagebreak
+
+Pre-registration records the analysis and decision rules before the relevant outcomes are seen. We fixed the training recipe, primary contrast, scoring, bootstrap, decision labels and failure-handling rules. Phase 2 had three disclosed amendments before any Phase-2 outputs. Pre-registration limits outcome-driven choices, but cannot by itself guarantee good data or a good training recipe.
+
+\medskip\noindent{\sffamily\bfseries\color{C}41.~What are the exact decision labels?}\par\nopagebreak
+
+For unrounded 95\% bounds [L, U] in percentage points, Useful support means L > 5, while Support means 0 < L ≤ 5. Harm means U < 0. Informative null means L ≤ 0 ≤ U and U < 5; Inconclusive means L ≤ 0 and U ≥ 5. Identical family contrasts or a zero-width interval override these labels with “inconclusive—degenerate empirical interval,” because the observed resampling variation is uninformative.
+
+\medskip\noindent{\sffamily\bfseries\color{C}42.~Why not claim significance for every comparison in the tables?}\par\nopagebreak
+
+Testing many comparisons increases the chance of finding an apparently positive result by chance. Phase 2 therefore has only one confirmatory contrast, strict Δ\_C, and treats the other endpoints, retention flags and per-seed tests as descriptive. Amendment 1 removed the planned Holm multiple-testing procedure rather than making every secondary a formal claim. The post-hoc tokenization comparisons are also exploratory, not confirmatory evidence.
+
+\medskip\noindent{\sffamily\bfseries\color{C}43.~What is power, and was the study powered for small improvements?}\par\nopagebreak
+
+Power is the chance that a study detects an effect of a specified size under stated assumptions. Planning suggested roughly ±3–4 points of precision, with a corrected scenario range of 1.97–5.64 points for the median interval half-width. The approximate effect needed for 80\% power was 3–7 points, so a +3-point gain and English retention within −2 points were not reliably powered. The simulations allowed gains only and were optimistic; Phase 2's observed half-width was 3.67 points.
+
+\medskip\noindent{\sffamily\bfseries\color{C}44.~Why not subtract the endpoints of two Wilson intervals?}\par\nopagebreak
+
+Two separate accuracy intervals do not encode which families were solved by both methods. The paired difference depends on that joint pattern, not only on the two marginal success rates. We therefore compute differences within families and bootstrap those paired records. Subtracting marginal interval endpoints would not reproduce the registered paired interval.
+
+\medskip\noindent{\sffamily\bfseries\color{C}45.~Can you derive the ordinary standard error for your family mean?}\par\nopagebreak
+
+Treating the 100 family contrasts as independent, the estimated standard error is s\_d/√100, where s\_d is their sample standard deviation. The sample variance uses denominator 99. The corresponding normal-approximation interval, called a Wald interval, is the mean plus or minus about 1.96 standard errors. For Phase 2 it was [−8.01, −0.66] points, close to the bootstrap interval, but that agreement does not verify independence.
+
+\medskip\noindent{\sffamily\bfseries\color{C}46.~Why is a zero-width bootstrap interval not perfect certainty?}\par\nopagebreak
+
+The bootstrap can only resample patterns present in the observed data. If every observed family contrast is identical, all resampled means can be identical even though unseen families may behave differently. The original Qwen E−C contrasts at ceiling produced [0.0, 0.0] intervals. The later registered rule therefore overrides such a result as inconclusive rather than claiming equivalence or certainty.
+
+\medskip\noindent{\sffamily\bfseries\color{C}47.~What does the −2-point English retention margin mean?}\par\nopagebreak
+
+It is a pre-set tolerance for loss on English, not a threshold chosen after seeing the results. The descriptive within-margin flag requires the lower interval bound to exceed −2 points; a loss-beyond-margin flag requires the upper bound to be below −2. E+C, E+R and E+E lost 26.33, 25.67 and 23.67 points respectively against unchanged English accuracy. None established retention within the margin.
+
+\subsection*{F. Phase-1 results}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}48.~What were the main Pilot-B results?}\par\nopagebreak
+
+On 70 families, Qwen3-4B scored 94.3\%, 85.7\% and 94.3\% on E, R and C. Qwen3-8B scored 98.6\%, 91.4\% and 98.6\%, while Llama-3.2-3B scored 94.3\%, 57.1\% and 70.0\%. R was lowest for every model. The size of the gap clearly depended on the model.
+
+\medskip\noindent{\sffamily\bfseries\color{C}49.~Did the original cohort show the same pattern?}\par\nopagebreak
+
+Yes, R was again lowest on the separate 24-family cohort. Qwen3-4B scored 100\%, 91.7\% and 100\% on E/R/C, and Qwen3-8B scored 100\%, 95.8\% and 100\%. Llama scored 87.5\%, 62.5\% and 91.7\%. The direction repeats, but the cohorts differ in review and C definition, so we do not pool them.
+
+\medskip\noindent{\sffamily\bfseries\color{C}50.~If English and Hinglish have equal accuracy, are they equivalent?}\par\nopagebreak
+
+No: equal observed totals do not prove equivalent underlying performance. Qwen3-4B had 66/70 correct in both E and C, but 3 families were correct only in E and 3 only in C. Its paired E−C interval was [−7.1, +7.1] points. An equivalence claim would require a pre-specified acceptable margin and enough precision to stay within it.
+
+\medskip\noindent{\sffamily\bfseries\color{C}51.~Did the larger Qwen model solve the language problem?}\par\nopagebreak
+
+It improved accuracy, but the R deficit remained. R rose from 85.7\% at 4B to 91.4\% at 8B, while the E−R gap decreased from 8.6 to 7.1 points. This is evidence for improvement within these two models, not a general scaling law. We did not vary size across enough model families to establish one.
+
+\medskip\noindent{\sffamily\bfseries\color{C}52.~Did Hindi operation words explain the mistakes?}\par\nopagebreak
+
+Our descriptive results did not support that as the main explanation. Pilot-B had 18 families where C kept the Hindi operation word, 17 where it switched the word, and 35 without such a word in R. Qwen3-4B's R accuracy was 89\%, 82\% and 86\% across those groups. The groups are small and not a controlled word-swap experiment, so we cannot conclude that vocabulary never matters.
+
+\medskip\noindent{\sffamily\bfseries\color{C}53.~Why did only three of seven screened models enter the pilot?}\par\nopagebreak
+
+The inclusion rule required at most 3 strict-invalid outputs on 36 excluded prompts. Qwen3-4B and Qwen3-8B had 0, and Llama-3.2-3B had 2. Qwen3-1.7B had 36, Phi-4-mini had 14, Granite had 36, and Gemma produced no outputs under the frozen setup. Phi and Granite had already been excluded before that numerical rule was formalized, and the screen limits our conclusions to compatible models.
+
+\medskip\noindent{\sffamily\bfseries\color{C}54.~Can you say every observed R deficit was clearly different from zero?}\par\nopagebreak
+
+No: the direction was consistent, but precision differed across comparisons. Qwen3-4B's Pilot-B E−R estimate was +8.6 points with interval [−1.4, +18.6], and Qwen3-8B's was +7.1 with [0.0, +14.3]. Llama's larger +37.1-point gap had interval [+24.3, +50.0]. We report those intervals rather than turn the common direction into a blanket significance claim.
+
+\subsection*{G. Phase-2 design and result}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}55.~Why use E+E, E+R and E+C training arms?}\par\nopagebreak
+
+Each arm sees the same mathematical families and the same English solutions. E+E repeats English, E+R pairs English with Romanized Hindi, and E+C pairs English with Hinglish. This matches the number of examples while changing the language of the second question. E+E helps reveal effects shared by fine-tuning, while E+R is the primary comparator for E+C.
+
+\medskip\noindent{\sffamily\bfseries\color{C}56.~How much training did each run receive?}\par\nopagebreak
+
+Each arm used 160 families, with 2 examples per family and therefore 320 example slots. With 16 examples per update, one pass took 20 updates, so three passes gave 60 updates. We used seeds 11, 22 and 33, making nine runs in total. Initial adapter values and family order were paired across arms within a seed, but dropout draws were not paired.
+
+\medskip\noindent{\sffamily\bfseries\color{C}57.~Why 60 updates, and why not select the best DEV checkpoint?}\par\nopagebreak
+
+An earlier engineering probe memorized 16 families within about 12 passes, making the provisional 256-update schedule a concern. We fixed 60 updates before Phase-2 outcomes as a feasible schedule, not as a proven optimum. Only the final checkpoint was evaluated, and the 40-family DEV set was for sanity checks. Choosing a checkpoint after seeing DEV results was outside the registered design.
+
+\medskip\noindent{\sffamily\bfseries\color{C}58.~What exactly is the negative result?}\par\nopagebreak
+
+On C, the seed-mean strict accuracies were 47.0\% for E+R and 42.7\% for E+C. Using the unrounded counts, E+C minus E+R was −4.33 points with a 95\% paired bootstrap interval of [−8.00, −0.67]. The upper bound was below zero, giving the registered label Harm. The seed differences were −3, −1 and −9 points.
+
+\medskip\noindent{\sffamily\bfseries\color{C}59.~Why is the unchanged-model baseline important?}\par\nopagebreak
+
+A comparison between trained arms alone would hide their shared deterioration. The unchanged model scored 85\%, 63\% and 66\% on E/R/C. E+E scored 61.3\%, 40.3\% and 43.0\%; E+R scored 59.3\%, 38.0\% and 47.0\%; E+C scored 58.7\%, 41.3\% and 42.7\%. Every trained checkpoint was below the unchanged model on every form under both strict and numeric scoring.
+
+\medskip\noindent{\sffamily\bfseries\color{C}60.~Why did every training arm get worse?}\par\nopagebreak
+
+We do not know the exact cause. All arms learned from short English reference solutions, and the pooled median output length fell from 113 to 42 tokens. That is consistent with a harmful change in response style, but does not isolate target length from other training effects. We would test the explanation using controlled target-style and schedule comparisons on fresh held-out problems.
+
+\medskip\noindent{\sffamily\bfseries\color{C}61.~Could the E+C deficit be only a formatting problem?}\par\nopagebreak
+
+The completed audit covered all 331 strict failures on C from E+R and E+C. E+R had 46 format-only and 113 substantive failures, while E+C had 40 format-only and 132 substantive failures. Thus E+C had fewer format-only failures but more mathematical errors under the human labels. The numeric contrast was also negative, −5.67 points [−11.00, −0.67], although it remains descriptive.
+
+\medskip\noindent{\sffamily\bfseries\color{C}62.~What did the audit and independent verification actually establish?}\par\nopagebreak
+
+Two AI taggers first classified the failures independently, and two bilingual team members then supplied human labels for all 331 rows. The first 65 human checks were followed by the remaining 266, so “only 65 checked” describes an intermediate stage. Separately, a second AI agent recomputed the final result from raw predictions and matched it exactly. This supports calculation and labeling consistency, but is not an independent experimental replication or proof of a causal mechanism.
+
+\medskip\noindent{\sffamily\bfseries\color{C}63.~You saw poor DEV results early, so why continue training?}\par\nopagebreak
+
+The first E+C adapter had DEV E/R/C scores of 24/13/19 out of 40, against unchanged scores of 33/19/24. Its outputs were also shorter, so the concern was recorded before final testing. The registered protocol allowed DEV sanity reporting but prohibited changing the recipe based on those results, and no implementation fault was identified. We completed and reported that recipe, then designed Phase 3 as a separate follow-up.
+
+\subsection*{H. Phase 3}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}64.~What is self-distillation in this project?}\par\nopagebreak
+
+Self-distillation means using the unchanged model's own accepted answers as training targets for that same base model. We generated one English answer for each TRAIN family, then applied fixed eligibility checks. All three arms receive the exact same accepted English target for a family. We train fresh adapters from the unchanged base, not from Phase-2 adapters.
+
+\medskip\noindent{\sffamily\bfseries\color{C}65.~Is Phase 3 specifically a test of longer explanations?}\par\nopagebreak
+
+No, the adopted intervention is the model's own visible answer style. The plan does not require a long explanation or an explanatory sentence for acceptance. Correct but terse targets can qualify, and explanation status is recorded only descriptively. Therefore even a positive outcome would not by itself prove that longer explanations caused improvement.
+
+\medskip\noindent{\sffamily\bfseries\color{C}66.~What does Q = 158 mean?}\par\nopagebreak
+
+Q is the number of TRAIN families whose generated targets passed every eligibility rule. All 160 candidates were generated, 158 qualified, and two were excluded for strict-incorrect answers. There were no Devanagari outputs, no word-list flags requiring human review, and no overlength failures. The pre-set rule was to halt before training if Q fell below 120, so that halt was not triggered.
+
+\medskip\noindent{\sffamily\bfseries\color{C}67.~What are the target acceptance checks?}\par\nopagebreak
+
+A target must be strict-correct, nontruncated, have a valid terminal FINAL line, pass the English-language gate and fit every form's training sequence within 1,024 tokens. Devanagari causes rejection, while hits on a fixed Romanized-Hindi word list require human review. Unflagged candidates pass that language gate automatically, so we do not claim humans read every accepted target. Correct final answers also do not guarantee that every intermediate step is valid.
+
+\medskip\noindent{\sffamily\bfseries\color{C}68.~If only 158 families remain, are there still exactly three passes?}\par\nopagebreak
+
+No, the fixed quantity is 480 family visits, giving 960 example exposures and 60 updates per run. With 158 retained families, each family is visited 3 or 4 times under the frozen order. Inclusion and exposure counts match across the three arms. Filtering therefore changes repetition relative to Phase 2, so the two phases do not have identical training exposure per family.
+
+\medskip\noindent{\sffamily\bfseries\color{C}69.~Why reuse the Phase-2 test set?}\par\nopagebreak
+
+Reuse gives an affordable matched follow-up on the same 100 families. They remain excluded from training, but their results and audit findings already influenced the Phase-3 design. We therefore call this a pre-specified follow-up on a reused test set, not a fresh independent confirmation. The intervals do not include uncertainty from that design adaptation, and fresh held-out replication would be stronger.
+
+\medskip\noindent{\sffamily\bfseries\color{C}70.~What has Phase 3 completed, and what evaluation is planned?}\par\nopagebreak
+
+The supplied records show adopted pre-registration, frozen targets and frozen training, evaluation and analysis code through D056. They do not report Phase-3 training or evaluation results. The plan evaluates nine adapters on 100 families in three forms, producing 2,700 new FINAL\_TEST outputs. It reuses the unchanged model's 300 Phase-2 outputs only after verifying that the inference setup matches.
+
+\medskip\noindent{\sffamily\bfseries\color{C}71.~What would the different Phase-3 outcomes mean?}\par\nopagebreak
+
+Support or Useful support would favor E+C over E+R under the new self-distillation recipe; Useful support additionally requires the lower bound to exceed +5 points. Harm would show E+C below E+R again, while Informative null would place the upper bound below +5 points with zero still inside the interval. Inconclusive would leave both no benefit and a useful benefit compatible with the interval, subject to the degeneracy override. Improvement across phases would remain descriptive because targets, selected families, repetition and supervised-token counts differ. We must also compare every arm with the unchanged model: winning between two degraded arms is not practical recovery.
+
+\subsection*{I. Limitations and threats to validity}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}72.~What is your largest limitation?}\par\nopagebreak
+
+Phase 2 tests one backbone, one training recipe and 100 test families. Its interval is conditional on three trained seeds and does not measure uncertainty across new training runs. Most language acceptance relied on one bilingual reviewer, and the questions were largely AI-drafted. We can defend a result about this setup, not all Hinglish mathematics or all language models.
+
+\medskip\noindent{\sffamily\bfseries\color{C}73.~Can the results generalize to real students' messages?}\par\nopagebreak
+
+We do not yet know how well they generalize. Our questions are drafted and reviewed word problems, whereas real messages can contain typos, missing information and regional spelling choices. Shared authors and templates may also make families more alike than the statistical analysis assumes. We would collect consented, independently reviewed user-like questions and test a frozen system on them.
+
+\medskip\noindent{\sffamily\bfseries\color{C}74.~Was FINAL\_TEST really untouched before evaluation?}\par\nopagebreak
+
+It was held out from training, but “never accessed” would be too strong. Construction required access, and unattended CPU tests later parsed and temporarily extracted FINAL\_TEST before the adapter freeze, exceeding the byte-hashing rule. Amendments 2 and 3 disclosed this before Phase-2 outputs, and those tests were replaced with DEV fixtures. No evaluation-backbone generation occurred, while claims about nobody viewing the content remain participant attestations.
+
+\medskip\noindent{\sffamily\bfseries\color{C}75.~Do new questions and file hashes eliminate contamination or bias?}\par\nopagebreak
+
+No: new questions reduce direct benchmark-copying concerns, but we cannot inspect the models' full pretraining data. A SHA-256 hash is a file fingerprint that helps detect whether recorded bytes changed. It does not establish semantic correctness, reviewer independence or when a file was first seen. Those require separate evidence and transparent provenance.
+
+\medskip\noindent{\sffamily\bfseries\color{C}76.~Do hundreds of passing software tests prove your scientific conclusion?}\par\nopagebreak
+
+No: software tests check specified program behavior, such as scoring, file integrity and recovery. The report's 161 tests describe an earlier suite, while D056 records 561 passed and 1 skipped for the later implementation, so those counts refer to different stages. Neither count establishes unbiased questions or a causal explanation for model errors. Scientific confidence also needs valid data, appropriate statistics and independent replication.
+
+\subsection*{J. Gotcha questions}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}77.~Isn't this just tokenization?}\par\nopagebreak
+
+We do not know the causal contribution of tokenization. In Pilot-B, the median paired R−E question-length difference was +15 Qwen tokens, while C−E was +8, yet Qwen's aggregate E and C accuracy matched. The post-hoc analysis did not show a consistent length explanation for Qwen errors, but its small samples cannot exclude one. We would need controlled wording interventions, not correlations alone, to test that mechanism.
+
+\medskip\noindent{\sffamily\bfseries\color{C}78.~Isn't 100 test items too few?}\par\nopagebreak
+
+It is a small diagnostic study, and 100 families cannot reliably resolve every small effect. Our primary bootstrap interval had a 3.67-point half-width, while the conservative Hoeffding interval was much wider. The three seeds give repeated outcomes on the same problems, not 300 independent families. More diverse families and more training seeds are needed for stronger generalization.
+
+\medskip\noindent{\sffamily\bfseries\color{C}79.~Why not just use GPT-4 or another large proprietary model?}\par\nopagebreak
+
+Our experimental target was small open models that we could run and adapt on the available Colab setup. Using a different large model would answer a different question from the controlled Qwen3-4B training comparison. We did use stronger AI systems as drafting and verification aids, with their limitations disclosed. We do not know how a particular untested proprietary model would score under this exact protocol.
+
+\medskip\noindent{\sffamily\bfseries\color{C}80.~Did AI write your project?}\par\nopagebreak
+
+AI assistants helped substantially with drafting data, code, research notes, the manuscript and protocol decisions under explicit delegation. We disclose that rather than describing all the work as unaided student authorship. Human participants performed the recorded reviews and checks, and we take responsibility for the claims we present. We should each be able to explain the design and verify the reported calculations ourselves.
+
+\medskip\noindent{\sffamily\bfseries\color{C}81.~Why did you omit Devanagari Hindi?}\par\nopagebreak
+
+Adding it would require new reviewed renderings, extra evaluation and a new frozen test version. We kept the study focused on the Roman-script forms used in the current comparison. Without Devanagari, we cannot separate script effects from language, spelling and register. A reviewed Devanagari arm is a priority for future work.
+
+\medskip\noindent{\sffamily\bfseries\color{C}82.~Is −4.33 statistically significant or not?}\par\nopagebreak
+
+Under the registered approximate paired family-bootstrap analysis, the 95\% interval [−8.00, −0.67] excludes zero and the decision label is Harm. We lead with that estimate and rule rather than claim a universal significant effect. The interval assumes sufficiently independent families, conditions on the trained checkpoints and excludes retraining uncertainty. The much wider Hoeffding interval includes zero, so the conclusion depends on the strength of the statistical assumptions.
+
+\medskip\noindent{\sffamily\bfseries\color{C}83.~Why should we trust a single reviewer?}\par\nopagebreak
+
+A single bilingual reviewer is useful for finding unnatural or inequivalent wording, but is not enough to establish broad linguistic validity. Full-family review of Pilot-B and FINAL\_TEST and blind solver checks provide documented evidence, not immunity from shared mistakes. The original cohort had two human mathematical solvers, but even there language review was more limited. We would add independent bilingual reviewers and preserve their disagreements before adjudication.
+
+\medskip\noindent{\sffamily\bfseries\color{C}84.~If training made everything worse, hasn't the project failed?}\par\nopagebreak
+
+The tested recipe failed to improve the models, and we should say that clearly. The experiment still answered a pre-registered question: E+C was worse than E+R on C under this recipe, and every arm was worse than the unchanged model. The unchanged baseline and audit prevented us from presenting a misleading success. A useful research result can be negative when its scope and evidence are clear.
+
+\subsection*{K. Future work and applications}
+
+
+\medskip\noindent{\sffamily\bfseries\color{C}85.~What experiment would you prioritize after Phase 3?}\par\nopagebreak
+
+I would prioritize replication on a fresh, independently reviewed test set. That would reduce the concern that the follow-up design has adapted to the reused benchmark. I would also preserve an unchanged-model baseline and freeze the recipe before evaluation. The next test should establish generalization rather than keep optimizing on these same 100 families.
+
+\medskip\noindent{\sffamily\bfseries\color{C}86.~How would you test whether target style caused the Phase-2 loss?}\par\nopagebreak
+
+We would compare short and explanation-rich targets using the same training families and a pre-specified training budget. We would record supervised-token exposure as well as example counts, because longer targets change the amount of training signal. Target correctness and explanation quality would need independent review. A randomized, controlled comparison would provide stronger evidence than comparing the current two phases after several factors changed.
+
+\medskip\noindent{\sffamily\bfseries\color{C}87.~What practical application could benefit from this work?}\par\nopagebreak
+
+A tutoring assistant accepting Romanized Hindi and Hinglish could use this kind of evaluation before deployment. It would need checks for arithmetic, units and language-form differences, rather than relying on English accuracy alone. Our present trained adapters are not a demonstrated improvement for that application. The immediate useful output is the evaluation method and documented failure evidence.
+
+\medskip\noindent{\sffamily\bfseries\color{C}88.~Has the work been published or accepted?}\par\nopagebreak
+
+The recorded submission is to the EACL 2027 Student Research Workshop pre-submission mentorship on 26 October 2026, submission number 12. That is not paper acceptance or a completed final-track submission. The repository contains a paper draft and a publication plan. We should describe those as their actual stages, not as completed publication.
+
+Question count: 88

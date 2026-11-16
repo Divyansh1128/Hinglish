@@ -1,4 +1,4 @@
-% Final BTech Major Project Report.
+% BTech Minor Project Report.
 % Build: see report/BUILD.md  (tectonic final_report.tex, run inside report/)
 % Every number in this report traces to a file named in the "Sources" notes
 % (results/, pilot_b/, pilot_original/, phase2/, research/, docs/DECISIONS.md,
@@ -63,7 +63,7 @@
 \vspace*{-0.5cm}
 {\LARGE\bfseries Romanized Hindi Is Harder Than Hinglish:\\[4pt] A Scoring-Aware Audit of Small LLMs on\\[4pt] Mathematical Word Problems\par}
 \vspace{0.8cm}
-{\large Major Project Report\par}
+{\large Minor Project Report\par}
 \vspace{0.3cm}
 {\large submitted in partial fulfilment of the requirements for the award of the degree of\par}
 \vspace{0.3cm}
@@ -169,7 +169,7 @@ In two separately reviewed, pre-registered cohorts, which are never pooled, R is
 
 The ordering R~$<$~C is not new: prior work reports it on translated GSM8K items. This project contributes newly drafted, human-reviewed triplets, a scoring-aware frozen protocol, two separately reviewed cohorts and a reproducible pipeline. It also prepares 300 frozen families for a fine-tuning study.
 
-In that pre-registered follow-up, Qwen3-4B was QLoRA fine-tuned on a free Colab T4 in three arms (E+E, E+R, E+C) with matched content, matched exposure and identical English targets, with three paired seeds, and was evaluated once on 100 untouched test families. Hinglish training did not beat Romanized-Hindi training on Hinglish questions: $\Delta_C = -4.33$ points, 95\% interval $[-8.00, -0.67]$, which the pre-registered rule labels \emph{Harm}; all three seeds are negative. Every trained arm also lost about 24--26 points of English accuracy against the unchanged model, consistent with its short training targets. A human-checked audit shows that the extra E+C failures are substantive errors, not formatting failures.
+In that pre-registered follow-up, Qwen3-4B was QLoRA fine-tuned on a free Colab T4 in three arms (E+E, E+R, E+C) with matched content, matched exposure and identical English targets, with three paired seeds, and was evaluated once on 100 untouched test families. Hinglish training did not beat Romanized-Hindi training on Hinglish questions: $\Delta_C = -4.33$ points, 95\% interval $[-8.00, -0.67]$, which the pre-registered rule labels \emph{Harm}; all three seeds are negative. Every trained arm also lost about 24--26 points of English accuracy against the unchanged model, consistent with its short training targets. A human-checked audit shows that the extra E+C failures are substantive errors, not formatting failures. A third phase, which repeats the comparison with training solutions written in the model's own style, is under way: its design, data and code are frozen and training is next.
 
 \vspace{0.5cm}
 \noindent\textbf{Keywords:} Hinglish, Romanized Hindi, code-mixing, mathematical reasoning, LLM evaluation, answer extraction, pre-registration, QLoRA fine-tuning.
@@ -1211,16 +1211,16 @@ Phase~2 then tested whether training on Hinglish helps with Hinglish. Under a fr
 
 \begin{table}[H]
 \centering\small
-\caption{Status and plan for the remainder of the project (as of 10 November 2026).}
+\caption{Status and plan for the remainder of the project (as of 17 November 2026).}
 \label{tab:timeline}
 \begin{tabularx}{\linewidth}{@{}lL@{}}
 \toprule
 Period & Milestone\\
 \midrule
 Oct 2026 (done) & Original-cohort runs and analysis; SRW mentorship submission \#12 (26 Oct, D039); Pilot-B audit of Qwen3-4B; post-hoc tokenization analysis and audit-extension tagging; Phase-2 protocol draft and power simulation (D040); T4 smoke test, GO (28 Oct, D042).\\
-Nov 2026 (done to 10 Nov) & Schedule fixed (3 Nov, D043); pre-registration frozen with three amendments (D044--D047); DEV ceiling check, not fired (D049); nine training runs, all valid at the first attempt (D050--D051); adapter freeze (8 Nov); single FINAL\_TEST evaluation and analysis, Harm (10 Nov, D052); human checks of both audits. Still to come: minor evaluation.\\
-Dec 2026 -- Jan 2027 & SRW mentor feedback (5 Dec), final submission (15 Dec), notification (5 Jan); second-annotator sample (Pilot-B, FINAL\_TEST).\\
-Feb -- Mar 2027 & Training study already complete (originally planned here). Optional new, separately pre-registered follow-up with explanation-rich targets.\\
+Nov 2026 & Phase 2: schedule fixed (3 Nov, D043); pre-registration frozen with three amendments (D044--D047); DEV ceiling check, not fired (D049); nine training runs, all valid at the first attempt (D050--D051); adapter freeze (8 Nov); single FINAL\_TEST evaluation and analysis, Harm (10 Nov, D052); human checks of both audits. Phase 3: pre-registration (D053), target generation and freeze (Q~=~158, D054--D055), implementation frozen after review (D056). Minor evaluation.\\
+Dec 2026 -- Jan 2027 & Phase 3: nine training runs and one FINAL\_TEST evaluation, analysis, independent verification and failure audit. SRW mentor feedback (5 Dec), final submission (15 Dec), notification (5 Jan).\\
+Feb -- Mar 2027 & Training-paper draft (Phases 2 and 3) for the ARR cycle; second-annotator sample; selected extensions from Section~\ref{sec:futurework}.\\
 Apr 2027 & Thesis and training-paper draft.\\
 May 2027 & Final submission.\\
 \bottomrule
@@ -1231,11 +1231,25 @@ May 2027 & Final submission.\\
 
 Under decision D023, the pilot findings target the EACL 2027 Student Research Workshop as a 4-page short paper. The paper was submitted to the SRW pre-submission mentorship on 26 October 2026 (OpenReview submission \#12, D039); mentor feedback is due on 5 December, and the final paper needs a new submission to the SRW track by 15 December 2026. The training study targets the ARR May 2027 cycle, whose date is unconfirmed. Co-authorship with the faculty guide is to be discussed with the guide.
 
-\section{Further future work}
+\section{Phase 3: training on the model's own solutions (in progress)}
+\label{sec:phase3}
 
-Beyond the completed study, the limitations point to clear extensions:
+\evid{work in progress. Design, data and code are frozen; no Phase-3 training or evaluation output exists yet, so no Phase-3 result is reported here.}
+
+\paragraph{Question.} Phase~2 trained on short reference solutions, and every arm lost about 24--26 points of English accuracy while its answers shrank from a median of 113 to 42 tokens. Phase~3 asks whether the Phase-2 conclusion changes when the training solutions are written in the model's own style: does E+C training beat E+R on Hinglish questions when the targets are the unchanged Qwen3-4B's own correct English answers (\emph{self-distillation})?
+
+\paragraph{Design.} Everything except the targets is kept from Phase~2: the same three arms with identical English targets across forms, the same QLoRA recipe, 60 updates, paired seeds 11/22/33, the same strict scorer, the same primary estimand $\Delta_C$ and the same bootstrap and decision labels. The unchanged model was run once on the English version of each of the 160 TRAIN families; an answer became a target only if it was strictly correct, complete, fully English and short enough for every form. The plan fixed in advance that the study would halt if fewer than 120 families qualified. The 100 FINAL\_TEST families are reused; this is disclosed as a limitation, because the Phase-3 design was motivated by Phase-2 results.
+
+\paragraph{Status (17 November 2026).} The pre-registration was adopted before any Phase-3 output (D053). The target run on a Colab T4 produced 160 answers; 158 qualified (two were wrong), none needed language review, and the median target is 106 tokens against the short Phase-2 references (D055). The training, evaluation and analysis code passed an independent adversarial review, one blocking defect was fixed, and the implementation was frozen (D056). The nine training runs and the single test evaluation are next.
+
+\paragraph{What the outcomes would mean.} If E+C now beats E+R (\emph{Support}), the Phase-2 harm was tied to the short-target recipe. If the result is again Harm or an informative null, Hinglish exposure does not help even when the model keeps its own style. Either way, comparing each arm with its Phase-2 counterpart will show, descriptively, how much of the English-accuracy loss came from the target style.
+
+\section{Further future work}
+\label{sec:futurework}
+
+Beyond Phase~3, the limitations point to clear extensions:
 \begin{itemize}[nosep]
-\item a separately pre-registered training recipe with explanation-rich English targets that preserves English accuracy, to test whether the Harm result is specific to the frozen recipe;
+\item a fresh, never-used test set, so that the training comparison no longer relies on a reused benchmark;
 \item a reviewed Devanagari arm, to separate script from language, and independently authored spelling variants of R;
 \item a second independent language reviewer for every cohort;
 \item more model families at matched sizes;

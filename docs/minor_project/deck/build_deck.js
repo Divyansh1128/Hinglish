@@ -325,16 +325,16 @@ function slide13() {
   const xs=[.7,4.75,8.8],width=3.8;
   ['Completed','In progress','Upcoming'].forEach((h,i)=>{text(s,h,xs[i],1.83,width,.45,24,{bold:true});line(s,xs[i],2.42,xs[i]+width,2.42);});
   text(s,'Reviewed data and pipeline\n\nPhases 1–2\n\nFull human audit\n\nSRW paper draft and\nmentorship submission',xs[0],2.68,width,3.75,20,{valign:'top'});
-  text(s,'Phase 3: training on the model’s own step-by-step solutions (self-distillation), to test whether Hinglish training helps once the short-target damage is removed',xs[1],2.68,width,3.15,20,{valign:'top'});
-  text(s,'Design stage, no results',xs[1],6.08,width,.43,19,{bold:true});
+  text(s,'Phase 3: training on the model’s own correct solutions\n\nPlan and code frozen;\n158/160 solutions qualified\n\nNext: 9 training runs',xs[1],2.68,width,3.15,20,{valign:'top'});
+  text(s,'No Phase 3 results yet',xs[1],6.08,width,.43,19,{bold:true});
   text(s,'SRW mentor feedback\n5 Dec 2026\n\nFinal SRW submission\n15 Dec 2026\n\nPhase 3 runs\n\nThesis, ARR submission\nand final evaluation\nMay 2027',xs[2],2.68,width,3.95,19,{valign:'top'});
-  notes(s,'Divyanshu','Phases 1 and 2 are complete. Completed work includes 370 plus 24 data families, the pipeline, evaluations, analysis, full human failure audit and an SRW draft submitted for mentorship on 26 October. Phase 3 is underway at design stage only, with no results. It will train on the model’s own step-by-step solutions to test whether Hinglish helps after the short-target damage is removed. Upcoming dates are mentor feedback on 5 December 2026, final SRW submission on 15 December 2026, Phase-3 runs, and thesis, ARR submission and final evaluation in May 2027.','report/final_report.tex, project status; user-provided Phase-3 status and dates');
+  notes(s,'Divyanshu','Phases 1 and 2 are complete. Completed work includes 370 plus 24 data families, the pipeline, evaluations, analysis, full human failure audit and an SRW draft submitted for mentorship on 26 October. Phase 3 is underway: the pre-registration, the 158 self-generated training solutions and the code are frozen, and training is next. There are no Phase-3 results yet. It will train on the model’s own step-by-step solutions to test whether Hinglish helps after the short-target damage is removed. Upcoming dates are mentor feedback on 5 December 2026, final SRW submission on 15 December 2026, Phase-3 runs, and thesis, ARR submission and final evaluation in May 2027.','report/final_report.tex, project status; user-provided Phase-3 status and dates');
 }
 function slide14() {
   const s=base('Findings and Phase 3');
   text(s,'Romanized Hindi was least accurate across the three tested models.',.75,2.12,11.8,.9,24,{bold:true});
   text(s,'Qwen3-4B, this recipe: E+C scored below E+R on Hinglish.',.75,3.55,11.8,.95,24,{bold:true});
-  text(s,'Phase 3 will test the model’s own step-by-step training solutions.',.75,5.15,11.8,.9,23);
+  text(s,'Phase 3 (under way) trains on the model’s own correct solutions.',.75,5.15,11.8,.9,23);
   text(s,'Questions?',.75,6.45,11.8,.4,18,{color:C.grey});
   notes(s,'Divyanshu','The first finding is bounded to the three tested unchanged models. The training result is bounded to Qwen3-4B and this short-target QLoRA recipe: E+C scores below E+R on Hinglish. It is not a general claim about Hinglish training. Phase 3 is at design stage, testing targets based on the model’s own step-by-step solutions. We welcome questions.','report/final_report.tex; results/phase2/final_test/phase2_analysis.md; user-provided Phase-3 status');
 }
