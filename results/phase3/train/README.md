@@ -9,6 +9,7 @@ Runs use the launcher `colab_notebooks/phase3/Phase3_Train_Launcher.ipynb` (D057
 | EC-s11 | 1 | `847a8252…2ce7` | yes | 60/60, 0 | 19.99 | `99561453…0570` | 35 / 20 / 22 | 16/120 | 122.6 / 114 |
 | ER-s11 | 1 | `36b79f72…077d` | yes | 60/60, 0 | 20.17 | `5a4240e8…3657` | 34 / 18 / 23 | 18/120 | 120.8 / 118 |
 | EE-s11 | 1 | `a1a7fe07…db5a` | yes | 60/60, 0 | 19.64 | `bee8d26c…e8a9` | 36 / 23 / 23 | 9/120 | 121.1 / 112.5 |
+| EC-s22 | 1 | `e9b81adb…4ff5` | yes | 60/60, 0 | 19.65 | `55f9d94a…0935` | 37 / 24 / 23 | 13/120 | 122.7 / 113 |
 | *Unchanged baseline (reused, Phase 2)* | – | `1c0d2609…ffef` | – | – | – | – | 33 / 19 / 24 | 12/120 | 121 |
 | *Phase-2 EC-s11, for reference* | – | – | – | – | – | – | 24 / 13 / 19 | 23/120 | 43 |
 
@@ -17,4 +18,5 @@ Runs use the launcher `colab_notebooks/phase3/Phase3_Train_Launcher.ipynb` (D057
 - **EC-s11 (21 Nov 2026):** COMPLETE, implementation manifest `ad61099a…`, baseline DEV `a8194ac2…`, recipe `a36e8732…`, exposure order file `576e5e6f…`, cursor 960 (480 family visits), finite losses and grad norms, not resumed. DEV 120/120, 0 infrastructure failures. Seed-11 data order `8b89e82a…`, initial adapter `0bbfaad4…` (ER-s11 and EE-s11 must match both).
 - **ER-s11 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. **Pairing check:** data order `8b89e82a…` and initial adapter `0bbfaad4…` match EC-s11. The returned ZIP holds the whole training root; the EC-s11 adapter hash in it is unchanged.
 - **EE-s11 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. **Pairing check (seed 11):** EC, ER and EE share data order `8b89e82a…` and initial adapter `0bbfaad4…`. EC-s11 and ER-s11 adapter hashes in the returned root are unchanged. Seed slot 11 is complete.
+- **EC-s22 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. Seed-22 data order `461d2e60…`, initial adapter `f7d105a8…` (ER-s22 and EE-s22 must match both). All seed-11 adapter hashes in the returned root are unchanged.
 - Descriptive only: the self-distilled EC-s11 adapter keeps the unchanged model's output length on DEV (mean 122.6 vs 121 tokens), unlike Phase-2 EC-s11 (43). No decision is taken from DEV.
