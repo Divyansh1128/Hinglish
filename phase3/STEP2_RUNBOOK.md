@@ -191,3 +191,40 @@ Run every repository Python test directory separately with `unittest discover`
 `t4_smoke`, `test1_pilot/tests`, `pilot/scripts`); include the repo, `test1_pilot`
 and `pilot/scripts` in `PYTHONPATH`. Root-only discovery omits most suites.
 No GPU training, new research inference or held-out outcome unsealing is claimed.
+
+
+## 22 November 2026: interrupted-evaluation validator amendment
+
+ER-s22 attempt 1 finished validly. Its resumed DEV archive has 120/120 resolved
+generations and one journaled interruption. The frozen Phase-2 DEV validator
+mistakes the engine's `in_progress` interruption sentinel for an unfinished run.
+No Phase-2 file, result, engine behavior, training recipe or training input changes.
+
+The Phase-3 archive wrapper accepts that sentinel only with the exact infrastructure
+flag, `interrupted_before_commit` code, null raw response, recomputed original digest,
+exact errors mirror, consecutive bounded retries and a final generated follow-up.
+It keeps all other Phase-2 archive and journal checks. DEV sanity/freeze and
+FINAL_TEST sealing/analysis/reuse call the wrapper; the registry's unchanged
+journal/engine/path bindings remain exact. The original Phase-2 validators remain
+in use for genuine Phase-2 cross-phase reporting.
+
+`training_continuity.json` lists every unchanged predecessor runtime input/source
+except the three amended contract/evaluation/analysis modules. The predecessor
+manifest is archived byte for byte under `predecessors/ad61099a.md`. The amended
+implementation manifest embeds the continuity proof; runtime verification checks
+its hash, the predecessor hash, and every listed hash against both manifests and
+actual files. This includes `train_phase3.py`, trainer, labels, protocol, exposure,
+recipe inputs, targets, data, engine and registry. All training operations and
+attempt-log comparisons retain the predecessor training identity. This is deliberate:
+the immutable trainer's own start and in-attempt checks require one identity across
+the study. EE-s22 and seed 33 therefore retain exactly the first five runs' identity.
+`verify_implementation(release=True)` returns the actual amended release hash;
+the default returns the authenticated predecessor training identity after verifying
+the amended release. The evaluation binding and adapter freeze use the release hash.
+Adapter/attempt validation accepts only these two hashes, canonicalizing solely that
+field for pairing/freeze checks. Existing DEV bindings and registry rows stay intact;
+new DEV bindings use the amended release. No attempt log or adapter is rewritten.
+
+Rebuild the two step-2 notebooks, runtime contract, implementation manifest and
+train launcher together. Upload the regenerated train notebook, launcher and companion
+manifest to Drive before continuing. Claude reviews and commits this amendment.

@@ -41,7 +41,7 @@ def assemble(root, train_root, evaluations):
     runs = {}
     receipts = {}
     for key, path in paths.items():
-        run = core.load_run(path)  # unchanged safe ZIP/checksum, record identity and attempt-budget validation
+        run = ev.archives.load_run(path)  # unchanged safe ZIP/checksum, record identity and attempt-budget validation
         core.check_final_test_run(key, run, binding, implementation)
         c.require(run['complete'] and run['expected'] == run['completed'] == 300 and run['unresolved'] == 0,
                   'Outcome unsealing refused: unresolved evaluation')

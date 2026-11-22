@@ -27,13 +27,13 @@ RUNTIME = 'phase3/step2_runtime_contract.json'
 
 def sources():
     paths = ['t4_smoke/' + name for name in ('train_smoke.py', 'train_phase2.py', 'phase2_eval.py', 'labels.py', 'protocol.py',
-             'phase3_targets.py', 'phase3_contract.py', 'train_phase3.py', 'phase3_eval.py', 'phase3_registry.py')]
+             'phase3_targets.py', 'phase3_contract.py', 'train_phase3.py', 'phase3_eval.py', 'phase3_registry.py', 'phase3_archives.py')]
     for directory in ('test1_pilot/hinglish_pilot', 'secondary_analysis', 'phase2_analysis', 'phase3_analysis'):
         paths += [str(p.relative_to(ROOT)) for p in sorted((ROOT / directory).glob('*.py'))]
     paths += ['paper_analysis/safezip.py', 'phase2/IMPLEMENTATION_MANIFEST.md', 'phase2/ADAPTERS_FROZEN.md',
               'phase2/train_A.v2.json', 'phase2/train_B.v2.json', 'phase2/dev.v2.json',
               'phase3/PREREGISTRATION.md', 'phase3/DESIGN.md', 'phase3/TARGETS_FROZEN.md', 'phase3/targets.v1.json',
-              'phase3/runtime_contract.json', 'phase3/TARGET_GEN_MANIFEST.md', 'phase3/EXPOSURE_ORDER.json',
+              'phase3/training_continuity.json', 'phase3/predecessors/ad61099a.md', 'phase3/runtime_contract.json', 'phase3/TARGET_GEN_MANIFEST.md', 'phase3/EXPOSURE_ORDER.json',
               'results/phase3/targets/Phase3_Targets_frozen.zip', 'results/phase3/targets/Phase3_Targets_results.zip',
               'results/phase2/baseline_dev/Phase2_Baseline_DEV_results.zip', 'phase3/AUDIT_RUBRIC.md',
               'results/pilot_b/audit/AUDIT_INSTRUCTIONS.md', 'research/pre_pilot_endpoint_spec_v1.md']

@@ -16,7 +16,7 @@ from phase3_analysis import analyze as analysis
 
 MANIFEST = ROOT / 'phase3/IMPLEMENTATION_MANIFEST.md'
 STEP2 = ['t4_smoke/phase3_registry.py', 't4_smoke/phase3_contract.py', 't4_smoke/train_phase3.py', 't4_smoke/phase3_eval.py',
-         't4_smoke/test_train_phase3.py', 't4_smoke/test_phase3_eval.py',
+         't4_smoke/test_phase3_archives.py', 't4_smoke/test_train_phase3.py', 't4_smoke/test_phase3_eval.py',
          'phase3_analysis/__init__.py', 'phase3_analysis/analyze.py', 'phase3_analysis/compare.py', 'phase3_analysis/descriptive.py',
          'phase3_analysis/tests/test_analyze.py', 'colab_notebooks/build_phase3_step2_notebooks.py',
          'colab_notebooks/phase3/Phase3_Train.ipynb', 'colab_notebooks/phase3/Phase3_FinalTest.ipynb',
@@ -41,6 +41,7 @@ def build():
     files |= {'phase3/TARGET_GEN_MANIFEST.md', 'phase2/PREREGISTRATION.md', 'phase2/final_test.v3.json'}
     dev = ev.verify_dev_bridge(ROOT)
     return dict(schema='phase3-implementation-manifest-1',
+        training_continuity=json.loads((ROOT / 'phase3/training_continuity.json').read_bytes()),
         prior_manifests=dict(verified=prior, method='Both original builders --check plus byte verification of all listed files'),
         files={p: c.file_sha(ROOT / p) for p in sorted(files)},
         target_freeze=c.block((ROOT / 'phase3/TARGETS_FROZEN.md').read_bytes()),

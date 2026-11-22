@@ -228,6 +228,7 @@ class FreezeIntegrationTests(unittest.TestCase):
             root = Path(tmp)
             train_root, identity = self.fixture(root)
             with mock.patch.object(c, 'verify_implementation', return_value=({'base_weight_shards_sha256': {'synthetic': 'b'*64}}, 'a'*64)), \
+                 mock.patch.object(c, 'accepted_implementations', return_value={'a'*64}), \
                  mock.patch.object(ev, 'require_dev_sanity') as sanity, \
                  mock.patch.object(ev, 'verify_dev_bridge', return_value={'sha256': 'd'*64}), \
                  mock.patch.object(train, 'attempt_identity', return_value=identity), \
@@ -282,6 +283,7 @@ class PreflightIntegrationTests(unittest.TestCase):
                  mock.patch.object(engine, 'run', side_effect=run) as generate, \
                  mock.patch.object(report, 'analyze', return_value=({'status': 'COMPLETE'}, None)), \
                  mock.patch.object(report, 'export', return_value=run_dir.parent / 'synthetic.zip'), \
+                 mock.patch.object(ev.archives, 'load_run') as validate_export, \
                  mock.patch.object(ev.old, 'sealed_status', return_value={'status': 'COMPLETE'}):
                 if missing_peft:
                     with self.assertRaisesRegex(p2.ProtocolError, 'peft'):
@@ -289,6 +291,7 @@ class PreflightIntegrationTests(unittest.TestCase):
                     generate.assert_not_called()
                 else:
                     self.assertEqual(ev.run_evaluate(args), 0)
+                    validate_export.assert_called_once_with(run_dir.parent / 'synthetic.zip')
                     self.assertEqual(check.call_count, 1)
                     self.assertEqual(p2.execution_problems(*check.call_args.args, **check.call_args.kwargs), [])
                     self.assertEqual(check.call_args.args[1]['packages']['peft'], '0.15.2')

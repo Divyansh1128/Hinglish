@@ -75,7 +75,8 @@ def load_targets(root=ROOT):
     return rows
 
 
-def verify_implementation(root=ROOT, *, full=False):
+def verify_implementation(root=ROOT, *, full=False, release=False):
+    """Authenticate the amended release; return its training lineage (or release hash)."""
     root = Path(root).resolve()
     require(root == ROOT.resolve(), '--root differs from executing tree; use the authenticated checkout')
     raw = (root / 'phase3/IMPLEMENTATION_MANIFEST.md').read_bytes()
@@ -103,7 +104,10 @@ def verify_implementation(root=ROOT, *, full=False):
         for path, checksum in doc['files'].items():
             require(file_sha(safe_path(root, path)) == checksum, 'Implementation changed: ' + path)
         verify_prior(root)
-    return doc, sha(raw)
+    # Immutable trainer uses the predecessor identity across all nine runs. Release
+    # consumers opt into the actual amended manifest hash; both verify all bytes.
+    training_sha = verify_continuity(root, doc)
+    return doc, sha(raw) if release else training_sha
 
 
 def verify_running_sources(root, contract, manifest):
@@ -139,3 +143,26 @@ def verify_running_sources(root, contract, manifest):
     require(actual == expected, 'Running engine source inventory differs')
     for path in actual:
         require(file_sha(root / path) == contract['files'][path], 'Running engine changed: ' + path)
+
+
+def verify_continuity(root, manifest):
+    proof_path = 'phase3/training_continuity.json'
+    require(file_sha(root / proof_path) == manifest['files'][proof_path], 'Continuity proof changed')
+    proof = json.loads((root / proof_path).read_bytes())
+    predecessor = 'ad61099a1244ec9f676d82d7d62460475f4815848292d4e271dc4614bbcb3a4c'
+    require(proof['predecessor_sha256'] == predecessor, 'Unknown training predecessor')
+    raw = (root / proof['predecessor_path']).read_bytes()
+    require(sha(raw) == predecessor, 'Predecessor manifest changed')
+    prior = block(raw)
+    require(proof['unchanged_files'] and 't4_smoke/train_phase3.py' in proof['unchanged_files'], 'Missing training continuity')
+    for path, checksum in proof['unchanged_files'].items():
+        require(prior['files'].get(path) == checksum == manifest['files'].get(path)
+                and file_sha(root / path) == checksum, 'Training continuity broken: ' + path)
+    require(manifest['training_continuity'] == proof, 'Manifest continuity differs')
+    return predecessor
+
+
+def accepted_implementations(root=ROOT):
+    _, release_sha = verify_implementation(root, release=True)
+    proof = json.loads((Path(root) / 'phase3/training_continuity.json').read_bytes())
+    return {release_sha, proof['predecessor_sha256']}

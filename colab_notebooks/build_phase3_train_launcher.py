@@ -10,8 +10,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FROZEN_SHA = 'b6b6c37c289233e8647b8517ea53e788d379e4af916408521c8adbc0d9e34e90'
-IMPL_SHA = 'ad61099a1244ec9f676d82d7d62460475f4815848292d4e271dc4614bbcb3a4c'
+FROZEN_SHA = '5d0c20e318c89a44871c20b2220e044cb6fdbb1ef6b82d8731dff244a13afec4'
+IMPL_SHA = '824671917d4782a01f458aed001c56671869eae6b494bf837568d2f83c7184df'
 
 md = f"""# Phase-3 train launcher
 

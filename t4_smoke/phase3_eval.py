@@ -18,6 +18,7 @@ if str(_ROOT) not in sys.path:
 from t4_smoke import phase3_contract as c, train_phase3 as train, phase3_registry as registry
 from t4_smoke import train_phase2 as p2, phase2_eval as old, train_smoke as ts
 from phase2_analysis import analyze as core
+from t4_smoke import phase3_archives as archives
 from paper_analysis.safezip import read_zip, verify_checksums
 
 require = c.require
@@ -54,6 +55,7 @@ def verify_dev_bridge(root=c.ROOT):
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / 'base_results.zip'
         path.write_bytes(inner)
+        archives.load_run(path)
         evidence = core.load_baseline(path, binding, implementation)
     evidence['path'] = DEV_ARCHIVE + '!base_results.zip'
     evidence['phase2_manifest_sha256'] = c.OLD_MANIFEST_SHA
@@ -109,7 +111,7 @@ def load_reused_baseline(root, frozen):
             if run_manifest.get('run_id') == c.FINAL_RUN_ID:
                 local = Path(tmp) / 'unchanged_results.zip'
                 local.write_bytes(blob)
-                run = validate_reused_run(core.load_run(local), implementation, binding,
+                run = validate_reused_run(archives.load_run(local), implementation, binding,
                                           core.digest(config_for('final_test')))
                 run['path'] = str(path) + '!' + name
                 candidates.append(run)
@@ -130,7 +132,7 @@ def verify_adapter(folder, root):
     final = ts.read_json(folder / 'final_adapter.json')
     require(not p2.valid_run_problems(final), 'Invalid update-60 adapter')
     require(p2.attempt_outcome(folder)[0] == 'valid', 'Training report does not confirm valid run')
-    require(final['implementation_manifest_sha256'] == manifest_sha, 'Adapter implementation differs')
+    require(final['implementation_manifest_sha256'] in c.accepted_implementations(root), 'Adapter implementation differs')
     require(final['targets_sha256'] == c.TARGET_SHA, 'Adapter target identity differs')
     require(final['exposure_order_file_sha256'] == c.file_sha(Path(root) / 'phase3/EXPOSURE_ORDER.json'), 'Adapter exposure differs')
     require(old.adapter_digests(folder / 'final_adapter') == {k: final[k] for k in ('adapter_model_sha256', 'adapter_config_sha256')},
@@ -145,10 +147,10 @@ def dev_sanity_problem(folder, root):
         archive = Path(folder) / 'dev_eval_results.zip'
         members, _ = core.read_run_members(archive)
         run_manifest = json.loads(members['run_manifest.json'])
-        problems = p2.baseline_archive_problems(archive, run_manifest, old_manifest, adapter=old.adapter_record(final))
+        problems = archives.baseline_archive_problems(archive, run_manifest, old_manifest, adapter=old.adapter_record(final))
         require(not problems, '; '.join(problems))
         binding = json.loads((Path(folder) / 'dev_eval_implementation.json').read_bytes())
-        require(binding['implementation_manifest_sha256'] == final['implementation_manifest_sha256'], 'DEV implementation mismatch')
+        require(binding['implementation_manifest_sha256'] in c.accepted_implementations(root), 'DEV implementation mismatch')
         train_root = Path(folder).resolve().parents[1]
         registered = [r for r in registry.records(train_root) if r['split'] == 'dev' and r['adapter'] == old.adapter_record(final)]
         require(len(registered) == 1, 'DEV lacks unique study registration')
@@ -180,7 +182,7 @@ def run_dev_sanity(train_root, root, *, recover=False, evaluate=None):
 
 def freeze_manifest(train_root, root=c.ROOT):
     root, train_root = Path(root), Path(train_root)
-    doc, manifest_sha = c.verify_implementation(root)
+    doc, manifest_sha = c.verify_implementation(root, release=True)
     require(p2.read_writer_lock(train_root) is None, 'Active writer: freeze refused')
     entries = p2.read_log(train_root / p2.ATTEMPT_LOG)
     current = p2.plan(entries)
@@ -199,11 +201,16 @@ def freeze_manifest(train_root, root=c.ROOT):
     require(all(r['same_order'] and r['same_initial_adapter'] and r['arms'] == sorted(p2.ARMS)
                 for r in p2.pairing(records).values()), 'Initial adapter triplet mismatch')
     starts = [e['identity'] for e in entries if e['event'] == 'start']
+    def canonical(identity):
+        require(identity['implementation_manifest_sha256'] in c.accepted_implementations(root), 'Unknown attempt implementation')
+        return dict(identity, implementation_manifest_sha256=c.verify_implementation(root)[1])
+    starts = [canonical(x) for x in starts]
     require(starts and all(x == starts[0] for x in starts), 'Attempts differ in implementation/configuration')
     expected_identity = train.attempt_identity(root, dev)
     require(starts[0] == expected_identity, 'Attempt identity differs from frozen implementation')
     for final in records:
-        require(all(final.get(k) == v for k, v in expected_identity.items()), 'Final adapter differs from attempt identity')
+        normalized = canonical(final)
+        require(all(normalized.get(k) == v for k, v in expected_identity.items()), 'Final adapter differs from attempt identity')
         require(final['base_weight_shards_sha256'] == doc['base_weight_shards_sha256'], 'Base shard mismatch')
     # Bind every attempt, report, recovery and sanity archive, including discarded triplets.
     logs = {}
@@ -236,13 +243,15 @@ def gate(root, train_root):
 
 
 def bind_implementation(run_dir, root, adapter, split):
-    _, checksum = c.verify_implementation(root)
+    _, checksum = c.verify_implementation(root, release=True)
     path = Path(run_dir).parent / (Path(run_dir).name + '_implementation.json')
     binding = dict(study='phase3', implementation_manifest_sha256=checksum,
                    phase2_manifest_sha256=c.OLD_MANIFEST_SHA, adapter=adapter, split=split,
                    inference_config_sha256=core.digest(config_for(split, adapter)))
     if path.exists():
-        require(json.loads(path.read_bytes()) == binding, 'Run implementation binding differs')
+        recorded = json.loads(path.read_bytes())
+        require(recorded.get('implementation_manifest_sha256') in c.accepted_implementations(root), 'Unknown run implementation')
+        require(dict(recorded, implementation_manifest_sha256=checksum) == binding, 'Run implementation binding differs')
     else:
         require(not (Path(run_dir) / 'run_manifest.json').exists(), 'Existing run lacks implementation binding')
         ts.write_json(path, binding)
@@ -330,6 +339,8 @@ def _run_evaluate(args, train_root):
             except Exception:
                 print('Secondary analysis failed; primary unaffected; details remain sealed')
         archive = export(run_dir)
+    if metrics['status'] == 'COMPLETE':
+        archives.load_run(archive)
     status = old.sealed_status(run_dir, manifest, archive)
     write(run_dir.parent / (run_dir.name + '_status.json'), status)
     print('SEALED — completion/checksum/infrastructure only:', json.dumps(status))

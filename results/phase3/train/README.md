@@ -10,6 +10,7 @@ Runs use the launcher `colab_notebooks/phase3/Phase3_Train_Launcher.ipynb` (D057
 | ER-s11 | 1 | `36b79f72…077d` | yes | 60/60, 0 | 20.17 | `5a4240e8…3657` | 34 / 18 / 23 | 18/120 | 120.8 / 118 |
 | EE-s11 | 1 | `a1a7fe07…db5a` | yes | 60/60, 0 | 19.64 | `bee8d26c…e8a9` | 36 / 23 / 23 | 9/120 | 121.1 / 112.5 |
 | EC-s22 | 1 | `e9b81adb…4ff5` | yes | 60/60, 0 | 19.65 | `55f9d94a…0935` | 37 / 24 / 23 | 13/120 | 122.7 / 113 |
+| ER-s22 | 1 | *Drive record; see incidents/ER-s22_dev* | yes | 60/60, 0 | 20.25 | `0fa1c1cd…dcaa` | 33 / 18 / 22 | 21/120 | 126.6 / 113.5 |
 | *Unchanged baseline (reused, Phase 2)* | – | `1c0d2609…ffef` | – | – | – | – | 33 / 19 / 24 | 12/120 | 121 |
 | *Phase-2 EC-s11, for reference* | – | – | – | – | – | – | 24 / 13 / 19 | 23/120 | 43 |
 
@@ -19,4 +20,6 @@ Runs use the launcher `colab_notebooks/phase3/Phase3_Train_Launcher.ipynb` (D057
 - **ER-s11 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. **Pairing check:** data order `8b89e82a…` and initial adapter `0bbfaad4…` match EC-s11. The returned ZIP holds the whole training root; the EC-s11 adapter hash in it is unchanged.
 - **EE-s11 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. **Pairing check (seed 11):** EC, ER and EE share data order `8b89e82a…` and initial adapter `0bbfaad4…`. EC-s11 and ER-s11 adapter hashes in the returned root are unchanged. Seed slot 11 is complete.
 - **EC-s22 (22 Nov 2026):** COMPLETE, same manifest, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. Seed-22 data order `461d2e60…`, initial adapter `f7d105a8…` (ER-s22 and EE-s22 must match both). All seed-11 adapter hashes in the returned root are unchanged.
+- **ER-s22 (22 Nov 2026):** training COMPLETE, valid, not resumed; pairing with EC-s22 verified (order `461d2e60…`, initial adapter `f7d105a8…`). The session died during DEV at ~15:50 UTC; registered recoveries at 16:40 (stale writer, no open attempt; stale engine lock, 112 records kept); DEV then completed 120/120 with 1 infrastructure failure (DV039-R, interrupted before commit, regenerated as attempt 2). The legacy DEV validator rejected that record; fixed by implementation amendment D058 (release `82467191…`, training identity unchanged `ad61099a…`). Evidence in `incidents/ER-s22_dev/`. Runs from EE-s22 on execute under the amended release.
+- **Snapshot ZIP named `Phase3_Train_EE-s22.zip` (23 Nov, SHA-256 `49bdb3ba…64bb`):** written by the notebook's `finally` block after the refused session; contains no EE-s22 attempt. Not archived as a run.
 - Descriptive only: the self-distilled EC-s11 adapter keeps the unchanged model's output length on DEV (mean 122.6 vs 121 tokens), unlike Phase-2 EC-s11 (43). No decision is taken from DEV.
