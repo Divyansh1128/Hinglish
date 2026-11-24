@@ -71,6 +71,39 @@ E+E (English question twice), E+R (English + Romanized Hindi), E+C (English + Hi
 \end{ifasked}
 
 %==================================================================
+\section{Where we fit: research gaps and how we filled them}
+
+A \textbf{research gap} is something earlier work did not do, or did in a way that leaves a doubt. Examiners almost always ask ``what is new here?''. Be honest: the basic finding (Romanized Hindi is harder than Hinglish) is \emph{not} new. What is new is \emph{how carefully} we measured it, and the training comparison.
+
+\subsection{The closest earlier work, in one line each}
+\begin{itemize}
+\item \textbf{CodeMixTax (2026).} 955 GSM8K maths questions in five language forms, 16 models. It already found Romanized Hindi below Romanized Hinglish. But its questions are \emph{machine-translated} and romanized by a fixed rule, so translation mistakes can creep in. It is an author report, not peer-reviewed.
+\item \textbf{CodeMixBench (2025).} Hindi--English maths mixes Devanagari with English letters. So it does not compare two Roman-letter forms.
+\item \textbf{Indi-RomCoM (2026).} Varies how much English is mixed in (25/50/75\%), but has no pure Romanized-Hindi condition.
+\item \textbf{Peter et al.\ (2026).} Showed that translation errors and the way answers are extracted can \emph{create or hide} a language gap. This is why we checked our scorer before the real test.
+\end{itemize}
+
+\subsection{Gap $\rightarrow$ what we did}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}\begin{tabular}{>{\raggedright\arraybackslash}p{0.42\linewidth}>{\raggedright\arraybackslash}p{0.50\linewidth}}
+\toprule
+\textbf{Gap} & \textbf{What we did}\\
+\midrule
+Questions translated by machine, spelling made by a rule & Wrote new problems in the spelling people actually type; gold answer computed in code; two AIs solved them blind; a bilingual human reviewed them\\
+The answer format can fake a language gap & Tested the scorer on excluded practice items first, fixed the prompt once, then froze everything\\
+No clean R vs C comparison on the \emph{same} problem & Triplets: the same problem in E, R and C; only the language changes\\
+Nobody tested \emph{which} training language helps & A pre-registered training comparison: E+E, E+R, E+C, same problems, same English answers, paired seeds\\
+Our own Phase 2 showed short training answers erase step-by-step reasoning & Phase 3: train on the model's own correct, step-by-step solutions\\
+\bottomrule
+\end{tabular}
+\end{center}
+We searched 14 related works (10 October 2026) and did not find this training comparison. That is a limit of our search, not a guarantee that nobody has done it.
+
+\begin{ifasked}
+``What is novel?'' --- ``The R-below-C ordering was already reported by CodeMixTax, and we say so. Our contribution is a controlled replication on new, human-reviewed problems with a scorer we checked in advance, plus the first controlled test we know of of whether Hinglish training helps Hinglish maths. It did not, under our recipe, and Phase 3 now tests why.''
+\end{ifasked}
+
+%==================================================================
 \section{Language basics}
 
 \subsection{Hindi, Devanagari and Romanized Hindi}

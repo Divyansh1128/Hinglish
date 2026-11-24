@@ -332,6 +332,18 @@ function slide13() {
   text(s,'SRW mentor feedback\n5 Dec 2026\n\nFinal SRW submission\n15 Dec 2026\n\nPhase 3 runs\n\nThesis, ARR submission\nand final evaluation\nMay 2027',xs[2],2.68,width,3.95,19,{valign:'top'});
   notes(s,'Divyanshu','Phases 1 and 2 are complete. Completed work includes 370 plus 24 data families, the pipeline, evaluations, analysis, full human failure audit and an SRW draft submitted for mentorship on 26 October. Phase 3 is underway: the pre-registration, the 158 self-generated training solutions and the code are frozen, and training is next. There are no Phase-3 results yet. It will train on the model’s own step-by-step solutions to test whether Hinglish helps after the short-target damage is removed. Upcoming dates are mentor feedback on 5 December 2026, final SRW submission on 15 December 2026, Phase-3 runs, and thesis, ARR submission and final evaluation in May 2027.','report/final_report.tex, project status; user-provided Phase-3 status and dates');
 }
+function slideGaps() {
+  const s=base('What was missing, and what we added','Closest prior work: CodeMixTax 2026, CodeMixBench 2025, Indi-RomCoM 2026, Peter et al. 2026');
+  table(s,[
+    ['Gap in prior work','What we did'],
+    ['Problems are machine-translated GSM8K,\nromanized by a fixed scheme','New problems in natural Roman spelling,\ngold computed in code, human-checked'],
+    ['Answer format can fake a language gap','Tested the scorer on excluded items,\nthen froze prompt and scorer'],
+    ['No matched Romanized Hindi vs Hinglish\non identical problems','E / R / C triplets: only the\nlanguage changes'],
+    ['No test of which training language helps','Pre-registered E+E / E+R / E+C\nfine-tuning, paired seeds'],
+    ['Our Phase 2: short targets erased\nstep-by-step reasoning','Phase 3 trains on the model’s own\ncorrect solutions (in progress)']
+  ],.65,1.72,[5.9,6.1],.86,18);
+  notes(s,'Divyansh','This is where we sit in the literature. CodeMixTax already reports Romanized Hindi below Romanized Hinglish on 955 GSM8K items, but its items are machine-translated and romanized with a fixed scheme, and it is an author report, not peer-reviewed. CodeMixBench mixes Devanagari with Latin script, and Indi-RomCoM has no separate monolingual Romanized condition. Peter et al. show that translation and answer-extraction errors can create or hide language gaps, which is why we checked our scorer on excluded items before the real evaluation. Likely questions. Q: Is R below C a new finding? A: No, we say so openly; our contribution is a controlled, scoring-aware replication plus the training comparison. Q: How do you know nobody did the training comparison? A: A bounded audit of 14 works on 10 October 2026 did not find it; that is a search limit, not a guarantee. Q: Why draft new problems instead of using GSM8K? A: Translated items carry translation drift, and drafting lets us control that only the language changes.','report/final_report.tex, Contributions and Related Work (positioning table)');
+}
 function slideUses() {
   const s=base('Where this matters in everyday use','Implications of our results; we did not test deployed apps');
   const rows=[
@@ -402,7 +414,7 @@ function backup04() {
 }
 async function main() {
   verifySources();
-  [slide01,slide02,slide03,slide04,slide05,slide06,slide06b,slide07,slide08,slide09,slide10,slide11,slide12,slideUses,slide13,slideFuture,slide14,backup01,backup02,backup03,backup04].forEach(build=>build());
+  [slide01,slide02,slide03,slideGaps,slide04,slide05,slide06,slide06b,slide07,slide08,slide09,slide10,slide11,slide12,slideUses,slide13,slideFuture,slide14,backup01,backup02,backup03,backup04].forEach(build=>build());
   const output=path.join(__dirname,'minor_evaluation_v2.pptx');
   await pptx.writeFile({fileName:output,compression:true});
   // PptxGenJS 3.12 declares a slideMaster override per slide although it writes
@@ -412,7 +424,7 @@ async function main() {
   zip.file('[Content_Types].xml',contentTypes.replace(/<Override\b[^>]*PartName="([^"]+)"[^>]*\/>/g,
     (entry,part)=>zip.file(part.replace(/^\//,''))?entry:''));
   fs.writeFileSync(output,await zip.generateAsync({type:'nodebuffer',compression:'DEFLATE'}));
-  console.log(`Built 17 main slides + 4 backups. Checked ${layout.length} text boxes for conservative fit.\n${output}`);
+  console.log(`Built 18 main slides + 4 backups. Checked ${layout.length} text boxes for conservative fit.\n${output}`);
   titles.forEach((title,i)=>console.log(`${i+1}. ${title.replace(/\n/g,' ')}`));
 }
 main().catch(err=>{ console.error(err.stack); process.exitCode=1; });
