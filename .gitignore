@@ -31,3 +31,6 @@ output/pdf/Hinglish_Math_Synopsis_Sample_Format.pdf
 
 # Node build dependencies
 node_modules/
+
+# Phase-3 FinalTest payload contains FINAL_TEST gold; uploaded to Drive only
+phase3/FINAL_EVAL_PAYLOAD.zip

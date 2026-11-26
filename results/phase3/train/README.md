@@ -31,3 +31,7 @@ Runs use the launcher `colab_notebooks/phase3/Phase3_Train_Launcher.ipynb` (D057
 - **EE-s33 (26 Nov 2026):** COMPLETE, same manifest identity, recipe and baseline; not resumed; DEV 120/120, 0 infrastructure failures. **Pairing check (seed 33):** EC, ER and EE share data order `afc3bde1…` and initial adapter `997ff788…`. All eight earlier adapter hashes unchanged; no new writer recoveries. **All nine Phase-3 training runs are complete and valid for the gate (attempt 1 each, no resumes).**
 - **Snapshot ZIP named `Phase3_Train_EE-s22.zip` (23 Nov, SHA-256 `49bdb3ba…64bb`):** written by the notebook's `finally` block after the refused session; contains no EE-s22 attempt. Not archived as a run.
 - Descriptive only: the self-distilled EC-s11 adapter keeps the unchanged model's output length on DEV (mean 122.6 vs 121 tokens), unlike Phase-2 EC-s11 (43). No decision is taken from DEV.
+
+## Adapter freeze (26 Nov 2026)
+
+`phase3_eval freeze-manifest` on the complete training root (from the EE-s33 ZIP, all nine attempts with weights) wrote `phase3/ADAPTERS_FROZEN.md` (`0de03896…4406`; S=3, confirmatory). `phase3_eval gate` verified it: 3 complete triplets, 2,700 new FINAL_TEST generations. `build_phase3_step2_notebooks.py --finalize` then wrote `phase3/FINAL_EVAL_MANIFEST.md` and `phase3/FINAL_EVAL_PAYLOAD.zip` (`89e57905…f1f9`, 8.8 MB). The payload contains FINAL_TEST and is kept out of git (`.gitignore`); it goes to Drive only. FinalTest notebook `488f1fa7…6ca1`.
