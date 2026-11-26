@@ -63,7 +63,7 @@
 \vspace*{-0.5cm}
 {\LARGE\bfseries Romanized Hindi Is Harder Than Hinglish:\\[4pt] A Scoring-Aware Audit of Small LLMs on\\[4pt] Mathematical Word Problems\par}
 \vspace{0.8cm}
-{\large Minor Project Report\par}
+{\large B.Tech.\ Project-I (MC 401) Report\par}
 \vspace{0.3cm}
 {\large submitted in partial fulfilment of the requirements for the award of the degree of\par}
 \vspace{0.3cm}
@@ -84,7 +84,7 @@
 {\large Dr.\ Dinesh Udar\par}
 {\large Assistant Professor, Department of Applied Mathematics\par}
 \vfill
-\placeholder{DTU logo (optional)}\\[0.6cm]
+\includegraphics[height=3cm]{figures/dtu_logo.png}\\[0.6cm]
 {\large\bfseries Department of Applied Mathematics\\ Delhi Technological University\par}
 {\large (Formerly Delhi College of Engineering)\\ Bawana Road, Delhi -- 110042\par}
 \vspace{0.5cm}
@@ -107,9 +107,9 @@ I hereby certify that the project report entitled \textbf{``Romanized Hindi Is H
 
 \vspace{3cm}
 \noindent
-\begin{tabular}{@{}l@{\hspace{5cm}}l@{}}
-Place: Delhi & \placeholder{Supervisor signature}\\
-Date: \placeholder{Date} & Dr.\ Dinesh Udar\\
+\begin{tabular}{@{}l@{\hspace{4cm}}l@{}}
+Place: Delhi & \rule{5cm}{0.4pt}\\
+Date: \rule{3cm}{0.4pt} & Dr.\ Dinesh Udar\\
  & Assistant Professor\\
  & Department of Applied Mathematics\\
  & Delhi Technological University\\
@@ -129,12 +129,15 @@ The use of AI assistants in the project is disclosed in full in Section~\ref{sec
 
 \vspace{3cm}
 \noindent
-\begin{tabular}{@{}l@{\hspace{5cm}}l@{}}
-Place: Delhi & \placeholder{Signatures}\\
-Date: \placeholder{Date} & Divyansh Raj (23/MC/195)\\
- & Ayush Kumar Singh (23/MC/194)\\
- & Divyanshu Mishra (23/MC/196)\\
+\begin{tabular}{@{}c@{\hspace{0.6cm}}c@{\hspace{0.6cm}}c@{}}
+\rule{4.4cm}{0.4pt} & \rule{4.4cm}{0.4pt} & \rule{4.4cm}{0.4pt}\\
+Divyansh Raj & Ayush Kumar Singh & Divyanshu Mishra\\
+(23/MC/195) & (23/MC/194) & (23/MC/196)\\
 \end{tabular}
+
+\vspace{1.5cm}
+\noindent Place: Delhi\\[0.4cm]
+Date: \rule{3cm}{0.4pt}
 
 %======================================================================
 % ACKNOWLEDGEMENTS
@@ -146,12 +149,11 @@ Date: \placeholder{Date} & Divyansh Raj (23/MC/195)\\
 
 We are grateful to our supervisor, Dr.\ Dinesh Udar, Assistant Professor, Department of Applied Mathematics, Delhi Technological University, for guidance and support throughout this project.
 
-\placeholder{Thank the Head of Department and the department by name.}
+We thank Prof.\ Ramesh Srivastava, Head of the Department of Applied Mathematics, and the faculty and staff of the department, for their support and for the facilities provided.
 
 We thank the bilingual team members and volunteers who solved, reviewed and repaired the problem renderings, and the adjudicator who confirmed the reference answers for the original pilot. All reviewers consented to the release of the reviewed data under CC BY 4.0. In keeping with their stated preferences, reviewers are not named here; the adjudicator declined credit.
-\placeholder{Optionally add reviewers who have asked to be credited, by name, only with their written agreement.}
 
-\placeholder{Add any other acknowledgements (family, friends, compute providers).}
+We also thank our families and friends for their encouragement. Model training and evaluation were run on Google Colab GPUs.
 
 %======================================================================
 % ABSTRACT
@@ -1218,8 +1220,8 @@ Phase~2 then tested whether training on Hinglish helps with Hinglish. Under a fr
 Period & Milestone\\
 \midrule
 Oct 2026 (done) & Original-cohort runs and analysis; SRW mentorship submission \#12 (26 Oct, D039); Pilot-B audit of Qwen3-4B; post-hoc tokenization analysis and audit-extension tagging; Phase-2 protocol draft and power simulation (D040); T4 smoke test, GO (28 Oct, D042).\\
-Nov 2026 & Phase 2: schedule fixed (3 Nov, D043); pre-registration frozen with three amendments (D044--D047); DEV ceiling check, not fired (D049); nine training runs, all valid at the first attempt (D050--D051); adapter freeze (8 Nov); single FINAL\_TEST evaluation and analysis, Harm (10 Nov, D052); human checks of both audits. Phase 3: pre-registration (D053), target generation and freeze (Q~=~158, D054--D055), implementation frozen after review (D056). Minor evaluation.\\
-Dec 2026 -- Jan 2027 & Phase 3: nine training runs and one FINAL\_TEST evaluation, analysis, independent verification and failure audit. SRW mentor feedback (5 Dec), final submission (15 Dec), notification (5 Jan).\\
+Nov 2026 & Phase 2: schedule fixed (3 Nov, D043); pre-registration frozen with three amendments (D044--D047); DEV ceiling check, not fired (D049); nine training runs, all valid at the first attempt (D050--D051); adapter freeze (8 Nov); single FINAL\_TEST evaluation and analysis, Harm (10 Nov, D052); human checks of both audits. Phase 3: pre-registration (D053), target generation and freeze (Q~=~158, D054--D055), implementation frozen after review (D056); nine training runs, all valid at the first attempt (21--26 Nov, D057--D058); adapter freeze (26 Nov). Minor evaluation.\\
+Dec 2026 -- Jan 2027 & Phase 3: the single FINAL\_TEST evaluation, analysis, independent verification and failure audit. SRW mentor feedback (5 Dec), final submission (15 Dec), notification (5 Jan).\\
 Feb -- Mar 2027 & Training-paper draft (Phases 2 and 3) for the ARR cycle; second-annotator sample; selected extensions from Section~\ref{sec:futurework}.\\
 Apr 2027 & Thesis and training-paper draft.\\
 May 2027 & Final submission.\\
@@ -1234,13 +1236,15 @@ Under decision D023, the pilot findings target the EACL 2027 Student Research Wo
 \section{Phase 3: training on the model's own solutions (in progress)}
 \label{sec:phase3}
 
-\evid{work in progress. Design, data and code are frozen; no Phase-3 training or evaluation output exists yet, so no Phase-3 result is reported here.}
+\evid{work in progress. All nine training runs are complete and the adapters are frozen; the single FINAL\_TEST evaluation has not yet been run, so no Phase-3 result is reported here.}
 
 \paragraph{Question.} Phase~2 trained on short reference solutions, and every arm lost about 24--26 points of English accuracy while its answers shrank from a median of 113 to 42 tokens. Phase~3 asks whether the Phase-2 conclusion changes when the training solutions are written in the model's own style: does E+C training beat E+R on Hinglish questions when the targets are the unchanged Qwen3-4B's own correct English answers (\emph{self-distillation})?
 
 \paragraph{Design.} Everything except the targets is kept from Phase~2: the same three arms with identical English targets across forms, the same QLoRA recipe, 60 updates, paired seeds 11/22/33, the same strict scorer, the same primary estimand $\Delta_C$ and the same bootstrap and decision labels. The unchanged model was run once on the English version of each of the 160 TRAIN families; an answer became a target only if it was strictly correct, complete, fully English and short enough for every form. The plan fixed in advance that the study would halt if fewer than 120 families qualified. The 100 FINAL\_TEST families are reused; this is disclosed as a limitation, because the Phase-3 design was motivated by Phase-2 results.
 
-\paragraph{Status (17 November 2026).} The pre-registration was adopted before any Phase-3 output (D053). The target run on a Colab T4 produced 160 answers; 158 qualified (two were wrong), none needed language review, and the median target is 106 tokens against the short Phase-2 references (D055). The training, evaluation and analysis code passed an independent adversarial review, one blocking defect was fixed, and the implementation was frozen (D056). The nine training runs and the single test evaluation are next.
+\paragraph{Status (17 November 2026).} The pre-registration was adopted before any Phase-3 output (D053). The target run on a Colab T4 produced 160 answers; 158 qualified (two were wrong), none needed language review, and the median target is 106 tokens against the short Phase-2 references (D055). The training, evaluation and analysis code passed an independent adversarial review, one blocking defect was fixed, and the implementation was frozen (D056). 
+
+\paragraph{Status (26 November 2026).} All nine training runs (three arms $\times$ seeds 11/22/33) completed at the first attempt between 21 and 26 November, each with 60/60 successful updates, no skipped updates and no resumption; the paired seeds share the same data order and initial adapter, as planned. One Colab session ended during a run's DEV sanity check; after the registered recovery, the evaluation validator was amended to accept the engine's documented record of the interrupted generation, with the training code unchanged (D058). The adapters were frozen on 26 November ($S=3$, confirmatory) and the sealed FINAL\_TEST evaluation package was built. The single test evaluation (nine adapters, 2,700 generations) is next. DEV checks are sanity checks only and are not reported as results.
 
 \paragraph{What the outcomes would mean.} If E+C now beats E+R (\emph{Support}), the Phase-2 harm was tied to the short-target recipe. If the result is again Harm or an informative null, Hinglish exposure does not help even when the model keeps its own style. Either way, comparing each arm with its Phase-2 counterpart will show, descriptively, how much of the English-accuracy loss came from the target style.
 
@@ -1384,7 +1388,7 @@ D052 & FINAL\_TEST complete; $\Delta_C = -4.33$ pp $[-8.00, -0.67]$, Harm (10 No
 
 The original pilot's review used self-contained HTML forms distributed in per-reviewer ZIP packets; reviewers returned the JSON files the forms exported.
 
-\placeholder{Optional: insert a screenshot of the stage-1 and stage-2 forms here, taken from a copy of the packet with artificial answers (never a real reviewer's file).}
+
 
 \paragraph{Stage 1 (blind solving).} The form presents all 90 renderings in randomized order without any reference answer. For each rendering the reviewer types a numeric answer, and the form records a timestamp. Progress can be downloaded as JSON and resumed by import. When all 90 are solved, the reviewer completes an attestation and downloads \texttt{R01\_stage1\_responses.json} (or R02).
 
